@@ -32,11 +32,9 @@ use App\Models\Xodimlar;
 // Route::get('/', [SiteController::class, 'index'])->name('frontend.home');
 // Route::get('/views/{id}/{page:slug}', [SiteController::class, 'views'])->name('views');
 
-Route::get('/', function () {
-    return view("auth.login");
-})->middleware(['auth', 'verified'])->name('login');
 
 
+Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home.index');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -48,7 +46,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tashkilotrahbarilar',[TashkilotRahbariController::class,'tashkilotrahbarilar'])->name('tashkilotrahbarilar.index');
     Route::get('/ilmiyloyihalar',[IlmiyLoyihaController::class, 'ilmiyloyihalar'])->name('ilmiyloyihalar.index');
     Route::resources([
-        'home' => HomeController::class,
+        
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,
         'tashkilotrahbari' => TashkilotRahbariController::class,
