@@ -5,7 +5,7 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">Xodimlar</h2>
+        <h2 class="intro-y text-lg font-medium">Ilmiy loyihalar</h2>
 
         <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish
@@ -19,12 +19,11 @@
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
             <table class="table table-report -mt-2">
                 <thead>
-                    <tr>
+                <tr>
                         <th class="whitespace-no-wrap">№</th>
-                        <th class="whitespace-no-wrap">F.I.Sh</th>
-                        <th class="whitespace-no-wrap">Jshshir</th>
-                        <th class="whitespace-no-wrap">Jinsi</th>
-                        <th class="whitespace-no-wrap">Lavozimi</th>
+                        <th class="whitespace-no-wrap">Loyiha mavzusi</th>
+                        <th class="whitespace-no-wrap">Loyiha turi</th>
+                        <th class="whitespace-no-wrap">Loyiha dasturi</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -35,16 +34,13 @@
                     <tr class="intro-x">
                         <td>{{$loop->index+1}}</td>
                         <td>
-                            <a href="#" target="_blank"  class="font-medium">{{ $xodimlar->mavzusi }}</a>
+                            <a href="" class="font-medium ">{{ $xodimlar->mavzusi  }} </a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->bosh_sana  }} </a>
+                            <a href="" class="font-medium ">{{ $xodimlar->turi }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->tug_sana }}</a>
-                        </td>
-                        <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->sum }}</a>
+                            <a href="" class="font-medium ">{{ $xodimlar->dastyri }}</a>
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">

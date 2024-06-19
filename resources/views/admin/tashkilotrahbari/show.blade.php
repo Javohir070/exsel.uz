@@ -7,8 +7,8 @@
 
         <h2 class="intro-y text-lg font-medium">Tashkilot rahbari</h2>
 
-        <a href="{{ route("tashkilotrahbari.create") }}" class="button w-24 bg-theme-1 text-white">
-            Qo'shish
+        <a href="{{ route("tashkilotrahbarilar.index") }}" class="button w-24 bg-theme-1 text-white">
+            Orqaga
         </a>
         
 
@@ -19,11 +19,10 @@
     <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
             <table class="table">
                 <tbody>
-                    @foreach ($tash_rahbar as $tash )
                     <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="font-size:18px;font-weight: 400;">Tashkilot rahbari xaqida ma’lumot</div>
                         <div style="text-align: end;">
-                            <a href="{{ route('tashkilotrahbari.edit',['tashkilotrahbari'=>$tash->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
+                            <a href="{{ route('tashkilotrahbari.edit',['tashkilotrahbari'=>$tashkilotrahbari->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
                             </a>
                             <a href="" class="button w-24 bg-theme-6 text-white">
@@ -33,31 +32,29 @@
                     </div>
                         <tr>
                             <th class="whitespace-no-wrap border-b">Tashkilot rahbari F.I.Sh</th>
-                            <td class="border-b" >{{ $tash->fish }}</td>
+                            <td class="border-b" >{{ $tashkilotrahbari->fish }}</td>
                         </tr>
                         <tr>
                             <th class="whitespace-no-wrap border-b">Tashkilot rahbari Telepon nomer</th>
-                            <td class="border-b">{{ $tash->phone  }} </td>
+                            <td class="border-b">{{ $tashkilotrahbari->phone  }} </td>
                         </tr>
                         <tr>
                             <th class="whitespace-no-wrap border-b">Tashkilot rahbari Email</th>
-                            <td class="border-b">{{ $tash->email }}</td>
+                            <td class="border-b">{{ $tashkilotrahbari->email }}</td>
                         </tr>
                         <tr>
                             <th class="whitespace-no-wrap border-b">O‘rinbosarining F.I.Sh</th>
-                            <td class="border-b">{{ $tash->u_fish }}</td>
+                            <td class="border-b">{{ $tashkilotrahbari->u_fish }}</td>
                         </tr>
                         <tr>
 
                             <th class="whitespace-no-wrap border-b">O‘rinbosarining Telepon nomer</th>
-                            <td class="border-b">{{ $tash->u_phone }}</td>
+                            <td class="border-b">{{ $tashkilotrahbari->u_phone }}</td>
                         </tr>
                         <tr>
                             <th class="whitespace-no-wrap border-b">O‘rinbosarining email</th>
-                            <td class="border-b">{{ $tash->u_email }}</td>
+                            <td class="border-b">{{ $tashkilotrahbari->u_email }}</td>
                         </tr>
-
-                    @endforeach
                 </tbody>
             </table>
         </div>

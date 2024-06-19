@@ -117,14 +117,14 @@
             </a>
         </li>
     @endcan
-
+    @role(['super-admin', 'admin'])
         <li>
             <a href="{{ route('users.index') }}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                 <div class="side-menu__title"> Users </div>
             </a>
         </li>
-    
+    @endrole
     @can('view permission') 
         <li>
             <a href="{{ route('permissions.index') }}" class="side-menu">
@@ -146,7 +146,7 @@
         </li>
     @endrole
 
-    @role('admin')
+    @role(['admin','user'])
         <li>
             <a href="{{ route("tashkilotrahbari.index") }}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
@@ -155,7 +155,7 @@
         </li>
     @endrole
 
-    @role('admin')
+    @role(['admin','user'])
         <li>
             <a href="{{ route("iqtisodiy.index") }}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
@@ -163,7 +163,7 @@
             </a>
         </li>
     @endrole
-    @role('admin')
+    @role(['admin','user'])
         <li>
             <a href="{{ route("ilmiyloyiha.index") }}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>

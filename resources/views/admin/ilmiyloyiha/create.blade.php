@@ -5,7 +5,7 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Xodim qo'shish</h2>
+    <h2 class="intro-y text-lg font-medium">Ilmiy Loyiha qo'shish</h2>
 
 
 
@@ -33,9 +33,14 @@
 
                         <option value="0">Loyiha turi tanlang</option>
 
-                        <option value="erkak">Erkak</option>
+                        <option value="Amaliy">Amaliy</option>
 
-                        <option value="ayol">Ayol</option>
+                        <option value="Fundamental">Fundamental</option>
+
+                        <option value="Innovatsion">Innovatsion</option>
+
+                        <option value="Tajriba-konstruktorlik">Tajriba-konstruktorlik</option>
+
 
                     </select><br>
                 </div>
@@ -49,9 +54,13 @@
 
                         <option value="0">Loyiha dasturi tanlang</option>
 
-                        <option value="erkak">Erkak</option>
+                        <option value="Maqsadli">Maqsadli</option>
+                        <option value="Mega">Mega</option>
+                        <option value="Yosh olimlar">Yosh olimlar</option>
+                        <option value="Olima ayollar">Olima ayollar</option>
 
-                        <option value="ayol">Ayol</option>
+
+                        <option value="Xalqaro-qo‘shma">Xalqaro-qo‘shma</option>
 
                     </select><br>
                 </div>
@@ -83,11 +92,20 @@
                     </label>
                     <select name="bosh_sana" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">tanlang</option>
+                        <option value="0">muddati tanlang</option>
 
-                        <option value="erkak">Erkak</option>
+                        <option value="1">1</option>
 
-                        <option value="ayol">Ayol</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+
 
                     </select><br>
                 </div>
@@ -106,11 +124,14 @@
                     
                     <select name="pan_yunalish" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">tanlang</option>
+                        <option value="0">fan tanlang</option>
 
-                        <option value="erkak">Erkak</option>
+                        <option value="Tibbiyot fanlari">Tibbiyot fanlari</option>
 
-                        <option value="ayol">Ayol</option>
+                        <option value="Biologiya va biotexnologiya fanlari">Biologiya va biotexnologiya fanlari</option>
+                        <option value="Filologiya va ijtimoiy fanlar">Filologiya va ijtimoiy fanlar</option>
+                        <option value="Iqtisodiyot fanlari">Iqtisodiyot fanlari</option>
+
 
                     </select><br>
                 </div>
@@ -120,15 +141,8 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha rahbarining F.I.Sh.
                     </label>
                     
-                    <select name="rahbar_name" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <input type="text" name="rahbar_name" class="input w-full border mt-2" required="">
 
-                        <option value="0">Loyiha rahbarining tanlang</option>
-
-                        <option value="erkak">Erkak</option>
-
-                        <option value="ayol">Ayol</option>
-
-                    </select><br>
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -196,9 +210,9 @@
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">
-            <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+            <a href="#"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
-            </button>
+            </a>
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
                 Qo'shish

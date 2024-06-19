@@ -7,9 +7,11 @@
 
         <h2 class="intro-y text-lg font-medium">{{ $xodimlar->tashkilot->name }} xodim xaqida ma’lumot</h2>
 
-        <a href="{{ route("tashkilotrahbari.create") }}" class="button w-24 bg-theme-1 text-white">
-            Qo'shish
-        </a>
+        @role('super-admin')
+            <a href="{{ route("xodim.barchaXodimlar") }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
+        @endrole
         
 
     </div>

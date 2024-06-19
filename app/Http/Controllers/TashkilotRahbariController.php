@@ -49,9 +49,9 @@ class TashkilotRahbariController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(TashkilotRahbari $tashkilotRahbari)
+    public function show(TashkilotRahbari $tashkilotrahbari)
     {
-        //
+        return view('admin.tashkilotrahbari.show',['tashkilotrahbari'=>$tashkilotrahbari]);
     }
 
     /**

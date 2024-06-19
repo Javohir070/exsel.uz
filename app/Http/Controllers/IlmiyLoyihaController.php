@@ -14,7 +14,8 @@ class IlmiyLoyihaController extends Controller
      */
     public function index()
     {
-        $ilmiyloyiha = IlmiyLoyiha::all();
+        $tashRId = auth()->user()->tashkilot_id;
+        $ilmiyloyiha = IlmiyLoyiha::where('tashkilot_id', $tashRId)->get();
 
         return view('admin.ilmiyloyiha.index',['ilmiyloyiha'=>$ilmiyloyiha]);
     }

@@ -16,4 +16,8 @@ class IqtisodiyMoliyaviy extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function tashkilot()
+    {
+        return $this->belongsTo(Tashkilot::class);
+    }
 }

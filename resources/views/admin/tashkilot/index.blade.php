@@ -22,7 +22,7 @@
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">Tashkilot Nomi</th>
                         <th class="whitespace-no-wrap">web site</th>
-                        <th class="whitespace-no-wrap">Telepon nomeri</th>
+                        <th class="whitespace-no-wrap">Yuridik manzili</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -39,7 +39,7 @@
                             <a href="" class="font-medium ">{{ $maq->web_sayti  }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $maq->phone }}</a>
+                            <a href="" class="font-medium ">{{ $maq->yur_manzil }}</a>
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">

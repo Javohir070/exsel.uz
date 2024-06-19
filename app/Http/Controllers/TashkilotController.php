@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 class TashkilotController extends Controller
 {
 
-    public function __construct()
-    {
-        $this->middleware('permission:view tashkilotlar', ['only' => ['index']]);
-        $this->middleware('permission:create tashkilotlar', ['only' => ['create','store']]);
-        $this->middleware('permission:update tashkilotlar', ['only' => ['update','edit']]);
-        $this->middleware('permission:delete tashkilotlar', ['only' => ['destroy']]);
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('permission:view tashkilotlar', ['only' => ['index']]);
+    //     $this->middleware('permission:create tashkilotlar', ['only' => ['create','store']]);
+    //     $this->middleware('permission:update tashkilotlar', ['only' => ['update','edit']]);
+    //     $this->middleware('permission:delete tashkilotlar', ['only' => ['destroy']]);
+    // }
     /**
      * Display a listing of the resource.
      */

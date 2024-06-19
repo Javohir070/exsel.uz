@@ -7,8 +7,8 @@
 
         <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }}  xaqida ma’lumot</h2>
 
-        <a href="{{ route("tashkilot.create") }}" class="button w-24 bg-theme-1 text-white">
-            Qo'shish
+        <a href="{{ route("tashkilot.index") }}" class="button w-24 bg-theme-1 text-white">
+            Orqaga
         </a>
         
 

@@ -124,10 +124,14 @@
                     <select name="lavozimi" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="0">Lavozimi tanlang</option>
-
-                        <option value="ha">ha</option>
-
-                        <option value="yoq">yoq</option>
+                        <option value="Matbuot kotibi">Matbuot kotibi</option> 
+                        <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option> 
+                        <option value="Qorovul">Qorovul</option>
+                        <option value="Buxgalter">Buxgalter</option>
+                        <option value="Kotiba">Kotiba</option>
+                        <option value="Direktor">Direktor</option>
+                        <option value="Buxgalter">Buxgalter</option>
+                        <option value="Ilmiy kotib">Ilmiy kotib</option> 
 
                     </select><br>
                 </div>

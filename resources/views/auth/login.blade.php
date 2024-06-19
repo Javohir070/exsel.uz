@@ -12,7 +12,7 @@
                     <div class="my-auto">
                         <img alt="Midone Tailwind HTML Admin Template" class="-intro-x w-1/2 -mt-16" src="/admin/dist/images/illustration.svg">
                         <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
-                        Oliy ta'lim, fan va innovatsiyalar vazirligi  <br> huzuridagi Innovatsion rivojlanish agentligi.
+                            Ilmiy tadqiqot muassasalari faoliyat monitoring tizimi
                            
                             
                         </div>

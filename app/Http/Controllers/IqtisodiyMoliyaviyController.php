@@ -56,9 +56,9 @@ class IqtisodiyMoliyaviyController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(IqtisodiyMoliyaviy $iqtisodiymoliyaviy)
+    public function show(IqtisodiyMoliyaviy $iqtisodiy)
     {
-        //
+        return view('admin.iqtisodiy.show',['iqtisodiy'=>$iqtisodiy]);
     }
 
     /**

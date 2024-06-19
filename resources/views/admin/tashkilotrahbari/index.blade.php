@@ -21,7 +21,7 @@
                 <tbody>
                     @foreach ($tash_rahbar as $tash )
                     <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;">Tashkilot rahbari xaqida ma’lumot</div>
+                        <div style="font-size:18px;font-weight: 400;"> {{$tash->tashkilot->name_qisqachasi}} rahbari xaqida ma’lumot</div>
                         <div style="text-align: end;">
                             <a href="{{ route('tashkilotrahbari.edit',['tashkilotrahbari'=>$tash->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
@@ -44,7 +44,7 @@
                             <td class="border-b">{{ $tash->email }}</td>
                         </tr>
                         <tr>
-                            <th class="whitespace-no-wrap border-b">O‘rinbosarining F.I.Sh</th>
+                            <th class="whitespace-no-wrap border-b">Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.Sh</th>
                             <td class="border-b">{{ $tash->u_fish }}</td>
                         </tr>
                         <tr>

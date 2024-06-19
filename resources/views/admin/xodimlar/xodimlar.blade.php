@@ -7,7 +7,7 @@
 
         <h2 class="intro-y text-lg font-medium">Barcha Xodimlar </h2>
 
-        <a href="{{ route('tashkilot.create') }}"  class="button w-24 bg-theme-1 text-white">
+        <a href="{{ route('xodimlar.create') }}"  class="button w-24 bg-theme-1 text-white">
             Qo'shish
         </a>
 
@@ -20,8 +20,9 @@
                 <thead>
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
-                        <th class="whitespace-no-wrap">Tashkilot Nomi</th>
-                        <th class="whitespace-no-wrap">web site</th>
+                        <th class="whitespace-no-wrap">Tashkilot nomi</th>
+                        <th class="whitespace-no-wrap">F.I.Sh</th>
+                        <th class="whitespace-no-wrap">JSHSHIR</th>
                         <th class="whitespace-no-wrap">Telepon nomeri</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
@@ -33,10 +34,13 @@
                     <tr class="intro-x">
                         <td>{{$loop->index+1}}</td>
                         <td>
+                            <a href="" class="font-medium ">{{ $maq->tashkilot->name_qisqachasi }}</a>
+                        </td>
+                        <td>
                             <a href="#" target="_blank"  class="font-medium">{{ $maq->fish }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $maq->email  }}</a>
+                            <a href="" class="font-medium ">{{ $maq->jshshir  }}</a>
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $maq->phone }}</a>
