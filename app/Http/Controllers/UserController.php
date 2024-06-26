@@ -40,19 +40,20 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|max:20',
-            'roles' => 'required'
+            'roles' => 'required',
+            "tashkilot_id" =>  'required',
         ]);
 
         $user = User::create([
                         'name' => $request->name,
                         'email' => $request->email,
-                        'tashkilot_id' =>  auth()->user()->tashkilot_id,
+                        'tashkilot_id' => $request->tashkilot_id,
                         'password' => Hash::make($request->password),
                     ]);
 
         $user->syncRoles($request->roles);
 
-        return redirect('/users')->with('status','User created successfully with roles');
+        return redirect('/')->with('status','User created successfully with roles');
     }
 
     public function edit(User $user)

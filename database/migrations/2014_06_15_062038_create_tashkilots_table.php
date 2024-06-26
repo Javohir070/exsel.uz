@@ -31,6 +31,7 @@ return new class extends Migration
             $table->string('boshqariv')->nullable();
             $table->string('stir_raqami')->nullable();
             $table->string('bank')->nullable();
+            $table->string('logo')->nullable();
             $table->timestamps();
         });
     }

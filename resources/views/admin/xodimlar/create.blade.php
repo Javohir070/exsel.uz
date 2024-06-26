@@ -45,11 +45,11 @@
                     </label>
                     <select name="jinsi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">jinsi tanlang</option>
+                        <option >jinsi tanlang</option>
 
-                        <option value="erkak">Erkak</option>
+                        <option value="Erkak">Erkak</option>
 
-                        <option value="ayol">Ayol</option>
+                        <option value="Ayol">Ayol</option>
 
                     </select><br>
                 </div>
@@ -60,7 +60,7 @@
                     </label>
                     <select name="ish_tartibi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Ish tartibi tanlang</option>
+                        <option >Ish tartibi tanlang</option>
 
                         <option value="asosiy">asosiy</option>
 
@@ -158,7 +158,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy darajasi</label>
                     <select name="ilmiy_daraja" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Ilmiy darajasi tanlang</option>
+                        <option >Ilmiy darajasi tanlang</option>
 
                         <option value="Fan nomzodi">Fan nomzodi</option>
 
@@ -183,11 +183,11 @@
                     </label>
                     <select name="ilmiy_unvoni" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Ilmiy unvoni tanlang</option>
+                        <option >Ilmiy unvoni tanlang</option>
 
                         <option value="Professor">Professor</option>
 
-                        <option value="Dots.nt">Dosrnt</option>
+                        <option value="Dotsent">Dotsent</option>
                         <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
                         <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
 
@@ -212,7 +212,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telefon
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telefon raqami
                     </label>
                     <input type="tel" name="phone" class="input w-full border mt-2" required="">
                 </div>

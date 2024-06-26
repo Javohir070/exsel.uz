@@ -5,10 +5,12 @@
     </a>
     <div class="side-nav__devider my-6"></div>
 
-    <a href="" class=" items-center ">
-        <img width="" style="text-align: center;margin: 10px auto;width: 70%;" alt="Midone Tailwind HTML Admin Template"  src="https://nuu.uz/wp-content/themes/nuutheme/assets/images/dest/logo1.png">
-        <span class="hidden xl:block text-white text-lg ml-3" style="font-size: 18px; text-align: center;"> Mirzo Ulug’bek nomidagi O’zbekiston Milliy universiteti </span>
-    </a><br>
+    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+			<a href="" class=" items-center ">
+				<img width="" style="text-align: center;margin: 10px auto;width: 70%;" alt="Midone Tailwind HTML Admin Template"  src="{{ asset('storage/'. auth()->user()->tashkilot->logo)  }}">
+				<span class="hidden xl:block text-white text-lg ml-3" style="font-size: 18px; text-align: center;"> {{ auth()->user()->tashkilot->name }}</span>
+			</a><br>
+    @endrole
     <ul>
         <li>
             <a href="{{ route("home.index") }}" class="side-menu side-menu{{ request()->is('/*') ? '--active':'' }}" >
@@ -44,7 +46,7 @@
                 <li>
                     <a href="{{ route('iqtisodiylar.index') }}" class="side-menu side-menu{{ request()->is('iqtisodiylar*') ? '--active':'' }}">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title">  Iqtisodiy Moliyaviy faoliyatlari   </div>
+                        <div class="side-menu__title">  Iqtisodiy moliyaviy faoliyatlari   </div>
                     </a>
                 </li>
 
@@ -131,7 +133,7 @@
     @endrole
 
    <!-- start admin userlar -->
-   @role(['admin','tashkilot-pasporti'])
+   @role(['admin','Tashkilot_pasporti_uchun_masul'])
         <li>
             <a href="javascript:;" class="side-menu side-menu{{ request()->is('tashkilot*') ? '--active':'' }}{{ request()->is('iqtisodiy*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="box"></i> </div>
@@ -148,7 +150,7 @@
                 <li>
                     <a href="{{ route("iqtisodiy.index") }}" class="side-menu side-menu{{ request()->is('iqtisodiy*') ? '--active':'' }}">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title">  Iqtisodiy Moliyaviy faoliyat  </div>
+                        <div class="side-menu__title">  Iqtisodiy moliyaviy faoliyat  </div>
                     </a>
                 </li>
                 
@@ -162,7 +164,7 @@
         </li>
     @endrole
    
-    @role(['admin','xodim-qoshish'])
+    @role(['admin','Xodimlar_uchun_masul'])
         <li>
             <a href="{{ route('xodimlar.index') }}" class="side-menu side-menu{{ request()->is('xodimlar*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
@@ -171,7 +173,7 @@
         </li>
     @endrole
 
-    @role(['admin','loyiha-qoshish'])
+    @role(['admin','Ilmiy_faoliyat_uchun_masul'])
         <li>
             <a href="{{ route("ilmiyloyiha.index") }}" class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
@@ -180,7 +182,7 @@
         </li>
     @endrole
 
-    @role(['admin','loyiha-qoshish'])
+    @role(['admin','Ilmiy_faoliyat_uchun_masul'])
     <li>
         <a href="{{ route("xujalik.index") }}" class="side-menu side-menu{{ request()->is('xujalik*') ? '--active':'' }}">
             <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
@@ -189,7 +191,7 @@
     </li>
     @endrole
 
-    @role(['admin','loyiha-qoshish'])
+    @role(['admin','Ilmiy_faoliyat_uchun_masul'])
     <li>
         <a href="{{ route("ilmiydaraja.index") }}" class="side-menu side-menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}">
             <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
@@ -198,6 +200,18 @@
     </li>
     @endrole
     <!-- end admin -->
+    <div class="side-nav__devider my-6"></div>
+		<li>
+        <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <x-dropdown-link style="color: white;padding: 8px;margin-left: 16px;" class="side-menu flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md" :href="route('logout')"
+                    onclick="event.preventDefault();
+                                this.closest('form').submit();">
+                <div class="side-menu__icon"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> </div>
+                Chiqish
+            </x-dropdown-link>
+        </form>
+    </li>
     </ul>
 </nav>
 

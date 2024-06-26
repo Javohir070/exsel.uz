@@ -60,13 +60,13 @@
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Paoliyat yuritayetgan mahzili
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Faoliyat yuritayotgan manzili
                     </label>
                     <input type="text" name="paoliyat_manzil" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telepon nomer 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telepon raqami 
                     </label>
                     <input type="text" name="phone" class="input w-full border mt-2" >
                 </div>
@@ -89,7 +89,7 @@
                     </label>
                     <select name="turi" id="science-sub-category" class="input border w-full mt-2" >
 
-                        <option value="0">Mulkchilik turi tanlang</option>
+                        <option >Mulkchilik turi tanlang</option>
 
                         <option value="davlat">Davlat</option>
 
@@ -103,7 +103,7 @@
                     </label>
                     <select name="xarajatlar" id="science-sub-category" class="input border w-full mt-2" >
 
-                        <option value="0">tanlang</option>
+                        <option >tanlang</option>
 
                         <option value="davlat byudjeti">Davlat byudjeti</option>
 
@@ -117,7 +117,7 @@
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shtst birligi soni
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shtat birligi soni
                     </label>
                     <input type="text" name="shtat_bir" class="input w-full border mt-2" >
                 </div>
@@ -142,7 +142,7 @@
 
                         <option value="0">boshqariv tuzilmasi tanlang</option>
 
-                        <option value="Derektor">Derektor</option>
+                        <option value="Derektor">Direktor</option>
 
                         <option value="Kengash">Kengash</option>
 

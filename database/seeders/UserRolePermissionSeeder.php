@@ -41,9 +41,10 @@ class UserRolePermissionSeeder extends Seeder
         // Create Roles
         $superAdminRole = Role::create(['name' => 'super-admin']); //as super-admin
         $adminRole = Role::create(['name' => 'admin']);
-        $staffRole = Role::create(['name' => 'staff']);
-        $userRole = Role::create(['name' => 'user']);
-
+        $staffRole = Role::create(['name' => 'Ilmiy_faoliyat_uchun_masul']);
+        $userRole = Role::create(['name' => 'Tashkilot_pasporti_uchun_masul']);
+         Role::create(['name' => 'Xodimlar_uchun_masul']);
+        
         // Lets give all permission to super-admin role.
         $allPermissionNames = Permission::pluck('name')->toArray();
 
@@ -93,7 +94,7 @@ class UserRolePermissionSeeder extends Seeder
         $tuit->assignRole($adminRole);
 
 
-        $tuit = User::firstOrCreate([
+        $ozmu = User::firstOrCreate([
             'email' => 'ozmu@gmail.com'
         ], [
             'name' => 'ozmu',
@@ -102,7 +103,7 @@ class UserRolePermissionSeeder extends Seeder
             'password' => Hash::make ('1234'),
         ]);
 
-        $tuit->assignRole($adminRole);
+        $ozmu->assignRole($adminRole);
 
 
         $staffUser = User::firstOrCreate([

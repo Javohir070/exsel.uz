@@ -9,7 +9,7 @@ class Tashkilot extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["name","name_qisqachasi", "tash_yil", "yur_manzil", "viloyat","tuman", "paoliyat_manzil", "phone", "email","web_sayti", "turi", "xarajatlar", "shtat_bir","tash_xodimlar", "ilmiy_xodimlar", "boshqariv", "stir_raqami","bank"];
+    protected $fillable = ["name","name_qisqachasi", "tash_yil", "yur_manzil", "viloyat","tuman", "paoliyat_manzil", "phone", "email","web_sayti", "turi", "xarajatlar", "shtat_bir","tash_xodimlar", "ilmiy_xodimlar", "boshqariv", "stir_raqami","bank","logo"];
 
     public function user()
     {

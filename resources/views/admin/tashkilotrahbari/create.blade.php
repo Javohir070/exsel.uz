@@ -34,7 +34,7 @@
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning Telepon nomer
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning Telefon raqami
                         </label>
                         <input type="text" name="phone" class="input w-full border mt-2" required="">
                     </div>
@@ -55,7 +55,7 @@
                     
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining  telepon nomer 
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining  telefon raqami 
                         </label>
                         <input type="text" name="u_phone" class="input w-full border mt-2" required="">
                     </div>

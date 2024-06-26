@@ -13,7 +13,8 @@
                     Yangilang </a>
             </div>
             <div class="grid grid-cols-12 gap-6 mt-5">
-                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+				
+                <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
@@ -26,21 +27,24 @@
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">40/10</div>
                             <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Tashkilot pasporti biriktirilgan masul xodim
-                            @role('admin') 
+                               @forelse($Tashkilot_pasporti as $tash)
                                 <a href="{{ url('users/create') }}"
                                     class="button  bg-theme-1 text-white"
                                     style="display: flex; justify-content:center;margin-top: 10px;">
+                                    {{$tash->name}}</a>
+								@empty
+								  <a href="{{ url('users/create') }}"
+                                    class="button  bg-theme-1 text-white"
+                                    style="display: flex; justify-content:center;margin-top: 10px;">
                                     masul xodim biriktirish</a>
-                                    @endrole
-                                    @role(['tashkilot-pasporti','xodim-qoshish','loyiha-qoshish'])
-                                    <a class="button  bg-theme-1 text-white"
-                                    style="display: flex; justify-content:center;margin-top: 10px;">Qayumov Javohir</a>
-                                    @endrole
+								@endforelse
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+				
+                <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+					
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
@@ -53,14 +57,21 @@
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">10/2</div>
                             <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Ilmiy loyhalar biriktirilgan masul xodim
-                            <a
+								@forelse($Ilmiy_faoliyat as $ilmiy)
+                                 <a class="button  bg-theme-1 text-white"
+                                    style="display: flex; justify-content:center;margin-top: 10px;">{{$ilmiy->name}}</a>
+								@empty
+								  <a href="{{ url('users/create') }}"
                                     class="button  bg-theme-1 text-white"
-                                    style="display: flex; justify-content:center;margin-top: 10px;">Qayumov Javohir</a>
+                                    style="display: flex; justify-content:center;margin-top: 10px;">
+                                    masul xodim biriktirish</a>
+								@endforelse
                                 </div>
                         </div>
                     </div>
+					
                 </div>
-                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
@@ -72,29 +83,17 @@
                                 </div>
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">10/5</div>
-                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Xodimlar biriktirilgan masul xodim <a
+                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Xodimlar biriktirilgan masul xodim 
+								@forelse($Xodimlar_uchun as $ilmiy)
+                                 <a class="button  bg-theme-1 text-white"
+                                    style="display: flex; justify-content:center;margin-top: 10px;">{{$ilmiy->name}}</a>
+								@empty
+								  <a href="{{ url('users/create') }}"
                                     class="button  bg-theme-1 text-white"
-                                    style="display: flex; justify-content:center;margin-top: 10px;">Qayumov Javohir</a></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                    <div class="report-box zoom-in">
-                        <div class="box p-5">
-                            <div class="flex">
-                                <i data-feather="user" class="report-box__icon text-theme-9"></i>
-                                <div class="ml-auto">
-                                    <div class="report-box__indicator bg-theme-9 tooltip cursor-pointer"
-                                        title="33% Higher than last month"> 33% <i data-feather="chevron-up"
-                                            class="w-4 h-4"></i> </div>
-                                </div>
-                            </div>
-                            <div class="text-3xl font-bold leading-8 mt-6">20/15</div>
-                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Pan doktori (DSc) biriktirilgan masul xodim 
-                            <a
-                                    class="button  bg-theme-1 text-white"
-                                    style="display: flex; justify-content:center;margin-top: 10px;">Qayumov Javohir</a>
-                                </div>
+                                    style="display: flex; justify-content:center;margin-top: 10px;">
+                                    masul xodim biriktirish</a>
+								@endforelse
+							</div>
                         </div>
                     </div>
                 </div>

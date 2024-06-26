@@ -32,6 +32,7 @@ class TashkilotSeeder extends Seeder
             "boshqariv" => "TUIT",
             "stir_raqami" => "TUIT",
             "bank" => "TUIT",
+            "logo"=>"logo.phg",
         ]);
 
         Tashkilot::create([
@@ -53,6 +54,7 @@ class TashkilotSeeder extends Seeder
             "boshqariv" => "O'zMU",
             "stir_raqami" => "O'zMU",
             "bank" => "O'zMU",
+            "logo"=>"logo.phg",
         ]);
 
        

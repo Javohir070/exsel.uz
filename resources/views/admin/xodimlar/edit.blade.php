@@ -198,7 +198,7 @@
 
                         <option value="Professor">Professor</option>
 
-                        <option value="Dots.nt">Dosrnt</option>
+                        <option value="Dotsent">Dotsent</option>
                         <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
                         <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
 

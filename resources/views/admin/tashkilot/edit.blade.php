@@ -23,65 +23,65 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot nomi
                     </label>
-                    <input type="text" name="name" value="{{ $tashkilot->name }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="name"  class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot qisqa nomi massalan(TATU, O'zMU)
                     </label>
-                    <input type="text" name="name_qisqachasi" value="{{ $tashkilot->name_qisqachasi }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="name_qisqachasi"  class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkil etilgan yil
                     </label>
-                    <input type="number" name="tash_yil" value="{{ $tashkilot->tash_yil }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="tash_yil"  class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Yuridik manzili
                     </label>
-                    <input type="text" name="yur_manzil" value="{{ $tashkilot->yur_manzil }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="yur_manzil"  class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Viloyat manzili
                     </label>
-                    <input type="text" name="viloyat" value="{{ $tashkilot->viloyat }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="viloyat"  class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuman manzili
                     </label>
-                    <input type="text" name="tuman" value="{{ $tashkilot->tuman }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="tuman"  class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Paoliyat yuritayetgan mahzili
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Faoliyat yuritayotgan manzili
                     </label>
-                    <input type="text" name="paoliyat_manzil" value="{{ $tashkilot->paoliyat_manzil }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="paoliyat_manzil"  class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telepon nomer 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telepon raqami 
                     </label>
-                    <input type="text" name="phone" value="{{ $tashkilot->phone }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="phone"  class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Email 
                     </label>
-                    <input type="email" name="email" value="{{ $tashkilot->email }}" class="input w-full border mt-2" required="">
+                    <input type="email" name="email"  class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Web-sayti
                     </label>
-                    <input type="text" name="web_sayti" value="{{ $tashkilot->web_sayti }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="web_sayti"  class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6">
@@ -90,7 +90,7 @@
                     </label>
                     <select name="turi"  id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Mulkchilik turi tanlang</option>
+                        <option>Mulkchilik turi tanlang</option>
 
                         <option value="davlat">Davlat</option>
 
@@ -104,7 +104,7 @@
                     </label>
                     <select name="xarajatlar"  id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">tanlang</option>
+                        <option>tanlang</option>
 
                         <option value="davlat byudjeti">Davlat byudjeti</option>
 
@@ -118,21 +118,21 @@
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shtst birligi soni
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shtat birligi soni
                     </label>
-                    <input type="text" name="shtat_bir" value="{{ $tashkilot->shtat_bir }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="shtat_bir"  class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xodimlar soni
                     </label>
-                    <input type="number" name="tash_xodimlar" value="{{ $tashkilot->tash_xodimlar }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="tash_xodimlar"  class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy xodimlar soni
                     </label>
-                    <input type="number" name="ilmiy_xodimlar" value="{{ $tashkilot->ilmiy_xodimlar }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="ilmiy_xodimlar"  class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6">
@@ -143,7 +143,7 @@
 
                         <option value="0">boshqariv tuzilmasi tanlang</option>
 
-                        <option value="Derektor">Derektor</option>
+                        <option value="Derektor">Direktor</option>
 
                         <option value="Kengash">Kengash</option>
 
@@ -161,14 +161,14 @@
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">STIR raqami 
                     </label>
-                    <input type="text" name="stir_raqami" value="{{ $tashkilot->stir_raqami }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="stir_raqami"  class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xizmat ko'rsatuvch bank
                     </label>
-                    <input type="text" name="bank" value="{{ $tashkilot->bank }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="bank"  class="input w-full border mt-2" required="">
                 </div>
 
 

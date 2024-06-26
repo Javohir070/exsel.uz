@@ -46,14 +46,14 @@ class IlmiybnTaminlangaController extends Controller
         ]);
 
         $umumiyyil = Umumiyyil::create([
-            "2017y" => $request->yil2017,
-            "2018y" => $request->yil2018,
-            "2019y" => $request->yil2019,
-            "2020y" => $request->yil2020,
-            "2021y" => $request->yil2021,
-            "2022y" => $request->yil2022,
-            "2023y" => $request->yil2023,
-            "2024y" => $request->yil2024,
+            "y2017" => $request->yil2017,
+            "y2018" => $request->yil2018,
+            "y2019" => $request->yil2019,
+            "y2020" => $request->yil2020,
+            "y2021" => $request->yil2021,
+            "y2022" => $request->yil2022,
+            "y2023" => $request->yil2023,
+            "y2024" => $request->yil2024,
         ]);
 
         IlmiybnTaminlanga::create([

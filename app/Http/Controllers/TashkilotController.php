@@ -41,11 +41,19 @@ class TashkilotController extends Controller
      */
     public function store(Request $request)
     {
+
+        if($request->hasFile('logo')){
+            $name = $request->file('logo')->getClientOriginalName();
+            $path = $request->file('logo')->storeAs('post-photos', $name);
+        }
+
         Tashkilot::create([
             "name" => $request->name,
             "name_qisqachasi" => $request->name_qisqachasi,
             "tash_yil" => $request->tash_yil,
             "yur_manzil" => $request->yur_manzil,
+            "logo" =>  $path ?? null,
+            
 
             "viloyat" => $request->viloyat ?? "malumot yuq",
             "tuman" => $request->tuman ?? "malumot yuq",
