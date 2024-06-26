@@ -14,7 +14,8 @@ class IqtisodiyMoliyaviyController extends Controller
      */
     public function index()
     {
-        $iqtisodiy = auth()->user()->iqtisodiyMoliyaviy;
+        $tashRId = auth()->user()->tashkilot_id;
+        $iqtisodiy = IqtisodiyMoliyaviy::where('tashkilot_id', $tashRId)->get();
         return view("admin.iqtisodiy.index",['iqtisodiy' => $iqtisodiy]);
     }
 

@@ -5,160 +5,139 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">Tashkilotlar</h2>
+        <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }}  xaqida ma’lumot</h2>
 
-        <a href="{{ route('tashkilot.create') }}"  class="button w-24 bg-theme-1 text-white">
-            Qo'shish
+        <a href="{{ route("tashkilot.index") }}" class="button w-24 bg-theme-1 text-white">
+            Orqaga
         </a>
+        
 
     </div>
-    <div class="grid grid-cols-12 gap-6 mt-5">
-
-
-        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            <table class="table table-report -mt-2">
-                <thead>
-                    <tr>
-                        <th class="whitespace-no-wrap">№</th>
-                        <th class="whitespace-no-wrap">Tashkilot Nomi</th>
-                        <th class="whitespace-no-wrap">web site</th>
-                        <th class="whitespace-no-wrap">Yuridik manzili</th>
-                        <th class="whitespace-no-wrap text-center">Harakat</th>
-                    </tr>
-                </thead>
+    @if (session('status'))
+        <div class="alert alert-success">{{ session('status') }}</div>
+    @endif
+    <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
+            <table class="table">
                 <tbody>
+                    <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
+                        <div style="font-size:18px;font-weight: 400;">{{ $tashkilot->name ."  ". $tashkilot->fish }}  Tashkilot pasporti</div>
+                        <div style="text-align: end;">
+                            <a href="{{ route('tashkilot.edit',['tashkilot'=>$tashkilot->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
+                            Tahrirlash
+                            </a>
+                            <a href="" class="button w-24 bg-theme-6 text-white">
+                                O'chirish
+                            </a>
+                        </div>
+                    </div>
+                    
+                        <!-- <tr style="margin-top:20px;">
+                            <th class="whitespace-no-wrap border" style="text-align: center;font-size:20px;"  colspan="3"> Tashkilot pasporti </th>
+                        </tr> -->
+                        <tr>
+                            <th class="border border-b-2 whitespace-no-wrap">#</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Ma’lumot nomlanishi</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Ma’lumot</th>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="border border-b-2 whitespace-no-wrap">1</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Tashkilot nomi</th>
+                            <td class="border border-b-2 whitespace-no-wrap" >{{ $tashkilot->name }}</td>
+                        </tr>
+                        <tr>
+                            <th class="border border-b-2 whitespace-no-wrap">2</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Tashkilot qisqa nomi massalan</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->name_qisqachasi }}</td>
+                        </tr>
+                        <tr class="bg-gray-200" >
+                            <th class="border border-b-2 whitespace-no-wrap">3</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Tashkil etilgan yil</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->tash_yil }}</td>
+                        </tr>
+                        <tr>
+                            <th class="border border-b-2 whitespace-no-wrap">4</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Yuridik manzili</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->yur_manzil }}</td>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="border border-b-2 whitespace-no-wrap">5</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Viloyat manzili</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->viloyat }}</td>
+                        </tr>
+                        <tr>
+                            <th class="border border-b-2 whitespace-no-wrap">6</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Tuman manzili</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->tuman }}</td>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="border border-b-2 whitespace-no-wrap">7</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Paoliyat yuritayetgan mahzili</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->paoliyat_manzil }}</td>
+                        </tr>
+                        <tr>
+                            <th class="border border-b-2 whitespace-no-wrap">8</th>
+                            <th class="border border-b-2 whitespace-no-wrap"> Telepon nomer</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->phone }}</td>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="border border-b-2 whitespace-no-wrap">9</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Email</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->email }}</td>
+                        </tr>
+                        <tr>
+                            <th class="border border-b-2 whitespace-no-wrap">10</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Web-sayti</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->web_sayti }}</td>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="border border-b-2 whitespace-no-wrap">11</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Mulkchilik turi</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->turi }}</td>
+                        </tr>
 
-                    @foreach ($tashkilots as $maq )
-
-                    <tr class="intro-x">
-                        <td>{{$loop->index+1}}</td>
-                        <td>
-                            <a href="#" target="_blank"  class="font-medium">{{ $maq->name }}</a>
-                        </td>
-                        <td>
-                            <a href="" class="font-medium ">{{ $maq->web_sayti  }}</a>
-                        </td>
-                        <td>
-                            <a href="" class="font-medium ">{{ $maq->yur_manzil }}</a>
-                        </td>
-                        <td class="table-report__action w-56">
-                            <div class="flex justify-center items-center">
-                                <a class="flex science-update-action items-center mr-3" href="{{ route('tashkilot.edit',['tashkilot'=>$maq->id]) }}" data-id="2978" data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png" data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None" data-doi="" data-publisher="" data-description="None" data-authors-count="None" data-toggle="modal" data-target="#science-paper-update-modal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square w-4 h-4 mr-1">
-                                        <polyline points="9 11 12 14 22 4"></polyline>
-                                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                                    </svg>
-                                    Tahrirlash
-                                </a>
-                                <a class="flex science-update-action items-center mr-3" href="{{ route('tashkilot.show',['tashkilot'=>$maq->id]) }}" data-id="2978" data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png" data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None" data-doi="" data-publisher="" data-description="None" data-authors-count="None" data-toggle="modal" data-target="#science-paper-update-modal">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square w-4 h-4 mr-1">
-                                        <polyline points="9 11 12 14 22 4"></polyline>
-                                        <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                                    </svg>
-                                    Ko'rish
-                                </a>
-                                
-                                <form action="{{ route('ilmiyunvon.destroy',['ilmiyunvon'=>$maq->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
-                                    <button type="submit" class="flex delete-action items-center text-theme-6" >
-                                    @csrf
-                                    @method("DELETE")
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 w-4 h-4 mr-1">
-                                            <polyline points="3 6 5 6 21 6"></polyline>
-                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                            </path>
-                                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                                        </svg>
-                                        O'chirish
-                                    </button>
-                                </form>
-
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-
-
+                        <tr>
+                            <th class="border border-b-2 whitespace-no-wrap">12</th>
+                            <th class="border border-b-2 whitespace-no-wrap"> Tashkilotni saqlash harajatlarining moliyalashtirish manbasi</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->xarajatlar }}</td>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="border border-b-2 whitespace-no-wrap">13</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Shtst birligi soni</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->shtat_bir }}</td>
+                        </tr>
+                        <tr>
+                            <th class="border border-b-2 whitespace-no-wrap">14</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Xodimlar soni</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->tash_xodimlar }}</td>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="border border-b-2 whitespace-no-wrap">15</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Ilmiy xodimlar soni</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->ilmiy_xodimlar  }} </td>
+                        </tr>
+                        <tr>
+                            <th class="border border-b-2 whitespace-no-wrap">16</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Boshqariv tuzilmasi</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->boshqariv  }} </td>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="border border-b-2 whitespace-no-wrap">17</th>
+                            <th class="border border-b-2 whitespace-no-wrap">STIR raqami </th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->stir_raqami  }} </td>
+                        </tr>
+                        <tr>
+                            <th class="border border-b-2 whitespace-no-wrap">18</th>
+                            <th class="border border-b-2 whitespace-no-wrap">Xizmat ko'rsatuvch bank</th>
+                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->bank  }} </td>
+                        </tr>
+                        
                 </tbody>
             </table>
         </div>
 
 
 
-        <!-- END: Data List -->
-        <div class="modal" id="science-paper-create-modal">
-            <div class="modal__content modal__content--xl">
-                <div class="p-5">
-
-                    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
-                        <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                            <form id="science-paper-create-form" method="POST" action="{{ route('ilmiyunvon.store') }}" class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
-                                @csrf
-                                <div class="grid grid-cols-12 gap-2">
-                                    <div class="w-full col-span-6">
-                                        <label class="flex flex-col sm:flex-row"> <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy unvon turni tanlash
-                                        </label>
-                                        <select name="ilmiy_unvon_nomi" id="science-sub-category" class="input border w-full mt-2" required="">
-
-                                            <option value="0">Ilmiy unvon tanlang</option>
-
-                                            <option value="Dotsent">Dotsent</option>
-
-                                            <option value="Professor">Professor</option>
-
-                                            <option value="Akademik">Akademik</option>
-
-                                        </select><br>
-                                    </div>
-                                    <div class="w-full col-span-6">
-                                        <label class="flex flex-col sm:flex-row"> <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Berilgan sanasi
-                                        </label>
-                                        <input type="text" id="datepicker" name="sana" class="datepicker input w-full border mt-2" required=""><br>
-
-                                    </div>
-
-                                    <div class="w-full col-span-12 ilmiy-ish">
-                                        <label class="flex flex-col sm:flex-row"> <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Registrasiya nomer 
-                                        </label>
-                                        <input type="text" name="regis_raqami" class="input w-full border mt-2" required="">
-                                    </div>
-                                    <div class="w-full col-span-12 ilmiy-ish">
-                                        <label class="flex flex-col sm:flex-row"> <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Kim tomonidan berilgan
-                                        </label>
-                                        <input type="text" name="kim_tom_berilgan" class="input w-full border mt-2" required="">
-                                    </div>
-
-                                    
-                                    <div class="w-full col-span-12" style="display:none;">
-
-                                        <div class="my-4">
-                                            <a class="old_file underlined" href="" target="_blank"></a>
-                                        </div>
-
-
-                                        <label class="flex flex-col sm:flex-row"> <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Файл
-                                        </label>
-                                        <input type="file" name="file" style="padding-left: 0" class="input w-full mt-2" required="">
-
-                                    </div>
-
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="px-5 pb-5 text-center">
-                    <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                        Bekor qilish
-                    </button>
-                    <button type="submit" form="science-paper-create-form" class="update-confirm button w-24 bg-theme-1 text-white">
-                        Qo'shish
-                    </button>
-                </div>
-            </div>
-        </div>
+        
 
     </div>
 

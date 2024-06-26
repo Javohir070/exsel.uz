@@ -202,6 +202,56 @@
                     </select><br>
                 </div>
 
+                
+                <div class="w-full col-span-2 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2017 yilda
+                    </label>
+                    <input type="text" name="y2017" class="input w-full border mt-2" required="">
+                </div>
+                <div class="w-full col-span-2 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2018 yilda
+                    </label>
+                    <input type="text" name="y2018" class="input w-full border mt-2" required="">
+                </div>
+                <div class="w-full col-span-2 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2019 yilda
+                    </label>
+                    <input type="text" name="y2019" class="input w-full border mt-2" required="">
+                </div>
+                <div class="w-full col-span-2 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2020 yilda
+                    </label>
+                    <input type="text" name="y2020" class="input w-full border mt-2" required="">
+                </div>
+                <div class="w-full col-span-2 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2021 yilda
+                    </label>
+                    <input type="text" name="y2021" class="input w-full border mt-2" required="">
+                </div>
+                <div class="w-full col-span-2 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2022 yilda
+                    </label>
+                    <input type="text" name="y2022" class="input w-full border mt-2" required="">
+                </div>
+                <div class="w-full col-span-2 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2023 yilda
+                    </label>
+                    <input type="text" name="y2023" class="input w-full border mt-2" required="">
+                </div>
+                <div class="w-full col-span-2 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2024 yilda
+                    </label>
+                    <input type="text" name="y2024" class="input w-full border mt-2" required="">
+                </div>
+
 
 
 

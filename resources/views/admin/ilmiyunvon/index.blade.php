@@ -251,9 +251,7 @@
                                     </div>
                                     <div class="w-full col-span-12">
 
-                                        <div class="my-4">
-                                            <a class="old_file underlined" href="" target="_blank"></a>
-                                        </div>
+
 
 
                                         <label class="flex flex-col sm:flex-row"> <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Файл

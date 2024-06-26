@@ -27,12 +27,27 @@
             class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
             @csrf
             <div class="grid grid-cols-12 gap-2">
+                @role('super-admin')
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Name
                         </label>
-                        <input type="text" name="name" class="input w-full border mt-2" required="">
+                        <input type="text" name="name" class="input w-full border mt-2" >
                     </div>
+                @endrole
+                    @role('admin')
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xodimlar
+                        </label>
+                        <select name="name" class="input border w-full mt-2" >
+                            <option value=""> Xodimlar tanlash</option>
+                            @foreach ($xodimlar as $role)
+                                <option value="{{ $role->fish }}">{{ $role->fish }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endrole
                     
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
@@ -59,14 +74,13 @@
                             @endforeach
                         </select>
                     </div>
-
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotni tanlag
                         </label>
                         <select name="tashkilot_id" class="input border w-full mt-2">
                             @foreach ($tashkilots as $tashkilot)
-                                <option value="{{ $tashkilot->id }}">{{ $tashkilot->name }}</option>
+                                <option value="{{ $tashkilot->id }}">{{ $tashkilot->name_qisqachasi }}</option>
                             @endforeach
                         </select>
                     </div>

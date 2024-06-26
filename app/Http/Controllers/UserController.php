@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Tashkilot;
 use App\Models\User;
+use App\Models\Xodimlar;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
@@ -27,8 +28,10 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
+        $tashkilot_id = auth()->user()->tashkilot_id;
+        $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->get();
         $tashkilots = Tashkilot::all();
-        return view('role-permission.user.create', ['roles' => $roles, 'tashkilots' => $tashkilots]);
+        return view('role-permission.user.create', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar]);
     }
 
     public function store(Request $request)
@@ -37,14 +40,13 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|max:20',
-            'roles' => 'required',
-            'tashkilot_id' => 'required'
+            'roles' => 'required'
         ]);
 
         $user = User::create([
                         'name' => $request->name,
                         'email' => $request->email,
-                        'tashkilot_id' => $request->tashkilot_id,
+                        'tashkilot_id' =>  auth()->user()->tashkilot_id,
                         'password' => Hash::make($request->password),
                     ]);
 

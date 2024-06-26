@@ -140,15 +140,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ma’lumoti
                     </label>
-                    <select name="malumoti" id="science-sub-category" class="input border w-full mt-2" required="">
-
-                        <option value="0">Ma’lumoti tanlang</option>
-
-                        <option value="ha">ha</option>
-
-                        <option value="yoq">yoq</option>
-
-                    </select><br>
+                    <input type="text" name="malumoti" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6">
@@ -156,15 +148,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘zbekiston Fanlar akademiyasi
                         haqiqiy a’zosi Ilmiy darajasi
                     </label>
-                    <select name="uzbek_panlar_azosi" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <input type="text" name="uzbek_panlar_azosi" class="input w-full border mt-2" required="">
 
-                        <option value="0">Ma’lumoti tanlang</option>
-
-                        <option value="ha">ha</option>
-
-                        <option value="yoq">yoq</option>
-
-                    </select><br>
+                
                 </div>
 
                 <div class="w-full col-span-6">

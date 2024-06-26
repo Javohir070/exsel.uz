@@ -15,4 +15,9 @@ class TashkilotRahbari extends Model
     {
         return $this->belongsTo(Tashkilot::class);
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

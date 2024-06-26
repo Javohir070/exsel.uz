@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->foreignId('tashkilot_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('umumiyyil_id')->constrained()->cascadeOnDelete();
             $table->string('mavzusi');
             $table->string('turi');
             $table->string('dastyri');
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->string('raqami');
             $table->string('sanasi');
             $table->string('sum');
-            $table->string('umumiy_mablag');
+            $table->json('umumiy_mablag');
             $table->string('olingan_natija');
             $table->string('joriy_holati');
             $table->string('tijoratlashtirish');

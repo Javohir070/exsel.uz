@@ -20,9 +20,9 @@ class TashkilotController extends Controller
      */
     public function index()
     {
-        $tashkilots = Tashkilot::all();
+        $tashkilot = auth()->user()->tashkilot;
 
-        return view('admin.tashkilot.index', ['tashkilots'=>$tashkilots]);
+        return view('admin.tashkilot.index', ['tashkilot'=>$tashkilot]);
     }
 
     /**
@@ -32,13 +32,62 @@ class TashkilotController extends Controller
     {
         return view('admin.tashkilot.create');
     }
-
+    public function tashkilot_create()
+    {
+        return view('admin.tashkilot.qoshish');   
+    }
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         Tashkilot::create([
+            "name" => $request->name,
+            "name_qisqachasi" => $request->name_qisqachasi,
+            "tash_yil" => $request->tash_yil,
+            "yur_manzil" => $request->yur_manzil,
+
+            "viloyat" => $request->viloyat ?? "malumot yuq",
+            "tuman" => $request->tuman ?? "malumot yuq",
+            "paoliyat_manzil" => $request->paoliyat_manzil ?? "malumot yuq",
+            "phone" => $request->phone ?? "malumot yuq",
+            "email" => $request->email ?? "malumot yuq",
+            "web_sayti" => $request->web_sayti ?? "malumot yuq",
+            "turi" => $request->turi ?? "malumot yuq",
+            "xarajatlar" => $request->xarajatlar ?? "malumot yuq",
+            "shtat_bir" => $request->shtat_bir ?? "malumot yuq",
+            "tash_xodimlar" => $request->tash_xodimlar ?? "malumot yuq",
+            "ilmiy_xodimlar" => $request->ilmiy_xodimlar ?? "malumot yuq",
+            "boshqariv" => $request->boshqariv ?? "malumot yuq",
+            "stir_raqami" => $request->stir_raqami ?? "malumot yuq",
+            "bank" => $request->bank ?? "malumot yuq",
+        ]);
+
+        return redirect('/tashkilot');
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show(Tashkilot $tashkilot)
+    {
+        return view('admin.tashkilot.show',['tashkilot'=>$tashkilot]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(Tashkilot $tashkilot)
+    {
+        return view('admin.tashkilot.edit',['tashkilot'=>$tashkilot]);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, Tashkilot $tashkilot)
+    {
+        $tashkilot->update([
             "name" => $request->name,
             "name_qisqachasi" => $request->name_qisqachasi,
             "tash_yil" => $request->tash_yil,
@@ -63,34 +112,17 @@ class TashkilotController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     */
-    public function show(Tashkilot $tashkilot)
-    {
-        return view('admin.tashkilot.show',['tashkilot'=>$tashkilot]);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
         //
+    }
+
+    public function tashkilotlar()
+    {
+        $tashkilotlar = Tashkilot::all();
+        return view('admin.tashkilot.tashkilotlar',['tashkilotlar'=>$tashkilotlar]);
+
     }
 }

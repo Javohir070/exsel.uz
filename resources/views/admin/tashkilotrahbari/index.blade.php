@@ -19,7 +19,7 @@
     <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
             <table class="table">
                 <tbody>
-                    @foreach ($tash_rahbar as $tash )
+                    @forelse ($tash_rahbar as $tash )
                     <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="font-size:18px;font-weight: 400;"> {{$tash->tashkilot->name_qisqachasi}} rahbari xaqida ma’lumot</div>
                         <div style="text-align: end;">
@@ -32,32 +32,44 @@
                         </div>
                     </div>
                         <tr>
-                            <th class="whitespace-no-wrap border-b">Tashkilot rahbari F.I.Sh</th>
-                            <td class="border-b" >{{ $tash->fish }}</td>
+                            <th class="whitespace-no-wrap border">#</th>
+                            <th class="whitespace-no-wrap border">Ma’lumot nomlanishi</th>
+                            <th class="whitespace-no-wrap border" >Ma’lumot</th>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="whitespace-no-wrap border">1</th>
+                            <th class="whitespace-no-wrap border">Tashkilot rahbari F.I.Sh</th>
+                            <td class="border" >{{ $tash->fish }}</td>
                         </tr>
                         <tr>
-                            <th class="whitespace-no-wrap border-b">Tashkilot rahbari Telepon nomer</th>
-                            <td class="border-b">{{ $tash->phone  }} </td>
+                            <th class="whitespace-no-wrap border">2</th>
+                            <th class="whitespace-no-wrap border">Tashkilot rahbari Telepon nomer</th>
+                            <td class="border">{{ $tash->phone  }} </td>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="whitespace-no-wrap border">3</th>
+                            <th class="whitespace-no-wrap border">Tashkilot rahbari Email</th>
+                            <td class="border">{{ $tash->email }}</td>
+                        </tr>
+                        <tr >
+                            <th class="whitespace-no-wrap border">4</th>
+                            <th class="whitespace-no-wrap border">Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.Sh</th>
+                            <td class="border">{{ $tash->u_fish }}</td>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="whitespace-no-wrap border">5</th>
+                            <th class="whitespace-no-wrap border">O‘rinbosarining Telepon nomer</th>
+                            <td class="border">{{ $tash->u_phone }}</td>
                         </tr>
                         <tr>
-                            <th class="whitespace-no-wrap border-b">Tashkilot rahbari Email</th>
-                            <td class="border-b">{{ $tash->email }}</td>
+                            <th class="whitespace-no-wrap border">6</th>
+                            <th class="whitespace-no-wrap border">O‘rinbosarining email</th>
+                            <td class="border">{{ $tash->u_email }}</td>
                         </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.Sh</th>
-                            <td class="border-b">{{ $tash->u_fish }}</td>
-                        </tr>
-                        <tr>
 
-                            <th class="whitespace-no-wrap border-b">O‘rinbosarining Telepon nomer</th>
-                            <td class="border-b">{{ $tash->u_phone }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">O‘rinbosarining email</th>
-                            <td class="border-b">{{ $tash->u_email }}</td>
-                        </tr>
-
-                    @endforeach
+                        @empty
+                            <p> malumot qo'shish kerak</p>
+                        @endforelse
                 </tbody>
             </table>
         </div>

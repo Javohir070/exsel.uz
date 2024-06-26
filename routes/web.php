@@ -2,10 +2,12 @@
 
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\IlmiybnTaminlangaController;
 use App\Http\Controllers\IlmiyLoyihaController;
 use App\Http\Controllers\IlmiyUnvonController;
 use App\Http\Controllers\IqtisodiyMoliyaviyController;
 use App\Http\Controllers\TashkilotController;
+use App\Http\Controllers\XujalikController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RoleController;
@@ -41,18 +43,24 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 Route::middleware('auth')->group(function () {
+    Route::get('/tashkilotlar',[TashkilotController::class,'tashkilotlar'])->name('tashkilotlar.index');
+    Route::get('/tashqoshish',[TashkilotController::class,'tashkilot_create'])->name('tashqoshish.create');
     Route::get('/xodim',[XodimlarController::class,'barcha_xodimlar'])->name('xodim.barchaXodimlar');
     Route::get('/iqtisodiylar',[IqtisodiyMoliyaviyController::class,'iqtisodiylar'])->name('iqtisodiylar.index');
     Route::get('/tashkilotrahbarilar',[TashkilotRahbariController::class,'tashkilotrahbarilar'])->name('tashkilotrahbarilar.index');
     Route::get('/ilmiyloyihalar',[IlmiyLoyihaController::class, 'ilmiyloyihalar'])->name('ilmiyloyihalar.index');
+    Route::get('/xujaliklar',[xujalikController::class, 'xujaliklar'])->name('xujaliklar.index');
+    Route::get('/ilmiydarajalar',[IlmiybnTaminlangaController::class, 'ilmiydarajalar'])->name('ilmiydarajalar.index');
+    
     Route::resources([
-        
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,
         'tashkilotrahbari' => TashkilotRahbariController::class,
         'iqtisodiy' => IqtisodiyMoliyaviyController::class,
         'ilmiyloyiha' => IlmiyLoyihaController::class,
-    ]);
+        'xujalik' => XujalikController::class,
+        'ilmiydaraja' => IlmiybnTaminlangaController::class,
+]);
 
 });
 Route::group(['middleware' => ['role:super-admin|admin']], function() {

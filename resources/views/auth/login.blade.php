@@ -5,10 +5,10 @@
     <div class="block xl:grid grid-cols-2 gap-4">
                 <!-- BEGIN: Login Info -->
                 <div class="hidden xl:flex flex-col min-h-screen">
-                    <a href="" class="-intro-x flex items-center pt-5">
-                        <img alt="Midone Tailwind HTML Admin Template" class="w-6" src="/admin/dist/images/logo.png">
-                        <span class="text-white text-lg ml-3">Science <span class="font-medium">ID</span> </span>
-                    </a>
+                <a href="" class="intro-x flex items-center pl-5 pt-4">
+                    <img width="40px" alt="Midone Tailwind HTML Admin Template" class="w-10" src="/admin/dist/images/logo.png">
+                    <span class="hidden xl:block text-white text-lg ml-3 w-40" style="font-size: 12px; "> Ilmiy tadqiqot muassasalari faoliyat monitoring tizimi </span>
+                </a>
                     <div class="my-auto">
                         <img alt="Midone Tailwind HTML Admin Template" class="-intro-x w-1/2 -mt-16" src="/admin/dist/images/illustration.svg">
                         <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
@@ -43,8 +43,8 @@
                                 </div>
                                 <a href="">Forgot Password?</a> 
                             </div>
-                            <button type="submit" >Kirish</button>
                             <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
+                                <button type="submit" class="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3" >Kirish</button>
                             </div>
                         </form>
                     </div>

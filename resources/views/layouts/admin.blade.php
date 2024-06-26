@@ -13,11 +13,11 @@ License: You must have a valid license purchased only from themeforest(the above
     <head>
         <meta charset="utf-8">
         <link href="/admin/dist/images/logo.png" rel="shortcut icon">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="Midone admin is super flexible, powerful, clean & modern responsive tailwind admin template with unlimited possibilities.">
-        <meta name="keywords" content="admin template, Midone admin template, dashboard template, flat admin template, responsive admin template, web app">
+        <meta name="viewport" content="Ilmiy tadqiqot muassasalari faoliyat monitoring tizimi">
+        <meta name="description" content="Ilmiy tadqiqot muassasalari faoliyat monitoring tizimi">
+        <meta name="keywords" content="Ilmiy tadqiqot muassasalari faoliyat monitoring tizimi">
         <meta name="author" content="LEFT4CODE">
-        <title>Science ID </title>
+        <title>Ilmiy tadqiqot muassasalari faoliyat monitoring tizimi </title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="/admin/dist/css/app.css" />
         

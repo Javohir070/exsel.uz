@@ -49,45 +49,45 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Viloyat manzili
                     </label>
-                    <input type="text" name="viloyat" class="input w-full border mt-2" required="">
+                    <input type="text" name="viloyat" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuman manzili
                     </label>
-                    <input type="text" name="tuman" class="input w-full border mt-2" required="">
+                    <input type="text" name="tuman" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Paoliyat yuritayetgan mahzili
                     </label>
-                    <input type="text" name="paoliyat_manzil" class="input w-full border mt-2" required="">
+                    <input type="text" name="paoliyat_manzil" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telepon nomer 
                     </label>
-                    <input type="text" name="phone" class="input w-full border mt-2" required="">
+                    <input type="text" name="phone" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Email 
                     </label>
-                    <input type="email" name="email" class="input w-full border mt-2" required="">
+                    <input type="email" name="email" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Web-sayti
                     </label>
-                    <input type="text" name="web_sayti" class="input w-full border mt-2" required="">
+                    <input type="text" name="web_sayti" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Mulkchilik turi
                     </label>
-                    <select name="turi" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="turi" id="science-sub-category" class="input border w-full mt-2" >
 
                         <option value="0">Mulkchilik turi tanlang</option>
 
@@ -101,7 +101,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotni saqlash harajatlarining moliyalashtirish manbasi
                     </label>
-                    <select name="xarajatlar" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="xarajatlar" id="science-sub-category" class="input border w-full mt-2" >
 
                         <option value="0">tanlang</option>
 
@@ -119,26 +119,26 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shtst birligi soni
                     </label>
-                    <input type="text" name="shtat_bir" class="input w-full border mt-2" required="">
+                    <input type="text" name="shtat_bir" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xodimlar soni
                     </label>
-                    <input type="number" name="tash_xodimlar" class="input w-full border mt-2" required="">
+                    <input type="number" name="tash_xodimlar" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy xodimlar soni
                     </label>
-                    <input type="number" name="ilmiy_xodimlar" class="input w-full border mt-2" required="">
+                    <input type="number" name="ilmiy_xodimlar" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Boshqariv tuzilmasi
                     </label>
-                    <select name="boshqariv" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="boshqariv" id="science-sub-category" class="input border w-full mt-2" >
 
                         <option value="0">boshqariv tuzilmasi tanlang</option>
 
@@ -160,14 +160,14 @@
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">STIR raqami 
                     </label>
-                    <input type="text" name="stir_raqami" class="input w-full border mt-2" required="">
+                    <input type="text" name="stir_raqami" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xizmat ko'rsatuvch bank
                     </label>
-                    <input type="text" name="bank" class="input w-full border mt-2" required="">
+                    <input type="text" name="bank" class="input w-full border mt-2" >
                 </div>
 
 

@@ -63,8 +63,7 @@
         </div>
     </div>
 @endrole
-@role('admin')
- 
+@role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+    @include('admin.admin')
 @endrole
-@include('admin.admin')
 @endsection

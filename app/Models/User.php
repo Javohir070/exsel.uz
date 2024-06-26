@@ -54,4 +54,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(IqtisodiyMoliyaviy::class);
     }
+
+    public function tashkilotrahbari()
+    {
+        return $this->hasMany(TashkilotRahbari::class);
+    }
 }

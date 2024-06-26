@@ -14,9 +14,10 @@
     padding: 20px 20px;
     border-radius: 20px">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-        <form id="science-paper-create-form" method="POST" action="{{ route("tashkilot.store") }}" class="validate-form"
+        <form id="science-paper-create-form" method="POST" action="{{ route("tashkilot.update",['tashkilot'=>$tashkilot->id]) }}" class="validate-form"
             enctype="multipart/form-data" novalidate="novalidate">
             @csrf
+            @method('PUT')
             <div class="grid grid-cols-12 gap-2">
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
