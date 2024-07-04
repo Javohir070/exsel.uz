@@ -106,17 +106,17 @@
     <table class="table">
         <tbody>
             <div
-                style="display: flex;justify-content: center; borderottom: 1px solid #e2e8f0; padding-bottom: 20px;">
+                style="display: flex;justify-content: center; borderbottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                 <div style="font-size:20px;font-weight: bold;text-align: center; color: #1C3FAA;">{{$tashkiot_haqida->name}} </div>
 
             </div>
             <tr>
-                <th class="whitespace-no-wrap border" style="text-align: center;font-size:20px;color: #1C3FAA;"  colspan="3"> Tashkilot pasporti </th>
+                <th class="border" style="text-align: center;font-size:20px;color: #1C3FAA;"  colspan="3"> Tashkilot pasporti </th>
             </tr>
             <tr>
                             <th class="border-b  border">#</th>
-                            <th class="border-b  border">Ma’lumot nomlanishi</th>
-                            <th class="border-b  border">Ma’lumot</th>
+                            <th class="border-b  border" style="width: 50%;">Ma’lumot nomlanishi</th>
+                            <th class="border-b  border" style="width: 50%;">Ma’lumot</th>
                         </tr>
                         <tr class="bg-gray-200">
                             <th class="border-b  border">1</th>
@@ -211,41 +211,41 @@
                         </tr>
         @forelse ($tashkilot_raxbaris as $tashkilot_raxbari )
             <tr>
-                <th class="whitespace-no-wrap border" style="text-align: center;font-size:20px; color: #1C3FAA;"  colspan="3">Tashkilot rahbari xaqida ma’lumot </th>
+                <th class="border" style="text-align: center;font-size:20px; color: #1C3FAA;"  colspan="3">Tashkilot rahbari xaqida ma’lumot </th>
             </tr>
             <tr >
                 <th class="border-b  border">#</th>
-                <th class="border-b  border">Ma’lumot nomlanishi</th>
-                <th class="border-b  border">Ma’lumot</th>
+                <th class="border-b  border" style="width: 50%;">Ma’lumot nomlanishi</th>
+                <th class="border-b  border" style="width: 50%;">Ma’lumot</th>
             </tr>
             <tr class="bg-gray-200">
-                <td class="border border-2 whitespace-no-wrap">1</td>
-                <td class="whitespace-no-wrap border">Rahbarning F.I.O.</td>
+                <td class="border border-2 ">1</td>
+                <td class="border">Rahbarning F.I.O.</td>
                 <td class="border">{{ $tashkilot_raxbari->fish }}</td>
             </tr>
             <tr>
                 <td class="border">2</td>
-                <td class="whitespace-no-wrap border">Rahbarning aloqa raqami</td>
+                <td class="border">Rahbarning aloqa raqami</td>
                 <td class="border">{{ $tashkilot_raxbari->phone  }} </td>
             </tr>
             <tr class="bg-gray-200">
                 <td class="border">3</td>
-                <td class="whitespace-no-wrap border">Rahbarning elektron pochtasi</td>
+                <td class="border">Rahbarning elektron pochtasi</td>
                 <td class="border">{{ $tashkilot_raxbari->email }}</td>
             </tr>
             <tr > 
                 <td class="border">4</td>
-                <td class="whitespace-no-wrap border">Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.O.</td>
+                <td class=" border">Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.O.</td>
                 <td class="border">{{ $tashkilot_raxbari->u_fish }}</td>
             </tr>
             <tr class="bg-gray-200">
                 <td class="border">5</td>
-                <td class="whitespace-no-wrap border">O‘rinbosarining aloqa raqami</td>
+                <td class="border">O‘rinbosarining aloqa raqami</td>
                 <td class="border">{{ $tashkilot_raxbari->u_phone }}</td>
             </tr>
             <tr >
                 <td class="border">6</td>
-                <td class="whitespace-no-wrap border">O‘rinbosarining elektron pochta</td>
+                <td class="border">O‘rinbosarining elektron pochta</td>
                 <td class="border">{{ $tashkilot_raxbari->u_email }}</td>
             </tr>
         @empty
@@ -255,51 +255,51 @@
 
         @forelse ($iqtisodiy_moliyaviy as $tashkilot_raxbari )
             <tr>
-                <th class="whitespace-no-wrap border" style="text-align: center;font-size:20px;color: #1C3FAA;"  colspan="3"> Iqtisodiy-moliyaviy faoliyat </th>
+                <th class="border" style="text-align: center;font-size:20px;color: #1C3FAA;"  colspan="3"> Iqtisodiy-moliyaviy faoliyat </th>
             </tr>
             <tr>
                 <th class="border-b  border">#</th>
-                <th class="border-b  border">Ma’lumot nomlanishi</th>
-                <th class="border-b  border">Ma’lumot</th>
+                <th class="border-b  border" style="width: 50%;">Ma’lumot nomlanishi</th>
+                <th class="border-b  border" style="width: 50%;">Ma’lumot</th>
             </tr>
             <tr class="bg-gray-200">
-                <td class="border border-2 whitespace-no-wrap">1</td>
-                <td class="whitespace-no-wrap border">Tashkilot kadastr raqami</td>
+                <td class="border border-2 ">1</td>
+                <td class="border">Tashkilot kadastr raqami</td>
                 <td class="border">{{ $tashkilot_raxbari->kadastr_raqami }}</td>
             </tr>
             <tr>
                 <td class="border">2</td>
-                <td class="whitespace-no-wrap border">Umumiy maydoni (ga)</td>
+                <td class="border">Umumiy maydoni (ga)</td>
                 <td class="border">{{ $tashkilot_raxbari->u_maydoni  }} ga </td>
             </tr>
             <tr class="bg-gray-200">
                 <td class="border">3</td>
-                <td class="whitespace-no-wrap border">Shundan tajriba maydonlari (ga)</td>
+                <td class="border">Shundan tajriba maydonlari (ga)</td>
                 <td class="border">{{ $tashkilot_raxbari->taj_maydonlari }} ga</td>
             </tr>
             <tr>
                 <td class="border">4</td>
-                <td class="whitespace-no-wrap border">Binolar soni</td>
+                <td class="border">Binolar soni</td>
                 <td class="border">{{ $tashkilot_raxbari->binolar_soni }}</td>
             </tr>
             <tr class="bg-gray-200">
                 <td class="border">5</td>
-                <td class="whitespace-no-wrap border">Binolarning auditoriya sig‘imi</td>
+                <td class="border">Binolarning auditoriya sig‘imi</td>
                 <td class="border">{{ $tashkilot_raxbari->auditoriya_sigimi }}</td>
             </tr>
             <tr>
                 <td class="border">6</td>
-                <td class="whitespace-no-wrap border">Katta xajmdagi auditoriyalar soni (150-200 kishilik)</td>
+                <td class=" border">Katta xajmdagi auditoriyalar soni (150-200 kishilik)</td>
                 <td class="border">{{ $tashkilot_raxbari->k_xaj_auditor_soni }}</td>
             </tr>
             <tr class="bg-gray-200">
                 <td class="border">7</td>
-                <td class="whitespace-no-wrap border">Ustav fondi miqdori, mln so‘mda</td>
+                <td class="border">Ustav fondi miqdori, mln so‘mda</td>
                 <td class="border">{{ $tashkilot_raxbari->pondi_miqdori }}</td>
             </tr>
             <tr>
                 <td class="border">8</td>
-                <td class="whitespace-no-wrap border">Ilmiy faoliyatni amalga oshiruvchi bo‘linmalar (bo‘lim, kafedra, laboratoriya) soni</td>
+                <td class=" border">Ilmiy faoliyatni amalga oshiruvchi bo‘linmalar (bo‘lim, kafedra, laboratoriya) soni</td>
                 <td class="border">{{ $tashkilot_raxbari->ilmiyp_bulinalar }}</td>
             </tr>
         @empty
