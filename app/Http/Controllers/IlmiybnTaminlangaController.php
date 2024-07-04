@@ -83,9 +83,9 @@ class IlmiybnTaminlangaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(IlmiybnTaminlanga $ilmiybnTaminlanga)
+    public function edit(IlmiybnTaminlanga $ilmiydaraja)
     {
-        //
+        return view('admin.ilmiydaraja.edit',['ilmiydaraja'=>$ilmiydaraja]);
     }
 
     /**

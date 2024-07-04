@@ -35,100 +35,100 @@
                             <th class="whitespace-no-wrap border" style="text-align: center;font-size:20px;"  colspan="3"> Tashkilot pasporti </th>
                         </tr> -->
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">#</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ma’lumot nomlanishi</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ma’lumot</th>
+                            <th class="border-b  border">#</th>
+                            <th class="border-b  border">Ma’lumot nomlanishi</th>
+                            <th class="border-b  border">Ma’lumot</th>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">1</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Tashkilot nomi</th>
-                            <td class="border border-b-2 whitespace-no-wrap" >{{ $tashkilot->name }}</td>
+                            <th class="border-b  border">1</th>
+                            <th class="border-b  border">Tashkilot nomi</th>
+                            <td class="border-b  border" >{{ $tashkilot->name }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">2</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Tashkilot qisqa nomi massalan</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->name_qisqachasi }}</td>
+                            <th class="border-b  border">2</th>
+                            <th class="border-b  border">Tashkilot qisqa nomi massalan</th>
+                            <td class="border-b  border">{{ $tashkilot->name_qisqachasi }}</td>
                         </tr>
                         <tr class="bg-gray-200" >
-                            <th class="border border-b-2 whitespace-no-wrap">3</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Tashkil etilgan yil</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->tash_yil }}</td>
+                            <th class="border-b  border">3</th>
+                            <th class="border-b  border">Tashkil etilgan yil</th>
+                            <td class="border-b  border">{{ $tashkilot->tash_yil }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">4</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Yuridik manzili</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->yur_manzil }}</td>
+                            <th class="border-b  border">4</th>
+                            <th class="border-b  border">Yuridik manzili</th>
+                            <td class="border-b  border">{{ $tashkilot->yur_manzil }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">5</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Viloyat manzili</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->viloyat }}</td>
+                            <th class="border-b  border">5</th>
+                            <th class="border-b  border">Viloyat manzili</th>
+                            <td class="border-b  border">{{ $tashkilot->viloyat }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">6</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Tuman manzili</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->tuman }}</td>
+                            <th class="border-b  border">6</th>
+                            <th class="border-b  border">Tuman manzili</th>
+                            <td class="border-b  border">{{ $tashkilot->tuman }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">7</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Paoliyat yuritayetgan mahzili</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->paoliyat_manzil }}</td>
+                            <th class="border-b  border">7</th>
+                            <th class="border-b  border">Paoliyat yuritayetgan mahzili</th>
+                            <td class="border-b  border">{{ $tashkilot->paoliyat_manzil }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">8</th>
-                            <th class="border border-b-2 whitespace-no-wrap"> Telepon nomer</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->phone }}</td>
+                            <th class="border-b  border">8</th>
+                            <th class="border-b  border"> Telepon nomer</th>
+                            <td class="border-b  border">{{ $tashkilot->phone }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">9</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Email</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->email }}</td>
+                            <th class="border-b  border">9</th>
+                            <th class="border-b  border">Email</th>
+                            <td class="border-b  border">{{ $tashkilot->email }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">10</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Web-sayti</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->web_sayti }}</td>
+                            <th class="border-b  border">10</th>
+                            <th class="border-b  border">Web-sayti</th>
+                            <td class="border-b  border">{{ $tashkilot->web_sayti }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">11</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Mulkchilik turi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->turi }}</td>
+                            <th class="border-b  border">11</th>
+                            <th class="border-b  border">Mulkchilik turi</th>
+                            <td class="border-b  border">{{ $tashkilot->turi }}</td>
                         </tr>
 
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">12</th>
-                            <th class="border border-b-2 whitespace-no-wrap"> Tashkilotni saqlash harajatlarining moliyalashtirish manbasi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->xarajatlar }}</td>
+                            <th class="border-b  border">12</th>
+                            <th class="border-b  border"> Tashkilotni saqlash harajatlarining moliyalashtirish manbasi</th>
+                            <td class="border-b  border">{{ $tashkilot->xarajatlar }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">13</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Shtst birligi soni</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->shtat_bir }}</td>
+                            <th class="border-b  border">13</th>
+                            <th class="border-b  border">Shtst birligi soni</th>
+                            <td class="border-b  border">{{ $tashkilot->shtat_bir }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">14</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Xodimlar soni</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->tash_xodimlar }}</td>
+                            <th class="border-b  border">14</th>
+                            <th class="border-b  border">Xodimlar soni</th>
+                            <td class="border-b  border">{{ $tashkilot->tash_xodimlar }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">15</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ilmiy xodimlar soni</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->ilmiy_xodimlar  }} </td>
+                            <th class="border-b  border">15</th>
+                            <th class="border-b  border">Ilmiy xodimlar soni</th>
+                            <td class="border-b  border">{{ $tashkilot->ilmiy_xodimlar  }} </td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">16</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Boshqariv tuzilmasi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->boshqariv  }} </td>
+                            <th class="border-b  border">16</th>
+                            <th class="border-b  border">Boshqariv tuzilmasi</th>
+                            <td class="border-b  border">{{ $tashkilot->boshqariv  }} </td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">17</th>
-                            <th class="border border-b-2 whitespace-no-wrap">STIR raqami </th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->stir_raqami  }} </td>
+                            <th class="border-b  border">17</th>
+                            <th class="border-b  border">STIR raqami </th>
+                            <td class="border-b  border">{{ $tashkilot->stir_raqami  }} </td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">18</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Xizmat ko'rsatuvch bank</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $tashkilot->bank  }} </td>
+                            <th class="border-b  border">18</th>
+                            <th class="border-b  border">Xizmat ko'rsatuvch bank</th>
+                            <td class="border-b  border">{{ $tashkilot->bank  }} </td>
                         </tr>
                         
                 </tbody>

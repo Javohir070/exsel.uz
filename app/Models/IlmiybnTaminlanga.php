@@ -16,4 +16,14 @@ class IlmiybnTaminlanga extends Model
     {
         return $this->belongsTo(Tashkilot::class);    
     }
+
+    public function yillar()
+    {
+        return $this->belongsTo(Yillar::class);
+    }
+
+    public function umumiyyil()
+    {
+        return $this->belongsTo(Umumiyyil::class);
+    }
 }

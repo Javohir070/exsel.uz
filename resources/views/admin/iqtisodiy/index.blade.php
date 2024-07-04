@@ -39,74 +39,74 @@
                     <th class="whitespace-no-wrap border" style="text-align: center;font-size:20px;"  colspan="3"> Iqtisodiy Moliyaviy faoliyat </th>
                 </tr> -->
                 <tr>
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">#</th>
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 50%;">Ma’lumot nomlanishi</th>
-                    <th  class="border border-b-2 whitespace-no-wrap" >Ma’lumot</th>
+                    <th  class="border border-2" style="width: 40px;">#</th>
+                    <th  class="border border-2" style="width: 50%;">Ma’lumot nomlanishi</th>
+                    <th  class="border border-2" >Ma’lumot</th>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">1</th>
-                    <td class="border border-b-2 whitespace-no-wrap">Tashkilot kadastr raqami</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->kadastr_raqami }}</td>
+                    <th  class="border border-2" style="width: 40px;">1</th>
+                    <td class="border border-2">Tashkilot kadastr raqami</td>
+                    <td class="border border-2">{{ $iqt->kadastr_raqami }}</td>
                 </tr>
                 <tr>
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">2</th>
-                    <td class="border border-b-2 whitespace-no-wrap">Umumiy maydoni (ga)</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->u_maydoni }}</td>
+                    <th  class="border border-2" style="width: 40px;">2</th>
+                    <td class="border border-2">Umumiy maydoni (ga)</td>
+                    <td class="border border-2">{{ $iqt->u_maydoni }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">3</th>
-                    <td class="border border-b-2 whitespace-no-wrap">Shundan tajriba maydonlari (ga)</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->taj_maydonlari }}</td>
+                    <th  class="border border-2" style="width: 40px;">3</th>
+                    <td class="border border-2">Shundan tajriba maydonlari (ga)</td>
+                    <td class="border border-2">{{ $iqt->taj_maydonlari }}</td>
                 </tr>
                 <tr >
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">4</th>
-                    <td class="border border-b-2 whitespace-no-wrap">Binolar soni</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->binolar_soni }}</td>
+                    <th  class="border border-2" style="width: 40px;">4</th>
+                    <td class="border border-2">Binolar soni</td>
+                    <td class="border border-2">{{ $iqt->binolar_soni }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">5</th>
-                    <td class="border border-b-2 whitespace-no-wrap">Binolarning auditoriya sig‘imi</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->auditoriya_sigimi }}</td>
+                    <th  class="border border-2" style="width: 40px;">5</th>
+                    <td class="border border-2">Binolarning auditoriya sig‘imi</td>
+                    <td class="border border-2">{{ $iqt->auditoriya_sigimi }}</td>
                 </tr>
                 <tr>
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">6</th>
-                    <td class="border border-b-2 whitespace-no-wrap">Katta xajmdagi auditoriyalar soni (150-200 kishilik)</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->k_xaj_auditor_soni }}</td>
+                    <th  class="border border-2" style="width: 40px;">6</th>
+                    <td class="border border-2">Katta xajmdagi auditoriyalar soni (150-200 kishilik)</td>
+                    <td class="border border-2">{{ $iqt->k_xaj_auditor_soni }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">7</th>
-                    <td class="border border-b-2 whitespace-no-wrap">Ustav fondi miqdori, mln so‘mda</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->pondi_miqdori }}</td>
+                    <th  class="border border-2" style="width: 40px;">7</th>
+                    <td class="border border-2">Ustav fondi miqdori, mln so‘mda</td>
+                    <td class="border border-2">{{ $iqt->pondi_miqdori }}</td>
                 </tr>
                 <tr>
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">8</th>
-                    <td class="border border-b-2 whitespace-no-wrap">Ilmiy faoliyatni amalga oshiruvchi bo‘linmalar (bo‘lim, kafedra, laboratoriya) soni</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->ilmiyp_bulinalar }}</td>
+                    <th  class="border border-2" style="width: 40px;">8</th>
+                    <td class="border border-2">Ilmiy faoliyatni amalga oshiruvchi bo‘linmalar (bo‘lim, kafedra, laboratoriya) soni</td>
+                    <td class="border border-2">{{ $iqt->ilmiyp_bulinalar }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">9</th>
-                    <td class="border border-b-2 whitespace-no-wrap">tabiy gaz mavjudligi</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->gaz }}</td>
+                    <th  class="border border-2" style="width: 40px;">9</th>
+                    <td class="border border-2">tabiy gaz mavjudligi</td>
+                    <td class="border border-2">{{ $iqt->gaz }}</td>
                 </tr>
                 <tr>
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">10</th>
-                    <td class="border border-b-2 whitespace-no-wrap">elektr energiya mavjudligi</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->elektr }}</td>
+                    <th  class="border border-2" style="width: 40px;">10</th>
+                    <td class="border border-2">elektr energiya mavjudligi</td>
+                    <td class="border border-2">{{ $iqt->elektr }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">11</th>
-                    <td class="border border-b-2 whitespace-no-wrap">suv mavjudligi</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->suv }}</td>
+                    <th  class="border border-2" style="width: 40px;">11</th>
+                    <td class="border border-2">suv mavjudligi</td>
+                    <td class="border border-2">{{ $iqt->suv }}</td>
                 </tr>
                 <tr>
-                    <th  class="border border-b-2 whitespace-no-wrap" style="width: 40px;">12</th>
-                    <td class="border border-b-2 whitespace-no-wrap">kanalizatsiya mavjudligi</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->kanalizasiya }}</td>
+                    <th  class="border border-2" style="width: 40px;">12</th>
+                    <td class="border border-2">kanalizatsiya mavjudligi</td>
+                    <td class="border border-2">{{ $iqt->kanalizasiya }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th class="border border-b-2 whitespace-no-wrap">13</th>
-                    <td class="border border-b-2 whitespace-no-wrap">internet mavjudligi</td>
-                    <td class="border border-b-2 whitespace-no-wrap">{{ $iqt->internet }}</td>
+                    <th class="border border-2">13</th>
+                    <td class="border border-2">internet mavjudligi</td>
+                    <td class="border border-2">{{ $iqt->internet }}</td>
                 </tr>
                 @empty
                     <p> malumot qo'shish kerak</p>

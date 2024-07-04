@@ -33,100 +33,100 @@
                         </div>
                     </div>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap" style="width: 40px;">#</th>
-                            <th class="border border-b-2 whitespace-no-wrap" style="width: 50%;">Ma’lumot nomlanishi</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ma’lumot</th>
+                            <th class="border border-2" style="width: 40px;">#</th>
+                            <th class="border border-2" style="width: 50%;">Ma’lumot nomlanishi</th>
+                            <th class="border border-2">Ma’lumot</th>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">1</th>
-                            <th class="border border-b-2 whitespace-no-wrap">F.I.Sh</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->fish }}</td>
+                            <th class="border border-2">1</th>
+                            <th class="border border-2">F.I.Sh</th>
+                            <td class="border border-2">{{ $xodimlar->fish }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">2</th>
-                            <th class="border border-b-2 whitespace-no-wrap">JSHSHIR</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->jshshir }}</td>
+                            <th class="border border-2">2</th>
+                            <th class="border border-2">JSHSHIR</th>
+                            <td class="border border-2">{{ $xodimlar->jshshir }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">3</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Tug‘ilgan yili</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->yil }}</td>
+                            <th class="border border-2">3</th>
+                            <th class="border border-2">Tug‘ilgan yili</th>
+                            <td class="border border-2">{{ $xodimlar->yil }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">4</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Jinsi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->jinsi }}</td>
+                            <th class="border border-2">4</th>
+                            <th class="border border-2">Jinsi</th>
+                            <td class="border border-2">{{ $xodimlar->jinsi }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">5</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ish tartibi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->ish_tartibi }}</td>
+                            <th class="border border-2">5</th>
+                            <th class="border border-2">Ish tartibi</th>
+                            <td class="border border-2">{{ $xodimlar->ish_tartibi }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">6</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Shtat birligi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->shtat_birligi }}</td>
+                            <th class="border border-2">6</th>
+                            <th class="border border-2">Shtat birligi</th>
+                            <td class="border border-2">{{ $xodimlar->shtat_birligi }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">7</th>
-                            <th class="border border-b-2 whitespace-no-wrap"> O‘rindoshlik asosida ishlaydigan xodimning asosi    bo‘lgan tashkilot</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->urindoshlik_asasida }}</td>
+                            <th class="border border-2">7</th>
+                            <th class="border border-2"> O‘rindoshlik asosida ishlaydigan xodimning asosi    bo‘lgan tashkilot</th>
+                            <td class="border border-2">{{ $xodimlar->urindoshlik_asasida }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">8</th>
-                            <th class="border border-b-2 whitespace-no-wrap"> Pedagogik faol       shug‘ullanishi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->pedagoglik }}</td>
+                            <th class="border border-2">8</th>
+                            <th class="border border-2"> Pedagogik faol       shug‘ullanishi</th>
+                            <td class="border border-2">{{ $xodimlar->pedagoglik }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">9</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Lavozimi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->lavozimi }}</td>
+                            <th class="border border-2">9</th>
+                            <th class="border border-2">Lavozimi</th>
+                            <td class="border border-2">{{ $xodimlar->lavozimi }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">10</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ma’lumoti</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->malumoti }}</td>
+                            <th class="border border-2">10</th>
+                            <th class="border border-2">Ma’lumoti</th>
+                            <td class="border border-2">{{ $xodimlar->malumoti }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">11</th>
-                            <th class="border border-b-2 whitespace-no-wrap">O‘zbekiston Fanlar akademiyas a’zosi Ilmiy darajasi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->uzbek_panlar_azosi }}</td>
+                            <th class="border border-2">11</th>
+                            <th class="border border-2">O‘zbekiston Fanlar akademiyas a’zosi Ilmiy darajasi</th>
+                            <td class="border border-2">{{ $xodimlar->uzbek_panlar_azosi }}</td>
                         </tr>
 
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">12</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ilmiy darajasi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->ilmiy_daraja }}</td>
+                            <th class="border border-2">12</th>
+                            <th class="border border-2">Ilmiy darajasi</th>
+                            <td class="border border-2">{{ $xodimlar->ilmiy_daraja }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">13</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ilmiy daraja olingan yili</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->ilmiy_daraja_yil }}</td>
+                            <th class="border border-2">13</th>
+                            <th class="border border-2">Ilmiy daraja olingan yili</th>
+                            <td class="border border-2">{{ $xodimlar->ilmiy_daraja_yil }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">14</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ilmiy unvoni</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->ilmiy_unvoni  }} </td>
+                            <th class="border border-2">14</th>
+                            <th class="border border-2">Ilmiy unvoni</th>
+                            <td class="border border-2">{{ $xodimlar->ilmiy_unvoni  }} </td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">15</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ilmiy unvoni Ilmiy unvon olingan</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->ilmiy_unvoni_y  }} </td>
+                            <th class="border border-2">15</th>
+                            <th class="border border-2">Ilmiy unvoni Ilmiy unvon olingan</th>
+                            <td class="border border-2">{{ $xodimlar->ilmiy_unvoni_y  }} </td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">16</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ixtisosligi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->ixtisosligi  }} </td>
+                            <th class="border border-2">16</th>
+                            <th class="border border-2">Ixtisosligi</th>
+                            <td class="border border-2">{{ $xodimlar->ixtisosligi  }} </td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">17</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Telepon nomer</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->phone  }} </td>
+                            <th class="border border-2">17</th>
+                            <th class="border border-2">Telepon nomer</th>
+                            <td class="border border-2">{{ $xodimlar->phone  }} </td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">18</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Email</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xodimlar->email }}</td>
+                            <th class="border border-2">18</th>
+                            <th class="border border-2">Email</th>
+                            <td class="border border-2">{{ $xodimlar->email }}</td>
                         </tr>
                         
                 </tbody>

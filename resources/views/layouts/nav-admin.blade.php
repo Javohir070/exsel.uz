@@ -7,7 +7,7 @@
 
     @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
 			<a href="" class=" items-center ">
-				<img width="" style="text-align: center;margin: 10px auto;width: 70%;" alt="Midone Tailwind HTML Admin Template"  src="{{ asset('storage/'. auth()->user()->tashkilot->logo)  }}">
+				<img width="" style="text-align: center;margin: 10px auto;width: 70%;" alt=""  src="{{ asset('storage/'. auth()->user()->tashkilot->logo)  }}">
 				<span class="hidden xl:block text-white text-lg ml-3" style="font-size: 18px; text-align: center;"> {{ auth()->user()->tashkilot->name }}</span>
 			</a><br>
     @endrole

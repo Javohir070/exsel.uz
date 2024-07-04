@@ -33,75 +33,75 @@
                         </div>
                     </div>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap" style="width: 40px;">#</th>
-                            <th class="border border-b-2 whitespace-no-wrap" style="width: 50%;">Ma’lumot nomlanishi</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ma’lumot</th>
+                            <th class="border border-b-2 " style="width: 40px;">#</th>
+                            <th class="border border-b-2 " style="width: 50%;">Ma’lumot nomlanishi</th>
+                            <th class="border border-b-2 ">Ma’lumot</th>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">1</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ishlanma (mahsulot, tovar, xizmat va ishlar) nomi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->ishlanma_nomi }}</td>
+                            <th class="border border-b-2 ">1</th>
+                            <th class="border border-b-2 ">Ishlanma (mahsulot, tovar, xizmat va ishlar) nomi</th>
+                            <td class="border border-b-2 ">{{ $xujalik->ishlanma_nomi }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">2</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Intellektual mulk huquqining mavjudligi mavjud bo‘lsa: raqami</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->intellektual_raqami }}</td>
+                            <th class="border border-b-2 ">2</th>
+                            <th class="border border-b-2 ">Intellektual mulk huquqining mavjudligi mavjud bo‘lsa: raqami</th>
+                            <td class="border border-b-2 ">{{ $xujalik->intellektual_raqami }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">3</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Intellektual mulk huquqining mavjudligi mavjud bo‘lsa: sanasi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->intellektual_sana }}</td>
+                            <th class="border border-b-2 ">3</th>
+                            <th class="border border-b-2 ">Intellektual mulk huquqining mavjudligi mavjud bo‘lsa: sanasi</th>
+                            <td class="border border-b-2 ">{{ $xujalik->intellektual_sana }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">4</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ishlanma yaratilgan tadqiqot mavzusi va turi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->ishlanma_mavzu }}</td>
+                            <th class="border border-b-2 ">4</th>
+                            <th class="border border-b-2 ">Ishlanma yaratilgan tadqiqot mavzusi va turi</th>
+                            <td class="border border-b-2 ">{{ $xujalik->ishlanma_mavzu }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">5</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ishlanma yaratilgan tadqiqot  turi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->ishlanma_turi }}</td>
+                            <th class="border border-b-2 ">5</th>
+                            <th class="border border-b-2 ">Ishlanma yaratilgan tadqiqot  turi</th>
+                            <td class="border border-b-2 ">{{ $xujalik->ishlanma_turi }}</td>
                         </tr>
                         <tr >
-                            <th class="border border-b-2 whitespace-no-wrap">6</th>
-                            <th class="border border-b-2 whitespace-no-wrap"> Shartnoma turi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->lisenzion }}</td>
+                            <th class="border border-b-2 ">6</th>
+                            <th class="border border-b-2 "> Shartnoma turi</th>
+                            <td class="border border-b-2 ">{{ $xujalik->lisenzion }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">7</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Shartnoma raqami</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->sh_raqami }}</td>
+                            <th class="border border-b-2 ">7</th>
+                            <th class="border border-b-2 ">Shartnoma raqami</th>
+                            <td class="border border-b-2 ">{{ $xujalik->sh_raqami }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">8</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Shartnoma sanasi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->sh_sanasi }}</td>
+                            <th class="border border-b-2 ">8</th>
+                            <th class="border border-b-2 ">Shartnoma sanasi</th>
+                            <td class="border border-b-2 ">{{ $xujalik->sh_sanasi }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">9</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ilmiy yoki innovatsion ishlanmani sotib olish (foydalanish) bo‘yicha shartnoma tuzgan tashkilot yoki korxona nomi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->ilmiy_nomi }}</td>
+                            <th class="border border-b-2 ">9</th>
+                            <th class="border border-b-2 ">Ilmiy yoki innovatsion ishlanmani sotib olish (foydalanish) bo‘yicha shartnoma tuzgan tashkilot yoki korxona nomi</th>
+                            <td class="border border-b-2 ">{{ $xujalik->ilmiy_nomi }}</td>
                         </tr>
 
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">10</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ilmiy yoki innovatsion ishlanmani sotib olish (foydalanish) bo‘yicha shartnoma tuzgan tashkilot yoki korxona STIR</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->stir }}</td>
+                            <th class="border border-b-2 ">10</th>
+                            <th class="border border-b-2 ">Ilmiy yoki innovatsion ishlanmani sotib olish (foydalanish) bo‘yicha shartnoma tuzgan tashkilot yoki korxona STIR</th>
+                            <td class="border border-b-2 ">{{ $xujalik->stir }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">11</th>
-                            <th class="border border-b-2 whitespace-no-wrap">shartnoma summasi (mln.so‘m)</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->sh_summa }}</td>
+                            <th class="border border-b-2 ">11</th>
+                            <th class="border border-b-2 ">shartnoma summasi (mln.so‘m)</th>
+                            <td class="border border-b-2 ">{{ $xujalik->sh_summa }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">12</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Shartnoma bo‘yicha kelib tushgan mablag‘ sanasi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->shkelib_sana  }} </td>
+                            <th class="border border-b-2 ">12</th>
+                            <th class="border border-b-2 ">Shartnoma bo‘yicha kelib tushgan mablag‘ sanasi</th>
+                            <td class="border border-b-2 ">{{ $xujalik->shkelib_sana  }} </td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">13</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Shartnoma bo‘yicha kelib tushgan mablag‘ summasi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $xujalik->shkelib_summa  }} </td>
+                            <th class="border border-b-2 ">13</th>
+                            <th class="border border-b-2 ">Shartnoma bo‘yicha kelib tushgan mablag‘ summasi</th>
+                            <td class="border border-b-2 ">{{ $xujalik->shkelib_summa  }} </td>
                         </tr>
                         
                 </tbody>

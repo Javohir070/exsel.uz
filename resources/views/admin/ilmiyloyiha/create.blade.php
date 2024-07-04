@@ -114,7 +114,10 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning boshlanish sanasi
                     </label>
-                    <input type="text" name="tug_sana" class="input w-full border mt-2" required="">
+
+                    <input type="text" id="datepicker" name="tug_sana" class="datepicker input w-full border mt-2" required="">
+
+
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -156,7 +159,8 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Sanasi 
                     </label>
-                    <input type="text" name="sanasi" class="input w-full border mt-2" required="">
+                    <input type="text" id="datepicker" name="sanasi" class="datepicker input w-full border mt-2" required="">
+
                 </div>
 
                 <div class="w-full col-span-6 ">

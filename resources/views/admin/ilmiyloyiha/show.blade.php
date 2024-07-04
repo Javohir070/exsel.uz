@@ -29,158 +29,185 @@
                         </div>
                     </div>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap" style="width: 40px;">#</th>
-                            <th class="border border-b-2 whitespace-no-wrap" style="width: 50%;">Ma’lumot nomlanishi</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Ma’lumot</th>
+                            <th class="border border-b-2 " style="width: 40px;">#</th>
+                            <th class="border border-b-2 " style="width: 40%;">Ma’lumot nomlanishi</th>
+                            <th class="border border-b-2 ">Ma’lumot</th>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">1</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Loyiha mavzusi</th>
-                            <td class="border border-b-2 whitespace-no-wrap" >{{ $ilmiyloyiha->mavzusi }}</td>
+                            <th class="border border-b-2 ">1</th>
+                            <th class="border border-b-2 ">Loyiha mavzusi</th>
+                            <td class="border " >{{ $ilmiyloyiha->mavzusi }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">2</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Loyiha turi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->turi }}</td>
+                            <th class="border border-b-2 ">2</th>
+                            <th class="border border-b-2 ">Loyiha turi</th>
+                            <td class="border ">{{ $ilmiyloyiha->turi }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">3</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Loyiha dasturi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->dastyri }}</td>
+                            <th class="border border-b-2 ">3</th>
+                            <th class="border border-b-2 ">Loyiha dasturi</th>
+                            <td class="border ">{{ $ilmiyloyiha->dastyri }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">4</th>
-                            <th class="border border-b-2 whitespace-no-wrap">"Qo‘shma loyiha bo‘yicha hamkor tashkilot"</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->q_hamkor_tashkilot }}</td>
+                            <th class="border border-b-2 ">4</th>
+                            <th class="border border-b-2 ">"Qo‘shma loyiha bo‘yicha hamkor tashkilot"</th>
+                            <td class="border ">{{ $ilmiyloyiha->q_hamkor_tashkilot }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">5</th>
-                            <th class="border border-b-2 whitespace-no-wrap"> Xalqaro qo‘shma loyihalardagi hamkor davlat</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->hamkor_davlat }}</td>
+                            <th class="border border-b-2 ">5</th>
+                            <th class="border border-b-2 "> Xalqaro qo‘shma loyihalardagi hamkor davlat</th>
+                            <td class="border ">{{ $ilmiyloyiha->hamkor_davlat }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">6</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Loyiha mavzusi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->muddat }}</td>
+                            <th class="border border-b-2 ">6</th>
+                            <th class="border border-b-2 ">Loyiha mavzusi</th>
+                            <td class="border ">{{ $ilmiyloyiha->muddat }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">7</th>
-                            <th class="border border-b-2 whitespace-no-wrap"> Loyihani amalga oshirish muddati (yil) 
+                            <th class="border border-b-2 ">7</th>
+                            <th class="border border-b-2 "> Loyihani amalga oshirish muddati (yil) 
                         bo‘lgan tashkilot</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->bosh_sana }}</td>
+                            <td class="border ">{{ $ilmiyloyiha->bosh_sana }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">8</th>
-                            <th class="border border-b-2 whitespace-no-wrap"> Loyihaning boshlanish sanasi
+                            <th class="border border-b-2 ">8</th>
+                            <th class="border border-b-2 "> Loyihaning boshlanish sanasi
                         shug‘ullanishi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->tug_sana }}</td>
+                            <td class="border ">{{ $ilmiyloyiha->tug_sana }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">9</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Fan yo‘nalish</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->pan_yunalish }}</td>
+                            <th class="border border-b-2 ">9</th>
+                            <th class="border border-b-2 ">Fan yo‘nalish</th>
+                            <td class="border ">{{ $ilmiyloyiha->pan_yunalish }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">10</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Loyiha rahbarining F.I.Sh.</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->rahbar_name }}</td>
+                            <th class="border border-b-2 ">10</th>
+                            <th class="border border-b-2 ">Loyiha rahbarining F.I.Sh.</th>
+                            <td class="border ">{{ $ilmiyloyiha->rahbar_name }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">11</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Tuzilgan shartnoma Raqami 
+                            <th class="border border-b-2 ">11</th>
+                            <th class="border border-b-2 ">Tuzilgan shartnoma Raqami 
                         haqiqiy a’zosi Ilmiy darajasi</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->raqami }}</td>
+                            <td class="border ">{{ $ilmiyloyiha->raqami }}</td>
                         </tr>
 
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">12</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Tuzilgan shartnoma Sanasi </th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->sanasi }}</td>
+                            <th class="border border-b-2 ">12</th>
+                            <th class="border border-b-2 ">Tuzilgan shartnoma Sanasi </th>
+                            <td class="border ">{{ $ilmiyloyiha->sanasi }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">13</th>
-                            <th class="border border-b-2 whitespace-no-wrap"> Tuzilgan shartnoma summasi (ming so‘mda) </th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->sum }}</td>
+                            <th class="border border-b-2 ">13</th>
+                            <th class="border border-b-2 "> Tuzilgan shartnoma summasi (ming so‘mda) </th>
+                            <td class="border ">{{ $ilmiyloyiha->sum }}</td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">14</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Umumiy ajratilgan mablag‘ (ming so‘mda) </th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->umumiy_mablag  }} </td>
+                            <th class="border border-b-2 ">14</th>
+                            <th class="border border-b-2 ">Umumiy ajratilgan mablag‘ (ming so‘mda) </th>
+                            <td class="border ">124 </td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">15</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Olingan asosiy natija </th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->olingan_natija  }} </td>
+                            <th class="border border-b-2 ">15</th>
+                            <th class="border border-b-2 ">Olingan asosiy natija </th>
+                            <td class="border ">{{ $ilmiyloyiha->olingan_natija  }} </td>
                         </tr>
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">16</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Joriy etish (Tatbiq etish) holati </th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->joriy_holati  }} </td>
+                            <th class="border border-b-2 ">16</th>
+                            <th class="border border-b-2 ">Joriy etish (Tatbiq etish) holati </th>
+                            <td class="border ">{{ $ilmiyloyiha->joriy_holati  }} </td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">17</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Tijoratlashtirish holati</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->tijoratlashtirish  }} </td>
+                            <th class="border border-b-2 ">17</th>
+                            <th class="border border-b-2 ">Tijoratlashtirish holati</th>
+                            <td class="border ">{{ $ilmiyloyiha->tijoratlashtirish  }} </td>
                         </tr>
 
                         <!-- <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">17</th>
-                            <th class="border border-b-2 whitespace-no-wrap">Umumiy ajratilgan mablag‘ (ming so‘mda)</th>
-                            <td class="border border-b-2 whitespace-no-wrap">500</td>
+                            <th class="border border-b-2 ">17</th>
+                            <th class="border border-b-2 ">Umumiy ajratilgan mablag‘ (ming so‘mda)</th>
+                            <td class="border ">500</td>
                         </tr> -->
 
-                        <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">18</th>
-                            <th class="border border-b-2 whitespace-no-wrap">2017 yil</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->umumiyyil->y2017 }} ming so‘mda</td>
+                        <!-- <tr>
+                            <th class="border border-b-2 ">18</th>
+                            <th class="border border-b-2 ">2017 yil</th>
+                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2017 }} ming so‘mda</td>
                         </tr>
 
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">19</th>
-                            <th class="border border-b-2 whitespace-no-wrap">2018 yil</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->umumiyyil->y2018 }} ming so‘mda</td>
-                        </tr>
+                            <th class="border border-b-2 ">19</th>
+                            <th class="border border-b-2 ">2018 yil</th>
+                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2018 }} ming so‘mda</td>
+                        </tr> -->
 
-                        <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">20</th>
-                            <th class="border border-b-2 whitespace-no-wrap">2019 yil</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->umumiyyil->y2019 }} ming so‘mda</td>
-                        </tr>
-
-                        <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">21</th>
-                            <th class="border border-b-2 whitespace-no-wrap">2020 yil</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->umumiyyil->y2020 }} ming so‘mda</td>
-                        </tr>
-
-                        <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">22</th>
-                            <th class="border border-b-2 whitespace-no-wrap">2021 yil</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->umumiyyil->y2021 }} ming so‘mda</td>
+                        <!-- <tr>
+                            <th class="border border-b-2 ">20</th>
+                            <th class="border border-b-2 ">2019 yil</th>
+                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2019 }} ming so‘mda</td>
                         </tr>
 
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">23</th>
-                            <th class="border border-b-2 whitespace-no-wrap">2022 yil</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->umumiyyil->y2022 }} ming so‘mda</td>
+                            <th class="border border-b-2 ">21</th>
+                            <th class="border border-b-2 ">2020 yil</th>
+                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2020 }} ming so‘mda</td>
                         </tr>
 
                         <tr>
-                            <th class="border border-b-2 whitespace-no-wrap">24</th>
-                            <th class="border border-b-2 whitespace-no-wrap">2023 yil</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->umumiyyil->y2023 }} ming so‘mda</td>
+                            <th class="border border-b-2 ">22</th>
+                            <th class="border border-b-2 ">2021 yil</th>
+                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2021 }} ming so‘mda</td>
+                        </tr> -->
+
+                        <!-- <tr class="bg-gray-200">
+                            <th class="border border-b-2 ">23</th>
+                            <th class="border border-b-2 ">2022 yil</th>
+                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2022 }} ming so‘mda</td>
+                        </tr>
+
+                        <tr>
+                            <th class="border border-b-2 ">24</th>
+                            <th class="border border-b-2 ">2023 yil</th>
+                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2023 }} ming so‘mda</td>
                         </tr>
 
                         <tr class="bg-gray-200">
-                            <th class="border border-b-2 whitespace-no-wrap">25</th>
-                            <th class="border border-b-2 whitespace-no-wrap">2024 yil</th>
-                            <td class="border border-b-2 whitespace-no-wrap">{{ $ilmiyloyiha->umumiyyil->y2024 }} ming so‘mda</td>
-                        </tr>
+                            <th class="border border-b-2 ">25</th>
+                            <th class="border border-b-2 ">2024 yil</th>
+                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2024 }} ming so‘mda</td>
+                        </tr> -->
 
                         
 
 
                         
+                </tbody>
+            </table>
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <th colspan="8" class="border border-b-2 " style="text-align: center;">Umumiy ajratilgan mablag‘ (ming so‘mda)</th>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <th class="border border-b-2 ">2017 yil</th>
+                        <th class="border border-b-2 ">2018 yil</th>
+                        <th class="border border-b-2 ">2019 yil</th>
+                        <th class="border border-b-2 ">2020 yil</th>
+                        <th class="border border-b-2 ">2021 yil</th>
+                        <th class="border border-b-2 ">2022 yil</th>
+                        <th class="border border-b-2 ">2023 yil</th>
+                        <th class="border border-b-2 ">2024 yil</th>
+                    </tr>
+                    <tr>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2017 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2018 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2019 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2020 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2021 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2022 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2023 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2024 }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>

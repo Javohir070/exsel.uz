@@ -20,7 +20,7 @@
                     <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="font-size:18px;font-weight: 400;">{{ $ilmiydaraja->tashkilot->name ." xodim ". $ilmiydaraja->fish }}  xaqida ma’lumot</div>
                         <div style="text-align: end;">
-                            <a href="{{ route('xodimlar.edit',['xodimlar'=>$ilmiydaraja->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
+                            <a href="{{ route('ilmiydaraja.edit',['ilmiydaraja'=>$ilmiydaraja->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                             Tahrirlash
                             </a>
                             <a href="" class="button w-24 bg-theme-6 text-white">
@@ -28,80 +28,88 @@
                             </a>
                         </div>
                     </div>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Loyiha mavzusi</th>
-                            <td class="border-b" >{{ $ilmiydaraja->mavzusi }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Loyiha turi</th>
-                            <td class="border-b">{{ $ilmiydaraja->turi }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Loyiha dasturi</th>
-                            <td class="border-b">{{ $ilmiydaraja->dastyri }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">"Qo‘shma loyiha bo‘yicha hamkor tashkilot"</th>
-                            <td class="border-b">{{ $ilmiydaraja->q_hamkor_tashkilot }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b"> Xalqaro qo‘shma loyihalardagi hamkor davlat</th>
-                            <td class="border-b">{{ $ilmiydaraja->hamkor_davlat }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Loyiha mavzusi</th>
-                            <td class="border-b">{{ $ilmiydaraja->muddat }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b"> Loyihani amalga oshirish muddati (yil) 
-                        bo‘lgan tashkilot</th>
-                            <td class="border-b">{{ $ilmiydaraja->bosh_sana }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b"> Loyihaning boshlanish sanasi
-                        shug‘ullanishi</th>
-                            <td class="border-b">{{ $ilmiydaraja->tug_sana }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Fan yo‘nalish</th>
-                            <td class="border-b">{{ $ilmiydaraja->pan_yunalish }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Loyiha rahbarining F.I.Sh.</th>
-                            <td class="border-b">{{ $ilmiydaraja->rahbar_name }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Tuzilgan shartnoma Raqami 
-                        haqiqiy a’zosi Ilmiy darajasi</th>
-                            <td class="border-b">{{ $ilmiydaraja->raqami }}</td>
-                        </tr>
-
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Tuzilgan shartnoma Sanasi </th>
-                            <td class="border-b">{{ $ilmiydaraja->sanasi }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b"> Tuzilgan shartnoma summasi (ming so‘mda) </th>
-                            <td class="border-b">{{ $ilmiydaraja->sum }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Umumiy ajratilgan mablag‘ (ming so‘mda) </th>
-                            <td class="border-b">{{ $ilmiydaraja->umumiy_mablag  }} </td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Olingan asosiy natija </th>
-                            <td class="border-b">{{ $ilmiydaraja->olingan_natija  }} </td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Joriy etish (Tatbiq etish) holati </th>
-                            <td class="border-b">{{ $ilmiydaraja->joriy_holati  }} </td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border-b">Tijoratlashtirish holati</th>
-                            <td class="border-b">{{ $ilmiydaraja->tijoratlashtirish  }} </td>
-                        </tr>
+                    <tr>
+                        <th class="border border-b-2 " style="width: 40px;">#</th>
+                        <th class="border border-b-2 " style="width: 40%;">Ma’lumot nomlanishi</th>
+                        <th class="border border-b-2 ">Ma’lumot</th>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <th class="border border-b-2 ">1</th>
+                        <th class="border border-b-2 ">Xodimlar soni </th>
+                        <td class="border ">{{ $ilmiydaraja->xodimlar_jami  }} </td>
+                    </tr>
+                    <tr>
+                        <th class="border border-b-2 ">2</th>
+                        <th class="border border-b-2 ">Ilmiy hodimlar soni</th>
+                        <td class="border ">{{ $ilmiydaraja->ilmiy_xodimlar  }} </td>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <th class="border border-b-2 ">3</th>
+                        <th class="border border-b-2 ">Ilmiy loyiha nomi</th>
+                        <td class="border ">{{ $ilmiydaraja->name  }} </td>
+                    </tr>
+                    <tr>
+                        <th class="border border-b-2 ">4</th>
+                        <th class="border border-b-2 ">Ilmiy loyiha turi</th>
+                        <td class="border ">{{ $ilmiydaraja->turi  }} </td>
+                    </tr>
+                        
                         
                 </tbody>
+                <table class="table">
+                <tbody>
+                    <tr>
+                        <th colspan="9" class="border border-b-2 " style="text-align: center;">Moliyalashtirish hajmi (Fakt) ming so‘mda</th>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <th class="border border-b-2 ">Jami</th>
+                        <th class="border border-b-2 ">2017 yil</th>
+                        <th class="border border-b-2 ">2018 yil</th>
+                        <th class="border border-b-2 ">2019 yil</th>
+                        <th class="border border-b-2 ">2020 yil</th>
+                        <th class="border border-b-2 ">2021 yil</th>
+                        <th class="border border-b-2 ">2022 yil</th>
+                        <th class="border border-b-2 ">2023 yil</th>
+                        <th class="border border-b-2 ">2024 yil</th>
+                    </tr>
+                    <tr>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->moliyal_jami }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->yillar->y2017 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->yillar->y2018 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->yillar->y2019 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->yillar->y2020 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->yillar->y2021 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->yillar->y2022 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->yillar->y2023 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->yillar->y2024 }}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="9" class="border border-b-2 " style="text-align: center;">Bir nafar ilmiy hodimga moliyalashtirish nisbati</th>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <th class="border border-b-2 ">Jami</th>
+                        <th class="border border-b-2 ">2017 yil</th>
+                        <th class="border border-b-2 ">2018 yil</th>
+                        <th class="border border-b-2 ">2019 yil</th>
+                        <th class="border border-b-2 ">2020 yil</th>
+                        <th class="border border-b-2 ">2021 yil</th>
+                        <th class="border border-b-2 ">2022 yil</th>
+                        <th class="border border-b-2 ">2023 yil</th>
+                        <th class="border border-b-2 ">2024 yil</th>
+                    </tr>
+                    <tr>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->xodimganisbat_jami }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->umumiyyil->y2017 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->umumiyyil->y2018 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->umumiyyil->y2019 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->umumiyyil->y2020 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->umumiyyil->y2021 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->umumiyyil->y2022 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->umumiyyil->y2023 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiydaraja->umumiyyil->y2024 }}</td>
+                    </tr>
+                </tbody>
+            </table>
             </table>
         </div>
 
