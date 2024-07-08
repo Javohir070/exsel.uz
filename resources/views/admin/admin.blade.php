@@ -21,11 +21,11 @@
                                 <i data-feather="shopping-cart" class="report-box__icon text-theme-10"></i>
                                 <div class="ml-auto">
                                     <div class="report-box__indicator bg-theme-9 tooltip cursor-pointer"
-                                        title="33% Higher than last month"> 33% <i data-feather="chevron-up"
+                                        title="33% Higher than last month"> 100% <i data-feather="chevron-up"
                                             class="w-4 h-4"></i> </div>
                                 </div>
                             </div>
-                            <div class="text-3xl font-bold leading-8 mt-6">40/10</div>
+                            <div class="text-3xl font-bold leading-8 mt-6">3/3</div>
                             <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Tashkilot pasporti biriktirilgan masul xodim
                                @forelse($Tashkilot_pasporti as $tash)
                                 <a href="{{ url('users/create') }}"
@@ -82,7 +82,7 @@
                                             class="w-4 h-4"></i> </div>
                                 </div>
                             </div>
-                            <div class="text-3xl font-bold leading-8 mt-6">10/5</div>
+                            <div class="text-3xl font-bold leading-8 mt-6">{{ $tashkiot_haqida->tash_xodimlar }}/{{ $xodimlar}}</div>
                             <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Xodimlar biriktirilgan masul xodim 
 								@forelse($Xodimlar_uchun as $ilmiy)
                                  <a class="button  bg-theme-1 text-white"
@@ -125,7 +125,7 @@
                         </tr>
                         <tr>
                             <th class="border-b  border">2</th>
-                            <th class="border-b  border">tashkiot_haqida qisqa nomi massalan</th>
+                            <th class="border-b  border">Tashkilot qisqacha nomi </th>
                             <td class="border-b  border">{{ $tashkiot_haqida->name_qisqachasi }}</td>
                         </tr>
                         <tr class="bg-gray-200" >
@@ -289,7 +289,7 @@
             </tr>
             <tr>
                 <td class="border">6</td>
-                <td class=" border">Katta xajmdagi auditoriyalar soni (150-200 kishilik)</td>
+                <td class="border">Katta xajmdagi auditoriyalar soni (150-200 kishilik)</td>
                 <td class="border">{{ $tashkilot_raxbari->k_xaj_auditor_soni }}</td>
             </tr>
             <tr class="bg-gray-200">
@@ -299,7 +299,7 @@
             </tr>
             <tr>
                 <td class="border">8</td>
-                <td class=" border">Ilmiy faoliyatni amalga oshiruvchi bo‘linmalar (bo‘lim, kafedra, laboratoriya) soni</td>
+                <td class="border">Ilmiy faoliyatni amalga oshiruvchi bo‘linmalar (bo‘lim, kafedra, laboratoriya) soni</td>
                 <td class="border">{{ $tashkilot_raxbari->ilmiyp_bulinalar }}</td>
             </tr>
         @empty

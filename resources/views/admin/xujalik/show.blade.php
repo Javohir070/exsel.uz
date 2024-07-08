@@ -35,7 +35,7 @@
                         <tr>
                             <th class="border border-b-2 " style="width: 40px;">#</th>
                             <th class="border border-b-2 " style="width: 50%;">Ma’lumot nomlanishi</th>
-                            <th class="border border-b-2 ">Ma’lumot</th>
+                            <th class="border border-b-2 " style="width: 50%;">Ma’lumot</th>
                         </tr>
                         <tr class="bg-gray-200">
                             <th class="border border-b-2 ">1</th>

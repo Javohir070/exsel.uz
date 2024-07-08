@@ -30,8 +30,8 @@
                     </div>
                         <tr>
                             <th class="border border-b-2 " style="width: 40px;">#</th>
-                            <th class="border border-b-2 " style="width: 40%;">Ma’lumot nomlanishi</th>
-                            <th class="border border-b-2 ">Ma’lumot</th>
+                            <th class="border border-b-2 " style="width: 50%;">Ma’lumot nomlanishi</th>
+                            <th class="border border-b-2 " style="width: 50%;">Ma’lumot</th>
                         </tr>
                         <tr class="bg-gray-200">
                             <th class="border border-b-2 ">1</th>
@@ -122,60 +122,6 @@
                             <th class="border border-b-2 ">Tijoratlashtirish holati</th>
                             <td class="border ">{{ $ilmiyloyiha->tijoratlashtirish  }} </td>
                         </tr>
-
-                        <!-- <tr>
-                            <th class="border border-b-2 ">17</th>
-                            <th class="border border-b-2 ">Umumiy ajratilgan mablag‘ (ming so‘mda)</th>
-                            <td class="border ">500</td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <th class="border border-b-2 ">18</th>
-                            <th class="border border-b-2 ">2017 yil</th>
-                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2017 }} ming so‘mda</td>
-                        </tr>
-
-                        <tr class="bg-gray-200">
-                            <th class="border border-b-2 ">19</th>
-                            <th class="border border-b-2 ">2018 yil</th>
-                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2018 }} ming so‘mda</td>
-                        </tr> -->
-
-                        <!-- <tr>
-                            <th class="border border-b-2 ">20</th>
-                            <th class="border border-b-2 ">2019 yil</th>
-                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2019 }} ming so‘mda</td>
-                        </tr>
-
-                        <tr class="bg-gray-200">
-                            <th class="border border-b-2 ">21</th>
-                            <th class="border border-b-2 ">2020 yil</th>
-                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2020 }} ming so‘mda</td>
-                        </tr>
-
-                        <tr>
-                            <th class="border border-b-2 ">22</th>
-                            <th class="border border-b-2 ">2021 yil</th>
-                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2021 }} ming so‘mda</td>
-                        </tr> -->
-
-                        <!-- <tr class="bg-gray-200">
-                            <th class="border border-b-2 ">23</th>
-                            <th class="border border-b-2 ">2022 yil</th>
-                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2022 }} ming so‘mda</td>
-                        </tr>
-
-                        <tr>
-                            <th class="border border-b-2 ">24</th>
-                            <th class="border border-b-2 ">2023 yil</th>
-                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2023 }} ming so‘mda</td>
-                        </tr>
-
-                        <tr class="bg-gray-200">
-                            <th class="border border-b-2 ">25</th>
-                            <th class="border border-b-2 ">2024 yil</th>
-                            <td class="border ">{{ $ilmiyloyiha->umumiyyil->y2024 }} ming so‘mda</td>
-                        </tr> -->
 
                         
 

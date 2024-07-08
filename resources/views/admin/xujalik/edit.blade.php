@@ -14,9 +14,10 @@
     padding: 20px 20px;
     border-radius: 20px">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-        <form id="science-paper-create-form" method="POST" action="{{ route("ilmiyloyiha.store") }}" class="validate-form"
+        <form id="science-paper-create-form" method="POST" action="{{ route("xujalik.update",['xujalik'=>$xujalik->id]) }}" class="validate-form"
             enctype="multipart/form-data" novalidate="novalidate">
             @csrf
+            @method('PUT')
             <div class="grid grid-cols-12 gap-2">
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -36,7 +37,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi mavjud bo‘lsa: sanasi
                     </label>
-                    <input type="text" name="intellektual_sana" value="{{ $xujalik->intellektual_sana }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="intellektual_sana" value="{{ $xujalik->intellektual_sana }}" id="datepicker" class="datepicker input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -52,11 +53,11 @@
                     </label>
                     <select name="ishlanma_turi"  id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Loyiha turi tanlang</option>
+                        <option>Loyiha turi tanlang</option>
 
-                        <option value="Amaliy">Amaliy</option>
+                        <option value="Amaliy" {{ $xujalik->ishlanma_turi == "Amaliy" ? "selected" : ""}}>Amaliy</option>
 
-                        <option value="Innovatsion">Innovatsion</option>
+                        <option value="Innovatsion" {{ $xujalik->ishlanma_turi == "Innovatsion" ? "selected" : ""}}>Innovatsion</option>
 
                     </select>
                 </div>
@@ -65,13 +66,13 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma turi
                     </label>
-                    <select name="lisenzion" value="{{ $xujalik->lisenzion }}" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="lisenzion"  id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">shartnoma turi tanlang</option>
+                        <option>shartnoma turi tanlang</option>
 
-                        <option value="xo‘jalik shartnomasi">xo‘jalik shartnomasi</option>
+                        <option value="xo‘jalik shartnomasi" {{ $xujalik->lisenzion == "xo‘jalik shartnomasi" ? "selected" : ""}}>xo‘jalik shartnomasi</option>
 
-                        <option value="litsenziya shartnomasi">litsenziya shartnomasi</option>
+                        <option value="litsenziya shartnomasi " {{ $xujalik->lisenzion == "litsenziya shartnomasi" ? "selected" : ""}}>litsenziya shartnomasi</option>
 
                     </select>
                 </div>
@@ -87,7 +88,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma sanasi
                     </label>
-                    <input type="text" name="sh_sanasi" value="{{ $xujalik->sh_sanasi }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="sh_sanasi" value="{{ $xujalik->sh_sanasi }}" id="datepicker" class="datepicker input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -115,7 +116,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma bo‘yicha kelib tushgan mablag‘ sanasi
                     </label>
-                    <input type="text" name="shkelib_sana" value="{{ $xujalik->shkelib_sana }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="shkelib_sana" value="{{ $xujalik->shkelib_sana }}" id="datepicker" class="datepicker input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">

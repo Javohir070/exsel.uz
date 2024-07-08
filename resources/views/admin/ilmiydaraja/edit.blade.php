@@ -5,7 +5,7 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium"> Ilmiy bilan taminlangami  qo'shish</h2>
+    <h2 class="intro-y text-lg font-medium"> Ilmiy bilan taminlangami  tahrirlash</h2>
 
 
 
@@ -14,9 +14,10 @@
     padding: 20px 20px;
     border-radius: 20px">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-        <form id="science-paper-create-form" method="POST" action="{{ route("ilmiyloyiha.store") }}" class="validate-form"
+        <form id="science-paper-create-form" method="POST" action="{{ route("ilmiydaraja.update",['ilmiydaraja'=>$ilmiydaraja->id]) }}" class="validate-form"
             enctype="multipart/form-data" novalidate="novalidate">
             @csrf
+            @method('PUT')
             <div class="grid grid-cols-12 gap-2">
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"><span
@@ -43,17 +44,17 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy loyiha turi
                     </label>
-                    <select name="turi" value="{{ $ilmiydaraja->turi }}"  id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="turi"   id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Loyiha turi tanlang</option>
+                        <option>Loyiha turi tanlang</option>
 
-                        <option value="Maqsadli">Maqsadli</option>
+                        <option value="Maqsadli" {{ $ilmiydaraja->turi == 'Maqsadli' ? 'selected' : '' }}>Maqsadli</option>
 
-                        <option value="Xalqaro-qo‘shma">Xalqaro-qo‘shma</option>
+                        <option value="Xalqaro-qo‘shma" {{ $ilmiydaraja->turi == 'Xalqaro-qo‘shma' ? 'selected' : '' }}>Xalqaro-qo‘shma</option>
 
-                        <option value="Yosh olimlar">Yosh olimlar</option>
+                        <option value="Yosh olimlar" {{ $ilmiydaraja->turi == 'Yosh olimlar' ? 'selected' : '' }}>Yosh olimlar</option>
 
-                        <option value="Olima ayollar">Olima ayollar</option>
+                        <option value="Olima ayollar" {{ $ilmiydaraja->turi == 'Olima ayollar' ? 'selected' : '' }}>Olima ayollar</option>
 
                     </select>
                 </div>

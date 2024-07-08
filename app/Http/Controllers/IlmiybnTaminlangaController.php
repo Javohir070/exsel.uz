@@ -91,9 +91,44 @@ class IlmiybnTaminlangaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateIlmiybnTaminlangaRequest $request, IlmiybnTaminlanga $ilmiybnTaminlanga)
+    public function update(Request $request, IlmiybnTaminlanga $ilmiydaraja)
     {
-        //
+        $ilmiybnTaminlanga = $ilmiydaraja;
+        $yillar = Yillar::findOrFail($ilmiybnTaminlanga->yillar_id);
+        $umumiyyil = Umumiyyil::findOrFail($ilmiybnTaminlanga->umumiyyil_id);
+
+        $yillar->update([
+            "y2017" => $request->y2017,
+            "y2018" => $request->y2018,
+            "y2019" => $request->y2019,
+            "y2020" => $request->y2020,
+            "y2021" => $request->y2021,
+            "y2022" => $request->y2022,
+            "y2023" => $request->y2023,
+            "y2024" => $request->y2024,
+        ]);
+
+        $umumiyyil->update([
+            "y2017" => $request->yil2017,
+            "y2018" => $request->yil2018,
+            "y2019" => $request->yil2019,
+            "y2020" => $request->yil2020,
+            "y2021" => $request->yil2021,
+            "y2022" => $request->yil2022,
+            "y2023" => $request->yil2023,
+            "y2024" => $request->yil2024,
+        ]);
+
+        $ilmiybnTaminlanga->update([
+            "xodimlar_jami" => $request->xodimlar_jami,
+            "ilmiy_xodimlar" => $request->ilmiy_xodimlar,
+            "name" => $request->name,
+            "turi" => $request->turi,
+            "moliyal_jami" => $request->moliyal_jami,
+            "xodimganisbat_jami" => $request->xodimganisbat_jami,
+        ]);
+
+        return redirect()->route('ilmiydaraja.index')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
     /**

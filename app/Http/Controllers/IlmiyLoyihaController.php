@@ -98,9 +98,53 @@ class IlmiyLoyihaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateIlmiyLoyihaRequest $request, IlmiyLoyiha $ilmiyLoyiha)
+    public function update(Request $request, IlmiyLoyiha $ilmiyloyiha)
     {
-        //
+
+        $umumiyyil = Umumiyyil::findOrFail($ilmiyloyiha->umumiyyil_id);
+        $umumiyyil->update([
+            "y2017" => $request->y2017,
+            "y2018" => $request->y2018,
+            "y2019" => $request->y2019,
+            "y2020" => $request->y2020,
+            "y2021" => $request->y2021,
+            "y2022" => $request->y2022,
+            "y2023" => $request->y2023,
+            "y2024" => $request->y2024,
+        ]);
+        $ilmiyloyiha->update([
+            "user_id" => auth()->id(),
+            "tashkilot_id" => auth()->user()->tashkilot_id,
+            "umumiyyil_id" =>$umumiyyil->id,
+            "mavzusi" => $request->mavzusi,
+            "turi" => $request->turi,
+            "dastyri" => $request->dastyri,
+            "q_hamkor_tashkilot" => $request->q_hamkor_tashkilot,
+            "hamkor_davlat" => $request->hamkor_davlat,
+            "muddat" => $request->muddat,
+            "bosh_sana" => $request->bosh_sana,
+            "tug_sana" => $request->tug_sana,
+            "pan_yunalish" => $request->pan_yunalish,
+            "rahbar_name" => $request->rahbar_name,
+            "raqami" => $request->raqami,
+            "sanasi" => $request->sanasi,
+            "sum" => $request->sum,
+            "umumiy_mablag" => json_encode([
+                "y2017" => $request->y2017,
+                "y2018" => $request->y2018,
+                "y2019" => $request->y2019,
+                "y2020" => $request->y2020,
+                "y2021" => $request->y2021,
+                "y2022" => $request->y2022,
+                "y2023" => $request->y2023,
+                "y2024" => $request->y2024,
+            ]),
+            "olingan_natija" => $request->olingan_natija,
+            "joriy_holati" => $request->joriy_holati,
+            "tijoratlashtirish" => $request->tijoratlashtirish,
+        ]);
+        return redirect('/ilmiyloyiha')->with('status','siz yuklagan maulmot bazga qoshildi');
+
     }
 
     /**

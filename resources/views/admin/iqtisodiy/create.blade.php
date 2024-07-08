@@ -5,7 +5,7 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Rahbar qo'shish</h2>
+    <h2 class="intro-y text-lg font-medium"> Iqtisodiy moliyaviy faoliyat   qo'shish</h2>
 
 
 

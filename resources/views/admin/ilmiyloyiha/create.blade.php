@@ -159,7 +159,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Sanasi 
                     </label>
-                    <input type="text" id="datepicker" name="sanasi" class="datepicker input w-full border mt-2" required="">
+                    <input type="text"  name="sanasi" id="datepicker" class="datepicker input w-full border mt-2" required="">
 
                 </div>
 

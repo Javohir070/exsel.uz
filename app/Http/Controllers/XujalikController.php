@@ -75,6 +75,7 @@ class XujalikController extends Controller
      */
     public function update(Request $request, Xujalik $xujalik)
     {
+
         $xujalik->update([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,

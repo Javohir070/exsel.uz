@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\IqtisodiyMoliyaviy;
 use App\Models\TashkilotRahbari;
 use App\Models\User;
+use App\Models\Xodimlar;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -18,6 +19,8 @@ class HomeController extends Controller
     { 
         $tashkiot_haqida = auth()->user()->tashkilot;
         $tashRId = auth()->user()->tashkilot_id;
+        $xodimlar = Xodimlar::where('tashkilot_id', $tashRId)->get()->count();
+
 
         $users = User::where('tashkilot_id',$tashRId)->with('roles')->get();
         $Ilmiy_faoliyat = $users->filter(function($user) {
@@ -37,7 +40,8 @@ class HomeController extends Controller
             'iqtisodiy_moliyaviy'=>$iqtisodiy_moliyaviy,
             'Ilmiy_faoliyat' => $Ilmiy_faoliyat,
             'Tashkilot_pasporti'=>$Tashkilot_pasporti,
-            'Xodimlar_uchun' => $Xodimlar_uchun
+            'Xodimlar_uchun' => $Xodimlar_uchun,
+            'xodimlar' => $xodimlar
          ]);
     }
 }

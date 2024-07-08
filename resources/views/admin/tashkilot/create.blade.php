@@ -5,7 +5,7 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Tashkilot qo'shish</h2>
+    <h2 class="intro-y text-lg font-medium">Tashkilot yaratish</h2>
 
 
 
@@ -66,7 +66,7 @@
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telepon raqami 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telefon raqami 
                     </label>
                     <input type="text" name="phone" class="input w-full border mt-2" >
                 </div>
@@ -89,11 +89,11 @@
                     </label>
                     <select name="turi" id="science-sub-category" class="input border w-full mt-2" >
 
-                        <option >Mulkchilik turi tanlang</option>
+                        <option>Mulkchilik turi tanlang</option>
 
-                        <option value="davlat">Davlat</option>
+                        <option value="Davlat">Davlat</option>
 
-                        <option value="xususiy">Xususiy</option>
+                        <option value="Xususiy">Xususiy</option>
 
                     </select><br>
                 </div>
@@ -103,15 +103,15 @@
                     </label>
                     <select name="xarajatlar" id="science-sub-category" class="input border w-full mt-2" >
 
-                        <option >tanlang</option>
+                        <option>Tashkilotni saqlash harajatlarining moliyalashtirish tanlang</option>
 
-                        <option value="davlat byudjeti">Davlat byudjeti</option>
+                        <option value="Davlat byudjeti">Davlat byudjeti</option>
 
-                        <option value="xususiy investisiyalar">Xususiy investisiyalar</option>
+                        <option value="Xususiy investisiyalar">Xususiy investisiyalar</option>
 
-                        <option value="xorijiy investisiyalar">Xorijiy investisiyalar</option>
+                        <option value="Xorijiy investisiyalar">Xorijiy investisiyalar</option>
 
-                        <option value="boshqalar">boshqalar</option>
+                        <option value="Boshqalar">Boshqalar</option>
 
                     </select><br>
                 </div>
@@ -140,7 +140,7 @@
                     </label>
                     <select name="boshqariv" id="science-sub-category" class="input border w-full mt-2" >
 
-                        <option value="0">boshqariv tuzilmasi tanlang</option>
+                        <option>Boshqariv tuzilmasi tanlang</option>
 
                         <option value="Derektor">Direktor</option>
 
@@ -150,12 +150,6 @@
 
                     </select><br>
                 </div>
-
-
-
-
-
-
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">STIR raqami 
@@ -169,11 +163,6 @@
                     </label>
                     <input type="text" name="bank" class="input w-full border mt-2" >
                 </div>
-
-
-
-
-
 
             </div>
         </form><br>

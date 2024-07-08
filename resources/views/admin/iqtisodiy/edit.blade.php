@@ -5,7 +5,7 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Rahbar qo'shish</h2>
+    <h2 class="intro-y text-lg font-medium">  Iqtisodiy moliyaviy faoliyat  tahrirlash</h2>
 
 
 
@@ -44,21 +44,21 @@
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Binolar soni
                         </label>
-                        <input type="number" name="binolar_soni" value="{{$iqtisodiy->binolar_soni}}" class="input w-full border mt-2" required="">
+                        <input type="text" name="binolar_soni" value="{{$iqtisodiy->binolar_soni}}" class="input w-full border mt-2" required="">
                     </div>
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Binolarning auditoriya sig‘imi
                         </label>
-                        <input type="number" name="auditoriya_sigimi" value="{{$iqtisodiy->auditoriya_sigimi}}" class="input w-full border mt-2" required="">
+                        <input type="text" name="auditoriya_sigimi" value="{{$iqtisodiy->auditoriya_sigimi}}" class="input w-full border mt-2" required="">
                     </div>
                     
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Katta xajmdagi auditoriyalar soni (150-200 kishilik) 
                         </label>
-                        <input type="number" name="k_xaj_auditor_soni" value="{{$iqtisodiy->k_xaj_auditor_soni}}" class="input w-full border mt-2" required="">
+                        <input type="text" name="k_xaj_auditor_soni" value="{{$iqtisodiy->k_xaj_auditor_soni}}" class="input w-full border mt-2" required="">
                     </div>
 
                     <div class="w-full col-span-6">
@@ -72,7 +72,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Ilmiy faoliyatni amalga oshiruvchi bo‘linmalar (bo‘lim, kafedra, laboratoriya) soni
                         </label>
-                        <input type="number" name="ilmiyp_bulinalar" value="{{$iqtisodiy->ilmiyp_bulinalar}}" class="input w-full border mt-2" required="">
+                        <input type="text" name="ilmiyp_bulinalar" value="{{$iqtisodiy->ilmiyp_bulinalar}}" class="input w-full border mt-2" required="">
                     </div>
                     <div class="w-full col-span-4">
                         <label class="flex flex-col sm:flex-row"> <span
@@ -80,11 +80,11 @@
                         </label>
                         <div class="flex flex-col sm:flex-row mt-2">
                             <div class="flex items-center text-gray-700 mr-2">
-                                 <input type="radio" class="input border mr-2"  name="gaz" value="ha"> 
+                                 <input type="radio" class="input border mr-2"  name="gaz" value="ha" {{ $iqtisodiy->gaz == 'ha' ? 'checked' : '' }}> 
                                  <label class="cursor-pointer select-none" >Ha</label> 
                             </div>
                             <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
-                                <input type="radio" class="input border mr-2"  name="gaz" value="yoq">
+                                <input type="radio" class="input border mr-2"  name="gaz" value="yoq" {{ $iqtisodiy->gaz == 'yoq' ? 'checked' : '' }}>
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
                         </div>
@@ -96,11 +96,11 @@
                         </label>
                         <div class="flex flex-col sm:flex-row mt-2">
                             <div class="flex items-center text-gray-700 mr-2">
-                                 <input type="radio" class="input border mr-2"  name="elektr" value="ha"> 
+                                 <input type="radio" class="input border mr-2"  name="elektr" value="ha" {{ $iqtisodiy->elektr == 'ha' ? 'checked' : '' }}> 
                                  <label class="cursor-pointer select-none" >Ha</label> 
                             </div>
                             <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
-                                <input type="radio" class="input border mr-2"  name="elektr" value="yoq">
+                                <input type="radio" class="input border mr-2"  name="elektr" value="yoq" {{ $iqtisodiy->elektr == 'yoq' ? 'checked' : '' }}>
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
                         </div>
@@ -112,11 +112,11 @@
                         </label>
                         <div class="flex flex-col sm:flex-row mt-2">
                             <div class="flex items-center text-gray-700 mr-2">
-                                 <input type="radio" class="input border mr-2"  name="suv" value="ha"> 
+                                 <input type="radio" class="input border mr-2"  name="suv" value="ha" {{ $iqtisodiy->suv == 'ha' ? 'checked' : '' }}> 
                                  <label class="cursor-pointer select-none" >Ha</label> 
                             </div>
                             <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
-                                <input type="radio" class="input border mr-2"  name="suv" value="yoq">
+                                <input type="radio" class="input border mr-2"  name="suv" value="yoq" {{ $iqtisodiy->suv == 'yoq' ? 'checked' : '' }}>
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
                         </div>
@@ -128,11 +128,11 @@
                         </label>
                         <div class="flex flex-col sm:flex-row mt-2">
                             <div class="flex items-center text-gray-700 mr-2">
-                                 <input type="radio" class="input border mr-2"  name="kanalizasiya" value="ha"> 
+                                 <input type="radio" class="input border mr-2"  name="kanalizasiya" value="ha" {{ $iqtisodiy->kanalizasiya == 'ha' ? 'checked' : '' }}> 
                                  <label class="cursor-pointer select-none" >Ha</label> 
                             </div>
                             <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
-                                <input type="radio" class="input border mr-2"  name="kanalizasiya" value="yoq">
+                                <input type="radio" class="input border mr-2"  name="kanalizasiya" value="yoq" {{ $iqtisodiy->kanalizasiya == 'yoq' ? 'checked' : '' }}>
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
                         </div>
@@ -144,11 +144,11 @@
                         </label>
                         <div class="flex flex-col sm:flex-row mt-2">
                             <div class="flex items-center text-gray-700 mr-2">
-                                 <input type="radio" class="input border mr-2"  name="internet" value="ha"> 
+                                 <input type="radio" class="input border mr-2"  name="internet" value="ha" {{ $iqtisodiy->internet == 'ha' ? 'checked' : '' }}> 
                                  <label class="cursor-pointer select-none" >Ha</label> 
                             </div>
                             <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
-                                <input type="radio" class="input border mr-2"  name="internet" value="yoq">
+                                <input type="radio" class="input border mr-2"  name="internet" value="yoq" {{ $iqtisodiy->internet == 'yoq' ? 'checked' : '' }}>
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
                         </div>

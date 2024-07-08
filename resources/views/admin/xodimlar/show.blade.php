@@ -5,7 +5,7 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">{{ $xodimlar->tashkilot->name }} xodim xaqida ma’lumot</h2>
+        <h2 class="intro-y text-lg font-medium">{{ $xodimlar->tashkilot->name_qisqachasi }} xodim xaqida ma’lumot</h2>
 
         @role('super-admin')
             <a href="{{ route("xodim.barchaXodimlar") }}" class="button w-24 bg-theme-1 text-white">
@@ -35,7 +35,7 @@
                         <tr>
                             <th class="border border-2" style="width: 40px;">#</th>
                             <th class="border border-2" style="width: 50%;">Ma’lumot nomlanishi</th>
-                            <th class="border border-2">Ma’lumot</th>
+                            <th class="border border-2" style="width: 50%;">Ma’lumot</th>
                         </tr>
                         <tr class="bg-gray-200">
                             <th class="border border-2">1</th>
