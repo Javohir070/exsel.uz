@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('xodimlars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tashkilot_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('fish');
             $table->string('jshshir');
             $table->string('jinsi');
