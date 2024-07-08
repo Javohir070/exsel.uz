@@ -69,7 +69,7 @@ class IlmiybnTaminlangaController extends Controller
             "xodimganisbat_jami" => $request->xodimganisbat_jami,
         ]);
 
-        return redirect('/ilmiydaraja')->with('status', "yuklandi siz qo'shgan malumot");
+        return redirect('/ilmiydaraja')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
     /**
@@ -134,9 +134,11 @@ class IlmiybnTaminlangaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(IlmiybnTaminlanga $ilmiybnTaminlanga)
+    public function destroy(IlmiybnTaminlanga $ilmiydaraja)
     {
-        //
+        $ilmiydaraja->delete();
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+        
     }
 
     public function ilmiydarajalar()

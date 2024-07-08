@@ -51,7 +51,7 @@ class IqtisodiyMoliyaviyController extends Controller
             "internet" => $request->internet, 
         ]);
 
-        return redirect('/iqtisodiy')->with('status', "siz yuborgan malutot yuklandi qo'shildi");
+        return redirect('/iqtisodiy')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
     /**
@@ -95,15 +95,17 @@ class IqtisodiyMoliyaviyController extends Controller
             "internet" => $request->internet, 
         ]);
 
-        return redirect('/iqtisodiy')->with('status', "siz yuborgan malutot yuklandi qo'shildi");
+        return redirect('/iqtisodiy')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(IqtisodiyMoliyaviy $iqtisodiyMoliyaviy)
+    public function destroy(IqtisodiyMoliyaviy $iqtisodiy)
     {
-        //
+        $iqtisodiy->delete();
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+
     }
 
     public function iqtisodiylar()

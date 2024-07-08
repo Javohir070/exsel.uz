@@ -43,7 +43,7 @@ class TashkilotRahbariController extends Controller
             "u_phone" => $request->u_phone,
         ]);
 
-        return redirect('/tashkilotrahbari')->with("status", "siz yuklagan mauumoat qo'shildi");
+        return redirect('/tashkilotrahbari')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
     /**
@@ -79,16 +79,19 @@ class TashkilotRahbariController extends Controller
             "u_phone" => $request->u_phone,
         ]);
 
-        return redirect('/tashkilotrahbari')->with("status", "siz yuklagan mauumoat qo'shildi");
+        return redirect('/tashkilotrahbari')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
 
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(TashkilotRahbari $tashkilotRahbari)
+    public function destroy(TashkilotRahbari $tashkilotrahbari)
     {
-        //
+        $tashkilotrahbari->delete();
+        
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+
     }
 
     public function tashkilotrahbarilar()

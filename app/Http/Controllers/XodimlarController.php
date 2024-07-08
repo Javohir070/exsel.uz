@@ -59,7 +59,7 @@ class XodimlarController extends Controller
             "email" => $request->email ,
         ]);
 
-        return redirect("/xodimlar")->with('status', "malumot qo'shildi");
+        return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
     /**
@@ -106,7 +106,7 @@ class XodimlarController extends Controller
             "email" => $request->email ,
         ]);
 
-        return redirect("/xodimlar")->with('status', "malumot qo'shildi");
+        return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
     /**
@@ -116,7 +116,7 @@ class XodimlarController extends Controller
     {
         $xodimlar->delete();
 
-        return redirect()->back();
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
     }
 
     public function barcha_xodimlar()

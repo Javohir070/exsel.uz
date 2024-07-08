@@ -53,8 +53,6 @@ class TashkilotController extends Controller
             "tash_yil" => $request->tash_yil,
             "yur_manzil" => $request->yur_manzil,
             "logo" =>  $path ?? null,
-            
-
             "viloyat" => $request->viloyat ?? "malumot yuq",
             "tuman" => $request->tuman ?? "malumot yuq",
             "paoliyat_manzil" => $request->paoliyat_manzil ?? "malumot yuq",
@@ -71,7 +69,7 @@ class TashkilotController extends Controller
             "bank" => $request->bank ?? "malumot yuq",
         ]);
 
-        return redirect('/tashkilot');
+        return redirect('/tashkilotlar');
     }
 
     /**
@@ -122,9 +120,11 @@ class TashkilotController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Tashkilot $tashkilot)
     {
-        //
+        $tashkilot->delete();
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+
     }
 
     public function tashkilotlar()

@@ -150,9 +150,11 @@ class IlmiyLoyihaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(IlmiyLoyiha $ilmiyLoyiha)
+    public function destroy(IlmiyLoyiha $ilmiyloyiha)
     {
-        //
+        $ilmiyloyiha->delete();
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+
     }
 
     public function ilmiyloyihalar()

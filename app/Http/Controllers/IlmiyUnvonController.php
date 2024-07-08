@@ -49,7 +49,7 @@ class IlmiyUnvonController extends Controller
             "kim_tom_berilgan" => $request->kim_tom_berilgan
         ]);
 
-        return redirect('ilmiyunvon'); 
+        return redirect('ilmiyunvon')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.'); 
     }
 
     /**
@@ -71,7 +71,7 @@ class IlmiyUnvonController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateIlmiyUnvonRequest $request, IlmiyUnvon $ilmiyUnvon)
+    public function update(Request $request, IlmiyUnvon $ilmiyUnvon)
     {
         //
     }

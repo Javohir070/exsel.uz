@@ -51,7 +51,7 @@ class XujalikController extends Controller
             "shkelib_summa" =>$request->shkelib_summa ,
         ]);
 
-        return redirect('/xujalik')->with('status' , 'siz yuborgan malumot qoshildi');
+        return redirect('/xujalik')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
     /**
@@ -94,7 +94,7 @@ class XujalikController extends Controller
             "shkelib_summa" =>$request->shkelib_summa ,
         ]);
 
-        return redirect('/xujalik')->with('status' , 'siz yuborgan malumot ozgartirldi');
+        return redirect('/xujalik')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
     /**
@@ -102,7 +102,9 @@ class XujalikController extends Controller
      */
     public function destroy(Xujalik $xujalik)
     {
-        //
+        $xujalik->delete();
+
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
     }
 
     public function xujaliklar()
