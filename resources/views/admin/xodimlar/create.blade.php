@@ -29,14 +29,14 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> JSHSHIR
                     </label>
-                    <input type="number" name="jshshir" class="input w-full border mt-2" required="">
+                    <input type="text" name="jshshir" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tug‘ilgan yili
                     </label>
-                    <input type="number" name="yil" class="input w-full border mt-2" required="">
+                    <input type="text" name="yil" class="input w-full border mt-2" required="">
                     
                 </div>
 
@@ -175,7 +175,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy daraja olingan yili
                     </label>
-                    <input type="number" name="ilmiy_daraja_yil" class="input w-full border mt-2" required="">
+                    <input type="text" name="ilmiy_daraja_yil" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6">
@@ -201,7 +201,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy unvoni Ilmiy unvon olingan
                         yili
                     </label>
-                    <input type="number" name="ilmiy_unvoni_y" class="input w-full border mt-2" required="">
+                    <input type="text" name="ilmiy_unvoni_y" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -224,18 +224,12 @@
                     </label>
                     <input type="email" name="email" class="input w-full border mt-2" required="">
                 </div>
-
-
-
-
-
-
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">
-            <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+            <a href="{{ route('xodimlar.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
-            </button>
+            </a>
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
                 Qo'shish

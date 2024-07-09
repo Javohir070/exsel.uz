@@ -13,14 +13,14 @@ return new class extends Migration
     {
         Schema::create('yillars', function (Blueprint $table) {
             $table->id();
-            $table->string('y2017');
-            $table->string('y2018');
-            $table->string('y2019');
-            $table->string('y2020');
-            $table->string('y2021');
-            $table->string('y2022');
-            $table->string('y2023');
-            $table->string('y2024');
+            $table->string('y2017')->nullable();
+            $table->string('y2018')->nullable();
+            $table->string('y2019')->nullable();
+            $table->string('y2020')->nullable();
+            $table->string('y2021')->nullable();
+            $table->string('y2022')->nullable();
+            $table->string('y2023')->nullable();
+            $table->string('y2024')->nullable();
             $table->timestamps();
         });
     }

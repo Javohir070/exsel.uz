@@ -30,14 +30,14 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> JSHSHIR
                     </label>
-                    <input type="number" name="jshshir" value="{{ $xodimlar->jshshir }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="jshshir" value="{{ $xodimlar->jshshir }}" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tug‘ilgan yili
                     </label>
-                    <input type="number" name="yil" value="{{ $xodimlar->yil }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="yil" value="{{ $xodimlar->yil }}" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6">
@@ -174,8 +174,11 @@
                         <option value="Fan nomzodi">Fan nomzodi</option>
 
                         <option value="Falsafa doktori (PhD)">Falsafa doktori (PhD)</option>
+
                         <option value="Fan doktori (DSc)">Fan doktori (DSc)</option>
+
                         <option value="Fan doktori">Fan doktori</option>
+
                         <option value="Akademik">Akademik</option>
 
                     </select><br>
@@ -185,7 +188,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy daraja olingan yili
                     </label>
-                    <input type="number" name="ilmiy_daraja_yil" value="{{ $xodimlar->ilmiy_daraja_yil }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="ilmiy_daraja_yil" value="{{ $xodimlar->ilmiy_daraja_yil }}" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6">
@@ -211,7 +214,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy unvoni Ilmiy unvon olingan
                         yili
                     </label>
-                    <input type="number" name="ilmiy_unvoni_y" value="{{ $xodimlar->ilmiy_unvoni_y }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="ilmiy_unvoni_y" value="{{ $xodimlar->ilmiy_unvoni_y }}" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -234,11 +237,6 @@
                     </label>
                     <input type="email" name="email" value="{{ $xodimlar->email }}" class="input w-full border mt-2" required="">
                 </div>
-
-
-
-
-
 
             </div>
         </form><br>

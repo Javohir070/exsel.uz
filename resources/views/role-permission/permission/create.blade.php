@@ -30,11 +30,7 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Name
                         </label>
                         <input type="text" name="name" class="input w-full border mt-2" required="">
-                    </div>
-
-                    
-
-                    
+                    </div> 
             </div><br>
         </form><br>
         <div class="px-5 pb-5 text-center">

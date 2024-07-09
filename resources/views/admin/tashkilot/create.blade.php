@@ -167,9 +167,9 @@
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">
-            <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+            <a href="{{ route('tashkilot.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
-            </button>
+            </a>
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
                 Qo'shish

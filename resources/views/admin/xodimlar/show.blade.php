@@ -12,6 +12,11 @@
                 Orqaga
             </a>
         @endrole
+        @role('admin')
+            <a href="{{ route("xodimlar.index") }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
+        @endrole
         
 
     </div>

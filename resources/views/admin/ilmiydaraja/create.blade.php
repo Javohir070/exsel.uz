@@ -177,7 +177,7 @@
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">
-            <a href="#"  class="button delete-cancel w-32 border text-gray-700 mr-1">
+            <a href="{{ route('ilmiydaraja.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </a>
             <button type="submit" form="science-paper-create-form"

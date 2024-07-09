@@ -8,7 +8,16 @@
         <h2 class="intro-y text-lg font-medium">{{ $ilmiydaraja->tashkilot->name }}  Ilmiy bilan taminlangami  ma’lumot</h2>
 
         
-        
+        @role('super-admin')
+            <a href="{{ route("ilmiydarajalar.index") }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
+        @endrole
+        @role('admin')
+            <a href="{{ route("ilmiydaraja.index") }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
+        @endrole
 
     </div>
     @if (session('status'))

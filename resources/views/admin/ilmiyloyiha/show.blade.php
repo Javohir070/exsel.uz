@@ -7,7 +7,16 @@
 
         <h2 class="intro-y text-lg font-medium">{{ $ilmiyloyiha->tashkilot->name }} Ilmiy loyihalar </h2>
 
-        
+        @role('super-admin')
+            <a href="{{ route("ilmiyloyihalar.index") }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
+        @endrole
+        @role('admin')
+            <a href="{{ route("ilmiyloyiha.index") }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
+        @endrole
         
 
     </div>
