@@ -35,7 +35,13 @@
                         <input type="text" name="name" class="input w-full border mt-2" >
                     </div>
                 @endrole
-                    @role('admin')
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Name
+                        </label>
+                        <input type="text" name="name" class="input w-full border mt-2" >
+                    </div>
+                    @role('admin12')
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xodimlar
