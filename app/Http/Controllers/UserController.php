@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tashkilot;
-use App\Models\User;
 use App\Models\Xodimlar;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use App\Models\User;
+use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
@@ -43,7 +43,7 @@ class UserController extends Controller
             'roles' => 'required',
             "tashkilot_id" =>  'required',
         ]);
-
+        $roluchun = $request->roles;
         $user = User::create([
                         'name' => $request->name,
                         'email' => $request->email,
@@ -52,8 +52,7 @@ class UserController extends Controller
                     ]);
 
         $user->syncRoles($request->roles);
-        
-        if($request->input('roles') == 'admin'){
+        if($roluchun[0] == "admin"){
             return redirect('/users')->with('status','User Updated Successfully with roles');
         }else{
             return redirect('/')->with('status','User Updated Successfully with roles');
@@ -64,10 +63,13 @@ class UserController extends Controller
     {
         $roles = Role::pluck('name','name')->all();
         $userRoles = $user->roles->pluck('name','name')->all();
+        $tashkilot_id = auth()->user()->tashkilot_id;
+        $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->get();
         return view('role-permission.user.edit', [
             'user' => $user,
             'roles' => $roles,
-            'userRoles' => $userRoles
+            'userRoles' => $userRoles,
+            'xodimlar' => $xodimlar
         ]);
     }
 
@@ -92,7 +94,8 @@ class UserController extends Controller
 
         $user->update($data);
         $user->syncRoles($request->roles);
-        if($request->roles == 'super-admin' && $request->roles == 'admin'){
+        $roluchun = $request->roles;
+        if($roluchun[0] == 'admin'){
             return redirect('/users')->with('status','User Updated Successfully with roles');
         }else{
             return redirect('/')->with('status','User Updated Successfully with roles');

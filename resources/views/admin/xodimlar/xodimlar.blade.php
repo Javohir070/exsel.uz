@@ -7,9 +7,9 @@
 
         <h2 class="intro-y text-lg font-medium">Barcha Xodimlar </h2>
 
-        <a href="{{ route('xodimlar.create') }}"  class="button w-24 bg-theme-1 text-white">
+        <!-- <a href="{{ route('xodimlar.create') }}"  class="button w-24 bg-theme-1 text-white">
             Qo'shish
-        </a>
+        </a> -->
 
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">

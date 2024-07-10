@@ -7,9 +7,9 @@
 
         <h2 class="intro-y text-lg font-medium">Xodimlar</h2>
 
-        <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white">
+        <!-- <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish
-        </a>
+        </a> -->
 
     </div>
     @if (session('status'))

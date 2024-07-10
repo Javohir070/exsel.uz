@@ -7,9 +7,9 @@
 
         <h2 class="intro-y text-lg font-medium"> Loyiha bilan taminlangami </h2>
 
-        <a href="{{ route("ilmiydaraja.create") }}" class="button w-24 bg-theme-1 text-white">
+        <!-- <a href="{{ route("ilmiydaraja.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish
-        </a>
+        </a> -->
 
     </div>
     @if (session('status'))

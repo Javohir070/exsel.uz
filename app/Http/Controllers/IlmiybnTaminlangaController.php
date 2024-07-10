@@ -35,25 +35,25 @@ class IlmiybnTaminlangaController extends Controller
     public function store(Request $request)
     {
         $yillar = Yillar::create([
-            "y2017" => $request->y2017,
-            "y2018" => $request->y2018,
-            "y2019" => $request->y2019,
-            "y2020" => $request->y2020,
-            "y2021" => $request->y2021,
-            "y2022" => $request->y2022,
-            "y2023" => $request->y2023,
-            "y2024" => $request->y2024,
+            "y2017" => $request->y2017 ?? 0,
+            "y2018" => $request->y2018 ?? 0,
+            "y2019" => $request->y2019 ?? 0,
+            "y2020" => $request->y2020 ?? 0,
+            "y2021" => $request->y2021 ?? 0,
+            "y2022" => $request->y2022 ?? 0,
+            "y2023" => $request->y2023 ?? 0,
+            "y2024" => $request->y2024 ?? 0,
         ]);
 
         $umumiyyil = Umumiyyil::create([
-            "y2017" => $request->yil2017,
-            "y2018" => $request->yil2018,
-            "y2019" => $request->yil2019,
-            "y2020" => $request->yil2020,
-            "y2021" => $request->yil2021,
-            "y2022" => $request->yil2022,
-            "y2023" => $request->yil2023,
-            "y2024" => $request->yil2024,
+            "y2017" => $request->yil2017 ?? 0,
+            "y2018" => $request->yil2018 ?? 0,
+            "y2019" => $request->yil2019 ?? 0,
+            "y2020" => $request->yil2020 ?? 0,
+            "y2021" => $request->yil2021 ?? 0,
+            "y2022" => $request->yil2022 ?? 0,
+            "y2023" => $request->yil2023 ?? 0,
+            "y2024" => $request->yil2024 ?? 0,
         ]);
 
         IlmiybnTaminlanga::create([
@@ -98,25 +98,25 @@ class IlmiybnTaminlangaController extends Controller
         $umumiyyil = Umumiyyil::findOrFail($ilmiybnTaminlanga->umumiyyil_id);
 
         $yillar->update([
-            "y2017" => $request->y2017,
-            "y2018" => $request->y2018,
-            "y2019" => $request->y2019,
-            "y2020" => $request->y2020,
-            "y2021" => $request->y2021,
-            "y2022" => $request->y2022,
-            "y2023" => $request->y2023,
-            "y2024" => $request->y2024,
+            "y2017" => $request->y2017 ?? 0 ,
+            "y2018" => $request->y2018 ?? 0 ,
+            "y2019" => $request->y2019 ?? 0 ,
+            "y2020" => $request->y2020 ?? 0 ,
+            "y2021" => $request->y2021 ?? 0 ,
+            "y2022" => $request->y2022 ?? 0 ,
+            "y2023" => $request->y2023 ?? 0 ,
+            "y2024" => $request->y2024 ?? 0 ,
         ]);
 
         $umumiyyil->update([
-            "y2017" => $request->yil2017,
-            "y2018" => $request->yil2018,
-            "y2019" => $request->yil2019,
-            "y2020" => $request->yil2020,
-            "y2021" => $request->yil2021,
-            "y2022" => $request->yil2022,
-            "y2023" => $request->yil2023,
-            "y2024" => $request->yil2024,
+            "y2017" => $request->yil2017 ?? 0 ,
+            "y2018" => $request->yil2018 ?? 0 ,
+            "y2019" => $request->yil2019 ?? 0 ,
+            "y2020" => $request->yil2020 ?? 0 ,
+            "y2021" => $request->yil2021 ?? 0 ,
+            "y2022" => $request->yil2022 ?? 0 ,
+            "y2023" => $request->yil2023 ?? 0 ,
+            "y2024" => $request->yil2024 ?? 0 ,
         ]);
 
         $ilmiybnTaminlanga->update([

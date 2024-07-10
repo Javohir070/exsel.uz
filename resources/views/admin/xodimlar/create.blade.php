@@ -69,7 +69,7 @@
 
                         <option value="Soatbay">Soatbay</option>
 
-                    </select><br>
+                    </select>
                 </div>
 
                 <div class="w-full col-span-6">
@@ -94,30 +94,6 @@
 
                     </select><br>
                 </div>
-
-                <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> O‘rindoshlik asosida ishlaydigan xodimning asosiy ish joyi
-                        bo‘lgan tashkilot
-                    </label>
-                    <input type="text" name="urindoshlik_asasida" class="input w-full border mt-2" required="">
-                </div>
-
-                <div class="w-full col-span-6">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Pedagogik faoliyat bilan
-                        shug‘ullanishi
-                    </label>
-                    <select name="pedagoglik" id="science-sub-category" class="input border w-full mt-2" required="">
-
-                        <option>Pedagogik faoliyat bilan shug‘ullanishi tanlang</option>
-
-                        <option value="ha">ha</option>
-
-                        <option value="yoq">yoq</option>
-
-                    </select><br>
-                </div>
-
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Lavozimi
@@ -136,26 +112,47 @@
 
                     </select><br>
                 </div>
+                
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ma’lumoti
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Pedagogik faoliyat bilan
+                        shug‘ullanishi
                     </label>
-                    <input type="text" name="malumoti" class="input w-full border mt-2" required="">
+                    <select name="pedagoglik" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                        <option>Pedagogik faoliyat bilan shug‘ullanishi tanlang</option>
+
+                        <option value="ha">ha</option>
+
+                        <option value="yoq">yoq</option>
+
+                    </select><br>
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> O‘rindoshlik asosida ishlaydigan xodimning asosiy ish joyi
+                        bo‘lgan tashkilot
+                    </label>
+                    <input type="text" name="urindoshlik_asasida" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘zbekiston Fanlar akademiyasi
+                    <label class="flex flex-col sm:flex-row">  Ma’lumoti
+                    </label>
+                    <input type="text" name="malumoti" class="input w-full border mt-2">
+                </div>
+
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row">  O‘zbekiston Fanlar akademiyasi
                         haqiqiy a’zosi Ilmiy darajasi
                     </label>
-                    <input type="text" name="uzbek_panlar_azosi" class="input w-full border mt-2" required="">
+                    <input type="text" name="uzbek_panlar_azosi" class="input w-full border mt-2">
                 </div>
 
                 <div class="w-full col-span-6">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy darajasi</label>
-                    <select name="ilmiy_daraja" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <label class="flex flex-col sm:flex-row">  Ilmiy darajasi</label>
+                    <select name="ilmiy_daraja" id="science-sub-category" class="input border w-full mt-2">
 
                         <option 
                         >Ilmiy darajasi tanlang</option>
@@ -174,17 +171,15 @@
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy daraja olingan yili
+                    <label class="flex flex-col sm:flex-row">  Ilmiy daraja olingan yili
                     </label>
-                    <input type="text" name="ilmiy_daraja_yil" class="input w-full border mt-2" required="">
+                    <input type="text" name="ilmiy_daraja_yil" class="input w-full border mt-2">
                 </div>
 
                 <div class="w-full col-span-6">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy unvoni
+                    <label class="flex flex-col sm:flex-row">  Ilmiy unvoni
                     </label>
-                    <select name="ilmiy_unvoni" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="ilmiy_unvoni" id="science-sub-category" class="input border w-full mt-2">
 
                         <option >Ilmiy unvoni tanlang</option>
 
@@ -199,18 +194,16 @@
 
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy unvoni Ilmiy unvon olingan
+                    <label class="flex flex-col sm:flex-row">  Ilmiy unvoni Ilmiy unvon olingan
                         yili
                     </label>
-                    <input type="text" name="ilmiy_unvoni_y" class="input w-full border mt-2" required="">
+                    <input type="text" name="ilmiy_unvoni_y" class="input w-full border mt-2">
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ixtisosligi
+                    <label class="flex flex-col sm:flex-row">  Ixtisosligi
                     </label>
-                    <input type="text" name="ixtisosligi" class="input w-full border mt-2" required="">
+                    <input type="text" name="ixtisosligi" class="input w-full border mt-2">
                 </div>
 
                 <div class="w-full col-span-6 ">

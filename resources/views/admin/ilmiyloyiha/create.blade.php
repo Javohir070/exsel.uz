@@ -69,17 +69,15 @@
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Qo‘shma loyiha bo‘yicha hamkor tashkilot
+                    <label class="flex flex-col sm:flex-row">  Qo‘shma loyiha bo‘yicha hamkor tashkilot
                     </label>
-                    <input type="text" name="q_hamkor_tashkilot" class="input w-full border mt-2" required="">
+                    <input type="text" name="q_hamkor_tashkilot" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xalqaro qo‘shma loyihalardagi hamkor davlat
+                    <label class="flex flex-col sm:flex-row">  Xalqaro qo‘shma loyihalardagi hamkor davlat
                     </label>
-                    <input type="text" name="hamkor_davlat" class="input w-full border mt-2" required="">
+                    <input type="text" name="hamkor_davlat" class="input w-full border mt-2" >
                 </div>
 
 
@@ -206,7 +204,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tijoratlashtirish holati 
                     </label>
-                    <select name="tijoratlashtirish" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="tijoratlashtirish"  class="input border w-full mt-2" required="">
 
                         <option>Tijoratlashtirish  tanlang</option>
 
@@ -221,42 +219,42 @@
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2017 yilda
                     </label>
-                    <input type="text" name="y2017" class="input w-full border mt-2" required="">
+                    <input type="text" name="y2017" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2018 yilda
                     </label>
-                    <input type="text" name="y2018" class="input w-full border mt-2" required="">
+                    <input type="text" name="y2018" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2019 yilda
                     </label>
-                    <input type="text" name="y2019" class="input w-full border mt-2" required="">
+                    <input type="text" name="y2019" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2020 yilda
                     </label>
-                    <input type="text" name="y2020" class="input w-full border mt-2" required="">
+                    <input type="text" name="y2020" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2021 yilda
                     </label>
-                    <input type="text" name="y2021" class="input w-full border mt-2" required="">
+                    <input type="text" name="y2021" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2022 yilda
                     </label>
-                    <input type="text" name="y2022" class="input w-full border mt-2" required="">
+                    <input type="text" name="y2022" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2023 yilda
                     </label>
-                    <input type="text" name="y2023" class="input w-full border mt-2" required="">
+                    <input type="text" name="y2023" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2024 yilda
                     </label>
-                    <input type="text" name="y2024" class="input w-full border mt-2" required="">
+                    <input type="text" name="y2024" class="input w-full border mt-2" >
                 </div>
             </div>
         </form><br>

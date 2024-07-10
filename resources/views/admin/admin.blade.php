@@ -28,7 +28,7 @@
                             <div class="text-3xl font-bold leading-8 mt-6">3/3</div>
                             <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Tashkilot pasporti biriktirilgan masul xodim
                                @forelse($Tashkilot_pasporti as $tash)
-                                 <a class="button  bg-theme-1 text-white"
+                                 <a href="{{ url('users/'.$tash->id.'/edit') }}" class="button  bg-theme-1 text-white"
                                     style="display: flex; justify-content:center;margin-top: 10px;">{{$tash->name}}</a>
 								@empty
 								  <a href="{{ url('users/create') }}"
@@ -56,9 +56,8 @@
                             <div class="text-3xl font-bold leading-8 mt-6">10/2</div>
                             <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Ilmiy loyhalar biriktirilgan masul xodim
 								@forelse($Ilmiy_faoliyat as $ilmiy)
-                               
                                  <a href="{{ url('users/'.$ilmiy->id.'/edit') }}" class="button  bg-theme-1 text-white"
-                                    style="display: flex; justify-content:center;margin-top: 10px;">{{$ilmiy->name}} {{$ilmiy->id}}</a>
+                                    style="display: flex; justify-content:center;margin-top: 10px;">{{$ilmiy->name}}</a>
 								@empty
 								  <a href="{{ url('users/create') }}"
                                     class="button  bg-theme-1 text-white"
@@ -74,7 +73,7 @@
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
-                                <i data-feather="monitor" class="report-box__icon text-theme-12"></i>
+                                <i data-feather="user" class="report-box__icon text-theme-9"></i>
                                 <div class="ml-auto">
                                     <div class="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                                         title="33% Higher than last month"> 33% <i data-feather="chevron-up"
@@ -84,7 +83,7 @@
                             <div class="text-3xl font-bold leading-8 mt-6">{{ $tashkiot_haqida->tash_xodimlar }}/{{ $xodimlar}}</div>
                             <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Xodimlar biriktirilgan masul xodim 
 								@forelse($Xodimlar_uchun as $ilmiy)
-                                 <a class="button  bg-theme-1 text-white"
+                                 <a href="{{ url('users/'.$ilmiy->id.'/edit') }}" class="button  bg-theme-1 text-white"
                                     style="display: flex; justify-content:center;margin-top: 10px;">{{$ilmiy->name}}</a>
 								@empty
 								  <a href="{{ url('users/create') }}"
