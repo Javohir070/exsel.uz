@@ -90,7 +90,7 @@ class TashkilotRahbariController extends Controller
     {
         $tashkilotrahbari->delete();
         
-        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
 
     }
 

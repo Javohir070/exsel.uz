@@ -40,7 +40,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xodimlar
                         </label>
-                        <select name="name" class="input border w-full mt-2" >
+                        <select name="name" class="input border w-full mt-2" required="">
                             <option value=""> Xodimlar tanlash</option>
                             @foreach ($xodimlar as $role)
                                 <option value="{{ $role->fish }}">{{ $role->fish }}</option>
@@ -67,23 +67,31 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Role
                         </label>
-                        <select name="roles[]" class="input border w-full mt-2" >
+                        <select name="roles[]" class="input border w-full mt-2" required="">
                             <option value=""> Role tanlash</option>
                             @foreach ($roles as $role)
+                              @if ($role !== 'super-admin')
                                 <option value="{{ $role }}">{{ $role }}</option>
+                              @endif
                             @endforeach
                         </select>
                     </div>
-                    <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotni tanlag
-                        </label>
-                        <select name="tashkilot_id" class="input border w-full mt-2">
-                            @foreach ($tashkilots as $tashkilot)
-                                <option value="{{ $tashkilot->id }}">{{ $tashkilot->name_qisqachasi }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                    @role('super-admin')
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotni tanlash
+                            </label>
+                            <select name="tashkilot_id" class="input border w-full mt-2" required="">
+                                <option >Tashkilotni tanlash</option>
+                                @foreach ($tashkilots as $tashkilot)
+                                    <option value="{{ $tashkilot->id }}">{{ $tashkilot->name_qisqachasi }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    @endrole
+                    @role('admin')
+                        <input type="hidden" name="tashkilot_id" value="{{ auth()->user()->tashkilot->id }}">
+                    @endrole
 
                     
 

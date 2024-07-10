@@ -52,8 +52,12 @@ class UserController extends Controller
                     ]);
 
         $user->syncRoles($request->roles);
-
-        return redirect('/')->with('status','User created successfully with roles');
+        
+        if($request->input('roles') == 'admin'){
+            return redirect('/users')->with('status','User Updated Successfully with roles');
+        }else{
+            return redirect('/')->with('status','User Updated Successfully with roles');
+        }
     }
 
     public function edit(User $user)
@@ -88,8 +92,11 @@ class UserController extends Controller
 
         $user->update($data);
         $user->syncRoles($request->roles);
-
-        return redirect('/users')->with('status','User Updated Successfully with roles');
+        if($request->roles == 'super-admin' && $request->roles == 'admin'){
+            return redirect('/users')->with('status','User Updated Successfully with roles');
+        }else{
+            return redirect('/')->with('status','User Updated Successfully with roles');
+        }
     }
 
     public function destroy($userId)

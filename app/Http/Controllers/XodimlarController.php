@@ -59,7 +59,7 @@ class XodimlarController extends Controller
             "email" => $request->email ,
         ]);
 
-        return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+        return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
     /**

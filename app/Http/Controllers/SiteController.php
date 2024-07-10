@@ -10,8 +10,8 @@ class SiteController extends Controller
 {
     public function index(){
 
-        $page = Page::where('slug','home')->get();
-        $menu = new Menu();
+        // $page = Page::where('slug','home')->get();
+        // $menu = new Menu();
 
         return view('frontend.home');
     }
@@ -41,8 +41,8 @@ class SiteController extends Controller
         return view('frontend.page.studies');
     }
 
-    public function views($id, Page $page, Menu $menu){
+    // public function views($id, Page $page, Menu $menu){
 
-        return view('frontend.page', compact(['page','menu','id']));
-    }
+    //     return view('frontend.page', compact(['page','menu','id']));
+    // }
 }

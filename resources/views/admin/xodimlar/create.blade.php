@@ -36,7 +36,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tug‘ilgan yili
                     </label>
-                    <input type="text" name="yil" class="input w-full border mt-2" required="">
+                    <input type="text" id="datepicker" name="yil" class="datepicker input w-full border mt-2" required="">
                     
                 </div>
 
@@ -46,7 +46,7 @@
                     </label>
                     <select name="jinsi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option >jinsi tanlang</option>
+                        <option>Jinsi tanlang</option>
 
                         <option value="Erkak">Erkak</option>
 
@@ -61,13 +61,13 @@
                     </label>
                     <select name="ish_tartibi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option >Ish tartibi tanlang</option>
+                        <option>Ish tartibi tanlang</option>
 
-                        <option value="asosiy">asosiy</option>
+                        <option value="Asosiy">Asosiy</option>
 
-                        <option value="o‘rindoshlik">o‘rindoshlik</option>
+                        <option value="O‘rindoshlik">O‘rindoshlik</option>
 
-                        <option value="soatbay">soatbay</option>
+                        <option value="Soatbay">Soatbay</option>
 
                     </select><br>
                 </div>
@@ -109,7 +109,7 @@
                     </label>
                     <select name="pedagoglik" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">tanlang</option>
+                        <option>Pedagogik faoliyat bilan shug‘ullanishi tanlang</option>
 
                         <option value="ha">ha</option>
 
@@ -124,7 +124,7 @@
                     </label>
                     <select name="lavozimi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Lavozimi tanlang</option>
+                        <option>Lavozimi tanlang</option>
                         <option value="Matbuot kotibi">Matbuot kotibi</option> 
                         <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option> 
                         <option value="Qorovul">Qorovul</option>
@@ -150,8 +150,6 @@
                         haqiqiy a’zosi Ilmiy darajasi
                     </label>
                     <input type="text" name="uzbek_panlar_azosi" class="input w-full border mt-2" required="">
-
-                
                 </div>
 
                 <div class="w-full col-span-6">
@@ -159,13 +157,17 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy darajasi</label>
                     <select name="ilmiy_daraja" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option >Ilmiy darajasi tanlang</option>
+                        <option 
+                        >Ilmiy darajasi tanlang</option>
 
                         <option value="Fan nomzodi">Fan nomzodi</option>
 
                         <option value="Falsafa doktori (PhD)">Falsafa doktori (PhD)</option>
+
                         <option value="Fan doktori (DSc)">Fan doktori (DSc)</option>
+
                         <option value="Fan doktori">Fan doktori</option>
+
                         <option value="Akademik">Akademik</option>
 
                     </select><br>

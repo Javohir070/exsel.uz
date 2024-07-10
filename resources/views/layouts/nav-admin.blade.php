@@ -22,15 +22,15 @@
     @role('super-admin')
         
         <li>
-            <a href="javascript:;" class="side-menu side-menu{{ request()->is('iqtisodiylar*') ? '--active':'' }}{{ request()->is('tashkilotrahbarilar*') ? '--active':'' }}{{ request()->is('tashkilotlar*') ? '--active':'' }}">
+            <a href="javascript:;" class="side-menu side-menu{{ request()->is('iqtisodiylar*') ? '--active':'' }}{{ request()->is('tashkilotrahbarilar*') ? '--active':'' }}{{ request()->is('tashkilot*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="box"></i> </div>
                 <div class="side-menu__title">  Tashkilotlar <i data-feather="chevron-down"
                         class="side-menu__sub-icon"></i> </div>
             </a>
-            <ul class="{{ request()->is('iqtisodiylar*') ? 'side-menu__sub-open':'' }}{{ request()->is('tashkilotrahbarilar*') ? 'side-menu__sub-open':'' }}{{ request()->is('tashkilotlar*') ? 'side-menu__sub-open':'' }}">
+            <ul class="{{ request()->is('iqtisodiylar*') ? 'side-menu__sub-open':'' }}{{ request()->is('tashkilotrahbarilar') ? 'side-menu__sub-open':'' }}{{ request()->is('tashkilot*') ? 'side-menu__sub-open':'' }}">
                 
                 <li>
-                    <a href="{{ route('tashkilotlar.index') }}" class="side-menu side-menu{{ request()->is('tashkilotlar*') ? '--active':'' }}">
+                    <a href="{{ route('tashkilotlar.index') }}" class="side-menu side-menu{{ request()->is('tashkilot*') ? '--active':'' }}">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                         <div class="side-menu__title"> Tashkilot pasportilari </div>
                     </a>
@@ -65,7 +65,7 @@
     
     @role('super-admin')
         <li>
-            <a href="{{ route('ilmiyloyihalar.index') }}" class="side-menu side-menu{{ request()->is('ilmiyloyihalar*') ? '--active':'' }}">
+            <a href="{{ route('ilmiyloyihalar.index') }}" class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Ilmiy loyhilalar </div>
             </a>
@@ -74,7 +74,7 @@
 
     @role('super-admin')
         <li>
-            <a href="{{ route('xujaliklar.index') }}" class="side-menu side-menu{{ request()->is('xujaliklar*') ? '--active':'' }}">
+            <a href="{{ route('xujaliklar.index') }}" class="side-menu side-menu{{ request()->is('xujalik*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Xujaliklar shartnomalar </div>
             </a>
@@ -83,7 +83,7 @@
 
     @role('super-admin')
         <li>
-            <a href="{{ route('ilmiydarajalar.index') }}" class="side-menu side-menu{{ request()->is('ilmiydarajalar*') ? '--active':'' }}">
+            <a href="{{ route('ilmiydarajalar.index') }}" class="side-menu side-menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Loyiha bilan taminlangami </div>
             </a>

@@ -5,7 +5,7 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">{{ $ilmiydaraja->tashkilot->name }}  Ilmiy bilan taminlangami  ma’lumot</h2>
+        <h2 class="intro-y text-lg font-medium">{{ $ilmiydaraja->tashkilot->name_qisqachasi }}  Ilmiy loyiha bilan taminlangami  ma’lumot</h2>
 
         
         @role('super-admin')
@@ -27,10 +27,10 @@
             <table class="table">
                 <tbody>
                     <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;">{{ $ilmiydaraja->tashkilot->name ." xodim ". $ilmiydaraja->fish }}  xaqida ma’lumot</div>
+                        <div style="font-size:18px;font-weight: 400;">{{ $ilmiydaraja->tashkilot->name ." Ilmiy loyiha bilan taminlangalig ". $ilmiydaraja->fish }}  xaqida ma’lumot</div>
                         <div style="text-align: end;">
                             <a href="{{ route('ilmiydaraja.edit',['ilmiydaraja'=>$ilmiydaraja->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
-                            Tahrirlash
+                                Tahrirlash
                             </a>
                             <a href="" class="button w-24 bg-theme-6 text-white">
                                 O'chirish
@@ -38,30 +38,31 @@
                         </div>
                     </div>
                     <tr>
-                        <th class="border border-b-2 " style="width: 40px;">#</th>
-                        <th class="border border-b-2 " style="width: 40%;">Ma’lumot nomlanishi</th>
-                        <th class="border border-b-2 ">Ma’lumot</th>
+                        <!-- <th class="border border-b-2 " style="width: 40px;">#</th> -->
+                        <th class="border border-b-2 " style="width: 100%; font-size:16px;text-align:center;" colspan="2" >Ma’lumotlar </th>
+                        <!-- <th class="border border-b-2 ">Ma’lumot </th> -->
                     </tr>
                     <tr class="bg-gray-200">
-                        <th class="border border-b-2 ">1</th>
-                        <th class="border border-b-2 ">Xodimlar soni </th>
-                        <td class="border ">{{ $ilmiydaraja->xodimlar_jami  }} </td>
+                        <!-- <th class="border border-b-2 ">3</th> -->
+                        <th class="border border-b-2 " style="width: 50%;">Ilmiy loyiha nomi</th>
+                        <th class="border border-b-2 " style="width: 50%;">Ilmiy loyiha turi</th>
                     </tr>
                     <tr>
-                        <th class="border border-b-2 ">2</th>
-                        <th class="border border-b-2 ">Ilmiy hodimlar soni</th>
-                        <td class="border ">{{ $ilmiydaraja->ilmiy_xodimlar  }} </td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <th class="border border-b-2 ">3</th>
-                        <th class="border border-b-2 ">Ilmiy loyiha nomi</th>
+                        <!-- <th class="border border-b-2 ">4</th> -->
                         <td class="border ">{{ $ilmiydaraja->name  }} </td>
-                    </tr>
-                    <tr>
-                        <th class="border border-b-2 ">4</th>
-                        <th class="border border-b-2 ">Ilmiy loyiha turi</th>
                         <td class="border ">{{ $ilmiydaraja->turi  }} </td>
                     </tr>
+                    <tr class="bg-gray-200">
+                        <!-- <th class="border border-b-2 ">1</th> -->
+                        <th class="border border-b-2 ">Xodimlar soni </th>
+                        <th class="border border-b-2 ">Ilmiy hodimlar soni</th>
+                    </tr>
+                    <tr>
+                        <!-- <th class="border border-b-2 ">2</th> -->
+                        <td class="border ">{{ $ilmiydaraja->xodimlar_jami  }} </td>
+                        <td class="border ">{{ $ilmiydaraja->ilmiy_xodimlar  }} </td>
+                    </tr>
+                    
                         
                         
                 </tbody>

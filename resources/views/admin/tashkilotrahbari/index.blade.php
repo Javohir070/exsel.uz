@@ -31,39 +31,39 @@
                             </a>
                         </div>
                     </div>
-                        <tr>
-                            <th class=" border">#</th>
-                            <th class=" border" style="width: 50%;">Ma’lumot nomlanishi</th>
-                            <th class=" border" style="width: 50%;">Ma’lumot</th>
+                    <tr>
+                            <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>
+                            <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
+                            <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2" >Ma’lumot</th>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class=" border">1</th>
-                            <th class=" border">Tashkilot rahbari F.I.Sh</th>
-                            <td class="border" >{{ $tash->fish }}</td>
-                        </tr>
-                        <tr>
-                            <th class=" border">2</th>
-                            <th class=" border">Tashkilot rahbari Telepon nomer</th>
-                            <td class="border">{{ $tash->phone  }} </td>
-                        </tr>
-                        <tr class="bg-gray-200">
-                            <th class=" border">3</th>
-                            <th class=" border">Tashkilot rahbari Email</th>
-                            <td class="border">{{ $tash->email }}</td>
+                            <!-- <th class=" border">1</th> -->
+                            <th class=" border" style="width:50%;">Tashkilot rahbari F.I.Sh</th>
+                            <th class=" border" style="width:50%;">Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.Sh</th>
                         </tr>
                         <tr >
-                            <th class=" border">4</th>
-                            <th class=" border">Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.Sh</th>
+                            <!-- <th class=" border">4</th> -->
+                            <td class="border" >{{ $tash->fish }}</td>
                             <td class="border">{{ $tash->u_fish }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class=" border">5</th>
+                            <!-- <th class=" border">2</th> -->
+                            <th class=" border">Tashkilot rahbari Telepon nomer</th>
                             <th class=" border">O‘rinbosarining Telepon nomer</th>
+                        </tr>
+                        <tr >
+                            <!-- <th class=" border">5</th> -->
+                            <td class="border">{{ $tash->phone  }} </td>
                             <td class="border">{{ $tash->u_phone }}</td>
                         </tr>
-                        <tr>
-                            <th class=" border">6</th>
+                        <tr class="bg-gray-200">
+                            <!-- <th class=" border">3</th> -->
+                            <th class=" border">Tashkilot rahbari Email</th>
                             <th class=" border">O‘rinbosarining email</th>
+                        </tr>
+                        <tr>
+                            <!-- <th class="whitespace-no-wrap border">6</th> -->
+                            <td class="border">{{ $tash->email }}</td>
                             <td class="border">{{ $tash->u_email }}</td>
                         </tr>
 

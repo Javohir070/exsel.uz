@@ -69,7 +69,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> "Qo‘shma loyiha bo‘yicha hamkor tashkilot"
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Qo‘shma loyiha bo‘yicha hamkor tashkilot
                     </label>
                     <input type="text" name="q_hamkor_tashkilot" value="{{ $ilmiyloyiha->q_hamkor_tashkilot }}" class="input w-full border mt-2" required="">
                 </div>
@@ -81,40 +81,33 @@
                     <input type="text" name="hamkor_davlat" value="{{ $ilmiyloyiha->hamkor_davlat }}" class="input w-full border mt-2" required="">
                 </div>
 
-                <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha mavzusi
-                    </label>
-                    <input type="text" name="muddat" value="{{ $ilmiyloyiha->muddat }}" class="input w-full border mt-2" required="">
-                </div>
-
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihani amalga oshirish muddati (yil) 
                     </label>
-                    <select name="bosh_sana"  id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="muddat"  id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>muddati tanlang</option>
+                        <option>Muddati tanlang</option>
 
-                        <option value="1">1</option>
+                        <option value="1" {{ $ilmiyloyiha->muddat == '1' ? 'selected' : '' }}>1</option>
 
-                        <option value="2">2</option>
+                        <option value="2" {{ $ilmiyloyiha->muddat == '2' ? 'selected' : '' }}>2</option>
 
-                        <option value="3">3</option>
+                        <option value="3" {{ $ilmiyloyiha->muddat == '3' ? 'selected' : '' }}>3</option>
 
-                        <option value="4">4</option>
+                        <option value="4" {{ $ilmiyloyiha->muddat == '4' ? 'selected' : '' }}>4</option>
 
-                        <option value="5">5</option>
+                        <option value="5" {{ $ilmiyloyiha->muddat == '5' ? 'selected' : '' }}>5</option>
 
-                        <option value="6">6</option>
+                        <option value="6" {{ $ilmiyloyiha->muddat == '6' ? 'selected' : '' }}>6</option>
 
-                        <option value="7">7</option>
+                        <option value="7" {{ $ilmiyloyiha->muddat == '7' ? 'selected' : '' }}>7</option>
 
-                        <option value="8">8</option>
+                        <option value="8" {{ $ilmiyloyiha->muddat == '8' ? 'selected' : '' }}>8</option>
 
-                        <option value="9">9</option>
+                        <option value="9" {{ $ilmiyloyiha->muddat == '9' ? 'selected' : '' }}>9</option>
 
-                        <option value="10">10</option>
+                        <option value="10" {{ $ilmiyloyiha->muddat == '10' ? 'selected' : '' }}>10</option>
 
 
                     </select><br>
@@ -125,9 +118,15 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning boshlanish sanasi
                     </label>
 
+                    <input type="text" id="datepicker" name="bosh_sana" value="{{ $ilmiyloyiha->tug_sana }}" class="datepicker input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning tugash sanasi
+                    </label>
+
                     <input type="text" id="datepicker" name="tug_sana" value="{{ $ilmiyloyiha->tug_sana }}" class="datepicker input w-full border mt-2" required="">
-
-
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -182,12 +181,6 @@
                     <input type="text" name="sum" value="{{ $ilmiyloyiha->sum }}" class="input w-full border mt-2" required="">
                 </div>
 
-                <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Umumiy ajratilgan mablag‘ (ming so‘mda) 
-                    </label>
-                    <input type="text" name="umumiy_mablag" value="{{ $ilmiyloyiha->umumiy_mablag }}" class="input w-full border mt-2" required="">
-                </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -220,59 +213,45 @@
 
                 
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2017 yilda
+                    <label class="flex flex-col sm:flex-row"> 2017 yilda
                     </label>
                     <input type="text" name="y2017" value="{{ $ilmiyloyiha->umumiyyil->y2017 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2018 yilda
+                    <label class="flex flex-col sm:flex-row"> 2018 yilda
                     </label>
                     <input type="text" name="y2018" value="{{ $ilmiyloyiha->umumiyyil->y2018 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2019 yilda
+                    <label class="flex flex-col sm:flex-row"> 2019 yilda
                     </label>
                     <input type="text" name="y2019" value="{{ $ilmiyloyiha->umumiyyil->y2019 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2020 yilda
+                    <label class="flex flex-col sm:flex-row"> 2020 yilda
                     </label>
                     <input type="text" name="y2020" value="{{ $ilmiyloyiha->umumiyyil->y2020 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2021 yilda
+                    <label class="flex flex-col sm:flex-row"> 2021 yilda
                     </label>
                     <input type="text" name="y2021" value="{{ $ilmiyloyiha->umumiyyil->y2021 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2022 yilda
+                    <label class="flex flex-col sm:flex-row"> 2022 yilda
                     </label>
                     <input type="text" name="y2022" value="{{ $ilmiyloyiha->umumiyyil->y2022 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2023 yilda
+                    <label class="flex flex-col sm:flex-row"> 2023 yilda
                     </label>
                     <input type="text" name="y2023" value="{{ $ilmiyloyiha->umumiyyil->y2023 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2024 yilda
+                    <label class="flex flex-col sm:flex-row"> 2024 yilda
                     </label>
                     <input type="text" name="y2024" value="{{ $ilmiyloyiha->umumiyyil->y2024 }}" class="input w-full border mt-2" required="">
                 </div>
-
-
-
-
-
-
             </div>
 
         </form><br>

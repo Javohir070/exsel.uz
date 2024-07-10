@@ -123,7 +123,7 @@ class TashkilotController extends Controller
     public function destroy(Tashkilot $tashkilot)
     {
         $tashkilot->delete();
-        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
 
     }
 

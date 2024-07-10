@@ -56,8 +56,9 @@
                             <div class="text-3xl font-bold leading-8 mt-6">10/2</div>
                             <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Ilmiy loyhalar biriktirilgan masul xodim
 								@forelse($Ilmiy_faoliyat as $ilmiy)
-                                 <a class="button  bg-theme-1 text-white"
-                                    style="display: flex; justify-content:center;margin-top: 10px;">{{$ilmiy->name}}</a>
+                               
+                                 <a href="{{ url('users/'.$ilmiy->id.'/edit') }}" class="button  bg-theme-1 text-white"
+                                    style="display: flex; justify-content:center;margin-top: 10px;">{{$ilmiy->name}} {{$ilmiy->id}}</a>
 								@empty
 								  <a href="{{ url('users/create') }}"
                                     class="button  bg-theme-1 text-white"

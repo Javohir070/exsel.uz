@@ -5,7 +5,7 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Xodim  qo'shish</h2>
+    <h2 class="intro-y text-lg font-medium">Xodim  tahrirlash</h2>
 
 
 
@@ -37,7 +37,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tug‘ilgan yili
                     </label>
-                    <input type="text" name="yil" value="{{ $xodimlar->yil }}" class="input w-full border mt-2" required="">
+                    <input type="text" id="datepicker" name="yil" class="datepicker input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6">
@@ -46,11 +46,11 @@
                     </label>
                     <select name="jinsi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">jinsi tanlang</option>
+                        <option>Jinsi tanlang</option>
 
-                        <option value="erkak">Erkak</option>
+                        <option value="Erkak" {{ $xodimlar->jinsi == "Erkak" ? "selected" : ""}}>Erkak</option>
 
-                        <option value="ayol">Ayol</option>
+                        <option value="Ayol" {{ $xodimlar->jinsi == "Ayol" ? "selected" : ""}}>Ayol</option>
 
                     </select><br>
                 </div>
@@ -61,15 +61,15 @@
                     </label>
                     <select name="ish_tartibi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Ish tartibi tanlang</option>
+                        <option>Ish tartibi tanlang</option>
 
-                        <option value="asosiy">asosiy</option>
+                        <option value="Asosiy" {{ $xodimlar->ish_tartibi == "Asosiy" ? "selected" : ""}} >Asosiy</option>
 
-                        <option value="o‘rindoshlik">o‘rindoshlik</option>
+                        <option value="O‘rindoshlik" {{ $xodimlar->ish_tartibi == "O‘rindoshlik" ? "selected" : ""}} >O‘rindoshlik</option>
 
-                        <option value="soatbay">soatbay</option>
+                        <option value="Soatbay" {{ $xodimlar->ish_tartibi == "Soatbay" ? "selected" : ""}} >Soatbay</option>
 
-                    </select><br>
+                    </select>
                 </div>
 
                 <div class="w-full col-span-6">
@@ -78,21 +78,21 @@
                     </label>
                     <select name="shtat_birligi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Shtat birligi tanlang</option>
+                        <option>Shtat birligi tanlang</option>
 
-                        <option value="0.25">0.25</option>
+                        <option value="0.25" {{ $xodimlar->shtat_birligi == "0.25" ? "selected" : ""}}>0.25</option>
 
-                        <option value="0.5">0.5</option>
+                        <option value="0.5" {{ $xodimlar->shtat_birligi == "0.5" ? "selected" : ""}}>0.5</option>
 
-                        <option value="0.75">0.75</option>
+                        <option value="0.75" {{ $xodimlar->shtat_birligi == "0.75" ? "selected" : ""}}>0.75</option>
 
-                        <option value="1">1</option>
+                        <option value="1" {{ $xodimlar->shtat_birligi == "1" ? "selected" : ""}}>1</option>
 
-                        <option value="1.25">1.25</option>
+                        <option value="1.25" {{ $xodimlar->shtat_birligi == "1.25" ? "selected" : ""}}>1.25</option>
 
-                        <option value="1.5">1.5</option>
+                        <option value="1.5" {{ $xodimlar->shtat_birligi == "1.5" ? "selected" : ""}}>1.5</option>
 
-                    </select><br>
+                    </select>
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -109,13 +109,13 @@
                     </label>
                     <select name="pedagoglik" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">tanlang</option>
+                        <option>Pedagogik faoliyat bilan shug‘ullanishi tanlang</option>
 
-                        <option value="ha">ha</option>
+                        <option value="ha" {{ $xodimlar->pedagoglik == "ha" ? "selected" : ""}}>ha</option>
 
-                        <option value="yoq">yoq</option>
+                        <option value="yoq" {{ $xodimlar->pedagoglik == "yoq" ? "selected" : ""}}>yoq</option>
 
-                    </select><br>
+                    </select>
                 </div>
 
                 <div class="w-full col-span-6">
@@ -124,11 +124,22 @@
                     </label>
                     <select name="lavozimi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Lavozimi tanlang</option>
+                        <option>Lavozimi tanlang</option>
+                        <option value="Matbuot kotibi" {{ $xodimlar->lavozimi == "Matbuot kotibi" ? "selected" : ""}}>Matbuot kotibi</option> 
 
-                        <option value="ha">ha</option>
+                        <option value="Boshqarma boshlig‘i" {{ $xodimlar->lavozimi == "Boshqarma boshlig‘i" ? "selected" : ""}}>Boshqarma boshlig‘i</option> 
 
-                        <option value="yoq">yoq</option>
+                        <option value="Qorovul" {{ $xodimlar->lavozimi == "Qorovul" ? "selected" : ""}}>Qorovul</option>
+
+                        <option value="Buxgalter" {{ $xodimlar->lavozimi == "Buxgalter" ? "selected" : ""}}>Buxgalter</option>
+
+                        <option value="Kotiba" {{ $xodimlar->lavozimi == "Kotiba" ? "selected" : ""}}>Kotiba</option>
+
+                        <option value="Direktor" {{ $xodimlar->lavozimi == "Direktor" ? "selected" : ""}}>Direktor</option>
+
+                        <option value="Buxgalter" {{ $xodimlar->lavozimi == "Buxgalter" ? "selected" : ""}}>Buxgalter</option>
+
+                        <option value="Ilmiy kotib" {{ $xodimlar->lavozimi == "Ilmiy kotib" ? "selected" : ""}}>Ilmiy kotib</option> 
 
                     </select><br>
                 </div>
@@ -137,15 +148,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ma’lumoti
                     </label>
-                    <select name="malumoti" id="science-sub-category" class="input border w-full mt-2" required="">
-
-                        <option value="0">Ma’lumoti tanlang</option>
-
-                        <option value="ha">ha</option>
-
-                        <option value="yoq">yoq</option>
-
-                    </select><br>
+                    <input type="text" name="malumoti" value="{{ $xodimlar->malumoti }}" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6">
@@ -155,13 +158,13 @@
                     </label>
                     <select name="uzbek_panlar_azosi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Ma’lumoti tanlang</option>
+                        <option>Ma’lumoti tanlang</option>
 
-                        <option value="ha">ha</option>
+                        <option value="ha" {{ $xodimlar->uzbek_panlar_azosi == "ha" ? "selected" : ""}}>ha</option>
 
-                        <option value="yoq">yoq</option>
+                        <option value="yoq" {{ $xodimlar->uzbek_panlar_azosi == "yoq" ? "selected" : ""}}>yoq</option>
 
-                    </select><br>
+                    </select>
                 </div>
 
                 <div class="w-full col-span-6">
@@ -169,17 +172,17 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy darajasi</label>
                     <select name="ilmiy_daraja" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Ilmiy darajasi tanlang</option>
+                        <option>Ilmiy darajasi tanlang</option>
 
-                        <option value="Fan nomzodi">Fan nomzodi</option>
+                        <option value="Fan nomzodi" {{ $xodimlar->ilmiy_daraja == "Fan nomzodi" ? "selected" : ""}} >Fan nomzodi</option>
 
-                        <option value="Falsafa doktori (PhD)">Falsafa doktori (PhD)</option>
+                        <option value="Falsafa doktori (PhD)" {{ $xodimlar->ilmiy_daraja == "Falsafa doktori (PhD)" ? "selected" : ""}} >Falsafa doktori (PhD)</option>
 
-                        <option value="Fan doktori (DSc)">Fan doktori (DSc)</option>
+                        <option value="Fan doktori (DSc)" {{ $xodimlar->ilmiy_daraja == "Fan doktori (DSc)" ? "selected" : ""}} >Fan doktori (DSc)</option>
 
-                        <option value="Fan doktori">Fan doktori</option>
+                        <option value="Fan doktori" {{ $xodimlar->ilmiy_daraja == "Fan doktori" ? "selected" : ""}} >Fan doktori</option>
 
-                        <option value="Akademik">Akademik</option>
+                        <option value="Akademik" {{ $xodimlar->ilmiy_daraja == "Akademik" ? "selected" : ""}} >Akademik</option>
 
                     </select><br>
                 </div>
@@ -197,18 +200,18 @@
                     </label>
                     <select name="ilmiy_unvoni" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Ilmiy unvoni tanlang</option>
+                        <option>Ilmiy unvoni tanlang</option>
 
-                        <option value="Professor">Professor</option>
+                        <option value="Professor" {{ $xodimlar->ilmiy_unvoni == "Professor" ? "selected" : ""}} >Professor</option>
 
-                        <option value="Dotsent">Dotsent</option>
-                        <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
-                        <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
+                        <option value="Dotsent" {{ $xodimlar->ilmiy_unvoni == "Dotsent" ? "selected" : ""}} >Dotsent</option>
 
-                    </select><br>
+                        <option value="Katta ilmiy xodim" {{ $xodimlar->ilmiy_unvoni == "Katta ilmiy xodim" ? "selected" : ""}} >Katta ilmiy xodim</option>
+
+                        <option value="Kichik ilmiy xodim" {{ $xodimlar->ilmiy_unvoni == "Kichik ilmiy xodim" ? "selected" : ""}} >Kichik ilmiy xodim</option>
+
+                    </select>
                 </div>
-
-
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy unvoni Ilmiy unvon olingan

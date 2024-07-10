@@ -31,7 +31,7 @@
                     </label>
                     <select name="turi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Loyiha turi tanlang</option>
+                        <option>Loyiha turi tanlang</option>
 
                         <option value="Amaliy">Amaliy</option>
 
@@ -52,11 +52,14 @@
                     </label>
                     <select name="dastyri" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Loyiha dasturi tanlang</option>
+                        <option>Loyiha dasturi tanlang</option>
 
                         <option value="Maqsadli">Maqsadli</option>
+
                         <option value="Mega">Mega</option>
+
                         <option value="Yosh olimlar">Yosh olimlar</option>
+
                         <option value="Olima ayollar">Olima ayollar</option>
 
 
@@ -67,7 +70,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> "Qo‘shma loyiha bo‘yicha hamkor tashkilot"
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Qo‘shma loyiha bo‘yicha hamkor tashkilot
                     </label>
                     <input type="text" name="q_hamkor_tashkilot" class="input w-full border mt-2" required="">
                 </div>
@@ -79,31 +82,33 @@
                     <input type="text" name="hamkor_davlat" class="input w-full border mt-2" required="">
                 </div>
 
-                <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha mavzusi
-                    </label>
-                    <input type="text" name="muddat" class="input w-full border mt-2" required="">
-                </div>
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihani amalga oshirish muddati (yil) 
                     </label>
-                    <select name="bosh_sana" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="muddat" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">muddati tanlang</option>
+                        <option>muddati tanlang</option>
 
                         <option value="1">1</option>
 
                         <option value="2">2</option>
+
                         <option value="3">3</option>
+
                         <option value="4">4</option>
+
                         <option value="5">5</option>
+
                         <option value="6">6</option>
+
                         <option value="7">7</option>
+
                         <option value="8">8</option>
+
                         <option value="9">9</option>
+                        
                         <option value="10">10</option>
 
 
@@ -113,6 +118,15 @@
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning boshlanish sanasi
+                    </label>
+
+                    <input type="text" id="datepicker" name="bosh_sana" class="datepicker input w-full border mt-2" required="">
+
+
+                </div>
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning tugash sanasi
                     </label>
 
                     <input type="text" id="datepicker" name="tug_sana" class="datepicker input w-full border mt-2" required="">
@@ -127,16 +141,18 @@
                     
                     <select name="pan_yunalish" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">fan tanlang</option>
+                        <option>Fan tanlang</option>
 
                         <option value="Tibbiyot fanlari">Tibbiyot fanlari</option>
 
                         <option value="Biologiya va biotexnologiya fanlari">Biologiya va biotexnologiya fanlari</option>
+
                         <option value="Filologiya va ijtimoiy fanlar">Filologiya va ijtimoiy fanlar</option>
+
                         <option value="Iqtisodiyot fanlari">Iqtisodiyot fanlari</option>
 
 
-                    </select><br>
+                    </select>
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -170,12 +186,7 @@
                     <input type="text" name="sum" class="input w-full border mt-2" required="">
                 </div>
 
-                <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Umumiy ajratilgan mablag‘ (ming so‘mda) 
-                    </label>
-                    <input type="text" name="umumiy_mablag" class="input w-full border mt-2" required="">
-                </div>
+                
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -197,7 +208,7 @@
                     </label>
                     <select name="tijoratlashtirish" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Tijoratlashtirish  tanlang</option>
+                        <option>Tijoratlashtirish  tanlang</option>
 
                         <option value="Tijoratlashtirilgan">Tijoratlashtirilgan</option>
 
@@ -208,59 +219,45 @@
 
                 
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2017 yilda
+                    <label class="flex flex-col sm:flex-row">  2017 yilda
                     </label>
                     <input type="text" name="y2017" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2018 yilda
+                    <label class="flex flex-col sm:flex-row">  2018 yilda
                     </label>
                     <input type="text" name="y2018" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2019 yilda
+                    <label class="flex flex-col sm:flex-row">  2019 yilda
                     </label>
                     <input type="text" name="y2019" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2020 yilda
+                    <label class="flex flex-col sm:flex-row">  2020 yilda
                     </label>
                     <input type="text" name="y2020" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2021 yilda
+                    <label class="flex flex-col sm:flex-row">  2021 yilda
                     </label>
                     <input type="text" name="y2021" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2022 yilda
+                    <label class="flex flex-col sm:flex-row">  2022 yilda
                     </label>
                     <input type="text" name="y2022" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2023 yilda
+                    <label class="flex flex-col sm:flex-row">  2023 yilda
                     </label>
                     <input type="text" name="y2023" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 2024 yilda
+                    <label class="flex flex-col sm:flex-row">  2024 yilda
                     </label>
                     <input type="text" name="y2024" class="input w-full border mt-2" required="">
                 </div>
-
-
-
-
-
-
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">

@@ -162983,6 +162983,7 @@ video {
         border-color: #badbcc;
 }
 .alert {
+        margin-top: 20px;
         position: relative;
         padding: 1rem 1rem;
         margin-bottom: 1rem;

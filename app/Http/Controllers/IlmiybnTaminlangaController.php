@@ -69,7 +69,7 @@ class IlmiybnTaminlangaController extends Controller
             "xodimganisbat_jami" => $request->xodimganisbat_jami,
         ]);
 
-        return redirect('/ilmiydaraja')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+        return redirect('/ilmiydaraja')->with('status', 'Ma\'lumotlar muvaffaqiyatli qoshildi.');
     }
 
     /**
@@ -137,7 +137,7 @@ class IlmiybnTaminlangaController extends Controller
     public function destroy(IlmiybnTaminlanga $ilmiydaraja)
     {
         $ilmiydaraja->delete();
-        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
         
     }
 

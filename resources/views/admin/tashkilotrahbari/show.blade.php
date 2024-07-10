@@ -31,38 +31,38 @@
                         </div>
                     </div>
                         <tr>
-                            <th class="whitespace-no-wrap border" style="width: 40px";>#</th>
-                            <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th>
-                            <th class="whitespace-no-wrap border" >Ma’lumot</th>
+                            <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>
+                            <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
+                            <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2" >Ma’lumot</th>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="whitespace-no-wrap border">1</th>
-                            <th class="whitespace-no-wrap border">Tashkilot rahbari F.I.Sh</th>
-                            <td class="border" >{{ $tashkilotrahbari->fish }}</td>
-                        </tr>
-                        <tr>
-                            <th class="whitespace-no-wrap border">2</th>
-                            <th class="whitespace-no-wrap border">Tashkilot rahbari Telepon nomer</th>
-                            <td class="border">{{ $tashkilotrahbari->phone  }} </td>
-                        </tr>
-                        <tr class="bg-gray-200">
-                            <th class="whitespace-no-wrap border">3</th>
-                            <th class="whitespace-no-wrap border">Tashkilot rahbari Email</th>
-                            <td class="border">{{ $tashkilotrahbari->email }}</td>
+                            <!-- <th class=" border">1</th> -->
+                            <th class=" border" style="width:50%;">Tashkilot rahbari F.I.Sh</th>
+                            <th class=" border" style="width:50%;">Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.Sh</th>
                         </tr>
                         <tr >
-                            <th class="whitespace-no-wrap border">4</th>
-                            <th class="whitespace-no-wrap border">Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.Sh</th>
+                            <!-- <th class=" border">4</th> -->
+                            <td class="border" >{{ $tashkilotrahbari->fish }}</td>
                             <td class="border">{{ $tashkilotrahbari->u_fish }}</td>
                         </tr>
                         <tr class="bg-gray-200">
-                            <th class="whitespace-no-wrap border">5</th>
-                            <th class="whitespace-no-wrap border">O‘rinbosarining Telepon nomer</th>
+                            <!-- <th class=" border">2</th> -->
+                            <th class=" border">Tashkilot rahbari Telepon nomer</th>
+                            <th class=" border">O‘rinbosarining Telepon nomer</th>
+                        </tr>
+                        <tr >
+                            <!-- <th class=" border">5</th> -->
+                            <td class="border">{{ $tashkilotrahbari->phone  }} </td>
                             <td class="border">{{ $tashkilotrahbari->u_phone }}</td>
                         </tr>
+                        <tr class="bg-gray-200">
+                            <!-- <th class=" border">3</th> -->
+                            <th class=" border">Tashkilot rahbari Email</th>
+                            <th class=" border">O‘rinbosarining email</th>
+                        </tr>
                         <tr>
-                            <th class="whitespace-no-wrap border">6</th>
-                            <th class="whitespace-no-wrap border">O‘rinbosarining email</th>
+                            <!-- <th class="whitespace-no-wrap border">6</th> -->
+                            <td class="border">{{ $tashkilotrahbari->email }}</td>
                             <td class="border">{{ $tashkilotrahbari->u_email }}</td>
                         </tr>
 

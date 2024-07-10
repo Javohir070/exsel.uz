@@ -104,7 +104,7 @@ class IqtisodiyMoliyaviyController extends Controller
     public function destroy(IqtisodiyMoliyaviy $iqtisodiy)
     {
         $iqtisodiy->delete();
-        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
 
     }
 

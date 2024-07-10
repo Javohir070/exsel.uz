@@ -170,10 +170,6 @@
                     <input type="text" name="yil2024" class="input w-full border mt-2" required="">
                 </div>
 
-
-
-
-
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">
