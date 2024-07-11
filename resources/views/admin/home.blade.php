@@ -15,26 +15,30 @@
                 </div>
                 <div class="grid grid-cols-12 gap-6 mt-5">
                     <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="flex">
-                                    <i data-feather="shopping-cart" class="report-box__icon text-theme-10"></i>
+                        <a href="{{ route('tashkilotlar.index') }}">
+                            <div class="report-box zoom-in">
+                                <div class="box p-5">
+                                    <div class="flex">
+                                        <i data-feather="shopping-cart" class="report-box__icon text-theme-10"></i>
+                                    </div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">40</div>
+                                    <div class="text-base text-gray-600 mt-1">Tashkilotlar</div>
                                 </div>
-                                <div class="text-3xl font-bold leading-8 mt-6">40</div>
-                                <div class="text-base text-gray-600 mt-1">Tashkilotlar</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="flex">
-                                    <i data-feather="credit-card" class="report-box__icon text-theme-11"></i>
+                        <a href="{{ route('ilmiyloyihalar.index') }}">
+                            <div class="report-box zoom-in">
+                                <div class="box p-5">
+                                    <div class="flex">
+                                        <i data-feather="credit-card" class="report-box__icon text-theme-11"></i>
+                                    </div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">10</div>
+                                    <div class="text-base text-gray-600 mt-1">Ilmiy loyhalar</div>
                                 </div>
-                                <div class="text-3xl font-bold leading-8 mt-6">10</div>
-                                <div class="text-base text-gray-600 mt-1">Ilmiy loyhalar</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                         <div class="report-box zoom-in">
@@ -48,15 +52,17 @@
                         </div>
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="flex">
-                                    <i data-feather="user" class="report-box__icon text-theme-9"></i>
+                        <a href="{{ route("xodim.barchaXodimlar") }}">
+                            <div class="report-box zoom-in">
+                                <div class="box p-5">
+                                    <div class="flex">
+                                        <i data-feather="user" class="report-box__icon text-theme-9"></i>
+                                    </div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">20</div>
+                                    <div class="text-base text-gray-600 mt-1">Xodminlar</div>
                                 </div>
-                                <div class="text-3xl font-bold leading-8 mt-6">20</div>
-                                <div class="text-base text-gray-600 mt-1">Xodminlar</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
