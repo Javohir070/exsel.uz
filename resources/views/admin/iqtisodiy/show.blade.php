@@ -36,74 +36,79 @@
                 </div>
                
                 <tr>
-                    <th  class="border border-2" style="width: 40px;">#</th>
-                    <th  class="border border-2" style="width: 50%;">Ma’lumot nomlanishi</th>
-                    <th  class="border border-2" style="width: 50%;">Ma’lumot</th>
+                    <!-- <th  class="border border-2" style="width: 40px;">#</th> -->
+                    <!-- <th  class="border border-2" style="width: 50%;">Ma’lumot nomlanishi</th> -->
+                    <th  class="border border-2" style="width: 100%;text-align:center;font-size:16px;" colspan="2">Ma’lumot</th>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-2" style="width: 40px;">1</th>
-                    <td class="border border-2">Tashkilot kadastr raqami</td>
-                    <td class="border border-2">{{ $iqtisodiy->kadastr_raqami }}</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">1</th> -->
+                    <th class="border border-2" style="width:50%">Tashkilot kadastr raqami</td>
+                    <th class="border border-2" style="width:50%">Umumiy maydoni (ga)</td>
                 </tr>
                 <tr>
-                    <th  class="border border-2" style="width: 40px;">2</th>
-                    <td class="border border-2">Umumiy maydoni (ga)</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">2</th> -->
+                    <td class="border border-2">{{ $iqtisodiy->kadastr_raqami }}</td>
                     <td class="border border-2">{{ $iqtisodiy->u_maydoni }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-2" style="width: 40px;">3</th>
-                    <td class="border border-2">Shundan tajriba maydonlari (ga)</td>
-                    <td class="border border-2">{{ $iqtisodiy->taj_maydonlari }}</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">3</th> -->
+                    <th class="border border-2">Shundan tajriba maydonlari (ga)</td>
+                    <th class="border border-2">Binolar soni</td>
                 </tr>
                 <tr >
-                    <th  class="border border-2" style="width: 40px;">4</th>
-                    <td class="border border-2">Binolar soni</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">4</th> -->
+                    <td class="border border-2">{{ $iqtisodiy->taj_maydonlari }}</td>
                     <td class="border border-2">{{ $iqtisodiy->binolar_soni }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-2" style="width: 40px;">5</th>
-                    <td class="border border-2">Binolarning auditoriya sig‘imi</td>
-                    <td class="border border-2">{{ $iqtisodiy->auditoriya_sigimi }}</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">5</th> -->
+                    <th class="border border-2">Binolarning auditoriya sig‘imi</td>
+                    <th class="border border-2">Katta xajmdagi auditoriyalar soni (150-200 kishilik)</td>
                 </tr>
                 <tr>
-                    <th  class="border border-2" style="width: 40px;">6</th>
-                    <td class="border border-2">Katta xajmdagi auditoriyalar soni (150-200 kishilik)</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">6</th> -->
+                    <td class="border border-2">{{ $iqtisodiy->auditoriya_sigimi }}</td>
                     <td class="border border-2">{{ $iqtisodiy->k_xaj_auditor_soni }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-2" style="width: 40px;">7</th>
-                    <td class="border border-2">Ustav fondi miqdori, mln so‘mda</td>
-                    <td class="border border-2">{{ $iqtisodiy->pondi_miqdori }}</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">7</th> -->
+                    <th class="border border-2">Ustav fondi miqdori, mln so‘mda</td>
+                    <th class="border border-2">Ilmiy faoliyatni amalga oshiruvchi bo‘linmalar (bo‘lim, kafedra, laboratoriya) soni</td>
                 </tr>
                 <tr>
-                    <th  class="border border-2" style="width: 40px;">8</th>
-                    <td class="border border-2">Ilmiy faoliyatni amalga oshiruvchi bo‘linmalar (bo‘lim, kafedra, laboratoriya) soni</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">8</th> -->
+                    <td class="border border-2">{{ $iqtisodiy->pondi_miqdori }}</td>
                     <td class="border border-2">{{ $iqtisodiy->ilmiyp_bulinalar }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-2" style="width: 40px;">9</th>
-                    <td class="border border-2">tabiy gaz mavjudligi</td>
-                    <td class="border border-2">{{ $iqtisodiy->gaz }}</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">9</th> -->
+                    <th class="border border-2">Tabiy gaz mavjudligi</td>
+                    <th class="border border-2">Elektr energiya mavjudligi</td>
                 </tr>
                 <tr>
-                    <th  class="border border-2" style="width: 40px;">10</th>
-                    <td class="border border-2">elektr energiya mavjudligi</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">10</th> -->
+                    <td class="border border-2">{{ $iqtisodiy->gaz }}</td>
                     <td class="border border-2">{{ $iqtisodiy->elektr }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th  class="border border-2" style="width: 40px;">11</th>
-                    <td class="border border-2">suv mavjudligi</td>
-                    <td class="border border-2">{{ $iqtisodiy->suv }}</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">11</th> -->
+                    <th class="border border-2">Suv mavjudligi</td>
+                    <th class="border border-2">Kanalizatsiya mavjudligi</td>
                 </tr>
                 <tr>
-                    <th  class="border border-2" style="width: 40px;">12</th>
-                    <td class="border border-2">kanalizatsiya mavjudligi</td>
+                    <!-- <th  class="border border-2" style="width: 40px;">12</th> -->
+                    <td class="border border-2">{{ $iqtisodiy->suv }}</td>
                     <td class="border border-2">{{ $iqtisodiy->kanalizasiya }}</td>
                 </tr>
                 <tr class="bg-gray-200">
-                    <th class="border border-2">13</th>
-                    <td class="border border-2">internet mavjudligi</td>
+                    <!-- <th class="border border-2">13</th> -->
+                    <th class="border border-2">Internet mavjudligi</th>
+                    <th class="border border-2"></th>
+                </tr>
+                <tr>
+                    <!-- <th class="border border-2">13</th> -->
                     <td class="border border-2">{{ $iqtisodiy->internet }}</td>
+                    <td class="border border-2"></td>
                 </tr>
             </tbody>
         </table>

@@ -46,7 +46,7 @@
                     </label>
                     <select name="jinsi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Jinsi tanlang</option>
+                        <option value="" >Jinsi tanlang</option>
 
                         <option value="Erkak" {{ $xodimlar->jinsi == "Erkak" ? "selected" : ""}}>Erkak</option>
 
@@ -61,7 +61,7 @@
                     </label>
                     <select name="ish_tartibi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Ish tartibi tanlang</option>
+                        <option value="" >Ish tartibi tanlang</option>
 
                         <option value="Asosiy" {{ $xodimlar->ish_tartibi == "Asosiy" ? "selected" : ""}} >Asosiy</option>
 
@@ -78,7 +78,7 @@
                     </label>
                     <select name="shtat_birligi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Shtat birligi tanlang</option>
+                        <option value="" >Shtat birligi tanlang</option>
 
                         <option value="0.25" {{ $xodimlar->shtat_birligi == "0.25" ? "selected" : ""}}>0.25</option>
 
@@ -109,7 +109,7 @@
                     </label>
                     <select name="pedagoglik" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Pedagogik faoliyat bilan shug‘ullanishi tanlang</option>
+                        <option value="" >Pedagogik faoliyat bilan shug‘ullanishi tanlang</option>
 
                         <option value="ha" {{ $xodimlar->pedagoglik == "ha" ? "selected" : ""}}>ha</option>
 
@@ -124,7 +124,7 @@
                     </label>
                     <select name="lavozimi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Lavozimi tanlang</option>
+                        <option value="" >Lavozimi tanlang</option>
                         <option value="Matbuot kotibi" {{ $xodimlar->lavozimi == "Matbuot kotibi" ? "selected" : ""}}>Matbuot kotibi</option> 
 
                         <option value="Boshqarma boshlig‘i" {{ $xodimlar->lavozimi == "Boshqarma boshlig‘i" ? "selected" : ""}}>Boshqarma boshlig‘i</option> 
@@ -158,7 +158,7 @@
                     </label>
                     <select name="uzbek_panlar_azosi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Ma’lumoti tanlang</option>
+                        <option value="" >Ma’lumoti tanlang</option>
 
                         <option value="ha" {{ $xodimlar->uzbek_panlar_azosi == "ha" ? "selected" : ""}}>ha</option>
 
@@ -172,7 +172,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy darajasi</label>
                     <select name="ilmiy_daraja" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Ilmiy darajasi tanlang</option>
+                        <option value="" >Ilmiy darajasi tanlang</option>
 
                         <option value="Fan nomzodi" {{ $xodimlar->ilmiy_daraja == "Fan nomzodi" ? "selected" : ""}} >Fan nomzodi</option>
 
@@ -200,7 +200,7 @@
                     </label>
                     <select name="ilmiy_unvoni" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Ilmiy unvoni tanlang</option>
+                        <option value="" >Ilmiy unvoni tanlang</option>
 
                         <option value="Professor" {{ $xodimlar->ilmiy_unvoni == "Professor" ? "selected" : ""}} >Professor</option>
 

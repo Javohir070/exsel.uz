@@ -5,7 +5,7 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">Xodimlar</h2>
+        <h2 class="intro-y text-lg font-medium"> Ilmiy loyhilalar </h2>
 
         <!-- <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish

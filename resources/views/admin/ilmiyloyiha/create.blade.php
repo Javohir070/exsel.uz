@@ -31,7 +31,7 @@
                     </label>
                     <select name="turi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Loyiha turi tanlang</option>
+                        <option value="">Loyiha turi tanlang</option>
 
                         <option value="Amaliy">Amaliy</option>
 
@@ -52,7 +52,7 @@
                     </label>
                     <select name="dastyri" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Loyiha dasturi tanlang</option>
+                        <option value="">Loyiha dasturi tanlang</option>
 
                         <option value="Maqsadli">Maqsadli</option>
 
@@ -87,7 +87,7 @@
                     </label>
                     <select name="muddat" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>muddati tanlang</option>
+                        <option value="">muddati tanlang</option>
 
                         <option value="1">1</option>
 
@@ -139,7 +139,7 @@
                     
                     <select name="pan_yunalish" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Fan tanlang</option>
+                        <option value="">Fan tanlang</option>
 
                         <option value="Tibbiyot fanlari">Tibbiyot fanlari</option>
 
@@ -206,7 +206,7 @@
                     </label>
                     <select name="tijoratlashtirish"  class="input border w-full mt-2" required="">
 
-                        <option>Tijoratlashtirish  tanlang</option>
+                        <option value="">Tijoratlashtirish  tanlang</option>
 
                         <option value="Tijoratlashtirilgan">Tijoratlashtirilgan</option>
 

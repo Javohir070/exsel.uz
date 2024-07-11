@@ -45,7 +45,7 @@
                     </label>
                     <select name="turi"  id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Loyiha turi tanlang</option>
+                        <option value="">Loyiha turi tanlang</option>
 
                         <option value="Maqsadli">Maqsadli</option>
 

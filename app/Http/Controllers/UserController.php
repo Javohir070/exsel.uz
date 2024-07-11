@@ -41,8 +41,9 @@ class UserController extends Controller
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|max:20',
             'roles' => 'required',
-            "tashkilot_id" =>  'required',
+            'tashkilot_id' => 'required'
         ]);
+
         $roluchun = $request->roles;
         $user = User::create([
                         'name' => $request->name,

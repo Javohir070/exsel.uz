@@ -46,7 +46,7 @@
                     </label>
                     <select name="jinsi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Jinsi tanlang</option>
+                        <option value="">Jinsi tanlang</option>
 
                         <option value="Erkak">Erkak</option>
 
@@ -61,7 +61,7 @@
                     </label>
                     <select name="ish_tartibi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Ish tartibi tanlang</option>
+                        <option value="">Ish tartibi tanlang</option>
 
                         <option value="Asosiy">Asosiy</option>
 
@@ -78,7 +78,7 @@
                     </label>
                     <select name="shtat_birligi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="0">Shtat birligi tanlang</option>
+                        <option value="">Shtat birligi tanlang</option>
 
                         <option value="0.25">0.25</option>
 
@@ -100,7 +100,7 @@
                     </label>
                     <select name="lavozimi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Lavozimi tanlang</option>
+                        <option value="">Lavozimi tanlang</option>
                         <option value="Matbuot kotibi">Matbuot kotibi</option> 
                         <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option> 
                         <option value="Qorovul">Qorovul</option>
@@ -121,7 +121,7 @@
                     </label>
                     <select name="pedagoglik" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Pedagogik faoliyat bilan shug‘ullanishi tanlang</option>
+                        <option value="">Pedagogik faoliyat bilan shug‘ullanishi tanlang</option>
 
                         <option value="ha">ha</option>
 
@@ -154,8 +154,7 @@
                     <label class="flex flex-col sm:flex-row">  Ilmiy darajasi</label>
                     <select name="ilmiy_daraja" id="science-sub-category" class="input border w-full mt-2">
 
-                        <option 
-                        >Ilmiy darajasi tanlang</option>
+                        <option value="">Ilmiy darajasi tanlang</option>
 
                         <option value="Fan nomzodi">Fan nomzodi</option>
 
@@ -181,7 +180,7 @@
                     </label>
                     <select name="ilmiy_unvoni" id="science-sub-category" class="input border w-full mt-2">
 
-                        <option >Ilmiy unvoni tanlang</option>
+                        <option value="">Ilmiy unvoni tanlang</option>
 
                         <option value="Professor">Professor</option>
 
