@@ -27,7 +27,7 @@ class IlmiyLoyihaController extends Controller
      */
     public function create()
     {
-        $tashkilots = Tashkilot::all();
+        $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
         return view('admin.ilmiyloyiha.create',['tashkilots'=>$tashkilots]);
     }
 
