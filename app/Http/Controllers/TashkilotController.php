@@ -93,12 +93,17 @@ class TashkilotController extends Controller
      */
     public function update(Request $request, Tashkilot $tashkilot)
     {
+        if($request->hasFile('logo')){
+            $name = $request->file('logo')->getClientOriginalName();
+            $path = $request->file('logo')->storeAs('post-photos', $name);
+        }
         $tashkilot->update([
             "name" => $request->name,
             "name_qisqachasi" => $request->name_qisqachasi,
             "tash_yil" => $request->tash_yil,
             "yur_manzil" => $request->yur_manzil,
             "viloyat" => $request->viloyat,
+            "logo" =>  $path ?? null,
             "tuman" => $request->tuman,
             "paoliyat_manzil" => $request->paoliyat_manzil,
             "phone" => $request->phone,

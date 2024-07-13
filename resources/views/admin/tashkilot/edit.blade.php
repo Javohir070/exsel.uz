@@ -162,7 +162,13 @@
                     </label>
                     <input type="text" name="bank" value="{{ $tashkilot->bank }}"  class="input w-full border mt-2" required="">
                 </div>
+                <div class="w-full col-span-6">
+                    
+                    <label class="flex flex-col sm:flex-row"> <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> logo 
+                    </label>
+                    <input type="file" name="logo" style="padding-left: 0" class="input w-full mt-2">
 
+                </div>
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">

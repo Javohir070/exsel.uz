@@ -19,6 +19,11 @@
                         <div class="-intro-x mt-5 text-lg text-white">Barcha elektron tijorat hisoblaringizni bitta joydan boshqaring</div>
                     </div>
                 </div>
+                <style>
+        .toggle-password {
+            cursor: pointer;
+        }
+    </style>
                 <!-- END: Login Info -->
                 <!-- BEGIN: Login Form -->
                 <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
@@ -32,16 +37,23 @@
                             <div class="intro-x mt-8">
                                 <input  type="email" name="email" class="intro-x login__input input input--lg border border-gray-300 block" placeholder="Email">
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                                <input type="password"  class="intro-x login__input input input--lg border border-gray-300 block mt-4" name="password"
-                                required autocomplete="current-password" placeholder="Password">
+                                <!-- <span id="toggle-password" class="toggle-password">👁️</span> -->
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                
+                                <div class="relative mt-2">
+                                    <input type="password" id="password"  class="nput pr-12 w-full border col-span-4 intro-x login__input input input--lg border border-gray-300 block mt-4" name="password"
+                                    required autocomplete="current-password" placeholder="Password">
+                                    <!-- <input type="text" class="input pr-12 w-full border col-span-4" placeholder="Price"> -->
+                                    <div class="absolute top-0 right-0 rounded-r w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600" style="z-index: 999;" > <span id="toggle-password" class="toggle-password">👁️</span>
+                                </div>
+                                </div>
                             </div>
                             <div class="intro-x flex text-gray-700 text-xs sm:text-sm mt-4">
                                 <div class="flex items-center mr-auto">
                                     <input type="checkbox" class="input border mr-2"  id="remember-me">
-                                    <label class="cursor-pointer select-none"  for="remember-me">Remember me</label>
+                                    <label class="cursor-pointer select-none"  for="remember-me">Eslab qolish </label>
                                 </div>
-                                <a href="">Forgot Password?</a> 
+                                <a href="">Parolni unutdingizmi?</a> 
                             </div>
                             <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
                                 <button type="submit" class="button button--lg w-full xl:w-32 text-white bg-theme-1 xl:mr-3" >Kirish</button>
@@ -51,4 +63,16 @@
                 </div>
                 <!-- END: Login Form -->
             </div>
+            <script>
+                const togglePassword = document.querySelector('#toggle-password');
+                const passwordInput = document.querySelector('#password');
+
+                togglePassword.addEventListener('click', function (e) {
+                    // Toggle the type attribute
+                    const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                    passwordInput.setAttribute('type', type);
+                    // Toggle the eye icon
+                    this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
+                });
+            </script>
 </x-guest-layout>

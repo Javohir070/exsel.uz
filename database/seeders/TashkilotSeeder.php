@@ -57,6 +57,73 @@ class TashkilotSeeder extends Seeder
             "logo"=>"logo.phg",
         ]);
 
+        Tashkilot::create([
+            'name' => "O‘zR FA Mikrobiologiya instituti",
+            'yur_manzil' => "Toshkent 100084, Amir Temur shox ko‘chasi 108 uy",
+            "web_sayti" => 'O‘zR FA Mikrobiologiya instituti',
+            "phone" => "+99894 123 45 67",
+            "name_qisqachasi" => "O‘zR FA Mikrobiologiya instituti",
+            "tash_yil" => "O‘zR FA Mikrobiologiya instituti",
+            "viloyat" => "O‘zR FA Mikrobiologiya instituti",
+            "tuman" => "O‘zR FA Mikrobiologiya instituti",
+            "paoliyat_manzil" => "O‘zR FA Mikrobiologiya instituti",
+            "email" => "O‘zR FA Mikrobiologiya instituti",
+            "turi" => "O‘zR FA Mikrobiologiya instituti",
+            "xarajatlar" => "O‘zR FA Mikrobiologiya instituti",
+            "shtat_bir" => "O‘zR FA Mikrobiologiya instituti",
+            "tash_xodimlar" => "O‘zR FA Mikrobiologiya instituti",
+            "ilmiy_xodimlar" => "O‘zR FA Mikrobiologiya instituti",
+            "boshqariv" => "O‘zR FA Mikrobiologiya instituti",
+            "stir_raqami" => "O‘zR FA Mikrobiologiya instituti",
+            "bank" => "O‘zR FA Mikrobiologiya instituti",
+            "logo"=>"logo.phg",
+        ]);
+
+
+        Tashkilot::create([
+            'name' => "Botanika instituti",
+            'yur_manzil' => "Toshkent 100084, Amir Temur shox ko‘chasi 108 uy",
+            "web_sayti" => 'Botanika instituti.uz',
+            "phone" => "+99894 123 45 67",
+            "name_qisqachasi" => "Botanika instituti",
+            "tash_yil" => "Botanika instituti",
+            "viloyat" => "Botanika instituti",
+            "tuman" => "Botanika instituti",
+            "paoliyat_manzil" => "Botanika instituti",
+            "email" => "Botanika instituti",
+            "turi" => "Botanika instituti",
+            "xarajatlar" => "Botanika instituti",
+            "shtat_bir" => "Botanika instituti",
+            "tash_xodimlar" => "Botanika instituti",
+            "ilmiy_xodimlar" => "Botanika instituti",
+            "boshqariv" => "Botanika instituti",
+            "stir_raqami" => "Botanika instituti",
+            "bank" => "Botanika instituti",
+            "logo"=>"logo.phg",
+        ]);
+
+        Tashkilot::create([
+            'name' => "Mineral resurslar instituti",
+            'yur_manzil' => "Toshkent 100084, Amir Temur shox ko‘chasi 108 uy",
+            "web_sayti" => 'Mineral resurslar instituti.uz',
+            "phone" => "+99894 123 45 67",
+            "name_qisqachasi" => "Mineral resurslar instituti",
+            "tash_yil" => "Mineral resurslar instituti",
+            "viloyat" => "Mineral resurslar instituti",
+            "tuman" => "Mineral resurslar instituti",
+            "paoliyat_manzil" => "Mineral resurslar instituti",
+            "email" => "Mineral resurslar instituti",
+            "turi" => "Mineral resurslar instituti",
+            "xarajatlar" => "Mineral resurslar instituti",
+            "shtat_bir" => "Mineral resurslar instituti",
+            "tash_xodimlar" => "Mineral resurslar instituti",
+            "ilmiy_xodimlar" => "Mineral resurslar instituti",
+            "boshqariv" => "Mineral resurslar instituti",
+            "stir_raqami" => "Mineral resurslar instituti",
+            "bank" => "Mineral resurslar instituti",
+            "logo"=>"logo.phg",
+        ]);
+
        
     }
 }

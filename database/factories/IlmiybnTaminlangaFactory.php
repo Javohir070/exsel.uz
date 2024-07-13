@@ -17,7 +17,16 @@ class IlmiybnTaminlangaFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => $this->faker->numberBetween(3, 4),
+            'tashkilot_id' => $this->faker->numberBetween(1, 5),
+            'umumiyyil_id' => $this->faker->numberBetween(1, 2),
+            'yillar_id' => $this->faker->numberBetween(1, 2),
+            'xodimlar_jami' => $this->faker->numberBetween(10, 100),
+            'ilmiy_xodimlar' => $this->faker->numberBetween(5, 50),
+            'name' => $this->faker->company(),
+            'turi' => $this->faker->word(),
+            'moliyal_jami' => $this->faker->numberBetween(100000, 10000000),
+            'xodimganisbat_jami' => $this->faker->numberBetween(1, 100),
         ];
     }
 }

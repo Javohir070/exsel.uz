@@ -105,11 +105,7 @@
                     @endrole
                     @role('admin')
                         <input type="hidden" name="tashkilot_id" value="{{ auth()->user()->tashkilot->id }}">
-                    @endrole
-
-                    
-
-                    
+                    @endrole      
             </div><br>
         </form><br>
         <div class="px-5 pb-5 text-center">
@@ -122,18 +118,4 @@
         </div>
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 @endsection

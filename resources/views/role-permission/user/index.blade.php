@@ -28,7 +28,8 @@
                             <thead>
                                 <tr>
                                     <th>Id</th>
-                                    <th>Name</th>
+                                    <th>Tashkilot nomi</th>
+                                    <th>Masul shaxs F.I.Sh</th>
                                     <th>Email</th>
                                     <th>Roles</th>
                                     <th>Action</th>
@@ -38,6 +39,7 @@
                                 @foreach ($users as $user)
                                 <tr>
                                     <td>{{ $user->id }}</td>
+                                    <td>{{ $user->tashkilot->name_qisqachasi }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>
@@ -61,6 +63,15 @@
                             </tbody>
                         </table>
 
+                    </div>
+                    <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
+                        {{$users->links()}}
+                        <select class="w-20 input box mt-3 sm:mt-0">
+                            <option>10</option>
+                            <option>25</option>
+                            <option>35</option>
+                            <option>50</option>
+                        </select>
                     </div>
                 </div>
             </div>

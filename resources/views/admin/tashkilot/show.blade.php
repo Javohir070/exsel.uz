@@ -6,10 +6,16 @@
     <div class="flex justify-between align-center mt-10">
 
         <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }}  xaqida ma’lumot</h2>
-
+    @role('super-admin')
+        <a href="{{ route("tashkilotlar.index") }}" class="button w-24 bg-theme-1 text-white">
+            Orqaga
+        </a>
+    @endrole
+    @role('admin')
         <a href="{{ route("tashkilot.index") }}" class="button w-24 bg-theme-1 text-white">
             Orqaga
         </a>
+    @endrole
         
 
     </div>
