@@ -7,7 +7,22 @@
 
     <h2 class="intro-y text-lg font-medium">Ilmiy Loyiha qo'shish</h2>
 
-
+    <style>
+        .input-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        /* #search {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            width: 50%;
+            box-sizing: border-box;
+        } */
+        /* #science-sub-category {
+            margin-top: 30px;
+        } */
+    </style>
 
 </div><br>
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
@@ -28,7 +43,9 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot tanlang
                     </label>
-                    <select name="tashkilot_id" value="{{old('tashkilot_id')}}" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <input type="text" id="search" placeholder="Search..." class="input border w-full mt-2">
+
+                    <select name="tashkilot_id" value="{{old('tashkilot_id')}}" id="science-search-category" class="input border w-full mt-2" required="">
                         @foreach ($tashkilots as $tash)
                         <option value="{{$tash->id}}">{{ $tash->name }}</option>
                         @endforeach
@@ -39,7 +56,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha turi
                     </label>
-                    <select name="turi" value="{{old('turi')}}" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="turi" value="{{old('turi')}}" id="science-sub12-category" class="input border w-full mt-2" required="">
 
                         <option value="">Loyiha turi tanlang</option>
 
@@ -52,7 +69,7 @@
                         <option value="Tajriba-konstruktorlik">Tajriba-konstruktorlik</option>
 
 
-                    </select><br>
+                    </select>
                 </div>
 
                 
@@ -127,7 +144,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning boshlanish sanasi
                     </label>
 
-                    <input type="text" id="datepicker" name="bosh_sana" value="{{old('bosh_sana')}}" class="datepicker input w-full border mt-2" required="">
+                    <input type="text"  name="bosh_sana" value="{{old('bosh_sana')}}" class=" input w-full border mt-2" required="">
 
 
                 </div>
@@ -136,7 +153,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning tugash sanasi
                     </label>
 
-                    <input type="text" id="datepicker" name="tug_sana" value="{{old('tug_sana')}}" class="datepicker input w-full border mt-2" required="">
+                    <input type="text"  name="tug_sana" value="{{old('tug_sana')}}" class=" input w-full border mt-2" required="">
 
 
                 </div>
@@ -280,4 +297,19 @@
 
 
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var searchInput = document.getElementById('search');
+        var select = document.getElementById('science-search-category');
+        
+        searchInput.addEventListener('keyup', function() {
+            var filter = searchInput.value.toLowerCase();
+            for (var i = 0; i < select.options.length; i++) {
+                var option = select.options[i];
+                var text = option.text.toLowerCase();
+                option.style.display = text.includes(filter) ? '' : 'none';
+            }
+        });
+    });
+    </script>
 @endsection
