@@ -35,7 +35,7 @@
                  
 
                     <tr class="intro-x">
-                        <td>{{ $loop->index +1}}</td>
+                        <td>{{ $tashkilots->id}}</td>
                         <td>
                             <a href="#" target="_blank"  class="font-medium">{{ $tashkilots->name }}</a>
                         </td>
