@@ -162,8 +162,9 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fan yo‘nalish
                     </label>
+                    <input type="text"  name="pan_yunalish" value="{{old('pan_yunalish')}}" class=" input w-full border mt-2" required="">
                     
-                    <select name="pan_yunalish" value="{{old('pan_yunalish')}}" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select  style="display: none"  name="pan_yunalish" value="{{old('pan_yunalish')}}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">Fan tanlang</option>
 
