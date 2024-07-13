@@ -161,7 +161,7 @@ class IlmiyLoyihaController extends Controller
 
     public function ilmiyloyihalar()
     {
-        $ilmiyloyihalar = IlmiyLoyiha::all();
+        $ilmiyloyihalar = IlmiyLoyiha::paginate(25);
         return view("admin.ilmiyloyiha.ilmiyloyihalar",['ilmiyloyihalar'=>$ilmiyloyihalar]);
     }
 }
