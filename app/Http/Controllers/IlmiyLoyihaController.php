@@ -36,6 +36,9 @@ class IlmiyLoyihaController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'raqami' => 'required|unique:ilmiy_loyihas',
+        ]);
         $umumiyyil = Umumiyyil::create([
             "y2017" => $request->y2017 ?? 0,
             "y2018" => $request->y2018 ?? 0,

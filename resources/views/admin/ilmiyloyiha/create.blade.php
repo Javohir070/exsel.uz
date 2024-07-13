@@ -22,13 +22,13 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha mavzusi
                     </label>
-                    <input type="text" name="mavzusi" class="input w-full border mt-2" required="">
+                    <input type="text" name="mavzusi" value="{{old('mavzusi')}}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot tanlang
                     </label>
-                    <select name="tashkilot_id" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="tashkilot_id" value="{{old('tashkilot_id')}}" id="science-sub-category" class="input border w-full mt-2" required="">
                         @foreach ($tashkilots as $tash)
                         <option value="{{$tash->id}}">{{ $tash->name }}</option>
                         @endforeach
@@ -39,7 +39,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha turi
                     </label>
-                    <select name="turi" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="turi" value="{{old('turi')}}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">Loyiha turi tanlang</option>
 
@@ -60,7 +60,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha dasturi
                     </label>
-                    <select name="dastyri" id="science-sub-category" class="input border w-full mt-2" >
+                    <select name="dastyri" value="{{old('dastyri')}}" id="science-sub-category" class="input border w-full mt-2" >
 
                         <option value="">Loyiha dasturi tanlang</option>
 
@@ -81,20 +81,20 @@
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Qo‘shma loyiha bo‘yicha hamkor tashkilot
                     </label>
-                    <input type="text" name="q_hamkor_tashkilot" class="input w-full border mt-2" >
+                    <input type="text" name="q_hamkor_tashkilot" value="{{old('q_hamkor_tashkilot')}}" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Xalqaro qo‘shma loyihalardagi hamkor davlat
                     </label>
-                    <input type="text" name="hamkor_davlat" class="input w-full border mt-2" >
+                    <input type="text" name="hamkor_davlat" value="{{old('hamkor_davlat')}}" class="input w-full border mt-2" >
                 </div>
 
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">  Loyihani amalga oshirish muddati (yil) 
                     </label>
-                    <select name="muddat" id="science-sub-category" class="input border w-full mt-2" >
+                    <select name="muddat" value="{{old('muddat')}}" id="science-sub-category" class="input border w-full mt-2" >
 
                         <option value="">muddati tanlang</option>
 
@@ -127,7 +127,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning boshlanish sanasi
                     </label>
 
-                    <input type="text" id="datepicker" name="bosh_sana" class="datepicker input w-full border mt-2" required="">
+                    <input type="text" id="datepicker" name="bosh_sana" value="{{old('bosh_sana')}}" class="datepicker input w-full border mt-2" required="">
 
 
                 </div>
@@ -136,7 +136,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning tugash sanasi
                     </label>
 
-                    <input type="text" id="datepicker" name="tug_sana" class="datepicker input w-full border mt-2" required="">
+                    <input type="text" id="datepicker" name="tug_sana" value="{{old('tug_sana')}}" class="datepicker input w-full border mt-2" required="">
 
 
                 </div>
@@ -146,7 +146,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fan yo‘nalish
                     </label>
                     
-                    <select name="pan_yunalish" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="pan_yunalish" value="{{old('pan_yunalish')}}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">Fan tanlang</option>
 
@@ -167,7 +167,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha rahbarining F.I.Sh.
                     </label>
                     
-                    <input type="text" name="rahbar_name" class="input w-full border mt-2" required="">
+                    <input type="text" name="rahbar_name" value="{{old('rahbar_name')}}" class="input w-full border mt-2" required="">
 
                 </div>
 
@@ -175,13 +175,16 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Raqami (shipr)
                     </label>
-                    <input type="text" name="raqami" class="input w-full border mt-2" required="">
+                    <input type="text" name="raqami" value="{{old('raqami')}}" class="input w-full border mt-2" required="">
+                    @error('raqami')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Tuzilgan shartnoma Sanasi 
                     </label>
-                    <input type="text"  name="sanasi" id="datepicker" class="datepicker input w-full border mt-2" >
+                    <input type="text"  name="sanasi" value="{{old('sanasi')}}" id="datepicker" class="datepicker input w-full border mt-2" >
 
                 </div>
 
@@ -189,7 +192,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma summasi (ming so‘mda) 
                     </label>
-                    <input type="text" name="sum" class="input w-full border mt-2" required="">
+                    <input type="text" name="sum" value="{{old('sum')}}" class="input w-full border mt-2" required="">
                 </div>
 
                 
@@ -197,19 +200,19 @@
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Olingan asosiy natija 
                     </label>
-                    <input type="text" name="olingan_natija" class="input w-full border mt-2" >
+                    <input type="text" name="olingan_natija" value="{{old('olingan_natija')}}" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Joriy etish (Tatbiq etish) holati 
                     </label>
-                    <input type="text" name="joriy_holati" class="input w-full border mt-2" >
+                    <input type="text" name="joriy_holati" value="{{old('joriy_holati')}}" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Tijoratlashtirish holati 
                     </label>
-                    <select name="tijoratlashtirish"  class="input border w-full mt-2" >
+                    <select name="tijoratlashtirish" value="{{old('tijoratlashtirish')}}"  class="input border w-full mt-2" >
 
                         <option value="">Tijoratlashtirish  tanlang</option>
 
@@ -224,42 +227,42 @@
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2017 yilda
                     </label>
-                    <input type="text" name="y2017" class="input w-full border mt-2" >
+                    <input type="text" name="y2017" value="{{old('y2017')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2018 yilda
                     </label>
-                    <input type="text" name="y2018" class="input w-full border mt-2" >
+                    <input type="text" name="y2018" value="{{old('y2018')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2019 yilda
                     </label>
-                    <input type="text" name="y2019" class="input w-full border mt-2" >
+                    <input type="text" name="y2019" value="{{old('y2019')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2020 yilda
                     </label>
-                    <input type="text" name="y2020" class="input w-full border mt-2" >
+                    <input type="text" name="y2020" value="{{old('y2020')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2021 yilda
                     </label>
-                    <input type="text" name="y2021" class="input w-full border mt-2" >
+                    <input type="text" name="y2021" value="{{old('y2021')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2022 yilda
                     </label>
-                    <input type="text" name="y2022" class="input w-full border mt-2" >
+                    <input type="text" name="y2022" value="{{old('y2022')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2023 yilda
                     </label>
-                    <input type="text" name="y2023" class="input w-full border mt-2" >
+                    <input type="text" name="y2023" value="{{old('y2023')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row">  2024 yilda
                     </label>
-                    <input type="text" name="y2024" class="input w-full border mt-2" >
+                    <input type="text" name="y2024" value="{{old('y2024')}}" class="input w-full border mt-2" >
                 </div>
             </div>
         </form><br>
