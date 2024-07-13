@@ -139,7 +139,7 @@ class TashkilotController extends Controller
 
     public function tashkilotlar()
     {
-        $tashkilotlar = Tashkilot::all();
+        $tashkilotlar = Tashkilot::paginate(20);
         return view('admin.tashkilot.tashkilotlar',['tashkilotlar'=>$tashkilotlar]);
 
     }

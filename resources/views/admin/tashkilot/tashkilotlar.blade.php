@@ -10,6 +10,9 @@
         <!-- <a href="{{ route('tashkilot.create') }}"  class="button w-24 bg-theme-1 text-white">
             Qo'shish
         </a> -->
+        <a href="{{ route("tashqoshish.create") }}" class="button w-24 bg-theme-1 text-white">
+            Qo'shish
+        </a>
 
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">
@@ -76,7 +79,15 @@
                 </tbody>
             </table>
         </div>
-
+        <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
+            {{$tashkilotlar->links()}}
+            <select class="w-20 input box mt-3 sm:mt-0">
+                <option>10</option>
+                <option>25</option>
+                <option>35</option>
+                <option>50</option>
+            </select>
+        </div>
 
 
         <!-- END: Data List -->
