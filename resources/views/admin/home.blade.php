@@ -21,7 +21,7 @@
                                     <div class="flex">
                                         <i data-feather="file-text" class="report-box__icon text-theme-10"></i>
                                     </div>
-                                    <div class="text-3xl font-bold leading-8 mt-6">40</div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $tash_count }}</div>
                                     <div class="text-base text-gray-600 mt-1">Tashkilotlar</div>
                                 </div>
                             </div>
@@ -34,7 +34,7 @@
                                     <div class="flex">
                                         <i data-feather="users" class="report-box__icon text-theme-9"></i>
                                     </div>
-                                    <div class="text-3xl font-bold leading-8 mt-6">10</div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $loy_count }}</div>
                                     <div class="text-base text-gray-600 mt-1">Ilmiy loyhalar</div>
                                 </div>
                             </div>

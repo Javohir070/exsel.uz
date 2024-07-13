@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IlmiyLoyiha;
 use App\Models\IqtisodiyMoliyaviy;
+use App\Models\Tashkilot;
 use App\Models\TashkilotRahbari;
 use App\Models\User;
 use App\Models\Xodimlar;
@@ -17,6 +19,9 @@ class HomeController extends Controller
     
     public function index()
     { 
+       $tash_count = Tashkilot::count();
+       $loy_count = IlmiyLoyiha::count();
+
         $tashkiot_haqida = auth()->user()->tashkilot;
         $tashRId = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where('tashkilot_id', $tashRId)->get()->count();
@@ -41,7 +46,9 @@ class HomeController extends Controller
             'Ilmiy_faoliyat' => $Ilmiy_faoliyat,
             'Tashkilot_pasporti'=>$Tashkilot_pasporti,
             'Xodimlar_uchun' => $Xodimlar_uchun,
-            'xodimlar' => $xodimlar
+            'xodimlar' => $xodimlar,
+            'tash_count' => $tash_count,
+            'loy_count' => $loy_count
          ]);
     }
 }

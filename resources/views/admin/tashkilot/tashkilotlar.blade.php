@@ -24,7 +24,7 @@
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">Tashkilot Nomi</th>
-                        <th class="whitespace-no-wrap">web site</th>
+                        <th class="whitespace-no-wrap">Id raqami</th>
                         <th class="whitespace-no-wrap">Yuridik manzili</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
@@ -40,7 +40,7 @@
                             <a href="#" target="_blank"  class="font-medium">{{ $tashkilots->name }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $tashkilots->web_sayti  }}</a>
+                            <a href="" class="font-medium ">{{ $tashkilots->id_raqam  }}</a>
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $tashkilots->yur_manzil }}</a>
