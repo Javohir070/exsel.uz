@@ -73,7 +73,7 @@
                 </div>
 
                 
-                <div class="w-full col-span-6">
+                <div class="w-full col-span-6" style="display: none">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha dasturi
                     </label>
@@ -108,7 +108,7 @@
                 </div>
 
 
-                <div class="w-full col-span-6">
+                <div class="w-full col-span-6" style="display: none">
                     <label class="flex flex-col sm:flex-row">  Loyihani amalga oshirish muddati (yil) 
                     </label>
                     <select name="muddat" value="{{old('muddat')}}" id="science-sub-category" class="input border w-full mt-2" >
