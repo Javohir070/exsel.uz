@@ -24,7 +24,17 @@
                     </label>
                     <input type="text" name="mavzusi" class="input w-full border mt-2" required="">
                 </div>
-
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot tanlang
+                    </label>
+                    <select name="tashkilot_id" id="science-sub-category" class="input border w-full mt-2" required="">
+                        @foreach ($tashkilots as $tash)
+                        <option value="{{$tash->id}}">{{ $tash->name }}</option>
+                        @endforeach
+                    </select><br>
+                </div>
+                
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha turi
@@ -50,7 +60,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha dasturi
                     </label>
-                    <select name="dastyri" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="dastyri" id="science-sub-category" class="input border w-full mt-2" >
 
                         <option value="">Loyiha dasturi tanlang</option>
 
@@ -82,10 +92,9 @@
 
 
                 <div class="w-full col-span-6">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihani amalga oshirish muddati (yil) 
+                    <label class="flex flex-col sm:flex-row">  Loyihani amalga oshirish muddati (yil) 
                     </label>
-                    <select name="muddat" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="muddat" id="science-sub-category" class="input border w-full mt-2" >
 
                         <option value="">muddati tanlang</option>
 
@@ -164,16 +173,15 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Raqami 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Raqami (shipr)
                     </label>
                     <input type="text" name="raqami" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Sanasi 
+                    <label class="flex flex-col sm:flex-row">  Tuzilgan shartnoma Sanasi 
                     </label>
-                    <input type="text"  name="sanasi" id="datepicker" class="datepicker input w-full border mt-2" required="">
+                    <input type="text"  name="sanasi" id="datepicker" class="datepicker input w-full border mt-2" >
 
                 </div>
 
@@ -187,24 +195,21 @@
                 
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Olingan asosiy natija 
+                    <label class="flex flex-col sm:flex-row">  Olingan asosiy natija 
                     </label>
-                    <input type="text" name="olingan_natija" class="input w-full border mt-2" required="">
+                    <input type="text" name="olingan_natija" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Joriy etish (Tatbiq etish) holati 
+                    <label class="flex flex-col sm:flex-row">  Joriy etish (Tatbiq etish) holati 
                     </label>
-                    <input type="text" name="joriy_holati" class="input w-full border mt-2" required="">
+                    <input type="text" name="joriy_holati" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tijoratlashtirish holati 
+                    <label class="flex flex-col sm:flex-row">  Tijoratlashtirish holati 
                     </label>
-                    <select name="tijoratlashtirish"  class="input border w-full mt-2" required="">
+                    <select name="tijoratlashtirish"  class="input border w-full mt-2" >
 
                         <option value="">Tijoratlashtirish  tanlang</option>
 

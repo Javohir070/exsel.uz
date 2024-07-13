@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\IlmiyLoyiha;
 use App\Http\Requests\StoreIlmiyLoyihaRequest;
 use App\Http\Requests\UpdateIlmiyLoyihaRequest;
+use App\Models\Tashkilot;
 use App\Models\Umumiyyil;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class IlmiyLoyihaController extends Controller
      */
     public function create()
     {
-        return view('admin.ilmiyloyiha.create');
+        $tashkilots = Tashkilot::all();
+        return view('admin.ilmiyloyiha.create',['tashkilots'=>$tashkilots]);
     }
 
     /**
@@ -46,20 +48,20 @@ class IlmiyLoyihaController extends Controller
         ]);
         IlmiyLoyiha::create([
             "user_id" => auth()->id(),
-            "tashkilot_id" => auth()->user()->tashkilot_id,
+            "tashkilot_id" => $request->tashkilot_id,
             "umumiyyil_id" =>$umumiyyil->id,
             "mavzusi" => $request->mavzusi,
             "turi" => $request->turi,
-            "dastyri" => $request->dastyri,
-            "q_hamkor_tashkilot" => $request->q_hamkor_tashkilot ?? "yo'q",
-            "hamkor_davlat" => $request->hamkor_davlat ?? "yo'q",
-            "muddat" => $request->muddat,
+            "dastyri" => $request->dastyri ?? "yoq",
+            "q_hamkor_tashkilot" => $request->q_hamkor_tashkilot ?? "yoq",
+            "hamkor_davlat" => $request->hamkor_davlat ?? "yoq",
+            "muddat" => $request->muddat ?? "yoq",
             "bosh_sana" => $request->bosh_sana,
             "tug_sana" => $request->tug_sana,
             "pan_yunalish" => $request->pan_yunalish,
             "rahbar_name" => $request->rahbar_name,
             "raqami" => $request->raqami,
-            "sanasi" => $request->sanasi,
+            "sanasi" => $request->sanasi ?? "yoq",
             "sum" => $request->sum,
             "umumiy_mablag" => json_encode([
                 "y2017" => $request->y2017 ?? 0,
@@ -71,12 +73,12 @@ class IlmiyLoyihaController extends Controller
                 "y2023" => $request->y2023 ?? 0,
                 "y2024" => $request->y2024 ?? 0,
             ]),
-            "olingan_natija" => $request->olingan_natija,
-            "joriy_holati" => $request->joriy_holati,
-            "tijoratlashtirish" => $request->tijoratlashtirish,
+            "olingan_natija" => $request->olingan_natija ?? "yoq",
+            "joriy_holati" => $request->joriy_holati ?? "yoq" ,
+            "tijoratlashtirish" => $request->tijoratlashtirish ?? "yoq",
         ]);
 
-        return redirect('/ilmiyloyiha')->with('status','Ma\'lumotlar muvaffaqiyatli qoshildi');
+        return redirect('/ilmiyloyihalar')->with('status','Ma\'lumotlar muvaffaqiyatli qoshildi');
     }
 
     /**
