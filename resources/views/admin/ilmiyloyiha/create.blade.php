@@ -68,6 +68,8 @@
 
                         <option value="Tajriba-konstruktorlik">Tajriba-konstruktorlik</option>
 
+                        <option value="Boshqalari">Boshqalari</option>
+
 
                     </select>
                 </div>
@@ -164,20 +166,7 @@
                     </label>
                     <input type="text"  name="pan_yunalish" value="{{old('pan_yunalish')}}" class=" input w-full border mt-2" required="">
                     
-                    <select  style="display: none"  name="pan_yunalish" value="{{old('pan_yunalish')}}" id="science-sub-category" class="input border w-full mt-2" required="">
-
-                        <option value="">Fan tanlang</option>
-
-                        <option value="Tibbiyot fanlari">Tibbiyot fanlari</option>
-
-                        <option value="Biologiya va biotexnologiya fanlari">Biologiya va biotexnologiya fanlari</option>
-
-                        <option value="Filologiya va ijtimoiy fanlar">Filologiya va ijtimoiy fanlar</option>
-
-                        <option value="Iqtisodiyot fanlari">Iqtisodiyot fanlari</option>
-
-
-                    </select>
+                    
                 </div>
 
                 <div class="w-full col-span-6 ">
