@@ -25,25 +25,15 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot qisqa nomi massalan(TATU, O'zMU)
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Id raqami
                     </label>
-                    <input type="text" name="name_qisqachasi" class="input w-full border mt-2" required="">
+                    <input type="text" name="id_raqam" class="input w-full border mt-2" required="">
+                    @error('id_raqam')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
-                <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkil etilgan yil
-                    </label>
-                    <input type="number" name="tash_yil" class="input w-full border mt-2" required="">
-                </div>
-
-                <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Yuridik manzili
-                    </label>
-                    <input type="text" name="yur_manzil" class="input w-full border mt-2" required="">
-                </div>
-            </div>
-        </form><br>
+            </div><br>
+        </form>
         <div class="px-5 pb-5 text-center">
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish

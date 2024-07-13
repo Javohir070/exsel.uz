@@ -95,7 +95,7 @@
                             <select name="tashkilot_id" class="input border w-full mt-2" required="">
                                 <option value="">Tashkilotni tanlash</option>
                                 @foreach ($tashkilots as $tashkilot)
-                                    <option value="{{ $tashkilot->id }}">{{ $tashkilot->name_qisqachasi }}</option>
+                                    <option value="{{ $tashkilot->id }}">{{ $tashkilot->name }}</option>
                                 @endforeach
                             </select>
                             @error('tashkilot_id')

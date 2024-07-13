@@ -14,9 +14,10 @@ return new class extends Migration
         Schema::create('tashkilots', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('name_qisqachasi');
-            $table->string('tash_yil');
-            $table->string('yur_manzil');
+            $table->string('id_raqam');
+            $table->string('name_qisqachasi')->nullable();
+            $table->string('tash_yil')->nullable();
+            $table->string('yur_manzil')->nullable();
             $table->string('viloyat')->nullable();
             $table->string('tuman')->nullable();
             $table->string('paoliyat_manzil')->nullable();

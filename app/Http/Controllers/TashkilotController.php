@@ -41,6 +41,10 @@ class TashkilotController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'id_raqam' => 'required|unique:tashkilots',
+        ]);
 
         if($request->hasFile('logo')){
             $name = $request->file('logo')->getClientOriginalName();
@@ -49,9 +53,10 @@ class TashkilotController extends Controller
 
         Tashkilot::create([
             "name" => $request->name,
-            "name_qisqachasi" => $request->name_qisqachasi,
-            "tash_yil" => $request->tash_yil,
-            "yur_manzil" => $request->yur_manzil,
+            "id_raqam" => $request->id_raqam,
+            "name_qisqachasi" => $request->name_qisqachasi ?? null,
+            "tash_yil" => $request->tash_yil ?? null,
+            "yur_manzil" => $request->yur_manzil ?? null,
             "logo" =>  $path ?? null,
             "viloyat" => $request->viloyat ?? null,
             "tuman" => $request->tuman ?? null,
