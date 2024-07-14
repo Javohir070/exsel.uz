@@ -145,10 +145,10 @@ class TashkilotController extends Controller
     }
     public function search(Request $request)
     {
-        $query = $request->input('query');
-        $tashkilot_search = Tashkilot::where('name', 'LIKE', "%{$query}%")
-                     ->orWhere('id_raqam', 'LIKE', "%{$query}%")
-                     ->paginate(10);
+        $querysearch = $request->input('query');
+        $tashkilot_search = Tashkilot::where('name','like','%'.$querysearch.'%')
+                ->orWhere('id_raqam','like','%'.$querysearch.'%')
+                ->paginate(10);
         return view('admin.tashkilot.search_results', compact('tashkilot_search'));
     }
 }
