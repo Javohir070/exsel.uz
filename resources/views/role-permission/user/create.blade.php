@@ -92,7 +92,8 @@
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotni tanlash
                             </label>
-                            <select name="tashkilot_id" class="input border w-full mt-2" required="">
+                            <input type="text" id="search" placeholder="Search..." class="input border w-full mt-2">
+                            <select name="tashkilot_id" id="science-search-category" class="input border w-full mt-2" required="">
                                 <option value="">Tashkilotni tanlash</option>
                                 @foreach ($tashkilots as $tashkilot)
                                     <option value="{{ $tashkilot->id }}">{{ $tashkilot->name }}</option>
@@ -118,4 +119,20 @@
         </div>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var searchInput = document.getElementById('search');
+        var select = document.getElementById('science-search-category');
+        
+        searchInput.addEventListener('keyup', function() {
+            var filter = searchInput.value.toLowerCase();
+            for (var i = 0; i < select.options.length; i++) {
+                var option = select.options[i];
+                var text = option.text.toLowerCase();
+                option.style.display = text.includes(filter) ? '' : 'none';
+            }
+        });
+    });
+    </script>
 @endsection

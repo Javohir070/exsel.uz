@@ -30,7 +30,7 @@ class UserController extends Controller
         $roles = Role::pluck('name','name')->all();
         $tashkilot_id = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->get();
-        $tashkilots = Tashkilot::all();
+        $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
         return view('role-permission.user.create', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar]);
     }
 
