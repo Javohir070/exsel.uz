@@ -22,7 +22,7 @@ class ExportController extends Controller
         }
 
         // Jadval nomi
-        $table = "tashkilots";
+        $table = "ilmiy_loyihas";
 
         // Ma'lumotlarni olish
         $sql = "SELECT * FROM $table";
