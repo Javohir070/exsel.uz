@@ -13,7 +13,7 @@
         <div class="intro-x relative mr-3 sm:mr-6">
             <div class="search hidden sm:block">
             <form action="{{ route('search') }}" method="GET">
-                <input type="text" class="search__input input placeholder-theme-13" placeholder="Search...">
+                <input type="text" name="query" class="search__input input placeholder-theme-13" placeholder="Search...">
                 <i data-feather="search" class="search__icon"></i> 
             </form>
             </div>
@@ -88,7 +88,9 @@
                         </td>
                     </tr>
                     @empty
-                    <h2>ma’lumot topilmadi</h2>
+                    <tr>
+                        <td colspan="4">Ma'luot topilmadi</td>
+                    </tr>
                 @endforelse
 
                 </tbody>
