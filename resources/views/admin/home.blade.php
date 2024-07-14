@@ -41,15 +41,17 @@
                         </a>
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                        <div class="report-box zoom-in">
-                            <div class="box p-5">
-                                <div class="flex">
-                                    <i data-feather="users" class="report-box__icon text-theme-9"></i>
+                        <a href="{{ url('users') }}">
+                            <div class="report-box zoom-in">
+                                <div class="box p-5">
+                                    <div class="flex">
+                                        <i data-feather="users" class="report-box__icon text-theme-9"></i>
+                                    </div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $admins }}</div>
+                                    <div class="text-base text-gray-600 mt-1">Adminlar</div>
                                 </div>
-                                <div class="text-3xl font-bold leading-8 mt-6">10</div>
-                                <div class="text-base text-gray-600 mt-1">Falsapa doktori (PhD)</div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                         <a href="{{ route("xodim.barchaXodimlar") }}">
@@ -59,7 +61,7 @@
                                         <i data-feather="user" class="report-box__icon text-theme-9"></i>
                                     </div>
                                     <div class="text-3xl font-bold leading-8 mt-6">20</div>
-                                    <div class="text-base text-gray-600 mt-1">Xodminlar</div>
+                                    <div class="text-base text-gray-600 mt-1">Xodimlar</div>
                                 </div>
                             </div>
                         </a>

@@ -24,7 +24,6 @@
                         <th class="whitespace-no-wrap">Tashkilot nomi</th>
                         <th class="whitespace-no-wrap">Loyiha mavzusi</th>
                         <th class="whitespace-no-wrap">Loyiha turi</th>
-                        <th class="whitespace-no-wrap">Loyiha dasturi</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -35,7 +34,7 @@
                     <tr class="intro-x">
                         <td>{{$loop->index+1}}</td>
                         <td>
-                            <a href="#" target="_blank"  class="font-medium">{{ $xodimlar->tashkilot->name_qisqachasi }}</a>
+                            <a href="#" target="_blank"  class="font-medium">{{ $xodimlar->tashkilot->name }}</a>
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $xodimlar->mavzusi  }} </a>
@@ -43,9 +42,7 @@
                         <td>
                             <a href="" class="font-medium ">{{ $xodimlar->turi }}</a>
                         </td>
-                        <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->dastyri }}</a>
-                        </td>
+                        
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
                                 

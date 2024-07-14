@@ -39,7 +39,7 @@
                                 @foreach ($users as $user)
                                 <tr>
                                     <td>{{ $user->id }}</td>
-                                    <td>{{ $user->tashkilot->name_qisqachasi }}</td>
+                                    <td>{{ $user->tashkilot->name }}</td>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>

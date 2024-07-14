@@ -23,9 +23,9 @@
                 <thead>
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
-                        <th class="whitespace-no-wrap">Tashkilot Nomi</th>
                         <th class="whitespace-no-wrap">Id raqami</th>
-                        <th class="whitespace-no-wrap">Yuridik manzili</th>
+                        <th class="whitespace-no-wrap">Tashkilot Nomi</th>
+                        <!-- <th class="whitespace-no-wrap">Yuridik manzili</th> -->
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -37,14 +37,14 @@
                     <tr class="intro-x">
                         <td>{{ $tashkilots->id}}</td>
                         <td>
-                            <a href="#" target="_blank"  class="font-medium">{{ $tashkilots->name }}</a>
-                        </td>
-                        <td>
                             <a href="" class="font-medium ">{{ $tashkilots->id_raqam  }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $tashkilots->yur_manzil }}</a>
+                            <a href="#" target="_blank"  class="font-medium">{{ $tashkilots->name }}</a>
                         </td>
+                        <!-- <td>
+                            <a href="" class="font-medium ">{{ $tashkilots->yur_manzil }}</a>
+                        </td> -->
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
                                 

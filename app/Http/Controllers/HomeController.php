@@ -19,9 +19,9 @@ class HomeController extends Controller
     
     public function index()
     { 
-       $tash_count = Tashkilot::count();
-       $loy_count = IlmiyLoyiha::count();
-
+        $tash_count = Tashkilot::count();
+        $loy_count = IlmiyLoyiha::count();
+        $admins = User::count();
         $tashkiot_haqida = auth()->user()->tashkilot;
         $tashRId = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where('tashkilot_id', $tashRId)->get()->count();
@@ -48,7 +48,8 @@ class HomeController extends Controller
             'Xodimlar_uchun' => $Xodimlar_uchun,
             'xodimlar' => $xodimlar,
             'tash_count' => $tash_count,
-            'loy_count' => $loy_count
+            'loy_count' => $loy_count,
+            'admins' => $admins
          ]);
     }
 }
