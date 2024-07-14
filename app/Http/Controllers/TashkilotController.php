@@ -143,4 +143,12 @@ class TashkilotController extends Controller
         return view('admin.tashkilot.tashkilotlar',['tashkilotlar'=>$tashkilotlar]);
 
     }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+        $tashkilot_search = Tashkilot::where('name', 'LIKE', "%{$query}%")
+                     ->orWhere('id_raqam', 'LIKE', "%{$query}%")
+                     ->get();
+        return view('admin.tashkilot.search_results', compact('tashkilot_search'));
+    }
 }
