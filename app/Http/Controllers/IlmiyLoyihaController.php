@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\IlmiyLoyihasExport;
 use App\Models\IlmiyLoyiha;
 use App\Http\Requests\StoreIlmiyLoyihaRequest;
 use App\Http\Requests\UpdateIlmiyLoyihaRequest;
 use App\Models\Tashkilot;
 use App\Models\Umumiyyil;
 use Illuminate\Http\Request;
+use App\Exports\IlmiyLoyihasExport;
 use Maatwebsite\Excel\Facades\Excel;
 class IlmiyLoyihaController extends Controller
 {
@@ -170,7 +170,7 @@ class IlmiyLoyihaController extends Controller
     }
     public function exportilmiy() 
     {
-        
+
         return Excel::download(new IlmiyLoyihasExport, 'ilmiy.xlsx');
     }
 }

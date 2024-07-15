@@ -40,6 +40,7 @@ use App\Models\Xodimlar;
 Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home.index');
 Route::get('/export', [ExportController::class, 'export']);
 Route::get('/exportilmiy', [IlmiyLoyihaController::class, 'exportilmiy']);
+Route::get('/exportashkiot', [TashkilotController::class, 'exporttashkilot']);
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

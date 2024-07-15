@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TashkilotExport;
 use App\Models\Tashkilot;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TashkilotController extends Controller
 {
@@ -150,5 +152,11 @@ class TashkilotController extends Controller
                 ->orWhere('id_raqam','like','%'.$querysearch.'%')
                 ->paginate(10);
         return view('admin.tashkilot.search_results', compact('tashkilot_search'));
+    }
+
+    public function exporttashkilot()
+    {
+        return Excel::download(new TashkilotExport, 'tashkilot.xlsx');
+
     }
 }
