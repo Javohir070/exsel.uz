@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\IlmiyLoyihasExport;
 use App\Models\IlmiyLoyiha;
 use App\Http\Requests\StoreIlmiyLoyihaRequest;
 use App\Http\Requests\UpdateIlmiyLoyihaRequest;
 use App\Models\Tashkilot;
 use App\Models\Umumiyyil;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
 class IlmiyLoyihaController extends Controller
 {
     /**
@@ -166,5 +167,9 @@ class IlmiyLoyihaController extends Controller
     {
         $ilmiyloyihalar = IlmiyLoyiha::paginate(25);
         return view("admin.ilmiyloyiha.ilmiyloyihalar",['ilmiyloyihalar'=>$ilmiyloyihalar]);
+    }
+    public function exportilmiy() 
+    {
+        return Excel::download(new IlmiyLoyihasExport, 'ilmiy.xlsx');
     }
 }
