@@ -54,7 +54,7 @@ class ExportController extends Controller
 
             // Faylni ko'chirib olish
             fseek($f, 0);
-            header('Content-Type: text/csv');
+            header('Content-Type: text/xlsx');
             header('Content-Disposition: attachment; filename="' . $filename . '";');
             fpassthru($f);
         }
