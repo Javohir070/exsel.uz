@@ -170,6 +170,7 @@ class IlmiyLoyihaController extends Controller
     }
     public function exportilmiy() 
     {
+        
         return Excel::download(new IlmiyLoyihasExport, 'ilmiy.xlsx');
     }
 }
