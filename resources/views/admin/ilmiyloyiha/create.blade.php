@@ -75,7 +75,7 @@
                 </div>
 
                 
-                <div class="w-full col-span-6" style="display: none">
+                <div class="w-full col-span-6" >
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha dasturi
                     </label>
@@ -97,20 +97,20 @@
                     </select><br>
                 </div>
 
-                <div class="w-full col-span-6 " style="display: none">
+                <div class="w-full col-span-6 " >
                     <label class="flex flex-col sm:flex-row">  Qo‘shma loyiha bo‘yicha hamkor tashkilot
                     </label>
                     <input type="text" name="q_hamkor_tashkilot" value="{{old('q_hamkor_tashkilot')}}" class="input w-full border mt-2" >
                 </div>
 
-                <div class="w-full col-span-6 " style="display: none">
+                <div class="w-full col-span-6 " >
                     <label class="flex flex-col sm:flex-row">  Xalqaro qo‘shma loyihalardagi hamkor davlat
                     </label>
                     <input type="text" name="hamkor_davlat" value="{{old('hamkor_davlat')}}" class="input w-full border mt-2" >
                 </div>
 
 
-                <div class="w-full col-span-6" style="display: none">
+                <div class="w-full col-span-6" >
                     <label class="flex flex-col sm:flex-row">  Loyihani amalga oshirish muddati (yil) 
                     </label>
                     <select name="muddat" value="{{old('muddat')}}" id="science-sub-category" class="input border w-full mt-2" >
@@ -188,7 +188,7 @@
                     @enderror
                 </div>
 
-                <div class="w-full col-span-6 " style="display: none">
+                <div class="w-full col-span-6 " >
                     <label class="flex flex-col sm:flex-row">  Tuzilgan shartnoma Sanasi 
                     </label>
                     <input type="text"  name="sanasi" value="{{old('sanasi')}}" id="datepicker" class="datepicker input w-full border mt-2" >
@@ -204,19 +204,19 @@
 
                 
 
-                <div class="w-full col-span-6 " style="display: none">
+                <div class="w-full col-span-6 " >
                     <label class="flex flex-col sm:flex-row">  Olingan asosiy natija 
                     </label>
                     <input type="text" name="olingan_natija" value="{{old('olingan_natija')}}" class="input w-full border mt-2" >
                 </div>
 
-                <div class="w-full col-span-6 " style="display: none">
+                <div class="w-full col-span-6 " >
                     <label class="flex flex-col sm:flex-row">  Joriy etish (Tatbiq etish) holati 
                     </label>
                     <input type="text" name="joriy_holati" value="{{old('joriy_holati')}}" class="input w-full border mt-2" >
                 </div>
 
-                <div class="w-full col-span-6 " style="display: none">
+                <div class="w-full col-span-6 " >
                     <label class="flex flex-col sm:flex-row">  Tijoratlashtirish holati 
                     </label>
                     <select name="tijoratlashtirish" value="{{old('tijoratlashtirish')}}"  class="input border w-full mt-2" >
@@ -231,42 +231,42 @@
                 </div>
 
                 
-                <div class="w-full col-span-2 " style="display: none">
+                <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2017 yilda
                     </label>
                     <input type="text" name="y2017" value="{{old('y2017')}}" class="input w-full border mt-2" >
                 </div>
-                <div class="w-full col-span-2 " style="display: none">
+                <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2018 yilda
                     </label>
                     <input type="text" name="y2018" value="{{old('y2018')}}" class="input w-full border mt-2" >
                 </div>
-                <div class="w-full col-span-2 " style="display: none">
+                <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2019 yilda
                     </label>
                     <input type="text" name="y2019" value="{{old('y2019')}}" class="input w-full border mt-2" >
                 </div>
-                <div class="w-full col-span-2 " style="display: none">
+                <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2020 yilda
                     </label>
                     <input type="text" name="y2020" value="{{old('y2020')}}" class="input w-full border mt-2" >
                 </div>
-                <div class="w-full col-span-2 " style="display: none">
+                <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2021 yilda
                     </label>
                     <input type="text" name="y2021" value="{{old('y2021')}}" class="input w-full border mt-2" >
                 </div>
-                <div class="w-full col-span-2 " style="display: none">
+                <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2022 yilda
                     </label>
                     <input type="text" name="y2022" value="{{old('y2022')}}" class="input w-full border mt-2" >
                 </div>
-                <div class="w-full col-span-2 " style="display: none">
+                <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2023 yilda
                     </label>
                     <input type="text" name="y2023" value="{{old('y2023')}}" class="input w-full border mt-2" >
                 </div>
-                <div class="w-full col-span-2 " style="display: none">
+                <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2024 yilda
                     </label>
                     <input type="text" name="y2024" value="{{old('y2024')}}" class="input w-full border mt-2" >

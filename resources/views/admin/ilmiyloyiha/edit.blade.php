@@ -116,7 +116,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning boshlanish sanasi
                     </label>
 
-                    <input type="text"  name="bosh_sana" value="{{ $ilmiyloyiha->tug_sana }}" class=" input w-full border mt-2" required="">
+                    <input type="text"  name="bosh_sana" value="{{ $ilmiyloyiha->bosh_sana }}" readonly class=" input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -124,15 +124,16 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning tugash sanasi
                     </label>
 
-                    <input type="text"  name="tug_sana" value="{{ $ilmiyloyiha->tug_sana }}" class=" input w-full border mt-2" required="">
+                    <input type="text"  name="tug_sana" value="{{ $ilmiyloyiha->tug_sana }}" readonly class=" input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fan yo‘nalish
                     </label>
+                    <input type="text"  name="pan_yunalish" value="{{ $ilmiyloyiha->pan_yunalish}}" readonly class=" input w-full border mt-2" required="">
                     
-                    <select name="pan_yunalish"  id="science-sub-category" class="input border w-full mt-2" required="">
+                    <!-- <select name="pan_yunalish"  id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option>Fan yo‘nalish tanlang</option>
 
@@ -145,7 +146,7 @@
                         <option value="Iqtisodiyot fanlari" {{ $ilmiyloyiha->pan_yunalish == "Iqtisodiyot fanlari" ? "selected" : ""}}>Iqtisodiyot fanlari</option>
 
 
-                    </select><br>
+                    </select><br> -->
                 </div>
 
                 <div class="w-full col-span-6 ">
