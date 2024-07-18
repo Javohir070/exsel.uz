@@ -22,21 +22,24 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> F.I.Sh
                     </label>
-                    <input type="text" name="fish" class="input w-full border mt-2" required="">
+                    <input type="text" name="fish" value="{{ old('fish') }}" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Jshshir
                     </label>
-                    <input type="text" name="jshshir" class="input w-full border mt-2" required="">
+                    <input type="text" name="jshshir" value="{{ old('jshshir') }}" class="input w-full border mt-2" required="">
+                    @error('jshshir')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tug‘ilgan yili
                     </label>
-                    <input type="text" id="datepicker" name="yil" class="datepicker input w-full border mt-2" required="">
+                    <input type="text" id="datepicker" name="yil" value="{{ old('yil') }}" class="datepicker input w-full border mt-2" required="">
                     
                 </div>
 
@@ -44,7 +47,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Jinsi
                     </label>
-                    <select name="jinsi" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="jinsi" value="{{ old('jinsi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">Jinsni tanlang</option>
 
@@ -59,7 +62,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ish tartibi
                     </label>
-                    <select name="ish_tartibi" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="ish_tartibi" value="{{ old('ish_tartibi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">Ish tartibini tanlang</option>
 
@@ -76,7 +79,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shtat birligi
                     </label>
-                    <select name="shtat_birligi" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="shtat_birligi" value="{{ old('shtat_birligi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">Shtat birligini tanlang</option>
 
@@ -98,7 +101,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Lavozimi
                     </label>
-                    <select name="lavozimi" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="lavozimi" value="{{ old('lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">Lavozini tanlang</option>
                         <option value="Matbuot kotibi">Matbuot kotibi</option> 
@@ -119,7 +122,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Pedagogik faoliyat bilan
                         shug‘ullanishi
                     </label>
-                    <select name="pedagoglik" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="pedagoglik" value="{{ old('pedagoglik') }}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">Pedagogik faoliyat bilan shug‘ullanishi tanlang</option>
 
@@ -134,25 +137,25 @@
                     <label class="flex flex-col sm:flex-row"> O‘rindoshlik asosida ishlaydigan xodimning asosiy ish joyi
                         bo‘lgan tashkilot
                     </label>
-                    <input type="text" name="urindoshlik_asasida" class="input w-full border mt-2" >
+                    <input type="text" name="urindoshlik_asasida" value="{{ old('urindoshlik_asasida') }}" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">  Ma’lumoti
                     </label>
-                    <input type="text" name="malumoti" class="input w-full border mt-2">
+                    <input type="text" name="malumoti" value="{{ old('malumoti') }}" class="input w-full border mt-2">
                 </div>
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">  O‘zbekiston Fanlar akademiyasi
                         haqiqiy a’zosi Ilmiy darajasi
                     </label>
-                    <input type="text" name="uzbek_panlar_azosi" class="input w-full border mt-2">
+                    <input type="text" name="uzbek_panlar_azosi" value="{{ old('uzbek_panlar_azosi') }}" class="input w-full border mt-2">
                 </div>
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">  Ilmiy darajasi</label>
-                    <select name="ilmiy_daraja" id="science-sub-category" class="input border w-full mt-2">
+                    <select name="ilmiy_daraja" value="{{ old('ilmiy_daraja') }}" id="science-sub-category" class="input border w-full mt-2">
 
                         <option value="">Ilmiy darajasini tanlang</option>
 
@@ -172,13 +175,13 @@
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Ilmiy daraja olingan yili
                     </label>
-                    <input type="text" name="ilmiy_daraja_yil" class="input w-full border mt-2">
+                    <input type="text" name="ilmiy_daraja_yil" value="{{ old('ilmiy_daraja_yil') }}" class="input w-full border mt-2">
                 </div>
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">  Ilmiy unvoni
                     </label>
-                    <select name="ilmiy_unvoni" id="science-sub-category" class="input border w-full mt-2">
+                    <select name="ilmiy_unvoni" value="{{ old('ilmiy_unvoni') }}" id="science-sub-category" class="input border w-full mt-2">
 
                         <option value="">Ilmiy unvonini tanlang</option>
 
@@ -196,27 +199,27 @@
                     <label class="flex flex-col sm:flex-row"> Ilmiy unvon olingan
                         yili
                     </label>
-                    <input type="text" name="ilmiy_unvoni_y" class="input w-full border mt-2">
+                    <input type="text" name="ilmiy_unvoni_y" value="{{ old('ilmiy_unvoni_y') }}" class="input w-full border mt-2">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Ixtisosligi
                     </label>
-                    <input type="text" name="ixtisosligi" class="input w-full border mt-2">
+                    <input type="text" name="ixtisosligi" value="{{ old('ixtisosligi') }}" class="input w-full border mt-2">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telefon raqami
                     </label>
-                    <input type="tel" name="phone" class="input w-full border mt-2" required="">
+                    <input type="tel" name="phone" value="{{ old('phone') }}" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Email
                     </label>
-                    <input type="email" name="email" class="input w-full border mt-2" required="">
+                    <input type="email" name="email" value="{{ old('email') }}" class="input w-full border mt-2" required="">
                 </div>
             </div>
         </form><br>

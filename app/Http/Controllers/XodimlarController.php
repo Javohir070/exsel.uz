@@ -35,6 +35,10 @@ class XodimlarController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'fish' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
+            'jshshir' => 'required|string|min:14|unique:xodimlars',
+        ]);
 
         Xodimlar::create([
             "user_id" => auth()->id(),
