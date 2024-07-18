@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Spatie\Permission\Models\Role;
-
+use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
 {
     public function __construct()
@@ -114,5 +114,22 @@ class UserController extends Controller
     public function profileview()
     {
         return view('admin.profile.index');
+    }
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        if (!Hash::check($request->current_password, Auth::user()->password)) {
+            return back()->withErrors(['current_password' => 'Eski parol noto‘g‘ri.']);
+        }
+
+        Auth::user()->update([
+            'password' => Hash::make($request->new_password),
+        ]);
+
+        return redirect('/profileview')->with('status', 'Parol muvaffaqiyatli o‘zgartirildi!');
     }
 }

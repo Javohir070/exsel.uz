@@ -37,6 +37,7 @@ use App\Http\Controllers\SearchController;
 
 Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home.index');
 Route::middleware('auth')->group(function () {
+    Route::post('password/change', [UserController::class, 'changePassword'])->name('password.change');
     Route::get('/export', [ExportController::class, 'export']);
     Route::get('/exportilmiy', [IlmiyLoyihaController::class, 'exportilmiy']);
     // Route::get('/search', [SearchController::class, 'search'])->name('search');

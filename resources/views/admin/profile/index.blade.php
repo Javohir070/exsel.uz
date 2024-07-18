@@ -33,6 +33,9 @@
 
             </div>
         </form>
+
+        
+
         <div
             class="flex mt-6 lg:mt-0 items-center lg:items-start flex-1 flex-col justify-center text-gray-600 px-5 border-l border-r border-gray-200 border-t lg:border-t-0 pt-5 lg:pt-0">
             <div class="truncate sm:whitespace-normal flex items-center"><svg xmlns="http://www.w3.org/2000/svg"
@@ -63,6 +66,7 @@
 
             </div>
         </div>
+        
         <div
             class="mt-6 lg:mt-0 flex-1 flex items-center justify-center px-5 border-t lg:border-0 border-gray-200 pt-5 lg:pt-0">
             <div class="text-center rounded-md w-20 py-3">
@@ -79,6 +83,7 @@
             </div>
         </div>
     </div>
+    
     <div class="nav-tabs flex flex-col sm:flex-row justify-center lg:justify-start">
         <a data-toggle="tab" data-target="#settings" href="javascript:;" class="py-4 sm:mr-8 flex items-center active">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -102,7 +107,9 @@
 
     </div>
 </div>
-
+@if (session('status'))
+        <div class="alert alert-success">{{ session('status') }}</div>
+    @endif
 
 <div class="tab-content mt-5">
 
@@ -160,8 +167,8 @@
     </div>
     <div class="tab-content__pane" id="change-password">
         <!-- BEGIN: Change Password -->
-        <form action="/reset_password" method="POST">
-            <input name="username" type="hidden" value="ahadjon1505">
+        <form action="{{ route('password.change') }}" method="POST">
+            @csrf
             <div class="intro-y box lg:mt-5">
                 <div class="flex items-center p-5 border-b border-gray-200">
                     <h2 class="font-medium text-base mr-auto">Parolni o'zgartirish</h2>
@@ -170,17 +177,17 @@
                     <div>
                         <label>Eski parol</label>
                         <input type="password" class="input w-full border mt-2" placeholder="Input text"
-                            name="old_password">
+                            name="current_password">
                     </div>
                     <div class="mt-3">
                         <label>Yangi parol</label>
                         <input type="password" class="input w-full border mt-2" placeholder="Input text"
-                            name="new_password1">
+                            name="new_password">
                     </div>
                     <div class="mt-3">
                         <label>Yangi parol tasdiqlang</label>
                         <input type="password" class="input w-full border mt-2" placeholder="Input text"
-                            name="new_password2">
+                            name="new_password_confirmation">
                     </div>
                     <button type="submit" class="button bg-theme-1 text-white mt-4">
                         Parolni o'zgartirish
