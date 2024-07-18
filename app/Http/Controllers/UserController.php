@@ -132,4 +132,13 @@ class UserController extends Controller
 
         return redirect('/profileview')->with('status', 'Parol muvaffaqiyatli o‘zgartirildi!');
     }
+
+    public function searchuser(Request $request)
+    {
+        $querysearch = $request->input('query');
+        $user_search = User::where('name','like','%'.$querysearch.'%')
+                ->orWhere('email','like','%'.$querysearch.'%')
+                ->paginate(10);
+        return view('role-permission.user.search_results', compact('user_search'));
+    }
 }

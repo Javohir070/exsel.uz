@@ -1,10 +1,15 @@
-@extends("layouts.admin")
-@section("content")
-<div class="flex justify-between align-center mt-10">
+@extends('layouts.admin')
 
-        <h2 class="intro-y text-lg font-medium">Users </h2>
+@section('content')
 
-       
+<div class="content">
+    <div class="flex justify-between align-center mt-10">
+
+        <h2 class="intro-y text-lg font-medium">Tashkilotlar</h2>
+
+        <!-- <a href="{{ route('tashkilot.create') }}"  class="button w-24 bg-theme-1 text-white">
+            Qo'shish
+        </a> -->
         <div class="intro-x relative mr-3 sm:mr-6">
             <div class="search hidden sm:block">
             <form action="{{ route('searchuser') }}" method="GET">
@@ -16,18 +21,14 @@
         </div>
         <div>
             <div>
-            @can('create user')
-        <a href="{{ url('users/create') }}"  class="button w-24 bg-theme-1 text-white">
-            Add User
-        </a>
-        @endcan
+                <a href="#" class="button w-24 bg-theme-1 text-white">
+                    Qo'shish
+                </a>
             </div>
         
         </div>
+
     </div>
-
-  
-
     <div class="container mt-2">
         <div class="row">
             <div class="col-md-12">
@@ -51,7 +52,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($users as $user)
+                                @foreach ($user_search as $user)
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->tashkilot->name }}</td>
@@ -80,7 +81,7 @@
 
                     </div>
                     <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-                        {{$users->links()}}
+                        {{$user_search->links()}}
                         <select class="w-20 input box mt-3 sm:mt-0">
                             <option>10</option>
                             <option>25</option>
@@ -92,4 +93,11 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+   
+</div>
 @endsection

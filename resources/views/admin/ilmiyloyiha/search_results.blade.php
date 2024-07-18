@@ -12,7 +12,7 @@
         </a> -->
         <div class="intro-x relative mr-3 sm:mr-6">
             <div class="search hidden sm:block">
-            <form action="{{ route('search') }}" method="GET">
+            <form action="{{ route('searchloyiha') }}" method="GET">
                 <input type="text" name="query" class="search__input input placeholder-theme-13" placeholder="Search...">
                 <i data-feather="search" class="search__icon"></i> 
             </form>
