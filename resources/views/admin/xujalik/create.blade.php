@@ -5,7 +5,7 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Xujalik Loyiha qo'shish</h2>
+    <h2 class="intro-y text-lg font-medium">Xo'jalik loyiha qo'shish</h2>
 
 
 
@@ -27,14 +27,14 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi mavjud bo‘lsa: raqami
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa raqami )
                     </label>
                     <input type="text" name="intellektual_raqami" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi mavjud bo‘lsa: sanasi
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa sanasi )
                     </label>
                     <input type="text" name="intellektual_sana" id="datepicker" class="datepicker input w-full border mt-2" required="">
                 </div>
@@ -52,7 +52,7 @@
                     </label>
                     <select name="ishlanma_turi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="">Loyiha turi tanlang</option>
+                        <option value="">Loyiha turini tanlang</option>
 
                         <option value="Amaliy">Amaliy</option>
 
@@ -67,11 +67,11 @@
                     </label>
                     <select name="lisenzion" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="">shartnoma turi tanlang</option>
+                        <option value="">shartnoma turini tanlang</option>
 
-                        <option value="xo‘jalik shartnomasi">xo‘jalik shartnomasi</option>
+                        <option value="Xo‘jalik shartnomasi">Xo‘jalik shartnomasi</option>
 
-                        <option value="litsenziya shartnomasi">litsenziya shartnomasi</option>
+                        <option value="Litsenziya shartnomasi">Litsenziya shartnomasi</option>
 
                     </select>
                 </div>

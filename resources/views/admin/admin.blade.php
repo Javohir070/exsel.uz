@@ -7,7 +7,7 @@
         <div class="col-span-12 mt-8">
             <div class="intro-y flex items-center h-10">
                 <h2 class="text-lg font-medium truncate mr-5">
-                    Tashkilot haqida qisqacha malumotlar 
+                    Tashkilot haqida qisqacha ma'lumotlar 
                 </h2>
                 <a href="" class="ml-auto flex text-theme-1"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i>
                     Yangilang </a>
@@ -18,7 +18,7 @@
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
-                                <i data-feather="shopping-cart" class="report-box__icon text-theme-10"></i>
+                                <i data-feather="file-text" class="report-box__icon text-theme-10"></i>
                                 <div class="ml-auto">
                                     <div class="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                                         title="33% Higher than last month"> 100% <i data-feather="chevron-up"
@@ -26,11 +26,15 @@
                                 </div>
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">3/3</div>
-                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Tashkilot pasporti biriktirilgan masul xodim
+                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Tashkilot pasporti biriktirilgan mas'ul xodim
                                @forelse($Tashkilot_pasporti as $tash)
                                @role('admin')
-                                 <a href="{{ url('users/'.$tash->id.'/edit') }}" class="button  bg-theme-1 text-white"
-                                    style="display: flex; justify-content:center;margin-top: 10px;">{{$tash->name}}</a>
+                               <div style="display: flex;justify-content: space-around;align-items: center;margin-top: 10px;gap:4px;">
+                                    <a href="{{ url('users/'.$tash->id.'/edit') }}" class="button  bg-theme-1 text-white"
+                                    style="width: 80%;">{{$tash->name}}</a>
+                                    <a href="{{ url('users/'.$tash->id.'/edit') }}" class="button  bg-theme-1  text-white"><i data-feather="edit"></i></a>
+                                    <a href="{{ url('users/'.$tash->id.'/delete') }}" class="button  bg-theme-6  text-white"><i data-feather="trash-2"></i></a>
+                                </div>
                                 @endrole
                                 @role(['Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
                                 <a href="#" class="button  bg-theme-1 text-white"
@@ -41,13 +45,13 @@
 								  <a href="{{ url('users/create') }}"
                                     class="button  bg-theme-1 text-white"
                                     style="display: flex; justify-content:center;margin-top: 10px;">
-                                    masul xodim biriktirish</a>
+                                    Mas'ul xodim biriktirish</a>
                                 @endrole
                                 @role(['Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
                                 <a href="#"
                                     class="button  bg-theme-1 text-white"
                                     style="display: flex; justify-content:center;margin-top: 10px;">
-                                    masul xodim biriktirish</a>
+                                    Mas'ul xodim biriktirish</a>
                                 @endrole
 								@endforelse
                             </div>
@@ -60,19 +64,23 @@
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
-                                <i data-feather="credit-card" class="report-box__icon text-theme-11"></i>
+                                <i data-feather="file-text" class="report-box__icon text-theme-11"></i>
                                 <div class="ml-auto">
                                     <div class="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                                         title="33% Higher than last month"> 33% <i data-feather="chevron-up"
                                             class="w-4 h-4"></i> </div>
                                 </div>
                             </div>
-                            <div class="text-3xl font-bold leading-8 mt-6">10/2</div>
-                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Ilmiy loyhalar biriktirilgan masul xodim
+                            <div class="text-3xl font-bold leading-8 mt-6">{{ $loyiha_count }}</div>
+                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Ilmiy loyihalar biriktirilgan mas'ul xodim <br>
 								@forelse($Ilmiy_faoliyat as $ilmiy)
                                 @role('admin')
-                                 <a href="{{ url('users/'.$ilmiy->id.'/edit') }}" class="button  bg-theme-1 text-white"
-                                    style="display: flex; justify-content:center;margin-top: 10px;">{{$ilmiy->name}}</a>
+                                <div style="display: flex;justify-content: space-around;align-items: center;margin-top: 10px;gap:4px;">
+                                    <a href="{{ url('users/'.$ilmiy->id.'/edit') }}" class="button  bg-theme-1 text-white"
+                                    style="width: 80%;">{{$ilmiy->name}}</a>
+                                    <a href="{{ url('users/'.$ilmiy->id.'/edit') }}" class="button  bg-theme-1  text-white"><i data-feather="edit"></i></a>
+                                    <a href="{{ url('users/'.$ilmiy->id.'/delete') }}" class="button  bg-theme-6  text-white"><i data-feather="trash-2"></i></a>
+                                </div>
                                 @endrole
                                 @role(['Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
                                 <a href="#" class="button  bg-theme-1 text-white"
@@ -83,13 +91,13 @@
                                     <a href="{{ url('users/create') }}"
                                         class="button  bg-theme-1 text-white"
                                         style="display: flex; justify-content:center;margin-top: 10px;">
-                                        masul xodim biriktirish</a>
+                                        Mas'ul xodim biriktirish</a>
                                     @endrole
                                     @role(['Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
                                     <a href="#"
                                         class="button  bg-theme-1 text-white"
                                         style="display: flex; justify-content:center;margin-top: 10px;">
-                                        masul xodim biriktirish</a>
+                                        Mas'ul xodim biriktirish</a>
                                     @endrole
 								@endforelse
                                 </div>
@@ -101,19 +109,24 @@
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
-                                <i data-feather="user" class="report-box__icon text-theme-9"></i>
+                                <i data-feather="users" class="report-box__icon text-theme-9"></i>
                                 <div class="ml-auto">
                                     <div class="report-box__indicator bg-theme-9 tooltip cursor-pointer"
                                         title="33% Higher than last month"> 33% <i data-feather="chevron-up"
                                             class="w-4 h-4"></i> </div>
                                 </div>
                             </div>
-                            <div class="text-3xl font-bold leading-8 mt-6">{{ $tashkiot_haqida->tash_xodimlar }}/{{ $xodimlar}}</div>
-                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Xodimlar biriktirilgan masul xodim 
+                            <div class="text-3xl font-bold leading-8 mt-6">{{ $tashkiot_haqida->tash_xodimlar ?? 0 }}/{{ $xodimlar}}</div>
+                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Xodimlar biriktirilgan mas'ul xodim 
 								@forelse($Xodimlar_uchun as $ilmiy)
                                 @role('admin')
-                                 <a href="{{ url('users/'.$ilmiy->id.'/edit') }}" class="button  bg-theme-1 text-white"
-                                    style="display: flex; justify-content:center;margin-top: 10px;">{{$ilmiy->name}}</a>
+                                <div style="display: flex;justify-content: space-around;align-items: center;margin-top: 10px;gap:4px;">
+                                    <a href="{{ url('users/'.$ilmiy->id.'/edit') }}" class="button  bg-theme-1 text-white"
+                                    style="width: 80%;">{{$ilmiy->name}}</a>
+                                    <a href="{{ url('users/'.$ilmiy->id.'/edit') }}" class="button  bg-theme-1  text-white"><i data-feather="edit"></i></a>
+                                    <a href="{{ url('users/'.$ilmiy->id.'/delete') }}" class="button  bg-theme-6  text-white"><i data-feather="trash-2"></i></a>
+                                </div>
+                                    
                                 @endrole
                                 @role(['Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
                                 <a href="#" class="button  bg-theme-1 text-white"
@@ -124,13 +137,13 @@
                                     <a href="{{ url('users/create') }}"
                                         class="button  bg-theme-1 text-white"
                                         style="display: flex; justify-content:center;margin-top: 10px;">
-                                        masul xodim biriktirish</a>
+                                        Mas'ul xodim biriktirish</a>
                                     @endrole
                                     @role(['Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
                                     <a href="#"
                                         class="button  bg-theme-1 text-white"
                                         style="display: flex; justify-content:center;margin-top: 10px;">
-                                        masul xodim biriktirish</a>
+                                        Mas'ul xodim biriktirish</a>
                                     @endrole
 								@endforelse
 							</div>
@@ -206,7 +219,7 @@
             <tr class="bg-gray-200">
                 <!-- <th class="border-b  border">11</th> -->
                 <th class="border-b  border">Mulkchilik turi</th>
-                <th class="border-b  border"> Tashkiotni saqlash harajatlarining moliyalashtirish manbasi</th>
+                <th class="border-b  border"> Tashkilotni saqlash harajatlarining moliyalashtirish manbasi</th>
             </tr>
             
             <tr>
@@ -216,7 +229,7 @@
             </tr>
             <tr class="bg-gray-200">
                 <!-- <th class="border-b  border">13</th> -->
-                <th class="border-b  border">Shtst birligi soni</th>
+                <th class="border-b  border">Shtat birligi soni</th>
                 <th class="border-b  border">Xodimlar soni</th>
             </tr>
             <tr>
@@ -227,7 +240,7 @@
             <tr class="bg-gray-200">
                 <!-- <th class="border-b  border">15</th> -->
                 <th class="border-b  border">Ilmiy xodimlar soni</th>
-                <th class="border-b  border">Boshqariv tuzilmasi</th>
+                <th class="border-b  border">Boshqaruv tuzilmasi</th>
             </tr>
             <tr>
                 <!-- <th class="border-b  border">16</th> -->
@@ -237,7 +250,7 @@
             <tr class="bg-gray-200">
                 <!-- <th class="border-b  border">17</th> -->
                 <th class="border-b  border">STIR raqami </th>
-                <th class="border-b  border">Xizmat ko'rsatuvch bank</th>
+                <th class="border-b  border">Xizmat ko'rsatuvchi bank</th>
             </tr>
             <tr>
                 <!-- <th class="border-b  border">18</th> -->

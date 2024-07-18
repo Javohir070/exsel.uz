@@ -28,14 +28,14 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi mavjud bo‘lsa: raqami
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa raqami )
                     </label>
                     <input type="text" name="intellektual_raqami" value="{{ $xujalik->intellektual_raqami }}" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi mavjud bo‘lsa: sanasi
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa sanasi )
                     </label>
                     <input type="text" name="intellektual_sana" value="{{ $xujalik->intellektual_sana }}" id="datepicker" class="datepicker input w-full border mt-2" required="">
                 </div>
@@ -53,7 +53,7 @@
                     </label>
                     <select name="ishlanma_turi"  id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Loyiha turi tanlang</option>
+                        <option>Loyiha turini tanlang</option>
 
                         <option value="Amaliy" {{ $xujalik->ishlanma_turi == "Amaliy" ? "selected" : ""}}>Amaliy</option>
 
@@ -68,11 +68,11 @@
                     </label>
                     <select name="lisenzion"  id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>shartnoma turi tanlang</option>
+                        <option>shartnoma turini tanlang</option>
 
-                        <option value="xo‘jalik shartnomasi" {{ $xujalik->lisenzion == "xo‘jalik shartnomasi" ? "selected" : ""}}>xo‘jalik shartnomasi</option>
+                        <option value="Xo‘jalik shartnomasi" {{ $xujalik->lisenzion == "Xo‘jalik shartnomasi" ? "selected" : ""}}>Xo‘jalik shartnomasi</option>
 
-                        <option value="litsenziya shartnomasi " {{ $xujalik->lisenzion == "litsenziya shartnomasi" ? "selected" : ""}}>litsenziya shartnomasi</option>
+                        <option value="Litsenziya shartnomasi " {{ $xujalik->lisenzion == "Litsenziya shartnomasi" ? "selected" : ""}}>Litsenziya shartnomasi</option>
 
                     </select>
                 </div>
@@ -107,7 +107,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> shartnoma summasi (mln.so‘m)
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma summasi (mln.so‘m)
                     </label>
                     <input type="text" name="sh_summa" value="{{ $xujalik->sh_summa }}" class="input w-full border mt-2" required="">
                 </div>

@@ -4,11 +4,16 @@
 
     <h2 class="intro-y text-lg font-medium">Users qo'shish </h2>
 
-    @can('create user')
+    @role('admin')
+        <a href="/" class="button w-24 bg-theme-1 text-white">
+            Orqaga
+        </a>
+    @endrole
+    @role('super-admin')
         <a href="{{ url('users') }}" class="button w-24 bg-theme-1 text-white">
             Orqaga
         </a>
-    @endcan
+    @endrole
 </div>
 
 
@@ -30,7 +35,7 @@
                 @role('super-admin')
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkilotga masul shaxs F.I.Sh
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkilotga mas'ul shaxs F.I.Sh
                         </label>
                         <input type="text" name="name" class="input w-full border mt-2" required="" >
                     </div>
@@ -38,12 +43,12 @@
                  @role('admin')
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Name
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkilot malumotlar to'ldirish uchun mas'ul shaxs F.I.Sh
                         </label>
                         <input type="text" name="name" class="input w-full border mt-2" >
                     </div>
                   @endrole  
-                    @role('admin12')
+                    @role('admin1212')
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xodimlar

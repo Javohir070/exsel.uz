@@ -25,6 +25,8 @@ class HomeController extends Controller
         $tashkiot_haqida = auth()->user()->tashkilot;
         $tashRId = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where('tashkilot_id', $tashRId)->get()->count();
+        $loyiha_count = IlmiyLoyiha::where('tashkilot_id', $tashRId)->get()->count();
+
 
 
         $users = User::where('tashkilot_id',$tashRId)->with('roles')->get();
@@ -49,7 +51,8 @@ class HomeController extends Controller
             'xodimlar' => $xodimlar,
             'tash_count' => $tash_count,
             'loy_count' => $loy_count,
-            'admins' => $admins
+            'admins' => $admins,
+            'loyiha_count' => $loyiha_count
          ]);
     }
 }

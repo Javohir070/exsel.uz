@@ -27,7 +27,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> JSHSHIR
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Jshshir
                     </label>
                     <input type="text" name="jshshir" class="input w-full border mt-2" required="">
                 </div>
@@ -46,7 +46,7 @@
                     </label>
                     <select name="jinsi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="">Jinsi tanlang</option>
+                        <option value="">Jinsni tanlang</option>
 
                         <option value="Erkak">Erkak</option>
 
@@ -61,7 +61,7 @@
                     </label>
                     <select name="ish_tartibi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="">Ish tartibi tanlang</option>
+                        <option value="">Ish tartibini tanlang</option>
 
                         <option value="Asosiy">Asosiy</option>
 
@@ -78,7 +78,7 @@
                     </label>
                     <select name="shtat_birligi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="">Shtat birligi tanlang</option>
+                        <option value="">Shtat birligini tanlang</option>
 
                         <option value="0.25">0.25</option>
 
@@ -100,7 +100,7 @@
                     </label>
                     <select name="lavozimi" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="">Lavozimi tanlang</option>
+                        <option value="">Lavozini tanlang</option>
                         <option value="Matbuot kotibi">Matbuot kotibi</option> 
                         <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option> 
                         <option value="Qorovul">Qorovul</option>
@@ -154,7 +154,7 @@
                     <label class="flex flex-col sm:flex-row">  Ilmiy darajasi</label>
                     <select name="ilmiy_daraja" id="science-sub-category" class="input border w-full mt-2">
 
-                        <option value="">Ilmiy darajasi tanlang</option>
+                        <option value="">Ilmiy darajasni tanlang</option>
 
                         <option value="Fan nomzodi">Fan nomzodi</option>
 
@@ -180,7 +180,7 @@
                     </label>
                     <select name="ilmiy_unvoni" id="science-sub-category" class="input border w-full mt-2">
 
-                        <option value="">Ilmiy unvoni tanlang</option>
+                        <option value="">Ilmiy unvonini tanlang</option>
 
                         <option value="Professor">Professor</option>
 

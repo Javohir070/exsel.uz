@@ -34,7 +34,7 @@
             @csrf
             @method('PUT')
             <div class="grid grid-cols-12 gap-2">
-                @role('super-admin')
+                @role(['super-admin', 'admin'])
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Name
@@ -42,7 +42,7 @@
                         <input type="text" name="name" value="{{ $user->name }}" class="input w-full border mt-2" >
                     </div>
                 @endrole
-                    @role('admin')
+                    @role('admin121')
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xodimlar
@@ -60,7 +60,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Email
                         </label>
-                        <input type="email" name="email" value="{{ $user->email }}" readonly class="input w-full border mt-2" required="">
+                        <input type="email" name="email"  value="{{ $user->email }}" readonly  class="input w-full border mt-2" required="">
                     </div>
 
                     <div class="w-full col-span-6">

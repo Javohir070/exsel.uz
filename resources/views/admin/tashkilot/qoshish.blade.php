@@ -20,14 +20,17 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot nomi
                     </label>
-                    <input type="text" name="name" class="input w-full border mt-2" required="">
+                    <input type="text" name="name" value="{{ old('name') }}" class="input w-full border mt-2" required="">
+                    @error('name')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Id raqami
                     </label>
-                    <input type="text" name="id_raqam" class="input w-full border mt-2" required="">
+                    <input type="text" name="id_raqam" value="{{ old('id_raqam') }}" class="input w-full border mt-2" required="">
                     @error('id_raqam')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -35,9 +38,9 @@
             </div><br>
         </form>
         <div class="px-5 pb-5 text-center">
-            <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+            <a href="{{ route('tashkilotlar.index') }}" type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
-            </button>
+            </a>
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
                 Qo'shish

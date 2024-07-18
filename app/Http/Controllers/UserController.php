@@ -108,6 +108,11 @@ class UserController extends Controller
         $user = User::findOrFail($userId);
         $user->delete();
 
-        return redirect('/users')->with('status','User Delete Successfully');
+        return redirect()->back()->with('status','User Delete Successfully');
+    }
+
+    public function profileview()
+    {
+        return view('admin.profile.index');
     }
 }

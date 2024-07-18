@@ -1,12 +1,12 @@
 <nav class="side-nav">
     <a href="" class="intro-x flex items-center pl-5 pt-4">
         <img width="40px" alt="Midone Tailwind HTML Admin Template" class="w-10" src="/admin/dist/images/logo.png">
-        <span class="hidden xl:block text-white text-lg ml-3" style="font-size: 12px; "> Ilmiy tadqiqot muassasalari faoliyat monitoring tizimi </span>
+        <span class="hidden xl:block text-white text-lg ml-3" style="font-size: 12px; "> Ilmiy-innovatsion faoliyat monitoringi tizimi </span>
     </a>
     <div class="side-nav__devider my-6"></div>
 
     @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
-			<a href="" class=" items-center ">
+			<a href="/" class=" items-center ">
 				<img width="" style="text-align: center;margin: 10px auto;width: 70%;" alt=""  src="{{ asset('storage/'. auth()->user()->tashkilot->logo)  }}">
 				<span class="hidden xl:block text-white text-lg ml-3" style="font-size: 18px; text-align: center;"> {{ auth()->user()->tashkilot->name }}</span>
 			</a><br>
@@ -15,7 +15,7 @@
         <li>
             <a href="{{ route("home.index") }}" class="side-menu side-menu{{ request()->is('/*') ? '--active':'' }}" >
                 <div class="side-menu__icon"> <i data-feather="home"></i> </div>
-                <div class="side-menu__title"> Dashboard </div>
+                <div class="side-menu__title"> Bosh  sahifa</div>
             </a>
         </li>
     <!-- start superadmin -->
@@ -57,7 +57,7 @@
     @role('super-admin')
         <li>
             <a href="{{ route("xodim.barchaXodimlar") }}" class="side-menu side-menu{{ request()->is('xodim*') ? '--active':'' }}">
-                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                 <div class="side-menu__title"> Xodimlar </div>
             </a>
         </li>
@@ -144,7 +144,7 @@
                 <li>
                     <a href="{{ route('tashkilot.index') }}" class="side-menu side-menu{{ request()->is('tashkilot*') ? '--active':'' }}">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Tashkilot pasportini tuldirish </div>
+                        <div class="side-menu__title"> Tashkilot pasportini to'ldirish </div>
                     </a>
                 </li>
                 <li>
@@ -167,7 +167,7 @@
     @role(['admin','Xodimlar_uchun_masul'])
         <li>
             <a href="{{ route('xodimlar.index') }}" class="side-menu side-menu{{ request()->is('xodimlar*') ? '--active':'' }}">
-                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                 <div class="side-menu__title"> Xodimlar </div>
             </a>
         </li>
@@ -177,7 +177,7 @@
         <li>
             <a href="{{ route("ilmiyloyiha.index") }}" class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
-                <div class="side-menu__title"> Ilmiy loyihalalar </div>
+                <div class="side-menu__title"> Ilmiy loyihalar </div>
             </a>
         </li>
     @endrole
@@ -186,7 +186,7 @@
     <li>
         <a href="{{ route("xujalik.index") }}" class="side-menu side-menu{{ request()->is('xujalik*') ? '--active':'' }}">
             <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
-            <div class="side-menu__title"> Xo'jalik loyihalalar </div>
+            <div class="side-menu__title"> Xo'jalik loyihalar </div>
         </a>
     </li>
     @endrole
@@ -195,7 +195,7 @@
     <li>
         <a href="{{ route("ilmiydaraja.index") }}" class="side-menu side-menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}">
             <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
-            <div class="side-menu__title"> Ilmiy loyiha bilan taminlangami </div>
+            <div class="side-menu__title"> Ilmiy loyiha bilan ta'minlangami </div>
         </a>
     </li>
     @endrole

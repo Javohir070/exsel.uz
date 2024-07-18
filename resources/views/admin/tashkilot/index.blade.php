@@ -102,7 +102,7 @@
                         </tr>
                         <tr class="bg-gray-200">
                             <!-- <th class="border-b  border">13</th> -->
-                            <th class="border-b  border">Shtst birligi soni</th>
+                            <th class="border-b  border">Shtat birligi soni</th>
                             <th class="border-b  border">Xodimlar soni</th>
                         </tr>
                         <tr>

@@ -15,12 +15,9 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PermissionController;
-use App\Http\Controllers\SiteController;
 use App\Http\Controllers\TashkilotRahbariController;
 use App\Http\Controllers\XodimlarController;
-use App\Models\IqtisodiyMoliyaviy;
-use App\Models\Xodimlar;
-
+use App\Http\Controllers\SearchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,14 +34,17 @@ use App\Models\Xodimlar;
 
 
 
+
 Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home.index');
-Route::get('/export', [ExportController::class, 'export']);
-Route::get('/exportilmiy', [IlmiyLoyihaController::class, 'exportilmiy']);
-Route::get('/exportashkiot', [TashkilotController::class, 'exporttashkilot']);
 Route::middleware('auth')->group(function () {
+    Route::get('/export', [ExportController::class, 'export']);
+    Route::get('/exportilmiy', [IlmiyLoyihaController::class, 'exportilmiy']);
+    // Route::get('/search', [SearchController::class, 'search'])->name('search');
+    Route::get('/exportashkiot', [TashkilotController::class, 'exporttashkilot']);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/profileview', [UserController::class, 'profileview'])->name('profileview.index');
 });
 Route::middleware('auth')->group(function () {
     Route::get('/tashkilotlar',[TashkilotController::class,'tashkilotlar'])->name('tashkilotlar.index');
@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/ilmiyloyihalar',[IlmiyLoyihaController::class, 'ilmiyloyihalar'])->name('ilmiyloyihalar.index');
     Route::get('/xujaliklar',[xujalikController::class, 'xujaliklar'])->name('xujaliklar.index');
     Route::get('/ilmiydarajalar',[IlmiybnTaminlangaController::class, 'ilmiydarajalar'])->name('ilmiydarajalar.index');
-    Route::get('/search', [TashkilotController::class, 'search'])->name('search');
+    // Route::get('/search', [TashkilotController::class, 'search'])->name('search');
     
     Route::resources([
         'tashkilot' => TashkilotController::class,
@@ -65,8 +65,7 @@ Route::middleware('auth')->group(function () {
         'ilmiyloyiha' => IlmiyLoyihaController::class,
         'xujalik' => XujalikController::class,
         'ilmiydaraja' => IlmiybnTaminlangaController::class,
-]);
-
+    ]);
 });
 Route::group(['middleware' => ['role:super-admin|admin']], function() {
 

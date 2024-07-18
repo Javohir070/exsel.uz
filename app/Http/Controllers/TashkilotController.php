@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Exports\TashkilotExport;
 use App\Models\Tashkilot;
 use Illuminate\Http\Request;
+use App\Exports\TashkilotExport;
+use App\Http\Requests\StoreTashkilotRequest;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TashkilotController extends Controller
@@ -41,12 +42,12 @@ class TashkilotController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreTashkilotRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'id_raqam' => 'required|unique:tashkilots',
-        ]);
+        // $request->validate([
+        //     'name' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
+        //     'id_raqam' => 'required|unique:tashkilots',
+        // ]);
 
         if($request->hasFile('logo')){
             $name = $request->file('logo')->getClientOriginalName();

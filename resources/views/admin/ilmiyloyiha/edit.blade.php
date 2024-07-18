@@ -23,14 +23,14 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha mavzusi
                     </label>
-                    <input type="text" name="mavzusi" value="{{ $ilmiyloyiha->mavzusi }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="mavzusi" value="{{ $ilmiyloyiha->mavzusi }}" readonly class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha turi
                     </label>
-                    <select name="turi"  id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="turi"  id="science-sub-category" readonly class="input border w-full mt-2" required="">
 
                         <option>Loyiha turi tanlang</option>
 
@@ -116,7 +116,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning boshlanish sanasi
                     </label>
 
-                    <input type="text" id="datepicker" name="bosh_sana" value="{{ $ilmiyloyiha->tug_sana }}" class="datepicker input w-full border mt-2" required="">
+                    <input type="text"  name="bosh_sana" value="{{ $ilmiyloyiha->tug_sana }}" class=" input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -124,7 +124,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning tugash sanasi
                     </label>
 
-                    <input type="text" id="datepicker" name="tug_sana" value="{{ $ilmiyloyiha->tug_sana }}" class="datepicker input w-full border mt-2" required="">
+                    <input type="text"  name="tug_sana" value="{{ $ilmiyloyiha->tug_sana }}" class=" input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -153,7 +153,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha rahbarining F.I.Sh.
                     </label>
                     
-                    <input type="text" name="rahbar_name" value="{{ $ilmiyloyiha->rahbar_name }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="rahbar_name" value="{{ $ilmiyloyiha->rahbar_name }}" readonly class="input w-full border mt-2" required="">
 
                 </div>
 
@@ -176,7 +176,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma summasi (ming so‘mda) 
                     </label>
-                    <input type="text" name="sum" value="{{ $ilmiyloyiha->sum }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="sum" value="{{ $ilmiyloyiha->sum }}" readonly class="input w-full border mt-2" required="">
                 </div>
 
 
