@@ -21,6 +21,7 @@ class HomeController extends Controller
     { 
         $tash_count = Tashkilot::count();
         $loy_count = IlmiyLoyiha::count();
+        $xodim_count = Xodimlar::count();
         $admins = User::count();
         $tashkiot_haqida = auth()->user()->tashkilot;
         $tashRId = auth()->user()->tashkilot_id;
@@ -52,7 +53,8 @@ class HomeController extends Controller
             'tash_count' => $tash_count,
             'loy_count' => $loy_count,
             'admins' => $admins,
-            'loyiha_count' => $loyiha_count
+            'loyiha_count' => $loyiha_count,
+            'xodim_count' => $xodim_count
          ]);
     }
 }

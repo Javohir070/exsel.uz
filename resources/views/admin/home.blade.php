@@ -60,7 +60,7 @@
                                     <div class="flex">
                                         <i data-feather="user" class="report-box__icon text-theme-9"></i>
                                     </div>
-                                    <div class="text-3xl font-bold leading-8 mt-6">20</div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $xodim_count }}</div>
                                     <div class="text-base text-gray-600 mt-1">Xodimlar</div>
                                 </div>
                             </div>
