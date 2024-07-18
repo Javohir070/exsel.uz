@@ -17,7 +17,7 @@ class XodimlarController extends Controller
     public function index()
     {
         $user_id = auth()->user()->tashkilot_id;
-        $xodimlar = Xodimlar::where("tashkilot_id",$user_id)->latest()->get();
+        $xodimlar = Xodimlar::where("tashkilot_id",$user_id)->latest()->paginate(15);
 
         return view('admin.xodimlar.index',['xodimlars'=>$xodimlar]);
     }
@@ -125,7 +125,7 @@ class XodimlarController extends Controller
 
     public function barcha_xodimlar()
     {
-       $xodimlar_barchasi = Xodimlar::all();
+       $xodimlar_barchasi = Xodimlar::paginate(25);
         
        return view("admin.xodimlar.xodimlar",['xodimlar_barchasi'=>$xodimlar_barchasi]);
     }

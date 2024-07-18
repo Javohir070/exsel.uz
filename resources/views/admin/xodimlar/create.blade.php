@@ -133,6 +133,7 @@
                         <option value="Bog‘bon">Bog‘bon</option> 
                         <option value="Mutaxassis">Mutaxassis</option> 
                         <option value="Ishlab chiqarish bo‘yicha direktor o‘rinbosari">Ishlab chiqarish bo‘yicha direktor o‘rinbosari</option> 
+                        <option value="Expert">Expert</option> 
                         <option value="Boshqa">Boshqa</option> 
 
 
