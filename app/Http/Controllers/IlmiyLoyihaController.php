@@ -123,7 +123,7 @@ class IlmiyLoyihaController extends Controller
             "tashkilot_id" => auth()->user()->tashkilot_id,
             "umumiyyil_id" =>$umumiyyil->id,
             "mavzusi" => $request->mavzusi,
-            "turi" => $request->turi,
+            "turi" => $request->turi ?? "yo'q",
             "dastyri" => $request->dastyri,
             "q_hamkor_tashkilot" => $request->q_hamkor_tashkilot ?? "yo'q",
             "hamkor_davlat" => $request->hamkor_davlat ?? "yo'q",
