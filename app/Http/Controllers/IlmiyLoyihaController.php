@@ -173,4 +173,14 @@ class IlmiyLoyihaController extends Controller
 
         return Excel::download(new IlmiyLoyihasExport, 'ilmiy.xlsx');
     }
+
+    public function searchloyiha(Request $request)
+    {
+        $querysearch = $request->input('query');
+        $ilmiyloyiha = IlmiyLoyiha::where('mavzusi','like','%'.$querysearch.'%')
+                ->orWhere('turi','like','%'.$querysearch.'%')
+                ->orWhere('rahbar_name','like','%'.$querysearch.'%')
+                ->paginate(10);
+        return view('admin.ilmiyloyiha.search_results', compact('ilmiyloyiha'));
+    }
 }

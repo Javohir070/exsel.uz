@@ -57,6 +57,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/xujaliklar',[xujalikController::class, 'xujaliklar'])->name('xujaliklar.index');
     Route::get('/ilmiydarajalar',[IlmiybnTaminlangaController::class, 'ilmiydarajalar'])->name('ilmiydarajalar.index');
     Route::get('/search', [TashkilotController::class, 'search'])->name('search');
+    Route::get('/searchloyiha', [IlmiyLoyihaController::class, 'searchloyiha'])->name('searchloyiha');
     
     Route::resources([
         'tashkilot' => TashkilotController::class,
