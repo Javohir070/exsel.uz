@@ -82,11 +82,20 @@
                         </label>
                         <select name="roles[]" class="input border w-full mt-2" required="">
                             <option value=""> Role tanlash</option>
-                            @foreach ($roles as $role)
-                              @if ($role !== 'super-admin')
-                                <option value="{{ $role }}">{{ $role }}</option>
-                              @endif
-                            @endforeach
+                            @role('admin')
+                                @foreach ($roles as $role)
+                                @if ($role !== 'super-admin' && $role !== 'admin')
+                                    <option value="{{ $role }}">{{ $role }}</option>
+                                @endif
+                                @endforeach
+                            @endrole
+                            @role('super-admin')
+                                @foreach ($roles as $role)
+                                @if ($role !== 'super-admin')
+                                    <option value="{{ $role }}">{{ $role }}</option>
+                                @endif
+                                @endforeach
+                            @endrole
                         </select>
                         @error('roles')
                             <div class="error">{{ $message }}</div>
