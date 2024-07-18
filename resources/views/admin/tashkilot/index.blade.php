@@ -42,7 +42,7 @@
                         <tr class="bg-gray-200">
                             <!-- <th class="border-b  border">1</th> -->
                             <th class="border-b  border" style="width: 50%;">Tashkilot nomi</th>
-                            <th class="border-b  border" style="width: 50%;">Tashkilot qisqa nomi massalan</th>
+                            <th class="border-b  border" style="width: 50%;">Tashkilot qisqa nomi masalan</th>
                         </tr>
                         <tr>
                             <!-- <th class="border-b  border">2</th> -->

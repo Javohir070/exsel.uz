@@ -23,7 +23,7 @@
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">Ilmiy loyiha nomi</th>
                         <th class="whitespace-no-wrap">Jami xodimlar soni</th>
-                        <th class="whitespace-no-wrap">Ilmiy xodimlar son</th>
+                        <th class="whitespace-no-wrap">Ilmiy xodimlar soni</th>
                         <th class="whitespace-no-wrap">Loyiha turi</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>

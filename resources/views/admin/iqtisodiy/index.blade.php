@@ -114,7 +114,7 @@
                     <td class="border border-2"></td>
                 </tr>
                 @empty
-                    <h2> malumot qo'shish kerak</h2>
+                    <h2> Ma'lumot qo'shish kerak</h2>
                 @endforelse
             </tbody>
         </table>

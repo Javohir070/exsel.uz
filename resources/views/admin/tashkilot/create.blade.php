@@ -89,7 +89,7 @@
                     </label>
                     <select name="turi" id="science-sub-category" class="input border w-full mt-2" >
 
-                        <option>Mulkchilik turi tanlang</option>
+                        <option>Mulkchilik turini tanlang</option>
 
                         <option value="Davlat">Davlat</option>
 
@@ -103,7 +103,7 @@
                     </label>
                     <select name="xarajatlar" id="science-sub-category" class="input border w-full mt-2" >
 
-                        <option>Tashkilotni saqlash harajatlarining moliyalashtirish tanlang</option>
+                        <option>Tashkilotni saqlash harajatlarining moliyalashtirishni manbasini tanlang</option>
 
                         <option value="Davlat byudjeti">Davlat byudjeti</option>
 
@@ -140,7 +140,7 @@
                     </label>
                     <select name="boshqariv" id="science-sub-category" class="input border w-full mt-2" >
 
-                        <option>Boshqariv tuzilmasi tanlang</option>
+                        <option>Boshqariv tuzilmasinu tanlang</option>
 
                         <option value="Derektor">Direktor</option>
 
@@ -159,13 +159,13 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xizmat ko'rsatuvch bank
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xizmat ko'rsatuvchi bank
                     </label>
                     <input type="text" name="bank" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-6">
                     
-                    <label class="flex flex-col sm:flex-row"> <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> logo 
+                    <label class="flex flex-col sm:flex-row"> <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot logosini qo'shing 
                     </label>
                     <input type="file" name="logo" style="padding-left: 0" class="input w-full mt-2">
 

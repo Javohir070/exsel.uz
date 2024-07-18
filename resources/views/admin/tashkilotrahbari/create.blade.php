@@ -27,14 +27,14 @@
                     
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning Email
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning emaili
                         </label>
                         <input type="email" name="email" class="input w-full border mt-2" required="">
                     </div>
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning Telefon raqami
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning telefon raqami
                         </label>
                         <input type="text" name="phone" class="input w-full border mt-2" required="">
                     </div>
@@ -48,7 +48,7 @@
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining email
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining emaili
                         </label>
                         <input type="email" name="u_email" class="input w-full border mt-2" required="">
                     </div>

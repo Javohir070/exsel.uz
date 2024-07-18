@@ -68,7 +68,7 @@
                         </tr>
 
                         @empty
-                            <p> malumot qo'shish kerak</p>
+                            <p> Ma'lumot qo'shish kerak</p>
                         @endforelse
                 </tbody>
             </table>

@@ -32,14 +32,14 @@
                 <li>
                     <a href="{{ route('tashkilotlar.index') }}" class="side-menu side-menu{{ request()->is('tashkilot*') ? '--active':'' }}">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title"> Tashkilot pasportilari </div>
+                        <div class="side-menu__title"> Tashkilot pasportlari </div>
                     </a>
                 </li>
                 
                 <li>
                     <a href="{{ route("tashkilotrahbarilar.index") }}" class="side-menu side-menu{{ request()->is('tashkilotrahbarilar*') ? '--active':'' }}">
                         <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
-                        <div class="side-menu__title">  Tashkilotlar raxbarlari  </div>
+                        <div class="side-menu__title">  Tashkilotlar rahbarlari  </div>
                     </a>
                 </li>
                 
@@ -67,7 +67,7 @@
         <li>
             <a href="{{ route('ilmiyloyihalar.index') }}" class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="side-menu__title"> Ilmiy loyhilalar </div>
+                <div class="side-menu__title"> Ilmiy loyhilar </div>
             </a>
         </li>
     @endrole
@@ -76,7 +76,7 @@
         <li>
             <a href="{{ route('xujaliklar.index') }}" class="side-menu side-menu{{ request()->is('xujalik*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="side-menu__title"> Xujaliklar shartnomalar </div>
+                <div class="side-menu__title"> Xo'jalik shartnomalari </div>
             </a>
         </li>
     @endrole
@@ -85,7 +85,7 @@
         <li>
             <a href="{{ route('ilmiydarajalar.index') }}" class="side-menu side-menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="side-menu__title"> Loyiha bilan taminlangami </div>
+                <div class="side-menu__title"> Loyiha bilan taminlanganmi </div>
             </a>
         </li>
     @endrole
@@ -195,7 +195,7 @@
     <li>
         <a href="{{ route("ilmiydaraja.index") }}" class="side-menu side-menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}">
             <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
-            <div class="side-menu__title"> Ilmiy loyiha bilan ta'minlangami </div>
+            <div class="side-menu__title"> Ilmiy loyiha bilan ta'minlanganmi </div>
         </a>
     </li>
     @endrole

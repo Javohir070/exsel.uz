@@ -5,7 +5,7 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium"> Loyiha bilan taminlangami </h2>
+        <h2 class="intro-y text-lg font-medium"> Loyiha loyiha bilan taminlangami </h2>
 
         <!-- <a href="{{ route("ilmiydaraja.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish
@@ -24,7 +24,7 @@
                         <th class="whitespace-no-wrap">Tashkilot nomi</th>
                         <th class="whitespace-no-wrap">Ilmiy loyiha nomi</th>
                         <th class="whitespace-no-wrap">Loyiha turi</th>
-                        <th class="whitespace-no-wrap">LMoliyalashtirish hajmi </th>
+                        <th class="whitespace-no-wrap">Moliyalashtirish hajmi </th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>

@@ -5,7 +5,7 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Ilmiy Loyiha qo'shish</h2>
+    <h2 class="intro-y text-lg font-medium">Ilmiy loyiha qo'shish</h2>
 
     <style>
         .input-wrapper {
@@ -41,7 +41,7 @@
                 </div>
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot tanlang
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotni tanlang
                     </label>
                     <input type="text" id="search" placeholder="Search..." class="input border w-full mt-2">
 
@@ -56,9 +56,10 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha turi
                     </label>
+                    
                     <select name="turi" value="{{old('turi')}}" id="science-sub12-category" class="input border w-full mt-2" required="">
 
-                        <option value="">Loyiha turi tanlang</option>
+                        <option value="">Loyiha turini tanlang</option>
 
                         <option value="Amaliy">Amaliy</option>
 
@@ -81,7 +82,7 @@
                     </label>
                     <select name="dastyri" value="{{old('dastyri')}}" id="science-sub-category" class="input border w-full mt-2" >
 
-                        <option value="">Loyiha dasturi tanlang</option>
+                        <option value="">Loyiha dasturin tanlang</option>
 
                         <option value="Maqsadli">Maqsadli</option>
 
@@ -115,7 +116,7 @@
                     </label>
                     <select name="muddat" value="{{old('muddat')}}" id="science-sub-category" class="input border w-full mt-2" >
 
-                        <option value="">muddati tanlang</option>
+                        <option value="">muddatin tanlang</option>
 
                         <option value="1">1</option>
 
@@ -162,7 +163,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fan yo‘nalish
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fan-yo‘lish
                     </label>
                     <input type="text"  name="pan_yunalish" value="{{old('pan_yunalish')}}" class=" input w-full border mt-2" required="">
                     
@@ -180,7 +181,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Raqami (shipr)
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Raqami (sifr)
                     </label>
                     <input type="text" name="raqami" value="{{old('raqami')}}" class="input w-full border mt-2" required="">
                     @error('raqami')
@@ -197,7 +198,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma summasi (ming so‘mda) 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma summasi (so‘mda) 
                     </label>
                     <input type="text" name="sum" value="{{old('sum')}}" class="input w-full border mt-2" required="">
                 </div>
@@ -221,7 +222,7 @@
                     </label>
                     <select name="tijoratlashtirish" value="{{old('tijoratlashtirish')}}"  class="input border w-full mt-2" >
 
-                        <option value="">Tijoratlashtirish  tanlang</option>
+                        <option value="">Tijoratlashtirishni  tanlang</option>
 
                         <option value="Tijoratlashtirilgan">Tijoratlashtirilgan</option>
 
@@ -232,42 +233,42 @@
 
                 
                 <div class="w-full col-span-2 " >
-                    <label class="flex flex-col sm:flex-row">  2017 yilda
+                    <label class="flex flex-col sm:flex-row">  2017-yil
                     </label>
                     <input type="text" name="y2017" value="{{old('y2017')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
-                    <label class="flex flex-col sm:flex-row">  2018 yilda
+                    <label class="flex flex-col sm:flex-row">  2018-yil
                     </label>
                     <input type="text" name="y2018" value="{{old('y2018')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
-                    <label class="flex flex-col sm:flex-row">  2019 yilda
+                    <label class="flex flex-col sm:flex-row">  2019-yil
                     </label>
                     <input type="text" name="y2019" value="{{old('y2019')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
-                    <label class="flex flex-col sm:flex-row">  2020 yilda
+                    <label class="flex flex-col sm:flex-row">  2020-yil
                     </label>
                     <input type="text" name="y2020" value="{{old('y2020')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
-                    <label class="flex flex-col sm:flex-row">  2021 yilda
+                    <label class="flex flex-col sm:flex-row">  2021-yil
                     </label>
                     <input type="text" name="y2021" value="{{old('y2021')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
-                    <label class="flex flex-col sm:flex-row">  2022 yilda
+                    <label class="flex flex-col sm:flex-row">  2022-yil
                     </label>
                     <input type="text" name="y2022" value="{{old('y2022')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
-                    <label class="flex flex-col sm:flex-row">  2023 yilda
+                    <label class="flex flex-col sm:flex-row">  2023-yil
                     </label>
                     <input type="text" name="y2023" value="{{old('y2023')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
-                    <label class="flex flex-col sm:flex-row">  2024 yilda
+                    <label class="flex flex-col sm:flex-row">  2024-yil
                     </label>
                     <input type="text" name="y2024" value="{{old('y2024')}}" class="input w-full border mt-2" >
                 </div>

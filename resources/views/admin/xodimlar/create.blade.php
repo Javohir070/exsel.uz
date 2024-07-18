@@ -154,7 +154,7 @@
                     <label class="flex flex-col sm:flex-row">  Ilmiy darajasi</label>
                     <select name="ilmiy_daraja" id="science-sub-category" class="input border w-full mt-2">
 
-                        <option value="">Ilmiy darajasni tanlang</option>
+                        <option value="">Ilmiy darajasini tanlang</option>
 
                         <option value="Fan nomzodi">Fan nomzodi</option>
 
@@ -193,7 +193,7 @@
 
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row">  Ilmiy unvoni Ilmiy unvon olingan
+                    <label class="flex flex-col sm:flex-row"> Ilmiy unvon olingan
                         yili
                     </label>
                     <input type="text" name="ilmiy_unvoni_y" class="input w-full border mt-2">

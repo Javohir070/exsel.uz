@@ -5,7 +5,7 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">Barcha Xodimlar </h2>
+        <h2 class="intro-y text-lg font-medium">Barcha xodimlar </h2>
 
         <!-- <a href="{{ route('xodimlar.create') }}"  class="button w-24 bg-theme-1 text-white">
             Qo'shish
@@ -23,7 +23,7 @@
                         <th class="whitespace-no-wrap">Tashkilot nomi</th>
                         <th class="whitespace-no-wrap">F.I.Sh</th>
                         <th class="whitespace-no-wrap">JSHSHIR</th>
-                        <th class="whitespace-no-wrap">Telepon nomeri</th>
+                        <th class="whitespace-no-wrap">Telefon nomeri</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
