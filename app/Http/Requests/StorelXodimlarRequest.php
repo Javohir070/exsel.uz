@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTashkilotRahbariRequest extends FormRequest
+class StorelXodimlarRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,8 +22,8 @@ class StoreTashkilotRahbariRequest extends FormRequest
     public function rules(): array
     {
         return [
-                'fish' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
-                'u_fish' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
+            'fish' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
+            'jshshir' => 'required|string|min:14|unique:xodimlars',
         ];
     }
 
@@ -32,7 +32,7 @@ class StoreTashkilotRahbariRequest extends FormRequest
         return [
 
             'fish.regex' => 'BU :attribute faqat lotin hariflar bolishi shart.',
-            'u_fish.regex' => 'BU :attribute faqat lotin hariflar bolishi shart.',
+            'jshshir' => 'BU :attribute soz bazada bor.',
         ];
     }
 }

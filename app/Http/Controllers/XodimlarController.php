@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StorelXodimlarRequest;
 use App\Models\Tashkilot;
 use App\Models\Xodimlar;
 use Illuminate\Http\Request;
@@ -33,12 +34,9 @@ class XodimlarController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StorelXodimlarRequest $request)
     {
-        $request->validate([
-            'fish' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
-            'jshshir' => 'required|string|min:14|unique:xodimlars',
-        ]);
+        
 
         Xodimlar::create([
             "user_id" => auth()->id(),

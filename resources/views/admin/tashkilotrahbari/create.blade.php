@@ -22,42 +22,48 @@
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning F.I.Sh
                         </label>
-                        <input type="text" name="fish" class="input w-full border mt-2" required="">
+                        <input type="text" name="fish" value="{{ old('fish') }}" class="input w-full border mt-2" required="">
+                        @error('fish')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning emaili
                         </label>
-                        <input type="email" name="email" class="input w-full border mt-2" required="">
+                        <input type="email" name="email" value="{{ old('email') }}" class="input w-full border mt-2" required="">
                     </div>
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning telefon raqami
                         </label>
-                        <input type="text" name="phone" class="input w-full border mt-2" required="">
+                        <input type="text" name="phone" value="{{ old('phone') }}" class="input w-full border mt-2" required="">
                     </div>
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.O.
                         </label>
-                        <input type="text" name="u_fish" class="input w-full border mt-2" required="">
+                        <input type="text" name="u_fish" value="{{ old('u_fish') }}" class="input w-full border mt-2" required="">
+                        @error('u_fish')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining emaili
                         </label>
-                        <input type="email" name="u_email" class="input w-full border mt-2" required="">
+                        <input type="email" name="u_email" value="{{ old('u_email') }}" class="input w-full border mt-2" required="">
                     </div>
                     
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining  telefon raqami 
                         </label>
-                        <input type="text" name="u_phone" class="input w-full border mt-2" required="">
+                        <input type="text" name="u_phone" value="{{ old('u_phone') }}" class="input w-full border mt-2" required="">
                     </div>
 
                     
