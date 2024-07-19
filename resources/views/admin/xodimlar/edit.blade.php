@@ -122,51 +122,8 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Lavozimi
                     </label>
-                    <select name="lavozimi" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <input type="text" name="lavozimi" value="{{ $xodimlar->lavozimi }}" class="input w-full border mt-2" >
 
-                        <option value="" >Lavozimni tanlang</option>
-                        <option value="Matbuot kotibi" {{ $xodimlar->lavozimi == "Matbuot kotibi" ? "selected" : ""}}>Matbuot kotibi</option> 
-
-                        <option value="Boshqarma boshlig‘i" {{ $xodimlar->lavozimi == "Boshqarma boshlig‘i" ? "selected" : ""}}>Boshqarma boshlig‘i</option> 
-
-                        <option value="Qorovul" {{ $xodimlar->lavozimi == "Qorovul" ? "selected" : ""}}>Qorovul</option>
-
-                        <option value="Buxgalter" {{ $xodimlar->lavozimi == "Buxgalter" ? "selected" : ""}}>Buxgalter</option>
-
-                        <option value="Kotiba" {{ $xodimlar->lavozimi == "Kotiba" ? "selected" : ""}}>Kotiba</option>
-
-                        <option value="Direktor" {{ $xodimlar->lavozimi == "Direktor" ? "selected" : ""}}>Direktor</option>
-
-                        <option value="Buxgalter" {{ $xodimlar->lavozimi == "Buxgalter" ? "selected" : ""}}>Buxgalter</option>
-
-                        <option value="Ilmiy kotib" {{ $xodimlar->lavozimi == "Ilmiy kotib" ? "selected" : ""}}>Ilmiy kotib</option> 
-                        
-                        <option value="Ilmiy ishlar bo‘yicha direktor o‘rinbosari">Ilmiy ishlar bo‘yicha direktor o‘rinbosari</option> 
-                        <option value="Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri">Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri</option> 
-                        <option value="Umumiy masalalar bo‘yicha direktor o‘rinbosari">Umumiy masalalar bo‘yicha direktor o‘rinbosari</option> 
-                        <option value="Bosh buxgalter">Bosh buxgalter</option> 
-                        <option value="Moliya-iqtisod bo‘limi boshlig‘i">Moliya-iqtisod bo‘limi boshlig‘i</option> 
-                        <option value="Bosh muhandis">Bosh muhandis</option> 
-                        <option value="Bosh energetik">Bosh energetik</option> 
-                        <option value="Bosh mexanik">Bosh mexanik</option> 
-                        <option value="Boshqa mutaxassis">Boshqa mutaxassis</option> 
-                        <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option> 
-                        <option value="Yetakchi muhandis">Yetakchi muhandis</option> 
-                        <option value="Bosh ilmiy xodim">Bosh ilmiy xodim</option> 
-                        <option value="Yetakchi ilmiy xodim">Yetakchi ilmiy xodim</option> 
-                        <option value="Katta ilmiy xodim">Katta ilmiy xodim</option> 
-                        <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option> 
-                        <option value="Haydovchi">Haydovchi</option> 
-                        <option value="Hovli supuruvchi">Hovli supuruvchi</option> 
-                        <option value="Farrosh">Farrosh</option> 
-                        <option value="Bog‘bon">Bog‘bon</option> 
-                        <option value="Mutaxassis">Mutaxassis</option> 
-                        <option value="Ishlab chiqarish bo‘yicha direktor o‘rinbosari">Ishlab chiqarish bo‘yicha direktor o‘rinbosari</option>
-                        <option value="Expert">Expert</option> 
-
-                        <option value="Boshqa">Boshqa</option> 
-
-                    </select><br>
                 </div>
 
                 <div class="w-full col-span-6">

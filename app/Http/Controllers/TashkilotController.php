@@ -6,6 +6,7 @@ use App\Models\Tashkilot;
 use Illuminate\Http\Request;
 use App\Exports\TashkilotExport;
 use App\Http\Requests\StoreTashkilotRequest;
+use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TashkilotController extends Controller
@@ -142,7 +143,9 @@ class TashkilotController extends Controller
 
     public function tashkilotlar()
     {
-        $tashkilotlar = Tashkilot::orderBy('id_raqam', 'asc')->paginate(20);
+        $tashkilotlar =Cache::remember('tashkilots', 60, function () {
+            return Tashkilot::orderBy('id_raqam', 'asc')->paginate(20);
+        });
         return view('admin.tashkilot.tashkilotlar',['tashkilotlar'=>$tashkilotlar]);
 
     }

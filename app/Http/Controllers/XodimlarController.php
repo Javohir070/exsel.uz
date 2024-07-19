@@ -6,6 +6,7 @@ use App\Http\Requests\StorelXodimlarRequest;
 use App\Models\Tashkilot;
 use App\Models\Xodimlar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class XodimlarController extends Controller
 {
@@ -18,7 +19,12 @@ class XodimlarController extends Controller
     public function index()
     {
         $user_id = auth()->user()->tashkilot_id;
-        $xodimlar = Xodimlar::where("tashkilot_id",$user_id)->latest()->paginate(15);
+
+        // Kesh kalitini yaratish // Joriy sahifani olish
+        $cacheKey = 'xodimlar_page' . $user_id;
+        $xodimlar = Cache::remember($cacheKey, 60, function () use ($user_id) {
+            return Xodimlar::where("tashkilot_id", $user_id)->latest()->paginate(15);
+        });
 
         return view('admin.xodimlar.index',['xodimlars'=>$xodimlar]);
     }
@@ -37,11 +43,10 @@ class XodimlarController extends Controller
     public function store(StorelXodimlarRequest $request)
     {
         
-
         Xodimlar::create([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
-            "fish" => $request->fish ,
+            "fish" => $request->fish,
             "jshshir" => $request->jshshir ,
             "yil" => $request->yil ,
             "jinsi" => $request->jinsi ,
@@ -60,7 +65,11 @@ class XodimlarController extends Controller
             "phone" => $request->phone,
             "email" => $request->email ,
         ]);
+        $user_id = auth()->user()->tashkilot_id;
 
+        // Kesh kalitini yaratish // Joriy sahifani olish
+        $cacheKey = 'xodimlar_page' . $user_id;
+        Cache::forget($cacheKey);
         return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
@@ -123,8 +132,9 @@ class XodimlarController extends Controller
 
     public function barcha_xodimlar()
     {
-       $xodimlar_barchasi = Xodimlar::paginate(25);
-        
+       $xodimlar_barchasi = Cache::remember('xodimlars', 3600, function () {
+           return Xodimlar::paginate(25);
+        });
        return view("admin.xodimlar.xodimlar",['xodimlar_barchasi'=>$xodimlar_barchasi]);
     }
 }

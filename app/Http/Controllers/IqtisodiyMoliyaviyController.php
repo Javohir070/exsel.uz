@@ -6,6 +6,7 @@ use App\Models\IqtisodiyMoliyaviy;
 use App\Http\Requests\StoreIqtisodiyMoliyaviyRequest;
 use App\Http\Requests\UpdateIqtisodiyMoliyaviyRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class IqtisodiyMoliyaviyController extends Controller
 {
@@ -110,7 +111,9 @@ class IqtisodiyMoliyaviyController extends Controller
 
     public function iqtisodiylar()
     {
-        $iqtisodiylar = IqtisodiyMoliyaviy::all();
+        $iqtisodiylar =Cache::remember('iqtisodiy_moliyaviys', 60, function () {
+            return IqtisodiyMoliyaviy::all();
+        });
         return view("admin.iqtisodiy.iqtisodiylar",['iqtisodiylar'=>$iqtisodiylar]);
     }
 }

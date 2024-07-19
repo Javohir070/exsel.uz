@@ -6,6 +6,7 @@ use App\Models\TashkilotRahbari;
 use App\Http\Requests\StoreTashkilotRahbariRequest;
 use App\Http\Requests\UpdateTashkilotRahbariRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class TashkilotRahbariController extends Controller
 {
@@ -96,7 +97,9 @@ class TashkilotRahbariController extends Controller
 
     public function tashkilotrahbarilar()
     {
-        $tashkilot_rahbarilar = TashkilotRahbari::all();
+        $tashkilot_rahbarilar = Cache::remember('tashkilot_rahbaris', 60, function () {
+            return TashkilotRahbari::all();
+        });
         return view("admin.tashkilotrahbari.tashkilotrahbarilar",['tashkilot_rahbarilar'=>$tashkilot_rahbarilar]);
     }
 }

@@ -7,6 +7,7 @@ use App\Models\Xodimlar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
+use Illuminate\Support\Facades\Cache;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Auth;
 class UserController extends Controller
@@ -21,7 +22,11 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = User::paginate(15);
+        $users = Cache::remember('users', 3600, function () 
+        {
+           return User::paginate(15);
+        });
+            
         return view('role-permission.user.index', ['users' => $users]);
     }
 
