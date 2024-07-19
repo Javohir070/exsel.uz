@@ -9,7 +9,6 @@ use App\Models\Tashkilot;
 use App\Models\Umumiyyil;
 use Illuminate\Http\Request;
 use App\Exports\IlmiyLoyihasExport;
-use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Facades\Excel;
 class IlmiyLoyihaController extends Controller
 {
@@ -19,11 +18,7 @@ class IlmiyLoyihaController extends Controller
     public function index()
     {
         $tashRId = auth()->user()->tashkilot_id;
-        $cacheKey = 'ilmiyloyiha_' . $tashRId;
-
-        $ilmiyloyiha = Cache::remember($cacheKey, 1800, function () use ($tashRId) {
-            return IlmiyLoyiha::where('tashkilot_id', $tashRId)->get();
-        });
+        $ilmiyloyiha = IlmiyLoyiha::where('tashkilot_id', $tashRId)->get();
 
         return view('admin.ilmiyloyiha.index',['ilmiyloyiha'=>$ilmiyloyiha]);
     }
@@ -72,14 +67,11 @@ class IlmiyLoyihaController extends Controller
             "raqami" => $request->raqami,
             "sanasi" => $request->sanasi ?? "yoq",
             "sum" => $request->sum,
-            "umumiy_mablag" =>$request->sum ?? "yoq",
+            "umumiy_mablag" => $request->sum ?? 'yoq',
             "olingan_natija" => $request->olingan_natija ?? "yoq",
             "joriy_holati" => $request->joriy_holati ?? "yoq" ,
             "tijoratlashtirish" => $request->tijoratlashtirish ?? "yoq",
         ]);
-        $tashRId = auth()->user()->tashkilot_id;
-        $cacheKey = 'ilmiyloyiha_' . $tashRId;
-        Cache::forget($cacheKey);
 
         return redirect('/ilmiyloyihalar')->with('status','Ma\'lumotlar muvaffaqiyatli qoshildi');
     }
@@ -134,14 +126,20 @@ class IlmiyLoyihaController extends Controller
             "raqami" => $request->raqami,
             "sanasi" => $request->sanasi,
             "sum" => $request->sum,
-            "umumiy_mablag" => $request->sum ?? 'yoq',
+            "umumiy_mablag" => json_encode([
+                "y2017" => $request->y2017 ?? 0,
+                "y2018" => $request->y2018 ?? 0,
+                "y2019" => $request->y2019 ?? 0,
+                "y2020" => $request->y2020 ?? 0,
+                "y2021" => $request->y2021 ?? 0,
+                "y2022" => $request->y2022 ?? 0,
+                "y2023" => $request->y2023 ?? 0,
+                "y2024" => $request->y2024 ?? 0,
+            ]),
             "olingan_natija" => $request->olingan_natija,
             "joriy_holati" => $request->joriy_holati,
             "tijoratlashtirish" => $request->tijoratlashtirish,
         ]);
-        $tashRId = auth()->user()->tashkilot_id;
-        $cacheKey = 'ilmiyloyiha_' . $tashRId;
-        Cache::forget($cacheKey);
         return redirect('/ilmiyloyiha')->with('status','Ma\'lumotlar muvaffaqiyatli yangilandi');
 
     }
@@ -158,9 +156,7 @@ class IlmiyLoyihaController extends Controller
 
     public function ilmiyloyihalar()
     {
-        $ilmiyloyihalar =Cache::remember('ilmiy_loyihas', 60, function () {
-            return IlmiyLoyiha::paginate(25);
-        });
+        $ilmiyloyihalar = IlmiyLoyiha::paginate(25);
         return view("admin.ilmiyloyiha.ilmiyloyihalar",['ilmiyloyihalar'=>$ilmiyloyihalar]);
     }
     public function exportilmiy() 

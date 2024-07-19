@@ -19,13 +19,7 @@ class XodimlarController extends Controller
     public function index()
     {
         $user_id = auth()->user()->tashkilot_id;
-
-        // Kesh kalitini yaratish // Joriy sahifani olish
-        $cacheKey = 'xodimlar_page' . $user_id;
-        $xodimlar = Cache::remember($cacheKey, 60, function () use ($user_id) {
-            return Xodimlar::where("tashkilot_id", $user_id)->latest()->paginate(15);
-        });
-
+        $xodimlar = Xodimlar::where("tashkilot_id", $user_id)->latest()->paginate(15);
         return view('admin.xodimlar.index',['xodimlars'=>$xodimlar]);
     }
 
@@ -65,11 +59,6 @@ class XodimlarController extends Controller
             "phone" => $request->phone,
             "email" => $request->email ,
         ]);
-        $user_id = auth()->user()->tashkilot_id;
-
-        // Kesh kalitini yaratish // Joriy sahifani olish
-        $cacheKey = 'xodimlar_page' . $user_id;
-        Cache::forget($cacheKey);
         return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
