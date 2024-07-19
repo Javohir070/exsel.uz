@@ -75,6 +75,9 @@
                         </label>
                         <input type="text" name="password" class="input w-full border mt-2" required="">
                     </div>
+                    @error('password')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
