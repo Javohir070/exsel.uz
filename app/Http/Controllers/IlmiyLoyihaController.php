@@ -73,7 +73,7 @@ class IlmiyLoyihaController extends Controller
             "tijoratlashtirish" => $request->tijoratlashtirish ?? "yoq",
         ]);
 
-        return redirect('/ilmiyloyihalar')->with('status','Ma\'lumotlar muvaffaqiyatli qoshildi');
+        return redirect('/ilmiyloyiha')->with('status','Ma\'lumotlar muvaffaqiyatli qoshildi');
     }
 
     /**
@@ -141,7 +141,7 @@ class IlmiyLoyihaController extends Controller
             "joriy_holati" => $request->joriy_holati,
             "tijoratlashtirish" => $request->tijoratlashtirish,
         ]);
-        return redirect('/ilmiyloyiha')->with('status','Ma\'lumotlar muvaffaqiyatli yangilandi');
+        return redirect()->route("ilmiyloyiha.index")->with('status','Ma\'lumotlar muvaffaqiyatli yangilandi');
 
     }
 
