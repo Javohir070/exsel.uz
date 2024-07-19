@@ -112,7 +112,7 @@ class IlmiyLoyihaController extends Controller
         ]);
         $ilmiyloyiha->update([
             "user_id" => auth()->id(),
-            "tashkilot_id" => auth()->user()->tashkilot_id,
+            "tashkilot_id" => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
             "umumiyyil_id" =>$umumiyyil->id,
             "mavzusi" => $request->mavzusi,
             "turi" => $request->turi ?? "yo'q",
