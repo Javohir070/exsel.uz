@@ -39,18 +39,20 @@
                     </label>
                     <input type="text" name="mavzusi" value="{{old('mavzusi')}}" class="input w-full border mt-2" required="">
                 </div>
-                <div class="w-full col-span-6">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotni tanlang
-                    </label>
-                    <input type="text" id="search" placeholder="Search..." class="input border w-full mt-2">
+                @role('super-admin')
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotni tanlang
+                        </label>
+                        <input type="text" id="search" placeholder="Search..." class="input border w-full mt-2">
 
-                    <select name="tashkilot_id" value="{{old('tashkilot_id')}}" id="science-search-category" class="input border w-full mt-2" required="">
-                        @foreach ($tashkilots as $tash)
-                        <option value="{{$tash->id}}">{{ $tash->name }}</option>
-                        @endforeach
-                    </select><br>
-                </div>
+                        <select name="tashkilot_id" value="{{old('tashkilot_id')}}" id="science-search-category" class="input border w-full mt-2" required="">
+                            @foreach ($tashkilots as $tash)
+                            <option value="{{$tash->id}}">{{ $tash->name }}</option>
+                            @endforeach
+                        </select><br>
+                    </div>
+                @endrole
                 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span

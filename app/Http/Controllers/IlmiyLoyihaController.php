@@ -52,7 +52,7 @@ class IlmiyLoyihaController extends Controller
         ]);
         IlmiyLoyiha::create([
             "user_id" => auth()->id(),
-            "tashkilot_id" => $request->tashkilot_id,
+            "tashkilot_id" => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
             "umumiyyil_id" =>$umumiyyil->id,
             "mavzusi" => $request->mavzusi,
             "turi" => $request->turi,
@@ -89,7 +89,8 @@ class IlmiyLoyihaController extends Controller
      */
     public function edit(IlmiyLoyiha $ilmiyloyiha)
     {
-        return view('admin.ilmiyloyiha.edit',['ilmiyloyiha'=>$ilmiyloyiha]);
+        $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
+        return view('admin.ilmiyloyiha.edit',['ilmiyloyiha'=>$ilmiyloyiha,'tashkilots'=>$tashkilots]);
     }
 
     /**
