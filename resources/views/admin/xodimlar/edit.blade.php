@@ -165,6 +165,7 @@
                         <option value="Fan doktori" {{ $xodimlar->ilmiy_daraja == "Fan doktori" ? "selected" : ""}} >Fan doktori</option>
 
                         <option value="Akademik" {{ $xodimlar->ilmiy_daraja == "Akademik" ? "selected" : ""}} >Akademik</option>
+                        <option value="yoq" {{ $xodimlar->ilmiy_daraja == "yoq" ? "selected" : ""}}>yoq</option>
 
                     </select><br>
                 </div>
@@ -191,6 +192,8 @@
                         <option value="Katta ilmiy xodim" {{ $xodimlar->ilmiy_unvoni == "Katta ilmiy xodim" ? "selected" : ""}} >Katta ilmiy xodim</option>
 
                         <option value="Kichik ilmiy xodim" {{ $xodimlar->ilmiy_unvoni == "Kichik ilmiy xodim" ? "selected" : ""}} >Kichik ilmiy xodim</option>
+                        <option value="yoq" {{ $xodimlar->ilmiy_unvoni == "yoq" ? "selected" : ""}}>yoq</option>
+
 
                     </select>
                 </div>
