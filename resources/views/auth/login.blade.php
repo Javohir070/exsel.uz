@@ -7,16 +7,16 @@
                 <div class="hidden xl:flex flex-col min-h-screen">
                 <a href="" class="intro-x flex items-center pl-5 pt-4">
                     <img width="40px" alt="Midone Tailwind HTML Admin Template" class="w-10" src="/admin/dist/images/logo.png">
-                    <span class="hidden xl:block text-white text-lg ml-3 w-40" style="font-size: 12px; "> Ilmiy tadqiqot muassasalari faoliyat monitoring tizimi </span>
+                    <span class="hidden xl:block text-white text-lg ml-3 w-40" style="font-size: 12px; "> Ilmiy-innovatsion faoliyat monitoringi tizimi  </span>
                 </a>
                     <div class="my-auto">
                         <img alt="Midone Tailwind HTML Admin Template" class="-intro-x w-1/2 -mt-16" src="/admin/dist/images/illustration.svg">
                         <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
-                            Ilmiy tadqiqot muassasalari faoliyat monitoring tizimi
+                        Ilmiy-innovatsion faoliyat monitoringi tizimi 
                            
                             
                         </div>
-                        <div class="-intro-x mt-5 text-lg text-white">Barcha elektron tijorat hisoblaringizni bitta joydan boshqaring</div>
+                        <!-- <div class="-intro-x mt-5 text-lg text-white">Barcha elektron tijorat hisoblaringizni bitta joydan boshqaring</div> -->
                     </div>
                 </div>
                 <style>
