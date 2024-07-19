@@ -22,10 +22,7 @@ class UserController extends Controller
 
     public function index()
     {
-        $users = Cache::remember('users', 3600, function () 
-        {
-           return User::paginate(15);
-        });
+        $users =  User::paginate(15);
             
         return view('role-permission.user.index', ['users' => $users]);
     }
