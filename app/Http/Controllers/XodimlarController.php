@@ -121,9 +121,7 @@ class XodimlarController extends Controller
 
     public function barcha_xodimlar()
     {
-       $xodimlar_barchasi = Cache::remember('xodimlars', 3600, function () {
-           return Xodimlar::paginate(25);
-        });
+       $xodimlar_barchasi = Xodimlar::paginate(25);
        return view("admin.xodimlar.xodimlar",['xodimlar_barchasi'=>$xodimlar_barchasi]);
     }
 }

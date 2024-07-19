@@ -97,9 +97,7 @@ class TashkilotRahbariController extends Controller
 
     public function tashkilotrahbarilar()
     {
-        $tashkilot_rahbarilar = Cache::remember('tashkilot_rahbaris', 60, function () {
-            return TashkilotRahbari::all();
-        });
+        $tashkilot_rahbarilar =  TashkilotRahbari::all();
         return view("admin.tashkilotrahbari.tashkilotrahbarilar",['tashkilot_rahbarilar'=>$tashkilot_rahbarilar]);
     }
 }

@@ -143,9 +143,7 @@ class TashkilotController extends Controller
 
     public function tashkilotlar()
     {
-        $tashkilotlar =Cache::remember('tashkilots', 60, function () {
-            return Tashkilot::orderBy('id_raqam', 'asc')->paginate(20);
-        });
+        $tashkilotlar =Tashkilot::orderBy('id_raqam', 'asc')->paginate(20);
         return view('admin.tashkilot.tashkilotlar',['tashkilotlar'=>$tashkilotlar]);
 
     }
