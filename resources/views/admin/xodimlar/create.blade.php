@@ -42,7 +42,8 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tug‘ilgan yili
                     </label>
-                    <input type="text" id="datepicker" name="yil" value="{{ old('yil') }}" class="datepicker input w-full border mt-2" required="">
+                    <!-- <input type="text" id="datepicker" name="yil" value="{{ old('yil') }}" class="datepicker input w-full border mt-2" required=""> -->
+                    <input type="date" id="datepicker" name="yil" value="{{ old('yil') }}"   class=" input w-full border mt-2" required="">
                     
                 </div>
 
