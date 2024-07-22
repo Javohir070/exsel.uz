@@ -39,6 +39,8 @@ class IlmiyLoyihaController extends Controller
     {
         $request->validate([
             'raqami' => 'required|unique:ilmiy_loyihas',
+            'olingan_natija'=> 'required|max:3600',
+            'joriy_holati'=> 'required|max:3600',
         ]);
         $umumiyyil = Umumiyyil::create([
             "y2017" => $request->y2017 ?? 0,
