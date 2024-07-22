@@ -24,6 +24,7 @@ class StorelXodimlarRequest extends FormRequest
         return [
             'fish' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
             'jshshir' => 'required|string|min:14|unique:xodimlars',
+            'lavozimi' => 'required|max:255',
         ];
     }
 
