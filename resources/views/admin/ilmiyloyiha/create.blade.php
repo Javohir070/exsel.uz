@@ -150,7 +150,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning boshlanish sanasi
                     </label>
 
-                    <input type="text"  name="bosh_sana" value="{{old('bosh_sana')}}" class=" input w-full border mt-2" required="">
+                    <input type="date"  name="bosh_sana" value="{{old('bosh_sana')}}" class=" input w-full border mt-2" required="">
 
 
                 </div>
@@ -159,7 +159,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning tugash sanasi
                     </label>
 
-                    <input type="text"  name="tug_sana" value="{{old('tug_sana')}}" class=" input w-full border mt-2" required="">
+                    <input type="date"  name="tug_sana" value="{{old('tug_sana')}}" class=" input w-full border mt-2" required="">
 
 
                 </div>
@@ -196,7 +196,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Tuzilgan shartnoma Sanasi 
                     </label>
-                    <input type="text"  name="sanasi" value="{{old('sanasi')}}" id="datepicker" class="datepicker input w-full border mt-2" >
+                    <input type="date"  name="sanasi" value="{{old('sanasi')}}"  class=" input w-full border mt-2" >
 
                 </div>
 

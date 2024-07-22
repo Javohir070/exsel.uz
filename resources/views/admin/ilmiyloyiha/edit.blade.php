@@ -217,7 +217,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Sanasi 
                     </label>
-                    <input type="text" id="datepicker" name="sanasi" value="{{ $ilmiyloyiha->sanasi }}" class="datepicker input w-full border mt-2" required="">
+                    <input type="text"  name="sanasi" value="{{ $ilmiyloyiha->sanasi }}" class=" input w-full border mt-2" required="">
 
                 </div>
 
