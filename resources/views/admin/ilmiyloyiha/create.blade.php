@@ -82,7 +82,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha dasturi
                     </label>
-                    <select name="dastyri" value="{{old('dastyri')}}" id="science-sub-category" class="input border w-full mt-2" >
+                    <select name="dastyri" value="{{old('dastyri')}}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">Loyiha dasturin tanlang</option>
 
@@ -114,9 +114,10 @@
 
 
                 <div class="w-full col-span-6" >
-                    <label class="flex flex-col sm:flex-row">  Loyihani amalga oshirish muddati (yil) 
+                    <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Loyihani amalga oshirish muddati (yil) 
                     </label>
-                    <select name="muddat" value="{{old('muddat')}}" id="science-sub-category" class="input border w-full mt-2" >
+                    <select name="muddat" value="{{old('muddat')}}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">muddatin tanlang</option>
 
@@ -192,7 +193,8 @@
                 </div>
 
                 <div class="w-full col-span-6 " >
-                    <label class="flex flex-col sm:flex-row">  Tuzilgan shartnoma Sanasi 
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Tuzilgan shartnoma Sanasi 
                     </label>
                     <input type="text"  name="sanasi" value="{{old('sanasi')}}" id="datepicker" class="datepicker input w-full border mt-2" >
 
@@ -208,10 +210,11 @@
                 
 
                 <div class="w-full col-span-6 " >
-                    <label class="flex flex-col sm:flex-row">  Olingan asosiy natija 
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Olingan asosiy natija 
                     </label>
                     <!-- <input type="text" name="olingan_natija" value="{{old('olingan_natija')}}" class="input w-full border mt-2" > -->
-                    <textarea name="olingan_natija" class="input w-full border mt-2" cols="20" rows="5">{{old('olingan_natija')}}</textarea>
+                    <textarea name="olingan_natija" class="input w-full border mt-2" cols="20" rows="5" required="">{{old('olingan_natija')}}</textarea>
 
                     @error('olingan_natija')
                         <div class="error">{{ $message }}</div>
@@ -219,19 +222,21 @@
                 </div>
 
                 <div class="w-full col-span-6 " >
-                    <label class="flex flex-col sm:flex-row">  Joriy etish (Tatbiq etish) holati 
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Joriy etish (Tatbiq etish) holati 
                     </label>
                     <!-- <input type="text" name="joriy_holati" value="{{old('joriy_holati')}}" class="input w-full border mt-2" > -->
-                    <textarea name="joriy_holati" class="input w-full border mt-2" cols="20" rows="5">{{old('joriy_holati')}}</textarea>
+                    <textarea name="joriy_holati" class="input w-full border mt-2" cols="20" rows="5"required="" >{{old('joriy_holati')}}</textarea>
                     @error('joriy_holati')
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
 
                 <div class="w-full col-span-6 " >
-                    <label class="flex flex-col sm:flex-row">  Tijoratlashtirish holati 
+                    <label class="flex flex-col sm:flex-row">  <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tijoratlashtirish holati 
                     </label>
-                    <select name="tijoratlashtirish" value="{{old('tijoratlashtirish')}}"  class="input border w-full mt-2" >
+                    <select name="tijoratlashtirish" value="{{old('tijoratlashtirish')}}"  class="input border w-full mt-2" required="">
 
                         <option value="">Tijoratlashtirishni  tanlang</option>
 

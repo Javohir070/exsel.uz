@@ -120,7 +120,7 @@
                     </label>
                     <select name="muddat"  id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Muddati tanlang</option>
+                        <option value="">Muddati tanlang</option>
 
                         <option value="1" {{ $ilmiyloyiha->muddat == '1' ? 'selected' : '' }}>1</option>
 
@@ -263,7 +263,7 @@
                     </label>
                     <select name="tijoratlashtirish"  id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Tijoratlashtirish  tanlang</option>
+                        <option value="">Tijoratlashtirish  tanlang</option>
 
                         <option value="Tijoratlashtirilgan" {{ $ilmiyloyiha->tijoratlashtirish == "Tijoratlashtirilgan" ? "selected" : ""}}>Tijoratlashtirilgan</option>
 
