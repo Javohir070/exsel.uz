@@ -238,14 +238,18 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Olingan asosiy natija 
                     </label>
-                    <input type="text" name="olingan_natija" value="{{ $ilmiyloyiha->olingan_natija }}" class="input w-full border mt-2" required="">
+                    <!-- <input type="text" name="olingan_natija" value="" class="input w-full border mt-2" required=""> -->
+                    <textarea name="olingan_natija" class="input w-full border mt-2" cols="20" rows="5">{{ $ilmiyloyiha->olingan_natija }}</textarea>
+
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Joriy etish (Tatbiq etish) holati 
                     </label>
-                    <input type="text" name="joriy_holati" value="{{ $ilmiyloyiha->joriy_holati }}" class="input w-full border mt-2" required="">
+                    <!-- <input type="text" name="joriy_holati" value="{{ $ilmiyloyiha->joriy_holati }}" class="input w-full border mt-2" required=""> -->
+                    <textarea name="joriy_holati" class="input w-full border mt-2" cols="20" rows="5">{{ $ilmiyloyiha->joriy_holati }}</textarea>
+
                 </div>
 
                 <div class="w-full col-span-6 ">
