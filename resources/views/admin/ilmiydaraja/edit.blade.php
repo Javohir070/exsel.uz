@@ -55,6 +55,11 @@
                         <option value="Yosh olimlar" {{ $ilmiydaraja->turi == 'Yosh olimlar' ? 'selected' : '' }}>Yosh olimlar</option>
 
                         <option value="Olima ayollar" {{ $ilmiydaraja->turi == 'Olima ayollar' ? 'selected' : '' }}>Olima ayollar</option>
+                        <option value="Fundamental" {{ $ilmiydaraja->turi == 'Fundamental' ? 'selected' : '' }} >Fundamental</option>
+
+                        <option value="Innovatsion" {{ $ilmiydaraja->turi == 'Innovatsion' ? 'selected' : '' }}>Innovatsion</option>
+
+                        <option value="Amaliy" {{ $ilmiydaraja->turi == 'Amaliy' ? 'selected' : '' }}>Amaliy</option>
 
                     </select>
                 </div>

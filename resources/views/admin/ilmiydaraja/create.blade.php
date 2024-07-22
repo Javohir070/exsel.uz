@@ -54,6 +54,11 @@
                         <option value="Yosh olimlar">Yosh olimlar</option>
 
                         <option value="Olima ayollar">Olima ayollar</option>
+
+                        <option value="Fundamental">Fundamental</option>
+
+                        <option value="Innovatsion">Innovatsion</option>
+                        
                         <option value="Amaliy">Amaliy</option>
 
                     </select>
