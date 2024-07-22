@@ -36,7 +36,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa sanasi )
                     </label>
-                    <input type="text" name="intellektual_sana" id="datepicker" class="datepicker input w-full border mt-2" required="">
+                    <input type="date" name="intellektual_sana"  class=" input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -87,7 +87,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma sanasi
                     </label>
-                    <input type="text" name="sh_sanasi" id="datepicker" class="datepicker input w-full border mt-2" required="">
+                    <input type="date" name="sh_sanasi"  class=" input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -115,7 +115,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma bo‘yicha kelib tushgan mablag‘ sanasi
                     </label>
-                    <input type="text" name="shkelib_sana" id="datepicker" class="datepicker input w-full border mt-2" required="">
+                    <input type="date" name="shkelib_sana" class=" input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
