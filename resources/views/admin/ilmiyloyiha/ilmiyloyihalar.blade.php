@@ -97,12 +97,6 @@
 
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
             {{$ilmiyloyihalar->links()}}
-            <select class="w-20 input box mt-3 sm:mt-0">
-                <option>10</option>
-                <option>25</option>
-                <option>35</option>
-                <option>50</option>
-            </select>
         </div>
        
 

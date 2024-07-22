@@ -24,20 +24,21 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ishlanma (mahsulot, tovar, xizmat va ishlar) nomi
                     </label>
                     <input type="text" name="ishlanma_nomi" value="{{ $xujalik->ishlanma_nomi }}" class="input w-full border mt-2" required="">
+                    @error('ishlanma_nomi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa raqami )
+                    <label class="flex flex-col sm:flex-row">  Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa raqami )
                     </label>
-                    <input type="text" name="intellektual_raqami" value="{{ $xujalik->intellektual_raqami }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="intellektual_raqami" value="{{ $xujalik->intellektual_raqami }}" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa sanasi )
+                    <label class="flex flex-col sm:flex-row">  Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa sanasi )
                     </label>
-                    <input type="text" name="intellektual_sana" value="{{ $xujalik->intellektual_sana }}"  class=" input w-full border mt-2" required="">
+                    <input type="text" name="intellektual_sana" value="{{ $xujalik->intellektual_sana }}"  class=" input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -45,6 +46,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ishlanma yaratilgan tadqiqot mavzusi va turi
                     </label>
                     <input type="text" name="ishlanma_mavzu" value="{{ $xujalik->ishlanma_mavzu }}" class="input w-full border mt-2" required="">
+                    @error('ishlanma_mavzu')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -82,6 +86,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma raqami
                     </label>
                     <input type="text" name="sh_raqami" value="{{ $xujalik->sh_raqami }}" class="input w-full border mt-2" required="">
+                    @error('sh_raqami')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -89,6 +96,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma sanasi
                     </label>
                     <input type="text" name="sh_sanasi" value="{{ $xujalik->sh_sanasi }}"  class=" input w-full border mt-2" required="">
+                    @error('sh_sanasi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -96,6 +106,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy yoki innovatsion ishlanmani sotib olish (foydalanish) bo‘yicha shartnoma tuzgan tashkilot yoki korxona nomi
                     </label>
                     <input type="text" name="ilmiy_nomi" value="{{ $xujalik->ilmiy_nomi }}" class="input w-full border mt-2" required="">
+                    @error('ilmiy_nomi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -103,6 +116,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy yoki innovatsion ishlanmani sotib olish (foydalanish) bo‘yicha shartnoma tuzgan tashkilot yoki korxona STIR
                     </label>
                     <input type="text" name="stir" value="{{ $xujalik->stir }}" class="input w-full border mt-2" required="">
+                    @error('stir')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -110,6 +126,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma summasi (mln.so‘m)
                     </label>
                     <input type="text" name="sh_summa" value="{{ $xujalik->sh_summa }}" class="input w-full border mt-2" required="">
+                    @error('sh_summa')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -117,6 +136,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma bo‘yicha kelib tushgan mablag‘ sanasi
                     </label>
                     <input type="text" name="shkelib_sana" value="{{ $xujalik->shkelib_sana }}"  class=" input w-full border mt-2" required="">
+                    @error('shkelib_sana')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -124,6 +146,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma bo‘yicha kelib tushgan mablag‘ summasi
                     </label>
                     <input type="text" name="shkelib_summa" value="{{ $xujalik->shkelib_summa }}" class="input w-full border mt-2" required="">
+                    @error('shkelib_summa')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
             </div>

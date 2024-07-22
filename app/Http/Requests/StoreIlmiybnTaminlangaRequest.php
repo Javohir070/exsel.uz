@@ -11,7 +11,7 @@ class StoreIlmiybnTaminlangaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,12 @@ class StoreIlmiybnTaminlangaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'xodimlar_jami' => "required|max:255",
+            'ilmiy_xodimlar' => "required|max:255",
+            'name' => "required|max:2024",
+            'turi' => "required|max:1024",
+            'moliyal_jami' => "required|max:1024",
+            'xodimganisbat_jami' => "required|max:1024",
         ];
     }
 }

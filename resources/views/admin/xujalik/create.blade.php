@@ -22,35 +22,39 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ishlanma (mahsulot, tovar, xizmat va ishlar) nomi
                     </label>
-                    <input type="text" name="ishlanma_nomi" class="input w-full border mt-2" required="">
+                    <input type="text" name="ishlanma_nomi" value="{{ old('ishlanma_nomi') }}" class="input w-full border mt-2" required="">
+                    @error('ishlanma_nomi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa raqami )
+                    <label class="flex flex-col sm:flex-row">  Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa raqami )
                     </label>
-                    <input type="text" name="intellektual_raqami" class="input w-full border mt-2" required="">
+                    <input type="text" name="intellektual_raqami" value="{{ old('intellektual_raqami') }}" class="input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa sanasi )
+                    <label class="flex flex-col sm:flex-row">  Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa sanasi )
                     </label>
-                    <input type="date" name="intellektual_sana"  class=" input w-full border mt-2" required="">
+                    <input type="date" name="intellektual_sana" value="{{ old('intellektual_sana') }}"  class=" input w-full border mt-2" >
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ishlanma yaratilgan tadqiqot mavzusi va turi
                     </label>
-                    <input type="text" name="ishlanma_mavzu" class="input w-full border mt-2" required="">
+                    <input type="text" name="ishlanma_mavzu" value="{{ old('ishlanma_mavzu') }}" class="input w-full border mt-2" required="">
+                    @error('ishlanma_mavzu')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ishlanma yaratilgan tadqiqot  turi
                     </label>
-                    <select name="ishlanma_turi" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="ishlanma_turi" value="{{ old('ishlanma_turi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">Loyiha turini tanlang</option>
 
@@ -65,7 +69,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma turi
                     </label>
-                    <select name="lisenzion" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="lisenzion" value="{{ old('lisenzion') }}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">shartnoma turini tanlang</option>
 
@@ -80,49 +84,70 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma raqami
                     </label>
-                    <input type="text" name="sh_raqami" class="input w-full border mt-2" required="">
+                    <input type="text" name="sh_raqami" value="{{ old('sh_raqami') }}" class="input w-full border mt-2" required="">
+                    @error('sh_raqami')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma sanasi
                     </label>
-                    <input type="date" name="sh_sanasi"  class=" input w-full border mt-2" required="">
+                    <input type="date" name="sh_sanasi" value="{{ old('sh_sanasi') }}"  class=" input w-full border mt-2" required="">
+                    @error('sh_sanasi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy yoki innovatsion ishlanmani sotib olish (foydalanish) bo‘yicha shartnoma tuzgan tashkilot yoki korxona nomi
                     </label>
-                    <input type="text" name="ilmiy_nomi" class="input w-full border mt-2" required="">
+                    <input type="text" name="ilmiy_nomi" value="{{ old('ilmiy_nomi') }}" class="input w-full border mt-2" required="">
+                    @error('ilmiy_nomi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy yoki innovatsion ishlanmani sotib olish (foydalanish) bo‘yicha shartnoma tuzgan tashkilot yoki korxona STIR
                     </label>
-                    <input type="text" name="stir" class="input w-full border mt-2" required="">
+                    <input type="text" name="stir" value="{{ old('stir') }}" class="input w-full border mt-2" required="">
+                    @error('stir')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma so'mmasi (so‘m)
                     </label>
-                    <input type="text" name="sh_summa" class="input w-full border mt-2" required="">
+                    <input type="text" name="sh_summa" value="{{ old('sh_summa') }}" class="input w-full border mt-2" required="">
+                    @error('sh_summa')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma bo‘yicha kelib tushgan mablag‘ sanasi
                     </label>
-                    <input type="date" name="shkelib_sana" class=" input w-full border mt-2" required="">
+                    <input type="date" name="shkelib_sana" value="{{ old('shkelib_sana') }}" class=" input w-full border mt-2" required="">
+                    @error('shkelib_sana')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma bo‘yicha kelib tushgan mablag‘ so'mmasi
                     </label>
-                    <input type="text" name="shkelib_summa" class="input w-full border mt-2" required="">
+                    <input type="text" name="shkelib_summa" value="{{ old('shkelib_summa') }}" class="input w-full border mt-2" required="">
+                    @error('shkelib_summa')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
             </div>

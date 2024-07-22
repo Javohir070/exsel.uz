@@ -18,7 +18,7 @@ class IlmiyLoyihaController extends Controller
     public function index()
     {
         $tashRId = auth()->user()->tashkilot_id;
-        $ilmiyloyiha = IlmiyLoyiha::where('tashkilot_id', $tashRId)->get();
+        $ilmiyloyiha = IlmiyLoyiha::where('tashkilot_id', $tashRId)->latest()->paginate(20);
 
         return view('admin.ilmiyloyiha.index',['ilmiyloyiha'=>$ilmiyloyiha]);
     }
@@ -35,13 +35,8 @@ class IlmiyLoyihaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreIlmiyLoyihaRequest $request)
     {
-        $request->validate([
-            'raqami' => 'required|unique:ilmiy_loyihas',
-            'olingan_natija'=> 'required|max:3600',
-            'joriy_holati'=> 'required|max:1023',
-        ]);
         $umumiyyil = Umumiyyil::create([
             "y2017" => $request->y2017 ?? 0,
             "y2018" => $request->y2018 ?? 0,
@@ -98,12 +93,8 @@ class IlmiyLoyihaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, IlmiyLoyiha $ilmiyloyiha)
+    public function update(UpdateIlmiyLoyihaRequest $request, IlmiyLoyiha $ilmiyloyiha)
     {
-        $request->validate([
-            'olingan_natija'=> 'required|max:3600',
-            'joriy_holati'=> 'required|max:1023',
-        ]);
 
         $umumiyyil = Umumiyyil::findOrFail($ilmiyloyiha->umumiyyil_id);
         $umumiyyil->update([
@@ -133,16 +124,7 @@ class IlmiyLoyihaController extends Controller
             "raqami" => $request->raqami,
             "sanasi" => $request->sanasi,
             "sum" => $request->sum,
-            "umumiy_mablag" => json_encode([
-                "y2017" => $request->y2017 ?? 0,
-                "y2018" => $request->y2018 ?? 0,
-                "y2019" => $request->y2019 ?? 0,
-                "y2020" => $request->y2020 ?? 0,
-                "y2021" => $request->y2021 ?? 0,
-                "y2022" => $request->y2022 ?? 0,
-                "y2023" => $request->y2023 ?? 0,
-                "y2024" => $request->y2024 ?? 0,
-            ]),
+            "umumiy_mablag" => $request->sum,
             "olingan_natija" => $request->olingan_natija,
             "joriy_holati" => $request->joriy_holati,
             "tijoratlashtirish" => $request->tijoratlashtirish,

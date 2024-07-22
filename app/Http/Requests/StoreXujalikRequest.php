@@ -11,7 +11,7 @@ class StoreXujalikRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,17 @@ class StoreXujalikRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'ishlanma_nomi' => "required|max:1024",
+            'ishlanma_mavzu' => "required|max:2024",
+            'ishlanma_turi' => "required|max:1024",
+            'lisenzion' => "required|max:600",
+            'sh_raqami' => "required|max:255",
+            'sh_sanasi' => "required|max:255",
+            'ilmiy_nomi' => "required|max:1024",
+            'stir' => "required|max:255",
+            'sh_summa' => "required|max:255",
+            'shkelib_sana' => "required|max:255",
+            'shkelib_summa' => "required|max:255",
         ];
     }
 }

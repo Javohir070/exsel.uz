@@ -15,7 +15,7 @@ class XujalikController extends Controller
     public function index()
     {
         $tashRId = auth()->user()->tashkilot_id;
-        $xujalik  = Xujalik::where('tashkilot_id', $tashRId)->get();
+        $xujalik  = Xujalik::where('tashkilot_id', $tashRId)->paginate(20);
         return view('admin.xujalik.index' ,['xujalik' => $xujalik]);
     }
 
@@ -30,15 +30,15 @@ class XujalikController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreXujalikRequest $request)
     {
 
         Xujalik::create([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
             "ishlanma_nomi" =>$request->ishlanma_nomi,
-            "intellektual_raqami" =>$request->intellektual_raqami,
-            "intellektual_sana" =>$request->intellektual_sana ,
+            "intellektual_raqami" =>$request->intellektual_raqami ?? "yoq",
+            "intellektual_sana" =>$request->intellektual_sana ?? "yoq" ,
             "ishlanma_mavzu" =>$request->ishlanma_mavzu ,
             "ishlanma_turi" =>$request->ishlanma_turi ,
             "lisenzion" => $request->lisenzion,
@@ -73,15 +73,15 @@ class XujalikController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Xujalik $xujalik)
+    public function update(StoreXujalikRequest $request, Xujalik $xujalik)
     {
 
         $xujalik->update([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
             "ishlanma_nomi" =>$request->ishlanma_nomi,
-            "intellektual_raqami" =>$request->intellektual_raqami,
-            "intellektual_sana" =>$request->intellektual_sana ,
+            "intellektual_raqami" =>$request->intellektual_raqami ?? "yoq",
+            "intellektual_sana" =>$request->intellektual_sana ?? "yoq",
             "ishlanma_mavzu" =>$request->ishlanma_mavzu ,
             "ishlanma_turi" =>$request->ishlanma_turi ,
             "lisenzion" => $request->lisenzion,
@@ -109,7 +109,7 @@ class XujalikController extends Controller
 
     public function xujaliklar()
     {
-        $xujaliklar = Xujalik::all();
+        $xujaliklar = Xujalik::paginate(25);
         return view('admin.xujalik.ilmiyloyihalar',['xujaliklar'=>$xujaliklar]);
     }
 }

@@ -11,7 +11,7 @@ class UpdateIlmiyLoyihaRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,21 @@ class UpdateIlmiyLoyihaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'olingan_natija'=> 'required|max:3600',
+            'joriy_holati'=> 'required|max:1023',
+            'mavzusi' => "required|max:2024",
+            'turi' => "required|max:1024",
+            'q_hamkor_tashkilot' => "nullable|max:1024",
+            'hamkor_davlat' => "nullable|max:1024",
+            'dastyri' => "required|max:255",
+            'muddat' => "required|max:255",
+            'bosh_sana' => "required|max:255",
+            'tug_sana' => "required|max:255",
+            'pan_yunalish' => "required|max:1024",
+            'rahbar_name' => "required|max:1024",
+            'sanasi' => "required|max:255",
+            'sum' => "required|max:255",
+            'tijoratlashtirish' => "required|max:255",
         ];
     }
 }

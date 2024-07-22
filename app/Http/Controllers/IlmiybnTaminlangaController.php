@@ -17,7 +17,7 @@ class IlmiybnTaminlangaController extends Controller
     public function index()
     {
         $tashRId = auth()->user()->tashkilot_id;
-        $loyihdaraja = IlmiybnTaminlanga::where('tashkilot_id', $tashRId)->get();
+        $loyihdaraja = IlmiybnTaminlanga::where('tashkilot_id', $tashRId)->paginate(20);
         return view('admin.ilmiydaraja.index',['loyihdaraja'=>$loyihdaraja]);
     }
 
@@ -32,7 +32,7 @@ class IlmiybnTaminlangaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreIlmiybnTaminlangaRequest $request)
     {
         $yillar = Yillar::create([
             "y2017" => $request->y2017 ?? 0,
@@ -91,7 +91,7 @@ class IlmiybnTaminlangaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, IlmiybnTaminlanga $ilmiydaraja)
+    public function update(StoreIlmiybnTaminlangaRequest $request, IlmiybnTaminlanga $ilmiydaraja)
     {
         $ilmiybnTaminlanga = $ilmiydaraja;
         $yillar = Yillar::findOrFail($ilmiybnTaminlanga->yillar_id);
@@ -143,7 +143,7 @@ class IlmiybnTaminlangaController extends Controller
 
     public function ilmiydarajalar()
     {
-        $ilmiydarajalar = IlmiybnTaminlanga::all();
+        $ilmiydarajalar = IlmiybnTaminlanga::paginate(25);
 
         return view('admin.ilmiydaraja.ilmiyloyihalar',['ilmiydarajalar'=>$ilmiydarajalar]);
     }

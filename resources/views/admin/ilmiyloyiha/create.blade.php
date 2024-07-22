@@ -38,6 +38,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha mavzusi
                     </label>
                     <input type="text" name="mavzusi" value="{{old('mavzusi')}}" class="input w-full border mt-2" required="">
+                    @error('mavzusi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
                 @role('super-admin')
                     <div class="w-full col-span-6">
@@ -75,6 +78,9 @@
 
 
                     </select>
+                    @error('turi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 
@@ -98,18 +104,27 @@
                         <option value="Xalqaro-qo‘shma">Xalqaro-qo‘shma</option>
 
                     </select><br>
+                    @error('dastyri')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 " >
                     <label class="flex flex-col sm:flex-row">  Qo‘shma loyiha bo‘yicha hamkor tashkilot
                     </label>
                     <input type="text" name="q_hamkor_tashkilot" value="{{old('q_hamkor_tashkilot')}}" class="input w-full border mt-2" >
+                    @error('q_hamkor_tashkilot')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 " >
                     <label class="flex flex-col sm:flex-row">  Xalqaro qo‘shma loyihalardagi hamkor davlat
                     </label>
                     <input type="text" name="hamkor_davlat" value="{{old('hamkor_davlat')}}" class="input w-full border mt-2" >
+                    @error('hamkor_davlat')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
 
@@ -143,6 +158,9 @@
 
 
                     </select><br>
+                    @error('muddat')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -151,7 +169,9 @@
                     </label>
 
                     <input type="date"  name="bosh_sana" value="{{old('bosh_sana')}}" class=" input w-full border mt-2" required="">
-
+                    @error('bosh_sana')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
 
                 </div>
                 <div class="w-full col-span-6 ">
@@ -160,7 +180,9 @@
                     </label>
 
                     <input type="date"  name="tug_sana" value="{{old('tug_sana')}}" class=" input w-full border mt-2" required="">
-
+                    @error('tug_sana')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
 
                 </div>
 
@@ -169,7 +191,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fan-yo‘lish
                     </label>
                     <input type="text"  name="pan_yunalish" value="{{old('pan_yunalish')}}" class=" input w-full border mt-2" required="">
-                    
+                    @error('pan_yunalish')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                     
                 </div>
 
@@ -179,7 +203,9 @@
                     </label>
                     
                     <input type="text" name="rahbar_name" value="{{old('rahbar_name')}}" class="input w-full border mt-2" required="">
-
+                    @error('rahbar_name')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -197,6 +223,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Tuzilgan shartnoma Sanasi 
                     </label>
                     <input type="date"  name="sanasi" value="{{old('sanasi')}}"  class=" input w-full border mt-2" >
+                    @error('sanasi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
 
                 </div>
 
@@ -205,6 +234,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma summasi (so‘mda) 
                     </label>
                     <input type="text" name="sum" value="{{old('sum')}}" class="input w-full border mt-2" required="">
+                    @error('sum')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 
@@ -245,6 +277,9 @@
                         <option value="Tijoratlashtirilmagan">Tijoratlashtirilmagan</option>
 
                     </select><br>
+                    @error('tijoratlashtirish')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 
