@@ -54,6 +54,7 @@
                         <option value="Yosh olimlar">Yosh olimlar</option>
 
                         <option value="Olima ayollar">Olima ayollar</option>
+                        <option value="Amaliy">Amaliy</option>
 
                     </select>
                 </div>
