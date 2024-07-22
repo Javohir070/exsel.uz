@@ -40,7 +40,7 @@ class IlmiyLoyihaController extends Controller
         $request->validate([
             'raqami' => 'required|unique:ilmiy_loyihas',
             'olingan_natija'=> 'required|max:3600',
-            'joriy_holati'=> 'required|max:3600',
+            'joriy_holati'=> 'required|max:1023',
         ]);
         $umumiyyil = Umumiyyil::create([
             "y2017" => $request->y2017 ?? 0,
@@ -100,6 +100,10 @@ class IlmiyLoyihaController extends Controller
      */
     public function update(Request $request, IlmiyLoyiha $ilmiyloyiha)
     {
+        $request->validate([
+            'olingan_natija'=> 'required|max:3600',
+            'joriy_holati'=> 'required|max:1023',
+        ]);
 
         $umumiyyil = Umumiyyil::findOrFail($ilmiyloyiha->umumiyyil_id);
         $umumiyyil->update([

@@ -240,6 +240,9 @@
                     </label>
                     <!-- <input type="text" name="olingan_natija" value="" class="input w-full border mt-2" required=""> -->
                     <textarea name="olingan_natija" class="input w-full border mt-2" cols="20" rows="5">{{ $ilmiyloyiha->olingan_natija }}</textarea>
+                    @error('olingan_natija')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
 
                 </div>
 
@@ -249,7 +252,9 @@
                     </label>
                     <!-- <input type="text" name="joriy_holati" value="{{ $ilmiyloyiha->joriy_holati }}" class="input w-full border mt-2" required=""> -->
                     <textarea name="joriy_holati" class="input w-full border mt-2" cols="20" rows="5">{{ $ilmiyloyiha->joriy_holati }}</textarea>
-
+                    @error('joriy_holati')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
