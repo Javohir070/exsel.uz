@@ -25,6 +25,8 @@ class StoreXujalikRequest extends FormRequest
             'ishlanma_nomi' => "required|max:1024",
             'ishlanma_mavzu' => "required|max:2024",
             'ishlanma_turi' => "required|max:1024",
+            'intellektual_raqami' => "nullable|max:600",
+            'intellektual_sana' => "nullable|max:255",
             'lisenzion' => "required|max:600",
             'sh_raqami' => "required|max:255",
             'sh_sanasi' => "required|max:255",

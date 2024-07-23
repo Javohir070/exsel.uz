@@ -33,12 +33,18 @@
                     <label class="flex flex-col sm:flex-row">  Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa raqami )
                     </label>
                     <input type="text" name="intellektual_raqami" value="{{ $xujalik->intellektual_raqami }}" class="input w-full border mt-2" >
+                    @error('intellektual_raqami')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa sanasi )
                     </label>
                     <input type="text" name="intellektual_sana" value="{{ $xujalik->intellektual_sana }}"  class=" input w-full border mt-2" >
+                    @error('intellektual_sana')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
