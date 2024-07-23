@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StorelXodimlarRequest;
+use App\Http\Requests\UpdateXodimlarRequest;
 use App\Models\Tashkilot;
 use App\Models\Xodimlar;
 use Illuminate\Http\Request;
@@ -81,7 +82,7 @@ class XodimlarController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Xodimlar $xodimlar)
+    public function update(UpdateXodimlarRequest $request, Xodimlar $xodimlar)
     {
         $xodimlar->update([
             "user_id" => auth()->id(),

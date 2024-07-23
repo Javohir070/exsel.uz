@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorelXodimlarRequest extends FormRequest
+class UpdateXodimlarRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,7 @@ class StorelXodimlarRequest extends FormRequest
     {
         return [
             'fish' => ['required','max:600', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
-            'jshshir' => 'required|string|min:14|unique:xodimlars',
+            'jshshir' => 'required|string|min:14',
             'jinsi' => 'required|max:255',
             'yil' => 'required|max:255',
             'ish_tartibi' => 'required|max:1024',
@@ -40,15 +40,6 @@ class StorelXodimlarRequest extends FormRequest
             'ixtisosligi' => 'nullable|max:1024',
             'phone' => 'required|max:255',
             'email' => 'required|max:255',
-        ];
-    }
-
-    public function messages()
-    {
-        return [
-
-            'fish.regex' => 'BU :attribute faqat lotin hariflar bolishi shart.',
-            'jshshir' => 'BU :attribute soz bazada bor.',
         ];
     }
 }

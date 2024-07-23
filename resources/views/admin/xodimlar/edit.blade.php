@@ -24,6 +24,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> F.I.Sh
                     </label>
                     <input type="text" name="fish" value="{{ $xodimlar->fish }}" class="input w-full border mt-2" required="">
+                    @error('fish')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -31,6 +34,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Jshshir
                     </label>
                     <input type="text" name="jshshir" value="{{ $xodimlar->jshshir }}" class="input w-full border mt-2" required="">
+                    @error('jshshir')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -38,6 +44,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tug‘ilgan yili
                     </label>
                     <input type="text" id="datepicker" name="yil" class="datepicker input w-full border mt-2" required="">
+                    @error('yil')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6">
@@ -53,6 +62,9 @@
                         <option value="Ayol" {{ $xodimlar->jinsi == "Ayol" ? "selected" : ""}}>Ayol</option>
 
                     </select><br>
+                    @error('jinsi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6">
@@ -70,6 +82,9 @@
                         <option value="Soatbay" {{ $xodimlar->ish_tartibi == "Soatbay" ? "selected" : ""}} >Soatbay</option>
 
                     </select>
+                    @error('ish_tartibi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6">
@@ -93,13 +108,19 @@
                         <option value="1.5" {{ $xodimlar->shtat_birligi == "1.5" ? "selected" : ""}}>1.5</option>
 
                     </select>
+                    @error('shtat_birligi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> O‘rindoshlik asosida ishlaydigan xodimning asosiy ish joyi
                         bo‘lgan tashkilot
                     </label>
-                    <input type="text" name="urindoshlik_asasida" value="{{ $xodimlar->urindoshlik_asasida }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="urindoshlik_asasida" value="{{ $xodimlar->urindoshlik_asasida }}" class="input w-full border mt-2" >
+                    @error('urindoshlik_asasida')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6">
@@ -116,6 +137,9 @@
                         <option value="yoq" {{ $xodimlar->pedagoglik == "yoq" ? "selected" : ""}}>yoq</option>
 
                     </select>
+                    @error('pedagoglik')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6">
@@ -123,7 +147,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Lavozimi
                     </label>
                     <input type="text" name="lavozimi" value="{{ $xodimlar->lavozimi }}" class="input w-full border mt-2" >
-
+                    @error('lavozimi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6">
@@ -131,6 +157,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ma’lumoti
                     </label>
                     <input type="text" name="malumoti" value="{{ $xodimlar->malumoti }}" class="input w-full border mt-2" required="">
+                    @error('malumoti')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6">
@@ -147,6 +176,9 @@
                         <option value="yoq" {{ $xodimlar->uzbek_panlar_azosi == "yoq" ? "selected" : ""}}>yoq</option>
 
                     </select>
+                    @error('uzbek_panlar_azosi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6">
@@ -167,14 +199,19 @@
                         <option value="Akademik" {{ $xodimlar->ilmiy_daraja == "Akademik" ? "selected" : ""}} >Akademik</option>
                         <option value="yoq" {{ $xodimlar->ilmiy_daraja == "yoq" ? "selected" : ""}}>yoq</option>
 
-                    </select><br>
+                    </select>
+                    @error('ilmiy_daraja')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy daraja olingan yili
+                    <label class="flex flex-col sm:flex-row"> Ilmiy daraja olingan yili
                     </label>
-                    <input type="text" name="ilmiy_daraja_yil" value="{{ $xodimlar->ilmiy_daraja_yil }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="ilmiy_daraja_yil" value="{{ $xodimlar->ilmiy_daraja_yil }}" class="input w-full border mt-2" >
+                    @error('ilmiy_daraja_yil')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6">
@@ -195,13 +232,18 @@
                         
                         <option value="yoq" {{ $xodimlar->ilmiy_unvoni == "yoq" ? "selected" : ""}}>yoq</option>
                     </select>
+                    @error('ilmiy_unvoni')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy unvoni ilmiy unvon olingan
+                    <label class="flex flex-col sm:flex-row">  Ilmiy unvoni ilmiy unvon olingan
                         yili
                     </label>
-                    <input type="text" name="ilmiy_unvoni_y" value="{{ $xodimlar->ilmiy_unvoni_y }}" class="input w-full border mt-2" required="">
+                    <input type="text" name="ilmiy_unvoni_y" value="{{ $xodimlar->ilmiy_unvoni_y }}" class="input w-full border mt-2">
+                    @error('ilmiy_unvoni_y')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -209,6 +251,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ixtisosligi
                     </label>
                     <input type="text" name="ixtisosligi" value="{{ $xodimlar->ixtisosligi }}" class="input w-full border mt-2" required="">
+                    @error('ixtisosligi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -216,6 +261,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telefon
                     </label>
                     <input type="tel" name="phone" value="{{ $xodimlar->phone }}" class="input w-full border mt-2" required="">
+                    @error('phone')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -223,6 +271,9 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Email
                     </label>
                     <input type="email" name="email" value="{{ $xodimlar->email }}" class="input w-full border mt-2" required="">
+                    @error('email')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
                 </div>
 
             </div>
