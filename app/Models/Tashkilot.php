@@ -25,5 +25,8 @@ class Tashkilot extends Model
     {
         return $this->hasMany(TashkilotRahbari::class);
     }
-    
+    public function ilmiyloyhalar()
+    {
+        return $this->hasMany(IlmiyLoyiha::class);
+    }
 }

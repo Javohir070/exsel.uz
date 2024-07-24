@@ -43,7 +43,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tug‘ilgan yili
                     </label>
-                    <input type="text" id="datepicker" name="yil" class="datepicker input w-full border mt-2" required="">
+                    <input type="date"  name="yil" class=" input w-full border mt-2" value="{{ $xodimlar->yil }}" required="">
                     @error('yil')
                         <div class="error">{{ $message }}</div>
                     @enderror

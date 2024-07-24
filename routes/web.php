@@ -18,6 +18,8 @@ use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\TashkilotRahbariController;
 use App\Http\Controllers\XodimlarController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\TashkilotIlmiyController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -66,6 +68,7 @@ Route::middleware('auth')->group(function () {
         'tashkilotrahbari' => TashkilotRahbariController::class,
         'iqtisodiy' => IqtisodiyMoliyaviyController::class,
         'ilmiyloyiha' => IlmiyLoyihaController::class,
+        'tashkilot.ilmiyloyiha' => TashkilotIlmiyController::class,
         'xujalik' => XujalikController::class,
         'ilmiydaraja' => IlmiybnTaminlangaController::class,
     ]);
