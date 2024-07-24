@@ -48,7 +48,7 @@
                     <tr class="intro-x">
                         <td>{{ $xodimlar->tashkilot->id_raqam }}</td>
                         <td>
-                            <a href="#" target="_blank"  class="font-medium">{{ $xodimlar->tashkilot->name }}</a>
+                            <a href="#"   class="font-medium">{{ $xodimlar->tashkilot->name }}</a>
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $xodimlar->mavzusi  }} </a>
