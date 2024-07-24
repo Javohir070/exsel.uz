@@ -54,7 +54,7 @@
                             <a href="" class="font-medium ">{{ $tash->id_raqam  }}</a>
                         </td>
                         <td>
-                            <a href="{{ route('tashkilot.ilmiyloyiha.index',['tashkilot'=>$tashkilots->id]) }}"   class="font-medium">{{ $tash->name }}</a>
+                            <a href="{{ route('tashkilot.ilmiyloyiha.index',['tashkilot'=>$tash->id]) }}"   class="font-medium">{{ $tash->name }}</a>
                         </td>
                         <!-- <td>
                             <a href="" class="font-medium ">{{ $tash->yur_manzil }}</a>
