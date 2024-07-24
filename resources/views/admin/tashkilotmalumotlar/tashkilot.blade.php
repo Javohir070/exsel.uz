@@ -1,34 +1,21 @@
 @extends("layouts.admin")
 @section("content")
-<!-- END: Top Bar -->
-@role('super-admin')
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
             <!-- BEGIN: General Report -->
             <div class="col-span-12 mt-8">
                 <div class="intro-y flex items-center h-10">
                     <h2 class="text-lg font-medium truncate mr-5">
-                        Tashkilot haqida qisqacha malumot
+                        @foreach ( $tashkilot as $tash )
+                            {{ $tash->name }} haqida qisqacha malumot
+                        @endforeach
                     </h2>
                     <a href="" class="ml-auto flex text-theme-1"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i>
                     Ma'lumotlarni qayta yuklash </a>
                 </div>
                 <div class="grid grid-cols-12 gap-6 mt-5">
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <a href="{{ route('tashkilotlar.index') }}">
-                            <div class="report-box zoom-in">
-                                <div class="box p-5">
-                                    <div class="flex">
-                                        <i data-feather="file-text" class="report-box__icon text-theme-10"></i>
-                                    </div>
-                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $tash_count }}</div>
-                                    <div class="text-base text-gray-600 mt-1">Tashkilotlar</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <a href="{{ route('ilmiyloyihalar.index') }}">
+                        <a href="{{ route('tashkilot.ilmiyloyiha.index',['tashkilot'=>$id]) }}">
                             <div class="report-box zoom-in">
                                 <div class="box p-5">
                                     <div class="flex">
@@ -41,7 +28,7 @@
                         </a>
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <a href="{{ route('xujaliklar.index') }}">
+                        <a href="{{ route('tashkilot.xujalik.index',['tashkilot'=>$id]) }}">
                             <div class="report-box zoom-in">
                                 <div class="box p-5">
                                     <div class="flex">
@@ -54,7 +41,7 @@
                         </a>
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <a href="{{ route('ilmiydarajalar.index') }}">
+                        <a href="{{ route('tashkilot.ilmiydaraja.index',['tashkilot'=>$id]) }}">
                             <div class="report-box zoom-in">
                                 <div class="box p-5">
                                     <div class="flex">
@@ -67,7 +54,7 @@
                         </a>
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <a href="{{ url('users') }}">
+                        <a href="{{ route("tashkilot.userlar.index",['tashkilot'=>$id]) }}">
                             <div class="report-box zoom-in">
                                 <div class="box p-5">
                                     <div class="flex">
@@ -80,7 +67,7 @@
                         </a>
                     </div>
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <a href="{{ route("xodim.barchaXodimlar") }}">
+                        <a href="{{ route("tashkilot.xodimlar.index",['tashkilot'=>$id]) }}">
                             <div class="report-box zoom-in">
                                 <div class="box p-5">
                                     <div class="flex">
@@ -96,8 +83,4 @@
             </div>
         </div>
     </div>
-@endrole
-@role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
-    @include('admin.admin')
-@endrole
 @endsection

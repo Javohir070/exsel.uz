@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IlmiybnTaminlanga;
 use App\Models\IlmiyLoyiha;
 use App\Models\IqtisodiyMoliyaviy;
 use App\Models\Tashkilot;
 use App\Models\TashkilotRahbari;
 use App\Models\User;
 use App\Models\Xodimlar;
+use App\Models\Xujalik;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -22,6 +24,8 @@ class HomeController extends Controller
         $tash_count = Tashkilot::count();
         $loy_count = IlmiyLoyiha::count();
         $xodim_count = Xodimlar::count();
+        $xujalik_count = Xujalik::count();
+        $loyiha_bilan_t = IlmiybnTaminlanga::count();
         $admins = User::count();
         $tashkiot_haqida = auth()->user()->tashkilot;
         $tashRId = auth()->user()->tashkilot_id;
@@ -54,7 +58,9 @@ class HomeController extends Controller
             'loy_count' => $loy_count,
             'admins' => $admins,
             'loyiha_count' => $loyiha_count,
-            'xodim_count' => $xodim_count
+            'xodim_count' => $xodim_count,
+            'xujalik_count' => $xujalik_count,
+            'loyiha_bilan_t' => $loyiha_bilan_t
          ]);
     }
 }

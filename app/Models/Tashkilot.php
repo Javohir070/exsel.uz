@@ -29,4 +29,13 @@ class Tashkilot extends Model
     {
         return $this->hasMany(IlmiyLoyiha::class);
     }
+
+    public function xujaliklar()
+    {
+        return $this->hasMany(Xujalik::class);
+    }
+    public function ilmiydarajalar()
+    {
+        return $this->hasMany(Xujalik::class);
+    }
 }

@@ -11,6 +11,6 @@ class TashkilotIlmiyController extends Controller
     {
         $ilmiyloyihas = $tashkilot->ilmiyloyhalar()->paginate(15);
 
-        return view('admin.tashkilot.tashkilotloyiha',['ilmiyloyihas'=>$ilmiyloyihas]);
+        return view('admin.tashkilotmalumotlar.tashkilotloyiha',['ilmiyloyihas'=>$ilmiyloyihas]);
     }
 }

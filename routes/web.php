@@ -8,6 +8,7 @@ use App\Http\Controllers\IlmiyLoyihaController;
 use App\Http\Controllers\IlmiyUnvonController;
 use App\Http\Controllers\IqtisodiyMoliyaviyController;
 use App\Http\Controllers\TashkilotController;
+use App\Http\Controllers\TashkilotUserlarController;
 use App\Http\Controllers\XujalikController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,10 @@ use App\Http\Controllers\TashkilotRahbariController;
 use App\Http\Controllers\XodimlarController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\TashkilotIlmiyController;
+use App\Http\Controllers\TashkilotIlmiydarajaController;
+use App\Http\Controllers\TashkilotMalumotlarController;
+use App\Http\Controllers\TashkilotXodimlarController;
+use App\Http\Controllers\TashkilotXujalikController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,9 +73,14 @@ Route::middleware('auth')->group(function () {
         'tashkilotrahbari' => TashkilotRahbariController::class,
         'iqtisodiy' => IqtisodiyMoliyaviyController::class,
         'ilmiyloyiha' => IlmiyLoyihaController::class,
-        'tashkilot.ilmiyloyiha' => TashkilotIlmiyController::class,
         'xujalik' => XujalikController::class,
         'ilmiydaraja' => IlmiybnTaminlangaController::class,
+        'tashkilotmalumotlar' => TashkilotMalumotlarController::class,
+        'tashkilot.ilmiyloyiha' => TashkilotIlmiyController::class,
+        'tashkilot.xodimlar' => TashkilotXodimlarController::class,
+        'tashkilot.xujalik' => TashkilotXujalikController::class,
+        'tashkilot.ilmiydaraja' => TashkilotIlmiydarajaController::class,
+        'tashkilot.userlar' => TashkilotUserlarController::class
     ]);
 });
 Route::group(['middleware' => ['role:super-admin|admin']], function() {
