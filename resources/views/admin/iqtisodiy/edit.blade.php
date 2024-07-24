@@ -24,6 +24,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkilot kadastr raqami
                         </label>
                         <input type="text" name="kadastr_raqami" value="{{$iqtisodiy->kadastr_raqami}}" class="input w-full border mt-2" required="">
+                        @error('kadastr_raqami')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <div class="w-full col-span-6">
@@ -31,6 +34,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Umumiy maydoni (ga)
                         </label>
                         <input type="text" name="u_maydoni" value="{{$iqtisodiy->u_maydoni}}" class="input w-full border mt-2" required="">
+                        @error('u_maydoni')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -38,6 +44,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Shundan tajriba maydonlari (ga)
                         </label>
                         <input type="text" name="taj_maydonlari" value="{{$iqtisodiy->taj_maydonlari}}" class="input w-full border mt-2" required="">
+                        @error('taj_maydonlari')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -45,6 +54,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Binolar soni
                         </label>
                         <input type="text" name="binolar_soni" value="{{$iqtisodiy->binolar_soni}}" class="input w-full border mt-2" required="">
+                        @error('binolar_soni')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -52,6 +64,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Binolarning auditoriya sig‘imi
                         </label>
                         <input type="text" name="auditoriya_sigimi" value="{{$iqtisodiy->auditoriya_sigimi}}" class="input w-full border mt-2" required="">
+                        @error('auditoriya_sigimi')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <div class="w-full col-span-6">
@@ -59,6 +74,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Katta xajmdagi auditoriyalar soni (150-200 kishilik) 
                         </label>
                         <input type="text" name="k_xaj_auditor_soni" value="{{$iqtisodiy->k_xaj_auditor_soni}}" class="input w-full border mt-2" required="">
+                        @error('k_xaj_auditor_soni')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -66,6 +84,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Ustav fondi miqdori, mln so‘mda
                         </label>
                         <input type="text" name="pondi_miqdori" value="{{$iqtisodiy->pondi_miqdori}}" class="input w-full border mt-2" required="">
+                        @error('pondi_miqdori')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -73,6 +94,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Ilmiy faoliyatni amalga oshiruvchi bo‘linmalar (bo‘lim, kafedra, laboratoriya) soni
                         </label>
                         <input type="text" name="ilmiyp_bulinalar" value="{{$iqtisodiy->ilmiyp_bulinalar}}" class="input w-full border mt-2" required="">
+                        @error('ilmiyp_bulinalar')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="w-full col-span-4">
                         <label class="flex flex-col sm:flex-row"> <span
@@ -87,6 +111,9 @@
                                 <input type="radio" class="input border mr-2"  name="gaz" value="yoq" {{ $iqtisodiy->gaz == 'yoq' ? 'checked' : '' }}>
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
+                            @error('gaz')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -103,6 +130,9 @@
                                 <input type="radio" class="input border mr-2"  name="elektr" value="yoq" {{ $iqtisodiy->elektr == 'yoq' ? 'checked' : '' }}>
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
+                            @error('elektr')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -119,6 +149,9 @@
                                 <input type="radio" class="input border mr-2"  name="suv" value="yoq" {{ $iqtisodiy->suv == 'yoq' ? 'checked' : '' }}>
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
+                            @error('suv')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -135,6 +168,9 @@
                                 <input type="radio" class="input border mr-2"  name="kanalizasiya" value="yoq" {{ $iqtisodiy->kanalizasiya == 'yoq' ? 'checked' : '' }}>
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
+                            @error('kanalizasiya')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -151,12 +187,13 @@
                                 <input type="radio" class="input border mr-2"  name="internet" value="yoq" {{ $iqtisodiy->internet == 'yoq' ? 'checked' : '' }}>
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
+                            @error('internet')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
-                    </div>
-
-                    
-            </div><br>
-        </form><br>
+                    </div>  
+            </div>
+        </form>
         <div class="px-5 pb-5 text-center">
             <a href="{{ route('iqtisodiy.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish

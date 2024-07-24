@@ -11,7 +11,7 @@ class StoreIqtisodiyMoliyaviyRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,19 @@ class StoreIqtisodiyMoliyaviyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'kadastr_raqami' => 'required|max:255',
+            'u_maydoni' => 'required|max:255',
+            'taj_maydonlari' => 'required|max:255',
+            'binolar_soni' => 'required|max:255',
+            'auditoriya_sigimi' => 'required|max:255',
+            'k_xaj_auditor_soni' => 'required|max:255',
+            'pondi_miqdori' => 'required|max:255',
+            'ilmiyp_bulinalar' => 'required|max:255',
+            'gaz' => 'required|max:255',
+            'elektr' => 'required|max:255',
+            'suv' => 'required|max:255',
+            'kanalizasiya' => 'required|max:255',
+            'internet' => 'required|max:255',
         ];
     }
 }

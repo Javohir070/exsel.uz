@@ -24,6 +24,11 @@ class StoreTashkilotRahbariRequest extends FormRequest
         return [
                 'fish' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
                 'u_fish' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
+                'email' => 'required|max:255',
+                'phone' => 'required|max:255',
+                'u_email' => 'required|max:255',
+                'u_phone' => 'required|max:255',
+
         ];
     }
 

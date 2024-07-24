@@ -33,6 +33,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning emaili
                         </label>
                         <input type="email" name="email" value="{{ old('email') }}" class="input w-full border mt-2" required="">
+                        @error('email')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -40,6 +43,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning telefon raqami
                         </label>
                         <input type="text" name="phone" value="{{ old('phone') }}" class="input w-full border mt-2" required="">
+                        @error('phone')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -57,6 +63,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining emaili
                         </label>
                         <input type="email" name="u_email" value="{{ old('u_email') }}" class="input w-full border mt-2" required="">
+                        @error('u_email')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <div class="w-full col-span-6">
@@ -64,6 +73,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining  telefon raqami 
                         </label>
                         <input type="text" name="u_phone" value="{{ old('u_phone') }}" class="input w-full border mt-2" required="">
+                        @error('u_phone')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     
@@ -78,7 +90,7 @@
             </button>
         </div>
     </div>
-</div><br>
+</div>
 
 
 

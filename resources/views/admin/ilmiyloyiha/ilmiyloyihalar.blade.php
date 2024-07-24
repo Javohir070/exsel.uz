@@ -46,7 +46,7 @@
                     @foreach ($ilmiyloyihalar as $xodimlar )
 
                     <tr class="intro-x">
-                        <td>{{$loop->index+1}}</td>
+                        <td>{{ $xodimlar->tashkilot->id_raqam }}</td>
                         <td>
                             <a href="#" target="_blank"  class="font-medium">{{ $xodimlar->tashkilot->name }}</a>
                         </td>

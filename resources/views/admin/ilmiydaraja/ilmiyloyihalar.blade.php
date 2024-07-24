@@ -82,18 +82,9 @@
                 </tbody>
             </table>
         </div>
-
-
-
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
             {{$ilmiydarajalar->links()}}
         </div>
     </div>
-
-
-
-
-
-   
 </div>
 @endsection

@@ -25,6 +25,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning F.I.Sh
                         </label>
                         <input type="text"  name="fish" value="{{$tashkilot->fish}}" class="input w-full border mt-2" required="">
+                        @error('fish')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <div class="w-full col-span-6">
@@ -32,6 +35,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning Email
                         </label>
                         <input type="email" name="email" value="{{$tashkilot->email}}" class="input w-full border mt-2" required="">
+                        @error('email')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -39,6 +45,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning Telefon raqami
                         </label>
                         <input type="text" name="phone" value="{{$tashkilot->phone}}" class="input w-full border mt-2" required="">
+                        @error('phone')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -46,6 +55,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.O.
                         </label>
                         <input type="text" name="u_fish" value="{{$tashkilot->u_fish}}" class="input w-full border mt-2" required="">
+                        @error('u_fish')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -53,6 +65,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining email
                         </label>
                         <input type="email" name="u_email" value="{{$tashkilot->u_email}}" class="input w-full border mt-2" required="">
+                        @error('u_email')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <div class="w-full col-span-6">
@@ -60,6 +75,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining  telefon raqami 
                         </label>
                         <input type="text" name="u_phone" value="{{$tashkilot->u_phone}}" class="input w-full border mt-2" required="">
+                        @error('u_phone')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     
@@ -74,7 +92,7 @@
             </button>
         </div>
     </div>
-</div><br>
+</div>
 
 
 

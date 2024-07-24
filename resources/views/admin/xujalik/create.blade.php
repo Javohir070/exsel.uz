@@ -157,7 +157,7 @@
                 </div>
 
             </div>
-        </form><br>
+        </form>
         <div class="px-5 pb-5 text-center">
             <a href="{{ route('xujalik.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish

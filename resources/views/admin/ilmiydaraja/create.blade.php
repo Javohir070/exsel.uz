@@ -7,9 +7,7 @@
 
     <h2 class="intro-y text-lg font-medium"> Ilmiy loyiha bilan taminlanganmi  qo'shish</h2>
 
-
-
-</div><br>
+</div>
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
     padding: 20px 20px;
     border-radius: 20px">
@@ -191,7 +189,7 @@
                 </div>
 
             </div>
-        </form><br>
+        </form>
         <div class="px-5 pb-5 text-center">
             <a href="{{ route('ilmiydaraja.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish

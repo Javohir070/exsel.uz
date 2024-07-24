@@ -23,6 +23,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkilot kadastr raqami
                         </label>
                         <input type="text" name="kadastr_raqami" class="input w-full border mt-2" required="">
+                        @error('kadastr_raqami')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <div class="w-full col-span-6">
@@ -30,6 +33,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Umumiy maydoni (ga)
                         </label>
                         <input type="text" name="u_maydoni" class="input w-full border mt-2" required="">
+                        @error('u_maydoni')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -37,6 +43,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Shundan tajriba maydonlari (ga)
                         </label>
                         <input type="text" name="taj_maydonlari" class="input w-full border mt-2" required="">
+                        @error('taj_maydonlari')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -44,6 +53,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Binolar soni
                         </label>
                         <input type="number" name="binolar_soni" class="input w-full border mt-2" required="">
+                        @error('binolar_soni')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -51,6 +63,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Binolarning auditoriya sig‘imi
                         </label>
                         <input type="number" name="auditoriya_sigimi" class="input w-full border mt-2" required="">
+                        @error('auditoriya_sigimi')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     
                     <div class="w-full col-span-6">
@@ -58,6 +73,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Katta xajmdagi auditoriyalar soni (150-200 kishilik) 
                         </label>
                         <input type="number" name="k_xaj_auditor_soni" class="input w-full border mt-2" required="">
+                        @error('k_xaj_auditor_soni')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -65,6 +83,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Ustav fondi miqdori, mln so‘mda
                         </label>
                         <input type="text" name="pondi_miqdori" class="input w-full border mt-2" required="">
+                        @error('pondi_miqdori')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6">
@@ -72,6 +93,9 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Ilmiy faoliyatni amalga oshiruvchi bo‘linmalar (bo‘lim, kafedra, laboratoriya) soni
                         </label>
                         <input type="number" name="ilmiyp_bulinalar" class="input w-full border mt-2" required="">
+                        @error('ilmiyp_bulinalar')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="w-full col-span-4">
                         <label class="flex flex-col sm:flex-row"> <span
@@ -86,6 +110,9 @@
                                 <input type="radio" class="input border mr-2"  name="gaz" value="yoq">
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
+                            @error('gaz')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -102,6 +129,9 @@
                                 <input type="radio" class="input border mr-2"  name="elektr" value="yoq">
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
+                            @error('elektr')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -118,6 +148,9 @@
                                 <input type="radio" class="input border mr-2"  name="suv" value="yoq">
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
+                            @error('suv')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -134,6 +167,9 @@
                                 <input type="radio" class="input border mr-2"  name="kanalizasiya" value="yoq">
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
+                            @error('kanalizasiya')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 
@@ -150,6 +186,9 @@
                                 <input type="radio" class="input border mr-2"  name="internet" value="yoq">
                                 <label class="cursor-pointer select-none">Yoq</label>
                             </div>
+                            @error('internet')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
 

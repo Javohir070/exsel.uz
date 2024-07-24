@@ -6,7 +6,6 @@ use App\Models\IqtisodiyMoliyaviy;
 use App\Http\Requests\StoreIqtisodiyMoliyaviyRequest;
 use App\Http\Requests\UpdateIqtisodiyMoliyaviyRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 
 class IqtisodiyMoliyaviyController extends Controller
 {
@@ -31,7 +30,7 @@ class IqtisodiyMoliyaviyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreIqtisodiyMoliyaviyRequest $request)
     {
 
         IqtisodiyMoliyaviy::create([
@@ -76,7 +75,7 @@ class IqtisodiyMoliyaviyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, IqtisodiyMoliyaviy $iqtisodiy)
+    public function update(StoreIqtisodiyMoliyaviyRequest $request, IqtisodiyMoliyaviy $iqtisodiy)
     {
         $iqtisodiy->update([
             "user_id" => auth()->id(),
@@ -111,9 +110,7 @@ class IqtisodiyMoliyaviyController extends Controller
 
     public function iqtisodiylar()
     {
-        $iqtisodiylar =Cache::remember('iqtisodiy_moliyaviys', 60, function () {
-            return IqtisodiyMoliyaviy::all();
-        });
+        $iqtisodiylar = IqtisodiyMoliyaviy::paginate(25);
         return view("admin.iqtisodiy.iqtisodiylar",['iqtisodiylar'=>$iqtisodiylar]);
     }
 }
