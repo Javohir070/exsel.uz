@@ -54,7 +54,7 @@
                             <a href="" class="font-medium ">{{ $tash->id_raqam  }}</a>
                         </td>
                         <td>
-                            <a href="{{ route('tashkilot.ilmiyloyiha.index',['tashkilot'=>$tash->id]) }}"   class="font-medium">{{ $tash->name }}</a>
+                            <a href="{{ route('tashkilotmalumotlar.show',['tashkilotmalumotlar'=>$tash->id]) }}"   class="font-medium">{{ $tash->name }}</a>
                         </td>
                         <!-- <td>
                             <a href="" class="font-medium ">{{ $tash->yur_manzil }}</a>
@@ -70,9 +70,10 @@
                                     Ko'rish
                                 </a>
                                 
-                                <form action="#" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                <form action="{{ route('tashkilot.destroy',['tashkilot'=>$tash->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                     <button type="submit" class="flex delete-action items-center text-theme-6" >
-                                   
+                                   @csrf
+                                   @method('DELETE')
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 w-4 h-4 mr-1">
                                             <polyline points="3 6 5 6 21 6"></polyline>
                                             <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
