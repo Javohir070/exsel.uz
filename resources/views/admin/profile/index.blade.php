@@ -46,7 +46,7 @@
                 </svg>
                 {{ auth()->user()->email }}
             </div>
-            <div class="truncate sm:whitespace-normal flex items-center mt-3"><svg xmlns="http://www.w3.org/2000/svg"
+            <!-- <div class="truncate sm:whitespace-normal flex items-center mt-3"><svg xmlns="http://www.w3.org/2000/svg"
                     width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                     stroke-linecap="round" stroke-linejoin="round" class="feather feather-phone w-4 h-4 mr-2">
                     <path
@@ -55,7 +55,7 @@
                 </svg>
                 +998 33 355 15 05
 
-            </div>
+            </div> -->
             <div class="truncate sm:whitespace-normal flex items-center mt-3"><svg xmlns="http://www.w3.org/2000/svg"
                     width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
                     stroke-linecap="round" stroke-linejoin="round" class="feather feather-home w-4 h-4 mr-2">
