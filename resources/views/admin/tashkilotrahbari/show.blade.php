@@ -47,8 +47,8 @@
                         </tr>
                         <tr class="bg-gray-200">
                             <!-- <th class=" border">2</th> -->
-                            <th class=" border">Tashkilot rahbari Telepon nomer</th>
-                            <th class=" border">O‘rinbosarining Telepon nomer</th>
+                            <th class=" border">Tashkilot rahbari Telefon nomer</th>
+                            <th class=" border">O‘rinbosarining Telefon nomer</th>
                         </tr>
                         <tr >
                             <!-- <th class=" border">5</th> -->
