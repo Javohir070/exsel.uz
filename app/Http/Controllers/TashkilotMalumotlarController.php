@@ -12,6 +12,13 @@ use Illuminate\Http\Request;
 
 class TashkilotMalumotlarController extends Controller
 {
+
+    public function index()
+    {
+        $tashkilotlar = Tashkilot::withCount('xodimlar')->orderBy('xodimlar_count', 'desc')->paginate(25);
+
+        return view("admin.tashkilotmalumotlar.xodimlarsoni",['tashkilotlar'=>$tashkilotlar]);
+    }
     public function show($tashkilotmalumotlar)
     {
         $tashkilot = Tashkilot::where('id',$tashkilotmalumotlar)->get();
