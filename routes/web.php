@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/exportilmiy', [IlmiyLoyihaController::class, 'exportilmiy']);
     // Route::get('/search', [SearchController::class, 'search'])->name('search');
     Route::get('/exportashkiot', [TashkilotController::class, 'exporttashkilot']);
+    Route::get('/exporxodimlar', [XodimlarController::class, 'exporxodimlar']);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

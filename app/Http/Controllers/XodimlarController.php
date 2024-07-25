@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\XodimExport;
 use App\Http\Requests\StorelXodimlarRequest;
 use App\Http\Requests\UpdateXodimlarRequest;
 use App\Models\Tashkilot;
 use App\Models\Xodimlar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Maatwebsite\Excel\Facades\Excel;
 
 class XodimlarController extends Controller
 {
@@ -132,5 +134,10 @@ class XodimlarController extends Controller
     {
        $xodimlar_barchasi = Xodimlar::paginate(25);
        return view("admin.xodimlar.xodimlar",['xodimlar_barchasi'=>$xodimlar_barchasi]);
+    }
+
+    public function exporxodimlar()
+    {
+        return Excel::download(new XodimExport,'xodimlar.xlsx');
     }
 }
