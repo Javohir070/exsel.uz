@@ -97,9 +97,9 @@
                             <div class="report-box zoom-in">
                                 <div class="box p-5">
                                     <div class="flex">
-                                        <i data-feather="users" class="report-box__icon text-theme-6"></i>
+                                        <i data-feather="activity" class="report-box__icon text-theme-6"></i>
                                     </div>
-                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $xodim_count }}</div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $tash_count }}</div>
                                     <div class="text-base text-gray-600 mt-1">Tashkilotlar kiritgan xodimlar soni</div>
                                 </div>
                             </div>
