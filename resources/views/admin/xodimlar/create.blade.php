@@ -197,7 +197,7 @@
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Ilmiy daraja olingan yili
                     </label>
-                    <input type="text" name="ilmiy_daraja_yil" value="{{ old('ilmiy_daraja_yil') }}" class="input w-full border mt-2">
+                    <input type="number" name="ilmiy_daraja_yil" value="{{ old('ilmiy_daraja_yil') }}" class="input w-full border mt-2">
                     @error('ilmiy_daraja_yil')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -228,7 +228,7 @@
                     <label class="flex flex-col sm:flex-row"> Ilmiy unvon olingan
                         yili
                     </label>
-                    <input type="text" name="ilmiy_unvoni_y" value="{{ old('ilmiy_unvoni_y') }}" class="input w-full border mt-2">
+                    <input type="number" name="ilmiy_unvoni_y" value="{{ old('ilmiy_unvoni_y') }}" class="input w-full border mt-2">
                     @error('ilmiy_unvoni_y')
                         <div class="error">{{ $message }}</div>
                     @enderror
