@@ -37,7 +37,15 @@ class XodimlarController extends Controller
      */
     public function store(StorelXodimlarRequest $request)
     {
-        
+        if($request->ish_tartibi == 'O‘rindoshlik'){
+            $request->validate([
+                'jshshir' => 'required|string|min:14',
+            ]);
+        }else{
+            $request->validate([
+                'jshshir' => 'required|string|min:14|unique:xodimlars',
+            ]);
+        }
         Xodimlar::create([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
