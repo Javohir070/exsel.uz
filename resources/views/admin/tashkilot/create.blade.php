@@ -146,6 +146,9 @@
 
                         <option value="Kengash">Kengash</option>
 
+                        <option value="Rektor">Rektor</option>
+
+
                         <option value="Boshqaruv kengash">Boshqaruv kengash</option>
 
                     </select><br>

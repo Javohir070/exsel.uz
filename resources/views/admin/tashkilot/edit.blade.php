@@ -145,6 +145,8 @@
                         <option value="Direktor" {{ $tashkilot->boshqariv == 'Direktor' ? 'selected' : '' }}>Direktor</option>
 
                         <option value="Kengash" {{ $tashkilot->boshqariv == 'Kengash' ? 'selected' : '' }}>Kengash</option>
+                        
+                        <option value="Rektor" {{ $tashkilot->boshqariv == 'Rektor' ? 'selected' : '' }}>Rektor</option>
 
                         <option value="Boshqaruv kengash" {{ $tashkilot->boshqariv == 'Boshqaruv kengash' ? 'selected' : '' }}>Boshqaruv kengash</option>
                     </select>
