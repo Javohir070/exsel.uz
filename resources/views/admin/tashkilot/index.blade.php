@@ -130,6 +130,14 @@
                             <td class="border-b  border">{{ $tashkilot->stir_raqami  }} </td>
                             <td class="border-b  border">{{ $tashkilot->bank  }} </td>
                         </tr>
+                        <tr class="bg-gray-200">
+                            <!-- <th class="border-b  border">17</th> -->
+                            <th class="border-b  border" colspan="2">Tashkilot hisob raqami </th>
+                        </tr>
+                        <tr>
+                            <!-- <th class="border-b  border">18</th> -->
+                            <td class="border-b  border" colspan="2">{{ $tashkilot->hisob_raqam  }} </td>
+                        </tr>
                         
                 </tbody>
             </table>

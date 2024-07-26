@@ -155,6 +155,11 @@
                     </label>
                     <input type="text" name="stir_raqami" value="{{ $tashkilot->stir_raqami }}"  class="input w-full border mt-2" required="">
                 </div>
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">Tashkilot hisob raqami 
+                    </label>
+                    <input type="text" name="hisob_raqam" value="{{ $tashkilot->hisob_raqam }}"  class="input w-full border mt-2" >
+                </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span

@@ -76,6 +76,7 @@ class TashkilotController extends Controller
             "boshqariv" => $request->boshqariv ?? null,
             "stir_raqami" => $request->stir_raqami ?? null,
             "bank" => $request->bank ?? null,
+            'hisob_raqam' => $request->hisob_raqam ?? null
         ]);
 
         return redirect('/tashkilotlar');
@@ -126,6 +127,7 @@ class TashkilotController extends Controller
             "boshqariv" => $request->boshqariv,
             "stir_raqami" => $request->stir_raqami,
             "bank" => $request->bank,
+            'hisob_raqam' => $request->hisob_raqam ?? null
         ]);
 
         return redirect('/tashkilot');
