@@ -22,9 +22,9 @@
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">F.I.Sh</th>
-                        <th class="whitespace-no-wrap">Jshshir</th>
-                        <th class="whitespace-no-wrap">Jinsi</th>
                         <th class="whitespace-no-wrap">Lavozimi</th>
+                        <th class="whitespace-no-wrap">Jinsi</th>
+                        <th class="whitespace-no-wrap">Telefon raqami</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -38,13 +38,14 @@
                             <a href="#" target="_blank"  class="font-medium">{{ $xodimlar->fish }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->jshshir  }} </a>
+                            <a href="" class="font-medium ">{{ $xodimlar->lavozimi }}</a>
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $xodimlar->jinsi }}</a>
                         </td>
+                        
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->lavozimi }}</a>
+                            <a href="" class="font-medium ">{{ $xodimlar->phone  }} </a>
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">

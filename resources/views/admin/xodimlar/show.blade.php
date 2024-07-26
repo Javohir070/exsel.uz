@@ -55,13 +55,11 @@
                         </tr>
                         <tr class="bg-gray-200">
                             <!-- <th class="border border-2">3</th> -->
-                            <th class="border border-2">Jinsi</th>
-                            <th class="border border-2">JSHSHIR</th>
+                            <th class="border border-2" colspan="2">Jinsi</th>
                         </tr>
                         <tr>
                             <!-- <th class="border border-2">4</th> -->
-                            <td class="border border-2">{{ $xodimlar->jinsi }}</td>
-                            <td class="border border-2">{{ $xodimlar->jshshir }}</td>
+                            <td class="border border-2" colspan="2">{{ $xodimlar->jinsi }}</td>
                         </tr>
                         <tr class="bg-gray-200">
                             <!-- <th class="border border-2">5</th> -->

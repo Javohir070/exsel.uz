@@ -22,7 +22,7 @@
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">Tashkilot nomi</th>
                         <th class="whitespace-no-wrap">F.I.Sh</th>
-                        <th class="whitespace-no-wrap">JSHSHIR</th>
+                        <th class="whitespace-no-wrap">Jinsi</th>
                         <th class="whitespace-no-wrap">Telefon nomeri</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
@@ -40,7 +40,7 @@
                             <a href="#" target="_blank"  class="font-medium">{{ $maq->fish }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $maq->jshshir  }}</a>
+                            <a href="" class="font-medium ">{{ $maq->jinsi  }}</a>
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $maq->phone }}</a>
