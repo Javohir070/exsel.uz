@@ -6,10 +6,8 @@
 <div class="flex justify-between align-center mt-10">
 
     <h2 class="intro-y text-lg font-medium">Rahbar qo'shish</h2>
-
-
-
-</div><br>
+    
+</div>
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
     padding: 20px 20px;
     border-radius: 20px">
@@ -79,9 +77,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
-
-                    
-            </div><br>
+            </div>
         </form><br>
         <div class="px-5 pb-5 text-center">
             <a href="{{ route('tashkilotrahbari.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">

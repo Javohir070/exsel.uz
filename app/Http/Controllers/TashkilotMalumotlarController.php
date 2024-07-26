@@ -19,6 +19,13 @@ class TashkilotMalumotlarController extends Controller
 
         return view("admin.tashkilotmalumotlar.xodimlarsoni",['tashkilotlar'=>$tashkilotlar]);
     }
+
+    public function adminlar()
+    {
+        $adminlar = Tashkilot::withCount('user')->orderByDesc('user_count')->paginate(25);
+
+        return view("admin.tashkilotmalumotlar.adminlarsoni",['adminlar'=>$adminlar]);
+    }
     public function show($tashkilotmalumotlar)
     {
         $tashkilot = Tashkilot::where('id',$tashkilotmalumotlar)->get();

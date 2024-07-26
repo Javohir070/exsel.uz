@@ -67,6 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/search', [TashkilotController::class, 'search'])->name('search');
     Route::get('/searchloyiha', [IlmiyLoyihaController::class, 'searchloyiha'])->name('searchloyiha');
     Route::get('/searchuser', [UserController::class, 'searchuser'])->name('searchuser');
+    Route::get('/adminlar',[TashkilotMalumotlarController::class, 'adminlar'])->name('tashkilotmalumotlar.adminlar');
     
     Route::resources([
         'tashkilot' => TashkilotController::class,
