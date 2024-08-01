@@ -98,7 +98,7 @@ class XodimlarController extends Controller
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
             "fish" => $request->fish ,
-            "jshshir" => $request->jshshir ,
+            "jshshir" => $request->jshshir ?? 'yoq',
             "yil" => $request->yil ,
             "jinsi" => $request->jinsi ,
             "ish_tartibi" => $request->ish_tartibi ,

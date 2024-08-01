@@ -69,10 +69,19 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha turi
                     </label>
-                    <input type="text" name="turi" value="{{ $ilmiyloyiha->turi }}" readonly class="input w-full border mt-2" required="">
-                    @error('turi')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
+                    @role('super-admin')
+                        <input type="text" name="turi" value="{{ $ilmiyloyiha->turi }}"  class="input w-full border mt-2" required="">
+                        @error('turi')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    @endrole
+                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+                        <input type="text" name="turi" value="{{ $ilmiyloyiha->turi }}" readonly class="input w-full border mt-2" required="">
+                        @error('turi')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    @endrole
+                    
 
                     <!-- <select name="turi"  id="science-sub-category" readonly class="input border w-full mt-2" required="">
 
@@ -172,22 +181,38 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning boshlanish sanasi
                     </label>
-
-                    <input type="text"  name="bosh_sana" value="{{ $ilmiyloyiha->bosh_sana }}" readonly class=" input w-full border mt-2" required="">
-                    @error('bosh_sana')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
+                    @role('super-admin')
+                        <input type="text"  name="bosh_sana" value="{{ $ilmiyloyiha->bosh_sana }}"  class=" input w-full border mt-2" required="">
+                        @error('bosh_sana')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    @endrole
+                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+                        <input type="text"  name="bosh_sana" value="{{ $ilmiyloyiha->bosh_sana }}" readonly class=" input w-full border mt-2" required="">
+                        @error('bosh_sana')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    @endrole
+                    
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning tugash sanasi
                     </label>
-
-                    <input type="text"  name="tug_sana" value="{{ $ilmiyloyiha->tug_sana }}" readonly class=" input w-full border mt-2" required="">
-                    @error('tug_sana')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
+                    @role('super-admin')
+                        <input type="text"  name="tug_sana" value="{{ $ilmiyloyiha->tug_sana }}"  class=" input w-full border mt-2" required="">
+                        @error('tug_sana')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    @endrole
+                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+                        <input type="text"  name="tug_sana" value="{{ $ilmiyloyiha->tug_sana }}" readonly class=" input w-full border mt-2" required="">
+                        @error('tug_sana')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    @endrole
+                    
                 </div>
 
                 <div class="w-full col-span-6 ">

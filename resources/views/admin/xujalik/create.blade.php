@@ -67,6 +67,9 @@
                         <option value="Amaliy">Amaliy</option>
 
                         <option value="Innovatsion">Innovatsion</option>
+                        <option value="Fundamental">Fundamental</option>
+
+                        <option value="Xizmat ko'rsatishni">Xizmat ko'rsatishni</option>
 
                     </select>
                 </div>

@@ -68,6 +68,9 @@
                         <option value="Amaliy" {{ $xujalik->ishlanma_turi == "Amaliy" ? "selected" : ""}}>Amaliy</option>
 
                         <option value="Innovatsion" {{ $xujalik->ishlanma_turi == "Innovatsion" ? "selected" : ""}}>Innovatsion</option>
+                        <option value="Fundamental" {{ $xujalik->ishlanma_turi == "Fundamental" ? "selected" : ""}}>Fundamental</option>
+                        <option value="Xizmat ko'rsatishni" {{ $xujalik->ishlanma_turi == "Xizmat ko'rsatishni" ? "selected" : ""}}>Xizmat ko'rsatishni</option>
+
 
                     </select>
                 </div>

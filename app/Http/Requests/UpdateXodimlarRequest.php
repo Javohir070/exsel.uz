@@ -23,7 +23,6 @@ class UpdateXodimlarRequest extends FormRequest
     {
         return [
             'fish' => ['required','max:600', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
-            'jshshir' => 'required|string|min:14',
             'jinsi' => 'required|max:255',
             'yil' => 'required|max:255',
             'ish_tartibi' => 'required|max:1024',
