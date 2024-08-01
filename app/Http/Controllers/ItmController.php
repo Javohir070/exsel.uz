@@ -82,7 +82,7 @@ class ItmController extends Controller
 
         // Paginatsiya parametrlarini aniqlash
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 10; // Har bir sahifadagi elementlar soni
+        $perPage = 20; // Har bir sahifadagi elementlar soni
         $currentPageItems = $iqtisodiysCollection->slice(($currentPage - 1) * $perPage, $perPage)->all();
 
         // Paginatsiya obyekti yaratish
@@ -109,7 +109,7 @@ class ItmController extends Controller
 
         // Paginatsiya parametrlarini aniqlash
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 10; // Har bir sahifadagi elementlar soni
+        $perPage = 20; // Har bir sahifadagi elementlar soni
         $currentPageItems = $ilmiyloyihasCollection->slice(($currentPage - 1) * $perPage, $perPage)->all();
 
         // Paginatsiya obyekti yaratish
@@ -134,7 +134,7 @@ class ItmController extends Controller
 
         // Paginatsiya parametrlarini aniqlash
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 10; // Har bir sahifadagi elementlar soni
+        $perPage = 20; // Har bir sahifadagi elementlar soni
         $currentPageItems = $xujaliksCollection->slice(($currentPage - 1) * $perPage, $perPage)->all();
 
         // Paginatsiya obyekti yaratish
@@ -159,7 +159,7 @@ class ItmController extends Controller
 
         // Paginatsiya parametrlarini aniqlash
         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        $perPage = 10; // Har bir sahifadagi elementlar soni
+        $perPage = 20; // Har bir sahifadagi elementlar soni
         $currentPageItems = $ilmiydarajasCollection->slice(($currentPage - 1) * $perPage, $perPage)->all();
 
         // Paginatsiya obyekti yaratish
