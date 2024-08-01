@@ -36,7 +36,7 @@ class Tashkilot extends Model
     }
     public function ilmiydarajalar()
     {
-        return $this->hasMany(Xujalik::class);
+        return $this->hasMany(IlmiybnTaminlanga::class);
     }
 
     public function iqtisodiylar()

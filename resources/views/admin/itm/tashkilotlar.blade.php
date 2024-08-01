@@ -10,23 +10,7 @@
         <!-- <a href="{{ route('tashkilot.create') }}"  class="button w-24 bg-theme-1 text-white">
             Qo'shish
         </a> -->
-        <div class="intro-x relative mr-3 sm:mr-6">
-            <div class="search hidden sm:block">
-            <form action="{{ route('search') }}" method="GET">
-                <input type="text" name="query" class="search__input input placeholder-theme-13" placeholder="Search...">
-                <i data-feather="search" class="search__icon"></i> 
-            </form>
-            </div>
-            <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
-        </div>
-        <div>
-            <div>
-                <a href="{{ route("tashqoshish.create") }}" class="button w-24 bg-theme-1 text-white">
-                    Qo'shish
-                </a>
-            </div>
         
-        </div>
 
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">

@@ -20,11 +20,13 @@
             <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
         </div>
         <div>
-            <div>
-                <a href="{{ route("tashqoshish.create") }}" class="button w-24 bg-theme-1 text-white">
-                    Qo'shish
-                </a>
-            </div>
+            @role('super-admin')
+                <div>
+                    <a href="{{ route("tashqoshish.create") }}" class="button w-24 bg-theme-1 text-white">
+                        Qo'shish
+                    </a>
+                </div>
+            @endrole
         
         </div>
 

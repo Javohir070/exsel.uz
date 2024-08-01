@@ -6,10 +6,11 @@
     <div class="flex justify-between align-center mt-10">
 
         <h2 class="intro-y text-lg font-medium"> Iqtisodiy Moliyaviy faoliyat </h2>
-
-        <a href="{{ route("iqtisodiylar.index") }}" class="button w-24 bg-theme-1 text-white">
-            Orqaga
-        </a>
+        @role('super-admin')
+            <a href="{{ route("iqtisodiylar.index") }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
+        @endrole
         @role('Itm-tashkilotlar')
             <a href="{{ route("itm.iqtisodiy") }}" class="button w-24 bg-theme-1 text-white">
                 Orqaga

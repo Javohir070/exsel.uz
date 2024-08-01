@@ -6,10 +6,11 @@
     <div class="flex justify-between align-center mt-10">
 
         <h2 class="intro-y text-lg font-medium">Tashkilot rahbari</h2>
-
+       @role('super-admin')
         <a href="{{ route("tashkilotrahbarilar.index") }}" class="button w-24 bg-theme-1 text-white">
             Orqaga
         </a>
+        @endrole
         @role('Itm-tashkilotlar')
             <a href="{{ route("itm.tashkilotrahbari") }}" class="button w-24 bg-theme-1 text-white">
                 Orqaga
