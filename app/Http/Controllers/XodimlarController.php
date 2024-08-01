@@ -39,15 +39,15 @@ class XodimlarController extends Controller
      */
     public function store(StorelXodimlarRequest $request)
     {
-        // if($request->ish_tartibi == 'O‘rindoshlik'){
-        //     $request->validate([
-        //         'jshshir' => 'nullable|string|min:14',
-        //     ]);
-        // }else{
-        //     $request->validate([
-        //         'jshshir' => 'nullable|string|min:14|unique:xodimlars',
-        //     ]);
-        // }
+        if($request->ish_tartibi == 'Soatbay'){
+            $request->validate([
+                'shtat_birligi' => 'nullable|max:255',
+            ]);
+        }else{
+            $request->validate([
+                'shtat_birligi' => 'required|max:255',
+            ]);
+        }
         Xodimlar::create([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
@@ -56,7 +56,7 @@ class XodimlarController extends Controller
             "yil" => $request->yil ,
             "jinsi" => $request->jinsi ,
             "ish_tartibi" => $request->ish_tartibi ,
-            "shtat_birligi" => $request->shtat_birligi ,
+            "shtat_birligi" => $request->shtat_birligi ?? "yo'q" ,
             "urindoshlik_asasida" => $request->urindoshlik_asasida ?? "yo'q" ,
             "pedagoglik" => $request->pedagoglik ,
             "lavozimi" => $request->lavozimi ,
@@ -94,6 +94,15 @@ class XodimlarController extends Controller
      */
     public function update(UpdateXodimlarRequest $request, Xodimlar $xodimlar)
     {
+        if($request->ish_tartibi == 'Soatbay'){
+            $request->validate([
+                'shtat_birligi' => 'nullable|max:255',
+            ]);
+        }else{
+            $request->validate([
+                'shtat_birligi' => 'required|max:255',
+            ]);
+        }
         $xodimlar->update([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
@@ -102,7 +111,7 @@ class XodimlarController extends Controller
             "yil" => $request->yil ,
             "jinsi" => $request->jinsi ,
             "ish_tartibi" => $request->ish_tartibi ,
-            "shtat_birligi" => $request->shtat_birligi ,
+            "shtat_birligi" => $request->shtat_birligi ?? "yo'q" ,
             "urindoshlik_asasida" => $request->urindoshlik_asasida ?? "yo'q",
             "pedagoglik" => $request->pedagoglik ,
             "lavozimi" => $request->lavozimi ,

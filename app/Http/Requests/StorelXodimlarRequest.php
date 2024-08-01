@@ -25,7 +25,7 @@ class StorelXodimlarRequest extends FormRequest
             'fish' => ['required','max:600'],
             'yil' => 'required|max:255',
             'ish_tartibi' => 'required|max:1024',
-            'shtat_birligi' => 'required|max:255',
+            'shtat_birligi' => 'nullable|max:255',
             'urindoshlik_asasida' => 'nullable|max:1024',
             'pedagoglik' => 'required|max:255',
             'lavozimi' => 'required|max:1024',

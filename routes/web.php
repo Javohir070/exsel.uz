@@ -7,6 +7,7 @@ use App\Http\Controllers\IlmiybnTaminlangaController;
 use App\Http\Controllers\IlmiyLoyihaController;
 use App\Http\Controllers\IlmiyUnvonController;
 use App\Http\Controllers\IqtisodiyMoliyaviyController;
+use App\Http\Controllers\ItmController;
 use App\Http\Controllers\TashkilotController;
 use App\Http\Controllers\TashkilotUserlarController;
 use App\Http\Controllers\XujalikController;
@@ -68,7 +69,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/searchloyiha', [IlmiyLoyihaController::class, 'searchloyiha'])->name('searchloyiha');
     Route::get('/searchuser', [UserController::class, 'searchuser'])->name('searchuser');
     Route::get('/adminlar',[TashkilotMalumotlarController::class, 'adminlar'])->name('tashkilotmalumotlar.adminlar');
-    
+    //itm
+    Route::get('/itmtashkilot',[ItmController::class, 'tashkilot'])->name('itm.tashkilot');
+    Route::get('/itmiqtisodiy',[ItmController::class, 'iqtisodiy'])->name('itm.iqtisodiy');
+    Route::get('/itmtashkilotrahbari',[ItmController::class, 'tashkilotrahbari'])->name('itm.tashkilotrahbari');
+    Route::get('/itmxodimlar',[ItmController::class, 'xodimlar'])->name('itm.xodimlar');
+    Route::get('/itmilmiyloyiha',[ItmController::class, 'ilmiyloyiha'])->name('itm.ilmiyloyiha');
+    Route::get('/itmxujalik',[ItmController::class, 'xujalik'])->name('itm.xujalik');
+    Route::get('/itmilmiydaraja',[ItmController::class, 'ilmiydaraja'])->name('itm.ilmiydaraja');
+    //end itm 
     Route::resources([
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,

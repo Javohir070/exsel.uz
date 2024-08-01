@@ -19,8 +19,7 @@
             </a>
         </li>
     <!-- start superadmin -->
-    @role('super-admin')
-        
+    @role('super-admin')     
         <li>
             <a href="javascript:;" class="side-menu side-menu{{ request()->is('iqtisodiylar*') ? '--active':'' }}{{ request()->is('tashkilotrahbarilar*') ? '--active':'' }}{{ request()->is('tashkilot*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
@@ -200,6 +199,69 @@
     </li>
     @endrole
     <!-- end admin -->
+    <!-- Itm lar uchun -->
+    @role('Itm-tashkilotlar')
+            <li>
+                <a href="javascript:;" class="side-menu side-menu{{ request()->is('tashkilot*') ? '--active':'' }}{{ request()->is('iqtisodiy*') ? '--active':'' }}">
+                    <div class="side-menu__icon"> <i data-feather="box"></i> </div>
+                    <div class="side-menu__title">  Tashkilot pasporti  <i data-feather="chevron-down"
+                            class="side-menu__sub-icon"></i> </div>
+                </a>
+                <ul class="{{ request()->is('tashkilot*') ? 'side-menu__sub-open':'' }}{{ request()->is('iqtisodiy*') ? 'side-menu__sub-open':'' }}">
+                    <li>
+                        <a href="{{ route('itm.tashkilot') }}" class="side-menu side-menu{{ request()->is('tashkilot*') ? '--active':'' }}">
+                            <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="side-menu__title"> Tashkilot pasportini to'ldirish </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route("itm.iqtisodiy") }}" class="side-menu side-menu{{ request()->is('iqtisodiy*') ? '--active':'' }}">
+                            <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="side-menu__title">  Iqtisodiy moliyaviy faoliyat  </div>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="{{ route("itm.tashkilotrahbari") }}" class="side-menu side-menu{{ request()->is('tashkilotrahbari*') ? '--active':'' }}">
+                            <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="side-menu__title"> Tashkilot rahbari </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+    
+            <li>
+                <a href="{{ route('itm.xodimlar') }}" class="side-menu side-menu{{ request()->is('xodimlar*') ? '--active':'' }}">
+                    <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+                    <div class="side-menu__title"> Xodimlar </div>
+                </a>
+            </li>
+
+       
+            <li>
+                <a href="{{ route("itm.ilmiyloyiha") }}" class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active':'' }}">
+                    <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                    <div class="side-menu__title"> Ilmiy loyihalar </div>
+                </a>
+            </li>
+
+        
+        <li>
+            <a href="{{ route("itm.xujalik") }}" class="side-menu side-menu{{ request()->is('xujalik*') ? '--active':'' }}">
+                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__title"> Xo'jalik loyihalar </div>
+            </a>
+        </li>
+
+        <li>
+        <a href="{{ route("itm.ilmiydaraja") }}" class="side-menu side-menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}">
+            <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+            <div class="side-menu__title"> Ilmiy loyiha bilan ta'minlanganmi </div>
+        </a>
+    </li>
+    @endrole
+    <!-- tugadi Itm lar uchun -->
+
     <div class="side-nav__devider my-6"></div>
 		<li>
         <form method="POST" action="{{ route('logout') }}">
