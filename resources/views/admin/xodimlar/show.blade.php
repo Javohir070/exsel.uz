@@ -17,7 +17,11 @@
                 Orqaga
             </a>
         @endrole
-        
+        @role('Itm-tashkilotlar')
+            <a href="{{ route("itm.xodimlar") }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
+        @endrole
     </div>
     @if (session('status'))
         <div class="alert alert-success">{{ session('status') }}</div>
@@ -28,14 +32,16 @@
 
                     <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="font-size:18px;font-weight: 400;">{{ $xodimlar->tashkilot->name_qisqachasi ." xodim ". $xodimlar->fish }}  xaqida ma’lumot</div>
-                        <div style="text-align: end;">
-                            <a href="{{ route('xodimlar.edit',['xodimlar'=>$xodimlar->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
-                            Tahrirlash
-                            </a>
-                            <a href="" class="button w-24 bg-theme-6 text-white">
-                                O'chirish
-                            </a>
-                        </div>
+                        @can('xodim delete edit')
+                            <div style="text-align: end;">
+                                <a href="{{ route('xodimlar.edit',['xodimlar'=>$xodimlar->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
+                                Tahrirlash
+                                </a>
+                                <a href="" class="button w-24 bg-theme-6 text-white">
+                                    O'chirish
+                                </a>
+                            </div>     
+                        @endcan
                     </div>
 
                         <tr>

@@ -16,6 +16,11 @@
             Orqaga
         </a>
     @endrole
+    @role('Itm-tashkilotlar')
+        <a href="{{ route("itm.tashkilot") }}" class="button w-24 bg-theme-1 text-white">
+            Orqaga
+        </a>
+    @endrole
         
 
     </div>
@@ -27,14 +32,17 @@
             <tbody>
                     <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="font-size:18px;font-weight: 400;">{{ $tashkilot->name ."  ". $tashkilot->fish }}  Tashkilot pasporti</div>
-                        <div style="text-align: end;">
-                            <a href="{{ route('tashkilot.edit',['tashkilot'=>$tashkilot->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
-                            Tahrirlash
-                            </a>
-                            <a href="" class="button w-24 bg-theme-6 text-white">
-                                O'chirish
-                            </a>
-                        </div>
+                        @can("tashkilot delete edit")
+                            <div style="text-align: end;">
+                                <a href="{{ route('tashkilot.edit',['tashkilot'=>$tashkilot->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
+                                Tahrirlash
+                                </a>
+                                <a href="" class="button w-24 bg-theme-6 text-white">
+                                    O'chirish
+                                </a>
+                            </div>
+                        @endcan
+
                     </div>
                     
                         <!-- <tr style="margin-top:20px;">

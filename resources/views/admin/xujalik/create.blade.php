@@ -131,7 +131,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma so'mmasi (so‘m)
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma summasi (so‘m)
                     </label>
                     <input type="text" name="sh_summa" value="{{ old('sh_summa') }}" class="input w-full border mt-2" required="">
                     @error('sh_summa')
@@ -151,7 +151,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma bo‘yicha kelib tushgan mablag‘ so'mmasi
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma bo‘yicha kelib tushgan mablag‘ summasi
                     </label>
                     <input type="text" name="shkelib_summa" value="{{ old('shkelib_summa') }}" class="input w-full border mt-2" required="">
                     @error('shkelib_summa')

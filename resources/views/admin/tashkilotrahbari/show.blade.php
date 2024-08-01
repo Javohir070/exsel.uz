@@ -10,7 +10,11 @@
         <a href="{{ route("tashkilotrahbarilar.index") }}" class="button w-24 bg-theme-1 text-white">
             Orqaga
         </a>
-        
+        @role('Itm-tashkilotlar')
+            <a href="{{ route("itm.tashkilotrahbari") }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
+        @endrole
 
     </div>
     @if (session('status'))
@@ -21,6 +25,8 @@
                 <tbody>
                 <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="font-size:18px;font-weight: 400;"> {{$tashkilotrahbari->tashkilot->name_qisqachasi}} rahbari xaqida ma’lumot</div>
+                        @can("tashkilotrahbari delete edit")
+                            
                         <div style="text-align: end;">
                             <a href="{{ route('tashkilotrahbari.edit',['tashkilotrahbari'=>$tashkilotrahbari->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
@@ -29,6 +35,7 @@
                                 O'chirish
                             </a>
                         </div>
+                        @endcan
                     </div>
                         <tr>
                             <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>

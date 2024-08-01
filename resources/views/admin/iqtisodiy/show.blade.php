@@ -10,6 +10,11 @@
         <a href="{{ route("iqtisodiylar.index") }}" class="button w-24 bg-theme-1 text-white">
             Orqaga
         </a>
+        @role('Itm-tashkilotlar')
+            <a href="{{ route("itm.iqtisodiy") }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
+        @endrole
 
     </div>
     @if (session('status'))
@@ -25,6 +30,8 @@
             
                 <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                     <div style="font-size:18px;font-weight: 400;">{{$iqtisodiy->tashkilot->name_qisqachasi}} Iqtisodiy Moliyaviy faoliyat</div>
+                    @can("iqtisodiy delete edit")
+                        
                     <div style="text-align: end;">
                         <a href="{{ route('iqtisodiy.edit',['iqtisodiy'=>$iqtisodiy->id]) }}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                             Tahrirlash
@@ -33,6 +40,7 @@
                             O'chirish
                         </a>
                     </div>
+                    @endcan
                 </div>
                
                 <tr>

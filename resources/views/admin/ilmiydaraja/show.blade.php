@@ -18,6 +18,11 @@
                 Orqaga
             </a>
         @endrole
+        @role('Itm-tashkilotlar')
+            <a href="{{ route("itm.ilmiydaraja") }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
+        @endrole
 
     </div>
     @if (session('status'))
@@ -28,6 +33,8 @@
                 <tbody>
                     <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="font-size:18px;font-weight: 400;">{{ $ilmiydaraja->tashkilot->name ." Ilmiy loyiha bilan taminlangalig ". $ilmiydaraja->fish }}  xaqida ma’lumot</div>
+                        @can("ilmiydaraja delete edit")
+                            
                         <div style="text-align: end;">
                             <a href="{{ route('ilmiydaraja.edit',['ilmiydaraja'=>$ilmiydaraja->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
@@ -36,6 +43,7 @@
                                 O'chirish
                             </a>
                         </div>
+                        @endcan
                     </div>
                     <tr>
                         <!-- <th class="border border-b-2 " style="width: 40px;">#</th> -->
