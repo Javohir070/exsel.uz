@@ -207,7 +207,7 @@
                     <div class="side-menu__title">  Tashkilot pasporti  <i data-feather="chevron-down"
                             class="side-menu__sub-icon"></i> </div>
                 </a>
-                <ul class="{{ request()->is('tashkilot*') ? 'side-menu__sub-open':'' }}{{ request()->is('iqtisodiy*') ? 'side-menu__sub-open':'' }}">
+                <ul class="{{ request()->is('tashkilot*') ? 'side-menu__sub-open':'' }}{{ request()->is('itmiqtisodiy') ? 'side-menu__sub-open':'' }}{{ request()->is('itmtashkilot') ? 'side-menu__sub-open':'' }}{{ request()->is('itmiqtisodiy') ? 'side-menu__sub-open':'' }}">
                     <li>
                         <a href="{{ route('itm.tashkilot') }}" class="side-menu side-menu{{ request()->is('tashkilot*') ? '--active':'' }}{{ request()->is('itmtashkilot*') ? '--active':'' }}">
                             <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
