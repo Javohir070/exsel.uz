@@ -118,7 +118,7 @@
                         <tr >
                             <!-- <th class="border border-b-2 ">14</th> -->
                             <td class="border ">{{ $ilmiyloyiha->pan_yunalish }}</td>
-                            <td class="border ">{{ $ilmiyloyiha->olingan_natija  }} </td>
+                            <td class="border " style="width: 50%;">{{ $ilmiyloyiha->olingan_natija  }} </td>
                         </tr>
                         <tr class="bg-gray-200">
                             <!-- <th class="border border-b-2 ">4</th> -->

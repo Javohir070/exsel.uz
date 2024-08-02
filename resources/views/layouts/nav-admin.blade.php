@@ -202,27 +202,27 @@
     <!-- Itm lar uchun -->
     @role('Itm-tashkilotlar')
             <li>
-                <a href="javascript:;" class="side-menu side-menu{{ request()->is('tashkilot*') ? '--active':'' }}{{ request()->is('iqtisodiy*') ? '--active':'' }}">
+                <a href="javascript:;" class="side-menu side-menu{{ request()->is('tashkilot*') ? '--active':'' }}{{ request()->is('iqtisodiy*') ? '--active':'' }}{{ request()->is('itmtashkilot') ? '--active':'' }}{{ request()->is('itmiqtisodiy') ? '--active':'' }}">
                     <div class="side-menu__icon"> <i data-feather="box"></i> </div>
                     <div class="side-menu__title">  Tashkilot pasporti  <i data-feather="chevron-down"
                             class="side-menu__sub-icon"></i> </div>
                 </a>
                 <ul class="{{ request()->is('tashkilot*') ? 'side-menu__sub-open':'' }}{{ request()->is('iqtisodiy*') ? 'side-menu__sub-open':'' }}">
                     <li>
-                        <a href="{{ route('itm.tashkilot') }}" class="side-menu side-menu{{ request()->is('tashkilot*') ? '--active':'' }}">
+                        <a href="{{ route('itm.tashkilot') }}" class="side-menu side-menu{{ request()->is('tashkilot*') ? '--active':'' }}{{ request()->is('itmtashkilot*') ? '--active':'' }}">
                             <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                             <div class="side-menu__title"> Tashkilot pasportini to'ldirish </div>
                         </a>
                     </li>
                     <li>
-                        <a href="{{ route("itm.iqtisodiy") }}" class="side-menu side-menu{{ request()->is('iqtisodiy*') ? '--active':'' }}">
+                        <a href="{{ route("itm.iqtisodiy") }}" class="side-menu side-menu{{ request()->is('iqtisodiy*') ? '--active':'' }}{{ request()->is('itmiqtisodiy*') ? '--active':'' }}">
                             <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                             <div class="side-menu__title">  Iqtisodiy moliyaviy faoliyat  </div>
                         </a>
                     </li>
                     
                     <li>
-                        <a href="{{ route("itm.tashkilotrahbari") }}" class="side-menu side-menu{{ request()->is('tashkilotrahbari*') ? '--active':'' }}">
+                        <a href="{{ route("itm.tashkilotrahbari") }}" class="side-menu side-menu{{ request()->is('tashkilotrahbari*') ? '--active':'' }}{{ request()->is('itmtashkilotrahbari*') ? '--active':'' }}">
                             <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
                             <div class="side-menu__title"> Tashkilot rahbari </div>
                         </a>
@@ -231,7 +231,7 @@
             </li>
     
             <li>
-                <a href="{{ route('itm.xodimlar') }}" class="side-menu side-menu{{ request()->is('xodimlar*') ? '--active':'' }}">
+                <a href="{{ route('itm.xodimlar') }}" class="side-menu side-menu{{ request()->is('xodimlar*') ? '--active':'' }}{{ request()->is('itmxodimlar*') ? '--active':'' }}">
                     <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                     <div class="side-menu__title"> Xodimlar </div>
                 </a>
@@ -239,7 +239,7 @@
 
        
             <li>
-                <a href="{{ route("itm.ilmiyloyiha") }}" class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active':'' }}">
+                <a href="{{ route("itm.ilmiyloyiha") }}" class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active':'' }}{{ request()->is('itmilmiyloyiha*') ? '--active':'' }}">
                     <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                     <div class="side-menu__title"> Ilmiy loyihalar </div>
                 </a>
@@ -247,14 +247,14 @@
 
         
         <li>
-            <a href="{{ route("itm.xujalik") }}" class="side-menu side-menu{{ request()->is('xujalik*') ? '--active':'' }}">
+            <a href="{{ route("itm.xujalik") }}" class="side-menu side-menu{{ request()->is('xujalik*') ? '--active':'' }}{{ request()->is('itmxujalik*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                 <div class="side-menu__title"> Xo'jalik loyihalar </div>
             </a>
         </li>
 
         <li>
-        <a href="{{ route("itm.ilmiydaraja") }}" class="side-menu side-menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}">
+        <a href="{{ route("itm.ilmiydaraja") }}" class="side-menu side-menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}{{ request()->is('itmilmiydaraja*') ? '--active':'' }}">
             <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
             <div class="side-menu__title"> Ilmiy loyiha bilan ta'minlanganmi </div>
         </a>
