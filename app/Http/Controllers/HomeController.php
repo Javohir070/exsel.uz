@@ -64,6 +64,9 @@ class HomeController extends Controller
         $tashkilots = Tashkilot::where('tashkilot_turi', 'itm')->with(['xodimlar', 'ilmiyloyhalar', 'xujaliklar', 'ilmiydarajalar'])->get();
         $itm_tash_itm = $tashkilots->count();
 
+        $itm_adminlar = Tashkilot::where('tashkilot_turi', 'itm')->with('roles')->count();
+        
+
         $xodim_count_itm = $tashkilots->sum(function ($tashkilot) {
             return $tashkilot->xodimlar->count();
         });
@@ -98,6 +101,7 @@ class HomeController extends Controller
             'xujalik_count_itm' => $xujalik_count_itm,
             'loyiha_bilan__itm' => $loyiha_bilan__itm,
             'xodim_count_itm' => $xodim_count_itm,
+            'itm_adminlar' => $itm_adminlar
         ]);
     }
 

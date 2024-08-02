@@ -213,6 +213,72 @@
                 </li>
                 @endrole
                 <!-- end admin -->
+                <!-- Itm lar uchun -->
+                @role('Itm-tashkilotlar')
+                    <li>
+                        <a href="javascript:;" class="menu menu{{ request()->is('tashkilot*') ? '--active':'' }}{{ request()->is('iqtisodiy*') ? '--active':'' }}{{ request()->is('itmtashkilot') ? '--active':'' }}{{ request()->is('itmiqtisodiy') ? '--active':'' }}{{ request()->is('itmtashkilotrahbari') ? '--active':'' }}">
+                            <div class="menu__icon"> <i data-feather="box"></i> </div>
+                            <div class="menu__title">  Tashkilot pasporti  <i data-feather="chevron-down"
+                                    class="side-menu__sub-icon"></i> </div>
+                        </a>
+                        <ul class="{{ request()->is('tashkilot*') ? 'side-menu__sub-open':'' }}{{ request()->is('iqtisodiy*') ? 'side-menu__sub-open':'' }}{{ request()->is('itmiqtisodiy') ? 'side-menu__sub-open':'' }}{{ request()->is('itmtashkilot') ? 'side-menu__sub-open':'' }}{{ request()->is('itmtashkilotrahbari') ? 'side-menu__sub-open':'' }}">
+                            <li>
+                                <a href="{{ route('itm.tashkilot') }}" class="menu menu{{ request()->is('tashkilot*') ? '--active':'' }}{{ request()->is('itmtashkilot*') ? '--active':'' }}">
+                                    <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="menu__title"> Tashkilot pasportini to'ldirish </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route("itm.iqtisodiy") }}" class="menu menu{{ request()->is('iqtisodiy*') ? '--active':'' }}{{ request()->is('itmiqtisodiy*') ? '--active':'' }}">
+                                    <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="menu__title">  Iqtisodiy moliyaviy faoliyat  </div>
+                                </a>
+                            </li>
+                            
+                            <li>
+                                <a href="{{ route("itm.tashkilotrahbari") }}" class="menu menu{{ request()->is('tashkilotrahbari*') ? '--active':'' }}{{ request()->is('itmtashkilotrahbari*') ? '--active':'' }}">
+                                    <div class="menu__icon"> <i data-feather="activity"></i> </div>
+                                    <div class="menu__title"> Tashkilot rahbari </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="{{ route('itm.xodimlar') }}" class="menu menu{{ request()->is('xodimlar*') ? '--active':'' }}{{ request()->is('itmxodimlar*') ? '--active':'' }}">
+                            <div class="menu__icon"> <i data-feather="users"></i> </div>
+                            <div class="menu__title"> Xodimlar </div>
+                        </a>
+                    </li>
+                
+                    <li>
+                        <a href="{{ route("itm.ilmiyloyiha") }}" class="menu menu{{ request()->is('ilmiyloyiha*') ? '--active':'' }}{{ request()->is('itmilmiyloyiha*') ? '--active':'' }}">
+                            <div class="menu__icon"> <i data-feather="file-text"></i> </div>
+                            <div class="menu__title"> Ilmiy loyihalar </div>
+                        </a>
+                    </li>
+                    
+                    <li>
+                        <a href="{{ route("itm.xujalik") }}" class="menu menu{{ request()->is('xujalik*') ? '--active':'' }}{{ request()->is('itmxujalik*') ? '--active':'' }}">
+                            <div class="menu__icon"> <i data-feather="file-text"></i> </div>
+                            <div class="menu__title"> Xo'jalik loyihalar </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route("itm.adminlar") }}" class="menu menu{{ request()->is('itmadminlar*') ? '--active':'' }}">
+                            <div class="menu__icon"> <i data-feather="file-text"></i> </div>
+                            <div class="menu__title">Tashkilot adminlar </div>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{{ route("itm.ilmiydaraja") }}" class="menu menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}{{ request()->is('itmilmiydaraja*') ? '--active':'' }}">
+                            <div class="menu__icon"> <i data-feather="file-text"></i> </div>
+                            <div class="menu__title"> Ilmiy loyiha bilan ta'minlanganmi </div>
+                        </a>
+                    </li>
+                @endrole
                 <div class="nav__devider my-6"></div>
                     <li>
                     <form method="POST" action="{{ route('logout') }}">

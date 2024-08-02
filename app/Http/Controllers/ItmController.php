@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tashkilot;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
@@ -171,5 +172,15 @@ class ItmController extends Controller
             ['path' => LengthAwarePaginator::resolveCurrentPath()]
         );
         return view('admin.itm.ilmiydaraja',['ilmiydarajas'=>$paginatedIlmiydarajas]);
+    }
+
+    public function ItmAdminlar(){
+        $itmadminlar = User::whereHas('roles', function ($query) {
+            $query->where('name', 'admin');
+        })->whereHas('tashkilot', function ($query) {
+            $query->where('tashkilot_turi', 'itm');
+        })->paginate(20);
+
+        return view('admin.itm.itmadminlar',['itmadminlar' => $itmadminlar]);
     }
 }

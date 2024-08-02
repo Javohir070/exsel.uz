@@ -78,6 +78,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/itmilmiyloyiha',[ItmController::class, 'ilmiyloyiha'])->name('itm.ilmiyloyiha');
     Route::get('/itmxujalik',[ItmController::class, 'xujalik'])->name('itm.xujalik');
     Route::get('/itmilmiydaraja',[ItmController::class, 'ilmiydaraja'])->name('itm.ilmiydaraja');
+    Route::get('/itmadminlar',[ItmController::class, 'ItmAdminlar'])->name('itm.adminlar');
     //end itm 
     Route::resources([
         'tashkilot' => TashkilotController::class,
