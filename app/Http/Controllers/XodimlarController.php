@@ -149,4 +149,14 @@ class XodimlarController extends Controller
     {
         return Excel::download(new XodimExport,'xodimlar.xlsx');
     }
+
+    public function searchxodimlar(Request $request)
+    {
+        $querysearch = $request->input('query');
+        $xodimlar = Xodimlar::where('fish','like','%'.$querysearch.'%')
+                ->orWhere('lavozimi','like','%'.$querysearch.'%')
+                ->orWhere('email','like','%'.$querysearch.'%')
+                ->paginate(10);
+        return view('admin.xodimlar.search_results', compact('xodimlar'));
+    }
 }

@@ -5,9 +5,9 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">Barcha xodimlar </h2>
+        <h2 class="intro-y text-lg font-medium">Tashkilotlar</h2>
 
-        <!-- <a href="{{ route('xodimlar.create') }}"  class="button w-24 bg-theme-1 text-white">
+        <!-- <a href="{{ route('tashkilot.create') }}"  class="button w-24 bg-theme-1 text-white">
             Qo'shish
         </a> -->
         <div class="intro-x relative mr-3 sm:mr-6">
@@ -20,8 +20,8 @@
             <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
         </div>
         <div>
-            <div> 
-                <a href="{{ route("xodimlar.create") }}" class="button w-24 bg-theme-1 text-white">
+            <div>
+                <a href="{{ route("tashqoshish.create") }}" class="button w-24 bg-theme-1 text-white">
                     Qo'shish
                 </a>
             </div>
@@ -33,7 +33,7 @@
 
 
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-            <table class="table table-report -mt-2">
+        <table class="table table-report -mt-2">
                 <thead>
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
@@ -46,7 +46,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($xodimlar_barchasi as $maq )
+                    @foreach ($xodimlar as $maq )
 
                     <tr class="intro-x">
                         <td>{{$loop->index+1}}</td>
@@ -98,9 +98,11 @@
             </table>
         </div>
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-            {{$xodimlar_barchasi->links()}}
+            {{$xodimlar->links()}}
         </div>
 
+
+        
 
     </div>
 
