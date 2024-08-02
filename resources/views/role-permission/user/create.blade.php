@@ -87,7 +87,7 @@
                             <option value=""> Role tanlash</option>
                             @role('admin')
                                 @foreach ($roles as $role)
-                                @if ($role !== 'super-admin' && $role !== 'admin')
+                                @if ($role !== 'super-admin' && $role !== 'admin' && $role !== 'Itm-tashkilotlar')
                                     <option value="{{ $role }}">{{ $role }}</option>
                                 @endif
                                 @endforeach

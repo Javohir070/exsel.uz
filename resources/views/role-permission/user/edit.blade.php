@@ -78,7 +78,7 @@
                         <select name="roles[]" class="input border w-full mt-2" required="">
                             <option value=""> Role tanlash</option>
                             @foreach ($roles as $role)
-                              @if ($role !== 'super-admin')
+                              @if ($role !== 'super-admin' && $role !== 'admin' &&  $role !== 'Itm-tashkilotlar')
                               <option
                                         value="{{ $role }}"
                                         {{ in_array($role, $userRoles) ? 'selected':'' }}
