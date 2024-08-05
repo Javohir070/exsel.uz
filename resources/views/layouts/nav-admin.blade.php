@@ -190,14 +190,7 @@
     </li>
     @endrole
 
-    @role(['admin','Ilmiy_faoliyat_uchun_masul'])
-    <li>
-        <a href="{{ route("ilmiydaraja.index") }}" class="side-menu side-menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}">
-            <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
-            <div class="side-menu__title"> Ilmiy loyiha bilan ta'minlanganmi </div>
-        </a>
-    </li>
-    @endrole
+   
     <!-- end admin -->
     <!-- Itm lar uchun -->
     @role('Itm-tashkilotlar')
