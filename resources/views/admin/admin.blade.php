@@ -27,6 +27,12 @@
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">3/3</div>
                             <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Tashkilot pasporti biriktirilgan mas'ul xodim
+                                @role('admin')
+								  <a href="{{ url('users/create') }}"
+                                    class="button  bg-theme-1 text-white"
+                                    style="display: flex; justify-content:center;margin-top: 10px;">
+                                    Mas'ul xodim biriktirish</a>
+                                @endrole
                                @forelse($Tashkilot_pasporti as $tash)
                                @role('admin')
                                <div style="display: flex;justify-content: space-around;align-items: center;margin-top: 10px;gap:4px;">
@@ -41,12 +47,7 @@
                                     style="display: flex; justify-content:center;margin-top: 10px;">{{$tash->name}}</a>
                                 @endrole
 								@empty
-                                @role('admin')
-								  <a href="{{ url('users/create') }}"
-                                    class="button  bg-theme-1 text-white"
-                                    style="display: flex; justify-content:center;margin-top: 10px;">
-                                    Mas'ul xodim biriktirish</a>
-                                @endrole
+                                <p></p>
                                 @role(['Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
                                 <a href="#"
                                     class="button  bg-theme-1 text-white"
@@ -72,7 +73,13 @@
                                 </div>
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">{{ $loyiha_count }}</div>
-                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Ilmiy loyihalar biriktirilgan mas'ul xodim <br>
+                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Ilmiy loyihalar biriktirilgan mas'ul xodim 
+                                @role('admin')
+								  <a href="{{ url('users/create') }}"
+                                    class="button  bg-theme-1 text-white"
+                                    style="display: flex; justify-content:center;margin-top: 10px;">
+                                    Mas'ul xodim biriktirish</a>
+                                @endrole
 								@forelse($Ilmiy_faoliyat as $ilmiy)
                                 @role('admin')
                                 <div style="display: flex;justify-content: space-around;align-items: center;margin-top: 10px;gap:4px;">
@@ -87,12 +94,7 @@
                                     style="display: flex; justify-content:center;margin-top: 10px;">{{$ilmiy->name}}</a>
                                 @endrole
 								@empty
-                                    @role('admin')
-                                    <a href="{{ url('users/create') }}"
-                                        class="button  bg-theme-1 text-white"
-                                        style="display: flex; justify-content:center;margin-top: 10px;">
-                                        Mas'ul xodim biriktirish</a>
-                                    @endrole
+                                    <p></p>
                                     @role(['Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
                                     <a href="#"
                                         class="button  bg-theme-1 text-white"
@@ -118,6 +120,12 @@
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">{{ $tashkiot_haqida->tash_xodimlar ?? 0 }}/{{ $xodimlar}}</div>
                             <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Xodimlar biriktirilgan mas'ul xodim 
+                                @role('admin')
+								  <a href="{{ url('users/create') }}"
+                                    class="button  bg-theme-1 text-white"
+                                    style="display: flex; justify-content:center;margin-top: 10px;">
+                                    Mas'ul xodim biriktirish</a>
+                                @endrole
 								@forelse($Xodimlar_uchun as $ilmiy)
                                 @role('admin')
                                 <div style="display: flex;justify-content: space-around;align-items: center;margin-top: 10px;gap:4px;">
@@ -133,12 +141,7 @@
                                     style="display: flex; justify-content:center;margin-top: 10px;">{{$ilmiy->name}}</a>
                                 @endrole
 								@empty
-                                    @role('admin')
-                                    <a href="{{ url('users/create') }}"
-                                        class="button  bg-theme-1 text-white"
-                                        style="display: flex; justify-content:center;margin-top: 10px;">
-                                        Mas'ul xodim biriktirish</a>
-                                    @endrole
+                                    <p></p>
                                     @role(['Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
                                     <a href="#"
                                         class="button  bg-theme-1 text-white"
