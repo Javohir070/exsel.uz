@@ -5,15 +5,15 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">Tashkilotlar</h2>
+        <h2 class="intro-y text-lg font-medium">Xodimlar </h2>
 
         <!-- <a href="{{ route('tashkilot.create') }}"  class="button w-24 bg-theme-1 text-white">
             Qo'shish
         </a> -->
         <div class="intro-x relative mr-3 sm:mr-6">
             <div class="search hidden sm:block">
-            <form action="{{ route('searchxodimlar') }}" method="GET">
-                <input type="text" name="query" class="search__input input placeholder-theme-13" placeholder="Search...">
+            <form action="{{ route('searchxodim') }}" method="GET">
+                <input type="text" name="search" class="search__input input placeholder-theme-13" placeholder="Search...">
                 <i data-feather="search" class="search__icon"></i> 
             </form>
             </div>
@@ -21,7 +21,7 @@
         </div>
         <div>
             <div>
-                <a href="{{ route("tashqoshish.create") }}" class="button w-24 bg-theme-1 text-white">
+                <a href="{{ route("xodimlar.create") }}" class="button w-24 bg-theme-1 text-white">
                     Qo'shish
                 </a>
             </div>
@@ -37,9 +37,9 @@
                 <thead>
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
-                        <th class="whitespace-no-wrap">Tashkilot nomi</th>
                         <th class="whitespace-no-wrap">F.I.Sh</th>
-                        <th class="whitespace-no-wrap">Jinsi</th>
+                        <th class="whitespace-no-wrap">Lavozimi</th>
+                        <th class="whitespace-no-wrap">Email</th>
                         <th class="whitespace-no-wrap">Telefon nomeri</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
@@ -51,13 +51,13 @@
                     <tr class="intro-x">
                         <td>{{$loop->index+1}}</td>
                         <td>
-                            <a href="" class="font-medium ">{{ $maq->tashkilot->name_qisqachasi }}</a>
-                        </td>
-                        <td>
                             <a href="#" target="_blank"  class="font-medium">{{ $maq->fish }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $maq->jinsi  }}</a>
+                            <a href="" class="font-medium ">{{ $maq->lavozimi }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="font-medium ">{{ $maq->email  }}</a>
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $maq->phone }}</a>
@@ -73,7 +73,7 @@
                                     Ko'rish
                                 </a>
                                 
-                                <form action="{{ route('xodimlar.destroy',['xodimlar'=>$maq->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                <!-- <form action="{{ route('xodimlar.destroy',['xodimlar'=>$maq->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                     <button type="submit" class="flex delete-action items-center text-theme-6" >
                                     @csrf
                                     @method("DELETE")
@@ -86,7 +86,7 @@
                                         </svg>
                                         O'chirish
                                     </button>
-                                </form>
+                                </form> -->
 
                             </div>
                         </td>
@@ -98,7 +98,7 @@
             </table>
         </div>
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-            {{$xodimlar->links()}}
+            
         </div>
 
 

@@ -157,6 +157,27 @@ class XodimlarController extends Controller
                 ->orWhere('lavozimi','like','%'.$querysearch.'%')
                 ->orWhere('email','like','%'.$querysearch.'%')
                 ->paginate(10);
-        return view('admin.xodimlar.search_results', compact('xodimlar'));
+        return view('admin.xodimlar.search_resultsbarchax', compact('xodimlar'));
+    }
+
+    public function searchEmployees(Request $request)
+    {
+        $searchTerm = $request->input('search');
+        $tashkilot_id = auth()->user()->tashkilot_id;
+
+        // Tashkilotni olish va unga tegishli xodimlarni qidirish
+        $tashkilot = Tashkilot::findOrFail($tashkilot_id);
+
+        // Xodimlarni qidirish va natijani cheklash
+        $xodimlars = $tashkilot->xodimlar()
+            ->where(function($query) use ($searchTerm) {
+                $query->where('fish', 'like', '%'.$searchTerm.'%')
+                    ->orWhere('lavozimi', 'like', '%'.$searchTerm.'%')
+                    ->orWhere('email', 'like', '%'.$searchTerm.'%');
+            })
+            ->get();
+
+        // Natijani qaytarish
+        return view('admin.xodimlar.search_results', ['xodimlar' => $xodimlars]);
     }
 }

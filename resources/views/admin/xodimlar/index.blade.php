@@ -7,9 +7,26 @@
 
         <h2 class="intro-y text-lg font-medium">Xodimlar</h2>
 
-        <a href="{{ route("xodimlar.create") }}" class="button w-24 bg-theme-1 text-white">
+        <!-- <a href="{{ route("xodimlar.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish
-        </a>
+        </a> -->
+        <div class="intro-x relative mr-3 sm:mr-6">
+            <div class="search hidden sm:block">
+            <form action="{{ route('searchxodim') }}" method="GET">
+                <input type="text" name="search" class="search__input input placeholder-theme-13" placeholder="Search...">
+                <i data-feather="search" class="search__icon"></i> 
+            </form>
+            </div>
+            <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
+        </div>
+        <div>
+            <div> 
+                <a href="{{ route("xodimlar.create") }}" class="button w-24 bg-theme-1 text-white">
+                    Qo'shish
+                </a>
+            </div>
+        
+        </div>
 
     </div>
     @if (session('status'))
@@ -23,7 +40,7 @@
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">F.I.Sh</th>
                         <th class="whitespace-no-wrap">Lavozimi</th>
-                        <th class="whitespace-no-wrap">Jinsi</th>
+                        <th class="whitespace-no-wrap">Email</th>
                         <th class="whitespace-no-wrap">Telefon raqami</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
@@ -41,7 +58,7 @@
                             <a href="" class="font-medium ">{{ $xodimlar->lavozimi }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->jinsi }}</a>
+                            <a href="" class="font-medium ">{{ $xodimlar->email }}</a>
                         </td>
                         
                         <td>
@@ -65,7 +82,7 @@
                                     Ko'rish
                                 </a>
                                 
-                                <form action="{{ route('xodimlar.destroy',['xodimlar'=>$xodimlar->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                <!-- <form action="{{ route('xodimlar.destroy',['xodimlar'=>$xodimlar->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                     <button type="submit" class="flex delete-action items-center text-theme-6" >
                                     @csrf
                                     @method("DELETE")
@@ -78,7 +95,7 @@
                                         </svg>
                                         O'chirish
                                     </button>
-                                </form>
+                                </form> -->
 
                             </div>
                         </td>

@@ -69,6 +69,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/searchloyiha', [IlmiyLoyihaController::class, 'searchloyiha'])->name('searchloyiha');
     Route::get('/searchxodimlar', [XodimlarController::class, 'searchxodimlar'])->name('searchxodimlar');
     Route::get('/searchuser', [UserController::class, 'searchuser'])->name('searchuser');
+    Route::get('/searchxodim', [XodimlarController::class, 'searchEmployees'])->name('searchxodim');
     Route::get('/adminlar',[TashkilotMalumotlarController::class, 'adminlar'])->name('tashkilotmalumotlar.adminlar');
     //itm
     Route::get('/itmtashkilot',[ItmController::class, 'tashkilot'])->name('itm.tashkilot');
