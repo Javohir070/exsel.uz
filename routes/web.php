@@ -47,14 +47,15 @@ Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home
 Route::middleware('auth')->group(function () {
     Route::post('password/change', [UserController::class, 'changePassword'])->name('password.change');
     Route::get('/export', [ExportController::class, 'export']);
-    Route::get('/exportilmiy', [IlmiyLoyihaController::class, 'exportilmiy']);
     // Route::get('/search', [SearchController::class, 'search'])->name('search');
-    Route::get('/exportashkiot', [TashkilotController::class, 'exporttashkilot']);
-    Route::get('/exporxodimlar', [XodimlarController::class, 'exporxodimlar']);
+    Route::get('/export-ilmiylar', [IlmiyLoyihaController::class, 'exportilmiy']);
+    Route::get('/export-tashkiotlar', [TashkilotController::class, 'exportashkilot']);
+    Route::get('/export-xodimlar', [XodimlarController::class, 'exporxodimlar']);
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/profileview', [UserController::class, 'profileview'])->name('profileview.index');
+    Route::get('/reformat-phones', [XodimlarController::class, 'reformatPhones']);
 });
 Route::middleware('auth')->group(function () {
     Route::get('/tashkilotlar',[TashkilotController::class,'tashkilotlar'])->name('tashkilotlar.index');

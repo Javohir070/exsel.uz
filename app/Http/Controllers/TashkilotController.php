@@ -158,9 +158,10 @@ class TashkilotController extends Controller
         return view('admin.tashkilot.search_results', compact('tashkilot_search'));
     }
 
-    public function exporttashkilot()
+    public function exportashkilot()
     {
-        return Excel::download(new TashkilotExport, 'tashkilot.xlsx');
+        $fileName = 'Tashkilot_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new TashkilotExport, $fileName);
 
     }
 }

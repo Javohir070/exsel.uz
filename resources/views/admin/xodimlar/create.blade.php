@@ -248,7 +248,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telefon raqami
                     </label>
-                    <input type="tel" name="phone" value="+998{{ old('phone') }}" class="input w-full border mt-2" required="">
+                    <input type="tel" name="phone" placeholder="+998 90 123 45 67" value="{{ old('phone') }}" class="input w-full border mt-2" required="">
                     @error('phone')
                         <div class="error">{{ $message }}</div>
                     @enderror

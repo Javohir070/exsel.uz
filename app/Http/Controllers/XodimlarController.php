@@ -147,7 +147,10 @@ class XodimlarController extends Controller
 
     public function exporxodimlar()
     {
-        return Excel::download(new XodimExport,'xodimlar.xlsx');
+        ini_set('memory_limit', '512M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+        $fileName = 'Xodimlar_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new XodimExport, $fileName);
     }
 
     public function searchxodimlar(Request $request)
@@ -179,5 +182,17 @@ class XodimlarController extends Controller
 
         // Natijani qaytarish
         return view('admin.xodimlar.search_results', ['xodimlar' => $xodimlars]);
+    }
+
+    public function reformatPhones()
+    {
+        Xodimlar::chunk(100, function ($employees) {
+            foreach ($employees as $employee) {
+                $employee->phone = $employee->phone; // Mutator yordamida formatlash
+                $employee->save();
+            }
+        });
+
+        return 'Telefon raqamlari muvaffaqiyatli formatlandi.';
     }
 }
