@@ -127,8 +127,7 @@
                         <option value="Katta o‘qituvchi">Katta o‘qituvchi</option>
                         <option value="Assistent, o‘qituvchi">Assistent, o‘qituvchi</option>
                         <option value="O‘qituvchi-stajer">O‘qituvchi-stajer</option>
-                        <option value="Rektor">Rektor</option>
-                        <option value="Matbuot kotibi">Matbuot kotibi</option> 
+                        <option value="Rektor">Rektor</option> 
                         <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option> 
                         <option value="Direktor">Direktor</option>
                         <option value="Prorektor">Prorektor</option>
@@ -139,7 +138,6 @@
                         <option value="Ilmiy ishlar bo‘yicha direktor o‘rinbosari">Ilmiy ishlar bo‘yicha direktor o‘rinbosari</option> 
                         <option value="Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri">Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri</option> 
                         <option value="Umumiy masalalar bo‘yicha direktor o‘rinbosari">Umumiy masalalar bo‘yicha direktor o‘rinbosari</option> 
-                        <option value="Bosh buxgalter">Bosh buxgalter</option> 
                         <option value="Moliya-iqtisod bo‘limi boshlig‘i">Moliya-iqtisod bo‘limi boshlig‘i</option> 
                         
                         <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option> 
