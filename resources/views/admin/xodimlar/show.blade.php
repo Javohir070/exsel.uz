@@ -90,8 +90,8 @@
                         </tr>
                         <tr>
                             <!-- <th class="border border-2">6</th> -->
-                            <td class="border border-2">{{ $xodimlar->shtat_birligi }}</td>
                             <td class="border border-2">{{ $xodimlar->lavozimi }}</td>
+                            <td class="border border-2">{{ $xodimlar->ish_tartibi }}</td>
                         </tr>
                         <tr class="bg-gray-200">
                             <!-- <th class="border border-2">7</th> -->
