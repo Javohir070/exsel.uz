@@ -150,8 +150,8 @@ class IlmiyLoyihaController extends Controller
     }
     public function exportilmiy() 
     {
-
-        return Excel::download(new IlmiyLoyihasExport, 'ilmiy.xlsx');
+        $fileName = 'Ilmiyloyihalar' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new IlmiyLoyihasExport, $fileName);
     }
 
     public function searchloyiha(Request $request)

@@ -10,6 +10,12 @@
         <!-- <a href="{{ route("xujalik.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish
         </a> -->
+        <div>
+            <div>
+                <a href="{{ route('exporxujaliklar') }}" class="button box flex items-center text-gray-700"> <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </a>
+            </div>
+        
+        </div>
 
     </div>
     @if (session('status'))

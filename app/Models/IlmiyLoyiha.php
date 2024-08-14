@@ -23,5 +23,12 @@ class IlmiyLoyiha extends Model
     {
         return $this->belongsTo(Umumiyyil::class);
     }
+    // App\Models\IlmiyLoyiha.php
+
+    // public function umumiyyil()
+    // {
+    //     return $this->belongsTo(Umumiyyil::class, 'umumiyyil_id');
+    // }
+
 
 }

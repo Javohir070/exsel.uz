@@ -159,6 +159,15 @@
                         <option value="Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri">Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri</option> 
                         <option value="Umumiy masalalar bo‘yicha direktor o‘rinbosari">Umumiy masalalar bo‘yicha direktor o‘rinbosari</option> 
                         <option value="Moliya-iqtisod bo‘limi boshlig‘i">Moliya-iqtisod bo‘limi boshlig‘i</option> 
+
+                        <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option> 
+                        <option value="Bosh muhandis">Bosh muhandis</option> 
+                        <option value="Bosh energetik">Bosh energetik</option> 
+                        <option value="Bosh mexanik">Bosh mexanik</option> 
+                        <option value="Mutaxassis">Mutaxassis</option> 
+                        <option value="Expert">Expert</option> 
+                        <option value="Hisobchi">Hisobchi</option> 
+                        <option value="Kadrlar bo‘yicha mutaxassis">Kadrlar bo‘yicha mutaxassis</option> 
                         
                         <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option> 
                         <option value="Yetakchi muhandis">Yetakchi muhandis</option> 
@@ -167,8 +176,6 @@
                         <option value="Katta ilmiy xodim">Katta ilmiy xodim</option> 
                         <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
                         <option value="Ishlab chiqarish bo‘yicha direktor o‘rinbosari">Ishlab chiqarish bo‘yicha direktor o‘rinbosari</option> 
-
-
                     </select><br>
                     @error('lavozimi')
                         <div class="error">{{ $message }}</div>

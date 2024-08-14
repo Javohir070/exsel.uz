@@ -74,7 +74,7 @@
 
                         <option value="Tajriba-konstruktorlik">Tajriba-konstruktorlik</option>
 
-                        <option value="Boshqalari">Boshqalari</option>
+                        <option value="Tematik">Tematik</option>
 
 
                     </select>

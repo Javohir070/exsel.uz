@@ -46,11 +46,14 @@ use App\Http\Controllers\TashkilotXujalikController;
 Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home.index');
 Route::middleware('auth')->group(function () {
     Route::post('password/change', [UserController::class, 'changePassword'])->name('password.change');
+    //excel uchun export url lar
     Route::get('/export', [ExportController::class, 'export']);
     // Route::get('/search', [SearchController::class, 'search'])->name('search');
-    Route::get('/export-ilmiylar', [IlmiyLoyihaController::class, 'exportilmiy']);
-    Route::get('/export-tashkiotlar', [TashkilotController::class, 'exportashkilot']);
-    Route::get('/export-xodimlar', [XodimlarController::class, 'exporxodimlar']);
+    Route::get('/export-ilmiylar', [IlmiyLoyihaController::class, 'exportilmiy'])->name('exportilmiy');
+    Route::get('/export-tashkiotlar', [TashkilotController::class, 'exportashkilot'])->name('exportashkilot');
+    Route::get('/export-xodimlar', [XodimlarController::class, 'exporxodimlar'])->name('exporxodimlar');
+    Route::get('/export-xujaliklar', [XujalikController::class, 'exporxujaliklar'])->name('exporxujaliklar');
+    // end excel uchun export url lar
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');

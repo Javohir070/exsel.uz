@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\XujalikExport;
 use App\Models\Xujalik;
 use App\Http\Requests\StoreXujalikRequest;
 use App\Http\Requests\UpdateXujalikRequest;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class XujalikController extends Controller
 {
@@ -111,5 +114,13 @@ class XujalikController extends Controller
     {
         $xujaliklar = Xujalik::paginate(25);
         return view('admin.xujalik.ilmiyloyihalar',['xujaliklar'=>$xujaliklar]);
+    }
+
+    public function exporxujaliklar()
+    {
+        ini_set('memory_limit', '512M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+        $fileName = 'Xujaliklar' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new XujalikExport, $fileName);
     }
 }

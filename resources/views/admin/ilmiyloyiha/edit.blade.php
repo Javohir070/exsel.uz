@@ -105,7 +105,7 @@
                     </label>
                     <select name="dastyri"  id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option>Loyiha dasturi tanlang</option>
+                        <option value="">Loyiha dasturi tanlang</option>
 
                         <option value="Maqsadli" {{ $ilmiyloyiha->dastyri == 'Maqsadli' ? 'selected' : '' }}>Maqsadli</option>
 
@@ -116,6 +116,9 @@
                         <option value="Olima ayollar" {{ $ilmiyloyiha->dastyri == 'Olima ayollar' ? 'selected' : '' }}>Olima ayollar</option>
 
                         <option value="Xalqaro-qo‘shma" {{ $ilmiyloyiha->dastyri == 'Xalqaro-qo‘shma' ? 'selected' : '' }}>Xalqaro-qo‘shma</option>
+
+                        <option value="Tematik" {{ $ilmiyloyiha->dastyri == 'Tematik' ? 'selected' : '' }}>Tematik</option>
+
 
                     </select>
                     @error('dastyri')
