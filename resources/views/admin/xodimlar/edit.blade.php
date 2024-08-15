@@ -167,6 +167,9 @@
                         <option value="Mutaxassis">Mutaxassis</option> 
                         <option value="Expert">Expert</option> 
                         <option value="Hisobchi">Hisobchi</option> 
+                        <option value="Ilmiy maslahatchi">Ilmiy maslahatchi</option> 
+                        <option value="Maslahatchi">Maslahatchi</option> 
+                        <option value="Laborant">Laborant</option> 
                         <option value="Kadrlar bo‘yicha mutaxassis">Kadrlar bo‘yicha mutaxassis</option> 
                         
                         <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option> 

@@ -112,11 +112,33 @@
                         <tr class="bg-gray-200">
                             <!-- <th class="border border-b-2 ">3</th> -->
                             <th class="border border-b-2 ">Intellektual mulk huquqining mavjudligi mavjud bo‘lsa: sanasi</th>
-                            <td class="border border-b-2 "></td>
+                            <th class="border border-b-2 ">1-chorak</th>
                         </tr>
                         <tr >
                             <!-- <th class="border border-b-2 ">3</th> -->
                             <td class="border border-b-2 ">{{ $xujalik->intellektual_sana }}</td>
+                            <td class="border border-b-2 ">{{ $xujalik->chorak1 }}</td>
+                        </tr>
+
+                        <tr class="bg-gray-200">
+                            <!-- <th class="border border-b-2 ">3</th> -->
+                            <th class="border border-b-2 ">2-chorak</th>
+                            <th class="border border-b-2 ">3-chorak</th>
+                        </tr>
+                        <tr >
+                            <!-- <th class="border border-b-2 ">3</th> -->
+                            <td class="border border-b-2 ">{{ $xujalik->chorak2 }}</td>
+                            <td class="border border-b-2 ">{{ $xujalik->chorak3 }}</td>
+                        </tr>
+
+                        <tr class="bg-gray-200">
+                            <!-- <th class="border border-b-2 ">3</th> -->
+                            <th class="border border-b-2 ">4-chorak</th>
+                            <td class="border border-b-2 "></td>
+                        </tr>
+                        <tr >
+                            <!-- <th class="border border-b-2 ">3</th> -->
+                            <td class="border border-b-2 ">{{ $xujalik->chorak4 }}</td>
                             <th class="border border-b-2 "></th>
                         </tr>
                         

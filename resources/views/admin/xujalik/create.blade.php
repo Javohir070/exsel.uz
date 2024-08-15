@@ -159,8 +159,37 @@
                     @enderror
                 </div>
 
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  1-chorak
+                    </label>
+                    <input type="text" name="chorak1" value="{{ old('chorak1') }}" class="input w-full border mt-2" required="">
+                    
+                </div>
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  2-chorak
+                    </label>
+                    <input type="text" name="chorak2" value="{{ old('chorak2') }}" class="input w-full border mt-2" required="">
+                    
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  3-chorak
+                    </label>
+                    <input type="text" name="chorak3" value="{{ old('chorak3') }}" class="input w-full border mt-2" required="">
+                    
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  4-chorak
+                    </label>
+                    <input type="text" name="chorak4" value="{{ old('chorak4') }}" class="input w-full border mt-2" required="">
+                   
+                </div>
+
+                
+
             </div>
-        </form>
+        </form><br>
         <div class="px-5 pb-5 text-center">
             <a href="{{ route('xujalik.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish

@@ -51,7 +51,11 @@ class XujalikController extends Controller
             "stir" =>$request->stir ,
             "sh_summa" =>$request->sh_summa ,
             "shkelib_sana" =>$request->shkelib_sana ,
-            "shkelib_summa" =>$request->shkelib_summa ,
+            "shkelib_summa" =>$request->shkelib_summa,
+            "chorak1" => $request->chorak1,
+            "chorak2" => $request->chorak2,
+            "chorak3" => $request->chorak3,
+            "chorak4" => $request->chorak4,
         ]);
 
         return redirect('/xujalik')->with('status', "Ma\'lumotlar muvaffaqiyatli qo'shildi.");
@@ -95,6 +99,10 @@ class XujalikController extends Controller
             "sh_summa" =>$request->sh_summa ,
             "shkelib_sana" =>$request->shkelib_sana ,
             "shkelib_summa" =>$request->shkelib_summa ,
+            "chorak1" => $request->chorak1,
+            "chorak2" => $request->chorak2,
+            "chorak3" => $request->chorak3,
+            "chorak4" => $request->chorak4,
         ]);
 
         return redirect('/xujalik')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');

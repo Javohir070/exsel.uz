@@ -9,7 +9,7 @@ class Xujalik extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'tashkilot_id', 'ishlanma_nomi', 'intellektual_raqami', 'intellektual_sana', 'ishlanma_mavzu', 'ishlanma_turi', 'lisenzion', 'sh_raqami', 'sh_sanasi', 'ilmiy_nomi', 'stir', 'sh_summa', 'shkelib_sana', 'shkelib_summa'];
+    protected $fillable = ['user_id', 'tashkilot_id', 'ishlanma_nomi', 'intellektual_raqami', 'intellektual_sana', 'ishlanma_mavzu', 'ishlanma_turi', 'lisenzion', 'sh_raqami', 'sh_sanasi', 'ilmiy_nomi', 'stir', 'sh_summa', 'shkelib_sana', 'shkelib_summa','chorak1','chorak2','chorak3', 'chorak4'];
 
     public function tashkilot()
     {

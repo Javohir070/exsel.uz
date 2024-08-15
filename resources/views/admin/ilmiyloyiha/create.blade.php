@@ -74,7 +74,7 @@
 
                         <option value="Tajriba-konstruktorlik">Tajriba-konstruktorlik</option>
 
-                        <option value="Tematik">Tematik</option>
+                       
 
 
                     </select>
@@ -102,6 +102,8 @@
 
 
                         <option value="Xalqaro-qo‘shma">Xalqaro-qo‘shma</option>
+                        
+                        <option value="Tematik">Tematik</option>
 
                     </select><br>
                     @error('dastyri')

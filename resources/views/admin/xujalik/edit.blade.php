@@ -160,6 +160,33 @@
                     @enderror
                 </div>
 
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  1-chorak
+                    </label>
+                    <input type="text" name="chorak1" value="{{ $xujalik->chorak1 }}" class="input w-full border mt-2" required="">
+                    
+                </div>
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  2-chorak
+                    </label>
+                    <input type="text" name="chorak2" value="{{ $xujalik->chorak2 }}" class="input w-full border mt-2" required="">
+                    
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  3-chorak
+                    </label>
+                    <input type="text" name="chorak3" value="{{ $xujalik->chorak3 }}" class="input w-full border mt-2" required="">
+                    
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  4-chorak
+                    </label>
+                    <input type="text" name="chorak4" value="{{ $xujalik->chorak4 }}" class="input w-full border mt-2" required="">
+                   
+                </div>
+
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">

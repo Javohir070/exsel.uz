@@ -118,6 +118,7 @@
                         <option value="Xalqaro-qo‘shma" {{ $ilmiyloyiha->dastyri == 'Xalqaro-qo‘shma' ? 'selected' : '' }}>Xalqaro-qo‘shma</option>
 
                         <option value="Tematik" {{ $ilmiyloyiha->dastyri == 'Tematik' ? 'selected' : '' }}>Tematik</option>
+                        
 
 
                     </select>
