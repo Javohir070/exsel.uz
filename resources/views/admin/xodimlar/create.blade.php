@@ -259,7 +259,6 @@
 
                         <option value="Dotsent">Dotsent</option>
                         <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
-                        <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
                         <option value="Akademik">Akademik</option>
                         <option value="yoq">yoq</option>
 

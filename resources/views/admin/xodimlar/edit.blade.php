@@ -261,7 +261,6 @@
 
                         <option value="Katta ilmiy xodim" {{ $xodimlar->ilmiy_unvoni == "Katta ilmiy xodim" ? "selected" : ""}} >Katta ilmiy xodim</option>
 
-                        <option value="Kichik ilmiy xodim" {{ $xodimlar->ilmiy_unvoni == "Kichik ilmiy xodim" ? "selected" : ""}} >Kichik ilmiy xodim</option>
 
                         <option value="Akademik" {{ $xodimlar->ilmiy_unvoni == "Akademik" ? "selected" : ""}} >Akademik</option>
                         
