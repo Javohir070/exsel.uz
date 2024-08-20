@@ -16,7 +16,7 @@ class ItmController extends Controller
 
     public function tashkilot()
     {
-        $tashkilot = Tashkilot::where('tashkilot_turi', 'itm')->paginate(20);
+        $tashkilot = Tashkilot::where('tashkilot_turi', 'itm')->orderBy('name', 'asc')->paginate(37);
         return view('admin.itm.tashkilotlar',['tashkilot'=>$tashkilot]);
     }
 
