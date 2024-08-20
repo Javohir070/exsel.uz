@@ -71,7 +71,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ish tartibi
                     </label>
-                    <select name="ish_tartibi" value="{{ old('ish_tartibi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+                    <select name="ish_tartibi" id="ish_tartibi" value="{{ old('ish_tartibi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option value="">Ish tartibini tanlang</option>
 
@@ -86,6 +86,8 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
+
+                
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -187,11 +189,11 @@
                     @enderror
                 </div>
 
-                <div class="w-full col-span-6 ">
+                <div class="w-full col-span-6 " style="display: none;" id="orindoshlik-input">
                     <label class="flex flex-col sm:flex-row"> O‘rindoshlik asosida ishlaydigan xodimning asosiy ish joyi
                         bo‘lgan tashkilot
                     </label>
-                    <input type="text" name="urindoshlik_asasida" value="{{ old('urindoshlik_asasida') }}" class="input w-full border mt-2" >
+                    <input type="text" name="urindoshlik_asasida" value="{{ old('urindoshlik_asasida') }}" class="input w-full border mt-2" required="">
                     @error('urindoshlik_asasida')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -200,7 +202,16 @@
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">  Ma’lumoti
                     </label>
-                    <input type="text" name="malumoti" value="{{ old('malumoti') }}" class="input w-full border mt-2">
+                    <!-- <input type="text" name="malumoti" value="{{ old('malumoti') }}" class="input w-full border mt-2"> -->
+                    <select name="malumoti" value="{{ old('malumoti') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                        <option value="">Ma’lumotini tanlang</option>
+
+                        <option value="Oliy">Oliy</option>
+
+                        <option value="O'rta maxsus">O'rta maxsus</option>
+
+                    </select><br>
                     @error('malumoti')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -208,9 +219,19 @@
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">  O‘zbekiston Fanlar akademiyasi
-                        haqiqiy a’zosi Ilmiy darajasi
+                        haqiqiy a’zosi 
                     </label>
-                    <input type="text" name="uzbek_panlar_azosi" value="{{ old('uzbek_panlar_azosi') }}" class="input w-full border mt-2">
+                    <!-- <input type="text" name="uzbek_panlar_azosi" value="{{ old('uzbek_panlar_azosi') }}" class="input w-full border mt-2"> -->
+                    <select name="uzbek_panlar_azosi" value="{{ old('uzbek_panlar_azosi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                        <option value="">O‘zbekiston Fanlar akademiyasi
+                        haqiqiy tanlang</option>
+
+                        <option value="Ha , Akademik">Ha , Akademik</option>
+
+                        <option value="Mavjud emas">Mavjud emas</option>
+
+                    </select><br>
                     @error('uzbek_panlar_azosi')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -218,7 +239,7 @@
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">  Ilmiy darajasi</label>
-                    <select name="ilmiy_daraja" value="{{ old('ilmiy_daraja') }}" id="science-sub-category" class="input border w-full mt-2">
+                    <select name="ilmiy_daraja" id="ilmiy_daraja" value="{{ old('ilmiy_daraja') }}" id="science-sub-category" class="input border w-full mt-2">
 
                         <option value="">Ilmiy darajasini tanlang</option>
 
@@ -239,10 +260,11 @@
                     @enderror
                 </div>
 
-                <div class="w-full col-span-6 ">
+                <div class="w-full col-span-6 " id="ilmiy-daraja-input" style="display: none;">
                     <label class="flex flex-col sm:flex-row">  Ilmiy daraja olingan yili
                     </label>
-                    <input type="number" name="ilmiy_daraja_yil" value="{{ old('ilmiy_daraja_yil') }}" class="input w-full border mt-2">
+                    <input type="number" name="ilmiy_daraja_yil" value="{{ old('ilmiy_daraja_yil') }}" class="input w-full border mt-2" required=""
+                    >
                     @error('ilmiy_daraja_yil')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -251,7 +273,7 @@
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">  Ilmiy unvoni
                     </label>
-                    <select name="ilmiy_unvoni" value="{{ old('ilmiy_unvoni') }}" id="science-sub-category" class="input border w-full mt-2">
+                    <select name="ilmiy_unvoni" id="ilmiy_unvoni" value="{{ old('ilmiy_unvoni') }}" id="science-sub-category" class="input border w-full mt-2">
 
                         <option value="">Ilmiy unvonini tanlang</option>
 
@@ -269,11 +291,11 @@
                 </div>
 
 
-                <div class="w-full col-span-6 ">
+                <div class="w-full col-span-6 " id="ilmiy-unvon-input" style="display: none;">
                     <label class="flex flex-col sm:flex-row"> Ilmiy unvon olingan
                         yili
                     </label>
-                    <input type="number" name="ilmiy_unvoni_y" value="{{ old('ilmiy_unvoni_y') }}" class="input w-full border mt-2">
+                    <input type="number" name="ilmiy_unvoni_y" value="{{ old('ilmiy_unvoni_y') }}" class="input w-full border mt-2" required="">
                     @error('ilmiy_unvoni_y')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -321,6 +343,57 @@
     </div>
 </div><br>
 
+<script type="text/javascript">
+    document.getElementById('ish_tartibi').addEventListener('change', function() {
+        var selectedOption = this.value;
+        var orindoshlikInput = document.getElementById('orindoshlik-input');
+        
+        if (selectedOption === 'O‘rindoshlik') {
+            orindoshlikInput.style.display = 'block'; // Inputni ko'rsatish
+        } else {
+            orindoshlikInput.style.display = 'none';  // Inputni yashirish
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    document.getElementById('ilmiy_daraja').addEventListener('change', function() {
+        var selectedOption = this.value;
+        var ilmiyDarajaInput = document.getElementById('ilmiy-daraja-input');
+        var validOptions = [
+            "Fan nomzodi", 
+            "Falsafa doktori (PhD)", 
+            "Fan doktori (DSc)", 
+            "Fan doktori", 
+            "Akademik"
+        ];
+        
+        if (validOptions.includes(selectedOption)) {
+            ilmiyDarajaInput.style.display = 'block'; // Inputni ko'rsatish
+        } else {
+            ilmiyDarajaInput.style.display = 'none';  // Inputni yashirish
+        }
+    });
+</script>
+
+<script type="text/javascript">
+    document.getElementById('ilmiy_unvoni').addEventListener('change', function() {
+        var selectedOption = this.value;
+        var ilmiyUnvonInput = document.getElementById('ilmiy-unvon-input');
+        var validOptions = [
+            "Professor", 
+            "Dotsent", 
+            "Katta ilmiy xodim", 
+            "Akademik"
+        ];
+        
+        if (validOptions.includes(selectedOption)) {
+            ilmiyUnvonInput.style.display = 'block'; // Inputni ko'rsatish
+        } else {
+            ilmiyUnvonInput.style.display = 'none';  // Inputni yashirish
+        }
+    });
+</script>
 
 
 @endsection

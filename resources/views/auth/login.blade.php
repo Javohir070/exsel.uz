@@ -60,7 +60,7 @@
                     </div>
                     <div class="intro-x flex text-gray-700 text-xs sm:text-sm mt-4">
                         <div class="flex items-center mr-auto">
-                            <input type="checkbox" class="input border mr-2" id="remember-me">
+                            <input type="checkbox" class="input border mr-2" name="remember" id="remember">
                             <label class="cursor-pointer select-none" for="remember-me">Eslab qolish </label>
                         </div>
                         <a href="">Parolni unutdingizmi?</a>

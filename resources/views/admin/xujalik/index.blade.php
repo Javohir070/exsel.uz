@@ -10,6 +10,7 @@
         <a href="{{ route("xujalik.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish
         </a>
+        
 
     </div>
     @if (session('status'))

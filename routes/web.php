@@ -46,13 +46,12 @@ use App\Http\Controllers\TashkilotXujalikController;
 Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home.index');
 Route::middleware('auth')->group(function () {
     Route::post('password/change', [UserController::class, 'changePassword'])->name('password.change');
+    //import qilish 
+    //end import
     //excel uchun export url lar
-    Route::get('/export', [ExportController::class, 'export']);
+    Route::post('/import', [XodimlarController::class, 'import'])->name('import');
     // Route::get('/search', [SearchController::class, 'search'])->name('search');
-    Route::get('/export-ilmiylar', [IlmiyLoyihaController::class, 'exportilmiy'])->name('exportilmiy');
-    Route::get('/export-tashkiotlar', [TashkilotController::class, 'exportashkilot'])->name('exportashkilot');
-    Route::get('/export-xodimlar', [XodimlarController::class, 'exporxodimlar'])->name('exporxodimlar');
-    Route::get('/export-xujaliklar', [XujalikController::class, 'exporxujaliklar'])->name('exporxujaliklar');
+    
     // end excel uchun export url lar
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -101,11 +100,15 @@ Route::middleware('auth')->group(function () {
         'tashkilot.userlar' => TashkilotUserlarController::class
     ]);
 });
-Route::group(['middleware' => ['role:super-admin|admin']], function() {
+Route::group(['middleware' => ['role:super-admin']], function() {
 
     Route::resource('permissions', PermissionController::class);
     Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
-
+    Route::get('/export', [ExportController::class, 'export']);
+    Route::get('/export-ilmiylar', [IlmiyLoyihaController::class, 'exportilmiy'])->name('exportilmiy');
+    Route::get('/export-tashkiotlar', [TashkilotController::class, 'exportashkilot'])->name('exportashkilot');
+    Route::get('/export-xodimlar', [XodimlarController::class, 'exporxodimlar'])->name('exporxodimlar');
+    Route::get('/export-xujaliklar', [XujalikController::class, 'exporxujaliklar'])->name('exporxujaliklar');
     Route::resource('/ilmiyunvon', IlmiyUnvonController::class);
     Route::resource('roles', RoleController::class);
     Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);

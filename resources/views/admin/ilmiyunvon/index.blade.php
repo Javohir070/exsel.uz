@@ -160,6 +160,8 @@
                 </div>
             </div>
         </div>
+
+        
         <div class="modal" id="science-paper-update-modal" style="padding-left: 0px;">
             <div class="modal__content">
                 <div class="p-5">

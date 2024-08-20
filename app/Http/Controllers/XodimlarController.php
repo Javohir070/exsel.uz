@@ -10,6 +10,7 @@ use App\Models\Xodimlar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\XodimlarImport;
 
 class XodimlarController extends Controller
 {
@@ -57,18 +58,18 @@ class XodimlarController extends Controller
             "jinsi" => $request->jinsi ,
             "ish_tartibi" => $request->ish_tartibi ,
             "shtat_birligi" => $request->shtat_birligi ?? "yo'q" ,
-            "urindoshlik_asasida" => $request->urindoshlik_asasida ?? "yo'q" ,
-            "pedagoglik" => $request->pedagoglik ,
-            "lavozimi" => $request->lavozimi ,
-            "malumoti" => $request->malumoti ?? "yo'q",
-            "uzbek_panlar_azosi" => $request->uzbek_panlar_azosi ?? "yo'q" ,
-            "ilmiy_daraja" => $request->ilmiy_daraja ?? "yo'q" ,
-            "ilmiy_daraja_yil" => $request->ilmiy_daraja_yil ?? "yo'q" ,
-            "ilmiy_unvoni" => $request->ilmiy_unvoni ?? "yo'q" ,
-            "ilmiy_unvoni_y" => $request->ilmiy_unvoni_y ?? "yo'q" ,
-            "ixtisosligi" => $request->ixtisosligi ?? "yo'q" ,
+            "urindoshlik_asasida" => $request->urindoshlik_asasida,
+            "pedagoglik" => $request->pedagoglik,
+            "lavozimi" => $request->lavozimi,
+            "malumoti" => $request->malumoti,
+            "uzbek_panlar_azosi" => $request->uzbek_panlar_azosi,
+            "ilmiy_daraja" => $request->ilmiy_daraja,
+            "ilmiy_daraja_yil" => $request->ilmiy_daraja_yil,
+            "ilmiy_unvoni" => $request->ilmiy_unvoni,
+            "ilmiy_unvoni_y" => $request->ilmiy_unvoni_y,
+            "ixtisosligi" => $request->ixtisosligi,
             "phone" => $request->phone,
-            "email" => $request->email ,
+            "email" => $request->email,
         ]);
         return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
@@ -106,24 +107,24 @@ class XodimlarController extends Controller
         $xodimlar->update([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
-            "fish" => $request->fish ,
+            "fish" => $request->fish,
             "jshshir" => $request->jshshir ?? 'yoq',
-            "yil" => $request->yil ,
-            "jinsi" => $request->jinsi ,
-            "ish_tartibi" => $request->ish_tartibi ,
-            "shtat_birligi" => $request->shtat_birligi ?? "yo'q" ,
-            "urindoshlik_asasida" => $request->urindoshlik_asasida ?? "yo'q",
-            "pedagoglik" => $request->pedagoglik ,
-            "lavozimi" => $request->lavozimi ,
-            "malumoti" => $request->malumoti ?? "yo'q" ,
-            "uzbek_panlar_azosi" => $request->uzbek_panlar_azosi ?? "yo'q" ,
-            "ilmiy_daraja" => $request->ilmiy_daraja ?? "yo'q" ,
-            "ilmiy_daraja_yil" => $request->ilmiy_daraja_yil ?? "yo'q" ,
-            "ilmiy_unvoni" => $request->ilmiy_unvoni ?? "yo'q" ,
-            "ilmiy_unvoni_y" => $request->ilmiy_unvoni_y ?? "yo'q" ,
-            "ixtisosligi" => $request->ixtisosligi ?? "yo'q" ,
+            "yil" => $request->yil,
+            "jinsi" => $request->jinsi,
+            "ish_tartibi" => $request->ish_tartibi,
+            "shtat_birligi" => $request->shtat_birligi ?? "yo'q",
+            "urindoshlik_asasida" => $request->urindoshlik_asasida,
+            "pedagoglik" => $request->pedagoglik,
+            "lavozimi" => $request->lavozimi,
+            "malumoti" => $request->malumoti,
+            "uzbek_panlar_azosi" => $request->uzbek_panlar_azosi,
+            "ilmiy_daraja" => $request->ilmiy_daraja,
+            "ilmiy_daraja_yil" => $request->ilmiy_daraja_yil,
+            "ilmiy_unvoni" => $request->ilmiy_unvoni,
+            "ilmiy_unvoni_y" => $request->ilmiy_unvoni_y,
+            "ixtisosligi" => $request->ixtisosligi,
             "phone" => $request->phone,
-            "email" => $request->email ,
+            "email" => $request->email,
         ]);
 
         return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
@@ -195,4 +196,26 @@ class XodimlarController extends Controller
 
         return 'Telefon raqamlari muvaffaqiyatli formatlandi.';
     }
+
+
+    //import
+    public function import(Request $request)
+{
+    $request->validate([
+        'file' => 'required|mimes:xlsx,xls,csv',
+    ]);
+
+    $fileName = time() . '-' . $request->file('file')->getClientOriginalName();
+    $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+
+     // Fayl saqlangan joyni tekshirish
+     if ($filePath) {
+        // Excel faylni import qilish
+        Excel::import(new XodimlarImport, $request->file('file'));
+
+        return redirect()->back()->with('status', 'Xodimlar muvaffaqiyatli yuklandi!');
+    } else {
+        return redirect()->back()->with('status', 'Faylni yuklashda xatolik yuz berdi.');
+    }
+}
 }

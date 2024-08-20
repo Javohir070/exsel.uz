@@ -9,7 +9,36 @@ class Xodimlar extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['tashkilot_id', 'user_id', 'fish', 'jshshir', 'jinsi', 'yil', 'ish_tartibi', "shtat_birligi", 'urindoshlik_asasida', 'pedagoglik', 'lavozimi' , 'malumoti', 'uzbek_panlar_azosi', 'ilmiy_daraja', 'ilmiy_daraja_yil', 'ilmiy_unvoni', 'ilmiy_unvoni_y', 'ixtisosligi', 'phone', 'email'];
+    protected $fillable = [
+        'tashkilot_id',
+        'user_id',
+        'fish',
+        'jshshir',
+        'jinsi',
+        'yil',
+        'ish_tartibi',
+        "shtat_birligi",
+        'urindoshlik_asasida',
+        'pedagoglik',
+        'lavozimi' ,
+        'malumoti',
+        'uzbek_panlar_azosi',
+        'ilmiy_daraja',
+        'ilmiy_daraja_yil',
+        'ilmiy_unvoni',
+        'ilmiy_unvoni_y',
+        'ixtisosligi',
+        'phone',
+        'email',
+        'seriya_nomer',
+        'nskz_kodi',
+        'staj',
+        'mehnat_shartn_sana',
+        'mehnat_shartn_raqami',
+        'qabulq_buyurt_sanasi',
+        'qabulq_buyurt_raqami',
+        'shartnoma_turi'
+    ];
 
     public function tashkilot()
     {
