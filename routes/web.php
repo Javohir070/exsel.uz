@@ -83,6 +83,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/itmxujalik',[ItmController::class, 'xujalik'])->name('itm.xujalik');
     Route::get('/itmilmiydaraja',[ItmController::class, 'ilmiydaraja'])->name('itm.ilmiydaraja');
     Route::get('/itmadminlar',[ItmController::class, 'ItmAdminlar'])->name('itm.adminlar');
+    Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
+    Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
+    Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
+    Route::resource('users', UserController::class);
     //end itm 
     Route::resources([
         'tashkilot' => TashkilotController::class,
@@ -111,10 +115,7 @@ Route::group(['middleware' => ['role:super-admin']], function() {
     Route::get('/export-xujaliklar', [XujalikController::class, 'exporxujaliklar'])->name('exporxujaliklar');
     Route::resource('/ilmiyunvon', IlmiyUnvonController::class);
     Route::resource('roles', RoleController::class);
-    Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
-    Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
-    Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
-    Route::resource('users', UserController::class);
+    
     Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
 
 });
