@@ -146,9 +146,9 @@
                             <div class="w-full col-span-12">
 
                                 <label class="flex flex-col sm:flex-row"> <span
-                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excle yuklash uchun shablon
+                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excle yuklash uchun shablonda bO'lishi shart
                                 </label><br>
-                                <a  href="/admin/shablon-xodimlar.xlsx" form="science-paper-create-form"
+                                <a  href="/admin/shablon-xodim.xlsx" form="science-paper-create-form"
                                     class="input w-full mt-2 button w-24 bg-theme-1 text-white">
                                     Yuklab olish
                                 </a>
