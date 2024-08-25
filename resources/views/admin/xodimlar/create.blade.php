@@ -263,8 +263,11 @@
                 <div class="w-full col-span-6 " id="ilmiy-daraja-input" style="display: none;">
                     <label class="flex flex-col sm:flex-row">  Ilmiy daraja olingan yili
                     </label>
-                    <input type="number" name="ilmiy_daraja_yil" value="{{ old('ilmiy_daraja_yil') }}" class="input w-full border mt-2" required=""
-                    >
+                    <!-- <input type="number" name="ilmiy_daraja_yil" value="{{ old('ilmiy_daraja_yil') }}" class="input w-full border mt-2" required=""
+                    > -->
+                    <select name="ilmiy_daraja_yil" value="{{ old('ilmiy_daraja_yil') }}" class="science-sub-categoryyil input border w-full mt-2 " required="">
+                        <option value="">yil tanlang</option>
+                    </select>
                     @error('ilmiy_daraja_yil')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -295,10 +298,14 @@
                     <label class="flex flex-col sm:flex-row"> Ilmiy unvon olingan
                         yili
                     </label>
-                    <input type="number" name="ilmiy_unvoni_y" value="{{ old('ilmiy_unvoni_y') }}" class="input w-full border mt-2" required="">
+                    <!-- <input type="number" name="ilmiy_unvoni_y" value="{{ old('ilmiy_unvoni_y') }}" class="input w-full border mt-2" required=""> -->
                     @error('ilmiy_unvoni_y')
                         <div class="error">{{ $message }}</div>
                     @enderror
+
+                    <select name="ilmiy_unvoni_y" value="{{ old('ilmiy_unvoni_y') }}" class="science-sub-categoryyil input border w-full mt-2 " required="">
+                        <option value="">yil tanlang</option>
+                    </select>
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -393,6 +400,29 @@
             ilmiyUnvonInput.style.display = 'none';  // Inputni yashirish
         }
     });
+</script>
+
+<script>
+    // Boshlang'ich va tugash yillari
+    var startYear = 2000;
+    var endYear = 2024;
+
+    // Barcha class nomi 'science-sub-category' bo'lgan select elementlarini olish
+    var selects = document.getElementsByClassName('science-sub-categoryyil');
+
+    // Har bir select elementi uchun sikl
+    for (var i = 0; i < selects.length; i++) {
+        var select = selects[i];
+
+        // Har bir select elementi uchun yillarni qo'shish
+        for (var year = endYear; year >= startYear; year--) {
+            var option = document.createElement('option');
+            option.value = year;
+            option.text = year;
+            option.className = 'year-option'; // Class qo'shish
+            select.appendChild(option);
+        }
+    }
 </script>
 
 
