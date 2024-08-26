@@ -200,22 +200,22 @@ class XodimlarController extends Controller
 
     //import
     public function import(Request $request)
-{
-    $request->validate([
-        'file' => 'required|mimes:xlsx,xls,csv',
-    ]);
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls,csv',
+        ]);
 
-    $fileName = time() . '-' . $request->file('file')->getClientOriginalName();
-    $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+        $fileName = time() . '-' . $request->file('file')->getClientOriginalName();
+        $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
 
-     // Fayl saqlangan joyni tekshirish
-     if ($filePath) {
-        // Excel faylni import qilish
-        Excel::import(new XodimlarImport, $request->file('file'));
+        // Fayl saqlangan joyni tekshirish
+        if ($filePath) {
+            // Excel faylni import qilish
+            Excel::import(new XodimlarImport, $request->file('file'));
 
-        return redirect()->back()->with('status', 'Xodimlar muvaffaqiyatli yuklandi!');
-    } else {
-        return redirect()->back()->with('status', 'Faylni yuklashda xatolik yuz berdi.');
+            return redirect()->back()->with('status', 'Xodimlar muvaffaqiyatli yuklandi!');
+        } else {
+            return redirect()->back()->with('status', 'Faylni yuklashda xatolik yuz berdi.');
+        }
     }
-}
 }

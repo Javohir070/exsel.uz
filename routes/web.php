@@ -103,6 +103,7 @@ Route::middleware('auth')->group(function () {
         'tashkilot.ilmiydaraja' => TashkilotIlmiydarajaController::class,
         'tashkilot.userlar' => TashkilotUserlarController::class
     ]);
+    Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });
 Route::group(['middleware' => ['role:super-admin']], function() {
 

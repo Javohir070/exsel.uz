@@ -17,8 +17,8 @@ class XodimlarImport implements ToModel
         return new Xodimlar([
             'tashkilot_id' => auth()->user()->tashkilot_id,
             'user_id' => auth()->id(),
-            'jshshir' => $row[0],
-            'fish' => $row[1],
+            'fish' => $row[0],
+            'jshshir' => $row[1],
             'yil' => $row[2],
             'jinsi' => $row[3],
             'ish_tartibi' => $row[4],

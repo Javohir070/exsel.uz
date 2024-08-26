@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tashkilot;
 use Illuminate\Http\Request;
 use App\Exports\TashkilotExport;
+use App\Exports\TashkilotXodimlarExport;
 use App\Http\Requests\StoreTashkilotRequest;
 use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Facades\Excel;
@@ -164,4 +165,11 @@ class TashkilotController extends Controller
         return Excel::download(new TashkilotExport, $fileName);
 
     }
+
+    public function exportXodimlar($tashkilotId)
+    {
+        return Excel::download(new TashkilotXodimlarExport($tashkilotId), 'xodimlar.xlsx');
+    }
+
+
 }

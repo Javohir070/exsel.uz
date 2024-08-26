@@ -404,7 +404,7 @@
 
 <script>
     // Boshlang'ich va tugash yillari
-    var startYear = 2000;
+    var startYear = 1980;
     var endYear = 2024;
 
     // Barcha class nomi 'science-sub-category' bo'lgan select elementlarini olish

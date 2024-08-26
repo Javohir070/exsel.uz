@@ -25,13 +25,16 @@
                 <a href="{{ route("xodimlar.create") }}" class="button w-24 bg-theme-1 text-white">
                     Qo'shish
                 </a>
+
+                <a href="{{ url('tashkilot/'.auth()->user()->tashkilot_id.'/export') }}" class="button ml-3 w-24 bg-theme-1 text-white">
+                   Barcha xodimlarni Excel yuklab olish
+                </a>
+
                 <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal" 
                     class="button w-24 ml-3 bg-theme-1 text-white">
                     Excel yuklash
                 </a>
             </div>
-
-
         </div>
 
     </div>
