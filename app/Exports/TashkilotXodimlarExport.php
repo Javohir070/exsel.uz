@@ -48,6 +48,7 @@ class TashkilotXodimlarExport implements FromCollection, WithHeadings
                 "ID",
                 "Tashkilot",
                 "F.I.SH.",
+                "Jshshir",
                 "Tug'ilgan yili",
                 "Jinsi",
                 "Ish tartibi",

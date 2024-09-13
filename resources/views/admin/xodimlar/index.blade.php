@@ -149,11 +149,11 @@
                             <div class="w-full col-span-12">
 
                                 <label class="flex flex-col sm:flex-row"> <span
-                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excle yuklash uchun shablonda bO'lishi shart
+                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excle yuklash uchun shu shablonday bo'lishi shart yoki xato berdi.
                                 </label><br>
                                 <a  href="/admin/shablon-xodim.xlsx" form="science-paper-create-form"
                                     class="input w-full mt-2 button w-24 bg-theme-1 text-white">
-                                    Yuklab olish
+                                    Shablon yuklab olish
                                 </a>
 
                             </div><br>
@@ -161,7 +161,7 @@
                             
 
                                 <label class="flex flex-col sm:flex-row"> <span
-                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excel
+                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excel yuklash
                                 </label>
                                 <input type="file" name="file" style="padding-left: 0" class="input w-full mt-2"
                                     required="">

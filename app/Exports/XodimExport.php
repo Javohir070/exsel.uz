@@ -15,7 +15,7 @@ class XodimExport implements FromCollection, WithHeadings
     {
         return Xodimlar::with('tashkilot')->get()->map(function ($xodimlar){
             return [
-               "id" => $xodimlar->id,
+               "ID" => $xodimlar->id,
                "Tashkilot" => $xodimlar->tashkilot->name,
                "Fish" => $xodimlar->fish,
                "Jshshir" => $xodimlar->jshshir,
@@ -61,7 +61,7 @@ class XodimExport implements FromCollection, WithHeadings
             "Ilmiy unvon olingan yili",
             "Ixtisosligi",
             "Telefon",
-            "E-mail"
+            "E-mail",
         ];
     }
 }

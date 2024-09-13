@@ -107,6 +107,8 @@ Route::middleware('auth')->group(function () {
 });
 Route::group(['middleware' => ['role:super-admin']], function() {
 
+    // web.php
+    Route::delete('/tashkilot/{tashkilot}/xodimlar', [XodimlarController::class, 'deleteAll'])->name('xodimlar.deleteAll');
     Route::resource('permissions', PermissionController::class);
     Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
     Route::get('/export', [ExportController::class, 'export']);

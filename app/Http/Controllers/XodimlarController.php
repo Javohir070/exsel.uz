@@ -148,7 +148,7 @@ class XodimlarController extends Controller
 
     public function exporxodimlar()
     {
-        ini_set('memory_limit', '512M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
         ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
         $fileName = 'Xodimlar_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
         return Excel::download(new XodimExport, $fileName);
@@ -208,14 +208,17 @@ class XodimlarController extends Controller
         $fileName = time() . '-' . $request->file('file')->getClientOriginalName();
         $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
 
-        // Fayl saqlangan joyni tekshirish
-        if ($filePath) {
-            // Excel faylni import qilish
-            Excel::import(new XodimlarImport, $request->file('file'));
+        Excel::import(new XodimlarImport, $request->file('file'));
 
-            return redirect()->back()->with('status', 'Xodimlar muvaffaqiyatli yuklandi!');
-        } else {
-            return redirect()->back()->with('status', 'Faylni yuklashda xatolik yuz berdi.');
-        }
+        return redirect()->back()->with('status', 'Xodimlar muvaffaqiyatli yuklandi!');
+        
+    }
+
+    public function deleteAll(Tashkilot $tashkilot)
+    {
+        // Tashkilotga tegishli barcha xodimlarni o'chirish
+        $tashkilot->xodimlar()->delete();
+
+        return redirect()->back()->with('status', 'Barcha xodimlar o‘chirildi.');    
     }
 }
