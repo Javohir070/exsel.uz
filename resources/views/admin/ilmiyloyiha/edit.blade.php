@@ -186,7 +186,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihaning boshlanish sanasi
                     </label>
                     @role('super-admin')
-                        <input type="text"  name="bosh_sana" value="{{ $ilmiyloyiha->bosh_sana }}"  class=" input w-full border mt-2" required="">
+                        <input type="date"  name="bosh_sana" value="{{ $ilmiyloyiha->bosh_sana }}"  class=" input w-full border mt-2" required="">
                         @error('bosh_sana')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -363,42 +363,42 @@
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row"> 2017 yilda
                     </label>
-                    <input type="text" name="y2017" value="{{ $ilmiyloyiha->umumiyyil->y2017 }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="y2017" value="{{ $ilmiyloyiha->umumiyyil->y2017 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row"> 2018 yilda
                     </label>
-                    <input type="text" name="y2018" value="{{ $ilmiyloyiha->umumiyyil->y2018 }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="y2018" value="{{ $ilmiyloyiha->umumiyyil->y2018 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row"> 2019 yilda
                     </label>
-                    <input type="text" name="y2019" value="{{ $ilmiyloyiha->umumiyyil->y2019 }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="y2019" value="{{ $ilmiyloyiha->umumiyyil->y2019 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row"> 2020 yilda
                     </label>
-                    <input type="text" name="y2020" value="{{ $ilmiyloyiha->umumiyyil->y2020 }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="y2020" value="{{ $ilmiyloyiha->umumiyyil->y2020 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row"> 2021 yilda
                     </label>
-                    <input type="text" name="y2021" value="{{ $ilmiyloyiha->umumiyyil->y2021 }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="y2021" value="{{ $ilmiyloyiha->umumiyyil->y2021 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row"> 2022 yilda
                     </label>
-                    <input type="text" name="y2022" value="{{ $ilmiyloyiha->umumiyyil->y2022 }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="y2022" value="{{ $ilmiyloyiha->umumiyyil->y2022 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row"> 2023 yilda
                     </label>
-                    <input type="text" name="y2023" value="{{ $ilmiyloyiha->umumiyyil->y2023 }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="y2023" value="{{ $ilmiyloyiha->umumiyyil->y2023 }}" class="input w-full border mt-2" required="">
                 </div>
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row"> 2024 yilda
                     </label>
-                    <input type="text" name="y2024" value="{{ $ilmiyloyiha->umumiyyil->y2024 }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="y2024" value="{{ $ilmiyloyiha->umumiyyil->y2024 }}" class="input w-full border mt-2" required="">
                 </div>
             </div>
 

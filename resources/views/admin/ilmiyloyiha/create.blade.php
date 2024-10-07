@@ -235,7 +235,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma summasi (so‘mda) 
                     </label>
-                    <input type="text" name="sum" value="{{old('sum')}}" class="input w-full border mt-2" required="">
+                    <input type="number" name="sum" value="{{old('sum')}}" class="input w-full border mt-2" required="">
                     @error('sum')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -288,42 +288,42 @@
                 <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2017-yil
                     </label>
-                    <input type="text" name="y2017" value="{{old('y2017')}}" class="input w-full border mt-2" >
+                    <input type="number" name="y2017" value="{{old('y2017')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2018-yil
                     </label>
-                    <input type="text" name="y2018" value="{{old('y2018')}}" class="input w-full border mt-2" >
+                    <input type="number" name="y2018" value="{{old('y2018')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2019-yil
                     </label>
-                    <input type="text" name="y2019" value="{{old('y2019')}}" class="input w-full border mt-2" >
+                    <input type="number" name="y2019" value="{{old('y2019')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2020-yil
                     </label>
-                    <input type="text" name="y2020" value="{{old('y2020')}}" class="input w-full border mt-2" >
+                    <input type="number" name="y2020" value="{{old('y2020')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2021-yil
                     </label>
-                    <input type="text" name="y2021" value="{{old('y2021')}}" class="input w-full border mt-2" >
+                    <input type="number" name="y2021" value="{{old('y2021')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2022-yil
                     </label>
-                    <input type="text" name="y2022" value="{{old('y2022')}}" class="input w-full border mt-2" >
+                    <input type="number" name="y2022" value="{{old('y2022')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2023-yil
                     </label>
-                    <input type="text" name="y2023" value="{{old('y2023')}}" class="input w-full border mt-2" >
+                    <input type="number" name="y2023" value="{{old('y2023')}}" class="input w-full border mt-2" >
                 </div>
                 <div class="w-full col-span-2 " >
                     <label class="flex flex-col sm:flex-row">  2024-yil
                     </label>
-                    <input type="text" name="y2024" value="{{old('y2024')}}" class="input w-full border mt-2" >
+                    <input type="number" name="y2024" value="{{old('y2024')}}" class="input w-full border mt-2" >
                 </div>
             </div>
         </form><br>

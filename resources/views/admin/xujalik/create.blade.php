@@ -48,7 +48,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ishlanma yaratilgan tadqiqot mavzusi va turi
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ishlanma yaratilgan tadqiqot mavzusi 
                     </label>
                     <input type="text" name="ishlanma_mavzu" value="{{ old('ishlanma_mavzu') }}" class="input w-full border mt-2" required="">
                     @error('ishlanma_mavzu')
