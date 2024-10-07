@@ -80,7 +80,7 @@
         </li>
     @endrole
 
-    @role('super-admin')
+    @role('super-admin11')
         <li>
             <a href="{{ route('ilmiydarajalar.index') }}" class="side-menu side-menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
