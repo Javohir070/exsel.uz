@@ -133,7 +133,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma summasi (so‘m)
                     </label>
-                    <input type="text" name="sh_summa" value="{{ old('sh_summa') }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="sh_summa" value="{{ old('sh_summa') }}" class="input w-full border mt-2" required="">
                     @error('sh_summa')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -153,7 +153,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma bo‘yicha kelib tushgan mablag‘ summasi
                     </label>
-                    <input type="text" name="shkelib_summa" value="{{ old('shkelib_summa') }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="shkelib_summa" value="{{ old('shkelib_summa') }}" class="input w-full border mt-2" required="">
                     @error('shkelib_summa')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -162,27 +162,27 @@
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  1-chorak
                     </label>
-                    <input type="text" name="chorak1" value="{{ old('chorak1') }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="chorak1" value="{{ old('chorak1') }}" class="input w-full border mt-2" required="">
                     
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  2-chorak
                     </label>
-                    <input type="text" name="chorak2" value="{{ old('chorak2') }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="chorak2" value="{{ old('chorak2') }}" class="input w-full border mt-2" required="">
                     
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  3-chorak
                     </label>
-                    <input type="text" name="chorak3" value="{{ old('chorak3') }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="chorak3" value="{{ old('chorak3') }}" class="input w-full border mt-2" required="">
                     
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  4-chorak
                     </label>
-                    <input type="text" name="chorak4" value="{{ old('chorak4') }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="chorak4" value="{{ old('chorak4') }}" class="input w-full border mt-2" required="">
                    
                 </div>
 
