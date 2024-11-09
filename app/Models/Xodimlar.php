@@ -37,7 +37,8 @@ class Xodimlar extends Model
         'mehnat_shartn_raqami',
         'qabulq_buyurt_sanasi',
         'qabulq_buyurt_raqami',
-        'shartnoma_turi'
+        'shartnoma_turi',
+        'laboratory_id',
     ];
 
     public function tashkilot()
@@ -52,7 +53,11 @@ class Xodimlar extends Model
     {
         return $this->formatPhone($value);
     }
-
+    
+    public function laboratory()
+    {
+        return $this->belongsTo(Laboratory::class);
+    }
     private function formatPhone($phone)
     {
         // Faqat raqamlarni olib qolish

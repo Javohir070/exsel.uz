@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             TashkilotSeeder::class,
+            LaboratorySeeder::class,
             UserRolePermissionSeeder::class,
             XodimlarSeeder::class,
         ]);

@@ -8,6 +8,8 @@ use App\Http\Controllers\IlmiyLoyihaController;
 use App\Http\Controllers\IlmiyUnvonController;
 use App\Http\Controllers\IqtisodiyMoliyaviyController;
 use App\Http\Controllers\ItmController;
+use App\Http\Controllers\IzlanuvchilarController;
+use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\TashkilotController;
 use App\Http\Controllers\TashkilotUserlarController;
 use App\Http\Controllers\XujalikController;
@@ -88,6 +90,21 @@ Route::middleware('auth')->group(function () {
     Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
     Route::resource('users', UserController::class);
     //end itm 
+
+    // labaratoriya uchun
+     
+    Route::get('lab-user', [LaboratoryController::class,'lab_biriktirilgan_xodimlar'])->name('lab_xodimlar.index');
+    Route::get('lab-xujalik', [LaboratoryController::class,'lab_biriktirilgan_xujalik'])->name('lab_xujalik.index');
+    Route::get('lab-ilmiyloyhi', [LaboratoryController::class,'lab_biriktirilgan_ilmiyloyha'])->name('lab_ilmiyloyiha.index');
+    Route::put('lab/{labId}/give-xodims', [LaboratoryController::class, 'giveXodimToLab']);
+    Route::put('lab/{labId}/give-xujaliks', [LaboratoryController::class, 'giveXujalikToLab']);
+    Route::put('lab/{labId}/give-ilmiyloyhas', [LaboratoryController::class, 'giveIlmiyLoyhaToLab']);
+    Route::get('laboratoriya', [LaboratoryController::class,'laboratoriya'])->name('laboratoriya.index');
+
+
+
+
+    //labaratoriya uchun
     Route::resources([
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,
@@ -101,7 +118,9 @@ Route::middleware('auth')->group(function () {
         'tashkilot.xodimlar' => TashkilotXodimlarController::class,
         'tashkilot.xujalik' => TashkilotXujalikController::class,
         'tashkilot.ilmiydaraja' => TashkilotIlmiydarajaController::class,
-        'tashkilot.userlar' => TashkilotUserlarController::class
+        'tashkilot.userlar' => TashkilotUserlarController::class,
+        'laboratory' => LaboratoryController::class,
+        'izlanuvchilar' => IzlanuvchilarController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });

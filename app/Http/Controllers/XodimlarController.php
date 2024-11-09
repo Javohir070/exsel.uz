@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\XodimExport;
 use App\Http\Requests\StorelXodimlarRequest;
 use App\Http\Requests\UpdateXodimlarRequest;
+use App\Models\Laboratory;
 use App\Models\Tashkilot;
 use App\Models\Xodimlar;
 use Illuminate\Http\Request;
@@ -32,7 +33,9 @@ class XodimlarController extends Controller
      */
     public function create()
     {
-        return view('admin.xodimlar.create');
+        $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+
+        return view('admin.xodimlar.create', ['laboratorylar'=> $laboratorylar]);
     }
 
     /**
@@ -70,6 +73,7 @@ class XodimlarController extends Controller
             "ixtisosligi" => $request->ixtisosligi,
             "phone" => $request->phone,
             "email" => $request->email,
+            "laboratory_id" => $request->laboratory_id,
         ]);
         return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
@@ -87,7 +91,9 @@ class XodimlarController extends Controller
      */
     public function edit(Xodimlar $xodimlar)
     {
-        return view('admin.xodimlar.edit', ['xodimlar'=>$xodimlar]);
+        $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+
+        return view('admin.xodimlar.edit', ['xodimlar'=>$xodimlar, 'laboratorylar'=> $laboratorylar]);
     }
 
     /**
@@ -125,6 +131,7 @@ class XodimlarController extends Controller
             "ixtisosligi" => $request->ixtisosligi,
             "phone" => $request->phone,
             "email" => $request->email,
+            "laboratory_id" => $request->laboratory_id,
         ]);
 
         return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');

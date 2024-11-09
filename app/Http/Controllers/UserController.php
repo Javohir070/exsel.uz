@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laboratory;
 use App\Models\Tashkilot;
 use App\Models\Xodimlar;
 use Illuminate\Http\Request;
@@ -30,10 +31,11 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
+        $lab = Laboratory::all();
         $tashkilot_id = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->get();
         $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
-        return view('role-permission.user.create', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar]);
+        return view('role-permission.user.create', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar, 'lab' => $lab]);
     }
 
     public function store(Request $request)
@@ -49,6 +51,7 @@ class UserController extends Controller
         $roluchun = $request->roles;
         $user = User::create([
                         'name' => $request->name,
+                        'laboratory_id' => $request->laboratory_id,
                         'email' => $request->email,
                         'tashkilot_id' => $request->tashkilot_id,
                         'password' => Hash::make($request->password),

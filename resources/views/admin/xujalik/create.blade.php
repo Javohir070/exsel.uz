@@ -159,6 +159,25 @@
                     @enderror
                 </div>
 
+                <div class="w-full col-span-6 " >
+                    <label class="flex flex-col sm:flex-row">  <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Qaysi labarot ishlaydi
+                            
+                            
+                    </label>
+                    <select name="laboratory_id" value="{{old('laboratory_id')}}"  class="input border w-full mt-2" required="">
+
+                        <option value="">lab  tanlang</option>
+                        @foreach ($laboratorylar as $laboratory)
+                            <option value="{{ $laboratory->id }}">{{ $laboratory->name }}</option>
+                        @endforeach
+
+                    </select><br>
+                    @error('laboratory_id')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  1-chorak
                     </label>

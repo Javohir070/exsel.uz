@@ -26,9 +26,9 @@
                     Qo'shish
                 </a>
 
-                <a href="{{ url('tashkilot/'.auth()->user()->tashkilot_id.'/export') }}" class="button ml-3 w-24 bg-theme-1 text-white">
+                {{-- <a href="{{ url('tashkilot/'.auth()->user()->tashkilot_id.'/export') }}" class="button ml-3 w-24 bg-theme-1 text-white">
                    Barcha xodimlarni Excel yuklab olish
-                </a>
+                </a> --}}
 
                 <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal" 
                     class="button w-24 ml-3 bg-theme-1 text-white">
@@ -56,7 +56,7 @@
             </thead>
             <tbody>
 
-                @foreach ($xodimlars as $xodimlar)
+                @foreach ($lab_xodimlar as $xodimlar)
 
                     <tr class="intro-x">
                         <td>{{$loop->index + 1}}</td>
@@ -128,9 +128,10 @@
         </table>
     </div>
     <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-        {{$xodimlars->links()}}
+        {{$lab_xodimlar->links()}}
     </div>
 
+</div>
 </div>
 
 
@@ -140,34 +141,59 @@
 
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                 <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                    <form id="science-paper-create-form" method="POST" action="{{ route('import') }}"
+                    <form id="science-paper-create-form" method="POST" action="{{ url('lab/'.auth()->user()->laboratory_id.'/give-xodims') }}"
                         class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                         @csrf
-                        <div class="grid grid-cols-12 gap-2">
-
-                            <div class="w-full col-span-12">
-
-                                <label class="flex flex-col sm:flex-row"> <span
-                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excle yuklash uchun shu shablonday bo'lishi shart yoki xato berdi.
-                                </label><br>
-                                <a  href="/admin/shablon-xodim.xlsx" form="science-paper-create-form"
-                                    class="input w-full mt-2 button w-24 bg-theme-1 text-white">
-                                    Shablon yuklab olish
-                                </a>
-
-                            </div><br>
-                            <div class="w-full col-span-12">
-                            
-
-                                <label class="flex flex-col sm:flex-row"> <span
-                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excel yuklash
-                                </label>
-                                <input type="file" name="file" style="padding-left: 0" class="input w-full mt-2"
-                                    required="">
-
-                            </div>
-
-                        </div>
+                        @method('PUT')
+                        <table class="table table-report -mt-2">
+                            <thead>
+                                <tr>
+                                    <th class="whitespace-no-wrap">№</th>
+                                    <th class="whitespace-no-wrap">F.I.Sh</th>
+                                    <th class="whitespace-no-wrap">Lavozimi</th>
+                                    <th class="whitespace-no-wrap">Email</th>
+                                    <th class="whitespace-no-wrap">Telefon raqami</th>
+                                    <th class="whitespace-no-wrap text-center">Harakat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                
+                                @foreach ($tashkilot_xodimlar as $xodimlar)
+                
+                                    <tr class="intro-x">
+                                        <td>{{$loop->index + 1}}</td>
+                                        <td>
+                                            <a href="#" target="_blank" class="font-medium">{{ $xodimlar->fish }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="" class="font-medium ">{{ $xodimlar->lavozimi }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="" class="font-medium ">{{ $xodimlar->email }}</a>
+                                        </td>
+                
+                                        <td>
+                                            <a href="" class="font-medium ">{{ $xodimlar->phone  }} </a>
+                                        </td>
+                                        <td>
+                                            @if ($xodimlar->laboratory_id == null)
+                                                <div class="col-md-2">
+                                                    <label>
+                                                        <input
+                                                            type="checkbox"
+                                                            name="xodimlarId[]"
+                                                            value="{{ $xodimlar->id }}"
+                                                        />
+                                                    </label>
+                                                </div>
+                                            @else
+                                                <a href="" class="font-medium ">{{ $xodimlar->laboratory->name  }} </a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </form>
                 </div>
             </div>

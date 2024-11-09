@@ -65,6 +65,7 @@ class UserRolePermissionSeeder extends Seeder
                     'name' => 'Super Admin',
                     'email' => 'superadmin@gmail.com',
                     'tashkilot_id' => '1',
+                    'laboratory_id' => '1',
                     'password' => Hash::make ('12345678'),
                 ]);
 
@@ -76,6 +77,7 @@ class UserRolePermissionSeeder extends Seeder
         ], [
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
+            'laboratory_id' => '1',
             'tashkilot_id' => '1',
             'password' => Hash::make ('12345678'),
         ]);
@@ -88,6 +90,7 @@ class UserRolePermissionSeeder extends Seeder
             'name' => 'Tuit',
             'email' => 'tuit@gmail.com',
             'tashkilot_id' => '1',
+            'laboratory_id' => '1',
             'password' => Hash::make ('1234'),
         ]);
 
@@ -98,6 +101,7 @@ class UserRolePermissionSeeder extends Seeder
             'email' => 'ozmu@gmail.com'
         ], [
             'name' => 'ozmu',
+            'laboratory_id' => '1',
             'email' => 'ozmu@gmail.com',
             'tashkilot_id' => '2',
             'password' => Hash::make ('1234'),
@@ -111,6 +115,7 @@ class UserRolePermissionSeeder extends Seeder
                         ], [
                             'name' => 'Staff',
                             'email' => 'staff@gmail.com',
+                            'laboratory_id' => '1',
                             'tashkilot_id' => '1',
                             'password' => Hash::make('12345678'),
                         ]);

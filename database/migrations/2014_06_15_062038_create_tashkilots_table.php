@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('id_raqam');
+            $table->string('tashkilot_turi')->nullable();
             $table->string('name_qisqachasi')->nullable();
             $table->string('tash_yil')->nullable();
             $table->string('yur_manzil')->nullable();

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\IlmiyLoyiha;
 use App\Http\Requests\StoreIlmiyLoyihaRequest;
 use App\Http\Requests\UpdateIlmiyLoyihaRequest;
+use App\Models\Laboratory;
 use App\Models\Tashkilot;
 use App\Models\Umumiyyil;
 use Illuminate\Http\Request;
@@ -29,7 +30,9 @@ class IlmiyLoyihaController extends Controller
     public function create()
     {
         $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
-        return view('admin.ilmiyloyiha.create',['tashkilots'=>$tashkilots]);
+        $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+
+        return view('admin.ilmiyloyiha.create',['tashkilots'=>$tashkilots, 'laboratorylar'=> $laboratorylar]);
     }
 
     /**
@@ -68,6 +71,7 @@ class IlmiyLoyihaController extends Controller
             "olingan_natija" => $request->olingan_natija ?? "yoq",
             "joriy_holati" => $request->joriy_holati ?? "yoq" ,
             "tijoratlashtirish" => $request->tijoratlashtirish ?? "yoq",
+            "laboratory_id" => $request->laboratory_id,
         ]);
 
         return redirect('/ilmiyloyiha')->with('status','Ma\'lumotlar muvaffaqiyatli qoshildi');
@@ -87,7 +91,9 @@ class IlmiyLoyihaController extends Controller
     public function edit(IlmiyLoyiha $ilmiyloyiha)
     {
         $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
-        return view('admin.ilmiyloyiha.edit',['ilmiyloyiha'=>$ilmiyloyiha,'tashkilots'=>$tashkilots]);
+        $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+
+        return view('admin.ilmiyloyiha.edit',['ilmiyloyiha'=>$ilmiyloyiha,'tashkilots'=>$tashkilots, 'laboratorylar'=> $laboratorylar]);
     }
 
     /**
@@ -128,6 +134,7 @@ class IlmiyLoyihaController extends Controller
             "olingan_natija" => $request->olingan_natija,
             "joriy_holati" => $request->joriy_holati,
             "tijoratlashtirish" => $request->tijoratlashtirish,
+            "laboratory_id" => $request->laboratory_id,
         ]);
         return redirect()->route("ilmiyloyiha.index")->with('status','Ma\'lumotlar muvaffaqiyatli yangilandi');
 

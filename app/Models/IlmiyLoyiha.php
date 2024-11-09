@@ -9,7 +9,7 @@ class IlmiyLoyiha extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["user_id", "tashkilot_id", "umumiyyil_id", "mavzusi", "turi", "dastyri", "q_hamkor_tashkilot", "hamkor_davlat", "muddat", "bosh_sana", "tug_sana", "pan_yunalish", "rahbar_name", "raqami", "sanasi", "sum", "umumiy_mablag", "olingan_natija", "joriy_holati", "tijoratlashtirish"];
+    protected $fillable = ["user_id", 'laboratory_id', "tashkilot_id", "umumiyyil_id", "mavzusi", "turi", "dastyri", "q_hamkor_tashkilot", "hamkor_davlat", "muddat", "bosh_sana", "tug_sana", "pan_yunalish", "rahbar_name", "raqami", "sanasi", "sum", "umumiy_mablag", "olingan_natija", "joriy_holati", "tijoratlashtirish"];
 
     public function tashkilot()
     {
@@ -22,6 +22,11 @@ class IlmiyLoyiha extends Model
     public function umumiyyil()
     {
         return $this->belongsTo(Umumiyyil::class);
+    }
+
+    public function laboratory()
+    {
+        return $this->belongsTo(Laboratory::class);
     }
     // App\Models\IlmiyLoyiha.php
 

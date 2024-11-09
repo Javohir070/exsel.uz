@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\XujalikExport;
+use App\Models\Laboratory;
 use App\Models\Xujalik;
 use App\Http\Requests\StoreXujalikRequest;
 use App\Http\Requests\UpdateXujalikRequest;
@@ -27,7 +28,8 @@ class XujalikController extends Controller
      */
     public function create()
     {
-        return view('admin.xujalik.create');
+        $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        return view('admin.xujalik.create',['laboratorylar'=> $laboratorylar]);
     }
 
     /**
@@ -56,6 +58,7 @@ class XujalikController extends Controller
             "chorak2" => $request->chorak2,
             "chorak3" => $request->chorak3,
             "chorak4" => $request->chorak4,
+            "laboratory_id" => $request->laboratory_id,
         ]);
 
         return redirect('/xujalik')->with('status', "Ma\'lumotlar muvaffaqiyatli qo'shildi.");
@@ -74,7 +77,9 @@ class XujalikController extends Controller
      */
     public function edit(Xujalik $xujalik)
     {
-        return view('admin.xujalik.edit',['xujalik'=>$xujalik]);
+        $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+
+        return view('admin.xujalik.edit',['xujalik'=>$xujalik, 'laboratorylar'=> $laboratorylar]);
     }
 
     /**
@@ -103,6 +108,7 @@ class XujalikController extends Controller
             "chorak2" => $request->chorak2,
             "chorak3" => $request->chorak3,
             "chorak4" => $request->chorak4,
+            "laboratory_id" => $request->laboratory_id,
         ]);
 
         return redirect('/xujalik')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');

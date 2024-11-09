@@ -146,8 +146,8 @@
                         </tr>
                         <tr class="bg-gray-200">
                             <th class="border-b  border">19</th>
-                            <th class="border-b  border" colspan="2">Tashkilot hisob raqami </th>
-                            <td class="border-b  border" colspan="2">{{ $tashkilot->hisob_raqam  }} </td>
+                            <th class="border-b  border" >Tashkilot hisob raqami </th>
+                            <td class="border-b  border" >{{ $tashkilot->hisob_raqam  }} </td>
                         </tr>
                         
                 </tbody>

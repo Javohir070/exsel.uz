@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'tashkilot_id',
+        'laboratory_id',
     ];
 
     /**
@@ -58,5 +59,10 @@ class User extends Authenticatable
     public function tashkilotrahbari()
     {
         return $this->hasMany(TashkilotRahbari::class);
+    }
+
+    public function laboratory() 
+    {
+        return $this->belongsTo(Laboratory::class);    
     }
 }
