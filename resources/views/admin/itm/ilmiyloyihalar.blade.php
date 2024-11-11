@@ -18,9 +18,7 @@
         </div>
         <div>
             <div> 
-                <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white">
-                    Qo'shish
-                </a>
+                <a href="{{ route("itm.ilmiyloyhalar") }}" class="button box flex items-center text-gray-700"> <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </a>
             </div>
         
         </div>

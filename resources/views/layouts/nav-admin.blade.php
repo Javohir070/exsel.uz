@@ -300,12 +300,12 @@
             </a>
         </li>
 
-        <li>
+        {{-- <li>
             <a href="{{ route("itm.ilmiydaraja") }}" class="side-menu side-menu{{ request()->is('ilmiydaraja*') ? '--active':'' }}{{ request()->is('itmilmiydaraja*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                 <div class="side-menu__title"> Ilmiy loyiha bilan ta'minlanganmi </div>
             </a>
-        </li>
+        </li> --}}
     @endrole
     <!-- tugadi Itm lar uchun -->
 

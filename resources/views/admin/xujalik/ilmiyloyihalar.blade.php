@@ -12,7 +12,7 @@
         </a> -->
         <div>
             <div>
-                <a href="{{ route('exporxujaliklar') }}" class="button box flex items-center text-gray-700"> <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </a>
+                <a href="/admin/Xujaliklar2024_10_21_07_09_35.xlsx" class="button box flex items-center text-gray-700"> <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </a>
             </div>
         
         </div>

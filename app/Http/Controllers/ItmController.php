@@ -7,6 +7,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Collection;
+use App\Exports\ItmXodimExport;
+use App\Exports\ItmXujalikExport;
+use App\Exports\ItmIlmiyloyihalarExport;
+use Maatwebsite\Excel\Facades\Excel;
 class ItmController extends Controller
 {
     public function index()
@@ -182,5 +186,20 @@ class ItmController extends Controller
         })->paginate(20);
 
         return view('admin.itm.itmadminlar',['itmadminlar' => $itmadminlar]);
+    }
+
+    public function itm_export()
+    {
+        return Excel::download(new ItmXodimExport, 'Xodimlar.xlsx');
+    }
+
+    public function itm_xujalik_export()
+    {
+        return Excel::download(new ItmXujalikExport, 'Xujalik_loyihalar.xlsx');
+    }
+
+    public function itm_loyhalar_export()
+    {
+        return Excel::download(new ItmIlmiyloyihalarExport, 'Ilmiy_loyihalar.xlsx');
     }
 }

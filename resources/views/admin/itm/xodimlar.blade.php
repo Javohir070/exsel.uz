@@ -7,9 +7,7 @@
 
         <h2 class="intro-y text-lg font-medium">Barcha xodimlar </h2>
 
-        <!-- <a href="{{ route('xodimlar.create') }}"  class="button w-24 bg-theme-1 text-white">
-            Qo'shish
-        </a> -->
+        <a href="{{ route('itm.export') }}"  class="button box flex items-center text-gray-700"> <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </a>
 
     </div>
     <div class="grid grid-cols-12 gap-6 mt-5">

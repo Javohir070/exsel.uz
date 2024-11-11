@@ -89,6 +89,9 @@ Route::middleware('auth')->group(function () {
     Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
     Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
     Route::resource('users', UserController::class);
+    Route::get('/itm-xodimlar',[ItmController::class, 'itm_export'])->name('itm.export');
+    Route::get('/itm-xujalik',[ItmController::class, 'itm_xujalik_export'])->name('itm.xujalikloyhalar');
+    Route::get('/itm-ilmiy',[ItmController::class, 'itm_loyhalar_export'])->name('itm.ilmiyloyhalar');
     //end itm 
 
     // labaratoriya uchun
@@ -132,6 +135,7 @@ Route::group(['middleware' => ['role:super-admin']], function() {
     Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
     Route::get('/export', [ExportController::class, 'export']);
     Route::get('/export-ilmiylar', [IlmiyLoyihaController::class, 'exportilmiy'])->name('exportilmiy');
+    Route::get('/export-iqtisodiyfaoliyat', [IqtisodiyMoliyaviyController::class, 'iqtisodiyfaoliyat'])->name('iqtisodiyfaoliyat');
     Route::get('/export-tashkiotlar', [TashkilotController::class, 'exportashkilot'])->name('exportashkilot');
     Route::get('/export-xodimlar', [XodimlarController::class, 'exporxodimlar'])->name('exporxodimlar');
     Route::get('/export-xujaliklar', [XujalikController::class, 'exporxujaliklar'])->name('exporxujaliklar');

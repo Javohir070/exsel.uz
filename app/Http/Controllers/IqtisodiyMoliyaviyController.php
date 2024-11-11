@@ -6,7 +6,8 @@ use App\Models\IqtisodiyMoliyaviy;
 use App\Http\Requests\StoreIqtisodiyMoliyaviyRequest;
 use App\Http\Requests\UpdateIqtisodiyMoliyaviyRequest;
 use Illuminate\Http\Request;
-
+use App\Exports\IqtisodiyMoliyaviyExport;
+use Maatwebsite\Excel\Facades\Excel;
 class IqtisodiyMoliyaviyController extends Controller
 {
     /**
@@ -112,5 +113,10 @@ class IqtisodiyMoliyaviyController extends Controller
     {
         $iqtisodiylar = IqtisodiyMoliyaviy::paginate(25);
         return view("admin.iqtisodiy.iqtisodiylar",['iqtisodiylar'=>$iqtisodiylar]);
+    }
+    public function iqtisodiyfaoliyat() 
+    {
+        $fileName = 'Ilmiyloyihalar' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new IqtisodiyMoliyaviyExport, $fileName);
     }
 }
