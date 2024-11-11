@@ -61,7 +61,12 @@ class XujalikController extends Controller
             "laboratory_id" => $request->laboratory_id,
         ]);
 
-        return redirect('/xujalik')->with('status', "Ma\'lumotlar muvaffaqiyatli qo'shildi.");
+        
+        if(auth()->user()->hasRole('labaratoriya')){
+            return redirect()->route('lab_xujalik.index')->with('status',"Ma\'lumotlar muvaffaqiyatli qo'shildi.");
+        }else{
+            return redirect('/xujalik')->with('status', "Ma\'lumotlar muvaffaqiyatli qo'shildi.");
+        }
     }
 
     /**
@@ -110,8 +115,11 @@ class XujalikController extends Controller
             "chorak4" => $request->chorak4,
             "laboratory_id" => $request->laboratory_id,
         ]);
-
-        return redirect('/xujalik')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+        if(auth()->user()->hasRole('labaratoriya')){
+            return redirect()->route('lab_xujalik.index')->with('status',"Ma\'lumotlar muvaffaqiyatli yangilandi.");
+        }else{
+            return redirect('/xujalik')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+        }
     }
 
     /**

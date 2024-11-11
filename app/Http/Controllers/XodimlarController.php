@@ -75,7 +75,12 @@ class XodimlarController extends Controller
             "email" => $request->email,
             "laboratory_id" => $request->laboratory_id,
         ]);
-        return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+
+        if(auth()->user()->hasRole('labaratoriya')){
+            return redirect()->route('lab_xodimlar.index')->with('status',"Ma\'lumotlar muvaffaqiyatli qo'shildi.");
+        }else{
+            return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+        }
     }
 
     /**
@@ -133,8 +138,11 @@ class XodimlarController extends Controller
             "email" => $request->email,
             "laboratory_id" => $request->laboratory_id,
         ]);
-
-        return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+        if(auth()->user()->hasRole('labaratoriya')){
+            return redirect()->route('lab_xodimlar.index')->with('status',"Ma\'lumotlar muvaffaqiyatli yangilandi.");
+        }else{
+            return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+        }
     }
 
     /**
