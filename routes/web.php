@@ -103,8 +103,8 @@ Route::middleware('auth')->group(function () {
     Route::put('lab/{labId}/give-xujaliks', [LaboratoryController::class, 'giveXujalikToLab']);
     Route::put('lab/{labId}/give-ilmiyloyhas', [LaboratoryController::class, 'giveIlmiyLoyhaToLab']);
     Route::get('laboratoriya', [LaboratoryController::class,'laboratoriya'])->name('laboratoriya.index');
-
-
+    Route::get('masullar', [LaboratoryController::class, "masullar"])->name("masullar.index");
+    
 
 
     //labaratoriya uchun

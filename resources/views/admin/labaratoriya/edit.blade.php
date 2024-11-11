@@ -5,79 +5,82 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Rahbar qo'shish</h2>
-    
-</div>
+    <h2 class="intro-y text-lg font-medium">Labaratoriya tahrirlash</h2>
+
+
+
+</div><br>
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
     padding: 20px 20px;
     border-radius: 20px">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-        <form id="science-paper-create-form" method="POST" action="{{ route("tashkilotrahbari.update",['tashkilotrahbari'=>$tashkilot->id]) }}"
-        
+        <form id="science-paper-create-form" method="POST" action="{{ route("laboratory.update",['laboratory'=>$laboratory->id]) }}"
             class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
             @csrf
             @method('PUT')
             <div class="grid grid-cols-12 gap-2">
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning F.I.Sh
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Labaratoriyaning nomi
                         </label>
-                        <input type="text"  name="fish" value="{{$tashkilot->fish}}" class="input w-full border mt-2" required="">
-                        @error('fish')
+                        <input type="text" name="name" value="{{ $laboratory->name }}" class="input w-full border mt-2" required="">
+                        @error('name')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
                     
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning Email
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkil etilgan yil
                         </label>
-                        <input type="email" name="email" value="{{$tashkilot->email}}" class="input w-full border mt-2" required="">
-                        @error('email')
+                        <input type="number" name="tash_yil" value="{{ $laboratory->tash_yil }}" class="input w-full border mt-2" required="">
+                        @error('tash_yil')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning Telefon raqami
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tavsif
                         </label>
-                        <input type="text" name="phone" value="{{$tashkilot->phone}}" class="input w-full border mt-2" required="">
-                        @error('phone')
+                        <textarea name="tavsif"  cols="5" rows="5" class="input w-full border mt-2" required="">{{ $laboratory->tavsif }}</textarea>
+                        @error('tavsif')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    <div class="w-full col-span-6">
+                    {{-- <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.O.
                         </label>
-                        <input type="text" name="u_fish" value="{{$tashkilot->u_fish}}" class="input w-full border mt-2" required="">
+                        <input type="text" name="u_fish" value="{{ old('u_fish') }}" class="input w-full border mt-2" required="">
                         @error('u_fish')
                             <div class="error">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
 
-                    <div class="w-full col-span-6">
+                    {{-- <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining email
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining emaili
                         </label>
-                        <input type="email" name="u_email" value="{{$tashkilot->u_email}}" class="input w-full border mt-2" required="">
+                        <input type="email" name="u_email" value="{{ old('u_email') }}" class="input w-full border mt-2" required="">
                         @error('u_email')
                             <div class="error">{{ $message }}</div>
                         @enderror
-                    </div>
+                    </div> --}}
                     
-                    <div class="w-full col-span-6">
+                    {{-- <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘rinbosarining  telefon raqami 
                         </label>
-                        <input type="text" name="u_phone" value="{{$tashkilot->u_phone}}" class="input w-full border mt-2" required="">
+                        <input type="text" name="u_phone" value="{{ old('u_phone') }}" class="input w-full border mt-2" required="">
                         @error('u_phone')
                             <div class="error">{{ $message }}</div>
                         @enderror
-                    </div>
-            </div>
+                    </div> --}}
+
+                    
+            </div><br>
         </form><br>
         <div class="px-5 pb-5 text-center">
             <a href="{{ route('tashkilotrahbari.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">

@@ -9,7 +9,7 @@ class Laboratory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["tashkilot_id", "name", "tash_yil", "address"];
+    protected $fillable = ["tashkilot_id", "name", "tash_yil", "tavsif"];
 
     public function user()
     {
@@ -23,6 +23,15 @@ class Laboratory extends Model
      
     public function xodimlar()
     {
-        return $this->belongsTo(Xodimlar::class);
+        return $this->hasMany(Xodimlar::class);
+    }
+    public function xujaliklar() 
+    {
+       return $this->hasMany(Xujalik::class);    
+    }
+
+    public function ilmiyLoyihalar() 
+    {
+       return $this->hasMany(IlmiyLoyiha::class);    
     }
 }

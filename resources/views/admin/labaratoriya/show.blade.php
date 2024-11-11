@@ -25,11 +25,11 @@
             <table class="table">
                 <tbody>
                 <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;"> {{$tashkilotrahbari->tashkilot->name_qisqachasi}} rahbari xaqida ma’lumot</div>
+                        <div style="font-size:18px;font-weight: 400;"> {{$laboratory->name}}  xaqida ma’lumot</div>
                         @can("tashkilotrahbari delete edit")
                             
                         <div style="text-align: end;">
-                            <a href="{{ route('tashkilotrahbari.edit',['tashkilotrahbari'=>$tashkilotrahbari->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
+                            <a href="{{ route('laboratory.edit',['laboratory'=>$laboratory->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
                             </a>
                             <a href="" class="button w-24 bg-theme-6 text-white">
@@ -45,34 +45,34 @@
                         </tr>
                         <tr class="bg-gray-200">
                             <!-- <th class=" border">1</th> -->
-                            <th class=" border" style="width:50%;">Tashkilot rahbari F.I.Sh</th>
-                            <th class=" border" style="width:50%;">Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.Sh</th>
+                            <th class=" border" style="width:50%;">Labaratoriya nomi</th>
+                            <th class=" border" style="width:50%;">Tashkil etilgan yil</th>
                         </tr>
                         <tr >
                             <!-- <th class=" border">4</th> -->
-                            <td class="border" >{{ $tashkilotrahbari->fish }}</td>
-                            <td class="border">{{ $tashkilotrahbari->u_fish }}</td>
+                            <td class="border" >{{ $laboratory->name }}</td>
+                            <td class="border">{{ $laboratory->tash_yil }}</td>
                         </tr>
                         <tr class="bg-gray-200">
                             <!-- <th class=" border">2</th> -->
-                            <th class=" border">Tashkilot rahbari Telefon nomer</th>
-                            <th class=" border">O‘rinbosarining Telefon nomer</th>
+                            <th class=" border" >Tavsif</th>
+                            <th class=" border">Masul</th>
                         </tr>
                         <tr >
                             <!-- <th class=" border">5</th> -->
-                            <td class="border">{{ $tashkilotrahbari->phone  }} </td>
-                            <td class="border">{{ $tashkilotrahbari->u_phone }}</td>
+                            <td class="border">{{ $laboratory->tavsif  }} </td>
+                            <td class="border">{{ $laboratory->user->name  }} </td>
                         </tr>
-                        <tr class="bg-gray-200">
+                        {{-- <tr class="bg-gray-200">
                             <!-- <th class=" border">3</th> -->
                             <th class=" border">Tashkilot rahbari Email</th>
                             <th class=" border">O‘rinbosarining email</th>
                         </tr>
                         <tr>
                             <!-- <th class="whitespace-no-wrap border">6</th> -->
-                            <td class="border">{{ $tashkilotrahbari->email }}</td>
-                            <td class="border">{{ $tashkilotrahbari->u_email }}</td>
-                        </tr>
+                            <td class="border">{{ $laboratory->email }}</td>
+                            <td class="border">{{ $laboratory->u_email }}</td>
+                        </tr> --}}
 
                 </tbody>
             </table>

@@ -15,6 +15,9 @@
             <a href="{{ url('users/create') }}" class="button ml-3 w-24 bg-theme-1 text-white">
                 Masul biriktirsh
             </a>
+            <a href="{{ route('masullar.index') }}" class="button ml-3 w-24 bg-theme-1 text-white">
+                Masullar
+            </a>
         </div>
         
 

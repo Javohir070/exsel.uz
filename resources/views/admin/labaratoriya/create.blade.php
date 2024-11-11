@@ -40,10 +40,10 @@
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Manzil
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tavsif
                         </label>
-                        <input type="text" name="address" value="{{ old('address') }}" class="input w-full border mt-2" required="">
-                        @error('address')
+                        <textarea name="tavsif"  cols="5" rows="5" class="input w-full border mt-2" required="">{{ $laboratory->tavsif }}</textarea>
+                        @error('tavsif')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>

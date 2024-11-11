@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('tashkilot_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('tash_yil');
-            $table->string('address');
+            $table->text('tavsif');
             $table->timestamps();
         });
     }

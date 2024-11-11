@@ -6,6 +6,7 @@ use App\Models\IlmiyLoyiha;
 use App\Models\Laboratory;
 use App\Http\Requests\StoreLaboratoryRequest;
 use App\Http\Requests\UpdateLaboratoryRequest;
+use App\Models\User;
 use App\Models\Xodimlar;
 use App\Models\Xujalik;
 use Illuminate\Http\Request;
@@ -18,6 +19,18 @@ class LaboratoryController extends Controller
         $laboratorys =Laboratory::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
 
         return view("admin.labaratoriya.index", ["laboratorys"=> $laboratorys]);
+    }
+
+    public function masullar()
+    {
+        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
+
+        $masullar = $users->filter(function($user) {
+            return $user->roles->contains('name', 'labaratoriya');
+        });
+
+        
+        return view("admin.labaratoriya.masullar", ['masullar'=> $masullar]);
     }
 
     public function laboratoriya()
@@ -129,7 +142,7 @@ class LaboratoryController extends Controller
             "tashkilot_id" => auth()->user()->tashkilot_id,
             "name" => $request->name,
             "tash_yil" => $request->tash_yil,
-            "address" => $request->address,
+            "tavsif" => $request->tavsif,
         ]);
 
         return redirect('/laboratory')->with("status","yuklandi");
@@ -138,26 +151,34 @@ class LaboratoryController extends Controller
     
     public function show(Laboratory $laboratory)
     {
-        //
+        return view('admin.labaratoriya.show', ["laboratory" => $laboratory]);
     }
 
    
     public function edit(Laboratory $laboratory)
     {
-        //
+        return view("admin.labaratoriya.edit", ["laboratory"=> $laboratory]);
     }
 
     
     public function update(UpdateLaboratoryRequest $request, Laboratory $laboratory)
     {
-        //
+        $laboratory->update($request->toArray());
+
+        return redirect('/laboratory')->with("status","tahrirlandi");
+
     }
 
     
     public function destroy(Laboratory $laboratory)
     {
+        
+        $laboratory->xodimlar()->update(['laboratory_id' => null]);
+        $laboratory->ilmiyLoyihalar()->update(['laboratory_id' => null]);
+        $laboratory->xujaliklar()->update(['laboratory_id' => null]);
+        
         $laboratory->delete();
-
+        
         return redirect()->back()->with("status","o'chirildi");
     }
 }
