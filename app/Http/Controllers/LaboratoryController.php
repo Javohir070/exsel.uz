@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\IlmiyLoyiha;
+use App\Models\Izlanuvchilar;
 use App\Models\Laboratory;
 use App\Http\Requests\StoreLaboratoryRequest;
 use App\Http\Requests\UpdateLaboratoryRequest;
@@ -105,6 +106,8 @@ class LaboratoryController extends Controller
         return redirect()->back()->with('status', 'Xujaliklar muvaffaqiyatli yangilandi!');
 
     }
+
+    
 
 
     public function giveIlmiyLoyhaToLab(Request $request)

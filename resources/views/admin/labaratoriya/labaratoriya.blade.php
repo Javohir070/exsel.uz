@@ -37,7 +37,7 @@
                         <tr class="bg-gray-200">
                             <!-- <th class=" border">1</th> -->
                             <th class=" border" style="width:50%;">Labaratoriya nomi</th>
-                            <th class=" border" style="width:50%;">Rahbarning ilmiy ishlar (innovatsiyalar) bo‘yicha o‘rinbosari F.I.Sh</th>
+                            <th class=" border" style="width:50%;">Tashkil etilgan yil</th>
                         </tr>
                         <tr >
                             <!-- <th class=" border">4</th> -->
@@ -46,13 +46,13 @@
                         </tr>
                         <tr class="bg-gray-200">
                             <!-- <th class=" border">2</th> -->
-                            <th class=" border">Manzil</th>
-                            <th class=" border">Labaratoriya nomi</th>
+                            <th class=" border">Tavsif</th>
+                            <th class=" border"></th>
                         </tr>
                         <tr >
                             <!-- <th class=" border">5</th> -->
-                            <td class="border">{{ $tash->address  }} </td>
-                            <td class="border">{{ $tash->name }}</td>
+                            <td class="border">{{ $tash->tavsif  }} </td>
+                            <td class="border"></td>
                         </tr>
                         {{-- <tr class="bg-gray-200">
                             <!-- <th class=" border">3</th> -->

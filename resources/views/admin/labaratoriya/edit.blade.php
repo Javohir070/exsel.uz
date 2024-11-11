@@ -39,7 +39,7 @@
                         @enderror
                     </div>
 
-                    <div class="w-full col-span-6">
+                    <div class="w-full col-span-12">
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tavsif
                         </label>

@@ -30,10 +30,10 @@
                    Barcha xodimlarni Excel yuklab olish
                 </a> --}}
 
-                {{-- <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal" 
+                <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal" 
                     class="button w-24 ml-3 bg-theme-1 text-white">
-                    Excel yuklash
-                </a> --}}
+                    Ilmiy izlanuvchi biriktirish
+                </a>
             </div>
         </div>
 
@@ -133,7 +133,20 @@
 
 </div>
 </div>
+<style>
+    .table-container {
+        max-height: 600px; /* Jadval maksimal balandligini belgilash */
+        overflow-y: auto; /* Vertikal skroll qo'shish */
+    }
 
+    .table thead {
+        position: sticky;
+        top: 0;
+        /* background-color: #fff; Orqa fon rangini belgilash */
+        z-index: 1;
+    }
+
+</style>
 
 <div class="modal" id="science-paper-create-modal">
     <div class="modal__content modal__content--xl">
@@ -144,29 +157,49 @@
                     <form id="science-paper-create-form" method="POST" action="{{ route('import') }}"
                         class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                         @csrf
-                        <div class="grid grid-cols-12 gap-2">
+                        <div class="table-container">
 
-                            <div class="w-full col-span-12">
-
-                                <label class="flex flex-col sm:flex-row"> <span
-                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excle yuklash uchun shu shablonday bo'lishi shart yoki xato berdi.
-                                </label><br>
-                                <a  href="/admin/shablon-xodim.xlsx" form="science-paper-create-form"
-                                    class="input w-full mt-2 button w-24 bg-theme-1 text-white">
-                                    Shablon yuklab olish
-                                </a>
-
-                            </div><br>
-                            <div class="w-full col-span-12">
-                            
-
-                                <label class="flex flex-col sm:flex-row"> <span
-                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excel yuklash
-                                </label>
-                                <input type="file" name="file" style="padding-left: 0" class="input w-full mt-2"
-                                    required="">
-
-                            </div>
+                            <table class="table table-report ">
+                                <thead>
+                                    <tr>
+                                        <th class="whitespace-no-wrap">№</th>
+                                        <th class="whitespace-no-wrap">F.I.Sh</th>
+                                        <th class="whitespace-no-wrap">Ta'lim turi</th>
+                                        <th class="whitespace-no-wrap text-center">Biriktirish</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                    
+                                    @foreach ($tashkilot_izlanuvchilar as $xodimlar)
+                    
+                                        <tr class="intro-x">
+                                            <td>{{$loop->index + 1}}</td>
+                                            <td>
+                                                <a href="#" target="_blank" class="font-medium">{{ $xodimlar->fish }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="" class="font-medium ">{{ $xodimlar->talim_turi }}</a>
+                                            </td>
+                                            <td class="table-report__action w-56">
+                                                
+                                                @if ($xodimlar->laboratory_id == null)
+                                                <div class="col-md-2">
+                                                    <label>
+                                                        <input
+                                                            type="checkbox"
+                                                            name="ilmiyloyhalarId[]"
+                                                            value="{{ $xodimlar->id }}"
+                                                        />
+                                                    </label>
+                                                </div>
+                                            @else
+                                                <a href="" class="font-medium ">{{ $xodimlar->laboratory->name  }} </a>
+                                            @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
 
                         </div>
                     </form>
@@ -183,7 +216,7 @@
             </button>
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
-                Qo'shish
+                Tasdiqlash
             </button>
         </div>
     </div>

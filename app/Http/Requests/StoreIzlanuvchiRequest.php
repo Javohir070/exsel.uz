@@ -22,7 +22,16 @@ class StoreIzlanuvchiRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'fish' => "required|max:600",
+            'jshshir'=> "required|max:600",
+            'pasport_seriya'=> "required|max:600",
+            'jinsi'=> "required|max:600",
+            'talim_turi'=> "required|max:600",
+            'ixtisoslik'=> "required|max:600",
+            'qabul_qilgan_yil'=> "required|max:600",
+            'mavzusi'=> "required|max:600",
+            'phone'=> "required|max:600",
+            'loyihada_ishtiroki'=> "required|max:600",
         ];
     }
 }

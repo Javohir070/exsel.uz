@@ -22,7 +22,9 @@ class UpdateLaboratoryRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => "required|max:600",
+            'tavsif' => "required|max:6000",
+            'tash_yil' => "required|max:10",
         ];
     }
 }

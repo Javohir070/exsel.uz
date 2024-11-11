@@ -60,10 +60,10 @@ class UserController extends Controller
         $user->syncRoles($request->roles);
         if($roluchun[0] == "admin"){
             return redirect('/users')->with('status','User Updated Successfully with roles');
-        }else if($roluchun[0] == "labaratoriya"){
+        }else if($roluchun[0] == "laboratoriya"){
             return redirect('/laboratory')->with('status','User Updated Successfully with roles');
         }else{
-            return redirect('/')->with('status','User Updated Successfully with roles');
+            return redirect('/laboratory')->with('status','User Updated Successfully with roles');
         }
     }
 
@@ -105,12 +105,11 @@ class UserController extends Controller
         $roluchun = $request->roles;
         if($roluchun[0] == "admin"){
             return redirect('/users')->with('status','User Updated Successfully with roles');
-        }else if($roluchun[0] == "labaratoriya"){
+        }else if($roluchun[0] == "laboratoriya"){
             return redirect('/laboratory')->with('status','User Updated Successfully with roles');
         }else{
-            return redirect('/')->with('status','User Updated Successfully with roles');
+            return redirect('/laboratory')->with('status','User Updated Successfully with roles');
         }
-    }
     }
 
     public function destroy($userId)

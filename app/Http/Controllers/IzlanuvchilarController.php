@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Izlanuvchilar;
 use App\Http\Requests\StoreIzlanuvchilarRequest;
 use App\Http\Requests\UpdateIzlanuvchilarRequest;
+use Illuminate\Http\Request;
 
 class IzlanuvchilarController extends Controller
 {
@@ -14,10 +15,29 @@ class IzlanuvchilarController extends Controller
     public function index()
     {
         $izlanuvchilar = Izlanuvchilar::where('laboratory_id', auth()->user()->laboratory_id)->paginate(20);
-
-        return view("admin.izlanuvchilar.index", ["izlanuvchilar"=> $izlanuvchilar]);
+        $tashkilot_izlanuvchilar = Izlanuvchilar::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
+        
+        return view("admin.izlanuvchilar.index", ["izlanuvchilar"=> $izlanuvchilar, "tashkilot_izlanuvchilar" => $tashkilot_izlanuvchilar]);
     }
+    public function giveIzlanuvchilarToLab(Request $request)
+    {
+            // Formdan kelgan xodimlar ID larini olish
+        $izlanuvchilarId = $request->input('izlanuvchilarId', []);
 
+        // Foydalanuvchining laboratory_id sini oling
+        $laboratoryId = auth()->user()->laboratory_id;
+
+        // Tanlangan IDlarga tegishli xujaliklarni yangilash
+        if (!empty($izlanuvchilarId)) {
+            Izlanuvchilar::whereIn('id', $izlanuvchilarId)->update([
+                'laboratory_id' => $laboratoryId,
+            ]);
+        }
+
+        // Muvaffaqiyatli yangilanganini bildirish uchun qaytish
+        return redirect()->back()->with('status', 'Xujaliklar muvaffaqiyatli yangilandi!');
+
+    }
     /**
      * Show the form for creating a new resource.
      */
