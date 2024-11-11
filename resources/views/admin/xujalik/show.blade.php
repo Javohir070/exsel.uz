@@ -134,12 +134,12 @@
                         <tr class="bg-gray-200">
                             <!-- <th class="border border-b-2 ">3</th> -->
                             <th class="border border-b-2 ">4-chorak</th>
-                            <td class="border border-b-2 "></td>
+                            <th class="border border-b-2 ">Biriktirligan labaratoriya</th>
                         </tr>
                         <tr >
                             <!-- <th class="border border-b-2 ">3</th> -->
                             <td class="border border-b-2 ">{{ $xujalik->chorak4 }}</td>
-                            <th class="border border-b-2 "></th>
+                            <td class="border border-b-2 ">{{ $xujalik->laboratory->name }}</td>
                         </tr>
                         
                 </tbody>

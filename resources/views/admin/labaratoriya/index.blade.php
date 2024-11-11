@@ -6,10 +6,16 @@
     <div class="flex justify-between align-center mt-10">
 
         <h2 class="intro-y text-lg font-medium">Labaratoriyalar</h2>
+       
+        <div>
+            <a href="{{ route("laboratory.create") }}" class="button w-24 ml-3 bg-theme-1 text-white">
+                Qo'shish
+            </a>
 
-        <a href="{{ route("laboratory.create") }}" class="button w-24 bg-theme-1 text-white">
-            Qo'shish
-        </a>
+            <a href="{{ url('users/create') }}" class="button ml-3 w-24 bg-theme-1 text-white">
+                Masul biriktirsh
+            </a>
+        </div>
         
 
     </div>
@@ -40,7 +46,7 @@
                             <a href="" class="font-medium ">{{ $xodimlar->tash_yil }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->user->name }}</a>
+                            <a href="" class="font-medium ">{{ $xodimlar->user->name ?? "Masul biriktirimagan" }}</a>
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">

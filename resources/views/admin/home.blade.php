@@ -129,4 +129,7 @@
 @role('Itm-tashkilotlar')
     @include('admin.itm')
 @endrole
+@role('labaratoriya')
+    @include('admin.lab')
+@endrole
 @endsection

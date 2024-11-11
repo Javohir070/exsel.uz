@@ -116,52 +116,55 @@
                         class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                         @csrf
                         @method('PUT')
-                        <table class="table table-report -mt-2">
-                            <thead>
-                            <tr>
-                                    <th class="whitespace-no-wrap">№</th>
-                                    <th class="whitespace-no-wrap">Ishlanma nomi</th>
-                                    <th class="whitespace-no-wrap">Ishlanma yaratilgan tadqiqot mavzusi </th>
-                                    <th class="whitespace-no-wrap">shartnoma turi</th>
-                                    <th class="whitespace-no-wrap text-center">Harakat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-            
-                                @foreach ($tashkilot_xujalik as $xodimlar )
-            
-                                <tr class="intro-x">
-                                    <td>{{$loop->index+1}}</td>
-                                    <td>
-                                        <a href="" class="font-medium ">{{ $xodimlar->ishlanma_nomi  }} </a>
-                                    </td>
-                                    <td>
-                                        <a href="" class="font-medium ">{{ $xodimlar->ishlanma_mavzu }}</a>
-                                    </td>
-                                    <td>
-                                        <a href="" class="font-medium ">{{ $xodimlar->ishlanma_turi }}</a>
-                                    </td>
-                                    <td>
-                                        @if ($xodimlar->laboratory_id == null)
-                                            <div class="col-md-2">
-                                                <label>
-                                                    <input
-                                                        type="checkbox"
-                                                        name="xujaliklarId[]"
-                                                        value="{{ $xodimlar->id }}"
-                                                    />
-                                                </label>
-                                            </div>
-                                        @else
-                                            <a href="" class="font-medium ">{{ $xodimlar->laboratory->name  }} </a>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-            
-            
-                            </tbody>
-                        </table>
+                        <div class="table-container">
+                            <table class="table table-report -mt-2">
+                                <thead>
+                                <tr>
+                                        <th class="whitespace-no-wrap">№</th>
+                                        <th class="whitespace-no-wrap">Ishlanma nomi</th>
+                                        <th class="whitespace-no-wrap">Ishlanma yaratilgan tadqiqot mavzusi </th>
+                                        <th class="whitespace-no-wrap">shartnoma turi</th>
+                                        <th class="whitespace-no-wrap text-center">Biriktirligan</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                
+                                    @foreach ($tashkilot_xujalik as $xodimlar )
+                
+                                    <tr class="intro-x">
+                                        <td>{{$loop->index+1}}</td>
+                                        <td>
+                                            <a href="" class="font-medium ">{{ $xodimlar->ishlanma_nomi  }} </a>
+                                        </td>
+                                        <td>
+                                            <a href="" class="font-medium ">{{ $xodimlar->ishlanma_mavzu }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="" class="font-medium ">{{ $xodimlar->ishlanma_turi }}</a>
+                                        </td>
+                                        <td>
+                                            @if ($xodimlar->laboratory_id == null)
+                                                <div class="col-md-2">
+                                                    <label>
+                                                        <input
+                                                            type="checkbox"
+                                                            name="xujaliklarId[]"
+                                                            value="{{ $xodimlar->id }}"
+                                                        />
+                                                    </label>
+                                                </div>
+                                            @else
+                                                <a href="" class="font-medium ">{{ $xodimlar->laboratory->name  }} </a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                
+                
+                                </tbody>
+                            </table>
+
+                        </div>
                     </form>
                 </div>
             </div>

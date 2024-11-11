@@ -60,6 +60,8 @@ class UserController extends Controller
         $user->syncRoles($request->roles);
         if($roluchun[0] == "admin"){
             return redirect('/users')->with('status','User Updated Successfully with roles');
+        }else if($roluchun[0] == "labaratoriya"){
+            return redirect('/laboratory')->with('status','User Updated Successfully with roles');
         }else{
             return redirect('/')->with('status','User Updated Successfully with roles');
         }

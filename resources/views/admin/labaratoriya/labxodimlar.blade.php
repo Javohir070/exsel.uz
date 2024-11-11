@@ -38,6 +38,8 @@
         </div>
 
     </div>
+
+   
     @if (session('status'))
         <div class="alert alert-success">{{ session('status') }}</div>
     @endif
@@ -133,84 +135,86 @@
 
 </div>
 </div>
+<style>
+    .table-container {
+        max-height: 600px; /* Jadval maksimal balandligini belgilash */
+        overflow-y: auto; /* Vertikal skroll qo'shish */
+    }
 
+    .table thead {
+        position: sticky;
+        top: 0;
+        /* background-color: #fff; Orqa fon rangini belgilash */
+        z-index: 1;
+    }
+
+</style>
 
 <div class="modal" id="science-paper-create-modal">
     <div class="modal__content modal__content--xl">
         <div class="p-5">
-
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                 <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                     <form id="science-paper-create-form" method="POST" action="{{ url('lab/'.auth()->user()->laboratory_id.'/give-xodims') }}"
                         class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                         @csrf
                         @method('PUT')
-                        <table class="table table-report -mt-2">
-                            <thead>
-                                <tr>
-                                    <th class="whitespace-no-wrap">№</th>
-                                    <th class="whitespace-no-wrap">F.I.Sh</th>
-                                    <th class="whitespace-no-wrap">Lavozimi</th>
-                                    <th class="whitespace-no-wrap">Email</th>
-                                    <th class="whitespace-no-wrap">Telefon raqami</th>
-                                    <th class="whitespace-no-wrap text-center">Harakat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                
-                                @foreach ($tashkilot_xodimlar as $xodimlar)
-                
-                                    <tr class="intro-x">
-                                        <td>{{$loop->index + 1}}</td>
-                                        <td>
-                                            <a href="#" target="_blank" class="font-medium">{{ $xodimlar->fish }}</a>
-                                        </td>
-                                        <td>
-                                            <a href="" class="font-medium ">{{ $xodimlar->lavozimi }}</a>
-                                        </td>
-                                        <td>
-                                            <a href="" class="font-medium ">{{ $xodimlar->email }}</a>
-                                        </td>
-                
-                                        <td>
-                                            <a href="" class="font-medium ">{{ $xodimlar->phone  }} </a>
-                                        </td>
-                                        <td>
-                                            @if ($xodimlar->laboratory_id == null)
-                                                <div class="col-md-2">
-                                                    <label>
-                                                        <input
-                                                            type="checkbox"
-                                                            name="xodimlarId[]"
-                                                            value="{{ $xodimlar->id }}"
-                                                        />
-                                                    </label>
-                                                </div>
-                                            @else
-                                                <a href="" class="font-medium ">{{ $xodimlar->laboratory->name  }} </a>
-                                            @endif
-                                        </td>
+                        
+                        <!-- Jadval uchun o'rama qism -->
+                        <div class="table-container">
+                            <table class="table table-report -mt-2">
+                                <thead>
+                                    <tr>
+                                        <th class="whitespace-no-wrap">№</th>
+                                        <th class="whitespace-no-wrap">F.I.Sh</th>
+                                        <th class="whitespace-no-wrap">Lavozimi</th>
+                                        <th class="whitespace-no-wrap text-center">Biriktirish</th>
                                     </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @foreach ($tashkilot_xodimlar as $xodimlar)
+                                        <tr class="intro-x">
+                                            <td>{{$loop->index + 1}}</td>
+                                            <td>
+                                                <a href="#" target="_blank" class="font-medium">{{ $xodimlar->fish }}</a>
+                                            </td>
+                                            <td>
+                                                <a href="" class="font-medium ">{{ $xodimlar->lavozimi }}</a>
+                                            </td>
+                                            <td>
+                                                @if ($xodimlar->laboratory_id == null)
+                                                    <div class="col-md-2">
+                                                        <label>
+                                                            <input
+                                                                type="checkbox"
+                                                                name="xodimlarId[]"
+                                                                value="{{ $xodimlar->id }}"
+                                                            />
+                                                        </label>
+                                                    </div>
+                                                @else
+                                                    <a href="" class="font-medium ">{{ $xodimlar->laboratory->name  }} </a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </form>
                 </div>
             </div>
-
-
         </div>
         <div class="px-5 pb-5 text-center">
-            
-          
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </button>
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
-                Qo'shish
+                Tastiqlash
             </button>
         </div>
     </div>
 </div>
+
 @endsection

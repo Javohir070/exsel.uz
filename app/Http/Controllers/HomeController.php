@@ -57,6 +57,11 @@ class HomeController extends Controller
             return $user->roles->contains('name', 'Xodimlar_uchun_masul');
         });
 
+        $lab_xodimlar = Xodimlar::where('laboratory_id', auth()->user()->laboratory_id)->count();
+        $lab_xujalik = Xujalik::where('laboratory_id', auth()->user()->laboratory_id)->count();
+        $lab_ilmiyLoyiha = IlmiyLoyiha::where('laboratory_id', auth()->user()->laboratory_id)->count();
+        $lab_izlanuvchilar = IlmiyLoyiha::where('laboratory_id', auth()->user()->laboratory_id)->count();
+
         $iqtisodiy_moliyaviy = IqtisodiyMoliyaviy::where('tashkilot_id', $tashRId)->get();
         $tashkilot_raxbari = TashkilotRahbari::where('tashkilot_id', $tashRId)->get();
 
@@ -101,7 +106,11 @@ class HomeController extends Controller
             'xujalik_count_itm' => $xujalik_count_itm,
             'loyiha_bilan__itm' => $loyiha_bilan__itm,
             'xodim_count_itm' => $xodim_count_itm,
-            'itm_adminlar' => $itm_adminlar
+            'itm_adminlar' => $itm_adminlar,
+            'lab_izlanuvchilar' => $lab_izlanuvchilar,
+            'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
+            'lab_xujalik' => $lab_xujalik,
+            'lab_xodimlar' => $lab_xodimlar,
         ]);
     }
 

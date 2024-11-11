@@ -109,7 +109,20 @@
    
 </div>
 
+<style>
+    .table-container {
+        max-height: 600px; /* Jadval maksimal balandligini belgilash */
+        overflow-y: auto; /* Vertikal skroll qo'shish */
+    }
 
+    .table thead {
+        position: sticky;
+        top: 0;
+        /* background-color: #fff; Orqa fon rangini belgilash */
+        z-index: 1;
+    }
+
+</style>
 <div class="modal" id="science-paper-create-modal">
     <div class="modal__content modal__content--xl">
         <div class="p-5">
@@ -120,56 +133,55 @@
                         class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                         @csrf
                         @method('PUT')
-                        <table class="table table-report -mt-2">
-                            <thead>
-                            <tr>
-                                    <th class="whitespace-no-wrap">№</th>
-                                    <th class="whitespace-no-wrap">Loyiha mavzusi</th>
-                                    <th class="whitespace-no-wrap">Loyiha rahbari</th>
-                                    <th class="whitespace-no-wrap">Loyiha turi</th>
-                                    <th class="whitespace-no-wrap">Loyiha dasturi</th>
-                                    <th class="whitespace-no-wrap text-center">Harakat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-            
-                                @foreach ($tashkilot_ilmiyloyiha as $xodimlar )
-            
-                                <tr class="intro-x">
-                                    <td>{{$loop->index+1}}</td>
-                                    <td>
-                                        <a href="" class="font-medium ">{{ $xodimlar->mavzusi  }} </a>
-                                    </td>
-                                    <td>
-                                        <a href="" class="font-medium ">{{ $xodimlar->rahbar_name }}</a>
-                                    </td>
-                                    <td>
-                                        <a href="" class="font-medium ">{{ $xodimlar->turi }}</a>
-                                    </td>
-                                    <td>
-                                        <a href="" class="font-medium ">{{ $xodimlar->dastyri }}</a>
-                                    </td>
-                                    <td>
-                                        @if ($xodimlar->laboratory_id == null)
-                                            <div class="col-md-2">
-                                                <label>
-                                                    <input
-                                                        type="checkbox"
-                                                        name="ilmiyloyhalarId[]"
-                                                        value="{{ $xodimlar->id }}"
-                                                    />
-                                                </label>
-                                            </div>
-                                        @else
-                                            <a href="" class="font-medium ">{{ $xodimlar->laboratory->name  }} </a>
-                                        @endif
-                                    </td>
-                                </tr>
-                                @endforeach
-            
-            
-                            </tbody>
-                        </table>
+                        <div class="table-container">
+                            <table class="table table-report -mt-2">
+                                <thead>
+                                <tr>
+                                        <th class="whitespace-no-wrap">№</th>
+                                        <th class="whitespace-no-wrap">Loyiha mavzusi</th>
+                                        <th class="whitespace-no-wrap">Loyiha rahbari</th>
+                                        <th class="whitespace-no-wrap">Loyiha turi</th>
+                                        <th class="whitespace-no-wrap text-center">Biriktirish</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                
+                                    @foreach ($tashkilot_ilmiyloyiha as $xodimlar )
+                
+                                    <tr class="intro-x">
+                                        <td>{{$loop->index+1}}</td>
+                                        <td>
+                                            <a href="" class="font-medium ">{{ $xodimlar->mavzusi  }} </a>
+                                        </td>
+                                        <td>
+                                            <a href="" class="font-medium ">{{ $xodimlar->rahbar_name }}</a>
+                                        </td>
+                                        <td>
+                                            <a href="" class="font-medium ">{{ $xodimlar->turi }}</a>
+                                        </td>
+                                        <td>
+                                            @if ($xodimlar->laboratory_id == null)
+                                                <div class="col-md-2">
+                                                    <label>
+                                                        <input
+                                                            type="checkbox"
+                                                            name="ilmiyloyhalarId[]"
+                                                            value="{{ $xodimlar->id }}"
+                                                        />
+                                                    </label>
+                                                </div>
+                                            @else
+                                                <a href="" class="font-medium ">{{ $xodimlar->laboratory->name  }} </a>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                
+                
+                                </tbody>
+                            </table>
+
+                        </div>
                     </form>
                 </div>
             </div>
@@ -184,7 +196,7 @@
             </button>
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
-                Qo'shish
+                Tasdiqlash
             </button>
         </div>
     </div>

@@ -19,7 +19,7 @@
                 <tbody>
                     @forelse ($laboratorys as $tash )
                     <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;"> {{$tash->tashkilot->name_qisqachasi}} rahbari xaqida ma’lumot</div>
+                        <div style="font-size:18px;font-weight: 400;"> {{$tash->name}}  xaqida ma’lumot</div>
                         <div style="text-align: end;">
                             <a href="{{ route('laboratory.edit',['laboratory'=>$tash->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash

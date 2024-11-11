@@ -10,6 +10,12 @@
 				<img width="" style="text-align: center;margin: 10px auto;width: 70%;" alt=""  src="{{ asset('storage/'. auth()->user()->tashkilot->logo)  }}">
 				<span class="hidden xl:block text-white text-lg ml-3" style="font-size: 18px; text-align: center;"> {{ auth()->user()->tashkilot->name }}</span>
 			</a><br>
+            
+    @endrole
+    @role('labaratoriya')
+        <a href="/" class=" items-center ">
+            <span class="hidden xl:block text-white text-lg ml-3" style="font-size: 14px; text-align: center;"> {{ auth()->user()->laboratory->name }}</span>
+        </a><br>
     @endrole
     <ul>
         <li>
