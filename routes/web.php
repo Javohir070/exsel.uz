@@ -127,7 +127,7 @@ Route::middleware('auth')->group(function () {
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });
-Route::group(['middleware' => ['role:super-admin']], function() {
+Route::group(['middleware' => ['role:super-admin|admin']], function() {
 
     // web.php
     Route::delete('/tashkilot/{tashkilot}/xodimlar', [XodimlarController::class, 'deleteAll'])->name('xodimlar.deleteAll');
