@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\IlmiybnTaminlanga;
 use App\Models\IlmiyLoyiha;
 use App\Models\IqtisodiyMoliyaviy;
+use App\Models\Izlanuvchilar;
 use App\Models\Tashkilot;
 use App\Models\TashkilotRahbari;
 use App\Models\User;
@@ -60,7 +61,7 @@ class HomeController extends Controller
         $lab_xodimlar = Xodimlar::where('laboratory_id', auth()->user()->laboratory_id)->count();
         $lab_xujalik = Xujalik::where('laboratory_id', auth()->user()->laboratory_id)->count();
         $lab_ilmiyLoyiha = IlmiyLoyiha::where('laboratory_id', auth()->user()->laboratory_id)->count();
-        $lab_izlanuvchilar = IlmiyLoyiha::where('laboratory_id', auth()->user()->laboratory_id)->count();
+        $lab_izlanuvchilar = Izlanuvchilar::where('laboratory_id', auth()->user()->laboratory_id)->count();
 
         $iqtisodiy_moliyaviy = IqtisodiyMoliyaviy::where('tashkilot_id', $tashRId)->get();
         $tashkilot_raxbari = TashkilotRahbari::where('tashkilot_id', $tashRId)->get();

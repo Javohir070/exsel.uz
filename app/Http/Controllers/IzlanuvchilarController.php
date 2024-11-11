@@ -50,7 +50,7 @@ class IzlanuvchilarController extends Controller
             "stir" => $request->stir, 
         ]);
 
-        return redirect()->route("izlanuvchilar.index")->with("status","yuklandi");
+        return redirect()->route("izlanuvchilar.index")->with("status",'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
     /**
@@ -76,7 +76,7 @@ class IzlanuvchilarController extends Controller
     {
         $izlanuvchilar->update($request->toArray());
 
-        return redirect()->route("izlanuvchilar.index")->with("status","yangilandi");
+        return redirect()->route("izlanuvchilar.index")->with("status",'Ma\'lumotlar muvaffaqiyatli yangilandi.');
 
     }
 
@@ -85,6 +85,8 @@ class IzlanuvchilarController extends Controller
      */
     public function destroy(Izlanuvchilar $izlanuvchilar)
     {
-        //
+        $izlanuvchilar->delete();
+
+        return redirect()->back()->with('status','Ma\'lumotlar muvaffaqiyatli o"chirildi.');
     }
 }

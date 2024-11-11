@@ -145,7 +145,7 @@ class LaboratoryController extends Controller
             "tavsif" => $request->tavsif,
         ]);
 
-        return redirect('/laboratory')->with("status","yuklandi");
+        return redirect('/laboratory')->with("status",'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
     
@@ -165,7 +165,7 @@ class LaboratoryController extends Controller
     {
         $laboratory->update($request->toArray());
 
-        return redirect('/laboratory')->with("status","tahrirlandi");
+        return redirect('/laboratory')->with("status",'Ma\'lumotlar muvaffaqiyatli yangilandi.');
 
     }
 
@@ -179,6 +179,6 @@ class LaboratoryController extends Controller
         
         $laboratory->delete();
         
-        return redirect()->back()->with("status","o'chirildi");
+        return redirect()->back()->with("status",'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
     }
 }
