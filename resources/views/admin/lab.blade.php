@@ -109,7 +109,7 @@
                                     <i data-feather="bar-chart" class="report-box__icon text-theme-9"></i>
                                 </div>
                                 <div class="text-3xl font-bold leading-8 mt-6">{{ $lab_izlanuvchilar }}</div>
-                                <div class="text-base text-gray-600 mt-1">Izlanuvchilar</div>
+                                <div class="text-base text-gray-600 mt-1">Ilmiy izlanuvchilar</div>
                             </div>
                         </div>
                     </a>

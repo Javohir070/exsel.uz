@@ -38,18 +38,18 @@
             </thead>
             <tbody>
 
-                @foreach ($laboratorys as $xodimlar)
+                @foreach ($laboratoriyalari as $xodimlar)
 
                     <tr class="intro-x">
                         <td>{{$loop->index + 1}}</td>
                         <td>
-                            <a href="{{ route('laboratory.show', ['laboratory' => $xodimlar->id]) }}" class="font-medium">{{ $xodimlar->name }}</a>
+                            <a href="#" target="_blank" class="font-medium">{{ $xodimlar->name }}</a>
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $xodimlar->tash_yil }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->user->name ?? "Ma'sul biriktirimagan" }}</a>
+                            <a href="" class="font-medium ">{{ $xodimlar->user->name ?? "Masul biriktirimagan" }}</a>
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">

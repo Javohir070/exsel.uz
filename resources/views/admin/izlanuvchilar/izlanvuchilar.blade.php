@@ -5,7 +5,7 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">Xodimlar</h2>
+        <h2 class="intro-y text-lg font-medium">Izlanuvchilar</h2>
 
         <!-- <a href="{{ route("xodimlar.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish
@@ -22,7 +22,7 @@
         </div> --}}
         <div>
             <div>
-                <a href="{{ route("xodimlar.create") }}" class="button w-24 bg-theme-1 text-white">
+                <a href="{{ route("izlanuvchilar.create") }}" class="button w-24 bg-theme-1 text-white">
                     Qo'shish
                 </a>
 
@@ -32,14 +32,12 @@
 
                 <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal" 
                     class="button w-24 ml-3 bg-theme-1 text-white">
-                    Xodimlar biriktirish
+                    Ilmiy izlanuvchi biriktirish
                 </a>
             </div>
         </div>
 
     </div>
-
-   
     @if (session('status'))
         <div class="alert alert-success">{{ session('status') }}</div>
     @endif
@@ -50,15 +48,15 @@
                 <tr>
                     <th class="whitespace-no-wrap">№</th>
                     <th class="whitespace-no-wrap">F.I.Sh</th>
-                    <th class="whitespace-no-wrap">Lavozimi</th>
-                    <th class="whitespace-no-wrap">Email</th>
+                    <th class="whitespace-no-wrap">Ta'lim turi</th>
+                    <th class="whitespace-no-wrap">Qabul qilingan yili</th>
                     <th class="whitespace-no-wrap">Telefon raqami</th>
                     <th class="whitespace-no-wrap text-center">Harakat</th>
                 </tr>
             </thead>
             <tbody>
 
-                @foreach ($lab_xodimlar as $xodimlar)
+                @foreach ($izlanuvchilar as $xodimlar)
 
                     <tr class="intro-x">
                         <td>{{$loop->index + 1}}</td>
@@ -66,10 +64,10 @@
                             <a href="#" target="_blank" class="font-medium">{{ $xodimlar->fish }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->lavozimi }}</a>
+                            <a href="" class="font-medium ">{{ $xodimlar->talim_turi }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->email }}</a>
+                            <a href="" class="font-medium ">{{ $xodimlar->qabul_qilgan_yil }}</a>
                         </td>
 
                         <td>
@@ -78,7 +76,7 @@
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
                                 <a class="flex science-update-action items-center mr-3"
-                                    href="{{ route('xodimlar.edit', ['xodimlar' => $xodimlar->id]) }}" data-id="2978"
+                                    href="{{ route('izlanuvchilar.edit', ['izlanuvchilar' => $xodimlar->id]) }}" data-id="2978"
                                     data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
                                     data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None"
                                     data-doi="" data-publisher="" data-description="None" data-authors-count="None"
@@ -93,7 +91,7 @@
                                 </a>
 
                                 <a class="flex science-update-action items-center mr-3"
-                                    href="{{ route('xodimlar.show', ['xodimlar' => $xodimlar->id]) }}" data-id="2978"
+                                    href="{{ route('izlanuvchilar.show', ['izlanuvchilar' => $xodimlar->id]) }}" data-id="2978"
                                     data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
                                     data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None"
                                     data-doi="" data-publisher="" data-description="None" data-authors-count="None"
@@ -130,7 +128,7 @@
         </table>
     </div>
     <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-        {{$lab_xodimlar->links()}}
+        {{$izlanuvchilar->links()}}
     </div>
 
 </div>
@@ -153,68 +151,54 @@
 <div class="modal" id="science-paper-create-modal">
     <div class="modal__content modal__content--xl">
         <div class="p-5">
+
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                 <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                    <form id="science-paper-create-form" method="POST" action="{{ url('lab/'.auth()->user()->laboratory_id.'/give-xodims') }}"
+                    <form id="science-paper-create-form" method="POST" action="{{ route('emport_izlanuvchi.index') }}"
                         class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                         @csrf
-                        @method('PUT')
-                        
-                        <!-- Jadval uchun o'rama qism -->
-                        <div class="table-container">
-                            <table class="table table-report -mt-2">
-                                <thead>
-                                    <tr>
-                                        <th class="whitespace-no-wrap">№</th>
-                                        <th class="whitespace-no-wrap">F.I.Sh</th>
-                                        <th class="whitespace-no-wrap">Lavozimi</th>
-                                        <th class="whitespace-no-wrap text-center">Biriktirish</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($tashkilot_xodimlar as $xodimlar)
-                                        <tr class="intro-x">
-                                            <td>{{$loop->index + 1}}</td>
-                                            <td>
-                                                <a href="#" target="_blank" class="font-medium">{{ $xodimlar->fish }}</a>
-                                            </td>
-                                            <td>
-                                                <a href="" class="font-medium ">{{ $xodimlar->lavozimi }}</a>
-                                            </td>
-                                            <td>
-                                                @if ($xodimlar->laboratory_id == null)
-                                                    <div class="col-md-2">
-                                                        <label>
-                                                            <input
-                                                                type="checkbox"
-                                                                name="xodimlarId[]"
-                                                                value="{{ $xodimlar->id }}"
-                                                            />
-                                                        </label>
-                                                    </div>
-                                                @else
-                                                    <a href="" class="font-medium ">{{ $xodimlar->laboratory->name  }} </a>
-                                                @endif
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                        <div class="grid grid-cols-12 gap-2">
+
+                            <div class="w-full col-span-12">
+
+                                <label class="flex flex-col sm:flex-row"> <span
+                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excle yuklash uchun shu shablonday bo'lishi shart yoki xato berdi.
+                                </label><br>
+                                <a  href="#" form="science-paper-create-form"
+                                    class="input w-full mt-2 button w-24 bg-theme-1 text-white">
+                                    Shablon yuklab olish
+                                </a>
+
+                            </div><br>
+                            <div class="w-full col-span-12">
+                            
+
+                                <label class="flex flex-col sm:flex-row"> <span
+                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excel yuklash
+                                </label>
+                                <input type="file" name="file" style="padding-left: 0" class="input w-full mt-2"
+                                    required="">
+
+                            </div>
+
                         </div>
                     </form>
                 </div>
             </div>
+
+
         </div>
         <div class="px-5 pb-5 text-center">
+            
+          
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </button>
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
-                Tastiqlash
+                Qo'shish
             </button>
         </div>
     </div>
 </div>
-
 @endsection

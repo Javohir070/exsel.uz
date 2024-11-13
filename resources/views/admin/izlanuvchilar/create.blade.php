@@ -126,7 +126,7 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telefon raqami
                     </label>
-                    <input type="tel" name="phone" placeholder="+998 90 123 45 67" value="{{ old('phone') }}" class="input w-full border mt-2" required="">
+                    <input type="number" name="phone" placeholder="+998 90 123 45 67" value="{{ old('phone') }}" class="input w-full border mt-2" required="">
                     @error('phone')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -163,7 +163,7 @@
 
         </form><br>
         <div class="px-5 pb-5 text-center">
-            <a href="{{ route('xodimlar.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
+            <a href="{{ route('izlanuvchilar.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </a>
             <button type="submit" form="science-paper-create-form"

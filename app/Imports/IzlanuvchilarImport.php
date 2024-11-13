@@ -16,16 +16,17 @@ class IzlanuvchilarImport implements ToModel
     {
         return new Izlanuvchilar([
             'user_id' => auth()->id(),
-            'fish' => $row[0],
-            'jshshir'=> $row[1],
-            'pasport_seriya'=> $row[1],
-            'jinsi'=> $row[1],
-            'talim_turi'=> $row[1],
-            'ixtisoslik'=> $row[1],
-            'qabul_qilgan_yil'=> $row[1],
-            'mavzusi'=> $row[1],
-            'phone'=> $row[1],
-            'loyihada_ishtiroki'=> $row[1],
+            'tashkilot_id' => $row[0],
+            'fish' => $row[1],
+            'talim_turi'=> $row[2],
+            'jshshir'=> $row[3],
+            'pasport_seriya'=> $row[4],
+            'jinsi'=> $row[5],
+            'phone'=> $row[6],
+            'mavzusi'=> $row[7],
+            'qabul_qilgan_yil'=> 2000,
+            'ixtisoslik' => 'yoq',
+            'loyihada_ishtiroki'=> 'yoq',
         ]);
     }
 }

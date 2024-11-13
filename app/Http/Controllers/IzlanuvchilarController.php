@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\IzlanuvchilarImport;
 use App\Models\Izlanuvchilar;
 use App\Http\Requests\StoreIzlanuvchilarRequest;
 use App\Http\Requests\UpdateIzlanuvchilarRequest;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
 class IzlanuvchilarController extends Controller
 {
     /**
@@ -19,6 +20,22 @@ class IzlanuvchilarController extends Controller
         
         return view("admin.izlanuvchilar.index", ["izlanuvchilar"=> $izlanuvchilar, "tashkilot_izlanuvchilar" => $tashkilot_izlanuvchilar]);
     }
+
+    public function ilmiy_izlanuvchilar()
+    {
+        $izlanuvchilar = Izlanuvchilar::paginate(25);
+
+        return view("admin.izlanuvchilar.izlanvuchilar", ["izlanuvchilar" => $izlanuvchilar]);
+    }
+
+    public function ilmiy_izlanuvchi()
+    {
+        $izlanuvchilar = Izlanuvchilar::where("tashkilot_id",auth()->user()->tashkilot_id)->paginate(20);
+
+        return view("admin.izlanuvchilar.adminizlanuvchi", ["izlanuvchilar"=> $izlanuvchilar]);
+    }
+
+
     public function giveIzlanuvchilarToLab(Request $request)
     {
             // Formdan kelgan xodimlar ID larini olish
@@ -26,7 +43,7 @@ class IzlanuvchilarController extends Controller
 
         // Foydalanuvchining laboratory_id sini oling
         $laboratoryId = auth()->user()->laboratory_id;
-
+        
         // Tanlangan IDlarga tegishli xujaliklarni yangilash
         if (!empty($izlanuvchilarId)) {
             Izlanuvchilar::whereIn('id', $izlanuvchilarId)->update([
@@ -108,5 +125,16 @@ class IzlanuvchilarController extends Controller
         $izlanuvchilar->delete();
 
         return redirect()->back()->with('status','Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+    }
+
+    public function emport_izlanuvchi(Request $request)
+    {
+        $fileName = time() . '-' . $request->file('file')->getClientOriginalName();
+        $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+
+        Excel::import(new IzlanuvchilarImport, $request->file('file'));
+
+        return redirect()->back()->with('status', 'Xodimlar muvaffaqiyatli yuklandi!');
+        
     }
 }

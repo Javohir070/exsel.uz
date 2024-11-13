@@ -44,7 +44,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     @endrole
-                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul', 'labaratoriyaga_masul'])
                         <input type="text" name="mavzusi" value="{{ $ilmiyloyiha->mavzusi }}" readonly class="input w-full border mt-2" required="">
                         @error('mavzusi')
                             <div class="error">{{ $message }}</div>
@@ -75,7 +75,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     @endrole
-                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul', 'labaratoriyaga_masul'])
                         <input type="text" name="turi" value="{{ $ilmiyloyiha->turi }}" readonly class="input w-full border mt-2" required="">
                         @error('turi')
                             <div class="error">{{ $message }}</div>
@@ -191,7 +191,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     @endrole
-                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul', 'labaratoriyaga_masul'])
                         <input type="text"  name="bosh_sana" value="{{ $ilmiyloyiha->bosh_sana }}" readonly class=" input w-full border mt-2" required="">
                         @error('bosh_sana')
                             <div class="error">{{ $message }}</div>
@@ -210,7 +210,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     @endrole
-                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul', 'labaratoriyaga_masul'])
                         <input type="text"  name="tug_sana" value="{{ $ilmiyloyiha->tug_sana }}" readonly class=" input w-full border mt-2" required="">
                         @error('tug_sana')
                             <div class="error">{{ $message }}</div>
@@ -229,7 +229,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     @endrole
-                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul', 'labaratoriyaga_masul'])
                         <input type="text"  name="pan_yunalish" value="{{ $ilmiyloyiha->pan_yunalish}}" readonly class=" input w-full border mt-2" required="">
                         @error('pan_yunalish')
                             <div class="error">{{ $message }}</div>
@@ -262,7 +262,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     @endrole
-                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul', 'labaratoriyaga_masul'])
                         <input type="text" name="rahbar_name" value="{{ $ilmiyloyiha->rahbar_name }}" readonly class="input w-full border mt-2" required="">
                         @error('rahbar_name')
                             <div class="error">{{ $message }}</div>
@@ -280,7 +280,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     @endrole
-                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul', 'labaratoriyaga_masul'])
                     <input type="text" name="raqami" value="{{ $ilmiyloyiha->raqami }}" readonly class="input w-full border mt-2" required="">
                     @error('raqami')
                             <div class="error">{{ $message }}</div>
@@ -309,7 +309,7 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                     @endrole
-                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
+                    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul', 'labaratoriyaga_masul'])
                     <input type="text" name="sum" value="{{ $ilmiyloyiha->sum }}" readonly class="input w-full border mt-2" required="">
                     @error('sum')
                         <div class="error">{{ $message }}</div>
@@ -360,17 +360,14 @@
                 </div>
 
                 <div class="w-full col-span-6 " >
-                    <label class="flex flex-col sm:flex-row">  <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Qaysi labarot ishlaydi
-                            
-                            
-                    </label>
-                    <select name="laboratory_id" value="{{old('laboratory_id')}}"  class="input border w-full mt-2" required="">
+                    <label class="flex flex-col sm:flex-row">   Laboratoriyani tanlang</label>
+                    <select name="laboratory_id" value="{{old('laboratory_id')}}"  class="input border w-full mt-2" >
 
-                        <option value="">lab  tanlang</option>
+                        <option value="">laboratoriyani  tanlang</option>
                         @foreach ($laboratorylar as $laboratory)
                             <option value="{{ $laboratory->id }}">{{ $laboratory->name }}</option>
                         @endforeach
+                            <option value="">yo'q</option>
 
                     </select><br>
                     @error('laboratory_id')
@@ -423,9 +420,15 @@
 
         </form><br>
         <div class="px-5 pb-5 text-center">
-            <a href="{{ route('ilmiyloyiha.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                Bekor qilish
-            </a>
+            @if (auth()->user()->hasRole('labaratoriyaga_masul'))
+                <a href="{{ route('lab_ilmiyloyiha.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </a>
+            @else
+                <a href="{{ route('ilmiyloyiha.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </a>
+            @endif
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
                 Qo'shish

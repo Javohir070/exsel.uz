@@ -118,6 +118,32 @@
                             </div>
                         </a>
                     </div>
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                        <a href="{{ route('ilmiy_izlanuvchilar.index') }}">
+                            <div class="report-box zoom-in">
+                                <div class="box p-5">
+                                    <div class="flex">
+                                        <i data-feather="users" class="report-box__icon text-theme-9"></i>
+                                    </div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $izlanuvchilar }}</div>
+                                    <div class="text-base text-gray-600 mt-1">Ilmiy izlanuvchilar soni</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                        <a href="{{ route('laboratoriya.index') }}">
+                            <div class="report-box zoom-in">
+                                <div class="box p-5">
+                                    <div class="flex">
+                                        <i data-feather="bar-chart" class="report-box__icon text-theme-9"></i>
+                                    </div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $labaratoriyalar }}</div>
+                                    <div class="text-base text-gray-600 mt-1">Labaratoriyalari soni</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -129,7 +155,7 @@
 @role('Itm-tashkilotlar')
     @include('admin.itm')
 @endrole
-@role('labaratoriya')
+@role('labaratoriyaga_masul')
     @include('admin.lab')
 @endrole
 @endsection

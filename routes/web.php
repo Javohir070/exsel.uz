@@ -92,6 +92,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/itm-xodimlar',[ItmController::class, 'itm_export'])->name('itm.export');
     Route::get('/itm-xujalik',[ItmController::class, 'itm_xujalik_export'])->name('itm.xujalikloyhalar');
     Route::get('/itm-ilmiy',[ItmController::class, 'itm_loyhalar_export'])->name('itm.ilmiyloyhalar');
+   
     //end itm 
 
     // labaratoriya uchun
@@ -103,10 +104,12 @@ Route::middleware('auth')->group(function () {
     Route::put('lab/{labId}/give-xujaliks', [LaboratoryController::class, 'giveXujalikToLab']);
     Route::put('lab/{labId}/give-ilmiyloyhas', [LaboratoryController::class, 'giveIlmiyLoyhaToLab']);
     Route::get('laboratoriya', [LaboratoryController::class,'laboratoriya'])->name('laboratoriya.index');
+    Route::get('laboratoriyalari', [LaboratoryController::class,'laboratoriyalari'])->name('laboratoriyalari.index');
     Route::get('masullar', [LaboratoryController::class, "masullar"])->name("masullar.index");
-    
-
-
+    Route::post("emport-izlanuvchi", [IzlanuvchilarController::class, "emport_izlanuvchi"])->name("emport_izlanuvchi.index");
+    Route::get("/ilmiy-izlanuvchilar", [IzlanuvchilarController::class,"ilmiy_izlanuvchilar"])->name("ilmiy_izlanuvchilar.index");
+    Route::put('lab/{labId}/give-izlanuvchilar', [IzlanuvchilarController::class, 'giveIzlanuvchilarToLab']);
+    Route::get('/ilmiy-izlanuvchi',[IzlanuvchilarController::class, 'ilmiy_izlanuvchi'])->name('ilmiy_izlanuvchi.index');
     //labaratoriya uchun
     Route::resources([
         'tashkilot' => TashkilotController::class,

@@ -31,7 +31,7 @@
                 <tbody>
 
                     <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;">{{ $izlanuvchilar->tashkilot->name_qisqachasi ." xodim ". $izlanuvchilar->fish }}  xaqida ma’lumot</div>
+                        <div style="font-size:18px;font-weight: 400;">{{  $izlanuvchilar->fish }}  xaqida ma’lumot</div>
                         @can('xodim delete edit')
                             <div style="text-align: end;">
                                 <a href="{{ route('izlanuvchilar.edit',['izlanuvchilar'=>$izlanuvchilar->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
@@ -67,7 +67,7 @@
                         <tr>
                             <!-- <th class="border border-2">4</th> -->
                             <td class="border border-2" >{{ $izlanuvchilar->pasport_seriya }}</td>
-                            <td class="border border-2" >{{ $izlanuvchilar->jinsi }}</td>
+                            <td class="border border-2" >{{ $izlanuvchilar->jinsi == 1 ? "erkak" : "ayol" }}</td>
                         </tr>
                         <tr class="bg-gray-200">
                             <!-- <th class="border border-2">5</th> -->
@@ -76,7 +76,7 @@
                         </tr>
                         <tr >
                             <!-- <th class="border border-2">6</th> -->
-                            <td class="border border-2" colspan="2">{{ $izlanuvchilar->phone }}</t>
+                            <td class="border border-2" colspan="2">+{{ $izlanuvchilar->phone }}</t>
                             {{-- <td class="border border-2">{{ $izlanuvchilar->email }}</td> --}}
                         </tr>
                         <tr>

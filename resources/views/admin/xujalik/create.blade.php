@@ -160,17 +160,14 @@
                 </div>
 
                 <div class="w-full col-span-6 " >
-                    <label class="flex flex-col sm:flex-row">  <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Qaysi labarot ishlaydi
-                            
-                            
-                    </label>
-                    <select name="laboratory_id" value="{{old('laboratory_id')}}"  class="input border w-full mt-2" required="">
+                    <label class="flex flex-col sm:flex-row">   Laboratoriyani tanlang</label>
+                    <select name="laboratory_id" value="{{old('laboratory_id')}}"  class="input border w-full mt-2" >
 
-                        <option value="">lab  tanlang</option>
+                        <option value="">laboratoriyani  tanlang</option>
                         @foreach ($laboratorylar as $laboratory)
                             <option value="{{ $laboratory->id }}">{{ $laboratory->name }}</option>
                         @endforeach
+                            <option value="">yo'q</option>
 
                     </select><br>
                     @error('laboratory_id')
@@ -210,9 +207,15 @@
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">
-            <a href="{{ route('xujalik.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
-                Bekor qilish
-            </a>
+            @if (auth()->user()->hasRole('labaratoriyaga_masul'))
+                <a href="{{ route('lab_xujalik.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </a>
+            @else
+                <a href="{{ route('xujalik.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </a>
+            @endif
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
                 Qo'shish

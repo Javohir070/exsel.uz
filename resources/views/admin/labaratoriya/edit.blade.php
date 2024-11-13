@@ -83,9 +83,17 @@
             </div><br>
         </form><br>
         <div class="px-5 pb-5 text-center">
-            <a href="{{ route('tashkilotrahbari.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
-                Bekor qilish
-            </a>
+            @if (auth()->user()->hasRole('labaratoriyaga_masul'))
+                <a href="{{ route('laboratoriya.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </a>
+            @else
+                <a href="{{ route('laboratory.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </a>
+            @endif
+
+            
             <button type="submit" form="science-paper-create-form" class="update-confirm button w-24 bg-theme-1 text-white">
                 Qo'shish
             </button>

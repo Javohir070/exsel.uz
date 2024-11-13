@@ -27,18 +27,35 @@ class LaboratoryController extends Controller
         $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
 
         $masullar = $users->filter(function($user) {
-            return $user->roles->contains('name', 'labaratoriya');
+            return $user->roles->contains('name', 'labaratoriyaga_masul');
         });
 
         
         return view("admin.labaratoriya.masullar", ['masullar'=> $masullar]);
     }
 
+
+    public function laboratoriyalari()
+    {
+        $laboratoriyalari =laboratory::paginate(25);
+
+        return view('admin.labaratoriya.laboratoriyalari', ['laboratoriyalari'=> $laboratoriyalari]);
+    }
+
     public function laboratoriya()
     {
         $laboratorys =Laboratory::where("id",auth()->user()->laboratory_id)->get();
-        
-        return view("admin.labaratoriya.labaratoriya", ["laboratorys"=> $laboratorys]);
+        $lab_xodimlar = Xodimlar::where('laboratory_id', auth()->user()->laboratory_id)->count();
+        $lab_xujalik = Xujalik::where('laboratory_id', auth()->user()->laboratory_id)->count();
+        $lab_ilmiyLoyiha = IlmiyLoyiha::where('laboratory_id', auth()->user()->laboratory_id)->count();
+        $lab_izlanuvchilar = Izlanuvchilar::where('laboratory_id', auth()->user()->laboratory_id)->count();
+        return view("admin.labaratoriya.labaratoriya", [
+                "laboratorys"=> $laboratorys,
+                'lab_izlanuvchilar' => $lab_izlanuvchilar,
+                'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
+                'lab_xujalik' => $lab_xujalik,
+                'lab_xodimlar' => $lab_xodimlar,
+            ]);
     }
 
 
@@ -154,7 +171,17 @@ class LaboratoryController extends Controller
     
     public function show(Laboratory $laboratory)
     {
-        return view('admin.labaratoriya.show', ["laboratory" => $laboratory]);
+        $lab_xodimlar = Xodimlar::where('laboratory_id', $laboratory->id)->count();
+        $lab_xujalik = Xujalik::where('laboratory_id', $laboratory->id)->count();
+        $lab_ilmiyLoyiha = IlmiyLoyiha::where('laboratory_id', $laboratory->id)->count();
+        $lab_izlanuvchilar = Izlanuvchilar::where('laboratory_id', $laboratory->id)->count();
+        return view('admin.labaratoriya.show', [
+                    "laboratory" => $laboratory,
+                    'lab_izlanuvchilar' => $lab_izlanuvchilar,
+                    'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
+                    'lab_xujalik' => $lab_xujalik,
+                    'lab_xodimlar' => $lab_xodimlar,
+                ]);
     }
 
    

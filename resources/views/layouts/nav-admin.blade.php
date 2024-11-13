@@ -5,14 +5,14 @@
     </a>
     <div class="side-nav__devider my-6"></div>
 
-    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul','labaratoriya'])
+    @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul','labaratoriyaga_masul'])
 			<a href="/" class=" items-center ">
 				<img width="" style="text-align: center;margin: 10px auto;width: 70%;" alt=""  src="{{ asset('storage/'. auth()->user()->tashkilot->logo)  }}">
 				<span class="hidden xl:block text-white text-lg ml-3" style="font-size: 18px; text-align: center;"> {{ auth()->user()->tashkilot->name }}</span>
 			</a><br>
             
     @endrole
-    @role('labaratoriya')
+    @role('labaratoriyaga_masul')
         <a href="/" class=" items-center ">
             <span class="hidden xl:block text-white text-lg ml-3" style="font-size: 14px; text-align: center;"> {{ auth()->user()->laboratory->name }}</span>
         </a><br>
@@ -67,9 +67,16 @@
             </a>
         </li>
         <li>
-            <a href="{{ route("xodim.barchaXodimlar") }}" class="side-menu side-menu{{ request()->is('xodim*') ? '--active':'' }}">
+            <a href="{{ route("laboratoriyalari.index") }}" class="side-menu side-menu{{ request()->is('laboratoriyalari*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Labaratoriya </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route("ilmiy_izlanuvchilar.index") }}" class="side-menu side-menu{{ request()->is('ilmiy-izlanuvchilar*') ? '--active':'' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Izlanuvchilar </div>
             </a>
         </li>
     @endrole
@@ -179,22 +186,28 @@
                 <div class="side-menu__title"> Labaratoriya </div>
             </a>
         </li>
-    @endrole
-    @role('labaratoriya')
         <li>
-            <a href="{{ route("lab_xodimlar.index") }}" class="side-menu side-menu{{ request()->is('lab-user*') ? '--active':'' }}">
+            <a href="{{ route("ilmiy_izlanuvchi.index") }}" class="side-menu side-menu{{ request()->is('ilmiy-izlanuvchi*') ? '--active':'' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Ilmiy izlanuvchilar </div>
+            </a>
+        </li>
+    @endrole
+    @role('labaratoriyaga_masul')
+        <li>
+            <a href="{{ route("lab_xodimlar.index") }}" class="side-menu side-menu{{ request()->is('lab-user*') ? '--active':'' }}{{ request()->is('xodimlar*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                 <div class="side-menu__title"> Xodimlar </div>
             </a>
         </li>
         <li>
-            <a href="{{ route("lab_ilmiyloyiha.index") }}" class="side-menu side-menu{{ request()->is('lab-ilmiyloyhi*') ? '--active':'' }}">
+            <a href="{{ route("lab_ilmiyloyiha.index") }}" class="side-menu side-menu{{ request()->is('lab-ilmiyloyhi*') ? '--active':'' }}{{ request()->is('ilmiyloyiha*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                 <div class="side-menu__title"> Ilmiy loyhilar </div>
             </a>
         </li>
         <li>
-            <a href="{{ route("lab_xujalik.index") }}" class="side-menu side-menu{{ request()->is('lab-xujalik*') ? '--active':'' }}">
+            <a href="{{ route("lab_xujalik.index") }}" class="side-menu side-menu{{ request()->is('lab-xujalik*') ? '--active':'' }}{{ request()->is('xujalik*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                 <div class="side-menu__title"> Xo'jalik shartnomalari </div>
             </a>
@@ -202,11 +215,11 @@
         <li>
             <a href="{{ route('izlanuvchilar.index') }}" class="side-menu side-menu{{ request()->is('izlanuvchilar*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
-                <div class="side-menu__title"> Izlanuvchi </div>
+                <div class="side-menu__title">Ilmiy izlanuvchi </div>
             </a>
         </li>
         <li>
-            <a href="{{ route("laboratoriya.index") }}" class="side-menu side-menu{{ request()->is('laboratoriya*') ? '--active':'' }}">
+            <a href="{{ route("laboratoriya.index") }}" class="side-menu side-menu{{ request()->is('laborator*') ? '--active':'' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Labaratoriya </div>
             </a>

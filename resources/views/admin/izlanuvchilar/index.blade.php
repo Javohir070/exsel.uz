@@ -154,9 +154,10 @@
 
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                 <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                    <form id="science-paper-create-form" method="POST" action="{{ route('import') }}"
+                    <form id="science-paper-create-form" method="POST" action="{{ url('lab/'.auth()->user()->laboratory_id.'/give-izlanuvchilar') }}"
                         class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                         @csrf
+                        @method('PUT')
                         <div class="table-container">
 
                             <table class="table table-report ">
@@ -187,7 +188,7 @@
                                                     <label>
                                                         <input
                                                             type="checkbox"
-                                                            name="ilmiyloyhalarId[]"
+                                                            name="izlanuvchilarId[]"
                                                             value="{{ $xodimlar->id }}"
                                                         />
                                                     </label>

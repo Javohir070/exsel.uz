@@ -57,9 +57,9 @@
 
                         <option value="">Jinsni tanlang</option>
 
-                        <option value="Erkak">Erkak</option>
+                        <option value="1" {{ $izlanuvchilar->jinsi == "1" ? "selected" : ""}}>Erkak</option>
 
-                        <option value="Ayol">Ayol</option>
+                        <option value="2" {{ $izlanuvchilar->jinsi == "2" ? "selected" : ""}}>Ayol</option>
 
                     </select>
                     @error('jinsi')
@@ -164,7 +164,7 @@
 
         </form><br>
         <div class="px-5 pb-5 text-center">
-            <a href="{{ route('xodimlar.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
+            <a href="{{ route('izlanuvchilar.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </a>
             <button type="submit" form="science-paper-create-form"

@@ -6,6 +6,7 @@ use App\Models\IlmiybnTaminlanga;
 use App\Models\IlmiyLoyiha;
 use App\Models\IqtisodiyMoliyaviy;
 use App\Models\Izlanuvchilar;
+use App\Models\Laboratory;
 use App\Models\Tashkilot;
 use App\Models\TashkilotRahbari;
 use App\Models\User;
@@ -85,6 +86,15 @@ class HomeController extends Controller
         $loyiha_bilan__itm = $tashkilots->sum(function ($tashkilot) {
             return $tashkilot->ilmiydarajalar->count();
         });
+        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
+
+        $masullar = $users->filter(function($user) {
+            return $user->roles->contains('name', 'labaratoriyaga_masul');
+        })->count();
+        $labaratoriyalar = Laboratory::count();
+        $izlanuvchilar = Izlanuvchilar::count();
+        $labaratoriyalar_admin = Laboratory::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
+        $izlanuvchilar_admin = Izlanuvchilar::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
 
         return view('admin.home', [
             'tashkiot_haqida' => $tashkilot,
@@ -112,6 +122,11 @@ class HomeController extends Controller
             'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
             'lab_xujalik' => $lab_xujalik,
             'lab_xodimlar' => $lab_xodimlar,
+            'labaratoriyalar' => $labaratoriyalar,
+            'izlanuvchilar' => $izlanuvchilar,
+            'labaratoriyalar_admin' => $labaratoriyalar_admin,
+            'izlanuvchilar_admin' => $izlanuvchilar_admin,
+            'masullar' => $masullar,
         ]);
     }
 
