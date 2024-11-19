@@ -37,6 +37,14 @@ class XujalikController extends Controller
      */
     public function store(StoreXujalikRequest $request)
     {
+        if($request->hasFile('shartnoma_file')){
+            $name_shartnoma_file = time().$request->file('shartnoma_file')->getClientOriginalName();
+            $path_shartnoma_file = $request->file('shartnoma_file')->storeAs('xujalik-file', $name_shartnoma_file);
+        }
+        if($request->hasFile('dalolatnoma_file')){
+            $name_dalolatnoma_file = time().$request->file('dalolatnoma_file')->getClientOriginalName();
+            $path_dalolatnoma_file = $request->file('dalolatnoma_file')->storeAs('xujalik-file', $name_dalolatnoma_file);
+        }
 
         Xujalik::create([
             "user_id" => auth()->id(),
@@ -59,6 +67,9 @@ class XujalikController extends Controller
             "chorak3" => $request->chorak3,
             "chorak4" => $request->chorak4,
             "laboratory_id" => $request->laboratory_id,
+            'shartnoma_file' => $path_shartnoma_file ?? "yo'q", 
+            'dalolatnoma_file' => $path_dalolatnoma_file ?? null, 
+            'pul_type' => $request->pul_type,
         ]);
 
         
@@ -92,7 +103,14 @@ class XujalikController extends Controller
      */
     public function update(StoreXujalikRequest $request, Xujalik $xujalik)
     {
-
+        if($request->hasFile('shartnoma_file')){
+            $name_shartnoma_file = time().$request->file('shartnoma_file')->getClientOriginalName();
+            $path_shartnoma_file = $request->file('shartnoma_file')->storeAs('xujalik-file', $name_shartnoma_file);
+        }
+        if($request->hasFile('dalolatnoma_file')){
+            $name_dalolatnoma_file = time().$request->file('dalolatnoma_file')->getClientOriginalName();
+            $path_dalolatnoma_file = $request->file('dalolatnoma_file')->storeAs('xujalik-file', $name_dalolatnoma_file);
+        }
         $xujalik->update([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
@@ -114,6 +132,9 @@ class XujalikController extends Controller
             "chorak3" => $request->chorak3,
             "chorak4" => $request->chorak4,
             "laboratory_id" => $request->laboratory_id,
+            'shartnoma_file' => $path_shartnoma_file ?? "yo'q", 
+            'dalolatnoma_file' => $path_dalolatnoma_file ?? null, 
+            'pul_type' => $request->pul_type,
         ]);
         if(auth()->user()->hasRole('labaratoriyaga_masul')){
             return redirect()->route('lab_xujalik.index')->with('status',"Ma\'lumotlar muvaffaqiyatli yangilandi.");

@@ -148,7 +148,7 @@
                         </tr>
                         <tr>
                             <!-- <th class="border border-b-2 ">16</th> -->
-                            <td class="border ">{{ $ilmiyloyiha->laboratory->name  }} </td>
+                            <td class="border ">{{ $ilmiyloyiha->laboratory->name ?? "yo'q"  }} </td>
                             <td class="border "> </td>
                         </tr>
                         

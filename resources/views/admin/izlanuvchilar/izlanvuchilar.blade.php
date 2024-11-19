@@ -5,7 +5,7 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">Izlanuvchilar</h2>
+        <h2 class="intro-y text-lg font-medium">Ilmiy izlanuvchilar</h2>
 
         <!-- <a href="{{ route("xodimlar.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish
@@ -61,7 +61,7 @@
                     <tr class="intro-x">
                         <td>{{$loop->index + 1}}</td>
                         <td>
-                            <a href="#" target="_blank" class="font-medium">{{ $xodimlar->fish }}</a>
+                            <a href="{{ route('izlanuvchilar.show', ['izlanuvchilar' => $xodimlar->id]) }}"  class="font-medium">{{ $xodimlar->fish }}</a>
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $xodimlar->talim_turi }}</a>
@@ -71,7 +71,7 @@
                         </td>
 
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->phone  }} </a>
+                            <a href="" class="font-medium ">+{{ $xodimlar->phone  }} </a>
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">

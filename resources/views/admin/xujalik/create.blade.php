@@ -128,10 +128,23 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
-
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma summasi (so‘m)
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Pul birligini tanlang
+                    </label>
+                    <select name="pul_type" id="pul_type" value="{{ old('pul_type') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                        <option value="">Pul birliginini tanlang</option>
+
+                        <option value="so'm">So'm</option>
+
+                        <option value="dollar">Dollor</option>
+
+                    </select>
+                </div>
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma summasi (<span id="summa_unit">so'm</span>)
                     </label>
                     <input type="number" name="sh_summa" value="{{ old('sh_summa') }}" class="input w-full border mt-2" required="">
                     @error('sh_summa')
@@ -199,10 +212,20 @@
                     <label class="flex flex-col sm:flex-row">  4-chorak
                     </label>
                     <input type="number" name="chorak4" value="{{ old('chorak4') }}" class="input w-full border mt-2" required="">
-                   
                 </div>
 
-                
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"><span
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Shartnoma fayl yuklash
+                    </label>
+                    <input type="file" name="shartnoma_file" value="{{ old('shartnoma_file') }}" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  Bajarilgan ishlar dalolatnomasin fayl yuklash
+                    </label>
+                    <input type="file" name="dalolatnoma_file" value="{{ old('dalolatnoma_file') }}" class="input w-full border mt-2" required="">
+                </div>
 
             </div>
         </form><br>
@@ -224,6 +247,22 @@
     </div>
 </div><br>
 
+<script>
+    // Elementlarni tanlang
+    const pulTypeSelect = document.getElementById('pul_type');
+    const summaUnitSpan = document.getElementById('summa_unit');
 
+    // Pul birligi o'zgarganida ishga tushadi
+    pulTypeSelect.addEventListener('change', function () {
+        const selectedValue = pulTypeSelect.value; // Tanlangan qiymatni olish
+        if (selectedValue === "so'm") {
+            summaUnitSpan.textContent = "so'm";
+        } else if (selectedValue === "dollar") {
+            summaUnitSpan.textContent = "dollar";
+        } else {
+            summaUnitSpan.textContent = ""; // Tanlanmagan holatda bo'sh qoldirish
+        }
+    });
+</script>
 
 @endsection

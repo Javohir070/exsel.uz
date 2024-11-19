@@ -92,10 +92,24 @@ class HomeController extends Controller
             return $user->roles->contains('name', 'labaratoriyaga_masul');
         })->count();
         $labaratoriyalar = Laboratory::count();
+        $laboratory = auth()->user()->laboratory_id;
         $izlanuvchilar = Izlanuvchilar::count();
         $labaratoriyalar_admin = Laboratory::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
         $izlanuvchilar_admin = Izlanuvchilar::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
-
+        $phd = [
+            "Tayanch doktorantura, PhD",
+            "Mustaqil tadqiqotchi, PhD",
+            "Maqsadli tayanch doktorantura, PhD"
+        ];
+        $dsc = [
+            "Doktorantura, DSc",
+            "Mustaqil tadqiqotchi, DSc",
+            "Maqsadli doktorantura, DSc"
+        ];
+        $phd_soni = Izlanuvchilar::whereIn('talim_turi', $phd)->count();
+        $dsc_soni = Izlanuvchilar::whereIn('talim_turi', $dsc)->count();
+        
+        $stajyor_soni = Izlanuvchilar::where('talim_turi', "Stajyor-tadqiqotchi")->count();
         return view('admin.home', [
             'tashkiot_haqida' => $tashkilot,
             'tashkilot_raxbaris' => $tashkilot_raxbari,
@@ -127,6 +141,10 @@ class HomeController extends Controller
             'labaratoriyalar_admin' => $labaratoriyalar_admin,
             'izlanuvchilar_admin' => $izlanuvchilar_admin,
             'masullar' => $masullar,
+            "laboratory" => $laboratory,
+            'phd_soni' => $phd_soni,
+            'dsc_soni' => $dsc_soni,
+            'stajyor_soni' => $stajyor_soni,
         ]);
     }
 

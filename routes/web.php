@@ -110,6 +110,10 @@ Route::middleware('auth')->group(function () {
     Route::get("/ilmiy-izlanuvchilar", [IzlanuvchilarController::class,"ilmiy_izlanuvchilar"])->name("ilmiy_izlanuvchilar.index");
     Route::put('lab/{labId}/give-izlanuvchilar', [IzlanuvchilarController::class, 'giveIzlanuvchilarToLab']);
     Route::get('/ilmiy-izlanuvchi',[IzlanuvchilarController::class, 'ilmiy_izlanuvchi'])->name('ilmiy_izlanuvchi.index');
+    Route::get('/ilmiy/{labId}/{type}', [IzlanuvchilarController::class,'izlanuvchi_php'])->name('ilmiy');
+    Route::get('/lab-xujaliklar/{labId}', [IzlanuvchilarController::class,'lab_xujalik'])->name('lab_xujaliklar.index');
+    Route::get('/lab-ilmiy/{labId}', [IzlanuvchilarController::class,'lab_ilmiy'])->name('lab_ilmiy.index');
+
     //labaratoriya uchun
     Route::resources([
         'tashkilot' => TashkilotController::class,

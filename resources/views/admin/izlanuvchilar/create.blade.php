@@ -76,15 +76,17 @@
 
                         <option value="Stajyor-tadqiqotchi">Stajyor-tadqiqotchi</option>
 
-                        <option value="Mustaqil izlanuvchi(PhD)">Mustaqil izlanuvchi(PhD)</option>
+                        <option value="Maqsadli doktorantura, DSc">Maqsadli doktorantura, DSc</option>
 
-                        <option value="Tayanch doktorantura(PhD)">Tayanch doktorantura(PhD)</option>
+                        <option value="Mustaqil tadqiqotchi, DSc">Mustaqil tadqiqotchi, DSc</option>
 
-                        <option value="Doktorantura(DSc)">Doktorantura(DSc)</option>
+                        <option value="Doktorantura, DSc">Doktorantura, DSc</option>
 
-                        <option value="Maqsadli tayanch doktorantura(PhD)">Maqsadli tayanch doktorantura(PhD)</option>
+                        <option value="Maqsadli tayanch doktorantura, PhD">Maqsadli tayanch doktorantura, PhD</option>
 
-                        <option value="Maqsadli doktorantura(DSc)">Maqsadli doktorantura(DSc)</option>
+                        <option value="Mustaqil tadqiqotchi, PhD">Mustaqil tadqiqotchi, PhD</option>
+
+                        <option value="Tayanch doktorantura, PhD">Tayanch doktorantura, PhD</option>
 
                     </select>
                     @error('talim_turi')
@@ -105,9 +107,11 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Qabul qilingan yil
                                             </label>
-                    <select name="qabul_qilgan_yil" value="{{ old('qabul_qilgan_yil') }}" class="science-sub-categoryyil input border w-full mt-2 " required="">
+                    <input type="date" name="qabul_qilgan_yil" value="{{ old('qabul_qilgan_yil') }}" class="input w-full border mt-2" required="">
+
+                    {{-- <select name="qabul_qilgan_yil" value="{{ old('qabul_qilgan_yil') }}" class="science-sub-categoryyil input border w-full mt-2 " required="">
                         <option value="">yil tanlang</option>
-                    </select>
+                    </select> --}}
                     @error('qabul_qilgan_yil')
                         <div class="error">{{ $message }}</div>
                     @enderror

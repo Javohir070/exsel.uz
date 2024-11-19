@@ -43,7 +43,7 @@
                     <tr class="intro-x">
                         <td>{{$loop->index + 1}}</td>
                         <td>
-                            <a href="#" target="_blank" class="font-medium">{{ $xodimlar->name }}</a>
+                            <a href="{{ route('laboratory.show', ['laboratory' => $xodimlar->id]) }}"  class="font-medium">{{ $xodimlar->name }}</a>
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $xodimlar->tash_yil }}</a>

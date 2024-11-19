@@ -8,7 +8,7 @@
         <h2 class="intro-y text-lg font-medium">{{ $izlanuvchilar->tashkilot->name_qisqachasi }} xodim xaqida ma’lumot</h2>
 
         @role('super-admin')
-            <a href="{{ route("xodim.barchaizlanuvchilar") }}" class="button w-24 bg-theme-1 text-white">
+            <a href="#" class="button w-24 bg-theme-1 text-white">
                 Orqaga
             </a>
         @endrole

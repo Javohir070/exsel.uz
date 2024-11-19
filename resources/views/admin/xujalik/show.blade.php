@@ -91,7 +91,7 @@
                         </tr>
                         <tr class="bg-gray-200">
                             <!-- <th class="border border-b-2 ">11</th> -->
-                            <th class="border border-b-2 ">Shartnoma summasi (mln.so‘m)</th>
+                            <th class="border border-b-2 ">Shartnoma summasi ({{$xujalik->pul_type}})</th>
                             <th class="border border-b-2 ">Shartnoma bo‘yicha kelib tushgan mablag‘ sanasi</th>
                         </tr>
                         <tr>
@@ -139,7 +139,18 @@
                         <tr >
                             <!-- <th class="border border-b-2 ">3</th> -->
                             <td class="border border-b-2 ">{{ $xujalik->chorak4 }}</td>
-                            <td class="border border-b-2 ">{{ $xujalik->laboratory->name }}</td>
+                            <td class="border border-b-2 ">{{ $xujalik->laboratory->name ?? null }}</td>
+                        </tr>
+
+                        <tr class="bg-gray-200">
+                            <!-- <th class="border border-b-2 ">3</th> -->
+                            <th class="border border-b-2 ">Shartnoma fayl yuklash</th>
+                            <th class="border border-b-2 ">Bajarilgan ishlar dalolatnomasin fayl yuklash</th>
+                        </tr>
+                        <tr >
+                            <!-- <th class="border border-b-2 ">3</th> -->
+                            <td class="border border-b-2 "><a href="{{ asset('storage/'.$xujalik->shartnoma_file)  }}" class="button  bg-theme-1 text-white">Faylni ko'rish</a></td>
+                            <td class="border border-b-2 "><a href="{{asset('storage/'.$xujalik->dalolatnoma_file) }}" class="button  bg-theme-1 text-white">Faylni ko'rish</a></td>
                         </tr>
                         
                 </tbody>

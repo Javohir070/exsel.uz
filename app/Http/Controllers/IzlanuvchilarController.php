@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Imports\IzlanuvchilarImport;
+use App\Models\IlmiyLoyiha;
 use App\Models\Izlanuvchilar;
 use App\Http\Requests\StoreIzlanuvchilarRequest;
 use App\Http\Requests\UpdateIzlanuvchilarRequest;
+use App\Models\Xujalik;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 class IzlanuvchilarController extends Controller
@@ -61,6 +63,54 @@ class IzlanuvchilarController extends Controller
     public function create()
     {
         return view("admin.izlanuvchilar.create");
+    }
+
+    public function izlanuvchi_php($labId, $type)
+    {
+        
+       $phd = [
+            "Tayanch doktorantura, PhD",
+            "Mustaqil tadqiqotchi, PhD",
+            "Maqsadli tayanch doktorantura, PhD"
+       ];
+       $dsc = [
+            "Doktorantura, DSc",
+            "Mustaqil tadqiqotchi, DSc",
+            "Maqsadli doktorantura, DSc"
+        ];
+        $staj = [
+            "Stajyor-tadqiqotchi",
+        ];
+        if ($type === 'phd') {
+            $typeArray = $phd;
+        } elseif ($type === 'dsc') {
+            $typeArray = $dsc;
+        } else if($type=== 'staj'){
+            // If no specific type is given, merge both PhD and DSc
+            $typeArray = $staj;
+        }else{
+            $typeArray = array_merge($phd, $dsc, $staj);
+        }
+    
+        // Fetch the data based on the laboratory ID and selected education type
+        $izlanvchi_phd = Izlanuvchilar::where("laboratory_id", $labId)
+                                      ->whereIn("talim_turi", $typeArray)
+                                      ->paginate(20);
+        return view("admin.izlanuvchilar.phd", ["izlanvchi_phd"=> $izlanvchi_phd, "labId" => $labId]);
+    }
+
+    public  function lab_ilmiy($labId)
+    {
+        $lab_ilmiy = IlmiyLoyiha::where("laboratory_id", $labId)->paginate(20);
+
+        return view("admin.izlanuvchilar.ilmiy", ['lab_ilmiy'=>$lab_ilmiy, 'labId'=> $labId]);
+    }
+
+    public  function lab_xujalik($labId)
+    {
+        $lab_xujalik = Xujalik::where("laboratory_id", $labId)->paginate(20);
+
+        return view("admin.izlanuvchilar.xujalik", ['lab_xujalik'=>$lab_xujalik, 'labId'=> $labId]);
     }
 
     /**
