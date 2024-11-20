@@ -7,6 +7,7 @@ use App\Models\IlmiyLoyiha;
 use App\Models\Izlanuvchilar;
 use App\Http\Requests\StoreIzlanuvchilarRequest;
 use App\Http\Requests\UpdateIzlanuvchilarRequest;
+use App\Models\Laboratory;
 use App\Models\Xujalik;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -62,7 +63,9 @@ class IzlanuvchilarController extends Controller
      */
     public function create()
     {
-        return view("admin.izlanuvchilar.create");
+        $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        return view("admin.izlanuvchilar.create", ['laboratorylar'=>$laboratorylar,'ilmiy_loyhalar'=>$ilmiy_loyhalar]);
     }
 
     public function izlanuvchi_php($labId, $type)
@@ -123,7 +126,7 @@ class IzlanuvchilarController extends Controller
         Izlanuvchilar::create([
             "user_id" => auth()->user()->id,
             "tashkilot_id" => auth()->user()->tashkilot_id,
-            "laboratory_id" => auth()->user()->laboratory_id,
+            "laboratory_id" => $request->laboratory_id,
             "fish" => $request->fish, 
             "jshshir" => $request->jshshir, 
             "pasport_seriya" => $request->pasport_seriya, 
@@ -153,7 +156,9 @@ class IzlanuvchilarController extends Controller
      */
     public function edit(Izlanuvchilar $izlanuvchilar)
     {
-        return view("admin.izlanuvchilar.edit", ["izlanuvchilar"=> $izlanuvchilar]);
+        $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        return view("admin.izlanuvchilar.edit", ["izlanuvchilar"=> $izlanuvchilar, 'laboratorylar'=>$laboratorylar,'ilmiy_loyhalar'=>$ilmiy_loyhalar]);
     }
 
     /**

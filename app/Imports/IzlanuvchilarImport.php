@@ -24,9 +24,8 @@ class IzlanuvchilarImport implements ToModel
             'qabul_qilgan_yil' => $this->formatDatetime($row[5]),
             'jinsi' => $row[6],
             'phone' => $row[7],
-            'mavzusi' => $row[8],
-            'ixtisoslik' => 'yoq',
-            'loyihada_ishtiroki' => 'yoq',
+            'ixtisoslik' => $row[8],
+            'mavzusi' => $row[9],
         ]);
     }
 

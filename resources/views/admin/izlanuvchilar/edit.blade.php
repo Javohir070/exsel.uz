@@ -154,10 +154,33 @@
                 </div>
 
                 <div class="w-full col-span-6 " style="display: none;" id="orindoshlik-input">
-                    <label class="flex flex-col sm:flex-row"> Ishtirok etgan loyihasini stiri
+                    <label class="flex flex-col sm:flex-row"> Ishtirok etayotgan loyihasini tanlang
                     </label>
-                    <input type="text" name="stir" value="{{ $izlanuvchilar->stir }}" class="input w-full border mt-2" required="">
+                        <select name="stir" value="{{old('stir')}}"  class="input border w-full mt-2" >
+
+                            <option value="">laboratoriyani  tanlang</option>
+                            @foreach ($ilmiy_loyhalar as $ilmiy_loyha)
+                                <option value="{{ $ilmiy_loyha->raqami }}">{{ $ilmiy_loyha->mavzusi }}</option>
+                            @endforeach
+                                <option value="">yo'q</option>
+    
+                        </select><br>
                     @error('stir')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="w-full col-span-6 " >
+                    <label class="flex flex-col sm:flex-row">   Laboratoriyani tanlang</label>
+                    <select name="laboratory_id" value="{{old('laboratory_id')}}"  class="input border w-full mt-2" >
+
+                        <option value="">laboratoriyani  tanlang</option>
+                        @foreach ($laboratorylar as $laboratory)
+                            <option value="{{ $laboratory->id }}">{{ $laboratory->name }}</option>
+                        @endforeach
+                            <option value="">yo'q</option>
+
+                    </select><br>
+                    @error('laboratory_id')
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>

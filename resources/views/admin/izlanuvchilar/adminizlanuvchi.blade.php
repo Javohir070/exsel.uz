@@ -30,10 +30,10 @@
                    Barcha xodimlarni Excel yuklab olish
                 </a> --}}
 
-                <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal" 
+                {{-- <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal" 
                     class="button w-24 ml-3 bg-theme-1 text-white">
                     Ilmiy izlanuvchi biriktirish
-                </a>
+                </a> --}}
             </div>
         </div>
 

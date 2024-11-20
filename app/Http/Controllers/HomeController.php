@@ -106,10 +106,10 @@ class HomeController extends Controller
             "Mustaqil tadqiqotchi, DSc",
             "Maqsadli doktorantura, DSc"
         ];
-        $phd_soni = Izlanuvchilar::whereIn('talim_turi', $phd)->count();
-        $dsc_soni = Izlanuvchilar::whereIn('talim_turi', $dsc)->count();
+        $phd_soni = Izlanuvchilar::where("laboratory_id",auth()->user()->laboratory_id)->whereIn('talim_turi', $phd)->count();
+        $dsc_soni = Izlanuvchilar::where("laboratory_id",auth()->user()->laboratory_id)->whereIn('talim_turi', $dsc)->count();
         
-        $stajyor_soni = Izlanuvchilar::where('talim_turi', "Stajyor-tadqiqotchi")->count();
+        $stajyor_soni = Izlanuvchilar::where("laboratory_id",auth()->user()->laboratory_id)->where('talim_turi', "Stajyor-tadqiqotchi")->count();
         return view('admin.home', [
             'tashkiot_haqida' => $tashkilot,
             'tashkilot_raxbaris' => $tashkilot_raxbari,
