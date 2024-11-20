@@ -229,7 +229,7 @@
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Bajarilgan ishlar dalolatnomasin yuklash
                     </label>
-                    <input type="file" name="dalolatnoma_file" value="{{ old('dalolatnoma_file') }}" class="input w-full border mt-2" required="">
+                    <input type="file" name="dalolatnoma_file" value="{{ old('dalolatnoma_file') }}" class="input w-full border mt-2" >
                 </div>
 
             </div>

@@ -98,7 +98,7 @@
         <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
             <table class="table">
                 <tbody>
-                    @forelse ($laboratorys as $tash)
+                    @foreach ($laboratorys as $tash)
                         <div
                             style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                             <div style="font-size:18px;font-weight: 400;"> {{ $tash->name }} xaqida ma’lumot</div>
@@ -138,20 +138,25 @@
                             <td class="border">{{ $tash->tavsif }} </td>
                             <td class="border"></td>
                         </tr>
-                        {{-- <tr class="bg-gray-200">
+                        @endforeach
+                        <tr class="bg-gray-200">
                             <!-- <th class=" border">3</th> -->
-                            <th class=" border">Tashkilot rahbari Email</th>
-                            <th class=" border">O‘rinbosarining email</th>
+                            <th class=" border">DSc</th>
+                            <th class=" border">PhD</th>
                         </tr>
                         <tr>
                             <!-- <th class="whitespace-no-wrap border">6</th> -->
-                            <td class="border">{{ $tash->email }}</td>
-                            <td class="border">{{ $tash->u_email }}</td>
-                        </tr> --}}
-
-                    @empty
-                        <p> Ma'lumot qo'shish kerak</p>
-                    @endforelse
+                            <td class="border">{{ $dsc_soni }}</td>
+                            <td class="border">{{ $phd_soni }}</td>
+                        </tr>
+                        <tr class="bg-gray-200">
+                            <th class="border">Stajyor-tadqiqotchi</th>
+                            <th></th>
+                        </tr>
+                        <tr>
+                            <td class="border">{{ $stajyor_soni }}</td>
+                            <td class="border"></td>
+                        </tr>
                 </tbody>
             </table>
         </div>

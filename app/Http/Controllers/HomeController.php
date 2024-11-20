@@ -93,7 +93,7 @@ class HomeController extends Controller
         })->count();
         $labaratoriyalar = Laboratory::count();
         $laboratory = auth()->user()->laboratory_id;
-        $izlanuvchilar = Izlanuvchilar::count();
+        $izlanuvchilar = Izlanuvchilar::whereNotNull('laboratory_id')->count();
         $labaratoriyalar_admin = Laboratory::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
         $izlanuvchilar_admin = Izlanuvchilar::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
         $phd = [
