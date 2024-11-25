@@ -228,6 +228,7 @@
             ilmiyUnvonInput.style.display = 'block'; // Inputni ko'rsatish
         } else {
             ilmiyUnvonInput.style.display = 'none';  // Inputni yashirish
+            
         }
     });
 </script>
@@ -236,6 +237,8 @@
     // Boshlang'ich va tugash yillari
     var startYear = 2010;
     var endYear = 2024;
+
+    
 
     // Barcha class nomi 'science-sub-category' bo'lgan select elementlarini olish
     var selects = document.getElementsByClassName('science-sub-categoryyil');

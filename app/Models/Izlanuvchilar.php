@@ -9,7 +9,7 @@ class Izlanuvchilar extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id','tashkilot_id','laboratory_id','fish','jshshir', 'jinsi', 'pasport_seriya','talim_turi','ixtisoslik', 'qabul_qilgan_yil', 'mavzusi', 'phone', 'loyihada_ishtiroki', 'stir', 'izlanuvchilars'];
+    protected $fillable = ['user_id','tashkilot_id', 'status', 'laboratory_id','fish','jshshir', 'jinsi', 'pasport_seriya','talim_turi','ixtisoslik', 'qabul_qilgan_yil', 'mavzusi', 'phone', 'loyihada_ishtiroki', 'stir', 'izlanuvchilars'];
 
     public function user()
     {

@@ -19,9 +19,9 @@ class IzlanuvchilarController extends Controller
     public function index()
     {
         $izlanuvchilar = Izlanuvchilar::where('laboratory_id', auth()->user()->laboratory_id)->paginate(20);
-        $tashkilot_izlanuvchilar = Izlanuvchilar::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
-        
-        return view("admin.izlanuvchilar.index", ["izlanuvchilar"=> $izlanuvchilar, "tashkilot_izlanuvchilar" => $tashkilot_izlanuvchilar]);
+        $tashkilot_izlanuvchilar = Izlanuvchilar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+
+        return view("admin.izlanuvchilar.index", ["izlanuvchilar" => $izlanuvchilar, "tashkilot_izlanuvchilar" => $tashkilot_izlanuvchilar]);
     }
 
     public function ilmiy_izlanuvchilar()
@@ -33,20 +33,33 @@ class IzlanuvchilarController extends Controller
 
     public function ilmiy_izlanuvchi()
     {
-        $izlanuvchilar = Izlanuvchilar::where("tashkilot_id",auth()->user()->tashkilot_id)->paginate(20);
+        $izlanuvchilar = Izlanuvchilar::where("tashkilot_id", auth()->user()->tashkilot_id)->paginate(20);
 
-        return view("admin.izlanuvchilar.adminizlanuvchi", ["izlanuvchilar"=> $izlanuvchilar]);
+        return view("admin.izlanuvchilar.adminizlanuvchi", ["izlanuvchilar" => $izlanuvchilar]);
     }
 
 
     public function giveIzlanuvchilarToLab(Request $request)
     {
-            // Formdan kelgan xodimlar ID larini olish
+        // Formdan kelgan xodimlar ID larini olish
         $izlanuvchilarId = $request->input('izlanuvchilarId', []);
 
         // Foydalanuvchining laboratory_id sini oling
         $laboratoryId = auth()->user()->laboratory_id;
-        
+        $izlanuvchilar = $request->input('izlanuvchilarId', []); // Izlanuvchilar ID array
+        foreach ($izlanuvchilar as $id) {
+            // Har bir izlanuvchi uchun radio tugmaning qiymatini olish
+            $status = $request->input("jarayonda{$id}")[0] ?? null;
+
+            if ($status !== null) {
+                // Baza ma'lumotini yangilash yoki saqlash
+                $izlanuvchi = Izlanuvchilar::find($id); // YourModel ni mos ravishda o'zgartiring
+                if ($izlanuvchi) {
+                    $izlanuvchi->status = $status ? 'Jarayonda' : 'Tugatilgan'; // Ma'lumotni bazaga saqlash
+                    $izlanuvchi->save();
+                }
+            }
+        }
         // Tanlangan IDlarga tegishli xujaliklarni yangilash
         if (!empty($izlanuvchilarId)) {
             Izlanuvchilar::whereIn('id', $izlanuvchilarId)->update([
@@ -65,18 +78,18 @@ class IzlanuvchilarController extends Controller
     {
         $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
         $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
-        return view("admin.izlanuvchilar.create", ['laboratorylar'=>$laboratorylar,'ilmiy_loyhalar'=>$ilmiy_loyhalar]);
+        return view("admin.izlanuvchilar.create", ['laboratorylar' => $laboratorylar, 'ilmiy_loyhalar' => $ilmiy_loyhalar]);
     }
 
     public function izlanuvchi_php($labId, $type)
     {
-        
-       $phd = [
+
+        $phd = [
             "Tayanch doktorantura, PhD",
             "Mustaqil tadqiqotchi, PhD",
             "Maqsadli tayanch doktorantura, PhD"
-       ];
-       $dsc = [
+        ];
+        $dsc = [
             "Doktorantura, DSc",
             "Mustaqil tadqiqotchi, DSc",
             "Maqsadli doktorantura, DSc"
@@ -88,32 +101,32 @@ class IzlanuvchilarController extends Controller
             $typeArray = $phd;
         } elseif ($type === 'dsc') {
             $typeArray = $dsc;
-        } else if($type=== 'staj'){
+        } else if ($type === 'staj') {
             // If no specific type is given, merge both PhD and DSc
             $typeArray = $staj;
-        }else{
+        } else {
             $typeArray = array_merge($phd, $dsc, $staj);
         }
-    
+
         // Fetch the data based on the laboratory ID and selected education type
         $izlanvchi_phd = Izlanuvchilar::where("laboratory_id", $labId)
-                                      ->whereIn("talim_turi", $typeArray)
-                                      ->paginate(20);
-        return view("admin.izlanuvchilar.phd", ["izlanvchi_phd"=> $izlanvchi_phd, "labId" => $labId]);
+            ->whereIn("talim_turi", $typeArray)
+            ->paginate(20);
+        return view("admin.izlanuvchilar.phd", ["izlanvchi_phd" => $izlanvchi_phd, "labId" => $labId]);
     }
 
-    public  function lab_ilmiy($labId)
+    public function lab_ilmiy($labId)
     {
         $lab_ilmiy = IlmiyLoyiha::where("laboratory_id", $labId)->paginate(20);
 
-        return view("admin.izlanuvchilar.ilmiy", ['lab_ilmiy'=>$lab_ilmiy, 'labId'=> $labId]);
+        return view("admin.izlanuvchilar.ilmiy", ['lab_ilmiy' => $lab_ilmiy, 'labId' => $labId]);
     }
 
-    public  function lab_xujalik($labId)
+    public function lab_xujalik($labId)
     {
         $lab_xujalik = Xujalik::where("laboratory_id", $labId)->paginate(20);
 
-        return view("admin.izlanuvchilar.xujalik", ['lab_xujalik'=>$lab_xujalik, 'labId'=> $labId]);
+        return view("admin.izlanuvchilar.xujalik", ['lab_xujalik' => $lab_xujalik, 'labId' => $labId]);
     }
 
     /**
@@ -121,26 +134,26 @@ class IzlanuvchilarController extends Controller
      */
     public function store(StoreIzlanuvchilarRequest $request)
     {
-        
+
 
         Izlanuvchilar::create([
             "user_id" => auth()->user()->id,
             "tashkilot_id" => auth()->user()->tashkilot_id,
             "laboratory_id" => $request->laboratory_id,
-            "fish" => $request->fish, 
-            "jshshir" => $request->jshshir, 
-            "pasport_seriya" => $request->pasport_seriya, 
-            "jinsi" => $request->jinsi, 
-            "talim_turi" => $request->talim_turi, 
-            "ixtisoslik" => $request->ixtisoslik, 
-            "qabul_qilgan_yil" => $request->qabul_qilgan_yil, 
-            "mavzusi" => $request->mavzusi, 
-            "phone" => $request->phone, 
-            "loyihada_ishtiroki" => $request->loyihada_ishtiroki, 
-            "stir" => $request->stir, 
+            "fish" => $request->fish,
+            "jshshir" => $request->jshshir,
+            "pasport_seriya" => $request->pasport_seriya,
+            "jinsi" => $request->jinsi,
+            "talim_turi" => $request->talim_turi,
+            "ixtisoslik" => $request->ixtisoslik,
+            "qabul_qilgan_yil" => $request->qabul_qilgan_yil,
+            "mavzusi" => $request->mavzusi,
+            "phone" => $request->phone,
+            "loyihada_ishtiroki" => $request->loyihada_ishtiroki,
+            "stir" => $request->stir,
         ]);
 
-        return redirect()->route("izlanuvchilar.index")->with("status",'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+        return redirect()->route("izlanuvchilar.index")->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
     /**
@@ -158,7 +171,7 @@ class IzlanuvchilarController extends Controller
     {
         $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
         $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
-        return view("admin.izlanuvchilar.edit", ["izlanuvchilar"=> $izlanuvchilar, 'laboratorylar'=>$laboratorylar,'ilmiy_loyhalar'=>$ilmiy_loyhalar]);
+        return view("admin.izlanuvchilar.edit", ["izlanuvchilar" => $izlanuvchilar, 'laboratorylar' => $laboratorylar, 'ilmiy_loyhalar' => $ilmiy_loyhalar]);
     }
 
     /**
@@ -168,7 +181,7 @@ class IzlanuvchilarController extends Controller
     {
         $izlanuvchilar->update($request->toArray());
 
-        return redirect()->route("izlanuvchilar.index")->with("status",'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+        return redirect()->route("izlanuvchilar.index")->with("status", 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
 
     }
 
@@ -179,7 +192,7 @@ class IzlanuvchilarController extends Controller
     {
         $izlanuvchilar->delete();
 
-        return redirect()->back()->with('status','Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
     }
 
     public function emport_izlanuvchi(Request $request)
@@ -190,6 +203,6 @@ class IzlanuvchilarController extends Controller
         Excel::import(new IzlanuvchilarImport, $request->file('file'));
 
         return redirect()->back()->with('status', 'Xodimlar muvaffaqiyatli yuklandi!');
-        
+
     }
 }
