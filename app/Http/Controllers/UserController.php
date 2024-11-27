@@ -31,7 +31,7 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::pluck('name','name')->all();
-        $lab = Laboratory::all();
+        $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $tashkilot_id = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->get();
         $tashkilots = Tashkilot::orderBy('name', 'asc')->get();

@@ -246,6 +246,7 @@ class LaboratoryController extends Controller
         $laboratory->xodimlar()->update(['laboratory_id' => null]);
         $laboratory->ilmiyLoyihalar()->update(['laboratory_id' => null]);
         $laboratory->xujaliklar()->update(['laboratory_id' => null]);
+        $laboratory->izlanuvchilar()->update(['laboratory_id' => null]);
         
         $laboratory->delete();
         

@@ -59,9 +59,9 @@
 
                             <option value="">Jinsni tanlang</option>
 
-                            <option value="Erkak">Erkak</option>
+                            <option value="1">Erkak</option>
 
-                            <option value="Ayol">Ayol</option>
+                            <option value="2">Ayol</option>
 
                         </select>
                         @error('jinsi')

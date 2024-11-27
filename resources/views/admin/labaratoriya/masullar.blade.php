@@ -53,7 +53,7 @@
                                 @foreach ($masullar as $user)
                                     <tr>
                                         <td>{{ $loop->index + 1 }}</td>
-                                        <td>{{ $user->laboratory->name }}</td>
+                                        <td>{{ $user->laboratory->name ?? "yo'q" }}</td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>

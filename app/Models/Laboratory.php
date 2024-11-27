@@ -34,4 +34,9 @@ class Laboratory extends Model
     {
        return $this->hasMany(IlmiyLoyiha::class);    
     }
+
+    public function izlanuvchilar() 
+    {
+       return $this->hasMany(Izlanuvchilar::class);    
+    }
 }
