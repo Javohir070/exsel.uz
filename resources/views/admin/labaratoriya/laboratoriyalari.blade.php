@@ -105,7 +105,9 @@
             </tbody>
         </table>
     </div>
-
+    <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
+        {{$laboratoriyalari->links()}}
+    </div>
 
 </div>
 
