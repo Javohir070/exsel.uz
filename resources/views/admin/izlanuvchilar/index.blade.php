@@ -171,38 +171,41 @@
                             @method('PUT')
                             <div class="table-container">
 
+                                <div class="mb-4">
+                                    <input type="text" id="search-input" class="input border w-full" placeholder="Qidiruv..." />
+                                </div>
+                                
                                 <table class="table table-report ">
                                     <thead>
                                         <tr>
                                             <th class="whitespace-no-wrap">№</th>
-                                            <th class="whitespace-no-wrap">F.I.Sh</th>
+                                            <th class="whitespace-no-wrap">F.I.Sh </th>
                                             <th class="whitespace-no-wrap">Ta'lim turi</th>
+                                            <th class="whitespace-no-wrap">Jshshir</th>
                                             <th class="whitespace-no-wrap text-center">Biriktirish</th>
                                             <th class="whitespace-no-wrap text-center">Jarayonda yoki Tugatilgan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-
                                         @foreach ($tashkilot_izlanuvchilar as $xodimlar)
                                             <tr class="intro-x">
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>
-                                                    <a href="#" target="_blank"
-                                                        class="font-medium">{{ $xodimlar->fish }}</a>
+                                                    <a href="#" target="_blank" class="font-medium">{{ $xodimlar->fish }}</a>
                                                 </td>
                                                 <td>
-                                                    <a href=""
-                                                        class="font-medium ">{{ $xodimlar->talim_turi }}</a>
+                                                    <a href="" class="font-medium ">{{ $xodimlar->talim_turi }}</a>
+                                                </td>
+                                                <td>
+                                                    <a href="" class="font-medium ">{{ $xodimlar->jshshir }}</a>
                                                 </td>
                                                 <td class="table-report__action w-56">
                                                     @if ($xodimlar->laboratory_id == null)
                                                         <label>
-                                                            <input type="checkbox" name="izlanuvchilarId[]"
-                                                                value="{{ $xodimlar->id }}" />
+                                                            <input type="checkbox" name="izlanuvchilarId[]" value="{{ $xodimlar->id }}" />
                                                         </label>
                                                     @else
-                                                        <a href=""
-                                                            class="font-medium ">{{ $xodimlar->laboratory->name }} </a>
+                                                        <a href="" class="font-medium ">{{ $xodimlar->laboratory->name }} </a>
                                                     @endif
                                                 </td>
                                                 <td>
@@ -210,16 +213,14 @@
                                                         <div class="flex items-center text-gray-700 mr-2">
                                                             <input type="radio" class="input border mr-2"
                                                                 id="horizontal-radio-chris-evans{{ $xodimlar->id }}"
-                                                                name="jarayonda{{ $xodimlar->id }}[]"
-                                                                value="1">
+                                                                name="jarayonda{{ $xodimlar->id }}[]" value="1">
                                                             <label class="cursor-pointer select-none"
                                                                 for="horizontal-radio-chris-evans{{ $xodimlar->id }}">Jarayonda</label>
                                                         </div>
                                                         <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
                                                             <input type="radio" class="input border mr-2"
                                                                 id="horizontal-radio-liam-neeson{{ $xodimlar->id }}"
-                                                                name="jarayonda{{ $xodimlar->id }}[]"
-                                                                value="0">
+                                                                name="jarayonda{{ $xodimlar->id }}[]" value="0">
                                                             <label class="cursor-pointer select-none"
                                                                 for="horizontal-radio-liam-neeson{{ $xodimlar->id }}">Tugatilgan</label>
                                                         </div>
@@ -250,4 +251,20 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById('search-input').addEventListener('input', function () {
+            let searchValue = this.value.toLowerCase();
+            let tableRows = document.querySelectorAll('table tbody tr');
+    
+            tableRows.forEach(row => {
+                let rowText = row.textContent.toLowerCase();
+                if (rowText.includes(searchValue)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    </script>
 @endsection

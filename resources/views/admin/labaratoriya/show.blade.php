@@ -158,6 +158,24 @@
                                 <td class="border">{{ $laboratory->email }}</td>
                                 <td class="border">{{ $laboratory->u_email }}</td>
                             </tr> --}}
+                            <tr class="bg-gray-200">
+                                <!-- <th class=" border">3</th> -->
+                                <th class=" border">DSc</th>
+                                <th class=" border">PhD</th>
+                            </tr>
+                            <tr>
+                                <!-- <th class="whitespace-no-wrap border">6</th> -->
+                                <td class="border">{{ $dsc_soni }}</td>
+                                <td class="border">{{ $phd_soni }}</td>
+                            </tr>
+                            <tr class="bg-gray-200">
+                                <th class="border">Stajyor-tadqiqotchi</th>
+                                <th></th>
+                            </tr>
+                            <tr>
+                                <td class="border">{{ $stajyor_soni }}</td>
+                                <td class="border"></td>
+                            </tr>
 
                     </tbody>
                 </table>
