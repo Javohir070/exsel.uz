@@ -63,7 +63,7 @@
                                     </svg>
                                     Ko'rish
                                 </a>
-                                
+                                @role(['super-admin'])
                                 <form action="{{ route('xujalik.destroy',['xujalik'=>$xodimlar->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                     <button type="submit" class="flex delete-action items-center text-theme-6" >
                                     @csrf
@@ -78,6 +78,7 @@
                                         O'chirish
                                     </button>
                                 </form>
+                                @endrole
 
                             </div>
                         </td>

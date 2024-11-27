@@ -1,19 +1,20 @@
 @extends("layouts.admin")
 @section("content")
 <!-- END: Top Bar -->
-@role('super-admin')
-    <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
-            <!-- BEGIN: General Report -->
-            <div class="col-span-12 mt-8">
-                <div class="intro-y flex items-center h-10">
-                    <h2 class="text-lg font-medium truncate mr-5">
-                        Tashkilot haqida qisqacha malumot
-                    </h2>
-                    <a href="" class="ml-auto flex text-theme-1"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i>
-                    Ma'lumotlarni qayta yuklash </a>
-                </div>
-                <div class="grid grid-cols-12 gap-6 mt-5">
+
+<div class="grid grid-cols-12 gap-6">
+    <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
+        <!-- BEGIN: General Report -->
+        <div class="col-span-12 mt-8">
+            <div class="intro-y flex items-center h-10">
+                <h2 class="text-lg font-medium truncate mr-5">
+                    Tashkilot haqida qisqacha malumot
+                </h2>
+                <a href="" class="ml-auto flex text-theme-1"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i>
+                Ma'lumotlarni qayta yuklash </a>
+            </div>
+            <div class="grid grid-cols-12 gap-6 mt-5">
+                    @role('super-admin')
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <a href="{{ route('tashkilotlar.index') }}">
                             <div class="report-box zoom-in">
@@ -40,6 +41,8 @@
                             </div>
                         </a>
                     </div>
+                @endrole
+                @role(['Xujalik_shartnomalari', 'super-admin'])
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <a href="{{ route('xujaliklar.index') }}">
                             <div class="report-box zoom-in">
@@ -53,6 +56,8 @@
                             </div>
                         </a>
                     </div>
+                @endrole
+                @role(['super-admin'])
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <a href="{{ route('ilmiydarajalar.index') }}">
                             <div class="report-box zoom-in">
@@ -187,11 +192,11 @@
                         </a>
                     </div> --}}
 
+                    @endrole
                 </div>
             </div>
         </div>
     </div>
-@endrole
 @role(['admin','Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
     @include('admin.admin')
 @endrole

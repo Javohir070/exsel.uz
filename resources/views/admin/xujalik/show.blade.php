@@ -6,7 +6,7 @@
 
             <h2 class="intro-y text-lg font-medium">{{ $xujalik->tashkilot->name_qisqachasi }} Xujalik loyhila ma’lumot</h2>
 
-            @role('super-admin')
+            @role(['super-admin', 'Xujalik_shartnomalari'])
                 <a href="{{ route('xujaliklar.index') }}" class="button w-24 bg-theme-1 text-white">
                     Orqaga
                 </a>
@@ -55,7 +55,7 @@
                         <!-- <th class="border border-b-2 ">1</th> -->
                         <th class="border border-b-2 " style="width: 50%;">Ishlanma (mahsulot, tovar, xizmat va ishlar) nomi
                         </th>
-                        <th class="border border-b-2 " style="width: 50%;">Ishlanma yaratilgan tadqiqot mavzusi va turi</th>
+                        <th class="border border-b-2 " style="width: 50%;">Ishlanma yaratilgan tadqiqot mavzusi </th>
                     </tr>
                     <tr>
                         <!-- <th class="border border-b-2 ">4</th> -->

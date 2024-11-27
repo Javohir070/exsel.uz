@@ -105,7 +105,7 @@
             </li>
         @endrole
 
-        @role('super-admin')
+        @role(['Xujalik_shartnomalari', 'super-admin'])
             <li>
                 <a href="{{ route('xujaliklar.index') }}"
                     class="side-menu side-menu{{ request()->is('xujalik*') ? '--active' : '' }}">
@@ -342,7 +342,7 @@
                     <div class="side-menu__title"> Ilmiy loyihalar </div>
                 </a>
             </li>
-
+        
             <li>
                 <a href="{{ route('itm.xujalik') }}"
                     class="side-menu side-menu{{ request()->is('xujalik*') ? '--active' : '' }}{{ request()->is('itmxujalik*') ? '--active' : '' }}">
@@ -350,7 +350,6 @@
                     <div class="side-menu__title"> Xo'jalik loyihalar </div>
                 </a>
             </li>
-
             <li>
                 <a href="{{ route('itm.adminlar') }}"
                     class="side-menu side-menu{{ request()->is('itmadminlar*') ? '--active' : '' }}">

@@ -45,7 +45,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> F.I.Sh
                         </label>
-                        <input type="text" name="name" class="input w-full border mt-2" >
+                        <input type="text" name="name" class="input w-full border mt-2" required="">
                     </div>
                   @endrole  
                     @role('admin1212')
@@ -65,7 +65,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Labaratoriya
                         </label>
-                        <select name="laboratory_id" class="input border w-full mt-2" >
+                        <select name="laboratory_id" class="input border w-full mt-2" required="">
                             <option value=""> Labaratoriya tanlash</option>
                             @foreach ($lab as $role)
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
@@ -97,7 +97,7 @@
                             <option value=""> Role tanlash</option>
                             @role('admin')
                                 @foreach ($roles as $role)
-                                @if ($role !== 'super-admin' && $role !== 'admin' && $role !== 'Itm-tashkilotlar')
+                                @if ($role !== 'super-admin' && $role !== 'admin' && $role !== 'Itm-tashkilotlar' && $role !== 'Xujalik_shartnomalari')
                                     <option value="{{ $role }}">{{ $role }}</option>
                                 @endif
                                 @endforeach
