@@ -7,13 +7,13 @@
             <h2 class="intro-y text-lg font-medium">Ilmiy izlanuvchilar </h2>
 
             <!-- <a href="{{ route('xodimlar.create') }}" class="button w-24 bg-theme-1 text-white">
-                        Qo'shish
-                    </a> -->
+                            Qo'shish
+                        </a> -->
             <div class="intro-x relative mr-3 sm:mr-6">
                 <div class="search hidden sm:block">
                     <form action="{{ route('searchizlanuvchilar') }}" method="GET">
                         <input type="text" name="search" class="search__input input placeholder-theme-13"
-                            placeholder="Search...">
+                            placeholder="Jshshir bilan qidirish...">
                         <i data-feather="search" class="search__icon"></i>
                     </form>
                 </div>
@@ -78,30 +78,60 @@
                                 <a href="" class="font-medium ">{{ $xodimlar->jshshir }} </a>
                             </td>
                             <td>
-                                <a href="" class="font-medium ">{{ $xodimlar->status }} </a>
+                                @if ($xodimlar->status == null || $xodimlar->laboratory_id == null)
+                                <form id="science-paper-edit-form{{ $xodimlar->id }}"
+                                    action="{{ url('labbiriktirish/' . $xodimlar->id . '/edit') }}"
+                                    method="POST" class="validate-form" enctype="multipart/form-data"
+                                    novalidate="novalidate">
+                                    @csrf
+                                    <div class="flex flex-col box sm:flex-row mt-2">
+                                        <div class="flex items-center text-gray-700 mr-2">
+                                            <input type="radio" class="input border mr-2"
+                                                id="horizontal-radio-chris-evans{{ $xodimlar->id }}"
+                                                name="status" value="Jarayonda" required>
+                                            <label class="cursor-pointer select-none"
+                                                for="horizontal-radio-chris-evans{{ $xodimlar->id }}">Jarayonda</label>
+                                        </div>
+                                        <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
+                                            <input type="radio" class="input border mr-2"
+                                                id="horizontal-radio-liam-neeson{{ $xodimlar->id }}"
+                                                name="status" value="Tugatilgan" required>
+                                            <label class="cursor-pointer select-none"
+                                                for="horizontal-radio-liam-neeson{{ $xodimlar->id }}">Tugatilgan</label>
+                                        </div>
+                                        @error('status')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </form>
+                                @else
+                                    <a href="" class="font-medium ">{{ $xodimlar->status }} </a>
+                                @endif
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
 
 
                                     @if ($xodimlar->laboratory_id == null)
+                                    <form id="science-paper-edit-form{{ $xodimlar->id }}"
+                                        action="{{ url('labbiriktirish/' . $xodimlar->id . '/edit') }}"
+                                        method="POST" class="validate-form" enctype="multipart/form-data"
+                                        novalidate="novalidate">
+                                        @csrf
                                         <div class="flex justify-center items-center">
-                                            <form id="science-paper-edit-form{{ $xodimlar->id }}"
-                                                action="{{ url('labbiriktirish/' . $xodimlar->id . '/edit') }}" method="POST"
-                                                class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
-                                                @csrf
-                                            </form>
                                             <button type="submit" form="science-paper-edit-form{{ $xodimlar->id }}"
                                                 class="update-confirm button w-24 bg-theme-1 text-white">
                                                 Biriktirish
                                             </button>
                                         </div>
+                                    </form>
                                     @else
-                                        {{$xodimlar->laboratory->name}}
+                                        {{ $xodimlar->laboratory->name }}
                                     @endif
 
                                 </div>
                             </td>
+
                         </tr>
                     @empty
                         <tr>

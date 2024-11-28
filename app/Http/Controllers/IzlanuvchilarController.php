@@ -44,7 +44,20 @@ class IzlanuvchilarController extends Controller
     {
         // Formdan kelgan xodimlar ID larini olish
         $izlanuvchilarId = $request->input('izlanuvchilarId', []);
+        $izlanuvchilar = $request->input('izlanuvchilarId', []); // Izlanuvchilar ID array
+        foreach ($izlanuvchilar as $id) {
+            // Har bir izlanuvchi uchun radio tugmaning qiymatini olish
+            $status = $request->input("jarayonda{$id}")[0] ?? null;
 
+            if ($status !== null) {
+                // Baza ma'lumotini yangilash yoki saqlash
+                $izlanuvchi = Izlanuvchilar::find($id); // YourModel ni mos ravishda o'zgartiring
+                if ($izlanuvchi) {
+                    $izlanuvchi->status = $status ? 'Jarayonda' : 'Tugatilgan'; // Ma'lumotni bazaga saqlash
+                    $izlanuvchi->save();
+                }
+            }
+        }
         // Foydalanuvchining laboratory_id sini oling
         $laboratoryId = auth()->user()->laboratory_id;
         // Tanlangan IDlarga tegishli xujaliklarni yangilash
@@ -237,17 +250,20 @@ class IzlanuvchilarController extends Controller
     public function is_active(Request $request , $id)
     {
         $izlanuvchilar = Izlanuvchilar::findOrFail($id);
-        $izlanuvchilar -> is_active = $request->is_active;
-        $izlanuvchilar -> status = 'Jarayonda';
+        $izlanuvchilar -> is_active = 1;
+        $izlanuvchilar -> status = $request->status;
         $izlanuvchilar->save();
-        return redirect()->route('ilmiy_izlanuvchi.index')->with('status', 'Ma\'lumotlar muvaffaqiyatli qo\'shildi.');
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli qo\'shildi.');
     }
 
     public function labId_biriktirish(Request $request, $id) 
     {
+        
         $izlanuvchilar = Izlanuvchilar::findOrFail($id);
         $izlanuvchilar -> laboratory_id = auth()->user()->laboratory_id;
+        $izlanuvchilar -> status = $request->status;
+        $izlanuvchilar -> is_active = 1;
         $izlanuvchilar->save();
-        return redirect()->route('izlanuvchilar.index')->with('status', 'Ma\'lumotlar muvaffaqiyatli qo\'shildi.');
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli qo\'shildi.');
     }
 }

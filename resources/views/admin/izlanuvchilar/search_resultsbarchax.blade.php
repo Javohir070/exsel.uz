@@ -78,18 +78,42 @@
                                 <a href="" class="font-medium ">{{ $xodimlar->jshshir }} </a>
                             </td>
                             <td>
-                                <a href="" class="font-medium ">{{ $xodimlar->status }} </a>
+                                <td>
+                                    @if ($xodimlar->status == null || $xodimlar->is_active == 0)
+                                    <form id="science-paper-edit-form{{ $xodimlar->id }}"
+                                        action="{{ url('labbiriktirish/' . $xodimlar->id . '/edit') }}"
+                                        method="POST" class="validate-form" enctype="multipart/form-data"
+                                        novalidate="novalidate">
+                                        @csrf
+                                        <div class="flex flex-col box sm:flex-row mt-2">
+                                            <div class="flex items-center text-gray-700 mr-2">
+                                                <input type="radio" class="input border mr-2"
+                                                    id="horizontal-radio-chris-evans{{ $xodimlar->id }}"
+                                                    name="status" value="Jarayonda" required>
+                                                <label class="cursor-pointer select-none"
+                                                    for="horizontal-radio-chris-evans{{ $xodimlar->id }}">Jarayonda</label>
+                                            </div>
+                                            <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
+                                                <input type="radio" class="input border mr-2"
+                                                    id="horizontal-radio-liam-neeson{{ $xodimlar->id }}"
+                                                    name="status" value="Tugatilgan" required>
+                                                <label class="cursor-pointer select-none"
+                                                    for="horizontal-radio-liam-neeson{{ $xodimlar->id }}">Tugatilgan</label>
+                                            </div>
+                                            @error('status')
+                                                <div class="error">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </form>
+                                    @else
+                                        <a href="" class="font-medium ">{{ $xodimlar->status }} </a>
+                                    @endif
+                                </td>
                             </td>
                             <td class="table-report__action w-56">
                                 @if ($xodimlar->is_active == 0)
                                     
                                 <div class="flex justify-center items-center">
-                                    <form id="science-paper-edit-form{{$xodimlar->id}}"
-                                        action="{{ url('isactive/' . $xodimlar->id . '/edit') }}" method="POST"
-                                        class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
-                                        @csrf
-                                        <input type="hidden" name="is_active" value="1">
-                                    </form>
                                     <button type="submit" form="science-paper-edit-form{{$xodimlar->id}}"
                                         class="update-confirm button w-24 bg-theme-1 text-white">
                                         Biriktirish
@@ -114,138 +138,5 @@
 
     </div>
     </div>
-    <style>
-        .table-container {
-            max-height: 600px;
-            /* Jadval maksimal balandligini belgilash */
-            overflow-y: auto;
-            /* Vertikal skroll qo'shish */
-        }
-
-        .table thead {
-            position: sticky;
-            top: 0;
-            /* background-color: #fff; Orqa fon rangini belgilash */
-            z-index: 1;
-        }
-    </style>
-
-    <div class="modal" id="science-paper-create-modal">
-        <div class="modal__content modal__content--xl">
-            <div class="p-5">
-
-                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
-                    <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                        <form id="science-paper-create-form" method="POST"
-                            action="{{ url('lab/' . auth()->user()->laboratory_id . '/give-izlanuvchilar') }}"
-                            class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
-                            @csrf
-                            @method('PUT')
-                            <div class="table-container">
-
-                                <div class="mb-4">
-                                    <input type="text" id="search-input" class="input border w-full"
-                                        placeholder="Qidiruv..." />
-                                </div>
-
-                                <table class="table table-report ">
-                                    <thead>
-                                        <tr>
-                                            <th class="whitespace-no-wrap">№</th>
-                                            <th class="whitespace-no-wrap">F.I.Sh </th>
-                                            <th class="whitespace-no-wrap">Ta'lim turi</th>
-                                            <th class="whitespace-no-wrap">Jshshir</th>
-                                            <th class="whitespace-no-wrap text-center">Biriktirish</th>
-                                            <th class="whitespace-no-wrap text-center">Jarayonda yoki Tugatilgan</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-
-                                        @forelse ($tashkilot_izlanuvchilar as $xodimlar)
-                                            <tr class="intro-x">
-                                                <td>{{ $loop->index + 1 }}</td>
-                                                <td>
-                                                    <a href="#" target="_blank"
-                                                        class="font-medium">{{ $xodimlar->fish }}</a>
-                                                </td>
-                                                <td>
-                                                    <a href="" class="font-medium ">{{ $xodimlar->talim_turi }}</a>
-                                                </td>
-                                                <td>
-                                                    <a href="" class="font-medium ">{{ $xodimlar->jshshir }}</a>
-                                                </td>
-                                                <td class="table-report__action w-56">
-                                                    @if ($xodimlar->laboratory_id == null)
-                                                        <label>
-                                                            <input type="checkbox" name="izlanuvchilarId[]"
-                                                                value="{{ $xodimlar->id }}" />
-                                                        </label>
-                                                    @else
-                                                        <a href=""
-                                                            class="font-medium ">{{ $xodimlar->laboratory->name }} </a>
-                                                    @endif
-                                                </td>
-                                                <td>
-                                                    <div class="flex flex-col box sm:flex-row mt-2">
-                                                        <div class="flex items-center text-gray-700 mr-2">
-                                                            <input type="radio" class="input border mr-2"
-                                                                id="horizontal-radio-chris-evans{{ $xodimlar->id }}"
-                                                                name="jarayonda{{ $xodimlar->id }}[]" value="1">
-                                                            <label class="cursor-pointer select-none"
-                                                                for="horizontal-radio-chris-evans{{ $xodimlar->id }}">Jarayonda</label>
-                                                        </div>
-                                                        <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
-                                                            <input type="radio" class="input border mr-2"
-                                                                id="horizontal-radio-liam-neeson{{ $xodimlar->id }}"
-                                                                name="jarayonda{{ $xodimlar->id }}[]" value="0">
-                                                            <label class="cursor-pointer select-none"
-                                                                for="horizontal-radio-liam-neeson{{ $xodimlar->id }}">Tugatilgan</label>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="5">Malumot topilmadi</td>
-                                            </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="px-5 pb-5 text-center">
-
-
-                <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                    Bekor qilish
-                </button>
-                <button type="submit" form="science-paper-create-form"
-                    class="update-confirm button w-24 bg-theme-1 text-white">
-                    Tasdiqlash
-                </button>
-            </div>
-        </div>
-    </div>
-
-    {{-- <script>
-        document.getElementById('search-input').addEventListener('input', function () {
-            let searchValue = this.value.toLowerCase();
-            let tableRows = document.querySelectorAll('table tbody tr');
-    
-            tableRows.forEach(row => {
-                let rowText = row.textContent.toLowerCase();
-                if (rowText.includes(searchValue)) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        });
-    </script> --}}
+  
 @endsection

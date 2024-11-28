@@ -9,17 +9,17 @@
             <!-- <a href="{{ route('xodimlar.create') }}" class="button w-24 bg-theme-1 text-white">
                     Qo'shish
                 </a> -->
-            {{-- <div class="intro-x relative mr-3 sm:mr-6">
+            <div class="intro-x relative mr-3 sm:mr-6">
                 <div class="search hidden sm:block">
                     <form action="{{ route('searchizlanuvchilar') }}" method="GET">
                         <input type="text" name="search" class="search__input input placeholder-theme-13"
-                            placeholder="Search...">
+                            placeholder="Jshshir bilan qidirish...">
                         <i data-feather="search" class="search__icon"></i>
                     </form>
                 </div>
                 <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i>
                 </a>
-            </div> --}}
+            </div>
             <div>
                 <div>
                     <a href="{{ route('izlanuvchilar.create') }}" class="button w-24 bg-theme-1 text-white">
@@ -185,6 +185,7 @@
                                             <th class="whitespace-no-wrap">Ta'lim turi</th>
                                             <th class="whitespace-no-wrap">Jshshir</th>
                                             <th class="whitespace-no-wrap text-center">Biriktirish</th>
+                                            <th class="whitespace-no-wrap text-center">Jarayonda yoki Tugatilgan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -213,7 +214,31 @@
                                                             class="font-medium ">{{ $xodimlar->laboratory->name }} </a>
                                                     @endif
                                                 </td>
-
+                                                <td>
+                                                    @if ($xodimlar->status == null)
+                                                    <div class="flex flex-col box sm:flex-row mt-2">
+                                                        <div class="flex items-center text-gray-700 mr-2">
+                                                            <input type="radio" class="input border mr-2"
+                                                                id="horizontal-radio-chris-evans{{ $xodimlar->id }}"
+                                                                name="jarayonda{{ $xodimlar->id }}[]"
+                                                                value="1">
+                                                            <label class="cursor-pointer select-none"
+                                                                for="horizontal-radio-chris-evans{{ $xodimlar->id }}">Jarayonda</label>
+                                                        </div>
+                                                        <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
+                                                            <input type="radio" class="input border mr-2"
+                                                                id="horizontal-radio-liam-neeson{{ $xodimlar->id }}"
+                                                                name="jarayonda{{ $xodimlar->id }}[]"
+                                                                value="0">
+                                                            <label class="cursor-pointer select-none"
+                                                                for="horizontal-radio-liam-neeson{{ $xodimlar->id }}">Tugatilgan</label>
+                                                        </div>
+                                                    </div>
+                                                    @else
+                                                        <a href=""
+                                                            class="font-medium ">{{ $xodimlar->status }} </a>
+                                                    @endif
+                                                </td>
                                             </tr>
                                         @endforeach
                                     </tbody>
