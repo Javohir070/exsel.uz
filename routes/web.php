@@ -114,6 +114,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/lab-xujaliklar/{labId}', [IzlanuvchilarController::class,'lab_xujalik'])->name('lab_xujaliklar.index');
     Route::get('/lab-ilmiy/{labId}', [IzlanuvchilarController::class,'lab_ilmiy'])->name('lab_ilmiy.index');
 
+    Route::get('/searchizlanuvchilar', [IzlanuvchilarController::class, 'searchIzlanuvchilar'])->name('searchizlanuvchilar');
+    Route::get('/searchizlanu-admin', [IzlanuvchilarController::class, 'searchIzlanuvchilar_admin'])->name('searchizlanuvchilar_admin');
+    Route::post('/isactive/{id}/edit', [IzlanuvchilarController::class, 'is_active'])->name('is_active');
+    Route::post('/labbiriktirish/{id}/edit', [IzlanuvchilarController::class, 'labId_biriktirish']);
     //labaratoriya uchun
     Route::resources([
         'tashkilot' => TashkilotController::class,

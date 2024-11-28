@@ -23,7 +23,7 @@ class StoreIzlanuvchilarRequest extends FormRequest
     {
         return [
             'fish' => "required|max:600",
-            'jshshir'=> "required|digits:14",
+            'jshshir'=> "required|digits:14|unique:izlanuvchilars",
             'pasport_seriya'=> "required|max:600",
             'jinsi'=> "required|max:600",
             'talim_turi'=> "required|max:600",

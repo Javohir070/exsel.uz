@@ -43,4 +43,9 @@ class Tashkilot extends Model
     {
         return $this->hasMany(IqtisodiyMoliyaviy::class);
     }
+
+    public function izlanuvchilar()
+    {
+        return $this->hasMany(Izlanuvchilar::class);
+    }
 }

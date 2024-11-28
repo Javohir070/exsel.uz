@@ -5,7 +5,7 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">Ilmiy izlanuvchilar</h2>
+        <h2 class="intro-y text-lg font-medium">Ilmiy izlanuvchilar </h2>
 
         <!-- <a href="{{ route("xodimlar.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish
@@ -32,7 +32,7 @@
 
                 <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal" 
                     class="button w-24 ml-3 bg-theme-1 text-white">
-                    Ilmiy izlanuvchi biriktirish
+                    Ilmiy izlanuvchi biriktirish 
                 </a>
             </div>
         </div>

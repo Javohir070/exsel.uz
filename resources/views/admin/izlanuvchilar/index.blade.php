@@ -4,21 +4,22 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10">
 
-            <h2 class="intro-y text-lg font-medium">Ilmiy izlanuvchilar</h2>
+            <h2 class="intro-y text-lg font-medium">Ilmiy izlanuvchilar </h2>
 
             <!-- <a href="{{ route('xodimlar.create') }}" class="button w-24 bg-theme-1 text-white">
-                Qo'shish
-            </a> -->
+                    Qo'shish
+                </a> -->
             {{-- <div class="intro-x relative mr-3 sm:mr-6">
-            <div class="search hidden sm:block">
-                <form action="{{ route('searchxodim') }}" method="GET">
-                    <input type="text" name="search" class="search__input input placeholder-theme-13"
-                        placeholder="Search...">
-                    <i data-feather="search" class="search__icon"></i>
-                </form>
-            </div>
-            <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
-        </div> --}}
+                <div class="search hidden sm:block">
+                    <form action="{{ route('searchizlanuvchilar') }}" method="GET">
+                        <input type="text" name="search" class="search__input input placeholder-theme-13"
+                            placeholder="Search...">
+                        <i data-feather="search" class="search__icon"></i>
+                    </form>
+                </div>
+                <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i>
+                </a>
+            </div> --}}
             <div>
                 <div>
                     <a href="{{ route('izlanuvchilar.create') }}" class="button w-24 bg-theme-1 text-white">
@@ -49,7 +50,7 @@
                         <th class="whitespace-no-wrap">F.I.Sh</th>
                         <th class="whitespace-no-wrap">Ta'lim turi</th>
                         <th class="whitespace-no-wrap">Qabul qilingan yili</th>
-                        <th class="whitespace-no-wrap">Telefon raqami</th>
+                        <th class="whitespace-no-wrap">Jshshir</th>
                         <th class="whitespace-no-wrap">Status</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
@@ -71,7 +72,7 @@
                             </td>
 
                             <td>
-                                <a href="" class="font-medium ">+{{ $xodimlar->phone }} </a>
+                                <a href="" class="font-medium ">{{ $xodimlar->jshshir }} </a>
                             </td>
                             <td>
                                 <a href="" class="font-medium ">{{ $xodimlar->status }} </a>
@@ -115,19 +116,19 @@
                                     </a>
 
                                     <!-- <form action="{{ route('xodimlar.destroy', ['xodimlar' => $xodimlar->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
-                                            <button type="submit" class="flex delete-action items-center text-theme-6" >
-                                            @csrf
-                                            @method('DELETE')
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 w-4 h-4 mr-1">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                    </path>
-                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                </svg>
-                                                O'chirish
-                                            </button>
-                                        </form> -->
+                                                <button type="submit" class="flex delete-action items-center text-theme-6" >
+                                                @csrf
+                                                @method('DELETE')
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-trash-2 w-4 h-4 mr-1">
+                                                        <polyline points="3 6 5 6 21 6"></polyline>
+                                                        <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                        </path>
+                                                        <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                        <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                    </svg>
+                                                    O'chirish
+                                                </button>
+                                            </form> -->
 
                                 </div>
                             </td>
@@ -172,9 +173,10 @@
                             <div class="table-container">
 
                                 <div class="mb-4">
-                                    <input type="text" id="search-input" class="input border w-full" placeholder="Qidiruv..." />
+                                    <input type="text" id="search-input" class="input border w-full"
+                                        placeholder="Qidiruv..." />
                                 </div>
-                                
+
                                 <table class="table table-report ">
                                     <thead>
                                         <tr>
@@ -183,7 +185,6 @@
                                             <th class="whitespace-no-wrap">Ta'lim turi</th>
                                             <th class="whitespace-no-wrap">Jshshir</th>
                                             <th class="whitespace-no-wrap text-center">Biriktirish</th>
-                                            <th class="whitespace-no-wrap text-center">Jarayonda yoki Tugatilgan</th>
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -191,10 +192,12 @@
                                             <tr class="intro-x">
                                                 <td>{{ $loop->index + 1 }}</td>
                                                 <td>
-                                                    <a href="#" target="_blank" class="font-medium">{{ $xodimlar->fish }}</a>
+                                                    <a href="#" target="_blank"
+                                                        class="font-medium">{{ $xodimlar->fish }}</a>
                                                 </td>
                                                 <td>
-                                                    <a href="" class="font-medium ">{{ $xodimlar->talim_turi }}</a>
+                                                    <a href=""
+                                                        class="font-medium ">{{ $xodimlar->talim_turi }}</a>
                                                 </td>
                                                 <td>
                                                     <a href="" class="font-medium ">{{ $xodimlar->jshshir }}</a>
@@ -202,30 +205,15 @@
                                                 <td class="table-report__action w-56">
                                                     @if ($xodimlar->laboratory_id == null)
                                                         <label>
-                                                            <input type="checkbox" name="izlanuvchilarId[]" value="{{ $xodimlar->id }}" />
+                                                            <input type="checkbox" name="izlanuvchilarId[]"
+                                                                value="{{ $xodimlar->id }}" />
                                                         </label>
                                                     @else
-                                                        <a href="" class="font-medium ">{{ $xodimlar->laboratory->name }} </a>
+                                                        <a href=""
+                                                            class="font-medium ">{{ $xodimlar->laboratory->name }} </a>
                                                     @endif
                                                 </td>
-                                                <td>
-                                                    <div class="flex flex-col box sm:flex-row mt-2">
-                                                        <div class="flex items-center text-gray-700 mr-2">
-                                                            <input type="radio" class="input border mr-2"
-                                                                id="horizontal-radio-chris-evans{{ $xodimlar->id }}"
-                                                                name="jarayonda{{ $xodimlar->id }}[]" value="1">
-                                                            <label class="cursor-pointer select-none"
-                                                                for="horizontal-radio-chris-evans{{ $xodimlar->id }}">Jarayonda</label>
-                                                        </div>
-                                                        <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
-                                                            <input type="radio" class="input border mr-2"
-                                                                id="horizontal-radio-liam-neeson{{ $xodimlar->id }}"
-                                                                name="jarayonda{{ $xodimlar->id }}[]" value="0">
-                                                            <label class="cursor-pointer select-none"
-                                                                for="horizontal-radio-liam-neeson{{ $xodimlar->id }}">Tugatilgan</label>
-                                                        </div>
-                                                    </div>
-                                                </td>
+
                                             </tr>
                                         @endforeach
                                     </tbody>
@@ -253,10 +241,10 @@
     </div>
 
     <script>
-        document.getElementById('search-input').addEventListener('input', function () {
+        document.getElementById('search-input').addEventListener('input', function() {
             let searchValue = this.value.toLowerCase();
             let tableRows = document.querySelectorAll('table tbody tr');
-    
+
             tableRows.forEach(row => {
                 let rowText = row.textContent.toLowerCase();
                 if (rowText.includes(searchValue)) {

@@ -10,16 +10,16 @@
         <!-- <a href="{{ route("xodimlar.create") }}" class="button w-24 bg-theme-1 text-white">
             Qo'shish
         </a> -->
-        {{-- <div class="intro-x relative mr-3 sm:mr-6">
+        <div class="intro-x relative mr-3 sm:mr-6">
             <div class="search hidden sm:block">
-                <form action="{{ route('searchxodim') }}" method="GET">
+                <form action="{{ route('searchizlanuvchilar_admin') }}" method="GET">
                     <input type="text" name="search" class="search__input input placeholder-theme-13"
-                        placeholder="Search...">
+                        placeholder="Jshshir bilan qidirish...">
                     <i data-feather="search" class="search__icon"></i>
                 </form>
             </div>
             <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
-        </div> --}}
+        </div>
         <div>
             <div>
                 <a href="{{ route("izlanuvchilar.create") }}" class="button w-24 bg-theme-1 text-white">
@@ -50,7 +50,7 @@
                     <th class="whitespace-no-wrap">F.I.Sh</th>
                     <th class="whitespace-no-wrap">Ta'lim turi</th>
                     <th class="whitespace-no-wrap">Qabul qilingan yili</th>
-                    <th class="whitespace-no-wrap">Telefon raqami</th>
+                    <th class="whitespace-no-wrap">Jshshir</th>
                     <th class="whitespace-no-wrap text-center">Harakat</th>
                 </tr>
             </thead>
@@ -61,7 +61,7 @@
                     <tr class="intro-x">
                         <td>{{$loop->index + 1}}</td>
                         <td>
-                            <a href="#" target="_blank" class="font-medium">{{ $xodimlar->fish }}</a>
+                            <a href="{{ route('izlanuvchilar.show', ['izlanuvchilar' => $xodimlar->id]) }}"  class="font-medium">{{ $xodimlar->fish }}</a>
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $xodimlar->talim_turi }}</a>
@@ -71,7 +71,7 @@
                         </td>
 
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->phone  }} </a>
+                            <a href="" class="font-medium ">{{ $xodimlar->jshshir  }} </a>
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
