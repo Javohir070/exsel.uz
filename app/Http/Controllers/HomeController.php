@@ -95,7 +95,7 @@ class HomeController extends Controller
         $laboratory = auth()->user()->laboratory_id;
         $izlanuvchilar = Izlanuvchilar::whereNotNull('laboratory_id')->count();
         $labaratoriyalar_admin = Laboratory::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
-        $izlanuvchilar_admin = Izlanuvchilar::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
+        $izlanuvchilar_admin = Izlanuvchilar::where("tashkilot_id",auth()->user()->tashkilot_id)->where("is_active",1)->count();
         $phd = [
             "Tayanch doktorantura, PhD",
             "Mustaqil tadqiqotchi, PhD",

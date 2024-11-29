@@ -4,8 +4,9 @@ namespace App\Imports;
 
 use App\Models\Izlanuvchilar;
 use Maatwebsite\Excel\Concerns\ToModel;
+use Maatwebsite\Excel\Concerns\WithStartRow;
 
-class IzlanuvchilarImport implements ToModel
+class IzlanuvchilarImport implements ToModel, WithStartRow
 {
     /**
      * @param array $row
@@ -54,5 +55,10 @@ class IzlanuvchilarImport implements ToModel
 
         // Agar hech qaysi format mos kelmasa, xatolik chiqariladi
         throw new \Exception("Invalid datetime format: {$datetime}");
+    }
+
+    public function startRow(): int
+    {
+        return 2;
     }
 }
