@@ -66,7 +66,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Labaratoriya
                         </label>
-                        <select name="laboratory_id" class="input border w-full mt-2" required="">
+                        <select name="laboratory_id" class="input border w-full mt-2" >
                             <option value=""> Labaratoriya tanlash</option>
                             @foreach ($lab as $role)
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>

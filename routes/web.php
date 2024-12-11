@@ -145,6 +145,7 @@ Route::group(['middleware' => ['role:super-admin|admin']], function() {
     Route::resource('permissions', PermissionController::class);
     Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
     Route::get('/export', [ExportController::class, 'export']);
+    Route::get('/export-lab', [LaboratoryController::class, 'export_lab'])->name('export_lab');
     Route::get('/export-ilmiylar', [IlmiyLoyihaController::class, 'exportilmiy'])->name('exportilmiy');
     Route::get('/export-iqtisodiyfaoliyat', [IqtisodiyMoliyaviyController::class, 'iqtisodiyfaoliyat'])->name('iqtisodiyfaoliyat');
     Route::get('/export-tashkiotlar', [TashkilotController::class, 'exportashkilot'])->name('exportashkilot');

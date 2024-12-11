@@ -11,6 +11,8 @@ use App\Models\User;
 use App\Models\Xodimlar;
 use App\Models\Xujalik;
 use Illuminate\Http\Request;
+use App\Exports\LaboratoryExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaboratoryController extends Controller
 {
@@ -252,4 +254,14 @@ class LaboratoryController extends Controller
         
         return redirect()->back()->with("status",'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
     }
+
+    public function export_lab()
+    {
+        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+        $fileName = 'Laboratory_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new LaboratoryExport, $fileName);
+    }
+
+    
 }

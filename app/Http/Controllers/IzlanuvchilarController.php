@@ -27,7 +27,7 @@ class IzlanuvchilarController extends Controller
 
     public function ilmiy_izlanuvchilar()
     {
-        $izlanuvchilar = Izlanuvchilar::paginate(25);
+        $izlanuvchilar = Izlanuvchilar::where('is_active', 1)->paginate(25);
 
         return view("admin.izlanuvchilar.izlanvuchilar", ["izlanuvchilar" => $izlanuvchilar]);
     }
