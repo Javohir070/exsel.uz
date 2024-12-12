@@ -36,6 +36,12 @@ class IlmiyLoyiha extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function tekshirivchilars()
+    {
+        return $this->hasOne(Tekshirivchilar::class);
+    }
+
     // App\Models\IlmiyLoyiha.php
 
     // public function umumiyyil()

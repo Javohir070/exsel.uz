@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IlmiyLoyiha;
+use App\Models\Tekshirivchilar;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -9,10 +11,9 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
 class PDFController extends Controller
 {
-    public function generatePDF()
+    public function generatePDF($ilmiyId)
     {
-        $users = User::where('id', 1000)->get();
-
+        $ilmiyloyiha = IlmiyLoyiha::findOrFail($ilmiyId);
         // Define a file name and path for the PDF
         $fileName = 'users-lists-' . time() . '.pdf';
         $fileRelativePath = 'pdfs/' . $fileName;
@@ -28,9 +29,11 @@ class PDFController extends Controller
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
             'date' => date('m/d/Y'),
-            'users' => $users,
+            'ilmiyloyiha' => $ilmiyloyiha,
             'qrCode' => $qrCode, // Pass QR Code image as base64
         ];
+
+        $tekshirivchilar = Tekshirivchilar::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
 
         // Generate the PDF
         $pdf = PDF::loadView('admin.pdf.usersPdf', $data);
@@ -42,10 +45,9 @@ class PDFController extends Controller
         $pdf->save($filePath);
 
         // Store the PDF path in the database (example for one user)
-        if ($users->isNotEmpty()) {
-            $user = $users->first();
-            $user->pdf_path = $fileRelativePath; // Save relative path
-            $user->save();
+        if ($tekshirivchilar) {
+            $tekshirivchilar->file = $fileRelativePath; // Faylning nisbiy yo'lini saqlash
+            $tekshirivchilar->save();
         }
 
         return response()->download($filePath)->deleteFileAfterSend(true);

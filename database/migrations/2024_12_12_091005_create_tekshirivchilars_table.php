@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('tekshirivchilars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('ilmiy_loyiha_id')->constrained('ilmiy_loyihas')->cascadeOnDelete();
             $table->string('fish');
             $table->text('comment');
             $table->string('file');

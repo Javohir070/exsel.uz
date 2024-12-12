@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Tekshirivchilar extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['user_id', 'fish', 'comment', 'file',  'status', 'ilmiy_loyiha_id'];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function ilmiyloyiha()
+    {
+        return $this->belongsTo(IlmiyLoyiha::class);
+    }
 }

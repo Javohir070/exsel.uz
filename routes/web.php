@@ -12,7 +12,9 @@ use App\Http\Controllers\IzlanuvchilarController;
 use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\TashkilotController;
 use App\Http\Controllers\TashkilotUserlarController;
+use App\Http\Controllers\TekshirivchilarController;
 use App\Http\Controllers\XujalikController;
+use App\Models\Tekshirivchilar;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RoleController;
@@ -48,7 +50,7 @@ use App\Http\Controllers\TashkilotXujalikController;
 Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home.index');
 Route::middleware('auth')->group(function () {
     Route::post('password/change', [UserController::class, 'changePassword'])->name('password.change');
-    Route::get('generate-pdf', [App\Http\Controllers\PDFController::class, 'generatePDF']);
+    Route::get('generate-pdf/{ilmiyId}', [App\Http\Controllers\PDFController::class, 'generatePDF']);
     //import qilish 
     //end import
     //excel uchun export url lar
@@ -140,6 +142,7 @@ Route::middleware('auth')->group(function () {
         'tashkilot.userlar' => TashkilotUserlarController::class,
         'laboratory' => LaboratoryController::class,
         'izlanuvchilar' => IzlanuvchilarController::class,
+        'tekshirivchilar' => TekshirivchilarController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });

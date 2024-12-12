@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    @role(['super-admin', 'Xujalik_shartnomalari', 'Ilmiy_loyiha_rahbari'])
+    @role(['super-admin', 'Xujalik_shartnomalari', 'Ilmiy_loyiha_rahbari', 'Ekspert'])
         <div class="grid grid-cols-12 gap-6">
             <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
                 <div class="col-span-12 mt-8">
@@ -13,6 +13,7 @@
                     </div>
 
                     <div class="grid grid-cols-12 gap-6 mt-5">
+                        @role(['super-admin', 'Ekspert'])
                         @role('super-admin')
                             <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                                 <a href="{{ route('tashkilotlar.index') }}">
@@ -27,6 +28,8 @@
                                     </div>
                                 </a>
                             </div>
+                        @endrole
+                        @role(['super-admin', 'Ekspert'])
                             <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                                 <a href="{{ route('ilmiyloyihalar.index') }}">
                                     <div class="report-box zoom-in">
@@ -40,6 +43,7 @@
                                     </div>
                                 </a>
                             </div>
+                        @endrole
                         @endrole
                         @role(['Xujalik_shartnomalari', 'super-admin'])
                             <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
