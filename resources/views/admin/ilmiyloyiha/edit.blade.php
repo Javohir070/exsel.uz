@@ -22,6 +22,11 @@
             margin-top: 30px;
         } */
     </style>
+    @role('Ilmiy_loyiha_rahbari')
+        <a href="{{ route("scientific_project.index") }}" class="button w-24 bg-theme-1 text-white">
+            Orqaga
+        </a>
+    @endrole
 
 
 </div><br>
@@ -271,6 +276,21 @@
                 </div>
 
                 <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  Loyiha rahbari ilmiy darajasi   </label>
+                    <input type="text" name="rahbariilmiy_darajasi" value="" class="input w-full border mt-2" >
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  Loyiha rahbari ilmiy unvoni   </label>
+                    <input type="text" name="rahbariilmiy_unvoni" value="" class="input w-full border mt-2" >
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  Loyiha rahbari lavozimi  </label>
+                    <input type="text" name="r_lavozimi" value="" class="input w-full border mt-2" >
+                </div>
+
+                <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Raqami 
                     </label>
@@ -317,30 +337,6 @@
                     @endrole
                 </div>
 
-
-                <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Olingan asosiy natija 
-                    </label>
-                    <!-- <input type="text" name="olingan_natija" value="" class="input w-full border mt-2" required=""> -->
-                    <textarea name="olingan_natija" class="input w-full border mt-2" cols="20" rows="5">{{ $ilmiyloyiha->olingan_natija }}</textarea>
-                    @error('olingan_natija')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
-
-                </div>
-
-                <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Joriy etish (Tatbiq etish) holati 
-                    </label>
-                    <!-- <input type="text" name="joriy_holati" value="{{ $ilmiyloyiha->joriy_holati }}" class="input w-full border mt-2" required=""> -->
-                    <textarea name="joriy_holati" class="input w-full border mt-2" cols="20" rows="5">{{ $ilmiyloyiha->joriy_holati }}</textarea>
-                    @error('joriy_holati')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
-                </div>
-
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tijoratlashtirish holati 
@@ -374,6 +370,30 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Olingan asosiy natija 
+                    </label>
+                    <!-- <input type="text" name="olingan_natija" value="" class="input w-full border mt-2" required=""> -->
+                    <textarea name="olingan_natija" class="input w-full border mt-2" cols="20" rows="5">{{ $ilmiyloyiha->olingan_natija }}</textarea>
+                    @error('olingan_natija')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Joriy etish (Tatbiq etish) holati 
+                    </label>
+                    <!-- <input type="text" name="joriy_holati" value="{{ $ilmiyloyiha->joriy_holati }}" class="input w-full border mt-2" required=""> -->
+                    <textarea name="joriy_holati" class="input w-full border mt-2" cols="20" rows="5">{{ $ilmiyloyiha->joriy_holati }}</textarea>
+                    @error('joriy_holati')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+
 
                 
                 <div class="w-full col-span-2 ">
@@ -416,6 +436,208 @@
                     </label>
                     <input type="number" name="y2024" value="{{ $ilmiyloyiha->umumiyyil->y2024 }}" class="input w-full border mt-2" required="">
                 </div>
+
+
+
+               {{-- //yangi qo'shilganlar --}}
+
+               <div class="w-full col-span-6 ">
+                <label class="flex flex-col sm:flex-row">  Loyiha mavzusi (rus tilida)
+                </label>
+                <input type="text" name="mavzusi_ru" value="{{ $ilmiyloyiha->mavzusi_ru }}" class="input w-full border mt-2" >
+                @error('mavzusi_ru')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+            </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  Ijrochi tashkilot </label>
+                    <input type="text" name="ijrochi_tashkilot" value="" class="input w-full border mt-2" required="">
+                </div>
+
+
+               <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row">  Hamrahbar F.I.Sh </label>
+                    <input type="text" name="hamrahbar_fish" value="" class="input w-full border mt-2" >
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> Hamrahbar Ish joyi </label>
+                    <input type="text" name="hamr_ishjoyi" value="" class="input w-full border mt-2" >
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> Hamrahbar Lavozimi </label>
+                    <input type="text" name="hamr_lavozimi" value="" class="input w-full border mt-2" >
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> Hamrahbar Davlati </label>
+                    <input type="text" name="hamr_davlati" value="" class="input w-full border mt-2" >
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Joriy yil uchun ajratilgan mablag‘ (so‘m) </label>
+                    <input type="number" name="joyyilajratilgan_mablag" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shtat birligi </label>
+                    <input type="number" name="shtat_birligi" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ijrochilar soni </label>
+                    <input type="number" name="ijrochilar_soni" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy jamoaning o‘rtacha yoshi </label>
+                    <input type="number" name="ortacha_yoshi" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Moddiy-texnik bazaga yo‘naltirilgan mablag‘lar hajmi (so‘m) </label>
+                    <input type="number" name="moddiy_texnik_mablaglar" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Jami summaga nisbatan (%da) </label>
+                    <input type="number" name="jami_summaga_nisbatan" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Jami chop etilgan nashr ishlari soni (Joriy yil uchun) </label>
+                    <input type="number" name="jami_chop_joriyyil" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Jami chop etilgan nashr ishlari soni (Jami) </label>
+                    <input type="number" name="jami_chop_jami" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Mahalliy ilmiy jurnallardagi maqolalar soni (Joriy yil uchun) </label>
+                    <input type="number" name="mahalliymaqola_joriyyil" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Mahalliy ilmiy jurnallardagi maqolalar soni (Jami) </label>
+                    <input type="number" name="mahalliymaqol_jami" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xorijiy jurnallardagi ilmiy maqolalar soni (Joriy yil uchun) </label>
+                    <input type="number" name="xorijiymaqola_joriyyil" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xorijiy jurnallardagi ilmiy maqolalar soni (Jami) </label>
+                    <input type="number" name="xorijiymaqola_jami" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Web of Science va Scopus bazasidagi xalqaro nashrlardagi maqolalar soni (Joriy yil uchun) </label>
+                    <input type="number" name="scopus_joriyyil" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Web of Science va Scopus bazasidagi xalqaro nashrlardagi maqolalar soni (Jami) </label>
+                    <input type="number" name="scopus_jami" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tezislar soni (Joriy yil uchun) </label>
+                    <input type="number" name="tezislar_joriyyil" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tezislar soni (Jami) </label>
+                    <input type="number" name="tezislar_jami" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy monografiyalar soni (Joriy yil uchun) </label>
+                    <input type="number" name="ilmiy_mon_joriyyil" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy monografiyalar soni (Jami) </label>
+                    <input type="number" name="ilmiy_mon_jami" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Olingan patentlar soni (Joriy yil uchun) </label>
+                    <input type="number" name="olinganpatent_joriyyil" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Olingan patentlar soni (Jami) </label>
+                    <input type="number" name="olinganpatent_jami" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Patentga berilgan buyurtmalar soni </label>//
+                    <input type="number" name="patentga_berilgansoni" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Dasturiy maxsulotga guvoxnomalar soni (Joriy yil uchun) </label>
+                    <input type="number" name="dasturiy_maxguv_joriyyil" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Dasturiy maxsulotga guvoxnomalar soni (Jami) </label>
+                    <input type="number" name="dasturiy_maxguv_jami" value="" class="input w-full border mt-2" required="">
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Hisobot davrida qo‘lga kiritlgan muhim natijalar </label>
+                    {{-- <input type="text" name="y2024" value="" class="input w-full border mt-2" required=""> --}}
+                    <textarea name="hisobot_davrida_natijalar" class="input w-full border mt-2" id="" cols="5" rows="5"></textarea>
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha yakunida yaratilgan ishlanma (texnologiya) nomi va qisqacha tavsifi </label>
+                    {{-- <input type="number" name="y2024" value="" class="input w-full border mt-2" required=""> --}}
+                    <textarea name="loyiha_yakunida" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy ishlanma joriy etiladigan (tijoratlashtiriladigan) tarmoq (soha) va kutilayotgan natijalar (mavjud ehtiyoj, iqtisodiy samaradorlik ko‘rsatkichlari tahlili) </label>
+                    {{-- <input type="number" name="y2024" value="" class="input w-full border mt-2" required=""> --}}
+                    <textarea name="ilmiy_ishlanma" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                </div>
+
+
+
+
             </div>
 
         </form><br>

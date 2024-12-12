@@ -48,6 +48,7 @@ use App\Http\Controllers\TashkilotXujalikController;
 Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home.index');
 Route::middleware('auth')->group(function () {
     Route::post('password/change', [UserController::class, 'changePassword'])->name('password.change');
+    Route::get('generate-pdf', [App\Http\Controllers\PDFController::class, 'generatePDF']);
     //import qilish 
     //end import
     //excel uchun export url lar
@@ -88,7 +89,11 @@ Route::middleware('auth')->group(function () {
     Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
     Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
     Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
+
     Route::resource('users', UserController::class);
+    Route::post('/ilmiy-loyhagamasul', [UserController::class, 'ilmiy_loyha_rahbari'])->name('ilmiyLoyha_rahbari.index');
+    Route::get('/masullar-rahbarlar', [UserController::class, 'ilmiy_loyha_masullar'])->name('ilmiy_loyha_edit.index');
+    Route::get('scientific-project', [IlmiyLoyihaController::class, 'scientific_project'])->name('scientific_project.index');
     Route::get('/itm-xodimlar',[ItmController::class, 'itm_export'])->name('itm.export');
     Route::get('/itm-xujalik',[ItmController::class, 'itm_xujalik_export'])->name('itm.xujalikloyhalar');
     Route::get('/itm-ilmiy',[ItmController::class, 'itm_loyhalar_export'])->name('itm.ilmiyloyhalar');

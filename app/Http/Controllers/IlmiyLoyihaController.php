@@ -35,6 +35,14 @@ class IlmiyLoyihaController extends Controller
         return view('admin.ilmiyloyiha.create',['tashkilots'=>$tashkilots, 'laboratorylar'=> $laboratorylar]);
     }
 
+
+    public function scientific_project()
+    {
+        $ilmiy_loyhalar = IlmiyLoyiha::where('user_id', auth()->id())->get();
+
+        return view('admin.ilmiyloyiha.loyha_rahbari', ['ilmiy_loyhalar' => $ilmiy_loyhalar]);
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -104,6 +112,7 @@ class IlmiyLoyihaController extends Controller
      */
     public function update(UpdateIlmiyLoyihaRequest $request, IlmiyLoyiha $ilmiyloyiha)
     {
+        
 
         $umumiyyil = Umumiyyil::findOrFail($ilmiyloyiha->umumiyyil_id);
         $umumiyyil->update([
@@ -116,6 +125,7 @@ class IlmiyLoyihaController extends Controller
             "y2023" => $request->y2023 ?? 0 ,
             "y2024" => $request->y2024 ?? 0 ,
         ]);
+
         $ilmiyloyiha->update([
             "user_id" => auth()->id(),
             "tashkilot_id" => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
@@ -138,6 +148,42 @@ class IlmiyLoyihaController extends Controller
             "joriy_holati" => $request->joriy_holati,
             "tijoratlashtirish" => $request->tijoratlashtirish,
             "laboratory_id" => $request->laboratory_id,
+
+
+            "rahbariilmiy_darajasi" => $request->rahbariilmiy_darajasi,
+            "rahbariilmiy_unvoni" => $request->rahbariilmiy_unvoni,
+            "r_lavozimi" => $request->r_lavozimi,
+            "hamrahbar_fish" => $request->hamrahbar_fish,
+            "hamr_ishjoyi" => $request->hamr_ishjoyi,
+            "hamr_lavozimi" => $request->hamr_lavozimi,
+            "hamr_davlati" => $request->hamr_davlati,
+            "joyyilajratilgan_mablag" => $request->joyyilajratilgan_mablag,
+            "shtat_birligi" => $request->shtat_birligi,
+            "ijrochilar_soni" => $request->ijrochilar_soni,
+            "ortacha_yoshi" => $request->ortacha_yoshi,
+            "moddiy_texnik_mablaglar" => $request->moddiy_texnik_mablaglar,
+            "jami_summaga_nisbatan" => $request->jami_summaga_nisbatan,
+            "jami_chop_joriyyil" => $request->jami_chop_joriyyil,
+            "jami_chop_jami" => $request->jami_chop_jami,
+            "mahalliymaqola_joriyyil" => $request->mahalliymaqola_joriyyil,
+            "mahalliymaqol_jami" => $request->mahalliymaqol_jami,
+            "xorijiymaqola_joriyyil" => $request->xorijiymaqola_joriyyil,
+            "xorijiymaqola_jami" => $request->xorijiymaqola_jami,
+            "scopus_joriyyil" => $request->scopus_joriyyil,
+            "scopus_jami" => $request->scopus_jami,
+            "tezislar_joriyyil" => $request->tezislar_joriyyil,
+            "tezislar_jami" => $request->tezislar_jami,
+            "ilmiy_mon_joriyyil" => $request->ilmiy_mon_joriyyil,
+            "ilmiy_mon_jami" => $request->ilmiy_mon_jami,
+            "olinganpatent_joriyyil" => $request->olinganpatent_joriyyil,
+            "olinganpatent_jami" => $request->olinganpatent_jami,
+            "patentga_berilgansoni" => $request->patentga_berilgansoni,
+            "dasturiy_maxguv_joriyyil" => $request->dasturiy_maxguv_joriyyil,
+            "dasturiy_maxguv_jami" => $request->dasturiy_maxguv_jami,
+            "hisobot_davrida_natijalar" => $request->hisobot_davrida_natijalar,
+            "loyiha_yakunida" => $request->loyiha_yakunida,
+            "ilmiy_ishlanma" => $request->ilmiy_ishlanma,
+            "mavzusi_ru" => $request->mavzusi_ru,
         ]);
         if(auth()->user()->hasRole('labaratoriyaga_masul')){
             return redirect()->route('lab_ilmiyloyiha.index')->with('status',"Ma\'lumotlar muvaffaqiyatli yangilandi.");

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    @role(['super-admin', 'Xujalik_shartnomalari'])
+    @role(['super-admin', 'Xujalik_shartnomalari', 'Ilmiy_loyiha_rahbari'])
         <div class="grid grid-cols-12 gap-6">
             <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
                 <div class="col-span-12 mt-8">
@@ -51,6 +51,21 @@
                                             </div>
                                             <div class="text-3xl font-bold leading-8 mt-6">{{ $xujalik_count }}</div>
                                             <div class="text-base text-gray-600 mt-1"> Xo'jalik shartnomalari </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        @endrole
+                        @role(['Ilmiy_loyiha_rahbari'])
+                            <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                                <a href="{{ route('scientific_project.index') }}">
+                                    <div class="report-box zoom-in">
+                                        <div class="box p-5">
+                                            <div class="flex">
+                                                <i data-feather="file-text" class="report-box__icon text-theme-3"></i>
+                                            </div>
+                                            <div class="text-3xl font-bold leading-8 mt-6">{{ $ilmiy_loyhalar_rahbariga }}</div>
+                                            <div class="text-base text-gray-600 mt-1"> Ilmiy loyihalar </div>
                                         </div>
                                     </div>
                                 </a>

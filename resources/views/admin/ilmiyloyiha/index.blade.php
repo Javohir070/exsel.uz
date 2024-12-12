@@ -6,11 +6,14 @@
     <div class="flex justify-between align-center mt-10">
 
         <h2 class="intro-y text-lg font-medium">Ilmiy loyihalar</h2>
-
-        <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white">
-            Qo'shish
-        </a>
-
+        <div>
+            <a href="{{ route("ilmiy_loyha_edit.index") }}" class="button w-24 bg-theme-1 text-white mr-4">
+                Masul biriktirish
+            </a>
+            <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white">
+                Qo'shish
+            </a>
+        </div>
     </div>
     @if (session('status'))
         <div class="alert alert-success">{{ session('status') }}</div>
@@ -24,7 +27,8 @@
                         <th class="whitespace-no-wrap">Loyiha mavzusi</th>
                         <th class="whitespace-no-wrap">Loyiha rahbari</th>
                         <th class="whitespace-no-wrap">Loyiha turi</th>
-                        <th class="whitespace-no-wrap">Loyiha dasturi</th>
+                        <th class="whitespace-no-wrap">Status</th>
+                        <th class="whitespace-no-wrap">Masul</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -45,6 +49,9 @@
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $xodimlar->dastyri }}</a>
+                        </td>
+                        <td>
+                            <a href="" class="font-medium ">{{ $xodimlar->user->name }}</a>
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">

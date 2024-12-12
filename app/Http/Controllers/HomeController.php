@@ -91,6 +91,7 @@ class HomeController extends Controller
         $masullar = $users->filter(function($user) {
             return $user->roles->contains('name', 'labaratoriyaga_masul');
         })->count();
+        $ilmiy_loyhalar_rahbariga = IlmiyLoyiha::where('user_id', auth()->id())->count();
         $labaratoriyalar = Laboratory::count();
         $laboratory = auth()->user()->laboratory_id;
         $izlanuvchilar = Izlanuvchilar::where('is_active', 1)->count();
@@ -145,6 +146,7 @@ class HomeController extends Controller
             'phd_soni' => $phd_soni,
             'dsc_soni' => $dsc_soni,
             'stajyor_soni' => $stajyor_soni,
+            'ilmiy_loyhalar_rahbariga' => $ilmiy_loyhalar_rahbariga,
         ]);
     }
 

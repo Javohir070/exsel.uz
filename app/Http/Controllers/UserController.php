@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IlmiyLoyiha;
 use App\Models\Laboratory;
 use App\Models\Tashkilot;
 use App\Models\Xodimlar;
@@ -38,6 +39,12 @@ class UserController extends Controller
         return view('role-permission.user.create', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar, 'lab' => $lab]);
     }
 
+    public function ilmiy_loyha_masullar() 
+    {
+        $ilmiy_loyha = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        return view('role-permission.user.loyiha_rahbariroli', ['ilmiy_loyha' => $ilmiy_loyha]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -65,6 +72,32 @@ class UserController extends Controller
         }else{
             return redirect('/laboratory')->with('status','User Updated Successfully with roles');
         }
+    }
+
+    public function ilmiy_loyha_rahbari(Request $request)
+    {
+        
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|max:20',
+            'role' => 'required',
+            'ilmiyloyha' => 'required|array', // Validate ilmiyloyha as an array
+            'ilmiyloyha.*' => 'exists:ilmiy_loyihas,id'
+        ]);
+
+        $user = User::create([
+                        'name' => $request->name,
+                        'email' => $request->email,
+                        'tashkilot_id' => auth()->user()->tashkilot_id,
+                        'password' => Hash::make($request->password),
+                    ]);
+
+        $user->syncRoles($request->role);
+        IlmiyLoyiha::whereIn('id', $request->ilmiyloyha)
+            ->update(['user_id' => $user->id]);
+
+        return redirect('/ilmiyloyiha')->with('status','User Updated Successfully with roles');
     }
 
     public function edit(User $user)

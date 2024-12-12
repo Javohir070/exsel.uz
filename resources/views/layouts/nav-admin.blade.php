@@ -95,7 +95,7 @@
             </li>
         @endrole
 
-        @role('super-admin')
+        @role(['super-admin', 'Ekspert'])
             <li>
                 <a href="{{ route('ilmiyloyihalar.index') }}"
                     class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active' : '' }}">
@@ -273,6 +273,17 @@
             <li>
                 <a href="{{ route('ilmiyloyiha.index') }}"
                     class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active' : '' }}">
+                    <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                    <div class="side-menu__title"> Ilmiy loyihalar </div>
+                </a>
+            </li>
+        @endrole
+
+
+        @role(['Ilmiy_loyiha_rahbari'])
+            <li>
+                <a href="{{ route('scientific_project.index') }}"
+                    class="side-menu side-menu{{ request()->is('scientific-project*') ? '--active' : '' }}{{ request()->is('ilmiyloyiha*') ? '--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                     <div class="side-menu__title"> Ilmiy loyihalar </div>
                 </a>
