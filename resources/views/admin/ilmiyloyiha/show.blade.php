@@ -26,6 +26,7 @@
                     Orqaga
                 </a>
             @endrole
+            
 
         </div>
         @if (session('status'))
@@ -49,6 +50,13 @@
                                 </a>
                             </div>
                         @endcan
+                        @role('Ekspert')
+                            @if ($ilmiyloyiha->id == ($ilmiyloyiha->tekshirivchilars->ilmiy_loyiha_id ?? null))
+                                <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                                    pdf genertsiya
+                                </a>
+                            @endif
+                        @endrole
                     </div>
                     <tr>
                         <!-- <th class="border border-b-2 " style="width: 40px;">#</th> -->
@@ -410,62 +418,65 @@
 
     </div>
     @role('Ekspert')
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-        style="background: white; padding: 20px 20px; border-radius: 20px">
-        <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <form id="science-paper-create-form" method="POST" action="{{ route('tekshirivchilar.store') }}"
-                class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
-                @csrf
-                <div class="grid grid-cols-12 gap-2">
-                    <input type="hidden" name="ilmiyloyiha_id" value="{{ $ilmiyloyiha->id }}">
+        @if ($ilmiyloyiha->id == ($ilmiyloyiha->tekshirivchilars->ilmiy_loyiha_id ?? null))
 
-                    <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
-                        </label>
-                        <select name="status" id="science-sub-category" class="input border w-full mt-2"
-                            required="">
+        
+        @else
+            <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
+                style="background: white; padding: 20px 20px; border-radius: 20px">
+                <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                    <form id="science-paper-create-form" method="POST" action="{{ route('tekshirivchilar.store') }}"
+                        class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                        @csrf
+                        <div class="grid grid-cols-12 gap-2">
+                            <input type="hidden" name="ilmiyloyiha_id" value="{{ $ilmiyloyiha->id }}">
 
-                            <option value="">Status tanlang</option>
+                            <div class="w-full col-span-6">
+                                <label class="flex flex-col sm:flex-row"> <span
+                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
+                                </label>
+                                <select name="status" id="science-sub-category" class="input border w-full mt-2"
+                                    required="">
 
-                            <option value="Ijobiy">Ijobiy</option>
+                                    <option value="">Status tanlang</option>
 
-                            <option value="Qoniqarli">Qoniqarli</option>
+                                    <option value="Ijobiy">Ijobiy</option>
 
-                            <option value="Qoniqarsiz">Qoniqarsiz</option>
+                                    <option value="Qoniqarli">Qoniqarli</option>
+
+                                    <option value="Qoniqarsiz">Qoniqarsiz</option>
 
 
-                        </select><br>
+                                </select><br>
 
-                        @error('muddat')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
-                    </div>
+                                @error('muddat')
+                                    <div class="error">{{ $message }}</div>
+                                @enderror
+                            </div>
 
-                    <div class="w-full col-span-6 ">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> comment</label>
-                        <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                            <div class="w-full col-span-6 ">
+                                <label class="flex flex-col sm:flex-row"> <span
+                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> comment</label>
+                                <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                            </div>
+                        </div>
+
+                    </form><br>
+                    <div class="px-5 pb-5 text-center">
+                        <a href="{{ route('ilmiyloyiha.index') }}"
+                            class="button delete-cancel w-32 border text-gray-700 mr-1">
+                            Bekor qilish
+                        </a>
+                        <button type="submit" form="science-paper-create-form"
+                            class="update-confirm button w-24 bg-theme-1 text-white">
+                            Qo'shish
+                        </button>
                     </div>
                 </div>
-
-            </form><br>
-            <div class="px-5 pb-5 text-center">
-                <a href="{{ route('ilmiyloyiha.index') }}"
-                    class="button delete-cancel w-32 border text-gray-700 mr-1">
-                    Bekor qilish
-                </a>
-                <button type="submit" form="science-paper-create-form"
-                    class="update-confirm button w-24 bg-theme-1 text-white">
-                    Qo'shish
-                </button>
             </div>
-        </div>
-    </div>
+        @endif
 
-    <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-        pdf genertsiya
-    </a>
+        
     @endrole
 
     </div>
