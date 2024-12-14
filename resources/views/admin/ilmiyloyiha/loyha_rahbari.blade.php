@@ -20,7 +20,6 @@
                         <th class="whitespace-no-wrap">Loyiha mavzusi</th>
                         <th class="whitespace-no-wrap">Loyiha rahbari</th>
                         <th class="whitespace-no-wrap">Loyiha turi</th>
-                        <th class="whitespace-no-wrap">Status</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -38,9 +37,6 @@
                         </td>
                         <td>
                             <a href="" class="font-medium ">{{ $xodimlar->turi }}</a>
-                        </td>
-                        <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->dastyri }}</a>
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">

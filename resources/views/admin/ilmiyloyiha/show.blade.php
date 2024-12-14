@@ -362,12 +362,35 @@
                     <tr class="bg-gray-200">
                         <!-- <th class="border border-b-2 ">15</th> -->
                         <th class="border border-b-2 ">Loyiha rahbari lavozimi</th>
-                        <th class="border border-b-2 "> </th>
+                        <th class="border border-b-2 ">  Savolnoma</th>
                     </tr>
 
                     <tr>
                         <!-- <th class="border border-b-2 ">16</th> -->
                         <td class="border ">{{ $ilmiyloyiha->r_lavozimi }} </td>
+                        <td class="border ">
+                            @if ($ilmiyloyiha->savolnoma)
+                                <a href="{{ asset('storage/' . $ilmiyloyiha->savolnoma) }}"
+                                    class="button  bg-theme-1 text-white">Faylni ko'rish</a>
+                            @endif
+                        </td>
+                    </tr>
+
+                    <tr class="bg-gray-200">
+                        <!-- <th class="border border-b-2 ">15</th> -->
+                        <th class="border border-b-2 ">Tashkilotingiz tomonidan davlat buyurtmasi asosida amalga oshirilayotgan ilmiy tadqiqot loyihalarining asosiy natijalari to‘g‘risida
+                        MA’LUMOT</th>
+                        <th class="border border-b-2 ">  </th>
+                    </tr>
+
+                    <tr>
+                        <!-- <th class="border border-b-2 ">16</th> -->
+                        <td class="border ">
+                            @if ($ilmiyloyiha->malumotnoma)
+                                <a href="{{ asset('storage/' . $ilmiyloyiha->malumotnoma) }}"
+                                    class="button  bg-theme-1 text-white">Faylni ko'rish</a>
+                            @endif
+                        </td>
                         <td class="border "></td>
                     </tr>
 
@@ -410,62 +433,60 @@
 
     </div>
     @role('Ekspert')
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-        style="background: white; padding: 20px 20px; border-radius: 20px">
-        <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <form id="science-paper-create-form" method="POST" action="{{ route('tekshirivchilar.store') }}"
-                class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
-                @csrf
-                <div class="grid grid-cols-12 gap-2">
-                    <input type="hidden" name="ilmiyloyiha_id" value="{{ $ilmiyloyiha->id }}">
+        <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
+            style="background: white; padding: 20px 20px; border-radius: 20px">
+            <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                <form id="science-paper-create-form" method="POST" action="{{ route('tekshirivchilar.store') }}"
+                    class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                    @csrf
+                    <div class="grid grid-cols-12 gap-2">
+                        <input type="hidden" name="ilmiyloyiha_id" value="{{ $ilmiyloyiha->id }}">
 
-                    <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
-                        </label>
-                        <select name="status" id="science-sub-category" class="input border w-full mt-2"
-                            required="">
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
+                            </label>
+                            <select name="status" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                            <option value="">Status tanlang</option>
+                                <option value="">Status tanlang</option>
 
-                            <option value="Ijobiy">Ijobiy</option>
+                                <option value="Ijobiy">Ijobiy</option>
 
-                            <option value="Qoniqarli">Qoniqarli</option>
+                                <option value="Qoniqarli">Qoniqarli</option>
 
-                            <option value="Qoniqarsiz">Qoniqarsiz</option>
+                                <option value="Qoniqarsiz">Qoniqarsiz</option>
 
+                            </select><br>
 
-                        </select><br>
+                            @error('muddat')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
 
-                        @error('muddat')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
+                        <div class="w-full col-span-6 ">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> comment</label>
+                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                        </div>
                     </div>
 
-                    <div class="w-full col-span-6 ">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> comment</label>
-                        <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
-                    </div>
+                </form><br>
+                <div class="px-5 pb-5 text-center">
+                    <a href="{{ route('ilmiyloyiha.index') }}"
+                        class="button delete-cancel w-32 border text-gray-700 mr-1">
+                        Bekor qilish
+                    </a>
+                    <button type="submit" form="science-paper-create-form"
+                        class="update-confirm button w-24 bg-theme-1 text-white">
+                        Qo'shish
+                    </button>
                 </div>
-
-            </form><br>
-            <div class="px-5 pb-5 text-center">
-                <a href="{{ route('ilmiyloyiha.index') }}"
-                    class="button delete-cancel w-32 border text-gray-700 mr-1">
-                    Bekor qilish
-                </a>
-                <button type="submit" form="science-paper-create-form"
-                    class="update-confirm button w-24 bg-theme-1 text-white">
-                    Qo'shish
-                </button>
             </div>
         </div>
-    </div>
 
-    <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-        pdf genertsiya
-    </a>
+        <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+            pdf genertsiya
+        </a>
     @endrole
 
     </div>

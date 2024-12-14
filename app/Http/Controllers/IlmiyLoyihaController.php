@@ -11,6 +11,7 @@ use App\Models\Umumiyyil;
 use Illuminate\Http\Request;
 use App\Exports\IlmiyLoyihasExport;
 use Maatwebsite\Excel\Facades\Excel;
+use App\Models\User;
 class IlmiyLoyihaController extends Controller
 {
     /**
@@ -112,7 +113,14 @@ class IlmiyLoyihaController extends Controller
      */
     public function update(UpdateIlmiyLoyihaRequest $request, IlmiyLoyiha $ilmiyloyiha)
     {
-        
+        if($request->hasFile('malumotnoma')){
+            $name_malumotnoma = time().$request->file('malumotnoma')->getClientOriginalName();
+            $path_malumotnoma = $request->file('malumotnoma')->storeAs('IlmiyLoyiha-file', $name_malumotnoma);
+        }
+        if($request->hasFile('savolnoma')){
+            $name_savolnoma = time().$request->file('savolnoma')->getClientOriginalName();
+            $path_savolnoma = $request->file('savolnoma')->storeAs('IlmiyLoyiha-file', $name_savolnoma);
+        }
 
         $umumiyyil = Umumiyyil::findOrFail($ilmiyloyiha->umumiyyil_id);
         $umumiyyil->update([
@@ -184,6 +192,9 @@ class IlmiyLoyihaController extends Controller
             "loyiha_yakunida" => $request->loyiha_yakunida,
             "ilmiy_ishlanma" => $request->ilmiy_ishlanma,
             "mavzusi_ru" => $request->mavzusi_ru,
+            "ijrochi_tashkilot" => $request->ijrochi_tashkilot,
+            "malumotnoma" => $path_malumotnoma,
+            "savolnoma" => $path_savolnoma,
         ]);
         if(auth()->user()->hasRole('labaratoriyaga_masul')){
             return redirect()->route('lab_ilmiyloyiha.index')->with('status',"Ma\'lumotlar muvaffaqiyatli yangilandi.");
@@ -192,6 +203,18 @@ class IlmiyLoyihaController extends Controller
         }
 
 
+    }
+
+    public function masul(){
+
+        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
+
+        $masullar = $users->filter(function($user) {
+            return $user->roles->contains('name', 'Ilmiy_loyiha_rahbari');
+        });
+
+        
+        return view("admin.ilmiyloyiha.masul", ['masullar'=> $masullar]);
     }
 
     /**
@@ -221,6 +244,7 @@ class IlmiyLoyihaController extends Controller
         $ilmiyloyiha = IlmiyLoyiha::where('mavzusi','like','%'.$querysearch.'%')
                 ->orWhere('turi','like','%'.$querysearch.'%')
                 ->orWhere('rahbar_name','like','%'.$querysearch.'%')
+                ->orWhere('raqami','like','%'.$querysearch.'%')
                 ->paginate(10);
         return view('admin.ilmiyloyiha.search_results', compact('ilmiyloyiha'));
     }
