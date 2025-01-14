@@ -61,12 +61,8 @@ class User extends Authenticatable
         return $this->hasMany(TashkilotRahbari::class);
     }
 
-    public function laboratory() 
+    public function laboratory()
     {
-        return $this->belongsTo(Laboratory::class);    
-    }
-    public function ilmiyloyhalar()
-    {
-        return $this->hasMany(IlmiyLoyiha::class);
+        return $this->belongsTo(Laboratory::class);
     }
 }

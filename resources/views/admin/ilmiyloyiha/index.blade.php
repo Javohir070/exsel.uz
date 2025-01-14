@@ -7,11 +7,14 @@
 
         <h2 class="intro-y text-lg font-medium">Ilmiy loyihalar</h2>
         <div>
-            <a href="{{ route("ilmiy_loyha_edit.index") }}" class="button w-24 bg-theme-1 text-white mr-4">
+            <a href="{{ route("ilmiy_loyha_edit.index") }}" class="button w-24 bg-theme-1 text-white mr-2">
                 Masul biriktirish
             </a>
-            <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white">
+            <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white mr-2">
                 Qo'shish
+            </a>
+            <a href="{{ route("masul.index") }}" class="button w-24 bg-theme-1 text-white">
+                Masullar
             </a>
         </div>
     </div>
@@ -27,7 +30,7 @@
                         <th class="whitespace-no-wrap">Loyiha mavzusi</th>
                         <th class="whitespace-no-wrap">Loyiha rahbari</th>
                         <th class="whitespace-no-wrap">Loyiha turi</th>
-                        <th class="whitespace-no-wrap">Status</th>
+                        <!-- <th class="whitespace-no-wrap">Status</th> -->
                         <th class="whitespace-no-wrap">Masul</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
@@ -47,11 +50,19 @@
                         <td>
                             <a href="" class="font-medium ">{{ $xodimlar->turi }}</a>
                         </td>
-                        <td>
+                        <!-- <td>
                             <a href="" class="font-medium ">{{ $xodimlar->dastyri }}</a>
-                        </td>
+                        </td> -->
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->user->name }}</a>
+                            <a href="" class="font-medium "> 
+                                @if($xodimlar->user_id == 1)
+                                <a href="{{ route("ilmiy_loyha_edit.index") }}" class="button  bg-theme-1 text-white mr-4" style="display: ruby;">
+                                    Masul biriktirish
+                                </a>
+                                @else
+                                {{ $xodimlar->user->name }} 
+                                @endif
+                            </a>
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
