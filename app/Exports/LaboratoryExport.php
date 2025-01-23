@@ -7,6 +7,7 @@ use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 use Illuminate\Support\Collection;
+use Carbon\Carbon;
 
 class LaboratoryExport implements FromCollection, WithHeadings, WithMapping
 {
@@ -35,6 +36,8 @@ class LaboratoryExport implements FromCollection, WithHeadings, WithMapping
             'Maqsadli tayanch doktorantura, PhD nafar',
             'Stajyor-tadqiqotchi nafar',
             'Tavsif',
+            'Tugash sanasi',
+            'OTM/ITM'
         ];
     }
 
@@ -52,7 +55,10 @@ class LaboratoryExport implements FromCollection, WithHeadings, WithMapping
         $phd_mus_count = $izlanuvchilar->get('Mustaqil tadqiqotchi, PhD', collect())->count();
         $phd_maq_count = $izlanuvchilar->get('Maqsadli tayanch doktorantura, PhD', collect())->count();
         $intern_count = $izlanuvchilar->get('Stajyor-tadqiqotchi', collect())->count();
-
+        $ilmiyLoyihalarMavzusi = $laboratory->ilmiyLoyihalar->pluck('mavzusi')->implode(', ');
+        $tugash_sana = $laboratory->ilmiyLoyihalar->pluck('tug_sana')->implode(', ');
+        $son_loyihalar = $laboratory->ilmiyLoyihalar->count();
+        // $itm = $laboratory->tashkilot->tashkilot_turi ?? "otm",
         return [
             $laboratory->tashkilot->name,
             $laboratory->name,
@@ -68,6 +74,8 @@ class LaboratoryExport implements FromCollection, WithHeadings, WithMapping
             $phd_maq_count,
             $intern_count,
             $laboratory->tavsif,
+            $tugash_sana,
+            $laboratory->tashkilot->tashkilot_turi ?? "otm"
         ];
     }
 }
