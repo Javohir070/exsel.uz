@@ -24,6 +24,7 @@ class User extends Authenticatable
         'password',
         'tashkilot_id',
         'laboratory_id',
+        'kafedralar_id',
     ];
 
     /**
@@ -64,5 +65,10 @@ class User extends Authenticatable
     public function laboratory()
     {
         return $this->belongsTo(Laboratory::class);
+    }
+
+    public function kafedralar()
+    {
+        return $this->belongsTo(Kafedralar::class);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\IlmiyLoyiha;
+use App\Models\Kafedralar;
 use App\Models\Laboratory;
 use App\Models\Tashkilot;
 use App\Models\Xodimlar;
@@ -25,7 +26,7 @@ class UserController extends Controller
     public function index()
     {
         $users =  User::paginate(15);
-            
+
         return view('role-permission.user.index', ['users' => $users]);
     }
 
@@ -33,13 +34,14 @@ class UserController extends Controller
     {
         $roles = Role::pluck('name','name')->all();
         $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $tashkilot_id = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->get();
         $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
-        return view('role-permission.user.create', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar, 'lab' => $lab]);
+        return view('role-permission.user.create', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar, 'lab' => $lab, 'kafedralar' => $kafedralar]);
     }
 
-    public function ilmiy_loyha_masullar() 
+    public function ilmiy_loyha_masullar()
     {
         $ilmiy_loyha = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
         return view('role-permission.user.loyiha_rahbariroli', ['ilmiy_loyha' => $ilmiy_loyha]);
@@ -52,20 +54,22 @@ class UserController extends Controller
             'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|max:20',
             'roles' => 'required',
-            'tashkilot_id' => 'required'
         ]);
 
         $roluchun = $request->roles;
         $user = User::create([
                         'name' => $request->name,
                         'laboratory_id' => $request->laboratory_id,
+                        'kafedralar_id' => $request->kafedralar_id,
                         'email' => $request->email,
-                        'tashkilot_id' => $request->tashkilot_id,
+                        'tashkilot_id' => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
                         'password' => Hash::make($request->password),
                     ]);
 
         $user->syncRoles($request->roles);
-        if($roluchun[0] == "admin"){
+        if(!empty($user->kafedralar_id)){
+            return redirect('/kafedralar')->with('status','User Updated Successfully with roles');
+        }else if($roluchun[0] == "admin"){
             return redirect('/users')->with('status','User Updated Successfully with roles');
         }else if($roluchun[0] == "laboratoriya"){
             return redirect('/laboratory')->with('status','User Updated Successfully with roles');
@@ -76,7 +80,7 @@ class UserController extends Controller
 
     public function ilmiy_loyha_rahbari(Request $request)
     {
-        
+
         $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255|unique:users,email',

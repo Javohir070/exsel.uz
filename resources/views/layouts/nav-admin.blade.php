@@ -214,6 +214,23 @@
                     <div class="side-menu__title"> Labaratoriya </div>
                 </a>
             </li>
+
+            <li>
+                <a href="{{ route('fakultetlar.index') }}"
+                    class="side-menu side-menu{{ request()->is('fakultetlar*') ? '--active' : '' }}">
+                    <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                    <div class="side-menu__title"> Fakultetlar </div>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('kafedralar.index') }}"
+                    class="side-menu side-menu{{ request()->is('kafedralar*') ? '--active' : '' }}">
+                    <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                    <div class="side-menu__title"> Kafedralar </div>
+                </a>
+            </li>
+
             <li>
                 <a href="{{ route('ilmiy_izlanuvchi.index') }}"
                     class="side-menu side-menu{{ request()->is('ilmiy-izlanuvchi*') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
@@ -222,6 +239,17 @@
                 </a>
             </li>
         @endrole
+
+        @role('kafedra_mudiri')
+        <li>
+            <a href="{{ route('kafedra.index') }}"
+                class="side-menu side-menu{{ request()->is('kafedra*') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Kafedra </div>
+            </a>
+        </li>
+        @endrole
+
         @role('labaratoriyaga_masul')
             <li>
                 <a href="{{ route('lab_xodimlar.index') }}"
@@ -353,7 +381,7 @@
                     <div class="side-menu__title"> Ilmiy loyihalar </div>
                 </a>
             </li>
-        
+
             <li>
                 <a href="{{ route('itm.xujalik') }}"
                     class="side-menu side-menu{{ request()->is('xujalik*') ? '--active' : '' }}{{ request()->is('itmxujalik*') ? '--active' : '' }}">

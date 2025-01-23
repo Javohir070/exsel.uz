@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\FakultetlarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IlmiybnTaminlangaController;
 use App\Http\Controllers\IlmiyLoyihaController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\IlmiyUnvonController;
 use App\Http\Controllers\IqtisodiyMoliyaviyController;
 use App\Http\Controllers\ItmController;
 use App\Http\Controllers\IzlanuvchilarController;
+use App\Http\Controllers\KafedralarController;
 use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\TashkilotController;
 use App\Http\Controllers\TashkilotUserlarController;
@@ -51,12 +53,12 @@ Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home
 Route::middleware('auth')->group(function () {
     Route::post('password/change', [UserController::class, 'changePassword'])->name('password.change');
     Route::get('generate-pdf/{ilmiyId}', [App\Http\Controllers\PDFController::class, 'generatePDF']);
-    //import qilish 
+    //import qilish
     //end import
     //excel uchun export url lar
     Route::post('/import', [XodimlarController::class, 'import'])->name('import');
     // Route::get('/search', [SearchController::class, 'search'])->name('search');
-    
+
     // end excel uchun export url lar
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -99,11 +101,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/itm-xodimlar',[ItmController::class, 'itm_export'])->name('itm.export');
     Route::get('/itm-xujalik',[ItmController::class, 'itm_xujalik_export'])->name('itm.xujalikloyhalar');
     Route::get('/itm-ilmiy',[ItmController::class, 'itm_loyhalar_export'])->name('itm.ilmiyloyhalar');
-   
-    //end itm 
+
+    //end itm
 
     // labaratoriya uchun
-     
+
     Route::get('lab-user', [LaboratoryController::class,'lab_biriktirilgan_xodimlar'])->name('lab_xodimlar.index');
     Route::get('lab-xujalik', [LaboratoryController::class,'lab_biriktirilgan_xujalik'])->name('lab_xujalik.index');
     Route::get('lab-ilmiyloyhi', [LaboratoryController::class,'lab_biriktirilgan_ilmiyloyha'])->name('lab_ilmiyloyiha.index');
@@ -126,6 +128,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/searchizlanu-admin', [IzlanuvchilarController::class, 'searchIzlanuvchilar_admin'])->name('searchizlanuvchilar_admin');
     Route::post('/isactive/{id}/edit', [IzlanuvchilarController::class, 'is_active'])->name('is_active');
     Route::post('/labbiriktirish/{id}/edit', [IzlanuvchilarController::class, 'labId_biriktirish']);
+
+    Route::get('responsible', [KafedralarController::class, "responsible_masullar"])->name("responsible.index");
+    Route::get('kafedra', [KafedralarController::class, "kafedra"])->name("kafedra.index");
     //labaratoriya uchun
     Route::resources([
         'tashkilot' => TashkilotController::class,
@@ -144,6 +149,8 @@ Route::middleware('auth')->group(function () {
         'laboratory' => LaboratoryController::class,
         'izlanuvchilar' => IzlanuvchilarController::class,
         'tekshirivchilar' => TekshirivchilarController::class,
+        'fakultetlar' => FakultetlarController::class,
+        'kafedralar' => KafedralarController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });
@@ -162,7 +169,7 @@ Route::group(['middleware' => ['role:super-admin|admin']], function() {
     Route::get('/export-xujaliklar', [XujalikController::class, 'exporxujaliklar'])->name('exporxujaliklar');
     Route::resource('/ilmiyunvon', IlmiyUnvonController::class);
     Route::resource('roles', RoleController::class);
-    
+
     Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
 
 });
