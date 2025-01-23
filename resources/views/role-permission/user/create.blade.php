@@ -63,7 +63,7 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xodimlar
                         </label>
                         <select name="name" class="input border w-full mt-2">
-                            <option value=""> Xodimlar tanlash</option>
+                            <option value=""> Xodimni biriktirish</option>
                             @foreach ($xodimlar as $role)
                                 <option value="{{ $role->fish }}">{{ $role->fish }}</option>
                             @endforeach
@@ -104,14 +104,14 @@
                 @endrole
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Email
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Login (foydalanuvchi email adresini kiriting)
                     </label>
                     <input type="email" name="email" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Password
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Parolni kiriting
                     </label>
                     <input type="text" name="password" class="input w-full border mt-2" required="">
                 </div>
@@ -121,10 +121,10 @@
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Role
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Rol (foydalanuvchining tizimdagi roli)
                     </label>
                     <select name="roles[]" class="input border w-full mt-2" required="">
-                        <option value=""> Role tanlash</option>
+                        <option value=""> Rolni tanlang</option>
                         @role('admin')
                         @foreach ($roles as $role)
                             @if ($role !== 'super-admin' && $role !== 'admin' && $role !== 'Ekspert' && $role !== 'Itm-tashkilotlar' && $role !== 'Xujalik_shartnomalari')
