@@ -16,7 +16,7 @@
                 Kafedra mudirini biriktirish
             </a>
             <a href="{{ route('responsible.index') }}" class="button ml-3 w-24 bg-theme-1 text-white">
-                Mas'ullar
+            Kafedra mudirlari
             </a>
         </div>
 
@@ -32,7 +32,7 @@
                     <th class="whitespace-no-wrap">№</th>
                     <th class="whitespace-no-wrap">Kafedra nomi </th>
                     <th class="whitespace-no-wrap">Tashkil etilgan yili</th>
-                    <th class="whitespace-no-wrap">Mas'ul</th>
+                    <th class="whitespace-no-wrap">Kafedra mudiri</th>
                     <th class="whitespace-no-wrap text-center">Harakat</th>
                 </tr>
             </thead>

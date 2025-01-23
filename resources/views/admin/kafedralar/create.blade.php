@@ -5,7 +5,7 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Kafedralar qo'shish</h2>
+    <h2 class="intro-y text-lg font-medium">Kafedra</h2>
 
 
 
@@ -58,7 +58,7 @@
                 Bekor qilish
             </a>
             <button type="submit" form="science-paper-create-form" class="update-confirm button w-24 bg-theme-1 text-white">
-                Qo'shish
+                Saqlash
             </button>
         </div>
     </div>

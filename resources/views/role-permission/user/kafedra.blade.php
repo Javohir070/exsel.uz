@@ -102,9 +102,22 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Parolni kiriting
                     </label>
-                    <input type="text" name="password" class="input w-full border mt-2" required="">
+                    <input type="password" name="password" class="input w-full border mt-2" required="">
                 </div>
                 @error('password')
+                    <div class="error">{{ $message }}</div>
+                @enderror
+                <div class="w-full col-span-6 mt-4">
+                    
+                </div>
+
+                <div class="w-full col-span-6 mt-4">
+                    <label class="flex flex-col sm:flex-row">
+                        <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Parolni tasdiqlang
+                    </label>
+                    <input type="password" name="password_confirmation" class="input w-full border mt-2" required="">
+                </div>
+                @error('password_confirmation')
                     <div class="error">{{ $message }}</div>
                 @enderror
 
@@ -119,7 +132,7 @@
             </a>
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
-                Qo'shish
+                Saqlash
             </button>
         </div>
     </div>

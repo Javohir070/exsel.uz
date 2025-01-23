@@ -5,7 +5,7 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Xodim qo'shish</h2>
+    <h2 class="intro-y text-lg font-medium">Xodim ma'lumotlari</h2>
 
 
 
@@ -55,7 +55,7 @@
                     </label>
                     <select name="jinsi" value="{{ old('jinsi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="">Jinsni tanlang</option>
+                        <option value=""></option>
 
                         <option value="Erkak">Erkak</option>
 
@@ -69,59 +69,12 @@
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ish tartibi
-                    </label>
-                    <select name="ish_tartibi" id="ish_tartibi" value="{{ old('ish_tartibi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
-
-                        <option value="">Ish tartibini tanlang</option>
-
-                        <option value="Asosiy">Asosiy</option>
-
-                        <option value="O‘rindoshlik">O‘rindoshlik</option>
-
-                        <option value="Soatbay">Soatbay</option>
-
-                    </select>
-                    @error('ish_tartibi')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                
-
-                <div class="w-full col-span-6">
-                    <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shtat birligi
-                    </label>
-                    <select name="shtat_birligi" value="{{ old('shtat_birligi') }}" id="science-sub-category" class="input border w-full mt-2" >
-
-                        <option value="">Shtat birligini tanlang</option>
-
-                        <option value="0.25">0.25</option>
-
-                        <option value="0.5">0.5</option>
-
-                        <option value="0.75">0.75</option>
-
-                        <option value="1">1</option>
-
-                        <option value="1.25">1.25</option>
-
-                        <option value="1.5">1.5</option>
-
-                    </select>
-                    @error('shtat_birligi')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
-                </div>
-                <div class="w-full col-span-6">
-                    <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Lavozimi
                     </label>
                     <!-- <input type="text" name="lavozimi"  class="input w-full border mt-2" required=""> -->
                     
                     <select name="lavozimi" value="{{ old('lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
-                        <option value="">Lavozini tanlang</option>
+                        <option value=""></option>
                         <option value="Dekan o‘rinbosari">Dekan o‘rinbosari</option>
                         <option value="Kafedra mudiri">Kafedra mudiri</option>
                         <option value="Professor">Professor</option>
@@ -168,6 +121,73 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
+
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ish tartibi
+                    </label>
+                    <select name="ish_tartibi" id="ish_tartibi" value="{{ old('ish_tartibi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                        <option value=""></option>
+
+                        <option value="Asosiy">Asosiy</option>
+
+                        <option value="O‘rindoshlik">O‘rindoshlik</option>
+
+                        <option value="Soatbay">Soatbay</option>
+
+                    </select>
+                    @error('ish_tartibi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                
+
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shtat birligi
+                    </label>
+                    <select name="shtat_birligi" value="{{ old('shtat_birligi') }}" id="science-sub-category" class="input border w-full mt-2" >
+
+                        <option value=""></option>
+
+                        <option value="0.25">0.25</option>
+
+                        <option value="0.5">0.5</option>
+
+                        <option value="0.75">0.75</option>
+
+                        <option value="1">1</option>
+
+                        <option value="1.25">1.25</option>
+
+                        <option value="1.5">1.5</option>
+
+                    </select>
+                    @error('shtat_birligi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row">  Ma’lumoti
+                    </label>
+                    <!-- <input type="text" name="malumoti" value="{{ old('malumoti') }}" class="input w-full border mt-2"> -->
+                    <select name="malumoti" value="{{ old('malumoti') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                        <option value=""></option>
+
+                        <option value="Oliy">Oliy</option>
+
+                        <option value="O'rta maxsus">O'rta maxsus</option>
+
+                    </select><br>
+                    @error('malumoti')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+                
                 
 
                 <div class="w-full col-span-6">
@@ -177,11 +197,11 @@
                     </label>
                     <select name="pedagoglik" value="{{ old('pedagoglik') }}" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                        <option value="">Pedagogik faoliyat bilan shug‘ullanishi tanlang</option>
+                        <option value=""></option>
 
                         <option value="ha">ha</option>
 
-                        <option value="yoq">yoq</option>
+                        <option value="mavjud emas">mavjud emas</option>
 
                     </select><br>
                     @error('pedagoglik')
@@ -200,48 +220,10 @@
                 </div>
 
                 <div class="w-full col-span-6">
-                    <label class="flex flex-col sm:flex-row">  Ma’lumoti
-                    </label>
-                    <!-- <input type="text" name="malumoti" value="{{ old('malumoti') }}" class="input w-full border mt-2"> -->
-                    <select name="malumoti" value="{{ old('malumoti') }}" id="science-sub-category" class="input border w-full mt-2" required="">
-
-                        <option value="">Ma’lumotini tanlang</option>
-
-                        <option value="Oliy">Oliy</option>
-
-                        <option value="O'rta maxsus">O'rta maxsus</option>
-
-                    </select><br>
-                    @error('malumoti')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="w-full col-span-6">
-                    <label class="flex flex-col sm:flex-row">  O‘zbekiston Fanlar akademiyasi
-                        haqiqiy a’zosi 
-                    </label>
-                    <!-- <input type="text" name="uzbek_panlar_azosi" value="{{ old('uzbek_panlar_azosi') }}" class="input w-full border mt-2"> -->
-                    <select name="uzbek_panlar_azosi" value="{{ old('uzbek_panlar_azosi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
-
-                        <option value="">O‘zbekiston Fanlar akademiyasi
-                        haqiqiy tanlang</option>
-
-                        <option value="Ha , Akademik">Ha , Akademik</option>
-
-                        <option value="Mavjud emas">Mavjud emas</option>
-
-                    </select><br>
-                    @error('uzbek_panlar_azosi')
-                        <div class="error">{{ $message }}</div>
-                    @enderror
-                </div>
-
-                <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">  Ilmiy darajasi</label>
                     <select name="ilmiy_daraja" id="ilmiy_daraja" value="{{ old('ilmiy_daraja') }}" id="science-sub-category" class="input border w-full mt-2">
 
-                        <option value="">Ilmiy darajasini tanlang</option>
+                        <option value=""></option>
 
                         <option value="Fan nomzodi">Fan nomzodi</option>
 
@@ -252,7 +234,7 @@
                         <option value="Fan doktori">Fan doktori</option>
 
                         <option value="Akademik">Akademik</option>
-                        <option value="yoq">yoq</option>
+                        <option value="mavjud emas">mavjud emas</option>
 
                     </select><br>
                     @error('ilmiy_daraja')
@@ -266,7 +248,7 @@
                     <!-- <input type="number" name="ilmiy_daraja_yil" value="{{ old('ilmiy_daraja_yil') }}" class="input w-full border mt-2" required=""
                     > -->
                     <select name="ilmiy_daraja_yil" value="{{ old('ilmiy_daraja_yil') }}" class="science-sub-categoryyil input border w-full mt-2 " required="">
-                        <option value="">yil tanlang</option>
+                        <option value=""></option>
                     </select>
                     @error('ilmiy_daraja_yil')
                         <div class="error">{{ $message }}</div>
@@ -278,14 +260,14 @@
                     </label>
                     <select name="ilmiy_unvoni" id="ilmiy_unvoni" value="{{ old('ilmiy_unvoni') }}" id="science-sub-category" class="input border w-full mt-2">
 
-                        <option value="">Ilmiy unvonini tanlang</option>
+                        <option value=""></option>
 
                         <option value="Professor">Professor</option>
 
                         <option value="Dotsent">Dotsent</option>
                         <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
                         <option value="Akademik">Akademik</option>
-                        <option value="yoq">yoq</option>
+                        <option value="mavjud emas">mavjud emas</option>
 
                     </select><br>
                     @error('ilmiy_unvoni')
@@ -316,12 +298,38 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
+                
+
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row">  O‘zbekiston Fanlar akademiyasi
+                        haqiqiy a’zosi 
+                    </label>
+                    <!-- <input type="text" name="uzbek_panlar_azosi" value="{{ old('uzbek_panlar_azosi') }}" class="input w-full border mt-2"> -->
+                    <select name="uzbek_panlar_azosi" value="{{ old('uzbek_panlar_azosi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                        <option value=""></option>
+
+                        <option value="Ha , Akademik">Ha , Akademik</option>
+
+                        <option value="Mavjud emas">Mavjud emas</option>
+
+                    </select><br>
+                    @error('uzbek_panlar_azosi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                
+
+                
+
+                
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telefon raqami
                     </label>
-                    <input type="tel" name="phone" placeholder="+998 90 123 45 67" value="{{ old('phone') }}" class="input w-full border mt-2" required="">
+                    <input type="tel" name="phone" placeholder="+998 90 123 45 67" value="+998" class="input w-full border mt-2" required="">
                     @error('phone')
                         <div class="error">{{ $message }}</div>
                     @enderror
@@ -336,7 +344,8 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="w-full col-span-6 " >
+
+                <!-- <div class="w-full col-span-6 " >
                     <label class="flex flex-col sm:flex-row">   Laboratoriyani tanlang</label>
                     <select name="laboratory_id" value="{{old('laboratory_id')}}"  class="input border w-full mt-2" >
 
@@ -350,7 +359,8 @@
                     @error('laboratory_id')
                         <div class="error">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> -->
+
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">
@@ -366,7 +376,7 @@
 
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
-                Qo'shish
+                Saqlash
             </button>
         </div>
     </div>
