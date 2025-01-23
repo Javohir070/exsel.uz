@@ -14,7 +14,7 @@
     padding: 20px 20px;
     border-radius: 20px">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-        <form id="science-paper-create-form" method="POST" action="{{ route("laboratory.update",['laboratory'=>$laboratory->id]) }}"
+        <form id="science-paper-create-form" method="POST" action="{{ route("kafedralar.update",['kafedralar'=>$kafedralar->id]) }}"
             class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
             @csrf
             @method('PUT')
@@ -23,7 +23,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Labaratoriyaning nomi
                         </label>
-                        <input type="text" name="name" value="{{ $laboratory->name }}" class="input w-full border mt-2" required="">
+                        <input type="text" name="name" value="{{ $kafedralar->name }}" class="input w-full border mt-2" required="">
                         @error('name')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -33,10 +33,22 @@
                         <label class="flex flex-col sm:flex-row"> <span
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkil etilgan yil
                         </label>
-                        <input type="number" name="tash_yil" value="{{ $laboratory->tash_yil }}" class="input w-full border mt-2" required="">
+                        <input type="number" name="tash_yil" value="{{ $kafedralar->tash_yil }}" class="input w-full border mt-2" required="">
                         @error('tash_yil')
                             <div class="error">{{ $message }}</div>
                         @enderror
+                    </div>
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fakultetni
+                        </label>
+                        <select name="fakultetlar_id" class="input border w-full mt-2" required="">
+                            <option value=""> fakultetni tanlash</option>
+                            @foreach ($fakultetlar as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
 

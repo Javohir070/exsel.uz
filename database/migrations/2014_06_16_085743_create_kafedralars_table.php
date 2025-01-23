@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('kafedralars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tashkilot_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('fakultetlar_id')->constrained()->cascadeOnDelete();
             $table->string('name');
             $table->string('tash_yil');
             $table->timestamps();

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fakultetlar;
 use App\Models\Kafedralar;
 use App\Http\Requests\StoreKafedralarRequest;
 use App\Http\Requests\UpdateKafedralarRequest;
@@ -32,7 +33,8 @@ class KafedralarController extends Controller
      */
     public function create()
     {
-        return view("admin.kafedralar.create");
+        $fakultetlar = Fakultetlar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        return view("admin.kafedralar.create", ["fakultetlar"=>$fakultetlar]);
     }
 
 
@@ -56,6 +58,7 @@ class KafedralarController extends Controller
         Kafedralar::create([
             "tashkilot_id" => auth()->user()->tashkilot_id,
             "name" => $request->name,
+            'fakultetlar_id' => $request->fakultetlar_id,
             "tash_yil" => $request->tash_yil
         ]);
 
@@ -75,7 +78,8 @@ class KafedralarController extends Controller
      */
     public function edit(Kafedralar $kafedralar)
     {
-        return view("admin.kafedralar.edit", ["kafedralar" => $kafedralar]);
+        $fakultetlar = Fakultetlar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        return view("admin.kafedralar.edit", ["kafedralar" => $kafedralar, "fakultetlar" => $fakultetlar]);
     }
 
     /**
@@ -83,7 +87,11 @@ class KafedralarController extends Controller
      */
     public function update(UpdateKafedralarRequest $request, Kafedralar $kafedralar)
     {
-        $kafedralar->update($request->toArray());
+        $kafedralar->update([
+            "name" => $request->name,
+            'fakultetlar_id' => $request->fakultetlar_id,
+            "tash_yil" => $request->tash_yil
+        ]);
 
         return redirect('/kafedralar')->with("status",'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }

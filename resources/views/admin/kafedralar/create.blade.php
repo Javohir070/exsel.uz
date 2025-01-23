@@ -38,6 +38,18 @@
                         @enderror
                     </div>
 
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fakultetni
+                        </label>
+                        <select name="fakultetlar_id" class="input border w-full mt-2" required="">
+                            <option value=""> fakultetni tanlash</option>
+                            @foreach ($fakultetlar as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
 
             </div><br>
         </form><br>
