@@ -12,8 +12,8 @@
                 Qo'shish
             </a>
 
-            <a href="{{ url('users/create') }}" class="button ml-3 w-24 bg-theme-1 text-white">
-                Mas'ul biriktirsh
+            <a href="{{ route('kafedra_rol.index') }}" class="button ml-3 w-24 bg-theme-1 text-white">
+                Kafedra mudirini biriktirish
             </a>
             <a href="{{ route('responsible.index') }}" class="button ml-3 w-24 bg-theme-1 text-white">
                 Mas'ullar

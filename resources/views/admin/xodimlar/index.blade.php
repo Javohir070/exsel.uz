@@ -27,12 +27,12 @@
                 </a>
 
                 <a href="{{ url('tashkilot/'.auth()->user()->tashkilot_id.'/export') }}" class="button ml-3 w-24 bg-theme-1 text-white">
-                   Barcha xodimlarni Excel yuklab olish
+                    Export
                 </a>
 
-                <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal" 
+                <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                     class="button w-24 ml-3 bg-theme-1 text-white">
-                    Excel yuklash
+                    Import
                 </a>
             </div>
         </div>
@@ -157,7 +157,7 @@
 
                             </div><br>
                             <div class="w-full col-span-12">
-                            
+
 
                                 <label class="flex flex-col sm:flex-row"> <span
                                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excel yuklash
@@ -175,8 +175,8 @@
 
         </div>
         <div class="px-5 pb-5 text-center">
-            
-          
+
+
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </button>

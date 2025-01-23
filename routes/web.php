@@ -128,6 +128,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/searchizlanu-admin', [IzlanuvchilarController::class, 'searchIzlanuvchilar_admin'])->name('searchizlanuvchilar_admin');
     Route::post('/isactive/{id}/edit', [IzlanuvchilarController::class, 'is_active'])->name('is_active');
     Route::post('/labbiriktirish/{id}/edit', [IzlanuvchilarController::class, 'labId_biriktirish']);
+    Route::get('/kafedra-rol', [UserController::class, 'kafedra_rol'])->name('kafedra_rol.index');
+
+    Route::post('/kafedrarol', [UserController::class, 'kafedrarol_store'])->name('kafedrarol.store');
+
 
     Route::get('responsible', [KafedralarController::class, "responsible_masullar"])->name("responsible.index");
     Route::get('kafedra', [KafedralarController::class, "kafedra"])->name("kafedra.index");

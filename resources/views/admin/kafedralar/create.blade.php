@@ -20,7 +20,7 @@
             <div class="grid grid-cols-12 gap-2">
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Kafedralarning nomi
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Kafedra nomi
                         </label>
                         <input type="text" name="name" value="{{ old('name') }}" class="input w-full border mt-2" required="">
                         @error('name')
@@ -30,7 +30,7 @@
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkil etilgan yilli
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkil etilgan yili
                         </label>
                         <input type="number" name="tash_yil" value="{{ old('tash_yil') }}" class="input w-full border mt-2" required="">
                         @error('tash_yil')
@@ -40,10 +40,10 @@
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fakultetni
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fakultetni tanlang
                         </label>
                         <select name="fakultetlar_id" class="input border w-full mt-2" required="">
-                            <option value=""> fakultetni tanlash</option>
+                            <option value=""> </option>
                             @foreach ($fakultetlar as $role)
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
                             @endforeach
@@ -54,7 +54,7 @@
             </div><br>
         </form><br>
         <div class="px-5 pb-5 text-center">
-            <a href="{{ route('tashkilotrahbari.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
+            <a href="#"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </a>
             <button type="submit" form="science-paper-create-form" class="update-confirm button w-24 bg-theme-1 text-white">

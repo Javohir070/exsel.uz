@@ -2,7 +2,7 @@
 @section("content")
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Mas'ul qo'shish </h2>
+    <h2 class="intro-y text-lg font-medium">Kafedra mudirini biriktirish</h2>
 
     @role('admin')
     <a href="/" class="button w-24 bg-theme-1 text-white">
@@ -58,17 +58,19 @@
                     </div>
                 @else
 
-                    <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xodimlar
-                        </label>
-                        <select name="name" class="input border w-full mt-2">
-                            <option value=""> Xodimni biriktirish</option>
-                            @foreach ($xodimlar as $role)
-                                <option value="{{ $role->fish }}">{{ $role->fish }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Kafedrani tanlang
+                    </label>
+                    <select name="kafedralar_id" class="input border w-full mt-2">
+                        <option value=""> </option>
+                        @foreach ($kafedralar as $role)
+                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+
                 @endif
                 @endrole
                 @role('admin')
@@ -88,17 +90,18 @@
 
                 @else
 
-                    <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Kafedralar
-                        </label>
-                        <select name="kafedralar_id" class="input border w-full mt-2">
-                            <option value=""> Kafedralar tanlash</option>
-                            @foreach ($kafedralar as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Kafedra mudurini tanlang
+                    </label>
+                    <select name="name" class="input border w-full mt-2">
+                        <option value=""></option>
+                        @foreach ($xodimlar as $role)
+                            <option value="{{ $role->fish }}">{{ $role->fish }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
                 @endif
 
                 @endrole
@@ -119,7 +122,7 @@
                     <div class="error">{{ $message }}</div>
                 @enderror
 
-                <div class="w-full col-span-6">
+                {{-- <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Rol (foydalanuvchining tizimdagi roli)
                     </label>
@@ -143,7 +146,7 @@
                     @error('roles')
                         <div class="error">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
                 @role('super-admin')
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span

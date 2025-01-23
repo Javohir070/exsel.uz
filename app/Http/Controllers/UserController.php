@@ -41,6 +41,18 @@ class UserController extends Controller
         return view('role-permission.user.create', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar, 'lab' => $lab, 'kafedralar' => $kafedralar]);
     }
 
+    public function kafedra_rol()
+    {
+        $roles = Role::pluck('name','name')->all();
+        $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        $tashkilot_id = auth()->user()->tashkilot_id;
+        $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
+        $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
+        return view('role-permission.user.kafedra', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar, 'lab' => $lab, 'kafedralar' => $kafedralar]);
+
+    }
+
     public function ilmiy_loyha_masullar()
     {
         $ilmiy_loyha = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
@@ -76,6 +88,31 @@ class UserController extends Controller
         }else{
             return redirect('/laboratory')->with('status','User Updated Successfully with roles');
         }
+    }
+
+    public function kafedrarol_store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|string|min:8|max:20',
+            'roles' => 'required',
+        ]);
+
+
+        $user = User::create([
+                        'name' => $request->name,
+                        'laboratory_id' => $request->laboratory_id,
+                        'kafedralar_id' => $request->kafedralar_id,
+                        'email' => $request->email,
+                        'tashkilot_id' => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
+                        'password' => Hash::make($request->password),
+                    ]);
+
+        $user->syncRoles($request->roles);
+
+        return redirect('/kafedralar')->with('status','User Updated Successfully with roles');
+
     }
 
     public function ilmiy_loyha_rahbari(Request $request)
