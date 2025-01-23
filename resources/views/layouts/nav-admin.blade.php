@@ -241,13 +241,79 @@
         @endrole
 
         @role('kafedra_mudiri')
+
+        <li>
+            <a href="{{ route('kafedralar_xodimlar.index') }}"
+                class="side-menu side-menu{{ request()->is('kafedralar-user*') ? '--active' : '' }}{{ request()->is('xodimlar*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+                <div class="side-menu__title"> Xodimlar </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('kafedralar_ilmiyloyiha.index') }}"
+                class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active' : '' }}{{ request()->is('kafedralar-ilmiyloyhi*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__title"> Ilmiy loyhilar </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('kafedralar_xujalik.index') }}"
+                class="side-menu side-menu{{ request()->is('kafedralar-xujalik*') ? '--active' : '' }}{{ request()->is('xujalik*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__title"> Xo'jalik shartnomalari </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('dalolatnoma.index') }}"
+                class="side-menu side-menu{{ request()->is('dalolatnoma*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__title"> Dalolatnomalar </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('monografiyalar.index') }}"
+                class="side-menu side-menu{{ request()->is('monografiyalar*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__title"> Monografiyalar </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('intellektualmulk.index') }}"
+                class="side-menu side-menu{{ request()->is('intellektualmulk*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__title"> Intellektual mulk </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('ilmiymaqolalar.index') }}"
+                class="side-menu side-menu{{ request()->is('ilmiymaqolalar*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__title"> Ilmiy maqolalar </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('ilmiytezislar.index') }}"
+                class="side-menu side-menu{{ request()->is('ilmiytezislar*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__title"> Ilmiy tezislar</div>
+            </a>
+        </li>
+
         <li>
             <a href="{{ route('kafedra.index') }}"
-                class="side-menu side-menu{{ request()->is('kafedra*') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
+                class="side-menu side-menu{{ request()->is('kafedra') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Kafedra </div>
             </a>
         </li>
+
+
+
         @endrole
 
         @role('labaratoriyaga_masul')

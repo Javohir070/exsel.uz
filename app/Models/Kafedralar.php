@@ -12,7 +12,26 @@ class Kafedralar extends Model
 
     public function tashkilot()
     {
-        return $this->belongsTo(Tashkilot::class, "tashkilot_id");
+        return $this->belongsTo(Tashkilot::class);
+    }
+
+    public function xodimlar()
+    {
+        return $this->hasMany(Xodimlar::class);
+    }
+    public function xujaliklar()
+    {
+       return $this->hasMany(Xujalik::class);
+    }
+
+    public function ilmiyLoyihalar()
+    {
+       return $this->hasMany(IlmiyLoyiha::class);
+    }
+
+    public function izlanuvchilar()
+    {
+       return $this->hasMany(Izlanuvchilar::class);
     }
 
     public function user()

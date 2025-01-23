@@ -72,7 +72,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Lavozimi
                     </label>
                     <!-- <input type="text" name="lavozimi"  class="input w-full border mt-2" required=""> -->
-                    
+
                     <select name="lavozimi" value="{{ old('lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
                         <option value=""></option>
                         <option value="Dekan o‘rinbosari">Dekan o‘rinbosari</option>
@@ -82,38 +82,38 @@
                         <option value="Katta o‘qituvchi">Katta o‘qituvchi</option>
                         <option value="Assistent, o‘qituvchi">Assistent, o‘qituvchi</option>
                         <option value="O‘qituvchi-stajer">O‘qituvchi-stajer</option>
-                        <option value="Rektor">Rektor</option> 
-                        <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option> 
+                        <option value="Rektor">Rektor</option>
+                        <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option>
                         <option value="Direktor">Direktor</option>
                         <option value="Prorektor">Prorektor</option>
                         <option value="Filial direktorining o‘rinbosari">Filial direktorining o‘rinbosari</option>
                         <option value="Dekan">Dekan</option>
                         <option value="Filial direktori">Filial direktori</option>
-                        <option value="Ilmiy kotib">Ilmiy kotib</option> 
-                        <option value="Ilmiy ishlar bo‘yicha direktor o‘rinbosari">Ilmiy ishlar bo‘yicha direktor o‘rinbosari</option> 
-                        <option value="Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri">Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri</option> 
-                        <option value="Umumiy masalalar bo‘yicha direktor o‘rinbosari">Umumiy masalalar bo‘yicha direktor o‘rinbosari</option> 
-                        <option value="Moliya-iqtisod bo‘limi boshlig‘i">Moliya-iqtisod bo‘limi boshlig‘i</option> 
+                        <option value="Ilmiy kotib">Ilmiy kotib</option>
+                        <option value="Ilmiy ishlar bo‘yicha direktor o‘rinbosari">Ilmiy ishlar bo‘yicha direktor o‘rinbosari</option>
+                        <option value="Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri">Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri</option>
+                        <option value="Umumiy masalalar bo‘yicha direktor o‘rinbosari">Umumiy masalalar bo‘yicha direktor o‘rinbosari</option>
+                        <option value="Moliya-iqtisod bo‘limi boshlig‘i">Moliya-iqtisod bo‘limi boshlig‘i</option>
 
-                        <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option> 
-                        <option value="Bosh muhandis">Bosh muhandis</option> 
-                        <option value="Bosh energetik">Bosh energetik</option> 
-                        <option value="Bosh mexanik">Bosh mexanik</option> 
-                        <option value="Mutaxassis">Mutaxassis</option> 
-                        <option value="Expert">Expert</option> 
-                        <option value="Hisobchi">Hisobchi</option> 
-                        <option value="Ilmiy maslahatchi">Ilmiy maslahatchi</option> 
-                        <option value="Maslahatchi">Maslahatchi</option> 
-                        <option value="Laborant">Laborant</option> 
-                        <option value="Kadrlar bo‘yicha mutaxassis">Kadrlar bo‘yicha mutaxassis</option> 
-                        
-                        <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option> 
-                        <option value="Yetakchi muhandis">Yetakchi muhandis</option> 
-                        <option value="Bosh ilmiy xodim">Bosh ilmiy xodim</option> 
-                        <option value="Yetakchi ilmiy xodim">Yetakchi ilmiy xodim</option> 
-                        <option value="Katta ilmiy xodim">Katta ilmiy xodim</option> 
+                        <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option>
+                        <option value="Bosh muhandis">Bosh muhandis</option>
+                        <option value="Bosh energetik">Bosh energetik</option>
+                        <option value="Bosh mexanik">Bosh mexanik</option>
+                        <option value="Mutaxassis">Mutaxassis</option>
+                        <option value="Expert">Expert</option>
+                        <option value="Hisobchi">Hisobchi</option>
+                        <option value="Ilmiy maslahatchi">Ilmiy maslahatchi</option>
+                        <option value="Maslahatchi">Maslahatchi</option>
+                        <option value="Laborant">Laborant</option>
+                        <option value="Kadrlar bo‘yicha mutaxassis">Kadrlar bo‘yicha mutaxassis</option>
+
+                        <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option>
+                        <option value="Yetakchi muhandis">Yetakchi muhandis</option>
+                        <option value="Bosh ilmiy xodim">Bosh ilmiy xodim</option>
+                        <option value="Yetakchi ilmiy xodim">Yetakchi ilmiy xodim</option>
+                        <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
                         <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
-                        <option value="Ishlab chiqarish bo‘yicha direktor o‘rinbosari">Ishlab chiqarish bo‘yicha direktor o‘rinbosari</option> 
+                        <option value="Ishlab chiqarish bo‘yicha direktor o‘rinbosari">Ishlab chiqarish bo‘yicha direktor o‘rinbosari</option>
 
 
                     </select><br>
@@ -142,7 +142,7 @@
                     @enderror
                 </div>
 
-                
+
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -187,8 +187,8 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
-                
-                
+
+
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -298,11 +298,11 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
-                
+
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">  O‘zbekiston Fanlar akademiyasi
-                        haqiqiy a’zosi 
+                        haqiqiy a’zosi
                     </label>
                     <!-- <input type="text" name="uzbek_panlar_azosi" value="{{ old('uzbek_panlar_azosi') }}" class="input w-full border mt-2"> -->
                     <select name="uzbek_panlar_azosi" value="{{ old('uzbek_panlar_azosi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
@@ -319,11 +319,11 @@
                     @enderror
                 </div>
 
-                
 
-                
 
-                
+
+
+
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -364,8 +364,13 @@
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">
-            @if (auth()->user()->hasRole('labaratoriyaga_masul'))
+            @if (auth()->user()->hasRole('labaratoriyaga_masul') )
                 <a href="{{ route('lab_xodimlar.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </a>
+            @elseif (auth()->user()->hasRole('kafedra_mudiri'))
+
+                <a href="{{ route('kafedralar_xodimlar.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
                 </a>
             @else
@@ -386,7 +391,7 @@
     document.getElementById('ish_tartibi').addEventListener('change', function() {
         var selectedOption = this.value;
         var orindoshlikInput = document.getElementById('orindoshlik-input');
-        
+
         if (selectedOption === 'O‘rindoshlik') {
             orindoshlikInput.style.display = 'block'; // Inputni ko'rsatish
         } else {
@@ -400,13 +405,13 @@
         var selectedOption = this.value;
         var ilmiyDarajaInput = document.getElementById('ilmiy-daraja-input');
         var validOptions = [
-            "Fan nomzodi", 
-            "Falsafa doktori (PhD)", 
-            "Fan doktori (DSc)", 
-            "Fan doktori", 
+            "Fan nomzodi",
+            "Falsafa doktori (PhD)",
+            "Fan doktori (DSc)",
+            "Fan doktori",
             "Akademik"
         ];
-        
+
         if (validOptions.includes(selectedOption)) {
             ilmiyDarajaInput.style.display = 'block'; // Inputni ko'rsatish
         } else {
@@ -420,12 +425,12 @@
         var selectedOption = this.value;
         var ilmiyUnvonInput = document.getElementById('ilmiy-unvon-input');
         var validOptions = [
-            "Professor", 
-            "Dotsent", 
-            "Katta ilmiy xodim", 
+            "Professor",
+            "Dotsent",
+            "Katta ilmiy xodim",
             "Akademik"
         ];
-        
+
         if (validOptions.includes(selectedOption)) {
             ilmiyUnvonInput.style.display = 'block'; // Inputni ko'rsatish
         } else {

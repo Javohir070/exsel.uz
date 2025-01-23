@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->foreignId('tashkilot_id')->constrained()->cascadeOnDelete();
             $table->foreignId('laboratory_id')->constrained();
-            $table->foreignId('kafedralar_id')->constrained();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

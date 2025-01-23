@@ -23,8 +23,8 @@ class User extends Authenticatable
         'email',
         'password',
         'tashkilot_id',
-        'laboratory_id',
         'kafedralar_id',
+        'laboratory_id',
     ];
 
     /**

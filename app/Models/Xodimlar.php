@@ -53,10 +53,15 @@ class Xodimlar extends Model
     {
         return $this->formatPhone($value);
     }
-    
+
     public function laboratory()
     {
         return $this->belongsTo(Laboratory::class);
+    }
+
+    public function kafedralar()
+    {
+        return $this->belongsTo(Kafedralar::class);
     }
     private function formatPhone($phone)
     {

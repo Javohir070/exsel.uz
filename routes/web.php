@@ -1,17 +1,22 @@
 <?php
 
 
+use App\Http\Controllers\DalolatnomaController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FakultetlarController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IlmiybnTaminlangaController;
 use App\Http\Controllers\IlmiyLoyihaController;
+use App\Http\Controllers\IlmiymaqolalarController;
+use App\Http\Controllers\IlmiytezislarController;
 use App\Http\Controllers\IlmiyUnvonController;
+use App\Http\Controllers\IntellektualmulkController;
 use App\Http\Controllers\IqtisodiyMoliyaviyController;
 use App\Http\Controllers\ItmController;
 use App\Http\Controllers\IzlanuvchilarController;
 use App\Http\Controllers\KafedralarController;
 use App\Http\Controllers\LaboratoryController;
+use App\Http\Controllers\MonografiyalarController;
 use App\Http\Controllers\TashkilotController;
 use App\Http\Controllers\TashkilotUserlarController;
 use App\Http\Controllers\TekshirivchilarController;
@@ -132,6 +137,14 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/kafedrarol', [UserController::class, 'kafedrarol_store'])->name('kafedrarol.store');
 
+//kapedir mudurlali
+    Route::get('kafedralar-user', [KafedralarController::class,'Kafedralar_biriktirilgan_xodimlar'])->name('kafedralar_xodimlar.index');
+    Route::get('kafedralar-xujalik', [KafedralarController::class,'Kafedralar_biriktirilgan_xujalik'])->name('kafedralar_xujalik.index');
+    Route::get('kafedralar-ilmiyloyhi', [KafedralarController::class,'Kafedralar_biriktirilgan_ilmiyloyha'])->name('kafedralar_ilmiyloyiha.index');
+
+    Route::put('kaf/{kafId}/give-xodims', [KafedralarController::class, 'giveXodimToKaf']);
+    Route::put('kaf/{kafId}/give-xujaliks', [KafedralarController::class, 'giveXujalikToKaf']);
+    Route::put('kaf/{kafId}/give-ilmiyloyhas', [KafedralarController::class, 'giveIlmiyLoyhaToKaf']);
 
     Route::get('responsible', [KafedralarController::class, "responsible_masullar"])->name("responsible.index");
     Route::get('kafedra', [KafedralarController::class, "kafedra"])->name("kafedra.index");
@@ -155,6 +168,11 @@ Route::middleware('auth')->group(function () {
         'tekshirivchilar' => TekshirivchilarController::class,
         'fakultetlar' => FakultetlarController::class,
         'kafedralar' => KafedralarController::class,
+        'dalolatnoma' => DalolatnomaController::class,
+        'monografiyalar' => MonografiyalarController::class,
+        'intellektualmulk' => IntellektualmulkController::class,
+        'ilmiymaqolalar' => IlmiymaqolalarController::class,
+        'ilmiytezislar' => IlmiytezislarController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });
