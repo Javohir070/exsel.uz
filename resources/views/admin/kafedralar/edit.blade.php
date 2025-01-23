@@ -31,7 +31,7 @@
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkil etilgan yil
+                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkil etilgan yilli
                         </label>
                         <input type="number" name="tash_yil" value="{{ $kafedralar->tash_yil }}" class="input w-full border mt-2" required="">
                         @error('tash_yil')

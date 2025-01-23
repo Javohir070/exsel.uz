@@ -22,7 +22,7 @@ class UpdateKafedralarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'tash_yil'=> "required|size:4"
         ];
     }
 }
