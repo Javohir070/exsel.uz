@@ -36,7 +36,7 @@ class UserController extends Controller
         $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $tashkilot_id = auth()->user()->tashkilot_id;
-        $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->get();
+        $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
         $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
         return view('role-permission.user.create', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar, 'lab' => $lab, 'kafedralar' => $kafedralar]);
     }
@@ -109,7 +109,7 @@ class UserController extends Controller
         $roles = Role::pluck('name','name')->all();
         $userRoles = $user->roles->pluck('name','name')->all();
         $tashkilot_id = auth()->user()->tashkilot_id;
-        $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->get();
+        $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
         return view('role-permission.user.edit', [
             'user' => $user,
             'roles' => $roles,

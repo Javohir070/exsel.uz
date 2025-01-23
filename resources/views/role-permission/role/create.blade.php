@@ -32,10 +32,6 @@
                         </label>
                         <input type="text" name="name" class="input w-full border mt-2" required="">
                     </div>
-
-                    
-
-                    
             </div><br>
         </form><br>
         <div class="px-5 pb-5 text-center">
