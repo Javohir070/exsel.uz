@@ -40,6 +40,8 @@ class DalolatnomaController extends Controller
         $filePath = $request->file('asoslovchi_hujjat')->store('asoslovchi_hujjatlar');
 
         Dalolatnoma::create([
+            'tashkilot_id' => auth()->user()->tashkilot_id, // Avtomatik tashkilot ID
+            'kafedralar_id' => auth()->user()->kafedralar_id,
             'name' => $request->name,
             'raqami' => $request->raqami,
             'joyiye_obyekti' => $request->joyiye_obyekti,
@@ -48,8 +50,6 @@ class DalolatnomaController extends Controller
             'joyiye_tashkilot' => $request->joyiye_tashkilot,
             'joyiye_tarmoq' => $request->joyiye_tarmoq,
             'asoslovchi_hujjat' => $filePath, // Fayl yo‘li saqlanadi
-            'tashkilot_id' => auth()->user()->tashkilot_id, // Avtomatik tashkilot ID
-            'kafedralar_id' => auth()->user()->kafedralar_id,
         ]);
 
         return redirect()->route('dalolatnoma.index')->with('status', 'Yozuv muvaffaqiyatli qo‘shildi.');

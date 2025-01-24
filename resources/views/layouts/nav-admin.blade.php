@@ -265,6 +265,22 @@
         </li>
 
         <li>
+            <a href="{{ route('ilmiymaqolalar.index') }}"
+                class="side-menu side-menu{{ request()->is('ilmiymaqolalar*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__title"> Ilmiy maqolalar </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('ilmiytezislar.index') }}"
+                class="side-menu side-menu{{ request()->is('ilmiytezislar*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__title"> Ilmiy tezislar</div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('dalolatnoma.index') }}"
                 class="side-menu side-menu{{ request()->is('dalolatnoma*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
@@ -288,21 +304,7 @@
             </a>
         </li>
 
-        <li>
-            <a href="{{ route('ilmiymaqolalar.index') }}"
-                class="side-menu side-menu{{ request()->is('ilmiymaqolalar*') ? '--active' : '' }}">
-                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
-                <div class="side-menu__title"> Ilmiy maqolalar </div>
-            </a>
-        </li>
 
-        <li>
-            <a href="{{ route('ilmiytezislar.index') }}"
-                class="side-menu side-menu{{ request()->is('ilmiytezislar*') ? '--active' : '' }}">
-                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
-                <div class="side-menu__title"> Ilmiy tezislar</div>
-            </a>
-        </li>
 
         <!-- <li>
             <a href="{{ route('kafedra.index') }}"

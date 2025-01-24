@@ -160,7 +160,7 @@
             </div>
         </div>
     @endrole
-    @role(['admin', 'Xodimlar_uchun_masul', 'Tashkilot_pasporti_uchun_masul', 'Ilmiy_faoliyat_uchun_masul',"kafedra_mudiri"])
+    @role(['admin', 'Xodimlar_uchun_masul', 'Tashkilot_pasporti_uchun_masul', 'Ilmiy_faoliyat_uchun_masul'])
         @include('admin.admin')
     @endrole
     @role('Itm-tashkilotlar')
@@ -168,5 +168,8 @@
     @endrole
     @role('labaratoriyaga_masul')
         @include('admin.lab')
+    @endrole
+    @role('kafedra_mudiri')
+        @include('admin.kaf')
     @endrole
 @endsection
