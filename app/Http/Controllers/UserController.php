@@ -177,7 +177,9 @@ class UserController extends Controller
         $user->update($data);
         $user->syncRoles($request->roles);
         $roluchun = $request->roles;
-        if($roluchun[0] == "admin"){
+        if(!empty($user->kafedralar_id)){
+            return redirect('/kafedralar')->with('status','User Updated Successfully with roles');
+        }else if($roluchun[0] == "admin"){
             return redirect('/users')->with('status','User Updated Successfully with roles');
         }else if($roluchun[0] == "laboratoriya"){
             return redirect('/laboratory')->with('status','User Updated Successfully with roles');

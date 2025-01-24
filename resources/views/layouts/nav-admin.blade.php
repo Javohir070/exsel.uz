@@ -281,6 +281,14 @@
         </li>
 
         <li>
+            <a href="{{ route('intellektualmulk.index') }}"
+                class="side-menu side-menu{{ request()->is('intellektualmulk*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                <div class="side-menu__title"> Intellektual mulk </div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('dalolatnoma.index') }}"
                 class="side-menu side-menu{{ request()->is('dalolatnoma*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
@@ -296,13 +304,7 @@
             </a>
         </li>
 
-        <li>
-            <a href="{{ route('intellektualmulk.index') }}"
-                class="side-menu side-menu{{ request()->is('intellektualmulk*') ? '--active' : '' }}">
-                <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
-                <div class="side-menu__title"> Intellektual mulk </div>
-            </a>
-        </li>
+        
 
 
 

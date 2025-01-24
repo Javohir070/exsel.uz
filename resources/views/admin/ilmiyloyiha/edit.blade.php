@@ -911,7 +911,7 @@
             @endif
             <button type="submit" form="science-paper-create-form"
                 class="update-confirm button w-24 bg-theme-1 text-white">
-                Qo'shish
+                Saqlash
             </button>
         </div>
     </div>

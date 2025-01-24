@@ -27,11 +27,11 @@ class MonografiyalarController extends Controller
     {
         // Validatsiya
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:600',
             'nashr_yili' => 'required|integer',
-            'chop_etil_nashriyot' => 'required|string|max:255',
+            'chop_etil_nashriyot' => 'required|string|max:600',
             'til' => 'required|string|max:50',
-            'fan_yunalishi' => 'required|string|max:255',
+            'fan_yunalishi' => 'required|string|max:600',
             'asoslovchi_hujjat' => 'required|file|max:2048', // Fayl tekshiruvi
             'kbk' => 'nullable|string|max:50',
             'isbn' => 'nullable|string|max:50',
@@ -78,11 +78,11 @@ class MonografiyalarController extends Controller
     public function update(UpdateMonografiyalarRequest $request, Monografiyalar $monografiyalar)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|max:600',
             'nashr_yili' => 'required|integer',
-            'chop_etil_nashriyot' => 'required|string|max:255',
+            'chop_etil_nashriyot' => 'required|string|max:600',
             'til' => 'required|string|max:50',
-            'fan_yunalishi' => 'required|string|max:255',
+            'fan_yunalishi' => 'required|string|max:600',
             'asoslovchi_hujjat' => 'nullable|file|max:2048',
             'kbk' => 'nullable|string|max:50',
             'isbn' => 'nullable|string|max:50',
