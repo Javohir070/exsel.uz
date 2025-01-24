@@ -47,8 +47,8 @@
 
                 <!-- Joyiye obyekti -->
                 <tr class="bg-gray-100">
-                    <td class="border px-4 py-2 font-semibold text-gray-700">Joyiye etish  obyekti</td>
-                    <td class="border px-4 py-2 font-semibold text-gray-700">Joyiye etish  maqsadi</td>
+                    <td class="border px-4 py-2 font-semibold text-gray-700">Joriy etish  obyekti</td>
+                    <td class="border px-4 py-2 font-semibold text-gray-700">Joriy etish  maqsadi</td>
                 </tr>
 
                 <!-- Joyiye maqsadi -->
@@ -59,8 +59,8 @@
 
                 <!-- Joyiye asos -->
                 <tr class="bg-gray-100">
-                    <td class="border px-4 py-2 font-semibold text-gray-700">Joyiye etish uchun asos</td>
-                    <td class="border px-4 py-2 font-semibold text-gray-700">Joyiye etilgan  tashkilot</td>
+                    <td class="border px-4 py-2 font-semibold text-gray-700">Joriy etish uchun asos</td>
+                    <td class="border px-4 py-2 font-semibold text-gray-700">Joriy etilgan  tashkilot</td>
                 </tr>
 
                 <!-- Joyiye tashkilot -->
@@ -71,7 +71,7 @@
 
                 <!-- Joyiye tarmoq -->
                 <tr class="bg-gray-100">
-                    <td class="border px-4 py-2 font-semibold text-gray-700">Joyiye etilgan  tarmoq</td>
+                    <td class="border px-4 py-2 font-semibold text-gray-700">Joriy etilgan  tarmoq</td>
                     <td class="border px-4 py-2 font-semibold text-gray-700">Asoslovchi hujjat</td>
                 </tr>
 

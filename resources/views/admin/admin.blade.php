@@ -153,6 +153,7 @@
                         </div>
                     </div>
                 </div>
+                @role(['admin'])
                 <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                     <a href="{{ route('ilmiy_izlanuvchi.index') }}">
                         <div class="report-box zoom-in">
@@ -192,6 +193,7 @@
                         </div>
                     </a>
                 </div>
+                @endrole
             </div>
         </div>
     </div>

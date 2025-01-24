@@ -8,8 +8,8 @@
                         <h2 class="text-lg font-medium truncate mr-5">
                             Tashkilot haqida qisqacha malumot
                         </h2>
-                        <a href="" class="ml-auto flex text-theme-1"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i>
-                            Ma'lumotlarni qayta yuklash </a>
+                        <!-- <a href="" class="ml-auto flex text-theme-1"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i>
+                            Ma'lumotlarni qayta yuklash </a> -->
                     </div>
 
                     <div class="grid grid-cols-12 gap-6 mt-5">
@@ -160,7 +160,7 @@
             </div>
         </div>
     @endrole
-    @role(['admin', 'Xodimlar_uchun_masul', 'Tashkilot_pasporti_uchun_masul', 'Ilmiy_faoliyat_uchun_masul'])
+    @role(['admin', 'Xodimlar_uchun_masul', 'Tashkilot_pasporti_uchun_masul', 'Ilmiy_faoliyat_uchun_masul',"kafedra_mudiri"])
         @include('admin.admin')
     @endrole
     @role('Itm-tashkilotlar')

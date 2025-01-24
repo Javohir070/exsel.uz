@@ -25,8 +25,8 @@
                     <th class="whitespace-no-wrap">№</th>
                     <th class="whitespace-no-wrap">Dalolatnoma nomi </th>
                     <th class="whitespace-no-wrap">Dalolatnoma raqami</th>
-                    <th class="whitespace-no-wrap">Joyiye etish maqsadi</th>
-                    <th class="whitespace-no-wrap">Joyiye etilgan tashkilot</th>
+                    <th class="whitespace-no-wrap">Joriy etish maqsadi</th>
+                    <th class="whitespace-no-wrap">Joriy etilgan tashkilot</th>
                     <th class="whitespace-no-wrap text-center">Harakat</th>
                 </tr>
             </thead>

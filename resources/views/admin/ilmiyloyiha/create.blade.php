@@ -68,7 +68,7 @@
                     <select name="turi" value="{{old('turi')}}" id="science-sub12-category"
                         class="input border w-full mt-2" required="">
 
-                        <option value="">Loyiha turini tanlang</option>
+                        <option value=""></option>
 
                         <option value="Amaliy">Amaliy</option>
 
@@ -95,7 +95,7 @@
                     <select name="dastyri" value="{{old('dastyri')}}" id="science-sub-category"
                         class="input border w-full mt-2" required="">
 
-                        <option value="">Loyiha dasturin tanlang</option>
+                        <option value=""></option>
 
                         <option value="Maqsadli">Maqsadli</option>
 
@@ -145,7 +145,7 @@
                     <select name="muddat" value="{{old('muddat')}}" id="science-sub-category"
                         class="input border w-full mt-2" required="">
 
-                        <option value="">muddatin tanlang</option>
+                        <option value=""></option>
 
                         <option value="1">1</option>
 
@@ -289,7 +289,7 @@
                     <select name="tijoratlashtirish" value="{{old('tijoratlashtirish')}}"
                         class="input border w-full mt-2" required="">
 
-                        <option value="">Tijoratlashtirishni tanlang</option>
+                        <option value=""></option>
 
                         <option value="Tijoratlashtirilgan">Tijoratlashtirilgan</option>
 
@@ -301,7 +301,7 @@
                     @enderror
                 </div>
 
-                <div class="w-full col-span-6 ">
+                <!-- <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> Laboratoriyani tanlang</label>
                     <select name="laboratory_id" value="{{old('laboratory_id')}}" class="input border w-full mt-2">
 
@@ -315,7 +315,7 @@
                     @error('laboratory_id')
                         <div class="error">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> -->
 
 
                 <div class="w-full col-span-2 ">

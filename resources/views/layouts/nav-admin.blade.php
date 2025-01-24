@@ -304,13 +304,13 @@
             </a>
         </li>
 
-        <li>
+        <!-- <li>
             <a href="{{ route('kafedra.index') }}"
                 class="side-menu side-menu{{ request()->is('kafedra') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Kafedra </div>
             </a>
-        </li>
+        </li> -->
 
 
 

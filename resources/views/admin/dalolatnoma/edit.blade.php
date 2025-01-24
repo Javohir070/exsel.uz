@@ -48,7 +48,7 @@
                 <!-- Joyiye obyekti -->
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">
-                        <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Joyiye etish  obyekti
+                        <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Joriy etish  obyekti
                     </label>
                     <input type="text" name="joyiye_obyekti" value="{{ $dalolatnoma->joyiye_obyekti }}"
                         class="input w-full border mt-2" required="">
@@ -60,7 +60,7 @@
                 <!-- Joyiye maqsadi -->
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">
-                        <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Joyiye etish  maqsadi
+                        <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Joriy etish  maqsadi
                     </label>
                     <input type="text" name="joyiye_maqsadi" value="{{ $dalolatnoma->joyiye_maqsadi }}"
                         class="input w-full border mt-2" required="">
@@ -72,7 +72,7 @@
                 <!-- Joyiye asos -->
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">
-                        <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Joyiye etish uchun asos
+                        <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Joriy etish uchun asos
                     </label>
                     <input type="text" name="joyiye_asos" value="{{ $dalolatnoma->joyiye_asos }}"
                         class="input w-full border mt-2" required="">
@@ -84,7 +84,7 @@
                 <!-- Joyiye tashkilot -->
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">
-                        <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Joyiye etilgan  tashkilot
+                        <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Joriy etilgan  tashkilot
                     </label>
                     <input type="text" name="joyiye_tashkilot" value="{{ $dalolatnoma->joyiye_tashkilot }}"
                         class="input w-full border mt-2" required="">
@@ -96,7 +96,7 @@
                 <!-- Joyiye tarmoq -->
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row">
-                        <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Joyiye etilgan  tarmoq
+                        <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Joriy etilgan  tarmoq
                     </label>
                     <input type="text" name="joyiye_tarmoq" value="{{ $dalolatnoma->joyiye_tarmoq }}"
                         class="input w-full border mt-2" required="">
