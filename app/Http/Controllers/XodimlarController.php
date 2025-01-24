@@ -19,7 +19,7 @@ class XodimlarController extends Controller
      * Display a listing of the resource.
      */
 
-    
+
 
     public function index()
     {
@@ -55,6 +55,7 @@ class XodimlarController extends Controller
         Xodimlar::create([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
+            "kafedralar_id" => auth()->user()->kafedralar_id,
             "fish" => $request->fish,
             "jshshir" => $request->jshshir ?? "yoq" ,
             "yil" => $request->yil ,
@@ -74,10 +75,15 @@ class XodimlarController extends Controller
             "phone" => $request->phone,
             "email" => $request->email,
             "laboratory_id" => $request->laboratory_id,
+            'scopusda_url'=> $request->scopusda_url,
+            'webOfscien_url'=> $request->webOfscien_url,
+            'hirsh_indek'=> $request->hirsh_indek,
         ]);
 
         if(auth()->user()->hasRole('labaratoriyaga_masul')){
             return redirect()->route('lab_xodimlar.index')->with('status',"Ma\'lumotlar muvaffaqiyatli qo'shildi.");
+        }else if(auth()->user()->hasRole('kafedra_mudiri')){
+            return redirect("/kafedralar-user")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }else{
             return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }
@@ -118,6 +124,7 @@ class XodimlarController extends Controller
         $xodimlar->update([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
+            "kafedralar_id" => auth()->user()->kafedralar_id,
             "fish" => $request->fish,
             "jshshir" => $request->jshshir ?? 'yoq',
             "yil" => $request->yil,
@@ -137,9 +144,14 @@ class XodimlarController extends Controller
             "phone" => $request->phone,
             "email" => $request->email,
             "laboratory_id" => $request->laboratory_id,
+            'scopusda_url'=> $request->scopusda_url,
+            'webOfscien_url'=> $request->webOfscien_url,
+            'hirsh_indek'=> $request->hirsh_indek,
         ]);
         if(auth()->user()->hasRole('labaratoriyaga_masul')){
             return redirect()->route('lab_xodimlar.index')->with('status',"Ma\'lumotlar muvaffaqiyatli yangilandi.");
+        }else if(auth()->user()->hasRole('kafedra_mudiri')){
+            return redirect("/kafedralar-user")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }else{
             return redirect("/xodimlar")->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
         }
@@ -226,7 +238,7 @@ class XodimlarController extends Controller
         Excel::import(new XodimlarImport, $request->file('file'));
 
         return redirect()->back()->with('status', 'Xodimlar muvaffaqiyatli yuklandi!');
-        
+
     }
 
     public function deleteAll(Tashkilot $tashkilot)
@@ -234,6 +246,6 @@ class XodimlarController extends Controller
         // Tashkilotga tegishli barcha xodimlarni o'chirish
         $tashkilot->xodimlar()->delete();
 
-        return redirect()->back()->with('status', 'Barcha xodimlar o‘chirildi.');    
+        return redirect()->back()->with('status', 'Barcha xodimlar o‘chirildi.');
     }
 }

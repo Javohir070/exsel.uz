@@ -70,7 +70,7 @@
                     <select name="ishlanma_turi" value="{{ old('ishlanma_turi') }}" id="science-sub-category"
                         class="input border w-full mt-2" required="">
 
-                        <option value="">Loyiha turini tanlang</option>
+                        <option value=""></option>
 
                         <option value="Amaliy">Amaliy</option>
 
@@ -89,7 +89,7 @@
                     <select name="lisenzion" value="{{ old('lisenzion') }}" id="science-sub-category"
                         class="input border w-full mt-2" required="">
 
-                        <option value="">shartnoma turini tanlang</option>
+                        <option value=""></option>
 
                         <option value="Xo‘jalik shartnomasi">Xo‘jalik shartnomasi</option>
 
@@ -150,7 +150,7 @@
                     <select name="pul_type" id="pul_type" value="{{ old('pul_type') }}" id="science-sub-category"
                         class="input border w-full mt-2" required="">
 
-                        <option value="">Pul birliginini tanlang</option>
+                        <option value=""></option>
 
                         <option value="so'm">So'm</option>
 
@@ -194,7 +194,7 @@
                     @enderror
                 </div>
 
-                <div class="w-full col-span-6 ">
+                {{-- <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> Laboratoriyani tanlang</label>
                     <select name="laboratory_id" value="{{old('laboratory_id')}}" class="input border w-full mt-2">
 
@@ -208,7 +208,7 @@
                     @error('laboratory_id')
                         <div class="error">{{ $message }}</div>
                     @enderror
-                </div>
+                </div> --}}
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> 1-chorak

@@ -25,6 +25,8 @@
                     <th class="whitespace-no-wrap">№</th>
                     <th class="whitespace-no-wrap">Dalolatnoma nomi </th>
                     <th class="whitespace-no-wrap">Dalolatnoma raqami</th>
+                    <th class="whitespace-no-wrap">Joyiye etish maqsadi</th>
+                    <th class="whitespace-no-wrap">Joyiye etilgan tashkilot</th>
                     <th class="whitespace-no-wrap text-center">Harakat</th>
                 </tr>
             </thead>
@@ -40,6 +42,15 @@
                         <td>
                             {{ $xodimlar->raqami }}
                         </td>
+
+                        <td>
+                            {{ $xodimlar->joyiye_maqsadi }}
+                        </td>
+
+                        <td>
+                            {{ $xodimlar->joyiye_tashkilot }}
+                        </td>
+
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
                                 <a class="flex science-update-action items-center mr-3"

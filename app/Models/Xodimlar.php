@@ -11,6 +11,7 @@ class Xodimlar extends Model
 
     protected $fillable = [
         'tashkilot_id',
+        'kafedralar_id',
         'user_id',
         'fish',
         'jshshir',
@@ -39,6 +40,9 @@ class Xodimlar extends Model
         'qabulq_buyurt_raqami',
         'shartnoma_turi',
         'laboratory_id',
+        'scopusda_url',
+        'webOfscien_url',
+        'hirsh_indek',
     ];
 
     public function tashkilot()

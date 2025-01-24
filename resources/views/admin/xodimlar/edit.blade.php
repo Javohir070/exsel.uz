@@ -333,18 +333,36 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
-                <div class="w-full col-span-6 ">
-                    <label class="flex flex-col sm:flex-row"> Laboratoriyani tanlang</label>
-                    <select name="laboratory_id" value="{{old('laboratory_id')}}" class="input border w-full mt-2">
 
-                        <option value="">laboratoriyani tanlang</option>
-                        @foreach ($laboratorylar as $laboratory)
-                            <option value="{{ $laboratory->id }}">{{ $laboratory->name }}</option>
-                        @endforeach
-                        <option value="">yo'q</option>
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row">
+                         "Hirsh" indeksi
+                    </label>
+                    <input type="url" name="hirsh_indek" value="{{ $xodimlar->hirsh_indek }}"
+                        class="input w-full border mt-2" >
+                    @error('hirsh_indek')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
 
-                    </select><br>
-                    @error('laboratory_id')
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row">
+                         Web of sciencedagi havolasi
+                    </label>
+                    <input type="url" name="webOfscien_url" value="{{ $xodimlar->webOfscien_url }}"
+                        class="input w-full border mt-2" >
+                    @error('webOfscien_url')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row">
+                         Scopusdagi havolasi
+                    </label>
+                    <input type="url" name="scopusda_url" value="{{ $xodimlar->scopusda_url }}"
+                        class="input w-full border mt-2" >
+                    @error('scopusda_url')
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>

@@ -25,6 +25,7 @@
                     <th class="whitespace-no-wrap">№</th>
                     <th class="whitespace-no-wrap">Monografiya nomi</th>
                     <th class="whitespace-no-wrap">Nashr yili</th>
+                    <th class="whitespace-no-wrap">Chop etilgan nashriyot</th>
                     <th class="whitespace-no-wrap text-center">Harakat</th>
                 </tr>
             </thead>
@@ -39,6 +40,9 @@
                         </td>
                         <td>
                             {{ $xodimlar->nashr_yili }}
+                        </td>
+                        <td>
+                            {{ $xodimlar->chop_etil_nashriyot }}
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">

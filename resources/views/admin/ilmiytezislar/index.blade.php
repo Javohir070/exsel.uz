@@ -24,7 +24,8 @@
                 <tr>
                     <th class="whitespace-no-wrap">№</th>
                     <th class="whitespace-no-wrap">Mavzu</th>
-                    <th class="whitespace-no-wrap">Chop qilingan yili</th>
+                    <th class="whitespace-no-wrap">Chop qilingan sana</th>
+                    <th class="whitespace-no-wrap">Konferensiya  nomi</th>
                     <th class="whitespace-no-wrap text-center">Harakat</th>
                 </tr>
             </thead>
@@ -39,6 +40,9 @@
                         </td>
                         <td>
                             {{ $xodimlar->chopq_sana }}
+                        </td>
+                        <td>
+                            {{ $xodimlar->kon_full_nomi }}
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">

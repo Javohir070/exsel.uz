@@ -40,7 +40,7 @@
                                 <a href="" class="button w-24 bg-theme-6 text-white">
                                     O'chirish
                                 </a>
-                            </div>     
+                            </div>
                         @endcan
                     </div>
 
@@ -148,15 +148,37 @@
                             <td class="border border-2">{{ $xodimlar->ilmiy_unvoni  }} </td>
                             <td class="border border-2">{{ $xodimlar->ilmiy_unvoni_y  }} </td>
                         </tr>
-                        
-                        
+
+                        <tr class="bg-gray-200">
+                            <!-- <th class="border border-2">14</th> -->
+                            <th class="border border-2">"Hirsh" indeksi</th>
+                            <th class="border border-2">Web of sciencedagi havolasi</th>
+                        </tr>
+                        <tr >
+                            <!-- <th class="border border-2">15</th> -->
+                            <td class="border border-2">{{ $xodimlar->hirsh_indek ?? "yo'q"  }} </td>
+                            <td class="border border-2">{{ $xodimlar->webOfscien_url ?? "yo'q"  }} </td>
+                        </tr>
+
+                        <tr class="bg-gray-200">
+                            <!-- <th class="border border-2">14</th> -->
+                            <th class="border border-2">Scopusdagi havolasi</th>
+                            <th class="border border-2"></th>
+                        </tr>
+                        <tr >
+                            <!-- <th class="border border-2">15</th> -->
+                            <td class="border border-2">{{ $xodimlar->scopusda_url ?? "yo'q" }} </td>
+                            <td class="border border-2"> </td>
+                        </tr>
+
+
                 </tbody>
             </table>
         </div>
 
 
 
-        
+
 
     </div>
 
@@ -164,6 +186,6 @@
 
 
 
-   
+
 </div>
 @endsection

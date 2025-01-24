@@ -62,6 +62,7 @@ class IlmiyLoyihaController extends Controller
         IlmiyLoyiha::create([
             "user_id" => auth()->id(),
             "tashkilot_id" => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
+            "kafedralar_id" => auth()->user()->kafedralar_id,
             "umumiyyil_id" =>$umumiyyil->id,
             "mavzusi" => $request->mavzusi,
             "turi" => $request->turi,
@@ -84,6 +85,8 @@ class IlmiyLoyihaController extends Controller
         ]);
         if(auth()->user()->hasRole('labaratoriyaga_masul')){
             return redirect()->route('lab_ilmiyloyiha.index')->with('status',"Ma\'lumotlar muvaffaqiyatli qo'shildi.");
+        }else if(auth()->user()->hasRole('kafedra_mudiri')){
+            return redirect("/kafedralar-ilmiyloyhi")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }else{
             return redirect('/ilmiyloyiha')->with('status','Ma\'lumotlar muvaffaqiyatli qoshildi');
         }
@@ -137,6 +140,7 @@ class IlmiyLoyihaController extends Controller
         $ilmiyloyiha->update([
             "user_id" => auth()->id(),
             "tashkilot_id" => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
+            "kafedralar_id" => auth()->user()->kafedralar_id,
             "umumiyyil_id" =>$umumiyyil->id,
             "mavzusi" => $request->mavzusi,
             "turi" => $request->turi ?? "yo'q",
@@ -198,6 +202,8 @@ class IlmiyLoyihaController extends Controller
         ]);
         if(auth()->user()->hasRole('labaratoriyaga_masul')){
             return redirect()->route('lab_ilmiyloyiha.index')->with('status',"Ma\'lumotlar muvaffaqiyatli yangilandi.");
+        }else if(auth()->user()->hasRole('kafedra_mudiri')){
+            return redirect("/kafedralar-ilmiyloyhi")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }else{
             return redirect()->route("ilmiyloyiha.index")->with('status','Ma\'lumotlar muvaffaqiyatli yangilandi');
         }
@@ -213,7 +219,7 @@ class IlmiyLoyihaController extends Controller
             return $user->roles->contains('name', 'Ilmiy_loyiha_rahbari');
         });
 
-        
+
         return view("admin.ilmiyloyiha.masul", ['masullar'=> $masullar]);
     }
 
@@ -232,7 +238,7 @@ class IlmiyLoyihaController extends Controller
         $ilmiyloyihalar = IlmiyLoyiha::paginate(25);
         return view("admin.ilmiyloyiha.ilmiyloyihalar",['ilmiyloyihalar'=>$ilmiyloyihalar]);
     }
-    public function exportilmiy() 
+    public function exportilmiy()
     {
         $fileName = 'Ilmiyloyihalar' . now()->format('Y_m_d_H_i_s') . '.xlsx';
         return Excel::download(new IlmiyLoyihasExport, $fileName);

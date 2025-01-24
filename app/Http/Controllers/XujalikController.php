@@ -49,6 +49,7 @@ class XujalikController extends Controller
         Xujalik::create([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
+            "kafedralar_id" => auth()->user()->kafedralar_id,
             "ishlanma_nomi" =>$request->ishlanma_nomi,
             "intellektual_raqami" =>$request->intellektual_raqami ?? "yoq",
             "intellektual_sana" =>$request->intellektual_sana ?? "yoq" ,
@@ -67,14 +68,16 @@ class XujalikController extends Controller
             "chorak3" => $request->chorak3,
             "chorak4" => $request->chorak4,
             "laboratory_id" => $request->laboratory_id,
-            'shartnoma_file' => $path_shartnoma_file ?? "yo'q", 
-            'dalolatnoma_file' => $path_dalolatnoma_file ?? null, 
+            'shartnoma_file' => $path_shartnoma_file ?? "yo'q",
+            'dalolatnoma_file' => $path_dalolatnoma_file ?? null,
             'pul_type' => $request->pul_type,
         ]);
 
-        
+
         if(auth()->user()->hasRole('labaratoriyaga_masul')){
             return redirect()->route('lab_xujalik.index')->with('status',"Ma\'lumotlar muvaffaqiyatli qo'shildi.");
+        }else if(auth()->user()->hasRole('kafedra_mudiri')){
+            return redirect("/kafedralar-xujalik")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }else{
             return redirect('/xujalik')->with('status', "Ma\'lumotlar muvaffaqiyatli qo'shildi.");
         }
@@ -114,6 +117,7 @@ class XujalikController extends Controller
         $xujalik->update([
             "user_id" => auth()->id(),
             "tashkilot_id" => auth()->user()->tashkilot_id,
+            "kafedralar_id" => auth()->user()->kafedralar_id,
             "ishlanma_nomi" =>$request->ishlanma_nomi,
             "intellektual_raqami" =>$request->intellektual_raqami ?? "yoq",
             "intellektual_sana" =>$request->intellektual_sana ?? "yoq",
@@ -132,12 +136,14 @@ class XujalikController extends Controller
             "chorak3" => $request->chorak3,
             "chorak4" => $request->chorak4,
             "laboratory_id" => $request->laboratory_id,
-            'shartnoma_file' => $path_shartnoma_file ?? "yo'q", 
-            'dalolatnoma_file' => $path_dalolatnoma_file ?? null, 
+            'shartnoma_file' => $path_shartnoma_file ?? "yo'q",
+            'dalolatnoma_file' => $path_dalolatnoma_file ?? null,
             'pul_type' => $request->pul_type,
         ]);
         if(auth()->user()->hasRole('labaratoriyaga_masul')){
             return redirect()->route('lab_xujalik.index')->with('status',"Ma\'lumotlar muvaffaqiyatli yangilandi.");
+        }else if(auth()->user()->hasRole('kafedra_mudiri')){
+            return redirect("/kafedralar-xujalik")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }else{
             return redirect('/xujalik')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
         }

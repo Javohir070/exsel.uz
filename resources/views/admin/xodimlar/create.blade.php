@@ -361,6 +361,39 @@
                     @enderror
                 </div> -->
 
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row">
+                        "Hirsh" indeksi
+                    </label>
+                    <input type="url" name="hirsh_indek" value="{{ old('hirsh_indek') }}"
+                        class="input w-full border mt-2" >
+                    @error('hirsh_indek')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row">
+                        Web of sciencedagi havolasi
+                    </label>
+                    <input type="url" name="webOfscien_url" value="{{ old('webOfscien_url') }}"
+                        class="input w-full border mt-2" >
+                    @error('webOfscien_url')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row">
+                        Scopusdagi havolasi
+                    </label>
+                    <input type="url" name="scopusda_url" value="{{ old('scopusda_url') }}"
+                        class="input w-full border mt-2" >
+                    @error('scopusda_url')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+
             </div>
         </form><br>
         <div class="px-5 pb-5 text-center">

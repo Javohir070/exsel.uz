@@ -25,6 +25,7 @@
                     <th class="whitespace-no-wrap">№</th>
                     <th class="whitespace-no-wrap">Mavzu</th>
                     <th class="whitespace-no-wrap">Chop qilingan yili</th>
+                    <th class="whitespace-no-wrap">Seriyasi/ soni</th>
                     <th class="whitespace-no-wrap text-center">Harakat</th>
                 </tr>
             </thead>
@@ -39,6 +40,9 @@
                         </td>
                         <td>
                             {{ $xodimlar->nashr_sana }}
+                        </td>
+                        <td>
+                            {{ $xodimlar->soni }}
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
