@@ -143,7 +143,6 @@ class XodimlarController extends Controller
             "ixtisosligi" => $request->ixtisosligi,
             "phone" => $request->phone,
             "email" => $request->email,
-            "laboratory_id" => $request->laboratory_id,
             'scopusda_url'=> $request->scopusda_url,
             'webOfscien_url'=> $request->webOfscien_url,
             'hirsh_indek'=> $request->hirsh_indek,

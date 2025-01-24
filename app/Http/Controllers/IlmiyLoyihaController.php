@@ -81,7 +81,6 @@ class IlmiyLoyihaController extends Controller
             "olingan_natija" => $request->olingan_natija ?? "yoq",
             "joriy_holati" => $request->joriy_holati ?? "yoq" ,
             "tijoratlashtirish" => $request->tijoratlashtirish ?? "yoq",
-            "laboratory_id" => $request->laboratory_id,
         ]);
         if(auth()->user()->hasRole('labaratoriyaga_masul')){
             return redirect()->route('lab_ilmiyloyiha.index')->with('status',"Ma\'lumotlar muvaffaqiyatli qo'shildi.");
@@ -159,7 +158,6 @@ class IlmiyLoyihaController extends Controller
             "olingan_natija" => $request->olingan_natija,
             "joriy_holati" => $request->joriy_holati,
             "tijoratlashtirish" => $request->tijoratlashtirish,
-            "laboratory_id" => $request->laboratory_id,
 
 
             "rahbariilmiy_darajasi" => $request->rahbariilmiy_darajasi,
