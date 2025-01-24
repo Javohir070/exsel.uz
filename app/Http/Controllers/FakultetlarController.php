@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fakultetlar;
 use App\Http\Requests\StoreFakultetlarRequest;
 use App\Http\Requests\UpdateFakultetlarRequest;
+use App\Models\Kafedralar;
 
 class FakultetlarController extends Controller
 {
@@ -71,6 +72,13 @@ class FakultetlarController extends Controller
      */
     public function destroy(Fakultetlar $fakultetlar)
     {
+        $kafedralar = Kafedralar::where('fakultetlar_id', $fakultetlar->id)->first();
+        $kafedralar->xodimlar()->update(['kafedralar_id' => null]);
+        $kafedralar->ilmiyLoyihalar()->update(['kafedralar_id' => null]);
+        $kafedralar->xujaliklar()->update(['kafedralar_id' => null]);
+
+
+
         $fakultetlar->delete();
 
         return redirect('/fakultetlar')->with("status",'Ma\'lumotlar muvaffaqiyatli o"chirildi.');

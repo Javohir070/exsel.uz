@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('dalolatnomas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tashkilot_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('kafedralar_id')->constrained();
+            $table->foreignId('kafedralar_id')->constrained()->cascadeOnDelete();
             $table->text('name'); // Name ustuni
             $table->string('raqami'); // Raqami ustuni
             $table->text('joyiye_obyekti'); // Joyiye obyekti ustuni

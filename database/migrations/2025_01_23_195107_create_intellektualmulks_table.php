@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('intellektualmulks', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tashkilot_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('kafedralar_id')->constrained();
+            $table->foreignId('kafedralar_id')->constrained()->cascadeOnDelete();
             $table->string('type');
             $table->text('mavzu');
             $table->date('nashr_sana'); // Yilni saqlash uchun `year` turini ishlatish

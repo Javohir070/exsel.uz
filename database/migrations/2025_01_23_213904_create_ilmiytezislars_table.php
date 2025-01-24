@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ilmiytezislars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tashkilot_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('kafedralar_id')->constrained();
+            $table->foreignId('kafedralar_id')->constrained()->cascadeOnDelete();
             $table->string('type');
             $table->text('mavzu');
             $table->json('mualliflar_json'); // JSON formatida saqlash

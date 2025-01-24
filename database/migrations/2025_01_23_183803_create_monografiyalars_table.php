@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('monografiyalars', function (Blueprint $table) {
             $table->id();
             $table->foreignId('tashkilot_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('kafedralar_id')->constrained();
+            $table->foreignId('kafedralar_id')->constrained()->cascadeOnDelete();
             $table->text('name');
             $table->year('nashr_yili'); // Yilni saqlash uchun `year` turini ishlatish
             $table->text('chop_etil_nashriyot');

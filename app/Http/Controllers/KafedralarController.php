@@ -186,6 +186,9 @@ class KafedralarController extends Controller
      */
     public function destroy(Kafedralar $kafedralar)
     {
+        $kafedralar->xodimlar()->update(['kafedralar_id' => null]);
+        $kafedralar->ilmiyLoyihalar()->update(['kafedralar_id' => null]);
+        $kafedralar->xujaliklar()->update(['kafedralar_id' => null]);
         $kafedralar->delete();
 
         return redirect()->back()->with("status",'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
