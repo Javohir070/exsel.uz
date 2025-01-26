@@ -7,6 +7,7 @@
 
         <h2 class="intro-y text-lg font-medium">Ilmiy maqolalar</h2>
 
+        <a href="{{ route("ilmiymaqolalars.export") }}" class="button box flex items-center text-gray-700"> <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </a>
         <!-- <div>
             <a href="{{ route("ilmiymaqolalar.create") }}" class="button w-24 ml-3 bg-theme-1 text-white">
                 Qo'shish

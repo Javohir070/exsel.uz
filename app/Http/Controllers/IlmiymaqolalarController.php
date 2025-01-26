@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\IlmiymaqolalarExport;
 use App\Models\Ilmiymaqolalar;
 use App\Http\Requests\StoreIlmiymaqolalarRequest;
 use App\Http\Requests\UpdateIlmiymaqolalarRequest;
+use Maatwebsite\Excel\Facades\Excel;
 
 class IlmiymaqolalarController extends Controller
 {
@@ -21,6 +23,11 @@ class IlmiymaqolalarController extends Controller
         $ilmiymaqolalars = Ilmiymaqolalar::paginate(25);
 
         return view('admin.ilmiymaqolalar.ilmiymaqolalar', ['ilmiymaqolalars' => $ilmiymaqolalars]);
+    }
+
+    public function export_ilmiymaqolalars()
+    {
+        return Excel::download(new IlmiymaqolalarExport, 'Ilmiymaqolalar.xlsx');
     }
 
     public function create()

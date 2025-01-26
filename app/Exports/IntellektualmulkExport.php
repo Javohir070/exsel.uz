@@ -19,7 +19,7 @@ class IntellektualmulkExport implements FromCollection, WithHeadings
                 'id' => $intellektualmulk->id,
                 'Tashkilot nomi' => $intellektualmulk->tashkilot->name,
                 'Mavzu' => $intellektualmulk->mavzu,
-                'Hammualiflar' => $intellektualmulk->mualaliflar,
+                'Hammualiflar' => $intellektualmulk->mualaliflar_json,
                 'Chop qilingan yili' => $intellektualmulk->nashr_sana,
                 'Seriyasi/ soni' => $intellektualmulk->soni,
                 'Annotatsiya' => $intellektualmulk->annotatsiya,

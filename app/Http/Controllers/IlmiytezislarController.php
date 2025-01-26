@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\IlmiytezislarExport;
 use App\Models\Ilmiytezislar;
 use App\Http\Requests\StoreIlmiytezislarRequest;
 use App\Http\Requests\UpdateIlmiytezislarRequest;
+use Maatwebsite\Excel\Facades\Excel;
 
 class IlmiytezislarController extends Controller
 {
@@ -20,6 +22,11 @@ class IlmiytezislarController extends Controller
         $ilmiytezislars = Ilmiytezislar::paginate(25);
 
         return view('admin.ilmiytezislar.ilmiytezislar', ['ilmiytezislars' => $ilmiytezislars]);
+    }
+
+    public function export_ilmiytezislars()
+    {
+        return Excel::download(new IlmiytezislarExport, 'Ilmiytezislar.xlsx');
     }
     public function create()
     {

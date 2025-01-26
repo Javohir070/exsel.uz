@@ -17,14 +17,18 @@ class IlmiytezislarExport implements FromCollection, WithHeadings
             return [
                 'id' => $ilmiytezislar->id,
                 'Tashkilot nomi' => $ilmiytezislar->tashkilot->name,
-                'Dalolatnoma nomi' => $ilmiytezislar->mavzusi,
-                'Dalolatnoma raqami' => $ilmiytezislar->raqami,
-                'Joriy etish obyekti' => $ilmiytezislar->joyiye_obyekti,
-                'Joriy etish maqsadi' => $ilmiytezislar->joyiye_maqsadi,
-                'Joriy etish uchun asos' => $ilmiytezislar->joyiye_asos,
-                'Joriy etilgan tashkilot' => $ilmiytezislar->joyiye_tashkilot,
-                'Joriy etilgan tarmoq' => $ilmiytezislar->joyiye_tarmoq,
-                'Asoslovchi hujjat(elektron variant)' => $ilmiytezislar->asoslovchi_hujjat,
+                'Mavzu' => $ilmiytezislar->mavzu,
+                'Hammualiflar' => $ilmiytezislar->mualaliflar_json,
+                'Chop qilingan sana' => $ilmiytezislar->chopq_sana,
+                'Konferensiya to‘liq nomi' => $ilmiytezislar->kon_full_nomi,
+                'Konferensiya qisqa nomi' => $ilmiytezislar->kon_qisqa_nomi,
+                'Seriyasi/ soni' => $ilmiytezislar->soni,
+                'Nashriyot' => $ilmiytezislar->nashriyot,
+                'Annotatsiya' => $ilmiytezislar->annotatsiya,
+                'Fan yo‘nalishi' => $ilmiytezislar->fan_yunalishi,
+                'URL' => $ilmiytezislar->url,
+                'DOI' => $ilmiytezislar->doi,
+                'Tashkilot turi' => $dalolatnoma->tashkilot->tashkilot_turi ?? "otm",
             ];
         });
     }
@@ -35,14 +39,18 @@ class IlmiytezislarExport implements FromCollection, WithHeadings
         return [
             'id',
             'Tashkilot nomi',
-            'Dalolatnoma nomi',
-            'Dalolatnoma raqami',
-            'Joriy etish obyekti',
-            'Joriy etish maqsadi',
-            'Joriy etish uchun asos',
-            'Joriy etilgan tashkilot',
-            'Joriy etilgan tarmoq',
-            'Asoslovchi hujjat(elektron variant)',
+            'Mavzu',
+            'Hammualiflar',
+            'Chop qilingan sana',
+            'Konferensiya to‘liq nomi',
+            'Konferensiya qisqa nomi',
+            'Seriyasi/ soni',
+            'Nashriyot',
+            'Annotatsiya',
+            'Fan yo‘nalishi',
+            'URL',
+            'DOI',
+            'Tashkilot turi',
         ];
     }
 
