@@ -149,6 +149,13 @@ Route::middleware('auth')->group(function () {
     Route::get('responsible', [KafedralarController::class, "responsible_masullar"])->name("responsible.index");
     Route::get('kafedra', [KafedralarController::class, "kafedra"])->name("kafedra.index");
     //labaratoriya uchun
+    //super admin uchun
+    Route::get('dalolatnomas', [DalolatnomaController::class, "dalolatnomas"])->name("dalolatnomas.index");
+    Route::get('monografiyalars', [MonografiyalarController::class, "monografiyalars"])->name("monografiyalars.index");
+    Route::get('intellektualmulks', [IntellektualmulkController::class, "intellektualmulks"])->name("intellektualmulks.index");
+    Route::get('ilmiymaqolalars', [IlmiymaqolalarController::class, "ilmiymaqolalars"])->name("ilmiymaqolalars.index");
+    Route::get('ilmiytezislars', [IlmiytezislarController::class, "ilmiytezislars"])->name("ilmiytezislars.index");
+    //super admin uchun
     Route::resources([
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,

@@ -5,10 +5,10 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">Intellektual mulk</h2>
+        <h2 class="intro-y text-lg font-medium">Dalolatnomalar</h2>
 
         <div>
-            <a href="{{ route("intellektualmulk.create") }}" class="button w-24 ml-3 bg-theme-1 text-white">
+            <a href="{{ route("dalolatnoma.create") }}" class="button w-24 ml-3 bg-theme-1 text-white">
                 Qo'shish
             </a>
         </div>
@@ -23,31 +23,38 @@
             <thead>
                 <tr>
                     <th class="whitespace-no-wrap">№</th>
-                    <th class="whitespace-no-wrap">Mavzu</th>
-                    <th class="whitespace-no-wrap">Chop qilingan yili</th>
-                    <th class="whitespace-no-wrap">Seriyasi/ soni</th>
+                    <th class="whitespace-no-wrap">Dalolatnoma nomi </th>
+                    <th class="whitespace-no-wrap">Dalolatnoma raqami</th>
+                    <th class="whitespace-no-wrap">Joriy etish maqsadi</th>
+                    <th class="whitespace-no-wrap">Joriy etilgan tashkilot</th>
                     <th class="whitespace-no-wrap text-center">Harakat</th>
                 </tr>
             </thead>
             <tbody>
 
-                @foreach ($intellektualmulks as $xodimlar)
+                @foreach ($dalolatnomas as $xodimlar)
 
                     <tr class="intro-x">
                         <td>{{$loop->index + 1}}</td>
                         <td>
-                            {{ $xodimlar->mavzu }}
+                            {{ $xodimlar->name }}
                         </td>
                         <td>
-                            {{ $xodimlar->nashr_sana }}
+                            {{ $xodimlar->raqami }}
                         </td>
+
                         <td>
-                            {{ $xodimlar->soni }}
+                            {{ $xodimlar->joyiye_maqsadi }}
                         </td>
+
+                        <td>
+                            {{ $xodimlar->joyiye_tashkilot }}
+                        </td>
+
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
                                 <a class="flex science-update-action items-center mr-3"
-                                    href="{{ route('intellektualmulk.edit', ['intellektualmulk' => $xodimlar->id]) }}" data-id="2978"
+                                    href="{{ route('dalolatnoma.edit', ['dalolatnoma' => $xodimlar->id]) }}" data-id="2978"
                                     data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
                                     data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None"
                                     data-doi="" data-publisher="" data-description="None" data-authors-count="None"
@@ -62,7 +69,7 @@
                                 </a>
 
                                 <a class="flex science-update-action items-center mr-3"
-                                    href="{{ route('intellektualmulk.show', ['intellektualmulk' => $xodimlar->id]) }}" data-id="2978"
+                                    href="{{ route('dalolatnoma.show', ['dalolatnoma' => $xodimlar->id]) }}" data-id="2978"
                                     data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
                                     data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None"
                                     data-doi="" data-publisher="" data-description="None" data-authors-count="None"
@@ -76,7 +83,7 @@
                                     Ko'rish
                                 </a>
 
-                                <form action="{{ route('intellektualmulk.destroy',['intellektualmulk'=>$xodimlar->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                <form action="{{ route('dalolatnoma.destroy',['dalolatnoma'=>$xodimlar->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                     <button type="submit" class="flex delete-action items-center text-theme-6" >
                                     @csrf
                                     @method("DELETE")
@@ -99,14 +106,9 @@
         </table>
     </div>
     <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-        {{$intellektualmulks->links()}}
+        {{$dalolatnomas->links()}}
     </div>
 
 </div>
-
-
-
-
-
 
 @endsection

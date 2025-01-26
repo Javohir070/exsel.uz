@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="flex justify-between align-center mt-10">
-    <h2 class="intro-y text-lg font-medium">Monografiya</h2>
+    <h2 class="intro-y text-lg font-medium">Monografiya ma'lumotni tahrirlash</h2>
 </div><br>
 
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"

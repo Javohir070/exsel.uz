@@ -11,9 +11,16 @@ class IlmiymaqolalarController extends Controller
 
     public function index()
     {
-        $ilmiymaqolalars = Ilmiymaqolalar::all();
+        $ilmiymaqolalars = Ilmiymaqolalar::paginate(25);
 
         return view('admin.ilmiymaqolalar.index', ['ilmiymaqolalars' => $ilmiymaqolalars]);
+    }
+
+    public function ilmiymaqolalars()
+    {
+        $ilmiymaqolalars = Ilmiymaqolalar::paginate(25);
+
+        return view('admin.ilmiymaqolalar.ilmiymaqolalar', ['ilmiymaqolalars' => $ilmiymaqolalars]);
     }
 
     public function create()
@@ -24,7 +31,7 @@ class IlmiymaqolalarController extends Controller
 
     public function store(StoreIlmiymaqolalarRequest $request)
     {
-        
+
         $request->validate([
             'type' => 'required|in:Respublika miqyosidagi jurnallar,Xalqaro miqyosidagi jurnallar',
             'mavzu' => 'required|string',

@@ -5,7 +5,7 @@
 
 <div class="flex justify-between align-center mt-10">
 
-    <h2 class="intro-y text-lg font-medium">Monografiya</h2>
+    <h2 class="intro-y text-lg font-medium">Monografiya ma'lumotni qo'shish</h2>
 
 
 

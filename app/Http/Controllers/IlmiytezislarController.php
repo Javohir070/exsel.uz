@@ -10,11 +10,17 @@ class IlmiytezislarController extends Controller
 {
     public function index()
     {
-        $ilmiytezislars = Ilmiytezislar::all();
+        $ilmiytezislars = Ilmiytezislar::paginate(25);
 
         return view('admin.ilmiytezislar.index', ['ilmiytezislars' => $ilmiytezislars]);
     }
 
+    public function ilmiytezislars()
+    {
+        $ilmiytezislars = Ilmiytezislar::paginate(25);
+
+        return view('admin.ilmiytezislar.ilmiytezislar', ['ilmiytezislars' => $ilmiytezislars]);
+    }
     public function create()
     {
         return view('admin.ilmiytezislar.create');

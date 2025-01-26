@@ -11,8 +11,14 @@ class IntellektualmulkController extends Controller
 
     public function index()
     {
-        $intellektualmulks = Intellektualmulk::all();
+        $intellektualmulks = Intellektualmulk::paginate(25);
         return view('admin.intellektualmulk.index', ['intellektualmulks' => $intellektualmulks]);
+    }
+
+    public function intellektualmulks()
+    {
+        $intellektualmulks = Intellektualmulk::paginate(25);
+        return view('admin.intellektualmulk.intellektualmulk', ['intellektualmulks' => $intellektualmulks]);
     }
 
     /**

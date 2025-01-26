@@ -11,8 +11,14 @@ class DalolatnomaController extends Controller
 
     public function index()
     {
-        $dalolatnomas = Dalolatnoma::all();
+        $dalolatnomas = Dalolatnoma::paginate(25);
         return view('admin.dalolatnoma.index', ['dalolatnomas' => $dalolatnomas]);
+    }
+
+    public function dalolatnomas()
+    {
+        $dalolatnomas = Dalolatnoma::paginate(25);
+        return view('admin.dalolatnoma.dalolatnoma', ['dalolatnomas' => $dalolatnomas]);
     }
 
 
