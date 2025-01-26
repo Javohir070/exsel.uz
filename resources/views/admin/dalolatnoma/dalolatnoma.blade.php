@@ -7,11 +7,11 @@
 
         <h2 class="intro-y text-lg font-medium">Dalolatnomalar</h2>
 
-        <div>
+        <!-- <div>
             <a href="{{ route("dalolatnoma.create") }}" class="button w-24 ml-3 bg-theme-1 text-white">
                 Qo'shish
             </a>
-        </div>
+        </div> -->
 
 
     </div>
@@ -53,7 +53,7 @@
 
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
-                                <a class="flex science-update-action items-center mr-3"
+                                <!-- <a class="flex science-update-action items-center mr-3"
                                     href="{{ route('dalolatnoma.edit', ['dalolatnoma' => $xodimlar->id]) }}" data-id="2978"
                                     data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
                                     data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None"
@@ -66,7 +66,7 @@
                                         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
                                     </svg>
                                     Tahrirlash
-                                </a>
+                                </a> -->
 
                                 <a class="flex science-update-action items-center mr-3"
                                     href="{{ route('dalolatnoma.show', ['dalolatnoma' => $xodimlar->id]) }}" data-id="2978"

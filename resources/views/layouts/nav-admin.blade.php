@@ -482,7 +482,7 @@
         @endrole
         <!-- tugadi Itm lar uchun -->
 
-        @role('super-admin')
+        @role(['super-admin', 'test-uchun'])
         <li>
             <a href="{{ route('ilmiymaqolalars.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiymaqolalar*') ? '--active' : '' }}">

@@ -122,7 +122,7 @@
                     <div class="error">{{ $message }}</div>
                 @enderror
 
-                {{-- <div class="w-full col-span-6">
+                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Rol (foydalanuvchining tizimdagi roli)
                     </label>
@@ -146,7 +146,7 @@
                     @error('roles')
                         <div class="error">{{ $message }}</div>
                     @enderror
-                </div> --}}
+                </div> 
                 @role('super-admin')
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
