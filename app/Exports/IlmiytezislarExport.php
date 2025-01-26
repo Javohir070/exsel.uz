@@ -14,11 +14,15 @@ class IlmiytezislarExport implements FromCollection, WithHeadings
     public function collection()
     {
         return Ilmiytezislar::with('tashkilot')->get()->map(function ($ilmiytezislar){
+            // JSON ma'lumotni massivga aylantirish
+            $mualaliflar = collect(json_decode($ilmiytezislar->mualliflar_json))->map(function ($mualif) {
+                return $mualif->name; // Har bir muallifning faqat ismini olish
+            })->implode(', '); // Vergul bilan ajratilgan ro'yxatga aylantirish
             return [
                 'id' => $ilmiytezislar->id,
                 'Tashkilot nomi' => $ilmiytezislar->tashkilot->name,
                 'Mavzu' => $ilmiytezislar->mavzu,
-                'Hammualiflar' => $ilmiytezislar->mualaliflar_json,
+                'Hammualiflar' => $mualaliflar,
                 'Chop qilingan sana' => $ilmiytezislar->chopq_sana,
                 'Konferensiya to‘liq nomi' => $ilmiytezislar->kon_full_nomi,
                 'Konferensiya qisqa nomi' => $ilmiytezislar->kon_qisqa_nomi,
