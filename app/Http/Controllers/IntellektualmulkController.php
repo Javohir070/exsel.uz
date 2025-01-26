@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\IntellektualmulkExport;
 use App\Models\Intellektualmulk;
 use App\Http\Requests\StoreIntellektualmulkRequest;
 use App\Http\Requests\UpdateIntellektualmulkRequest;
+use Maatwebsite\Excel\Facades\Excel;
 
 class IntellektualmulkController extends Controller
 {
@@ -19,6 +21,11 @@ class IntellektualmulkController extends Controller
     {
         $intellektualmulks = Intellektualmulk::paginate(25);
         return view('admin.intellektualmulk.intellektualmulk', ['intellektualmulks' => $intellektualmulks]);
+    }
+
+    public function export_intellektualmulks()
+    {
+        return Excel::download(new IntellektualmulkExport, 'Intellektualmulk.xlsx');
     }
 
     /**

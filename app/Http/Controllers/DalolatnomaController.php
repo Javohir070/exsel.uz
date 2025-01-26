@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DalolatnomaExport;
 use App\Models\Dalolatnoma;
 use App\Http\Requests\StoreDalolatnomaRequest;
 use App\Http\Requests\UpdateDalolatnomaRequest;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 class DalolatnomaController extends Controller
 {
 
@@ -21,6 +23,10 @@ class DalolatnomaController extends Controller
         return view('admin.dalolatnoma.dalolatnoma', ['dalolatnomas' => $dalolatnomas]);
     }
 
+    public function export_dalolatnomas()
+    {
+        return Excel::download(new DalolatnomaExport, 'Dalolatnomalar.xlsx');
+    }
 
 
     public function create()

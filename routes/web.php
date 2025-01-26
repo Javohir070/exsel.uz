@@ -155,6 +155,12 @@ Route::middleware('auth')->group(function () {
     Route::get('intellektualmulks', [IntellektualmulkController::class, "intellektualmulks"])->name("intellektualmulks.index");
     Route::get('ilmiymaqolalars', [IlmiymaqolalarController::class, "ilmiymaqolalars"])->name("ilmiymaqolalars.index");
     Route::get('ilmiytezislars', [IlmiytezislarController::class, "ilmiytezislars"])->name("ilmiytezislars.index");
+
+    Route::get('/export-dalolatnomas', [DalolatnomaController::class, "export_dalolatnomas"])->name("dalolatnomas.export");
+    Route::get('/export-monografiyalars', [MonografiyalarController::class, "export_monografiyalars"])->name("monografiyalars.export");
+    Route::get('/export-intellektualmulks', [IntellektualmulkController::class, "export_intellektualmulks"])->name("intellektualmulks.export");
+    Route::get('/export-ilmiymaqolalars', [IlmiymaqolalarController::class, "export_ilmiymaqolalars"])->name("ilmiymaqolalars.export");
+    Route::get('/export-ilmiytezislars', [IlmiytezislarController::class, "export_ilmiytezislars"])->name("ilmiytezislars.export");
     //super admin uchun
     Route::resources([
         'tashkilot' => TashkilotController::class,

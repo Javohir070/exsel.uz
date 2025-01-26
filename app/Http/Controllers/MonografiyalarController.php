@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Exports\MonografiyaExport;
 use App\Models\Monografiyalar;
 use App\Http\Requests\StoreMonografiyalarRequest;
 use App\Http\Requests\UpdateMonografiyalarRequest;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MonografiyalarController extends Controller
 {
@@ -14,6 +17,11 @@ class MonografiyalarController extends Controller
     {
         $monografiyalars = Monografiyalar::paginate(25);
         return view('admin.monografiya.index', ['monografiyalars' => $monografiyalars]);
+    }
+
+    public function export_monografiyalars()
+    {
+        return Excel::download(new MonografiyaExport, 'Monografiyalar.xlsx');
     }
 
 
