@@ -16,14 +16,14 @@ class MonografiyaExport implements FromCollection, WithHeadings
         return Monografiyalar::with('tashkilot')->get()->map(function ($monografiyalar){
             $url = asset('storage/' . $monografiyalar->asoslovchi_hujjat);
             // JSON ma'lumotni massivga aylantirish
-            $mualaliflar = collect(json_decode($monografiyalar->mualliflar_json))->map(function ($mualif) {
-                return $mualif->name; // Har bir muallifning faqat ismini olish
-            })->implode(', '); // Vergul bilan ajratilgan ro'yxatga aylantirish
+            // $mualaliflar = collect(json_decode($monografiyalar->mualliflar_json))->map(function ($mualif) {
+            //     return $mualif->name; // Har bir muallifning faqat ismini olish
+            // })->implode(', '); // Vergul bilan ajratilgan ro'yxatga aylantirish
             return [
                 'id' => $monografiyalar->id,
                 'Tashkilot nomi' => $monografiyalar->tashkilot->name,
                 'Monografiya nomi' => $monografiyalar->name,
-                'Mualaliflar' => $mualaliflar,
+                // 'Mualaliflar' => $monografiyalar->mualliflar_json,
                 'Nashr yili' => $monografiyalar->nashr_yili,
                 'Til' => $monografiyalar->til,
                 'Chop etilgan nashriyot' => $monografiyalar->chop_etil_nashriyot,
@@ -42,7 +42,7 @@ class MonografiyaExport implements FromCollection, WithHeadings
             'id',
             'Tashkilot nomi',
             'Monografiya nomi',
-            'Mualaliflar',
+            // 'Mualaliflar',
             'Nashr yili',
             'Til',
             'Chop etilgan nashriyot',
