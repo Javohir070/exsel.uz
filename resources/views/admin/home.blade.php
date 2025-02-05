@@ -154,6 +154,20 @@
                                     </div>
                                 </a>
                             </div>
+
+                            <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                                <a href="{{ route('laboratoriyalari.index') }}">
+                                    <div class="report-box zoom-in">
+                                        <div class="box p-5">
+                                            <div class="flex">
+                                                <i data-feather="bar-chart" class="report-box__icon text-theme-9"></i>
+                                            </div>
+                                            <div class="text-3xl font-bold leading-8 mt-6">{{ $tekshirivchilar }}</div>
+                                            <div class="text-base text-gray-600 mt-1">Monitoring 2024-yil </div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
                         @endrole
                     </div>
                 </div>

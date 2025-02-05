@@ -388,7 +388,7 @@
                         <!-- <th class="border border-b-2 ">15</th> -->
                         <th class="border border-b-2 ">Tashkilotingiz tomonidan davlat buyurtmasi asosida amalga oshirilayotgan ilmiy tadqiqot loyihalarining asosiy natijalari to‘g‘risida
                         MA’LUMOT</th>
-                        <th class="border border-b-2 ">  </th>
+                        <th class="border border-b-2 "> Asoslovchi fayl </th>
                     </tr>
 
                     <tr>
@@ -399,7 +399,12 @@
                                     class="button  bg-theme-1 text-white">Faylni ko'rish</a>
                             @endif
                         </td>
-                        <td class="border "></td>
+                        <td class="border ">
+                            @if ($ilmiyloyiha->file)
+                                <a href="{{ asset('storage/' . $ilmiyloyiha->file) }}"
+                                    class="button  bg-theme-1 text-white">Faylni ko'rish</a>
+                            @endif
+                        </td>
                     </tr>
 
 
@@ -422,14 +427,14 @@
                         <th class="border border-b-2 ">2024 yil</th>
                     </tr>
                     <tr>
-                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2017 }}</td>
-                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2018 }}</td>
-                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2019 }}</td>
-                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2020 }}</td>
-                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2021 }}</td>
-                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2022 }}</td>
-                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2023 }}</td>
-                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2024 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2017 ?? 0 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2018 ?? 0 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2019 ?? 0 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2020 ?? 0 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2021 ?? 0 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2022 ?? 0 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2023 ?? 0 }}</td>
+                        <td class="border border-b-2 ">{{ $ilmiyloyiha->umumiyyil->y2024 ?? 0 }}</td>
                     </tr>
                 </tbody>
             </table>

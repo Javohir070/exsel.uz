@@ -132,6 +132,16 @@
 
         @role('super-admin')
         <li>
+            <a href="{{ route('monitoring2024.index') }}"
+                class="side-menu side-menu{{ request()->is('monitoring2024*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title">Monitoring 2024 </div>
+            </a>
+        </li>
+        @endrole
+
+        @role('super-admin')
+        <li>
             <a href="javascript:;"
                 class="side-menu side-menu{{ request()->is('users*') ? '--active' : '' }}{{ request()->is('permissions*') ? '--active' : '' }}{{ request()->is('roles*') ? '--active' : '' }}{{ request()->is('tashqoshish*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="settings"></i> </div>

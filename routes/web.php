@@ -21,9 +21,7 @@ use App\Http\Controllers\TashkilotController;
 use App\Http\Controllers\TashkilotUserlarController;
 use App\Http\Controllers\TekshirivchilarController;
 use App\Http\Controllers\XujalikController;
-use App\Models\Tekshirivchilar;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
@@ -121,6 +119,7 @@ Route::middleware('auth')->group(function () {
     Route::get('laboratoriyalari', [LaboratoryController::class,'laboratoriyalari'])->name('laboratoriyalari.index');
     Route::get('masullar', [LaboratoryController::class, "masullar"])->name("masullar.index");
     Route::get('masul', [IlmiyLoyihaController::class, "masul"])->name("masul.index");
+    Route::get('monitoring2024', [IlmiyLoyihaController::class, "monitoring2024"])->name("monitoring2024.index");
     Route::post("emport-izlanuvchi", [IzlanuvchilarController::class, "emport_izlanuvchi"])->name("emport_izlanuvchi.index");
     Route::get("/ilmiy-izlanuvchilar", [IzlanuvchilarController::class,"ilmiy_izlanuvchilar"])->name("ilmiy_izlanuvchilar.index");
     Route::put('lab/{labId}/give-izlanuvchilar', [IzlanuvchilarController::class, 'giveIzlanuvchilarToLab']);
@@ -155,6 +154,7 @@ Route::middleware('auth')->group(function () {
     Route::get('intellektualmulks', [IntellektualmulkController::class, "intellektualmulks"])->name("intellektualmulks.index");
     Route::get('ilmiymaqolalars', [IlmiymaqolalarController::class, "ilmiymaqolalars"])->name("ilmiymaqolalars.index");
     Route::get('ilmiytezislars', [IlmiytezislarController::class, "ilmiytezislars"])->name("ilmiytezislars.index");
+
 
     Route::get('/export-dalolatnomas', [DalolatnomaController::class, "export_dalolatnomas"])->name("dalolatnomas.export");
     Route::get('/export-monografiyalars', [MonografiyalarController::class, "export_monografiyalars"])->name("monografiyalars.export");
@@ -198,6 +198,7 @@ Route::group(['middleware' => ['role:super-admin|admin']], function() {
     Route::get('/export', [ExportController::class, 'export']);
     Route::get('/export-lab', [LaboratoryController::class, 'export_lab'])->name('export_lab');
     Route::get('/export-ilmiylar', [IlmiyLoyihaController::class, 'exportilmiy'])->name('exportilmiy');
+    Route::get('/export-ilmiylar2024', [TekshirivchilarController::class, 'exportilmiyloyiha'])->name('exportilmiyloyiha');
     Route::get('/export-iqtisodiyfaoliyat', [IqtisodiyMoliyaviyController::class, 'iqtisodiyfaoliyat'])->name('iqtisodiyfaoliyat');
     Route::get('/export-tashkiotlar', [TashkilotController::class, 'exportashkilot'])->name('exportashkilot');
     Route::get('/export-xodimlar', [XodimlarController::class, 'exporxodimlar'])->name('exporxodimlar');

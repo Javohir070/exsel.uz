@@ -7,6 +7,7 @@ use App\Http\Requests\StoreIlmiyLoyihaRequest;
 use App\Http\Requests\UpdateIlmiyLoyihaRequest;
 use App\Models\Laboratory;
 use App\Models\Tashkilot;
+use App\Models\Tekshirivchilar;
 use App\Models\Umumiyyil;
 use Illuminate\Http\Request;
 use App\Exports\IlmiyLoyihasExport;
@@ -251,5 +252,14 @@ class IlmiyLoyihaController extends Controller
                 ->orWhere('raqami','like','%'.$querysearch.'%')
                 ->paginate(10);
         return view('admin.ilmiyloyiha.search_results', compact('ilmiyloyiha'));
+    }
+
+    public function monitoring2024()
+    {
+        $takshirivchilar = Tekshirivchilar::pluck('ilmiy_loyiha_id')->toArray();
+        $ilmiyloyihalar = IlmiyLoyiha::whereNotIn('id',$takshirivchilar)->paginate(25);
+   
+        return view("admin.ilmiyloyiha.monitoring2024",['ilmiyloyihalar'=>$ilmiyloyihalar]);
+
     }
 }

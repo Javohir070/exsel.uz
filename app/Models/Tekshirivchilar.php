@@ -16,8 +16,8 @@ class Tekshirivchilar extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function ilmiyloyiha()
+    public function ilmiyLoyihalar()
     {
-        return $this->belongsTo(IlmiyLoyiha::class);
+        return $this->belongsTo(IlmiyLoyiha::class, 'ilmiy_loyiha_id');
     }
 }

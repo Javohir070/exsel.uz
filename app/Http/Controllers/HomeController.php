@@ -15,6 +15,7 @@ use App\Models\Laboratory;
 use App\Models\Monografiyalar;
 use App\Models\Tashkilot;
 use App\Models\TashkilotRahbari;
+use App\Models\Tekshirivchilar;
 use App\Models\User;
 use App\Models\Xodimlar;
 use App\Models\Xujalik;
@@ -126,9 +127,10 @@ class HomeController extends Controller
         $kaf_Dalolatnoma = Dalolatnoma::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
         $kaf_Monografiyalar = Monografiyalar::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
         $kaf_Intellektualmulk = Intellektualmulk::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
-
+        $tekshirivchilar = Tekshirivchilar::count();
 
         return view('admin.home', [
+            'tekshirivchilar' => $tekshirivchilar,
             'tashkiot_haqida' => $tashkilot,
             'tashkilot_raxbaris' => $tashkilot_raxbari,
             'iqtisodiy_moliyaviy' => $iqtisodiy_moliyaviy,
