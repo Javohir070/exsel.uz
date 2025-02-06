@@ -14,7 +14,7 @@
             <div>
                 <a href="/admin/Xujaliklar2024_10_21_07_09_35.xlsx" class="button box flex items-center text-gray-700"> <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </a>
             </div>
-        
+
         </div>
 
     </div>
@@ -31,6 +31,7 @@
                         <th class="whitespace-no-wrap">Ishlanma nomi</th>
                         <th class="whitespace-no-wrap">Shartnoma turi</th>
                         <th class="whitespace-no-wrap">Ishlanma yaratilgan tadqiqot mavzusi</th>
+                        <th class="whitespace-no-wrap">Status</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -41,20 +42,23 @@
                     <tr class="intro-x">
                         <td>{{$loop->index+1}}</td>
                         <td>
-                            <a href="#" target="_blank"  class="font-medium">{{ $xodimlar->tashkilot->name_qisqachasi }}</a>
+                            <a href="{{ route('xujalik.show',['xujalik'=>$xodimlar->id]) }}" target="_blank"  class="font-medium">{{ $xodimlar->tashkilot->name_qisqachasi }}</a>
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->ishlanma_nomi  }} </a>
+                            {{ $xodimlar->ishlanma_nomi  }}
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->ishlanma_turi }}</a>
+                            {{ $xodimlar->ishlanma_turi }}
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->ishlanma_mavzu }}</a>
+                            {{ $xodimlar->ishlanma_mavzu }}
+                        </td>
+                        <td>
+                            {{ $xodimlar->status }}
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
-                                
+
 
                                 <a class="flex science-update-action items-center mr-3" href="{{ route('xujalik.show',['xujalik'=>$xodimlar->id]) }}" data-id="2978" data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png" data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None" data-doi="" data-publisher="" data-description="None" data-authors-count="None" data-toggle="modal" data-target="#science-paper-update-modal">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square w-4 h-4 mr-1">
@@ -102,6 +106,6 @@
 
 
 
-   
+
 </div>
 @endsection
