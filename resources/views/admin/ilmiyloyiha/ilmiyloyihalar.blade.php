@@ -41,7 +41,15 @@
                     <th class="whitespace-no-wrap">Tashkilot nomi</th>
                     <th class="whitespace-no-wrap">Loyiha mavzusi</th>
                     <th class="whitespace-no-wrap">Loyiha turi</th>
-                    <th class="whitespace-no-wrap">Status</th>
+                    <th class="whitespace-no-wrap" style="width: 150px;">
+                        <form method="GET" action="{{ route('searchloyiha') }}">
+                            <select class="form-select" aria-label="Default select example" name="query" onchange="this.form.submit()">
+                                <option value="">Status</option>
+                                <option value="Jarayonda">Jarayonda</option>
+                                <option value="Yakunlangan">Yakunlangan</option>
+                            </select>
+                        </form>
+                    </th>
                     <th class="whitespace-no-wrap text-center">Harakat</th>
                 </tr>
             </thead>

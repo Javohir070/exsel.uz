@@ -14,7 +14,7 @@
             <div class="search hidden sm:block">
             <form action="{{ route('searchloyiha') }}" method="GET">
                 <input type="text" name="query" class="search__input input placeholder-theme-13" placeholder="Search...">
-                <i data-feather="search" class="search__icon"></i> 
+                <i data-feather="search" class="search__icon"></i>
             </form>
             </div>
             <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
@@ -25,7 +25,7 @@
                     Qo'shish
                 </a>
             </div>
-        
+
         </div> --}}
 
     </div>
@@ -40,7 +40,15 @@
                         <th class="whitespace-no-wrap">Loyiha mavzusi</th>
                         <th class="whitespace-no-wrap">Loyiha rahbari</th>
                         <th class="whitespace-no-wrap">Loyiha turi</th>
-                        <th class="whitespace-no-wrap">Loyiha dasturi</th>
+                        <th class="whitespace-no-wrap" style="width: 150px;">
+                            <form method="GET" action="{{ route('searchloyiha') }}">
+                                <select class="form-select" aria-label="Default select example" name="query" onchange="this.form.submit()">
+                                    <option value="">Status</option>
+                                    <option value="Jarayonda">Jarayonda</option>
+                                    <option value="Yakunlangan">Yakunlangan</option>
+                                </select>
+                            </form>
+                        </th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -51,16 +59,16 @@
                     <tr class="intro-x">
                         <td>{{$loop->index+1}}</td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->mavzusi  }} </a>
+                            {{ $xodimlar->mavzusi  }}
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->rahbar_name }}</a>
+                            {{ $xodimlar->rahbar_name }}
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->turi }}</a>
+                            {{ $xodimlar->turi }}
                         </td>
                         <td>
-                            <a href="" class="font-medium ">{{ $xodimlar->dastyri }}</a>
+                            {{ $xodimlar->status }}
                         </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
@@ -95,8 +103,8 @@
                                     </svg>
                                     Ko'rish
                                 </a>
-                                
-                                
+
+
 
                             </div>
                         </td>
@@ -118,7 +126,7 @@
         </div>
 
 
-        
+
 
     </div>
 
@@ -126,6 +134,6 @@
 
 
 
-   
+
 </div>
 @endsection

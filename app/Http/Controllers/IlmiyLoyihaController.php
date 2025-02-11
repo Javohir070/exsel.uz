@@ -250,6 +250,7 @@ class IlmiyLoyihaController extends Controller
                 ->orWhere('turi','like','%'.$querysearch.'%')
                 ->orWhere('rahbar_name','like','%'.$querysearch.'%')
                 ->orWhere('raqami','like','%'.$querysearch.'%')
+                ->orWhere('status','like','%'.$querysearch.'%')
                 ->paginate(10);
         return view('admin.ilmiyloyiha.search_results', compact('ilmiyloyiha'));
     }
@@ -258,7 +259,7 @@ class IlmiyLoyihaController extends Controller
     {
         $takshirivchilar = Tekshirivchilar::pluck('ilmiy_loyiha_id')->toArray();
         $ilmiyloyihalar = IlmiyLoyiha::whereNotIn('id',$takshirivchilar)->paginate(25);
-   
+
         return view("admin.ilmiyloyiha.monitoring2024",['ilmiyloyihalar'=>$ilmiyloyihalar]);
 
     }

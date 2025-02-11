@@ -170,4 +170,16 @@ class XujalikController extends Controller
         $fileName = 'Xujaliklar' . now()->format('Y_m_d_H_i_s') . '.xlsx';
         return Excel::download(new XujalikExport, $fileName);
     }
+
+    public function searchxujalik(Request $request)
+    {
+        $querysearch = $request->input('query');
+        $xujaliklar = Xujalik::where('ilmiy_nomi','like','%'.$querysearch.'%')
+                ->orWhere('ishlanma_mavzu','like','%'.$querysearch.'%')
+                ->orWhere('stir','like','%'.$querysearch.'%')
+                ->orWhere('sh_raqami','like','%'.$querysearch.'%')
+                ->orWhere('status','like','%'.$querysearch.'%')
+                ->paginate(10);
+        return view('admin.xujalik.search_results', compact('xujaliklar'));
+    }
 }
