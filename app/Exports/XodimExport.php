@@ -17,6 +17,7 @@ class XodimExport implements FromCollection, WithHeadings
             return [
                "ID" => $xodimlar->id,
                "Tashkilot" => $xodimlar->tashkilot->name,
+               "Tashkilot turi" => $xodimlar->tashkilot->tashkilot_turi ?? "otm",
                "Fish" => $xodimlar->fish,
                "Jshshir" => $xodimlar->jshshir,
                "Tug'ilgan yil" => $xodimlar->yil,
@@ -44,6 +45,7 @@ class XodimExport implements FromCollection, WithHeadings
         return [
             "ID",
             "Tashkilot",
+            "Tashkilot turi",
             "Fish",
             "Jshshir",
             "Tug'ilgan yil",
