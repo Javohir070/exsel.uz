@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Http\Controllers\AsbobuskunaController;
 use App\Http\Controllers\DalolatnomaController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FakultetlarController;
@@ -163,6 +164,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/export-ilmiymaqolalars', [IlmiymaqolalarController::class, "export_ilmiymaqolalars"])->name("ilmiymaqolalars.export");
     Route::get('/export-ilmiytezislars', [IlmiytezislarController::class, "export_ilmiytezislars"])->name("ilmiytezislars.export");
     //super admin uchun
+
+    //asbob uskunlar
+    Route::get('/asbobuskunalar', [AsbobuskunaController::class, "asbobuskunalar"])->name("asbobuskunalar.index");
     Route::resources([
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,
@@ -187,6 +191,7 @@ Route::middleware('auth')->group(function () {
         'intellektualmulk' => IntellektualmulkController::class,
         'ilmiymaqolalar' => IlmiymaqolalarController::class,
         'ilmiytezislar' => IlmiytezislarController::class,
+        'asbobuskuna' => AsbobuskunaController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });

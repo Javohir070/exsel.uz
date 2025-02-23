@@ -882,10 +882,20 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> SAVOLNOMANI yuklang </label>
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> SAVOLNOMANI faylni yuklang </label>
                     <input type="file" name="savolnoma" value="{{ $ilmiyloyiha->savolnoma }}"
                         class="input w-full border mt-2" required="">
                     @error('savolnoma')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Asoslovchi faylni yuklang </label>
+                    <input type="file" name="file" value="{{ $ilmiyloyiha->file }}"
+                        class="input w-full border mt-2" required="">
+                    @error('file')
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>

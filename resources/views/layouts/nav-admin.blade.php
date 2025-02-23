@@ -253,6 +253,14 @@
                 <div class="side-menu__title"> Ilmiy izlanuvchilar </div>
             </a>
         </li>
+
+        <li>
+            <a href="{{ route('asbobuskuna.index') }}"
+                class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Asbob-uskunalar</div>
+            </a>
+        </li>
         @endrole
 
         @role('kafedra_mudiri')
@@ -530,6 +538,14 @@
                 class="side-menu side-menu{{ request()->is('monografiyalar*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                 <div class="side-menu__title"> Monografiyalar </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('asbobuskunalar.index') }}"
+                class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Asbob-uskunalar</div>
             </a>
         </li>
 

@@ -69,6 +69,7 @@ class IlmiyLoyiha extends Model
         'ijrochi_tashkilot',
         'savolnoma',
         'malumotnoma',
+        'file',
         'kafedralar_id',
         'status'
     ];

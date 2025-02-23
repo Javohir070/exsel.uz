@@ -125,6 +125,11 @@ class IlmiyLoyihaController extends Controller
             $path_savolnoma = $request->file('savolnoma')->storeAs('IlmiyLoyiha-file', $name_savolnoma);
         }
 
+        if($request->hasFile('file')){
+            $name_file = time().$request->file('file')->getClientOriginalName();
+            $path_file = $request->file('')->storeAs('IlmiyLoyiha-file', $name_file);
+        }
+
         $umumiyyil = Umumiyyil::findOrFail($ilmiyloyiha->umumiyyil_id);
         $umumiyyil->update([
             "y2017" => $request->y2017 ?? 0 ,
@@ -198,6 +203,7 @@ class IlmiyLoyihaController extends Controller
             "ijrochi_tashkilot" => $request->ijrochi_tashkilot,
             "malumotnoma" => $path_malumotnoma,
             "savolnoma" => $path_savolnoma,
+            "file" => $path_file,
         ]);
         if(auth()->user()->hasRole('labaratoriyaga_masul')){
             return redirect()->route('lab_ilmiyloyiha.index')->with('status',"Ma\'lumotlar muvaffaqiyatli yangilandi.");
