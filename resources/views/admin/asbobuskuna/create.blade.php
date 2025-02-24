@@ -11,8 +11,8 @@
 
     </div><br>
     <div class="intro-y col-span-6 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
-            padding: 20px 20px;
-            border-radius: 20px">
+                padding: 20px 20px;
+                border-radius: 20px">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <form id="science-paper-create-form" method="POST" action="{{ route("asbobuskuna.store") }}"
                 class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
@@ -33,7 +33,7 @@
                     <!-- Model -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">Model</label>
-                        <input type="text" name="model" class="input w-full border mt-2" required>
+                        <input type="text" name="model" value="{{ old('model') }}" class="input w-full border mt-2" required>
                         @error('model')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -44,8 +44,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Turi
                         </label>
-                        <select name="turi" value="{{old('turi')}}"
-                            class="input border w-full mt-2" required="">
+                        <select name="turi" value="{{old('turi')}}" class="input border w-full mt-2" required="">
 
                             <option value=""></option>
 
@@ -256,8 +255,9 @@
 
                     <!-- Harid summa -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Harid qilingan summasi (buxgalteriya balans summasi ming so'mda)</label>
-                        <input type="number" name="harid_summa" class="input w-full border mt-2" required>
+                        <label class="flex flex-col sm:flex-row">Harid qilingan summasi (buxgalteriya balans summasi ming
+                            so'mda)</label>
+                        <input type="number" name="harid_summa" value="{{ old('harid_summa') }}" class="input w-full border mt-2" required>
                         @error('harid_summa')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -266,27 +266,29 @@
                     <!-- Buxgalteriya summa -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">Buxgalteriya bo'yicha qoldiq summasi (ming so'mda)</label>
-                        <input type="number" name="buxgalteriya_summa" class="input w-full border mt-2" required>
+                        <input type="number" name="buxgalteriya_summa" value="{{ old('buxgalteriya_summa') }}" class="input w-full border mt-2" required>
                         @error('buxgalteriya_summa')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    <!-- Moliya manbasi -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">Moliyalashtirish manbasi</label>
-                        <select name="moliya_manbasi" value="{{old('moliya_manbasi')}}"
-                            class="input border w-full mt-2" required="">
+                        <select name="moliya_manbasi" id="moliya_manbasi" value="{{old('moliya_manbasi')}}"
+                            class="input border w-full mt-2" required onchange="toggleLoyihaShifri()">
 
                             <option value=""></option>
 
-                            <option value="Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi">Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi</option>
+                            <option value="Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi">
+                                Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi</option>
 
                             <option value="Ilmiy loyiha doirasida">Ilmiy loyiha doirasida</option>
 
-                            <option value="Tashkilot byudjet mablag‘lari hisobidan">Tashkilot byudjet mablag‘lari hisobidan</option>
+                            <option value="Tashkilot byudjet mablag‘lari hisobidan">Tashkilot byudjet mablag‘lari hisobidan
+                            </option>
 
-                            <option value="Tashkilotning byudjetdan tashqari mablag‘lari hisobidan">Tashkilotning byudjetdan tashqari mablag‘lari hisobidan</option>
+                            <option value="Tashkilotning byudjetdan tashqari mablag‘lari hisobidan">Tashkilotning byudjetdan
+                                tashqari mablag‘lari hisobidan</option>
 
                             <option value="Moliya institutlari">Moliya institutlari</option>
 
@@ -299,9 +301,9 @@
                     </div>
 
                     <!-- Loyiha shifri -->
-                    <div class="w-full col-span-6">
+                    <div class="w-full col-span-6" id="loyiha_shifri_div" style="display: none;">
                         <label class="flex flex-col sm:flex-row">Loyiha shifri</label>
-                        <input type="text" name="loy_shifri" class="input w-full border mt-2" required>
+                        <input type="text" name="loy_shifri" value="{{ old('loy_shifri') }}" class="input w-full border mt-2">
                         @error('loy_shifri')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -310,7 +312,7 @@
                     <!-- Shartnoma raqami -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">Shartnoma raqami (uskuna bo'yicha)</label>
-                        <input type="text" name="sh_raqami" class="input w-full border mt-2" required>
+                        <input type="text" name="sh_raqami" value="{{ old('sh_raqami') }}" class="input w-full border mt-2" required>
                         @error('sh_raqami')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -319,7 +321,7 @@
                     <!-- Shartnoma sanasi -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">Shartnoma sanasi</label>
-                        <input type="date" name="sh_sanasi" class="input w-full border mt-2" required>
+                        <input type="date" name="sh_sanasi" value="{{ old('sh_sanasi') }}" class="input w-full border mt-2" required>
                         @error('sh_sanasi')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -340,8 +342,8 @@
                     <!-- Holati -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">Holati</label>
-                        <select name="holati" value="{{ old('holati') }}" class="science-sub-category input border w-full mt-2"
-                            required="">
+                        <select name="holati" value="{{ old('holati') }}"
+                            class="science-sub-category input border w-full mt-2" required="">
                             <option value=""></option>
                             <option value="Ishchi holada">Ishchi holada</option>
                             <option value="Ta'mir talab">Ta'mir talab</option>
@@ -365,12 +367,13 @@
                     </div>
 
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Foydalanishga mas'ul tarkibiy bo‘linma (laboratoriya, kafedra, sho‘ba) nomi</label>
-                        <select name="laboratory_id" value="{{ old('laboratory_id') }}"
-                            class="input border w-full mt-2 " required="">
+                        <label class="flex flex-col sm:flex-row">Foydalanishga mas'ul tarkibiy bo‘linma (laboratoriya,
+                            kafedra, sho‘ba) nomi</label>
+                        <select name="laboratory_id" value="{{ old('laboratory_id') }}" class="input border w-full mt-2 "
+                            required="">
                             <option value=""></option>
                             @foreach ($laboratorys as $l)
-                            <option value="{{ $l->id }}">{{ $l->name }}</option>
+                                <option value="{{ $l->id }}">{{ $l->name }}</option>
                             @endforeach
                         </select>
                         @error('laboratory_id')
@@ -381,7 +384,7 @@
                     <!-- FISH -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">F.I.SH</label>
-                        <input type="text" name="fish" class="input w-full border mt-2" required>
+                        <input type="text" name="fish" value="{{ old('fish') }}" class="input w-full border mt-2" required>
                         @error('fish')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -389,8 +392,9 @@
 
                     <!-- Javobgar buyruq raqami -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Javobgar etit belgilanganligi to‘g‘risida buyruq  raqami</label>
-                        <input type="text" name="jav_buy_raqami" class="input w-full border mt-2" required>
+                        <label class="flex flex-col sm:flex-row">Javobgar etit belgilanganligi to‘g‘risida buyruq
+                            raqami</label>
+                        <input type="text" name="jav_buy_raqami" value="{{ old('jav_buy_raqami') }}" class="input w-full border mt-2" required>
                         @error('jav_buy_raqami')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -398,8 +402,9 @@
 
                     <!-- Javobgar etit belgilanganligi to‘g‘risida buyruq  sanasi -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Javobgar etit belgilanganligi to‘g‘risida buyruq  sanasi</label>
-                        <input type="date" name="jav_sanasi" class="input w-full border mt-2" required>
+                        <label class="flex flex-col sm:flex-row">Javobgar etit belgilanganligi to‘g‘risida buyruq
+                            sanasi</label>
+                        <input type="date" name="jav_sanasi" value="{{ old('jav_sanasi') }}" class="input w-full border mt-2" required>
                         @error('jav_sanasi')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -441,5 +446,21 @@
             }
         }
     </script>
+    <script>
+        function toggleLoyihaShifri() {
+            const moliyaSelect = document.getElementById('moliya_manbasi');
+            const loyihaDiv = document.getElementById('loyiha_shifri_div');
 
+            if (moliyaSelect.value === 'Ilmiy loyiha doirasida') {
+                loyihaDiv.style.display = 'block';
+            } else {
+                loyihaDiv.style.display = 'none';
+            }
+        }
+
+        // Eski ma'lumotni tiklash (old input)
+        window.onload = function () {
+            toggleLoyihaShifri();
+        };
+    </script>
 @endsection

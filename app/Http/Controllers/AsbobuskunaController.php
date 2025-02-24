@@ -74,7 +74,7 @@ class AsbobuskunaController extends Controller
     }
 
 
-    public function update(UpdateAsbobuskunaRequest $request, Asbobuskuna $asbobuskuna)
+    public function update(StoreAsbobuskunaRequest $request, Asbobuskuna $asbobuskuna)
     {
         $asbobuskuna->update([
             "name" => $request->name,
