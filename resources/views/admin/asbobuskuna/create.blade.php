@@ -48,9 +48,15 @@
 
                             <option value=""></option>
 
-                            <option value="Tahliliy">Tahliliy</option>
+                            <option value="Umumiy laboratoriya">Umumiy laboratoriya</option>
 
-                            <option value="umumiy laboratoriya">umumiy laboratoriya</option>
+                            <option value="O'lchash asbob-uskunasi">O'lchash asbob-uskunasi</option>
+
+                            <option value="Ixtisoslashtirilgan asbob-uskunasi">Ixtisoslashtirilgan asbob-uskunasi</option>
+
+                            <option value="Sinov asbob-uskunasi">Sinov asbob-uskunasi</option>
+
+                            <option value="Analitik asbob-uskunasi">Analitik asbob-uskunasi</option>
 
                         </select><br>
                         @error('turi')
@@ -392,7 +398,7 @@
 
                     <!-- Javobgar buyruq raqami -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Javobgar etit belgilanganligi to‘g‘risida buyruq
+                        <label class="flex flex-col sm:flex-row">Javobgar etib belgilanganligi to‘g‘risida buyruq
                             raqami</label>
                         <input type="text" name="jav_buy_raqami" value="{{ old('jav_buy_raqami') }}" class="input w-full border mt-2" required>
                         @error('jav_buy_raqami')
@@ -400,9 +406,9 @@
                         @enderror
                     </div>
 
-                    <!-- Javobgar etit belgilanganligi to‘g‘risida buyruq  sanasi -->
+                    <!-- Javobgar etib belgilanganligi to‘g‘risida buyruq  sanasi -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Javobgar etit belgilanganligi to‘g‘risida buyruq
+                        <label class="flex flex-col sm:flex-row">Javobgar etib belgilanganligi to‘g‘risida buyruq
                             sanasi</label>
                         <input type="date" name="jav_sanasi" value="{{ old('jav_sanasi') }}" class="input w-full border mt-2" required>
                         @error('jav_sanasi')

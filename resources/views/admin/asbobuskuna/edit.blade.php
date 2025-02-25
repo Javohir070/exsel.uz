@@ -45,14 +45,19 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Turi
                         </label>
-                        <select name="turi" value="{{$asbobuskuna->turi}}"
-                            class="input border w-full mt-2" required="">
+                        <select name="turi" value="{{old('turi')}}" class="input border w-full mt-2" required="">
 
                             <option value=""></option>
 
-                            <option value="Tahliliy">Tahliliy</option>
+                            <option value="Umumiy laboratoriya">Umumiy laboratoriya</option>
 
-                            <option value="umumiy laboratoriya">umumiy laboratoriya</option>
+                            <option value="O'lchash asbob-uskunasi">O'lchash asbob-uskunasi</option>
+
+                            <option value="Ixtisoslashtirilgan asbob-uskunasi">Ixtisoslashtirilgan asbob-uskunasi</option>
+
+                            <option value="Sinov asbob-uskunasi">Sinov asbob-uskunasi</option>
+
+                            <option value="Analitik asbob-uskunasi">Analitik asbob-uskunasi</option>
 
                         </select><br>
                         @error('turi')
@@ -390,16 +395,16 @@
 
                     <!-- Javobgar buyruq raqami -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Javobgar etit belgilanganligi to‘g‘risida buyruq  raqami</label>
+                        <label class="flex flex-col sm:flex-row">Javobgar etib belgilanganligi to‘g‘risida buyruq  raqami</label>
                         <input type="text" name="jav_buy_raqami" value="{{ $asbobuskuna->jav_buy_raqami }}" class="input w-full border mt-2" required>
                         @error('jav_buy_raqami')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
 
-                    <!-- Javobgar etit belgilanganligi to‘g‘risida buyruq  sanasi -->
+                    <!-- Javobgar etib belgilanganligi to‘g‘risida buyruq  sanasi -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Javobgar etit belgilanganligi to‘g‘risida buyruq  sanasi</label>
+                        <label class="flex flex-col sm:flex-row">Javobgar etib belgilanganligi to‘g‘risida buyruq  sanasi</label>
                         <input type="date" name="jav_sanasi" value="{{ $asbobuskuna->jav_sanasi }}" class="input w-full border mt-2" required>
                         @error('jav_sanasi')
                             <div class="error">{{ $message }}</div>
