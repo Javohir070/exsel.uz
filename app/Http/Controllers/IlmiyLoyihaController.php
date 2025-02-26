@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\IlmiyLoyihaImport;
 use App\Models\IlmiyLoyiha;
 use App\Http\Requests\StoreIlmiyLoyihaRequest;
 use App\Http\Requests\UpdateIlmiyLoyihaRequest;
@@ -269,4 +270,15 @@ class IlmiyLoyihaController extends Controller
         return view("admin.ilmiyloyiha.monitoring2024",['ilmiyloyihalar'=>$ilmiyloyihalar]);
 
     }
+
+    public function IlmiyLoyiha_import(Request $request)
+{
+    $request->validate([
+        'file' => 'required|mimes:xlsx,csv',
+    ]);
+
+    Excel::import(new IlmiyLoyihaImport, $request->file('file'));
+
+    return back()->with('success', 'Fayl muvaffaqiyatli yuklandi!');
+}
 }
