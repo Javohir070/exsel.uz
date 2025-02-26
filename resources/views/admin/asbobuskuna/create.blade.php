@@ -309,7 +309,14 @@
                     <!-- Loyiha shifri -->
                     <div class="w-full col-span-6" id="loyiha_shifri_div" style="display: none;">
                         <label class="flex flex-col sm:flex-row">Loyiha shifri</label>
-                        <input type="text" name="loy_shifri" value="{{ old('loy_shifri') }}" class="input w-full border mt-2">
+                        {{-- <input type="text" name="loy_shifri" value="{{ old('loy_shifri') }}" class="input w-full border mt-2"> --}}
+                        <select name="loy_shifri" value="{{ old('loy_shifri') }}"
+                            class="input border w-full mt-2 " required="">
+                            <option value=""></option>
+                            @foreach ($ilmiy_loyhalar as $l)
+                            <option value="{{ $l->raqami }}">{{ $l->raqami }}, {{ $l->mavzusi }}</option>
+                            @endforeach
+                        </select>
                         @error('loy_shifri')
                             <div class="error">{{ $message }}</div>
                         @enderror

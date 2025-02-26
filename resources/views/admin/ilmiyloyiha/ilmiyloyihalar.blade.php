@@ -28,7 +28,7 @@
 
                     <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                         class="button w-24 ml-3 bg-theme-1 text-white">
-                        Ilmiy izlanuvchi biriktirish
+                        Ilmiy loyiha biriktirish
                     </a>
                 </div>
 

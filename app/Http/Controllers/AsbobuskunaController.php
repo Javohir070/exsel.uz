@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Asbobuskuna;
 use App\Http\Requests\StoreAsbobuskunaRequest;
 use App\Http\Requests\UpdateAsbobuskunaRequest;
+use App\Models\IlmiyLoyiha;
 use App\Models\Laboratory;
 
 class AsbobuskunaController extends Controller
@@ -27,8 +28,9 @@ class AsbobuskunaController extends Controller
 
     public function create()
     {
+        $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
         $laboratorys = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
-        return view('admin.asbobuskuna.create', ['laboratorys' => $laboratorys]);
+        return view('admin.asbobuskuna.create', ['laboratorys' => $laboratorys, 'ilmiy_loyhalar' => $ilmiy_loyhalar]);
     }
 
 
@@ -69,8 +71,9 @@ class AsbobuskunaController extends Controller
 
     public function edit(Asbobuskuna $asbobuskuna)
     {
+        $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
         $laboratorys = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
-        return view('admin.asbobuskuna.edit', ['asbobuskuna' => $asbobuskuna, 'laboratorys' => $laboratorys]);
+        return view('admin.asbobuskuna.edit', ['asbobuskuna' => $asbobuskuna, 'laboratorys' => $laboratorys, 'ilmiy_loyhalar' => $ilmiy_loyhalar]);
     }
 
 

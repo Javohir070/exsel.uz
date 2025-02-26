@@ -305,9 +305,16 @@
                     </div>
 
                     <!-- Loyiha shifri -->
-                    <div class="w-full col-span-6">
+                    <div class="w-full col-span-6" id="loyiha_shifri_div" style="display: none;">
                         <label class="flex flex-col sm:flex-row">Loyiha shifri</label>
-                        <input type="text" name="loy_shifri" value="{{ $asbobuskuna->loy_shifri }}" class="input w-full border mt-2" required>
+                        {{-- <input type="text" name="loy_shifri" value="{{ old('loy_shifri') }}" class="input w-full border mt-2"> --}}
+                        <select name="loy_shifri" value="{{ old('loy_shifri') }}"
+                            class="input border w-full mt-2 " required="">
+                            <option value=""></option>
+                            @foreach ($ilmiy_loyhalar as $l)
+                            <option value="{{ $l->id }}">{{ $l->mavzusi }}</option>
+                            @endforeach
+                        </select>
                         @error('loy_shifri')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -446,6 +453,23 @@
                 select.appendChild(option);
             }
         }
+    </script>
+    <script>
+        function toggleLoyihaShifri() {
+            const moliyaSelect = document.getElementById('moliya_manbasi');
+            const loyihaDiv = document.getElementById('loyiha_shifri_div');
+
+            if (moliyaSelect.value === 'Ilmiy loyiha doirasida') {
+                loyihaDiv.style.display = 'block';
+            } else {
+                loyihaDiv.style.display = 'none';
+            }
+        }
+
+        // Eski ma'lumotni tiklash (old input)
+        window.onload = function () {
+            toggleLoyihaShifri();
+        };
     </script>
 
 @endsection
