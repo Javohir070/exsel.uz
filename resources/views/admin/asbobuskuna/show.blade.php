@@ -70,7 +70,7 @@
                     </tr>
                     <tr>
                         <td class="border">{{ $asbobuskuna->ishlabchiq_yil  }}</td>
-                        <td class="border">{{ $asbobuskuna->harid_summa  }}</td>
+                        <td class="border">{{ $asbobuskuna->harid_summa  }} so'm</td>
                     </tr>
 
                     <tr class="bg-gray-200">
@@ -78,7 +78,7 @@
                         <th class="border">Moliyalashtirish manbasi</th>
                     </tr>
                     <tr>
-                        <td class="border">{{ $asbobuskuna->buxgalteriya_summa  }}</td>
+                        <td class="border">{{ $asbobuskuna->buxgalteriya_summa  }} so'm</td>
                         <td class="border">{{ $asbobuskuna->moliya_manbasi  }}</td>
                     </tr>
 
