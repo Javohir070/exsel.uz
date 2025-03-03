@@ -41,31 +41,49 @@
                     </div>
 
                     <!-- Turi -->
-                    <div class="w-full col-span-6 ">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Turi
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row">
+                            <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Turi
                         </label>
-                        <select name="turi" value="{{old('turi')}}" class="input border w-full mt-2" required="">
-
+                        <select name="turi" class="input border w-full mt-2" required>
                             <option value=""></option>
 
-                            <option value="Umumiy laboratoriya">Umumiy laboratoriya</option>
+                            <option value="Umumiy laboratoriya"
+                                {{ old('turi', $asbobuskuna->turi ?? '') == 'Umumiy laboratoriya' ? 'selected' : '' }}>
+                                Umumiy laboratoriya
+                            </option>
 
-                            <option value="O'lchash asbob-uskunasi">O'lchash asbob-uskunasi</option>
+                            <option value="O'lchash asbob-uskunasi"
+                                {{ old('turi', $asbobuskuna->turi ?? '') == "O'lchash asbob-uskunasi" ? 'selected' : '' }}>
+                                O'lchash asbob-uskunasi
+                            </option>
 
-                            <option value="Ixtisoslashtirilgan asbob-uskunasi">Ixtisoslashtirilgan asbob-uskunasi</option>
+                            <option value="Ixtisoslashtirilgan asbob-uskunasi"
+                                {{ old('turi', $asbobuskuna->turi ?? '') == "Ixtisoslashtirilgan asbob-uskunasi" ? 'selected' : '' }}>
+                                Ixtisoslashtirilgan asbob-uskunasi
+                            </option>
 
-                            <option value="Sinov asbob-uskunasi">Sinov asbob-uskunasi</option>
+                            <option value="Sinov asbob-uskunasi"
+                                {{ old('turi', $asbobuskuna->turi ?? '') == "Sinov asbob-uskunasi" ? 'selected' : '' }}>
+                                Sinov asbob-uskunasi
+                            </option>
 
-                            <option value="Analitik asbob-uskunasi">Analitik asbob-uskunasi</option>
+                            <option value="Analitik asbob-uskunasi"
+                                {{ old('turi', $asbobuskuna->turi ?? '') == "Analitik asbob-uskunasi" ? 'selected' : '' }}>
+                                Analitik asbob-uskunasi
+                            </option>
 
-                            <option value="ORG texnika">ORG texnika</option>
-
+                            <option value="ORG texnika"
+                                {{ old('turi', $asbobuskuna->turi ?? '') == "ORG texnika" ? 'selected' : '' }}>
+                                ORG texnika
+                            </option>
                         </select><br>
+
                         @error('turi')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
+
 
 
 
@@ -76,186 +94,63 @@
                         </label>
                         <select name="ishlab_davlat" class="input border w-full mt-2" required>
                             <option value="">Davlatni tanlang</option>
-                            <option value="Afgʻoniston">Afgʻoniston</option>
-                            <option value="Albaniya">Albaniya</option>
-                            <option value="Amerika Qoʻshma Shtatlari">Amerika Qoʻshma Shtatlari</option>
-                            <option value="Andorra">Andorra</option>
-                            <option value="Angola">Angola</option>
-                            <option value="Antigua va Barbuda">Antigua va Barbuda</option>
-                            <option value="Argentina">Argentina</option>
-                            <option value="Armaniston">Armaniston</option>
-                            <option value="Avstraliya">Avstraliya</option>
-                            <option value="Avstriya">Avstriya</option>
-                            <option value="Ozarbayjon">Ozarbayjon</option>
-                            <option value="Bagama orollari">Bagama orollari</option>
-                            <option value="Bahrayn">Bahrayn</option>
-                            <option value="Bangladesh">Bangladesh</option>
-                            <option value="Barbados">Barbados</option>
-                            <option value="Belarus">Belarus</option>
-                            <option value="Belgiya">Belgiya</option>
-                            <option value="Beliz">Beliz</option>
-                            <option value="Benin">Benin</option>
-                            <option value="Butan">Butan</option>
-                            <option value="Boliviya">Boliviya</option>
-                            <option value="Bosniya va Gertsegovina">Bosniya va Gertsegovina</option>
-                            <option value="Botsvana">Botsvana</option>
-                            <option value="Braziliya">Braziliya</option>
-                            <option value="Bruney">Bruney</option>
-                            <option value="Bolgariya">Bolgariya</option>
-                            <option value="Burkina-Faso">Burkina-Faso</option>
-                            <option value="Burundi">Burundi</option>
-                            <option value="Kabo-Verde">Kabo-Verde</option>
-                            <option value="Kambodja">Kambodja</option>
-                            <option value="Kamerun">Kamerun</option>
-                            <option value="Kanada">Kanada</option>
-                            <option value="Markaziy Afrika Respublikasi">Markaziy Afrika Respublikasi</option>
-                            <option value="Chad">Chad</option>
-                            <option value="Chili">Chili</option>
-                            <option value="Xitoy">Xitoy</option>
-                            <option value="Kolumbiya">Kolumbiya</option>
-                            <option value="Komor orollari">Komor orollari</option>
-                            <option value="Kongo Demokratik Respublikasi">Kongo Demokratik Respublikasi</option>
-                            <option value="Kongo Respublikasi">Kongo Respublikasi</option>
-                            <option value="Kosta-Rika">Kosta-Rika</option>
-                            <option value="Xorvatiya">Xorvatiya</option>
-                            <option value="Kuba">Kuba</option>
-                            <option value="Kipr">Kipr</option>
-                            <option value="Chexiya">Chexiya</option>
-                            <option value="Daniya">Daniya</option>
-                            <option value="Jibuti">Jibuti</option>
-                            <option value="Dominika">Dominika</option>
-                            <option value="Dominikan Respublikasi">Dominikan Respublikasi</option>
-                            <option value="Ekvador">Ekvador</option>
-                            <option value="Misr">Misr</option>
-                            <option value="Salvador">Salvador</option>
-                            <option value="Ekvatorial Gvineya">Ekvatorial Gvineya</option>
-                            <option value="Eritreya">Eritreya</option>
-                            <option value="Estoniya">Estoniya</option>
-                            <option value="Eswatini">Eswatini</option>
-                            <option value="Efiopiya">Efiopiya</option>
-                            <option value="Fiji">Fiji</option>
-                            <option value="Finlyandiya">Finlyandiya</option>
-                            <option value="Fransiya">Fransiya</option>
-                            <option value="Gabon">Gabon</option>
-                            <option value="Gambiya">Gambiya</option>
-                            <option value="Gruziya">Gruziya</option>
-                            <option value="Germaniya">Germaniya</option>
-                            <option value="Gana">Gana</option>
-                            <option value="Gretsiya">Gretsiya</option>
-                            <option value="Grenada">Grenada</option>
-                            <option value="Gvatemala">Gvatemala</option>
-                            <option value="Gvineya">Gvineya</option>
-                            <option value="Gvineya-Bisau">Gvineya-Bisau</option>
-                            <option value="Gayana">Gayana</option>
-                            <option value="Gaiti">Gaiti</option>
-                            <option value="Gonduras">Gonduras</option>
-                            <option value="Vengriya">Vengriya</option>
-                            <option value="Islandiya">Islandiya</option>
-                            <option value="Hindiston">Hindiston</option>
-                            <option value="Indoneziya">Indoneziya</option>
-                            <option value="Eron">Eron</option>
-                            <option value="Iroq">Iroq</option>
-                            <option value="Irlandiya">Irlandiya</option>
-                            <option value="Isroil">Isroil</option>
-                            <option value="Italiya">Italiya</option>
-                            <option value="Yamayka">Yamayka</option>
-                            <option value="Yaponiya">Yaponiya</option>
-                            <option value="Iordaniya">Iordaniya</option>
-                            <option value="Qozogʻiston">Qozogʻiston</option>
-                            <option value="Keniya">Keniya</option>
-                            <option value="Kiribati">Kiribati</option>
-                            <option value="Koreya Respublikasi">Koreya Respublikasi</option>
-                            <option value="Koreya Xalq Demokratik Respublikasi">Koreya Xalq Demokratik Respublikasi</option>
-                            <option value="Quvayt">Quvayt</option>
-                            <option value="Qirgʻiziston">Qirgʻiziston</option>
-                            <option value="Laos">Laos</option>
-                            <option value="Latviya">Latviya</option>
-                            <option value="Livan">Livan</option>
-                            <option value="Liberiya">Liberiya</option>
-                            <option value="Liviya">Liviya</option>
-                            <option value="Lixtenshteyn">Lixtenshteyn</option>
-                            <option value="Litva">Litva</option>
-                            <option value="Luksemburg">Luksemburg</option>
-                            <option value="Madagaskar">Madagaskar</option>
-                            <option value="Malavi">Malavi</option>
-                            <option value="Malayziya">Malayziya</option>
-                            <option value="Maldiv orollari">Maldiv orollari</option>
-                            <option value="Mali">Mali</option>
-                            <option value="Malta">Malta</option>
-                            <option value="Meksika">Meksika</option>
-                            <option value="Moldova">Moldova</option>
-                            <option value="Mongoliya">Mongoliya</option>
-                            <option value="Chernogoriya">Chernogoriya</option>
-                            <option value="Marokash">Marokash</option>
-                            <option value="Mozambik">Mozambik</option>
-                            <option value="Myanma">Myanma</option>
-                            <option value="Namibiya">Namibiya</option>
-                            <option value="Nepal">Nepal</option>
-                            <option value="Niderland">Niderland</option>
-                            <option value="Yangi Zelandiya">Yangi Zelandiya</option>
-                            <option value="Nikaragua">Nikaragua</option>
-                            <option value="Niger">Niger</option>
-                            <option value="Nigeriya">Nigeriya</option>
-                            <option value="Norvegiya">Norvegiya</option>
-                            <option value="Ummon">Ummon</option>
-                            <option value="Pokiston">Pokiston</option>
-                            <option value="Panama">Panama</option>
-                            <option value="Paragvay">Paragvay</option>
-                            <option value="Peru">Peru</option>
-                            <option value="Filippin">Filippin</option>
-                            <option value="Polsha">Polsha</option>
-                            <option value="Portugaliya">Portugaliya</option>
-                            <option value="Qatar">Qatar</option>
-                            <option value="Ruminiya">Ruminiya</option>
-                            <option value="Rossiya">Rossiya</option>
-                            <option value="Ruanda">Ruanda</option>
-                            <option value="Saudiya Arabistoni">Saudiya Arabistoni</option>
-                            <option value="Senegal">Senegal</option>
-                            <option value="Serbiya">Serbiya</option>
-                            <option value="Seyshellar">Seyshellar</option>
-                            <option value="Sierra-Leone">Sierra-Leone</option>
-                            <option value="Singapur">Singapur</option>
-                            <option value="Slovakiya">Slovakiya</option>
-                            <option value="Sloveniya">Sloveniya</option>
-                            <option value="Somaliya">Somaliya</option>
-                            <option value="Janubiy Afrika">Janubiy Afrika</option>
-                            <option value="Ispaniya">Ispaniya</option>
-                            <option value="Shvetsiya">Shvetsiya</option>
-                            <option value="Shveytsariya">Shveytsariya</option>
-                            <option value="Suriya">Suriya</option>
-                            <option value="Tayvan">Tayvan</option>
-                            <option value="Tojikiston">Tojikiston</option>
-                            <option value="Tanzaniya">Tanzaniya</option>
-                            <option value="Tailand">Tailand</option>
-                            <option value="Togo">Togo</option>
-                            <option value="Tonga">Tonga</option>
-                            <option value="Turkmaniston">Turkmaniston</option>
-                            <option value="Turkiya">Turkiya</option>
-                            <option value="Uganda">Uganda</option>
-                            <option value="Ukraina">Ukraina</option>
-                            <option value="Birlashgan Arab Amirliklari">Birlashgan Arab Amirliklari</option>
-                            <option value="Buyuk Britaniya">Buyuk Britaniya</option>
-                            <option value="Urugvay">Urugvay</option>
-                            <option value="Oʻzbekiston">Oʻzbekiston</option>
-                            <option value="Vanuatu">Vanuatu</option>
-                            <option value="Vatikan">Vatikan</option>
-                            <option value="Venesuela">Venesuela</option>
-                            <option value="Vyetnam">Vyetnam</option>
-                            <option value="Yaman">Yaman</option>
-                            <option value="Zambiya">Zambiya</option>
-                            <option value="Zimbabve">Zimbabve</option>
+
+                            @php
+                                $davlatlar = [
+                                    "Afgʻoniston", "Albaniya", "Amerika Qoʻshma Shtatlari", "Andorra", "Angola",
+                                    "Antigua va Barbuda", "Argentina", "Armaniston", "Avstraliya", "Avstriya",
+                                    "Ozarbayjon", "Bagama orollari", "Bahrayn", "Bangladesh", "Barbados",
+                                    "Belarus", "Belgiya", "Beliz", "Benin", "Butan", "Boliviya",
+                                    "Bosniya va Gertsegovina", "Botsvana", "Braziliya", "Bruney", "Bolgariya",
+                                    "Burkina-Faso", "Burundi", "Kabo-Verde", "Kambodja", "Kamerun",
+                                    "Kanada", "Markaziy Afrika Respublikasi", "Chad", "Chili", "Xitoy",
+                                    "Kolumbiya", "Komor orollari", "Kongo Demokratik Respublikasi", "Kongo Respublikasi",
+                                    "Kosta-Rika", "Xorvatiya", "Kuba", "Kipr", "Chexiya", "Daniya", "Jibuti",
+                                    "Dominika", "Dominikan Respublikasi", "Ekvador", "Misr", "Salvador",
+                                    "Ekvatorial Gvineya", "Eritreya", "Estoniya", "Eswatini", "Efiopiya",
+                                    "Fiji", "Finlyandiya", "Fransiya", "Gabon", "Gambiya", "Gruziya",
+                                    "Germaniya", "Gana", "Gretsiya", "Grenada", "Gvatemala", "Gvineya",
+                                    "Gvineya-Bisau", "Gayana", "Gaiti", "Gonduras", "Vengriya", "Islandiya",
+                                    "Hindiston", "Indoneziya", "Eron", "Iroq", "Irlandiya", "Isroil", "Italiya",
+                                    "Yamayka", "Yaponiya", "Iordaniya", "Qozogʻiston", "Keniya", "Kiribati",
+                                    "Koreya Respublikasi", "Koreya Xalq Demokratik Respublikasi", "Quvayt",
+                                    "Qirgʻiziston", "Laos", "Latviya", "Livan", "Liberiya", "Liviya",
+                                    "Lixtenshteyn", "Litva", "Luksemburg", "Madagaskar", "Malavi", "Malayziya",
+                                    "Maldiv orollari", "Mali", "Malta", "Meksika", "Moldova", "Mongoliya",
+                                    "Chernogoriya", "Marokash", "Mozambik", "Myanma", "Namibiya", "Nepal",
+                                    "Niderland", "Yangi Zelandiya", "Nikaragua", "Niger", "Nigeriya", "Norvegiya",
+                                    "Ummon", "Pokiston", "Panama", "Paragvay", "Peru", "Filippin", "Polsha",
+                                    "Portugaliya", "Qatar", "Ruminiya", "Rossiya", "Ruanda", "Saudiya Arabistoni",
+                                    "Senegal", "Serbiya", "Seyshellar", "Sierra-Leone", "Singapur", "Slovakiya",
+                                    "Sloveniya", "Somaliya", "Janubiy Afrika", "Ispaniya", "Shvetsiya",
+                                    "Shveytsariya", "Suriya", "Tayvan", "Tojikiston", "Tanzaniya", "Tailand",
+                                    "Togo", "Tonga", "Turkmaniston", "Turkiya", "Uganda", "Ukraina",
+                                    "Birlashgan Arab Amirliklari", "Buyuk Britaniya", "Urugvay", "Oʻzbekiston",
+                                    "Vanuatu", "Vatikan", "Venesuela", "Vyetnam", "Yaman", "Zambiya", "Zimbabve"
+                                ];
+                            @endphp
+
+                            @foreach($davlatlar as $davlat)
+                                <option value="{{ $davlat }}"
+                                    {{ old('ishlab_davlat', $asbobuskuna->ishlab_davlat ?? '') == $davlat ? 'selected' : '' }}>
+                                    {{ $davlat }}
+                                </option>
+                            @endforeach
                         </select>
+
                         @error('ishlab_davlat')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
+
+
 
                     <!-- Ishlab chiqarilgan yil -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">Ishlab chiqarilgan yil</label>
                         <select name="ishlabchiq_yil" value="{{ $asbobuskuna->ishlabchiq_yil }}"
                             class="science-sub-categoryyil input border w-full mt-2 " required="">
-                            <option value=""></option>
+                            <option value="{{ $asbobuskuna->ishlabchiq_yil }}">{{ $asbobuskuna->ishlabchiq_yil }}</option>
                         </select>
                         @error('ishlabchiq_yil')
                             <div class="error">{{ $message }}</div>
@@ -283,28 +178,45 @@
                     <!-- Moliya manbasi -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">Moliyalashtirish manbasi</label>
-                        <select name="moliya_manbasi" value="{{$asbobuskuna->moliya_manbasi}}"
-                            class="input border w-full mt-2" required="">
-
+                        <select name="moliya_manbasi" class="input border w-full mt-2" required>
                             <option value=""></option>
 
-                            <option value="Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi">Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi</option>
+                            <option value="Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi"
+                                {{ old('moliya_manbasi', $asbobuskuna->moliya_manbasi ?? '') == "Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi" ? 'selected' : '' }}>
+                                Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi
+                            </option>
 
-                            <option value="Ilmiy loyiha doirasida">Ilmiy loyiha doirasida</option>
+                            <option value="Ilmiy loyiha doirasida"
+                                {{ old('moliya_manbasi', $asbobuskuna->moliya_manbasi ?? '') == "Ilmiy loyiha doirasida" ? 'selected' : '' }}>
+                                Ilmiy loyiha doirasida
+                            </option>
 
-                            <option value="Tashkilot byudjet mablag‘lari hisobidan">Tashkilot byudjet mablag‘lari hisobidan</option>
+                            <option value="Tashkilot byudjet mablag‘lari hisobidan"
+                                {{ old('moliya_manbasi', $asbobuskuna->moliya_manbasi ?? '') == "Tashkilot byudjet mablag‘lari hisobidan" ? 'selected' : '' }}>
+                                Tashkilot byudjet mablag‘lari hisobidan
+                            </option>
 
-                            <option value="Tashkilotning byudjetdan tashqari mablag‘lari hisobidan">Tashkilotning byudjetdan tashqari mablag‘lari hisobidan</option>
+                            <option value="Tashkilotning byudjetdan tashqari mablag‘lari hisobidan"
+                                {{ old('moliya_manbasi', $asbobuskuna->moliya_manbasi ?? '') == "Tashkilotning byudjetdan tashqari mablag‘lari hisobidan" ? 'selected' : '' }}>
+                                Tashkilotning byudjetdan tashqari mablag‘lari hisobidan
+                            </option>
 
-                            <option value="Moliya institutlari">Moliya institutlari</option>
+                            <option value="Moliya institutlari"
+                                {{ old('moliya_manbasi', $asbobuskuna->moliya_manbasi ?? '') == "Moliya institutlari" ? 'selected' : '' }}>
+                                Moliya institutlari
+                            </option>
 
-                            <option value="Homiylik mablag‘lari">Homiylik mablag‘lari</option>
-
+                            <option value="Homiylik mablag‘lari"
+                                {{ old('moliya_manbasi', $asbobuskuna->moliya_manbasi ?? '') == "Homiylik mablag‘lari" ? 'selected' : '' }}>
+                                Homiylik mablag‘lari
+                            </option>
                         </select><br>
+
                         @error('moliya_manbasi')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
+
 
                     <!-- Loyiha shifri -->
                     <div class="w-full col-span-6" id="loyiha_shifri_div" style="display: none;">
@@ -345,7 +257,7 @@
                         <label class="flex flex-col sm:flex-row">Harid qilingan yil</label>
                         <select name="harid_qilingan_yil" value="{{ $asbobuskuna->harid_qilingan_yil }}"
                             class="science-sub-categoryyil input border w-full mt-2 " required="">
-                            <option value=""></option>
+                            <option value="{{ $asbobuskuna->harid_qilingan_yil }}">{{ $asbobuskuna->harid_qilingan_yil }}</option>
                         </select>
                         @error('harid_qilingan_yil')
                             <div class="error">{{ $message }}</div>
@@ -355,24 +267,37 @@
                     <!-- Holati -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">Holati</label>
-                        <select name="holati" value="{{ $asbobuskuna->holati }}" class="science-sub-category input border w-full mt-2"
-                            required="">
+                        <select name="holati" class="science-sub-category input border w-full mt-2" required>
                             <option value=""></option>
-                            <option value="Ishchi holada">Ishchi holada</option>
-                            <option value="Ta'mir talab">Ta'mir talab</option>
-                            <option value="O'rnatilmagan">O'rnatilmagan</option>
+
+                            <option value="Ishchi holada"
+                                {{ old('holati', $asbobuskuna->holati ?? '') == "Ishchi holada" ? 'selected' : '' }}>
+                                Ishchi holada
+                            </option>
+
+                            <option value="Ta'mir talab"
+                                {{ old('holati', $asbobuskuna->holati ?? '') == "Ta'mir talab" ? 'selected' : '' }}>
+                                Ta'mir talab
+                            </option>
+
+                            <option value="O'rnatilmagan"
+                                {{ old('holati', $asbobuskuna->holati ?? '') == "O'rnatilmagan" ? 'selected' : '' }}>
+                                O'rnatilmagan
+                            </option>
                         </select>
+
                         @error('holati')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
+
 
                     <!-- O'rnatilgan yil -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">O'rnatilgan yil</label>
                         <select name="urnatilgan_yili" value="{{ $asbobuskuna->urnatilgan_yili }}"
                             class="science-sub-categoryyil input border w-full mt-2 " required="">
-                            <option value=""></option>
+                            <option value="{{ $asbobuskuna->urnatilgan_yili }}">{{ $asbobuskuna->urnatilgan_yili }}</option>
                         </select>
                         @error('urnatilgan_yili')
                             <div class="error">{{ $message }}</div>
