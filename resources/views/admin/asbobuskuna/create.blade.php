@@ -57,7 +57,7 @@
                             <option value="Sinov asbob-uskunasi">Sinov asbob-uskunasi</option>
 
                             <option value="Analitik asbob-uskunasi">Analitik asbob-uskunasi</option>
-                            
+
                             <option value="ORG texnika">ORG texnika</option>
 
                         </select><br>
@@ -265,7 +265,7 @@
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">Harid qilingan summasi (buxgalteriya balans summasi ming
                             so'mda)</label>
-                        <input type="number" name="harid_summa" value="{{ old('harid_summa') }}" class="input w-full border mt-2" required>
+                        <input type="text" name="harid_summa" id="sumInput1" oninput="formatNumber(this)" value="{{ old('harid_summa') }}" class="input w-full border mt-2" required>
                         @error('harid_summa')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -274,7 +274,7 @@
                     <!-- Buxgalteriya summa -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">Buxgalteriya bo'yicha qoldiq summasi (ming so'mda)</label>
-                        <input type="number" name="buxgalteriya_summa" value="{{ old('buxgalteriya_summa') }}" class="input w-full border mt-2" required>
+                        <input type="text" name="buxgalteriya_summa" id="sumInput2" oninput="formatNumber(this)" value="{{ old('buxgalteriya_summa') }}" class="input w-full border mt-2" required>
                         @error('buxgalteriya_summa')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -477,5 +477,14 @@
         window.onload = function () {
             toggleLoyihaShifri();
         };
+    </script>
+    <script>
+        function formatNumber(input) {
+            // Faqat raqamlarni olib tashlaymiz va bo‘sh joylarni yo‘qotamiz
+            let value = input.value.replace(/\D/g, "");
+
+            // Raqamlarni 3 xonadan bo‘sh joy bilan ajratamiz
+            input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+        }
     </script>
 @endsection

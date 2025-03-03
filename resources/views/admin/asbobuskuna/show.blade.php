@@ -120,8 +120,8 @@
                     </tr>
 
                     <tr class="bg-gray-200">
-                        <th class="border">Javobgar etit belgilanganligi to‘g‘risida buyruq raqami</th>
-                        <th class="border">Javobgar etit belgilanganligi to‘g‘risida buyruq sanasi</th>
+                        <th class="border">Javobgar etib belgilanganligi to‘g‘risida buyruq raqami</th>
+                        <th class="border">Javobgar etib belgilanganligi to‘g‘risida buyruq sanasi</th>
                     </tr>
                     <tr>
                         <td class="border">{{ $asbobuskuna->jav_buy_raqami  }}</td>
