@@ -57,6 +57,8 @@
                             <option value="Sinov asbob-uskunasi">Sinov asbob-uskunasi</option>
 
                             <option value="Analitik asbob-uskunasi">Analitik asbob-uskunasi</option>
+                            
+                            <option value="ORG texnika">ORG texnika</option>
 
                         </select><br>
                         @error('turi')
