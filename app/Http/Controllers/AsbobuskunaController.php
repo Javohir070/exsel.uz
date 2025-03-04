@@ -15,7 +15,6 @@ class AsbobuskunaController extends Controller
     {
         $asbobuskunas = Asbobuskuna::where('tashkilot_id', auth()->user()->tashkilot_id)->paginate(20);
 
-
         return view('admin.asbobuskuna.index', ['asbobuskunas' => $asbobuskunas]);
     }
 
@@ -36,6 +35,7 @@ class AsbobuskunaController extends Controller
 
     public function store(StoreAsbobuskunaRequest $request)
     {
+
 
         Asbobuskuna::create([
             'tashkilot_id' => auth()->user()->tashkilot_id,

@@ -25,8 +25,24 @@ class StoreAsbobuskunaRequest extends FormRequest
             'name' => ['required', 'regex:/^[A-Za-z\s]+$/'], // Faqat lotin harflari va bo'sh joy
             'model' => ['required', 'regex:/^[A-Za-z0-9\s]+$/'], // Lotin harflari, raqamlar va bo'sh joy
             'fish' => ['required', 'regex:/^[A-Za-z0-9\s]+$/'], // Lotin harflari, raqamlar va bo'sh joy
+            'turi' => 'required|string|max:255',
+            'ishlab_davlat' => 'required|string|max:255',
+            'ishlabchiq_yil' => 'required|integer|min:1900|max:' . date('Y'),
+            'harid_summa' => 'required',
+            'buxgalteriya_summa' => 'required',
+            'moliya_manbasi' => 'required|string|max:255',
+            'loy_shifri' => 'nullable|string|max:255', // **`nullable` to'g'ri yozildi**
+            'sh_raqami' => 'required|string|max:255',
+            'sh_sanasi' => 'required|date|before:9999-12-31',
+            'harid_qilingan_yil' => 'required|integer|min:1900|max:' . date('Y'),
+            'holati' => 'required|string|max:255',
+            'urnatilgan_yili' => 'required|integer|min:1900|max:' . date('Y'),
+            'laboratory_id' => 'required|integer|exists:laboratories,id',
+            'jav_buy_raqami' => 'required|string|max:255',
+            'jav_sanasi' => 'required|date|before:9999-12-31',
         ];
     }
+
 
     /**
      * Get custom messages for validator errors.

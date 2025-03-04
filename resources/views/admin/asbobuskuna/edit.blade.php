@@ -33,7 +33,8 @@
 
                     <!-- Model -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Model</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Model</label>
                         <input type="text" name="model" value="{{ $asbobuskuna->model }}" class="input w-full border mt-2" required>
                         @error('model')
                             <div class="error">{{ $message }}</div>
@@ -147,7 +148,8 @@
 
                     <!-- Ishlab chiqarilgan yil -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Ishlab chiqarilgan yil</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Ishlab chiqarilgan yil</label>
                         <select name="ishlabchiq_yil" value="{{ $asbobuskuna->ishlabchiq_yil }}"
                             class="science-sub-categoryyil input border w-full mt-2 " required="">
                             <option value="{{ $asbobuskuna->ishlabchiq_yil }}">{{ $asbobuskuna->ishlabchiq_yil }}</option>
@@ -159,7 +161,8 @@
 
                     <!-- Harid summa -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Harid qilingan summasi (buxgalteriya balans summasi ming so'mda)</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Harid qilingan summasi (buxgalteriya balans summasi ming so'mda)</label>
                         <input type="text" name="harid_summa" id="sumInput2" oninput="formatNumber(this)" value="{{ $asbobuskuna->harid_summa }}" class="input w-full border mt-2" required>
                         @error('harid_summa')
                             <div class="error">{{ $message }}</div>
@@ -168,7 +171,8 @@
 
                     <!-- Buxgalteriya summa -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Buxgalteriya bo'yicha qoldiq summasi (ming so'mda)</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Buxgalteriya bo'yicha qoldiq summasi (ming so'mda)</label>
                         <input type="text" name="buxgalteriya_summa" id="sumInput2" oninput="formatNumber(this)" value="{{ $asbobuskuna->buxgalteriya_summa }}" class="input w-full border mt-2" required>
                         @error('buxgalteriya_summa')
                             <div class="error">{{ $message }}</div>
@@ -177,7 +181,8 @@
 
                     <!-- Moliya manbasi -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Moliyalashtirish manbasi</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Moliyalashtirish manbasi</label>
                         <select name="moliya_manbasi" class="input border w-full mt-2" required>
                             <option value=""></option>
 
@@ -220,7 +225,8 @@
 
                     <!-- Loyiha shifri -->
                     <div class="w-full col-span-6" id="loyiha_shifri_div" style="display: none;">
-                        <label class="flex flex-col sm:flex-row">Loyiha shifri</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Loyiha shifri</label>
                         {{-- <input type="text" name="loy_shifri" value="{{ old('loy_shifri') }}" class="input w-full border mt-2"> --}}
                         <select name="loy_shifri" value="{{ old('loy_shifri') }}"
                             class="input border w-full mt-2 " required="">
@@ -236,7 +242,8 @@
 
                     <!-- Shartnoma raqami -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Shartnoma raqami (uskuna bo'yicha)</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Shartnoma raqami (uskuna bo'yicha)</label>
                         <input type="text" name="sh_raqami" value="{{ $asbobuskuna->sh_raqami }}" class="input w-full border mt-2" required>
                         @error('sh_raqami')
                             <div class="error">{{ $message }}</div>
@@ -245,7 +252,8 @@
 
                     <!-- Shartnoma sanasi -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Shartnoma sanasi</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Shartnoma sanasi</label>
                         <input type="date" name="sh_sanasi" value="{{ $asbobuskuna->sh_sanasi }}" class="input w-full border mt-2" required>
                         @error('sh_sanasi')
                             <div class="error">{{ $message }}</div>
@@ -254,7 +262,8 @@
 
                     <!-- Harid qilingan yil -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Harid qilingan yil</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Harid qilingan yil</label>
                         <select name="harid_qilingan_yil" value="{{ $asbobuskuna->harid_qilingan_yil }}"
                             class="science-sub-categoryyil input border w-full mt-2 " required="">
                             <option value="{{ $asbobuskuna->harid_qilingan_yil }}">{{ $asbobuskuna->harid_qilingan_yil }}</option>
@@ -266,7 +275,8 @@
 
                     <!-- Holati -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Holati</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Holati</label>
                         <select name="holati" class="science-sub-category input border w-full mt-2" required>
                             <option value=""></option>
 
@@ -294,7 +304,8 @@
 
                     <!-- O'rnatilgan yil -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">O'rnatilgan yil</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>O'rnatilgan yil</label>
                         <select name="urnatilgan_yili" value="{{ $asbobuskuna->urnatilgan_yili }}"
                             class="science-sub-categoryyil input border w-full mt-2 " required="">
                             <option value="{{ $asbobuskuna->urnatilgan_yili }}">{{ $asbobuskuna->urnatilgan_yili }}</option>
@@ -305,7 +316,8 @@
                     </div>
 
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Foydalanishga mas'ul tarkibiy bo‘linma (laboratoriya, kafedra, sho‘ba) nomi</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Foydalanishga mas'ul tarkibiy bo‘linma (laboratoriya, kafedra, sho‘ba) nomi</label>
                         <select name="laboratory_id" value="{{ $asbobuskuna->laboratory_id }}"
                             class="input border w-full mt-2 " required="">
                             <option value=""></option>
@@ -320,7 +332,8 @@
 
                     <!-- FISH -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">F.I.SH</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>F.I.SH</label>
                         <input type="text" name="fish" value="{{ $asbobuskuna->fish }}" class="input w-full border mt-2" required>
                         @error('fish')
                             <div class="error">{{ $message }}</div>
@@ -329,7 +342,8 @@
 
                     <!-- Javobgar buyruq raqami -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Javobgar etib belgilanganligi to‘g‘risida buyruq  raqami</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Javobgar etib belgilanganligi to‘g‘risida buyruq  raqami</label>
                         <input type="text" name="jav_buy_raqami" value="{{ $asbobuskuna->jav_buy_raqami }}" class="input w-full border mt-2" required>
                         @error('jav_buy_raqami')
                             <div class="error">{{ $message }}</div>
@@ -338,7 +352,8 @@
 
                     <!-- Javobgar etib belgilanganligi to‘g‘risida buyruq  sanasi -->
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Javobgar etib belgilanganligi to‘g‘risida buyruq  sanasi</label>
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Javobgar etib belgilanganligi to‘g‘risida buyruq  sanasi</label>
                         <input type="date" name="jav_sanasi" value="{{ $asbobuskuna->jav_sanasi }}" class="input w-full border mt-2" required>
                         @error('jav_sanasi')
                             <div class="error">{{ $message }}</div>
