@@ -53,6 +53,18 @@ class UserController extends Controller
 
     }
 
+    public function asbobuskuna_rol()
+    {
+        $roles = Role::pluck('name','name')->all();
+        $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        $tashkilot_id = auth()->user()->tashkilot_id;
+        $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
+        $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
+        return view('role-permission.user.asbobuskuna', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar, 'lab' => $lab, 'kafedralar' => $kafedralar]);
+
+    }
+
     public function ilmiy_loyha_masullar()
     {
         $ilmiy_loyha = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
@@ -111,7 +123,12 @@ class UserController extends Controller
 
         $user->syncRoles($request->roles);
 
-        return redirect('/kafedralar')->with('status','User Updated Successfully with roles');
+        if(!empty($user->kafedralar_id)){
+            return redirect('/kafedralar')->with('status','User Updated Successfully with roles');
+        }else{
+            return redirect('/asbobuskuna')->with('status','User Updated Successfully with roles');
+        }
+
 
     }
 

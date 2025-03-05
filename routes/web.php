@@ -121,6 +121,7 @@ Route::middleware('auth')->group(function () {
     Route::get('laboratoriya', [LaboratoryController::class,'laboratoriya'])->name('laboratoriya.index');
     Route::get('laboratoriyalari', [LaboratoryController::class,'laboratoriyalari'])->name('laboratoriyalari.index');
     Route::get('masullar', [LaboratoryController::class, "masullar"])->name("masullar.index");
+    Route::get('asbobuskuna-masullar', [AsbobuskunaController::class, "asbobuskuna_masullar"])->name("asbobuskuna_masullar.index");
     Route::get('masul', [IlmiyLoyihaController::class, "masul"])->name("masul.index");
     Route::get('monitoring2024', [IlmiyLoyihaController::class, "monitoring2024"])->name("monitoring2024.index");
     Route::post("emport-izlanuvchi", [IzlanuvchilarController::class, "emport_izlanuvchi"])->name("emport_izlanuvchi.index");
@@ -136,6 +137,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/isactive/{id}/edit', [IzlanuvchilarController::class, 'is_active'])->name('is_active');
     Route::post('/labbiriktirish/{id}/edit', [IzlanuvchilarController::class, 'labId_biriktirish']);
     Route::get('/kafedra-rol', [UserController::class, 'kafedra_rol'])->name('kafedra_rol.index');
+    Route::get('/asbobuskuna-rol', [UserController::class, 'asbobuskuna_rol'])->name('asbobuskuna_rol.index');
 
     Route::post('/kafedrarol', [UserController::class, 'kafedrarol_store'])->name('kafedrarol.store');
 

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreAsbobuskunaRequest;
 use App\Http\Requests\UpdateAsbobuskunaRequest;
 use App\Models\IlmiyLoyiha;
 use App\Models\Laboratory;
+use App\Models\User;
 
 class AsbobuskunaController extends Controller
 {
@@ -16,6 +17,18 @@ class AsbobuskunaController extends Controller
         $asbobuskunas = Asbobuskuna::where('tashkilot_id', auth()->user()->tashkilot_id)->paginate(20);
 
         return view('admin.asbobuskuna.index', ['asbobuskunas' => $asbobuskunas]);
+    }
+
+    public function asbobuskuna_masullar()
+    {
+        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
+
+        $masullar = $users->filter(function($user) {
+            return $user->roles->contains('name', 'Asbob_uskunalarga_masul');
+        });
+
+
+        return view("admin.asbobuskuna.masullar", ['masullar'=> $masullar]);
     }
 
     public function asbobuskunalar()

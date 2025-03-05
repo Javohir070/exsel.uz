@@ -33,63 +33,16 @@
             @csrf
             <div class="grid grid-cols-12 gap-2">
 
-                @role('admin123')
-                @if (auth()->user()->tashkilot->tashkilot_turi == 'itm')
-                    <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> F.I.Sh
-                        </label>
-                        <input type="text" name="name" class="input w-full border mt-2" required="">
-                    </div>
-                @else
-
-                    <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Kafedrani tanlang
-                        </label>
-                        <select name="kafedralar_id" class="input border w-full mt-2">
-                            <option value=""> </option>
-                            @foreach ($kafedralar as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
 
 
-                @endif
-                @endrole
-                @role('admin')
-                @if (auth()->user()->tashkilot->tashkilot_turi == 'itm')
 
-                    <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Labaratoriya
-                        </label>
-                        <select name="laboratory_id" class="input border w-full mt-2">
-                            <option value=""> Labaratoriya tanlash</option>
-                            @foreach ($lab as $role)
-                                <option value="{{ $role->id }}">{{ $role->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
+                <div class="w-full col-span-6">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> F.I.Sh
+                    </label>
+                    <input type="text" name="name" class="input w-full border mt-2" required="">
+                </div>
 
-                @else
-
-                    <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Kafedra mudurini tanlang
-                        </label>
-                        <select name="name" class="input border w-full mt-2">
-                            <option value=""></option>
-                            @foreach ($xodimlar as $role)
-                                <option value="{{ $role->fish }}">{{ $role->fish }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                @endif
-
-                @endrole
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Login (foydalanuvchi email adresini
@@ -107,9 +60,7 @@
                 @error('password')
                     <div class="error">{{ $message }}</div>
                 @enderror
-                <div class="w-full col-span-6 mt-4">
-
-                </div>
+                
 
                 <div class="w-full col-span-6 mt-4">
                     <label class="flex flex-col sm:flex-row">
@@ -122,7 +73,7 @@
                 @enderror
 
                 <input type="hidden" name="tashkilot_id" value="{{ auth()->user()->tashkilot->id }}">
-                <input type="hidden" name="roles" value="kafedra_mudiri">
+                <input type="hidden" name="roles" value="Asbob_uskunalarga_masul">
 
             </div><br>
         </form><br>

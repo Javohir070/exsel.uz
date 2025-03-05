@@ -174,7 +174,7 @@
             </div>
         </div>
     @endrole
-    @role(['admin', 'Xodimlar_uchun_masul', 'Tashkilot_pasporti_uchun_masul', 'Ilmiy_faoliyat_uchun_masul'])
+    @role(['admin', 'Xodimlar_uchun_masul','Asbob_uskunalarga_masul', 'Tashkilot_pasporti_uchun_masul', 'Ilmiy_faoliyat_uchun_masul'])
         @include('admin.admin')
     @endrole
     @role('Itm-tashkilotlar')
