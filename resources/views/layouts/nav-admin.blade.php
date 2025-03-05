@@ -373,6 +373,13 @@
             </a>
         </li>
         <li>
+            <a href="{{ route('asbobuskuna.index') }}"
+                class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Asbob-uskunalar</div>
+            </a>
+        </li>
+        <li>
             <a href="{{ route('laboratoriya.index') }}"
                 class="side-menu side-menu{{ request()->is('laborator*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
