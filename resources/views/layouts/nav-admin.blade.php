@@ -560,7 +560,7 @@
         
         @role('Asbob_uskunalarga_masul')
         <li>
-            <a href="{{ route('asbobuskunalar.index') }}"
+            <a href="{{ route('asbobuskuna.index') }}"
                 class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Asbob-uskunalar</div>
