@@ -71,7 +71,8 @@ class IlmiyLoyiha extends Model
         'malumotnoma',
         'file',
         'kafedralar_id',
-        'status'
+        'status',
+        'moliyalashtirilganmi',
     ];
 
     public function tashkilot()

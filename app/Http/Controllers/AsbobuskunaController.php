@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Asbobuskuna;
 use App\Http\Requests\StoreAsbobuskunaRequest;
 use App\Http\Requests\UpdateAsbobuskunaRequest;
+use App\Models\Asbobuskunafile;
 use App\Models\IlmiyLoyiha;
 use App\Models\Laboratory;
 use App\Models\User;
@@ -15,8 +16,9 @@ class AsbobuskunaController extends Controller
     public function index()
     {
         $asbobuskunas = Asbobuskuna::where('tashkilot_id', auth()->user()->tashkilot_id)->paginate(20);
+        $asbobuskunafile = Asbobuskunafile::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
 
-        return view('admin.asbobuskuna.index', ['asbobuskunas' => $asbobuskunas]);
+        return view('admin.asbobuskuna.index', ['asbobuskunas' => $asbobuskunas, 'asbobuskunafile' => $asbobuskunafile]);
     }
 
     public function asbobuskuna_masullar()

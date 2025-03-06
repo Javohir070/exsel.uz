@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\AsbobuskunaController;
+use App\Http\Controllers\AsbobuskunafileController;
 use App\Http\Controllers\DalolatnomaController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FakultetlarController;
@@ -195,6 +196,7 @@ Route::middleware('auth')->group(function () {
         'ilmiymaqolalar' => IlmiymaqolalarController::class,
         'ilmiytezislar' => IlmiytezislarController::class,
         'asbobuskuna' => AsbobuskunaController::class,
+        'asbobuskunafile' => AsbobuskunafileController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });

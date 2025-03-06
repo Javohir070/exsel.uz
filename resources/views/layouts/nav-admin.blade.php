@@ -84,6 +84,13 @@
             </a>
         </li>
         <li>
+            <a href="{{ route('asbobuskunafile.index') }}"
+                class="side-menu side-menu{{ request()->is('asbobuskunafile*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="users"></i> </div>
+                <div class="side-menu__title"> Asbobuskuna fayl </div>
+            </a>
+        </li>
+        <li>
             <a href="{{ route('laboratoriyalari.index') }}"
                 class="side-menu side-menu{{ request()->is('laboratoriyalari*') ? '--active' : '' }}{{ request()->is('laboratory*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
@@ -557,7 +564,7 @@
         </li>
 
         @endrole
-        
+
         @role('Asbob_uskunalarga_masul')
         <li>
             <a href="{{ route('asbobuskuna.index') }}"

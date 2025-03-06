@@ -407,6 +407,21 @@
                         </td>
                     </tr>
 
+                    <tr class="bg-gray-200">
+                        <!-- <th class="border border-b-2 ">15</th> -->
+                        <th class="border border-b-2 ">Ilmiy loyiha 5% moliyalashtirilganmi?</th>
+                        <th class="border border-b-2 "> </th>
+                    </tr>
+
+                    <tr>
+                        <!-- <th class="border border-b-2 ">16</th> -->
+                        <td class="border ">
+                            {{ $ilmiyloyiha->moliyalashtirilganmi }}
+                        </td>
+                        <td class="border ">
+                        </td>
+                    </tr>
+
 
                 </tbody>
             </table>

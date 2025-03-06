@@ -301,6 +301,26 @@
                     @enderror
                 </div>
 
+                <div class="w-full col-span-6 ">
+                    <label class="flex flex-col sm:flex-row"> <span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy loyiha 5% moliyalashtirilganmi?
+                    </label>
+                    <select name="moliyalashtirilganmi" value="{{old('moliyalashtirilganmi')}}"
+                        class="input border w-full mt-2" required="">
+
+                        <option value=""></option>
+
+                        <option value="Ha moliyalashtirilgan">Ha moliyalashtirilgan</option>
+
+                        <option value="Yo'q moliyalashtirilmagan">Yo'q moliyalashtirilmagan</option>
+
+
+                    </select><br>
+                    @error('moliyalashtirilganmi')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
+                </div>
+
                 <!-- <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> Laboratoriyani tanlang</label>
                     <select name="laboratory_id" value="{{old('laboratory_id')}}" class="input border w-full mt-2">
