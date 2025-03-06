@@ -409,7 +409,7 @@
 
                     <tr class="bg-gray-200">
                         <!-- <th class="border border-b-2 ">15</th> -->
-                        <th class="border border-b-2 ">Ilmiy loyiha 5% moliyalashtirilganmi?</th>
+                        <th class="border border-b-2 ">Ilmiy loyiha 5% moliyalashtirilganmi</th>
                         <th class="border border-b-2 "> </th>
                     </tr>
 

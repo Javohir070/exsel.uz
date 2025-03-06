@@ -30,7 +30,7 @@ class AsbobuskunafileController extends Controller
             'file' => $path_file ?? null,
         ]);
 
-        return redirect()->back()->with('status',"Ma\'lumotlar muvaffaqiyatli qo'shildi.");
+        return redirect()->back()->with('status',"Ma\'lumotlar muvaffaqiyatli yuborildi.");
 
     }
 
