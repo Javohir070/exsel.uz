@@ -22,9 +22,9 @@ class StoreAsbobuskunaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'regex:/^[A-Za-z\s\'\"]+$/'], // Faqat lotin harflari va bo'sh joy
-            'model' => ['required', 'regex:/^[A-Za-z0-9\s\'\"]+$/'], // Lotin harflari, raqamlar va bo'sh joy
-            'fish' => ['required', 'regex:/^[A-Za-z0-9\s\'\"]+$/'], // Lotin harflari, raqamlar va bo'sh joy
+            'name' => ['required', 'regex:/^[A-Za-z0-9\s\'\"\-]+$/'], // Faqat lotin harflari va bo'sh joy
+            'model' => ['required', 'regex:/^[A-Za-z0-9\s\'\"\-]+$/'], // Lotin harflari, raqamlar va bo'sh joy
+            'fish' => ['required', 'regex:/^[A-Za-z0-9\s\'\"\-]+$/'], // Lotin harflari, raqamlar va bo'sh joy
             'turi' => 'required|string|max:255',
             'ishlab_davlat' => 'required|string|max:255',
             'ishlabchiq_yil' => 'required|integer|min:1900|max:' . date('Y'),

@@ -67,7 +67,7 @@
     }
 
     .text-red {
-        color: red;
+        color: black;
     }
 
     .font-bold {
@@ -400,7 +400,7 @@
                 <span class="font-bold">Izoh: </span> <span class="text-red">{{$ilmiyloyiha->tekshirivchilars->comment }}</span>
             </p>
             <p class="text-end">
-                <span>Monitoring o'tkazilgan sana: </span> <span class="text-red font-bold">{{ now()->format('d.m.Y') }} y.</span>
+                <span>Monitoring o'tkazilgan sana: </span> <span class="text-red font-bold">{{ $ilmiyloyiha->updated_at }} y.</span>
             </p>
             <p class="text-end">
                 <span>O‘rganish o‘tkazgan mas’ul: </span> <span class="text-red font-bold">{{$ilmiyloyiha->tekshirivchilars->fish }}</span>
