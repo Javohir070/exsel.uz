@@ -37,7 +37,7 @@ class StoreAsbobuskunaRequest extends FormRequest
             'harid_qilingan_yil' => 'required|integer|min:1900|max:' . date('Y'),
             'holati' => 'required|string|max:255',
             'urnatilgan_yili' => 'required|integer|min:1900|max:' . date('Y'),
-            'laboratory_id' => 'required|integer|exists:laboratories,id',
+            'laboratory_id' => 'required',
             'jav_buy_raqami' => 'required|string|max:255',
             'jav_sanasi' => 'required|date|before:9999-12-31',
         ];

@@ -7,6 +7,7 @@ use App\Http\Requests\StoreAsbobuskunaRequest;
 use App\Http\Requests\UpdateAsbobuskunaRequest;
 use App\Models\Asbobuskunafile;
 use App\Models\IlmiyLoyiha;
+use App\Models\Kafedralar;
 use App\Models\Laboratory;
 use App\Models\User;
 
@@ -44,7 +45,12 @@ class AsbobuskunaController extends Controller
     {
         $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
         $laboratorys = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
-        return view('admin.asbobuskuna.create', ['laboratorys' => $laboratorys, 'ilmiy_loyhalar' => $ilmiy_loyhalar]);
+        $kafedralar = Kafedralar::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        return view('admin.asbobuskuna.create', [
+                        'laboratorys' => $laboratorys,
+                        'ilmiy_loyhalar' => $ilmiy_loyhalar,
+                        'kafedralar' => $kafedralar
+                    ]);
     }
 
 
@@ -69,7 +75,8 @@ class AsbobuskunaController extends Controller
             "harid_qilingan_yil" => $request->harid_qilingan_yil,
             "holati" => $request->holati,
             "urnatilgan_yili" => $request->urnatilgan_yili,
-            "laboratory_id" => $request->laboratory_id,
+            "laboratory_id" => $request->laboratory_id == 'yoq' ? null : $request->laboratory_id,
+            "kafedralar_id" => $request->kafedralar_id,
             "fish" => $request->fish,
             "jav_buy_raqami" => $request->jav_buy_raqami,
             "jav_sanasi" => $request->jav_sanasi,
@@ -88,7 +95,13 @@ class AsbobuskunaController extends Controller
     {
         $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
         $laboratorys = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
-        return view('admin.asbobuskuna.edit', ['asbobuskuna' => $asbobuskuna, 'laboratorys' => $laboratorys, 'ilmiy_loyhalar' => $ilmiy_loyhalar]);
+        $kafedralar = Kafedralar::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        return view('admin.asbobuskuna.edit', [
+                        'asbobuskuna' => $asbobuskuna,
+                        'laboratorys' => $laboratorys,
+                        'ilmiy_loyhalar' => $ilmiy_loyhalar,
+                        'kafedralar' => $kafedralar
+                    ]);
     }
 
 
@@ -109,7 +122,8 @@ class AsbobuskunaController extends Controller
             "harid_qilingan_yil" => $request->harid_qilingan_yil,
             "holati" => $request->holati,
             "urnatilgan_yili" => $request->urnatilgan_yili,
-            "laboratory_id" => $request->laboratory_id,
+            "laboratory_id" => $request->laboratory_id == 'yoq' ? null : $request->laboratory_id,
+            "kafedralar_id" => $request->kafedralar_id,
             "fish" => $request->fish,
             "jav_buy_raqami" => $request->jav_buy_raqami,
             "jav_sanasi" => $request->jav_sanasi,
