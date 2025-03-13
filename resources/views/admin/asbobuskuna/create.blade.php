@@ -411,8 +411,7 @@
                     <div class="w-full col-span-6" id="kafedralar_id_div" style="display: none;">
                         <label class="flex flex-col sm:flex-row"><span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Foydalanishga mas'ul tarkibiy bo‘linma (Kafedra) nomi</label>
-                        <select name="kafedralar_id"  value="{{ old('kafedralar_id') }}" class="input border w-full mt-2 "
-                            required="">
+                        <select name="kafedralar_id"  value="{{ old('kafedralar_id') }}" class="input border w-full mt-2 "  >
                             <option value=""></option>
                             @foreach ($kafedralar as $l)
                                 <option value="{{ $l->id }}">{{ $l->name }}</option>

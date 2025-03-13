@@ -318,14 +318,31 @@
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Foydalanishga mas'ul tarkibiy bo‘linma (laboratoriya, kafedra, sho‘ba) nomi</label>
-                        <select name="laboratory_id" value="{{ $asbobuskuna->laboratory_id }}"
-                            class="input border w-full mt-2 " required="">
+                        <select name="laboratory_id" id="laboratory_id" value="{{ $asbobuskuna->laboratory_id }}"
+                            class="input border w-full mt-2 " required="" required onchange="toggleLoyihaShifri()">
                             <option value=""></option>
                             @foreach ($laboratorys as $l)
                             <option value="{{ $l->id }}">{{ $l->name }}</option>
                             @endforeach
+                            <option value="yoq">Yo'q</option>
                         </select>
                         @error('laboratory_id')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="w-full col-span-6" id="kafedralar_id_div">
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Foydalanishga mas'ul tarkibiy bo‘linma (Kafedra) nomi</label>
+                        <select name="kafedralar_id"  value="{{ old('kafedralar_id') }}" class="input border w-full mt-2 "
+                            required="">
+                            <option value=""></option>
+                            @foreach ($kafedralar as $l)
+                                <option value="{{ $l->id }}">{{ $l->name }}</option>
+                            @endforeach
+                            <option value="yoq">Yo'q</option>
+                        </select>
+                        @error('kafedralar_id')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
@@ -373,7 +390,23 @@
             </div>
         </div>
     </div>
+    <script>
+        function toggleLoyihaShifri() {
+            const moliyaSelect = document.getElementById('laboratory_id');
+            const loyihaDiv = document.getElementById('kafedralar_id_div');
 
+            if (moliyaSelect.value === 'yoq') {
+                loyihaDiv.style.display = 'block';
+            } else {
+                loyihaDiv.style.display = 'none';
+            }
+        }
+
+        // Eski ma'lumotni tiklash (old input)
+        window.onload = function () {
+            toggleLoyihaShifri();
+        };
+    </script>
     <script>
         // Boshlang'ich va tugash yillari
         var startYear = 1960;
