@@ -109,10 +109,39 @@
 
         @role(['super-admin', 'Ekspert'])
         <li>
+            <a href="{{ route('monitoring.index') }}"
+                class="side-menu side-menu{{ request()->is('monitoring*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title">Monitoring</div>
+            </a>
+        </li>
+        <li>
             <a href="{{ route('ilmiyloyihalar.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Ilmiy loyhilar </div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('asbobuskunalar.index') }}"
+                class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Asbob-uskunalar</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('stajirovkalar.index') }}"
+                class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Stajirovkalar</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('doktarantura.index') }}"
+                class="side-menu side-menu{{ request()->is('doktarantura*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Doktaranturalar</div>
             </a>
         </li>
         @endrole
@@ -137,15 +166,7 @@
         </li>
         @endrole
 
-        @role('super-admin')
-        <li>
-            <a href="{{ route('monitoring2024.index') }}"
-                class="side-menu side-menu{{ request()->is('monitoring2024*') ? '--active' : '' }}">
-                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="side-menu__title">Monitoring 2024 </div>
-            </a>
-        </li>
-        @endrole
+
 
         @role('super-admin')
         <li>
@@ -266,6 +287,14 @@
                 class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Asbob-uskunalar</div>
+            </a>
+        </li>
+
+        <li>
+            <a href="{{ route('stajirovka.index') }}"
+                class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Stajirovka </div>
             </a>
         </li>
         @endrole
@@ -560,6 +589,13 @@
                 class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Asbob-uskunalar</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('stajirovkalar.index') }}"
+                class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Stajirovkalar</div>
             </a>
         </li>
 

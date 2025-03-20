@@ -39,7 +39,7 @@ class TashkilotController extends Controller
     }
     public function tashkilot_create()
     {
-        return view('admin.tashkilot.qoshish');   
+        return view('admin.tashkilot.qoshish');
     }
     /**
      * Store a newly created resource in storage.
@@ -155,7 +155,8 @@ class TashkilotController extends Controller
         $querysearch = $request->input('query');
         $tashkilot_search = Tashkilot::where('name','like','%'.$querysearch.'%')
                 ->orWhere('id_raqam','like','%'.$querysearch.'%')
-                ->paginate(25);
+                ->orWhere('tashkilot_turi','like','%'.$querysearch.'%')
+                ->paginate(50);
         return view('admin.tashkilot.search_results', compact('tashkilot_search'));
     }
 

@@ -1,0 +1,258 @@
+@extends('layouts.admin')
+
+@section('content')
+    <div class="content">
+        <div class="flex justify-between align-center mt-10">
+
+            <h2 class="intro-y text-lg font-medium">Doktaranturalar</h2>
+
+            <a href="{{ url('generate-pdfdoktarantura/' . $tashkilot->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                pdf genertsiya
+            </a>
+
+        </div>
+        @if (session('status'))
+            <div class="alert alert-success">{{ session('status') }}</div>
+        @endif
+
+        <div class="grid grid-cols-12 gap-6 mt-5">
+
+            <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                <a href="#">
+                    <div class="report-box zoom-in">
+                        <div class="box p-5">
+                            <div class="flex">
+                                <i data-feather="bar-chart" class="report-box__icon text-theme-9"></i>
+                            </div>
+                            <div class="text-3xl font-bold leading-8 mt-6">{{ $lab_izlanuvchilar }}</div>
+                            <div class="text-base text-gray-600 mt-1">Ilmiy izlanuvchilar</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                <a href="#">
+                    <div class="report-box zoom-in">
+                        <div class="box p-5">
+                            <div class="flex">
+                                <i data-feather="users" class="report-box__icon text-theme-9"></i>
+                            </div>
+                            <div class="text-3xl font-bold leading-8 mt-6">{{ $dsc_soni }}</div>
+                            <div class="text-base text-gray-600 mt-1">DSc</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                <a href="#">
+                    <div class="report-box zoom-in">
+                        <div class="box p-5">
+                            <div class="flex">
+                                <i data-feather="users" class="report-box__icon text-theme-6"></i>
+                            </div>
+                            <div class="text-3xl font-bold leading-8 mt-6">{{ $phd_soni }}</div>
+                            <div class="text-base text-gray-600 mt-1">PhD</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                <a href="#">
+                    <div class="report-box zoom-in">
+                        <div class="box p-5">
+                            <div class="flex">
+                                <i data-feather="users" class="report-box__icon text-theme-9"></i>
+                            </div>
+                            <div class="text-3xl font-bold leading-8 mt-6">{{ $stajyor_soni }}</div>
+                            <div class="text-base text-gray-600 mt-1">Stajyor-tadqiqotchi</div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-10"
+        style="background: white; padding: 20px 20px; border-radius: 20px">
+        <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+            <form id="science-paper-create-form" method="POST" action="{{ route('doktaranturaexpert.store') }}"
+                class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                @csrf
+                <div class="grid grid-cols-12 gap-2">
+                    <input type="hidden" name="tashkilot_id" value="{{ $tashkilot->id }}">
+
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Yagona elektron tizimdagi izlanuvchilar sonining tashkilot buyruqlari bilan mutanosibligi. Son qiymati izohda keltiriladi.
+                        </label>
+                        <select name="tash_buyruq_mutanosi" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                            <option value=""></option>
+
+                            <option value="Mos keladi ">Mos keladi </option>
+
+                            <option value="Mos kelmaydi">Mos kelmaydi</option>
+
+                        </select><br>
+
+                        @error('muddat')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Izlanuvchilarning yakka tartibdagi ish rejasini tasdiqlanganlik holati. Kamchiliklar izohda keltiriladi.
+                        </label>
+                        <select name="ish_rejasi" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                            <option value=""></option>
+
+                            <option value="Barchasi tasdiqlangan (100%)">Barchasi tasdiqlangan (100%)</option>
+
+                            <option value="Qisman tasdiqlangan (60-99%)">Qisman tasdiqlangan (60-99%)</option>
+
+                            <option value="Tasdiqlanmagan">Tasdiqlanmagan</option>
+
+                        </select><br>
+
+                        @error('muddat')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Izlanuvchilarning ta’lim bosqichi bo‘yicha belgilangan me’zonlarni bajarganligi. Kurslar kesimida ko‘rib chiqilib, kamchiliklar izohda keltiriladi.
+                        </label>
+                        <select name="kurs_kesimi" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                            <option value=""></option>
+
+                            <option value="To‘liq bajarilgan (100%)">To‘liq bajarilgan (100%)</option>
+
+                            <option value="Qisman bajarilgan (60-99%)">Qisman bajarilgan (60-99%)</option>
+
+                            <option value="Bajarilmagan">Bajarilmagan</option>
+
+                        </select><br>
+
+                        @error('muddat')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> O‘z muddatida va muddatidan oldin himoya qilgan izlanuvchilar miqdori (oxirgi uch yilda), bitiruvchilar soniga nisbatan. Son qiymati izohda keltiriladi.
+                        </label>
+                        <select name="mud_oldin" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                            <option value=""></option>
+
+                            <option value="A’lo (86-100%)">A’lo (86-100%)</option>
+
+                            <option value="Yaxshi (70-85%)">Yaxshi (70-85%)</option>
+
+                            <option value="Qoniqarli (50-69)">Qoniqarli (50-69)</option>
+
+                            <option value="Qoniqarsiz">Qoniqarsiz</option>
+
+                        </select><br>
+
+                        @error('muddat')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy rahbarga izlanuvchilar biriktirilganlik holati. Me’yordan ortiq izlanuvchi biriktirilgan ilmiy rahbar son qiymati izohda keltiriladi.
+                        </label>
+                        <select name="ilmiy_rah_birikisoni" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                            <option value=""></option>
+
+                            <option value="Me’yor bo‘yicha">Me’yor bo‘yicha</option>
+
+                            <option value="Me’yordan ortiq">Me’yordan ortiq</option>
+
+
+                        </select><br>
+
+                        @error('muddat')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Yagona elektron tizimga 2 va 3 bosqich izlanuvchilarning monitoring hujjatlarini kiritish holati.
+                        </label>
+                        <select name="hujjatlar_kiritish_holati" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                            <option value=""></option>
+
+                            <option value="To‘liq kiritilgan (100%)">To‘liq kiritilgan (100%)</option>
+
+                            <option value="Qisman kiritilgan (60-99%)">Qisman kiritilgan (60-99%)</option>
+
+                            <option value="Kiritilmagan">Kiritilmagan</option>
+
+                        </select><br>
+
+                        @error('muddat')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
+                        </label>
+                        <select name="status" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                            <option value=""></option>
+
+                            <option value="A’lo">A’lo</option>
+
+                            <option value="Yaxshi">Yaxshi</option>
+
+                            <option value="Qoniqarli">Qoniqarli</option>
+
+                            <option value="Qoniqarsiz">Qoniqarsiz</option>
+
+                        </select><br>
+
+                        @error('muddat')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="w-full col-span-6 ">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
+                        <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                    </div>
+                </div>
+
+            </form><br>
+            <div class="px-5 pb-5 text-center">
+                <a href="{{ route('ilmiyloyiha.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </a>
+                <button type="submit" form="science-paper-create-form"
+                    class="update-confirm button w-24 bg-theme-1 text-white">
+                    Qo'shish
+                </button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+@endsection

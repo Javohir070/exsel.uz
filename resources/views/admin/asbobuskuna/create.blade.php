@@ -447,12 +447,70 @@
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Javobgar etib belgilanganligi to‘g‘risida buyruq
-                            sanasi</label>
+                            sanasi  </label>
                         <input type="date" name="jav_sanasi" value="{{ old('jav_sanasi') }}" class="input w-full border mt-2" required>
                         @error('jav_sanasi')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Bajarilayotgan ilmiy-tadqiqot ishlari</label>
+                        <textarea name="ilmiy_tadqiqot_ishilari" value="{{ old('ilmiy_tadqiqot_ishilari') }}" class="input w-full border mt-2" cols="10" rows="5"></textarea>
+                        @error('ilmiy_tadqiqot_ishilari')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Ilmiy-tadqiqot dasturlaridagi ish hajmi </label>
+                        <textarea name="ilmiy_tadqiqot_hajmi" value="{{ old('ilmiy_tadqiqot_hajmi') }}" class="input w-full border mt-2" cols="10" rows="5"></textarea>
+                        @error('ilmiy_tadqiqot_hajmi')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Laboratoriya uskunalari uchun zarur reagent va reaktivlar zaxirasi</label>
+                        <textarea name="lab_zaxirasi" value="{{ old('lab_zaxirasi') }}" class="input w-full border mt-2" cols="10" rows="5"></textarea>
+                        @error('lab_zaxirasi')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Foydalanish uchun arizalarning ro‘yxatga olinishi va foydalanish jadvalining yuritilishi</label>
+                        <textarea name="foy_uchun_ariz" value="{{ old('foy_uchun_ariz') }}" class="input w-full border mt-2" cols="10" rows="5"></textarea>
+                        @error('foy_uchun_ariz')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Ilmiy tadqiqot va oliy ta’lim muassasalari laboratoriyalarining qo‘shimcha asbob-uskunalarga ehtiyoji</label>
+                        <textarea name="asbob_usk_ehtiyoji" value="{{ old('asbob_usk_ehtiyoji') }}" class="input w-full border mt-2" cols="10" rows="5"></textarea>
+                        @error('asbob_usk_ehtiyoji')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Zarur sarflash materiallari va butlovchi qismlar bo‘yicha ehtiyoji</label>
+                        <textarea name="zarur_ehtiyoji" value="{{ old('zarur_ehtiyoji') }}" class="input w-full border mt-2" cols="10" rows="5"></textarea>
+                        @error('zarur_ehtiyoji')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
+
+
 
                 </div><br>
             </form><br>

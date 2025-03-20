@@ -40,6 +40,12 @@ class StoreAsbobuskunaRequest extends FormRequest
             'laboratory_id' => 'required',
             'jav_buy_raqami' => 'required|string|max:255',
             'jav_sanasi' => 'required|date|before:9999-12-31',
+            'ilmiy_tadqiqot_ishilari'=> 'required|string|max:2000',
+            'ilmiy_tadqiqot_hajmi'=> 'required|string|max:2000',
+            'lab_zaxirasi'=> 'required|string|max:2000',
+            'foy_uchun_ariz'=> 'required|string|max:2000',
+            'asbob_usk_ehtiyoji'=> 'required|string|max:2000',
+            'zarur_ehtiyoji'=> 'required|string|max:2000',
         ];
     }
 

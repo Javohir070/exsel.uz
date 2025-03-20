@@ -10,6 +10,7 @@ use App\Models\IlmiyLoyiha;
 use App\Models\Kafedralar;
 use App\Models\Laboratory;
 use App\Models\User;
+use Illuminate\Http\Request;
 
 class AsbobuskunaController extends Controller
 {
@@ -37,6 +38,12 @@ class AsbobuskunaController extends Controller
     public function asbobuskunalar()
     {
         $asbobuskunas = Asbobuskuna::paginate(20);
+        return view('admin.asbobuskuna.asbobuskunalar', ['asbobuskunas' => $asbobuskunas]);
+    }
+
+    public function asbobu(Request $request)
+    {
+        $asbobuskunas = Asbobuskuna::where('tashkilot_id', $request->id)->paginate(20);
         return view('admin.asbobuskuna.asbobuskunalar', ['asbobuskunas' => $asbobuskunas]);
     }
 
@@ -80,6 +87,12 @@ class AsbobuskunaController extends Controller
             "fish" => $request->fish,
             "jav_buy_raqami" => $request->jav_buy_raqami,
             "jav_sanasi" => $request->jav_sanasi,
+            'ilmiy_tadqiqot_ishilari' => $request->ilmiy_tadqiqot_ishilari,
+            'ilmiy_tadqiqot_hajmi' => $request->ilmiy_tadqiqot_hajmi,
+            'lab_zaxirasi' => $request->lab_zaxirasi,
+            'foy_uchun_ariz' => $request->foy_uchun_ariz,
+            'asbob_usk_ehtiyoji' => $request->asbob_usk_ehtiyoji,
+            'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
         ]);
         return redirect()->route('asbobuskuna.index')->with('status', 'Asbob uskunasi qo`shildi');
     }
@@ -127,6 +140,12 @@ class AsbobuskunaController extends Controller
             "fish" => $request->fish,
             "jav_buy_raqami" => $request->jav_buy_raqami,
             "jav_sanasi" => $request->jav_sanasi,
+            'ilmiy_tadqiqot_ishilari' => $request->ilmiy_tadqiqot_ishilari,
+            'ilmiy_tadqiqot_hajmi' => $request->ilmiy_tadqiqot_hajmi,
+            'lab_zaxirasi' => $request->lab_zaxirasi,
+            'foy_uchun_ariz' => $request->foy_uchun_ariz,
+            'asbob_usk_ehtiyoji' => $request->asbob_usk_ehtiyoji,
+            'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
         ]);
 
         return redirect()->route('asbobuskuna.index')->with('status', 'Asbob uskunasi tahrirlandi');

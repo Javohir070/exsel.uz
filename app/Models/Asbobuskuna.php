@@ -13,7 +13,13 @@ class Asbobuskuna extends Model
         'tashkilot_id', 'user_id', 'laboratory_id', 'kafedralar_id', 'name', 'model', 'turi',
         'ishlab_davlat', 'ishlabchiq_yil', 'harid_summa', 'buxgalteriya_summa',
         'moliya_manbasi', 'loy_shifri', 'sh_raqami', 'sh_sanasi', 'harid_qilingan_yil',
-        'holati', 'urnatilgan_yili', 'fish', 'jav_buy_raqami', 'jav_sanasi'
+        'holati', 'urnatilgan_yili', 'fish', 'jav_buy_raqami', 'jav_sanasi',
+        'ilmiy_tadqiqot_ishilari',
+        'ilmiy_tadqiqot_hajmi',
+        'lab_zaxirasi',
+        'foy_uchun_ariz',
+        'asbob_usk_ehtiyoji',
+        'zarur_ehtiyoji',
     ];
 
     // Aloqalar

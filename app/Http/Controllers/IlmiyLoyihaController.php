@@ -264,14 +264,7 @@ class IlmiyLoyihaController extends Controller
         return view('admin.ilmiyloyiha.search_results', compact('ilmiyloyiha'));
     }
 
-    public function monitoring2024()
-    {
-        $takshirivchilar = Tekshirivchilar::pluck('ilmiy_loyiha_id')->toArray();
-        $ilmiyloyihalar = IlmiyLoyiha::whereNotIn('id',$takshirivchilar)->paginate(25);
-
-        return view("admin.ilmiyloyiha.monitoring2024",['ilmiyloyihalar'=>$ilmiyloyihalar]);
-
-    }
+    
 
     public function IlmiyLoyiha_import(Request $request)
 {

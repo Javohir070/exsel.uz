@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asbobuskuna;
+use App\Models\Asbobuskunaexpert;
+use App\Models\Doktaranturaexpert;
 use App\Models\IlmiyLoyiha;
+use App\Models\Stajirovka;
+use App\Models\Stajirovkaexpert;
+use App\Models\Tashkilot;
 use App\Models\Tekshirivchilar;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -52,4 +58,136 @@ class PDFController extends Controller
 
         return response()->download($filePath)->deleteFileAfterSend(true);
     }
+
+    public function generatePDFsajiyor($Id)
+    {
+        $stajirovka = Stajirovka::findOrFail($Id);
+        // Define a file name and path for the PDF
+        $fileName = 'sta-lists-' . time() . '.pdf';
+        $fileRelativePath = 'pdfs/' . $fileName;
+        $filePath = storage_path('app/public/' . $fileRelativePath);
+
+        // Generate a URL for the PDF
+        $pdfUrl = asset('storage/' . $fileRelativePath);
+
+        // Generate the QR Code as a base64 image
+        $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
+        $tekshirivchilar = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->first();
+        // Prepare data for the PDF
+        $data = [
+            'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
+            'date' => date('m/d/Y'),
+            'stajirovka' => $stajirovka,
+            'qrCode' => $qrCode, // Pass QR Code image as base64
+            'tekshirivchilar' => $tekshirivchilar
+        ];
+
+
+
+        // Generate the PDF
+        $pdf = PDF::loadView('admin.pdf.stajirovka', $data);
+
+        // Save the PDF to the specified path
+        if (!file_exists(storage_path('app/public/pdfs'))) {
+            mkdir(storage_path('app/public/pdfs'), 0755, true);
+        }
+        $pdf->save($filePath);
+
+        // Store the PDF path in the database (example for one user)
+        if ($tekshirivchilar) {
+            $tekshirivchilar->file = $fileRelativePath; // Faylning nisbiy yo'lini saqlash
+            $tekshirivchilar->save();
+        }
+
+        return response()->download($filePath)->deleteFileAfterSend(true);
+    }
+
+    public function generatePDFAsbobuskuna($Id)
+    {
+        $asbobuskuna = Asbobuskuna::findOrFail($Id);
+        // Define a file name and path for the PDF
+        $fileName = 'sta-lists-' . time() . '.pdf';
+        $fileRelativePath = 'pdfs/' . $fileName;
+        $filePath = storage_path('app/public/' . $fileRelativePath);
+
+        // Generate a URL for the PDF
+        $pdfUrl = asset('storage/' . $fileRelativePath);
+
+        // Generate the QR Code as a base64 image
+        $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
+        $tekshirivchilar = Asbobuskunaexpert::where('asbobuskuna_id', $asbobuskuna->id)->first();
+        // Prepare data for the PDF
+        $data = [
+            'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
+            'date' => date('m/d/Y'),
+            'asbobuskuna' => $asbobuskuna,
+            'qrCode' => $qrCode, // Pass QR Code image as base64
+            'tekshirivchilar' => $tekshirivchilar
+        ];
+
+
+
+        // Generate the PDF
+        $pdf = PDF::loadView('admin.pdf.asbobuskuna', $data);
+
+        // Save the PDF to the specified path
+        if (!file_exists(storage_path('app/public/pdfs'))) {
+            mkdir(storage_path('app/public/pdfs'), 0755, true);
+        }
+        $pdf->save($filePath);
+
+        // Store the PDF path in the database (example for one user)
+        if ($tekshirivchilar) {
+            $tekshirivchilar->file = $fileRelativePath; // Faylning nisbiy yo'lini saqlash
+            $tekshirivchilar->save();
+        }
+
+        return response()->download($filePath)->deleteFileAfterSend(true);
+    }
+
+
+    public function generatePDFDoktarantura($Id)
+    {
+        $tashkilot = Tashkilot::findOrFail($Id);
+        // Define a file name and path for the PDF
+        $fileName = 'sta-lists-' . time() . '.pdf';
+        $fileRelativePath = 'pdfs/' . $fileName;
+        $filePath = storage_path('app/public/' . $fileRelativePath);
+
+        // Generate a URL for the PDF
+        $pdfUrl = asset('storage/' . $fileRelativePath);
+
+        // Generate the QR Code as a base64 image
+        $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
+        $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $tashkilot->id)->first();
+        // Prepare data for the PDF
+        $data = [
+            'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
+            'date' => date('m/d/Y'),
+            'tashkilot' => $tashkilot,
+            'qrCode' => $qrCode, // Pass QR Code image as base64
+            'tekshirivchilar' => $tekshirivchilar
+        ];
+
+
+
+        // Generate the PDF
+        $pdf = PDF::loadView('admin.pdf.doktarantura', $data);
+
+        // Save the PDF to the specified path
+        if (!file_exists(storage_path('app/public/pdfs'))) {
+            mkdir(storage_path('app/public/pdfs'), 0755, true);
+        }
+        $pdf->save($filePath);
+
+        // Store the PDF path in the database (example for one user)
+        if ($tekshirivchilar) {
+            $tekshirivchilar->file = $fileRelativePath; // Faylning nisbiy yo'lini saqlash
+            $tekshirivchilar->save();
+        }
+
+        return response()->download($filePath)->deleteFileAfterSend(true);
+    }
+
+
 }

@@ -33,6 +33,12 @@ return new class extends Migration
             $table->string('fish');
             $table->string('jav_buy_raqami');
             $table->date('jav_sanasi');
+            $table->text('ilmiy_tadqiqot_ishilari');
+            $table->text('ilmiy_tadqiqot_hajmi');
+            $table->text('lab_zaxirasi');
+            $table->text('foy_uchun_ariz');
+            $table->text('asbob_usk_ehtiyoji');
+            $table->text('zarur_ehtiyoji');
             $table->timestamps();
         });
     }

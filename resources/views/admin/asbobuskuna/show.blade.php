@@ -17,6 +17,10 @@
             </a>
             @endrole
 
+            <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                pdf genertsiya
+            </a>
+
         </div>
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
@@ -128,8 +132,261 @@
                         <td class="border">{{ $asbobuskuna->jav_sanasi  }}</td>
                     </tr>
 
+
+                    <tr class="bg-gray-200">
+                        <th class="border">Bajarilayotgan ilmiy-tadqiqot ishlari</th>
+                        <th class="border">Ilmiy-tadqiqot dasturlaridagi ish hajmi</th>
+                    </tr>
+                    <tr>
+                        <td class="border">{{ $asbobuskuna->ilmiy_tadqiqot_ishilari  }}</td>
+                        <td class="border">{{ $asbobuskuna->ilmiy_tadqiqot_hajmi  }}</td>
+                    </tr>
+
+                    <tr class="bg-gray-200">
+                        <th class="border">Laboratoriya uskunalari uchun zarur reagent va reaktivlar zaxirasi</th>
+                        <th class="border">Foydalanish uchun arizalarning ro‘yxatga olinishi va foydalanish jadvalining yuritilishi</th>
+                    </tr>
+                    <tr>
+                        <td class="border">{{ $asbobuskuna->lab_zaxirasi  }}</td>
+                        <td class="border">{{ $asbobuskuna->foy_uchun_ariz  }}</td>
+                    </tr>
+
+                    <tr class="bg-gray-200">
+                        <th class="border">Ilmiy tadqiqot va oliy ta’lim muassasalari laboratoriyalarining qo‘shimcha asbob-uskunalarga ehtiyoji</th>
+                        <th class="border">Zarur sarflash materiallari va butlovchi qismlar bo‘yicha ehtiyoji</th>
+                    </tr>
+                    <tr>
+                        <td class="border">{{ $asbobuskuna->asbob_usk_ehtiyoji  }}</td>
+                        <td class="border">{{ $asbobuskuna->zarur_ehtiyoji  }}</td>
+                    </tr>
+
                 </tbody>
             </table>
+        </div>
+
+
+        <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
+            style="background: white; padding: 20px 20px; border-radius: 20px">
+            <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                <form id="science-paper-create-form" method="POST" action="{{ route('asbobuskunaexpert.store') }}"
+                    class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                    @csrf
+                    <div class="grid grid-cols-12 gap-2">
+                        <input type="hidden" name="asbobuskuna_id" value="{{ $asbobuskuna->id }}">
+
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalarini o'rnatilgan ilmiy bo'linma faoliyatiga mosligi
+                            </label>
+                            <select name="lab_uskunalarini_mosligi" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                                <option value=""></option>
+
+                                <option value="Ijobiy">Ijobiy</option>
+
+                                <option value="Qoniqarli">Qoniqarli</option>
+
+                                <option value="Salbiy">Salbiy</option>
+
+
+                            </select><br>
+
+                            @error('ilmiy_hisobot')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Bajarilavotgan ilmiy-tadqiqot ishlari uchun zarurligi
+                            </label>
+                            <select name="ilmiy_tadqiqot_ishilari" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                                <option value=""></option>
+
+                                <option value="Ijobiy">Ijobiy</option>
+
+                                <option value="Qoniqarli">Qoniqarli</option>
+
+                                <option value="Salbiy">Salbiy</option>
+
+                            </select><br>
+
+                            @error('muddat')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy-tadqiqot dasturlaridagi ish hajmi bilan bog'liqligi
+                            </label>
+                            <select name="ilmiy_tadqiqot_hajmi" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                                <option value=""></option>
+
+                                <option value="Ijobiy">Ijobiy</option>
+
+                                <option value="Qoniqarli">Qoniqarli</option>
+
+                                <option value="Salbiy">Salbiy</option>
+
+                            </select><br>
+
+                            @error('muddat')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalari uchun zarur reagent va reaktivlar zaxirasining mavjudligi
+                            </label>
+                            <select name="lab_zaxirasi" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                                <option value=""></option>
+
+                                <option value="Ijobiy">Ijobiy</option>
+
+                                <option value="Yetarli">Yetarli</option>
+
+                                <option value="Mavjud emas">Mavjud emas</option>
+
+                            </select><br>
+
+                            @error('muddat')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Foydalanish uchun arizalarning ro'yxatga olinishi va foydalanish jadvalining yuritilishi
+                                    holatiga baho berish
+                            </label>
+                            <select name="foy_uchun_ariz" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                                <option value=""></option>
+
+                                <option value="Ijobiy">Ijobiy</option>
+
+                                <option value="Qoniqarli">Qoniqarli</option>
+
+                                <option value="Salbiy">Salbiy</option>
+
+                            </select><br>
+
+                            @error('muddat')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy tadqiqot va oliy ta'lim muassasalari laboratoriyalarining qo'shimcha asbob-uskunalar
+                                    bo'yicha ehtiyoji
+                            </label>
+                            <select name="asbob_usk_ehtiyoji" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                                <option value=""></option>
+
+                                <option value="Mavjud">Mavjud</option>
+
+                                <option value="Yetarli">Yetarli</option>
+
+                                <option value="Mavjud emas">Mavjud emas</option>
+
+                            </select><br>
+
+                            @error('muddat')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Zarur sarflash materiallari va butlovchi qismlar bo'yicha ehtiyojar mavjudligi
+                            </label>
+                            <select name="zarur_ehtiyoji" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                                <option value=""></option>
+
+                                <option value="Mavjud">Mavjud</option>
+
+                                <option value="Yetarli">Yetarli</option>
+
+                                <option value="Mavjud emas">Mavjud emas</option>
+
+                            </select><br>
+
+                            @error('muddat')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalarining ishga yaroqliligi
+                            </label>
+                            <select name="lab_ishga_yaroqliligi" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                                <option value=""></option>
+
+                                <option value="Mavjud">Mavjud</option>
+
+                                <option value="Yetarli">Yetarli</option>
+
+                                <option value="Mavjud emas">Mavjud emas</option>
+
+                            </select><br>
+
+                            @error('muddat')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
+                            </label>
+                            <select name="status" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                                <option value=""></option>
+
+                                <option value="Ijobiy">Ijobiy</option>
+
+                                <option value="Qoniqarli">Qoniqarli</option>
+
+                                <option value="Salbiy">Salbiy</option>
+
+
+                            </select><br>
+
+                            @error('muddat')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6 ">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
+                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                        </div>
+                    </div>
+
+                </form><br>
+                <div class="px-5 pb-5 text-center">
+                    <a href="{{ route('ilmiyloyiha.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                        Bekor qilish
+                    </a>
+                    <button type="submit" form="science-paper-create-form"
+                        class="update-confirm button w-24 bg-theme-1 text-white">
+                        Qo'shish
+                    </button>
+                </div>
+            </div>
         </div>
 
     </div>

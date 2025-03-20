@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asbobuskuna;
 use App\Models\IlmiybnTaminlanga;
 use App\Models\IlmiyLoyiha;
+use App\Models\Stajirovka;
 use App\Models\Tashkilot;
 use App\Models\User;
 use App\Models\Xodimlar;
@@ -35,6 +37,10 @@ class TashkilotMalumotlarController extends Controller
         $loyiha_bilan_t = IlmiybnTaminlanga::where('tashkilot_id',$tashkilotmalumotlar)->count();
         $loy_count = IlmiyLoyiha::where('tashkilot_id',$tashkilotmalumotlar)->count();
 
+        $stajirovka_count = Stajirovka::where('tashkilot_id',$tashkilotmalumotlar)->count();
+        $asboblar_count = Asbobuskuna::where('tashkilot_id',$tashkilotmalumotlar)->count();
+
+
         return view('admin.tashkilotmalumotlar.tashkilot',[
             'tashkilot' => $tashkilot,
             'id' => $tashkilotmalumotlar,
@@ -42,7 +48,9 @@ class TashkilotMalumotlarController extends Controller
             'loy_count' => $loy_count,
             'xodim_count' => $xodim_count,
             'xujalik_count' => $xujalik_count,
-            'loyiha_bilan_t' => $loyiha_bilan_t
+            'loyiha_bilan_t' => $loyiha_bilan_t,
+            'stajirovka_count' => $stajirovka_count,
+            'asboblar_count' => $asboblar_count,
         ]);
     }
 }

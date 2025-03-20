@@ -513,10 +513,6 @@
             </div>
         </div>
     </div>
-
-    <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-        pdf genertsiya
-    </a>
     @endrole
 
     </div>

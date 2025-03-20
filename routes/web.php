@@ -2,8 +2,11 @@
 
 
 use App\Http\Controllers\AsbobuskunaController;
+use App\Http\Controllers\AsbobuskunaexpertController;
 use App\Http\Controllers\AsbobuskunafileController;
 use App\Http\Controllers\DalolatnomaController;
+use App\Http\Controllers\DoktaranturaController;
+use App\Http\Controllers\DoktaranturaexpertController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\FakultetlarController;
 use App\Http\Controllers\HomeController;
@@ -19,6 +22,8 @@ use App\Http\Controllers\IzlanuvchilarController;
 use App\Http\Controllers\KafedralarController;
 use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\MonografiyalarController;
+use App\Http\Controllers\StajirovkaController;
+use App\Http\Controllers\StajirovkaexpertController;
 use App\Http\Controllers\TashkilotController;
 use App\Http\Controllers\TashkilotUserlarController;
 use App\Http\Controllers\TekshirivchilarController;
@@ -58,6 +63,9 @@ Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home
 Route::middleware('auth')->group(function () {
     Route::post('password/change', [UserController::class, 'changePassword'])->name('password.change');
     Route::get('generate-pdf/{ilmiyId}', [App\Http\Controllers\PDFController::class, 'generatePDF']);
+    Route::get('generate-pdfsajiyor/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFsajiyor']);
+    Route::get('generate-pdfasbobuskuna/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFAsbobuskuna']);
+    Route::get('generate-pdfdoktarantura/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFDoktarantura']);
     //import qilish
     //end import
     //excel uchun export url lar
@@ -124,7 +132,7 @@ Route::middleware('auth')->group(function () {
     Route::get('masullar', [LaboratoryController::class, "masullar"])->name("masullar.index");
     Route::get('asbobuskuna-masullar', [AsbobuskunaController::class, "asbobuskuna_masullar"])->name("asbobuskuna_masullar.index");
     Route::get('masul', [IlmiyLoyihaController::class, "masul"])->name("masul.index");
-    Route::get('monitoring2024', [IlmiyLoyihaController::class, "monitoring2024"])->name("monitoring2024.index");
+    Route::get('monitoring', [HomeController::class, "monitoring"])->name("monitoring.index");
     Route::post("emport-izlanuvchi", [IzlanuvchilarController::class, "emport_izlanuvchi"])->name("emport_izlanuvchi.index");
     Route::get("/ilmiy-izlanuvchilar", [IzlanuvchilarController::class,"ilmiy_izlanuvchilar"])->name("ilmiy_izlanuvchilar.index");
     Route::put('lab/{labId}/give-izlanuvchilar', [IzlanuvchilarController::class, 'giveIzlanuvchilarToLab']);
@@ -170,7 +178,13 @@ Route::middleware('auth')->group(function () {
     //super admin uchun
 
     //asbob uskunlar
-    Route::get('/asbobuskunalar', [AsbobuskunaController::class, "asbobuskunalar"])->name("asbobuskunalar.index");
+    Route::get('asbobuskunalar', [AsbobuskunaController::class, "asbobuskunalar"])->name("asbobuskunalar.index");
+    Route::get('stajirovkalar', [StajirovkaController::class, "stajirovkalar"])->name("stajirovkalar.index");
+
+    Route::get('asbobus/{id}', [AsbobuskunaController::class, "asbobu"])->name("asbobu.index");
+    Route::get('stajiro/{id}', [StajirovkaController::class, "stajirov"])->name("stajirov.index");
+
+
     Route::resources([
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,
@@ -197,6 +211,11 @@ Route::middleware('auth')->group(function () {
         'ilmiytezislar' => IlmiytezislarController::class,
         'asbobuskuna' => AsbobuskunaController::class,
         'asbobuskunafile' => AsbobuskunafileController::class,
+        'stajirovka' => StajirovkaController::class,
+        'stajirovkaexpert' => StajirovkaexpertController::class,
+        'asbobuskunaexpert' => AsbobuskunaexpertController::class,
+        'doktarantura' => DoktaranturaController::class,
+        'doktaranturaexpert' => DoktaranturaexpertController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });

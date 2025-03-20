@@ -40,7 +40,36 @@
                             </div>
                         </a>
                     </div>
+
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                        <a href="{{ route('stajirov.index',['id' => $id]) }}">
+                            <div class="report-box zoom-in">
+                                <div class="box p-5">
+                                    <div class="flex">
+                                        <i data-feather="file-text" class="report-box__icon text-theme-3"></i>
+                                    </div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $stajirovka_count }}</div>
+                                    <div class="text-base text-gray-600 mt-1">Stajirovka</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
+                        <a href="{{ route('asbobu.index', ['id' => $id]) }}">
+                            <div class="report-box zoom-in">
+                                <div class="box p-5">
+                                    <div class="flex">
+                                        <i data-feather="file-text" class="report-box__icon text-theme-3"></i>
+                                    </div>
+                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $asboblar_count }}</div>
+                                    <div class="text-base text-gray-600 mt-1">Labaratoriyalar</div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+
+                    {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <a href="{{ route('tashkilot.ilmiydaraja.index',['tashkilot'=>$id]) }}">
                             <div class="report-box zoom-in">
                                 <div class="box p-5">
@@ -52,7 +81,8 @@
                                 </div>
                             </div>
                         </a>
-                    </div>
+                    </div> --}}
+
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <a href="{{ route("tashkilot.userlar.index",['tashkilot'=>$id]) }}">
                             <div class="report-box zoom-in">
@@ -66,6 +96,7 @@
                             </div>
                         </a>
                     </div>
+
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <a href="{{ route("tashkilot.xodimlar.index",['tashkilot'=>$id]) }}">
                             <div class="report-box zoom-in">
@@ -79,6 +110,7 @@
                             </div>
                         </a>
                     </div>
+
                 </div>
             </div>
         </div>

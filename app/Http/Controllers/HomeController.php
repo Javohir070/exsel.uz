@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asbobuskuna;
 use App\Models\Dalolatnoma;
+use App\Models\Doktaranturaexpert;
 use App\Models\IlmiybnTaminlanga;
 use App\Models\IlmiyLoyiha;
 use App\Models\Ilmiymaqolalar;
@@ -13,6 +15,7 @@ use App\Models\Izlanuvchilar;
 use App\Models\Kafedralar;
 use App\Models\Laboratory;
 use App\Models\Monografiyalar;
+use App\Models\Stajirovka;
 use App\Models\Tashkilot;
 use App\Models\TashkilotRahbari;
 use App\Models\Tekshirivchilar;
@@ -129,6 +132,12 @@ class HomeController extends Controller
         $kaf_Intellektualmulk = Intellektualmulk::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
         $tekshirivchilar = Tekshirivchilar::count();
 
+        $stajirovka_count = Stajirovka::count();
+        $asboblar_count = Asbobuskuna::count();
+
+
+        $itm_count = Tashkilot::where('tashkilot_turi', 'itm')->count();
+
         return view('admin.home', [
             'tekshirivchilar' => $tekshirivchilar,
             'tashkiot_haqida' => $tashkilot,
@@ -175,8 +184,30 @@ class HomeController extends Controller
             'kaf_Dalolatnoma' => $kaf_Dalolatnoma,
             'kaf_Monografiyalar' => $kaf_Monografiyalar,
             'kaf_Intellektualmulk' => $kaf_Intellektualmulk,
+            'stajirovka_count' => $stajirovka_count,
+            'asboblar_count' => $asboblar_count,
+            'itm_count' => $itm_count,
 
         ]);
+    }
+
+    public function monitoring()
+    {
+        $stajirovka_count = Stajirovka::count();
+        $asboblar_count = Asbobuskuna::count();
+        $loy_count = IlmiyLoyiha::count();
+
+        $doktarantura = Doktaranturaexpert::count();
+
+        return view("admin.monitoring",[
+            'loy_count' => $loy_count,
+            'stajirovka_count' => $stajirovka_count,
+            'asboblar_count' => $asboblar_count,
+            'doktarantura' => $doktarantura
+        ]);
+
+
+
     }
 
 }
