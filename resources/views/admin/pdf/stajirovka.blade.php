@@ -179,15 +179,15 @@
 
             <div class="form-group">
                 <div class="form-row">
-                    <span class="form-label">Tashkilot nomi:</span>
+                    <span class="form-label title">Tashkilot nomi:</span>
                     <span class="form-input">{{ $stajirovka->tashkilot->name }}</span>
                 </div>
                 <div class="form-row">
-                    <span class="form-label">Yosh olimning F.I.O:</span>
+                    <span class="form-label title">Yosh olimning F.I.O:</span>
                     <span class="form-input">{{  $stajirovka->fish }}</span>
                 </div>
                 <div class="form-row">
-                    <span class="form-label">Yosh olimning lavozimi:</span>
+                    <span class="form-label title">Yosh olimning lavozimi:</span>
                     <span class="form-input">{{  $stajirovka->lavozim }}</span>
                 </div>
             </div>
@@ -195,9 +195,9 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>№</th>
-                        <th>Mezon va talablar</th>
-                        <th>Xulosa</th>
+                        <th>T/r</th>
+                        <th class="title">Mezon va talablar</th>
+                        <th class="title">Xulosa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -247,10 +247,21 @@
                         </td>
                         <td>{{  $tekshirivchilar->biryil_davomida ?? null }}</td>
                     </tr>
+
+                    <tr>
+                        <td class="text-center title" colspan="2">Ekspert xulosasi </td>
+                        <td>{{  $tekshirivchilar->status ?? null }}</td>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <td class="text-center title" colspan="2">
+                            Izoh
+                        </td>
+                        <td>{{  $tekshirivchilar->comment ?? null }}</td>
+                    </tr>
                 </tbody>
             </table>
 
-            <div class="conclusion-section">
+            {{-- <div class="conclusion-section">
                 <div class="conclusion-row">
                     <div class="conclusion-label">Ekspert xulosasi</div>
                     <div class="conclusion-content">{{  $tekshirivchilar->status ?? null }}</div>
@@ -259,7 +270,7 @@
                     <div class="conclusion-label">Izoh</div>
                     <div class="conclusion-content">{{  $tekshirivchilar->comment ?? null }}</div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="footer">
                 <div class="footer-info">

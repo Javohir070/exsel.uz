@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Asbobuskuna;
 use App\Http\Requests\StoreAsbobuskunaRequest;
 use App\Http\Requests\UpdateAsbobuskunaRequest;
+use App\Models\Asbobuskunaexpert;
 use App\Models\Asbobuskunafile;
 use App\Models\IlmiyLoyiha;
 use App\Models\Kafedralar;
@@ -100,7 +101,8 @@ class AsbobuskunaController extends Controller
 
     public function show(Asbobuskuna $asbobuskuna)
     {
-        return view('admin.asbobuskuna.show', ['asbobuskuna' => $asbobuskuna]);
+        $asbobuskunaexpert = Asbobuskunaexpert::where('asbobuskuna_id', $asbobuskuna->id)->get();
+        return view('admin.asbobuskuna.show', ['asbobuskuna' => $asbobuskuna, 'asbobuskunaexpert' => $asbobuskunaexpert]);
     }
 
 

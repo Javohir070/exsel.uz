@@ -119,6 +119,9 @@ Route::middleware('auth')->group(function () {
 
     //end itm
 
+    Route::get('/search-dok', [DoktaranturaController::class, 'search_dok'])->name('search_dok');
+
+
     // labaratoriya uchun
 
     Route::get('lab-user', [LaboratoryController::class,'lab_biriktirilgan_xodimlar'])->name('lab_xodimlar.index');

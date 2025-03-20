@@ -141,7 +141,7 @@
             <a href="{{ route('doktarantura.index') }}"
                 class="side-menu side-menu{{ request()->is('doktarantura*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="side-menu__title"> Doktaranturalar</div>
+                <div class="side-menu__title"> Izlanuvchilar</div>
             </a>
         </li>
         @endrole

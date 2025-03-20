@@ -179,9 +179,9 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>№</th>
-                        <th>Mezon va talablar</th>
-                        <th>Xulosa</th>
+                        <th>T/r</th>
+                        <th class="title">Mezon va talablar</th>
+                        <th class="title">Xulosa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -227,10 +227,21 @@
                         </td>
                         <td>{{  $tekshirivchilar->hujjatlar_kiritish_holati ?? null }}</td>
                     </tr>
+
+                    <tr>
+                        <td class="text-center title" colspan="2">Ekspert xulosasi </td>
+                        <td>{{  $tekshirivchilar->status ?? null }}</td>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <td class="text-center title" colspan="2">
+                            Izoh
+                        </td>
+                        <td>{{  $tekshirivchilar->comment ?? null }}</td>
+                    </tr>
                 </tbody>
             </table>
 
-            <div class="conclusion-section">
+            {{-- <div class="conclusion-section">
                 <div class="conclusion-row">
                     <div class="conclusion-label">Ekspert xulosasi</div>
                     <div class="conclusion-content">{{  $tekshirivchilar->status ?? null }}</div>
@@ -239,7 +250,7 @@
                     <div class="conclusion-label">Izoh</div>
                     <div class="conclusion-content">{{  $tekshirivchilar->comment ?? null }}</div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="footer">
                 <div class="footer-info">

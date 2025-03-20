@@ -9,7 +9,7 @@
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
-                    <form action="{{ route('search') }}" method="GET">
+                    <form action="{{ route('search_dok') }}" method="GET">
                         <input type="text" name="query"
                             class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13" placeholder="Search...">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -20,14 +20,14 @@
                         </svg>
                     </form>
                 </div>
-                <form method="GET" action="{{ route('search') }}">
+                <form method="GET" action="{{ route('search_dok') }}">
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
                         <option value="">Barchasi OTM & ITM</option>
                         <option value="otm">OTM</option>
                         <option value="itm">ITM</option>
                     </select>
                 </form>
-                <form method="GET" action="{{ route('search') }}">
+                {{-- <form method="GET" action="{{ route('search') }}">
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
                         <option value="">Viloyatlari</option>
                         <option value="Andijon viloyati">Andijon viloyati</option>
@@ -35,7 +35,7 @@
                         <option value="Farg'ona viloyati">Farg'ona viloyati</option>
                         <option value="Jizzax viloyati">Jizzax viloyati</option>
                     </select>
-                </form>
+                </form> --}}
             </div>
 
 
@@ -70,7 +70,7 @@
                                     <div class="flex justify-center items-center">
 
                                         <a class="flex science-update-action items-center mr-3"
-                                            href="{{ route('tashkilot.show', ['tashkilot' => $tashkilots->id]) }}"
+                                            href="{{ route('doktarantura.show', ['doktarantura' => $tashkilots->id]) }}"
                                             data-id="2978" data-name="sdfd"
                                             data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
                                             data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66"

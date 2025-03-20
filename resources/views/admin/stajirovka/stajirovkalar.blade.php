@@ -43,7 +43,9 @@
                         <tr class="intro-x">
                             <td>{{$loop->index + 1}}</td>
                             <td>
+                                <a href="{{ route('stajirovka.show', ['stajirovka' => $xodimlar->id]) }}">
                                 {{ $xodimlar->tashkilot->name }}
+                                </a>
                             </td>
                             <td>
                                 {{ $xodimlar->fish }}

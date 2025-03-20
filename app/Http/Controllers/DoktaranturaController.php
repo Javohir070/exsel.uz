@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doktaranturaexpert;
 use App\Models\Izlanuvchilar;
 use App\Models\Tashkilot;
 use Illuminate\Http\Request;
@@ -13,10 +14,21 @@ class DoktaranturaController extends Controller
         return view('admin.doktarantura.index', ['tashkilotlar' => $tashkilotlar]);
     }
 
+    public function search_dok(Request $request)
+    {
+        $querysearch = $request->input('query');
+        $tashkilotlar = Tashkilot::where('name','like','%'.$querysearch.'%')
+                ->orWhere('id_raqam','like','%'.$querysearch.'%')
+                ->orWhere('tashkilot_turi','like','%'.$querysearch.'%')
+                ->paginate(50);
+
+        return view('admin.doktarantura.index', compact('tashkilotlar'));
+    }
+
     public function show($id)
     {
         $tashkilot = Tashkilot::findOrFail($id);
-        $lab_izlanuvchilar = Izlanuvchilar::where('tashkilot_id', auth()->user()->tashkilot_id)->count();
+        $lab_izlanuvchilar = Izlanuvchilar::where('tashkilot_id', $id)->count();
         $phd = [
             "Tayanch doktorantura, PhD",
             "Mustaqil tadqiqotchi, PhD",
@@ -33,12 +45,23 @@ class DoktaranturaController extends Controller
                      ->whereIn('talim_turi', $dsc)->count();
         $stajyor_soni = Izlanuvchilar::where('tashkilot_id', $id)
                      ->where('talim_turi', "Stajyor-tadqiqotchi")->count();
+
+        $dscmus_soni = Izlanuvchilar::where('tashkilot_id', $id)
+                    ->where('talim_turi', 'Mustaqil tadqiqotchi, DSc')->count();
+
+        $phdmus_soni = Izlanuvchilar::where('tashkilot_id', $id)
+                    ->where('talim_turi', 'Mustaqil tadqiqotchi, PhD')->count();
+
+        $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->get();
         return view("admin.doktarantura.show", [
                 'phd_soni' => $phd_soni,
                 'dsc_soni' => $dsc_soni,
                 'stajyor_soni' => $stajyor_soni,
                 'tashkilot' => $tashkilot,
-                'lab_izlanuvchilar' => $lab_izlanuvchilar
+                'lab_izlanuvchilar' => $lab_izlanuvchilar,
+                'doktaranturaexpert' => $doktaranturaexpert,
+                'dscmus_soni' => $dscmus_soni,
+                'phdmus_soni' => $phdmus_soni,
             ]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Stajirovka;
 use App\Http\Requests\StoreStajirovkaRequest;
 use App\Http\Requests\UpdateStajirovkaRequest;
+use App\Models\Stajirovkaexpert;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -86,7 +87,8 @@ class StajirovkaController extends Controller
 
     public function show(Stajirovka $stajirovka)
     {
-        return view('admin.stajirovka.show', ['stajirovka' => $stajirovka]);
+        $stajirovkaexpert = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->get();
+        return view('admin.stajirovka.show', ['stajirovka' => $stajirovka, 'stajirovkaexpert' => $stajirovkaexpert]);
     }
 
 

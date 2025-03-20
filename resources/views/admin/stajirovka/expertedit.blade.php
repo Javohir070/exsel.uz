@@ -16,11 +16,6 @@
                 Orqaga
             </a>
             @endrole
-            @role('Ekspert')
-            <a href="{{ url('generate-pdfsajiyor/' . $stajirovka->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                pdf genertsiya
-            </a>
-            @endrole
         </div>
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
@@ -124,146 +119,28 @@
             </table>
         </div>
 
-        @role('Ekspert')
 
-        @forelse ($stajirovkaexpert as $tekshirivchilar)
-        <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
-            <table class="table">
-                <div
-                        style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;">
-                            {{ $tekshirivchilar->stajirovkalar->name . ' Stajirovka ' }} xaqida ma’lumot
-                        </div>
-                        <div style="text-align: end;display: flex;">
-                            <a href="{{ route('stajirovkaexpert.edit', ['stajirovkaexpert' => $tekshirivchilar->id]) }}"
-                                class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
-                                Tahrirlash
-                            </a>
-                            {{-- <a href="" class="button w-24 bg-theme-6 text-white">
-                                O'chirish
-                            </a> --}}
-                            <form action="{{ route('stajirovkaexpert.destroy', $tekshirivchilar->id) }}" method="POST" onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
-                            </form>
-                        </div>
-
-                            <a href="{{ url('generate-pdfsajiyor/' . $stajirovka->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                                pdf genertsiya
-                            </a>
-                    </div>
-                <thead>
-                    <tr>
-                        <th class="border border-b-2 " style="width: 40px;">№</th>
-                        <th class="border border-b-2 " style="width: 60%;">Mezon va talablar</th>
-                        <th class="border border-b-2 ">Xulosa</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="bg-gray-200">
-                        <td class="border border-b-2 ">1</td>
-                        <td class="border border-b-2 ">
-                            Ilmiy hisobot taqdim etilganligi (Pdf).
-                            <div class="italic">(Agar taqdim etilgan status tanlanmasa Izoh qoldirish shart)</div>
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->ilmiy_hisobot ?? null }}</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-b-2 ">2</td>
-                        <td class="border border-b-2 ">
-                            Stajirovka davrida egallangan bilim va ko'nikmalarni amalga oshirilishi uchun zarur
-                            shart-sharoitlar yaratilganligi. (Asoslantiruvchi hujjatlar, rasm va videolar)
-                            <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->egallangan_bilim ?? null }}</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td class="border border-b-2 ">3</td>
-                        <td class="border border-b-2 ">
-                            Ilmiy-tadqiqot ishlari natijalari bo'yicha xorijiy ilmiy anjumanlarda ma'ruza bilan ishtirok
-                            etganligi. (Asoslantiruvchi hujjatlar, rasm va videolar hamda havolalar)
-                            <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->ishlar_natijalari ?? null }}</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-b-2 ">4</td>
-                        <td class="border border-b-2 ">
-                            Xalqaro tan olingan ma'lumotlar bazasidagi yetakchi ilmiy jurnallarda nashr qilinganligi.
-                            (Pdf)
-                            <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->xalqarotan_jur_nashr ?? null }}</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td class="border border-b-2 ">5</td>
-                        <td class="border border-b-2 ">
-                            Kamida bir yil davomida Agentlik tomonidan tashkil etiladigan va boshqa tadbirlarda
-                            stajirovka davrida to'plangan tajribalar va olgan bilim va ko'nikmalari borasida o'z fikr va
-                            mulohazalarini bayon etilganligi tafsiloti. (Asoslantiruvchi hujjatlar, rasm va videolar
-                            hamda havolalar)
-                            <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->biryil_davomida ?? null }}</td>
-                    </tr>
-
-
-                    <tr>
-                        <td class="border border-b-2 ">6.</td>
-                        <td class="border border-b-2 ">Ekspert xulosasi
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->status ?? null }}</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td class="border border-b-2 ">7.</td>
-                        <td class="border border-b-2 ">
-                            Izoh
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->comment ?? null }}</td>
-                    </tr>
-                    <tr >
-                        <td class="border border-b-2 ">8.</td>
-                        <td class="border border-b-2 ">
-                            Fayl
-                        </td>
-                        <td class="border border-b-2 ">
-                            @if ($tekshirivchilar->file)
-                                <a href="{{ asset('storage/' . $tekshirivchilar->file) }}"
-                                    class="button  bg-theme-1 text-white">Faylni ko'rish</a>
-                            @endif
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        @empty
 
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
             style="background: white; padding: 20px 20px; border-radius: 20px">
             <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                <form id="science-paper-create-form" method="POST" action="{{ route('stajirovkaexpert.store') }}"
+                <form id="science-paper-create-form" method="POST" action="{{ route('stajirovkaexpert.update', $stajirovkaexpert->id) }}"
                     class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                     @csrf
+                    @method('PUT')
                     <div class="grid grid-cols-12 gap-2">
-                        <input type="hidden" name="stajirovka_id" value="{{ $stajirovka->id }}">
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy hisobot taqdim etilganligi (Pdf)
                             </label>
-                            <select name="ilmiy_hisobot" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="ilmiy_hisobot" id="science-sub-category" class="input border w-full mt-2" required>
+                                <option value="">Status tanlang</option>
+                                <option value="Taqdim etilgan" {{ (old('ilmiy_hisobot', $stajirovkaexpert->ilmiy_hisobot ?? '') == 'Taqdim etilgan') ? 'selected' : '' }}>Taqdim etilgan</option>
+                                <option value="Taqdim etilmagan" {{ (old('ilmiy_hisobot', $stajirovkaexpert->ilmiy_hisobot ?? '') == 'Taqdim etilmagan') ? 'selected' : '' }}>Taqdim etilmagan</option>
+                                <option value="Qayta ishlovga qaytarilgan" {{ (old('ilmiy_hisobot', $stajirovkaexpert->ilmiy_hisobot ?? '') == 'Qayta ishlovga qaytarilgan') ? 'selected' : '' }}>Qayta ishlovga qaytarilgan</option>
+                            </select>
 
-                                <option value=""></option>
-
-                                <option value="Taqdim etilgan">Taqdim etilgan </option>
-
-                                <option value="Taqdim etilmagan">Taqdim etilmagan</option>
-
-                                <option value="Qayta ishlovga qaytarilgan">Qayta ishlovga qaytarilgan</option>
-
-
-                            </select><br>
 
                             @error('ilmiy_hisobot')
                                 <div class="error">{{ $message }}</div>
@@ -279,11 +156,9 @@
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy">Ijobiy</option>
-
-                                <option value="Yetarli">Yetarli</option>
-
-                                <option value="Mavjud emas">Mavjud emas</option>
+                                <option value="Ijobiy" {{ (old('egallangan_bilim', $stajirovkaexpert->egallangan_bilim ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Yetarli" {{ (old('egallangan_bilim', $stajirovkaexpert->egallangan_bilim ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
+                                <option value="Mavjud emas" {{ (old('egallangan_bilim', $stajirovkaexpert->egallangan_bilim ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
 
                             </select><br>
 
@@ -301,11 +176,10 @@
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy">Ijobiy</option>
+                                <option value="Ijobiy" {{ (old('ishlar_natijalari', $stajirovkaexpert->ishlar_natijalari ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Yetarli" {{ (old('ishlar_natijalari', $stajirovkaexpert->ishlar_natijalari ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
+                                <option value="Mavjud emas" {{ (old('ishlar_natijalari', $stajirovkaexpert->ishlar_natijalari ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
 
-                                <option value="Yetarli">Yetarli</option>
-
-                                <option value="Mavjud emas">Mavjud emas</option>
 
                             </select><br>
 
@@ -323,11 +197,10 @@
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy">Ijobiy</option>
+                                <option value="Ijobiy" {{ (old('xalqarotan_jur_nashr', $stajirovkaexpert->xalqarotan_jur_nashr ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Yetarli" {{ (old('xalqarotan_jur_nashr', $stajirovkaexpert->xalqarotan_jur_nashr ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
+                                <option value="Mavjud emas" {{ (old('xalqarotan_jur_nashr', $stajirovkaexpert->xalqarotan_jur_nashr ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
 
-                                <option value="Yetarli">Yetarli</option>
-
-                                <option value="Mavjud emas">Mavjud emas</option>
 
                             </select><br>
 
@@ -343,17 +216,12 @@
                                     fikr va mulohazalarini bayon etilganligi tafsiloti. (Asoslantiruvchi hujjatlar, rasm va videolar
                                     hamda havolalar, zip)
                             </label>
-                            <select name="biryil_davomida" id="science-sub-category" class="input border w-full mt-2" required="">
-
+                            <select name="biryil_davomida" id="science-sub-category" class="input border w-full mt-2" required>
                                 <option value=""></option>
-
-                                <option value="Ijobiy">Ijobiy</option>
-
-                                <option value="Yetarli">Yetarli</option>
-
-                                <option value="Mavjud emas">Mavjud emas</option>
-
-                            </select><br>
+                                <option value="Ijobiy" {{ (old('biryil_davomida', $stajirovkaexpert->biryil_davomida ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Yetarli" {{ (old('biryil_davomida', $stajirovkaexpert->biryil_davomida ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
+                                <option value="Mavjud emas" {{ (old('biryil_davomida', $stajirovkaexpert->biryil_davomida ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
+                            </select>
 
                             @error('muddat')
                                 <div class="error">{{ $message }}</div>
@@ -364,18 +232,13 @@
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
                             </label>
-                            <select name="status" id="science-sub-category" class="input border w-full mt-2" required="">
-
+                            <select name="status" id="science-sub-category" class="input border w-full mt-2" required>
                                 <option value="">Status tanlang</option>
+                                <option value="Ijobiy" {{ (old('status', $stajirovkaexpert->status ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Qoniqarli" {{ (old('status', $stajirovkaexpert->status ?? '') == 'Qoniqarli') ? 'selected' : '' }}>Qoniqarli</option>
+                                <option value="Salbiy" {{ (old('status', $stajirovkaexpert->status ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy</option>
+                            </select>
 
-                                <option value="Ijobiy">Ijobiy</option>
-
-                                <option value="Qoniqarli">Qoniqarli</option>
-
-                                <option value="Salbiy">Salbiy</option>
-
-
-                            </select><br>
 
                             @error('muddat')
                                 <div class="error">{{ $message }}</div>
@@ -385,7 +248,7 @@
                         <div class="w-full col-span-6 ">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
-                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5">{{ $stajirovkaexpert->comment }}</textarea>
                         </div>
                     </div>
 
@@ -401,9 +264,6 @@
                 </div>
             </div>
         </div>
-        @endforelse
-
-        @endrole
 
 
     </div>

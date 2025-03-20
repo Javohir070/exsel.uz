@@ -164,141 +164,15 @@
             </table>
         </div>
 
-        @role('Ekspert')
 
-        @forelse ($asbobuskunaexpert as $tekshirivchilar)
-        <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
-            <table class="table">
-                <div
-                        style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;">
-                            {{ $tekshirivchilar->name . ' Asbob-uskuna ' }} xaqida ma’lumot
-                        </div>
-                        <div style="text-align: end;display: flex;">
-                            <a href="{{ route('asbobuskunaexpert.edit', ['asbobuskunaexpert' => $tekshirivchilar->id]) }}"
-                                class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
-                                Tahrirlash
-                            </a>
-                            {{-- <a href="" class="button w-24 bg-theme-6 text-white">
-                                O'chirish
-                            </a> --}}
-                            <form action="{{ route('asbobuskunaexpert.destroy', $tekshirivchilar->id) }}" method="POST" onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
-                            </form>
-                        </div>
-
-                            <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                                pdf genertsiya
-                            </a>
-                    </div>
-                <thead>
-                    <tr class="bg-gray-200">
-                        <th class="border border-b-2 " style="width: 40px;">№</th>
-                        <th class="border border-b-2 " style="width: 60%;">Mezon va talablar</th>
-                        <th class="border border-b-2 ">Xulosa</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="border border-b-2 ">1.</td>
-                        <td class="border border-b-2 ">
-                            Laboratoriya uskunalarini o'rnatilgan ilmiy bo'linma faoliyatiga mosligi
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->lab_uskunalarini_mosligi ?? null }}</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td class="border border-b-2 ">2.</td>
-                        <td class="border border-b-2 ">
-                            Bajarilavotgan ilmiy-tadqiqot ishlari uchun zarurligi
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->ilmiy_tadqiqot_ishilari ?? null }}</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-b-2 ">3.</td>
-                        <td class="border border-b-2 ">
-                            Ilmiy-tadqiqot dasturlaridagi ish hajmi bilan bog'liqligi
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->ilmiy_tadqiqot_hajmi ?? null }}</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td class="border border-b-2 ">4.</td>
-                        <td class="border border-b-2 ">
-                            Laboratoriya uskunalari uchun zarur reagent va reaktivlar zaxirasining mavjudligi
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->lab_zaxirasi ?? null }}</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-b-2 ">5.</td>
-                        <td class="border border-b-2 ">
-                            Foydalanish uchun arizalarning ro'yxatga olinishi va foydalanish jadvalining yuritilishi
-                            holatiga baho berish
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->foy_uchun_ariz ?? null }}</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td class="border border-b-2 ">6.</td>
-                        <td class="border border-b-2 ">
-                            Ilmiy tadqiqot va oliy ta'lim muassasalari laboratoriyalarining qo'shimcha asbob-uskunalar
-                            bo'yicha ehtiyoji
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->asbob_usk_ehtiyoji ?? null }}</td>
-                    </tr>
-                    <tr>
-                        <td class="border border-b-2 ">7.</td>
-                        <td class="border border-b-2 ">
-                            Zarur sarflash materiallari va butlovchi qismlar bo'yicha ehtiyojar mavjudligi
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->zarur_ehtiyoji ?? null }}</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td class="border border-b-2 ">8.</td>
-                        <td class="border border-b-2 ">
-                            Laboratoriya uskunalarining ishga yaroqliligi
-
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->lab_ishga_yaroqliligi ?? null }}</td>
-                    </tr>
-
-
-                    <tr>
-                        <td class="border border-b-2 ">9.</td>
-                        <td class="border border-b-2 ">Ekspert xulosasi
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->status ?? null }}</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td class="border border-b-2 ">10.</td>
-                        <td class="border border-b-2 ">
-                            Izoh
-                        </td>
-                        <td class="border border-b-2 ">{{  $tekshirivchilar->comment ?? null }}</td>
-                    </tr>
-                    <tr >
-                        <td class="border border-b-2 ">11.</td>
-                        <td class="border border-b-2 ">
-                            Fayl
-                        </td>
-                        <td class="border border-b-2 ">
-                            @if ($tekshirivchilar->file)
-                                <a href="{{ asset('storage/' . $tekshirivchilar->file) }}"
-                                    class="button  bg-theme-1 text-white">Faylni ko'rish</a>
-                            @endif
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        @empty
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
             style="background: white; padding: 20px 20px; border-radius: 20px">
             <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                <form id="science-paper-create-form" method="POST" action="{{ route('asbobuskunaexpert.store') }}"
+                <form id="science-paper-create-form" method="POST" action="{{ route('asbobuskunaexpert.update', $asbobuskunaexpert->id) }}"
                     class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                     @csrf
+                    @method('PUT')
                     <div class="grid grid-cols-12 gap-2">
-                        <input type="hidden" name="asbobuskuna_id" value="{{ $asbobuskuna->id }}">
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
@@ -308,11 +182,10 @@
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy">Ijobiy</option>
+                                <option value="Ijobiy" {{ (old('lab_uskunalarini_mosligi', $asbobuskunaexpert->lab_uskunalarini_mosligi ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Qoniqarli" {{ (old('lab_uskunalarini_mosligi', $asbobuskunaexpert->lab_uskunalarini_mosligi ?? '') == 'Qoniqarli') ? 'selected' : '' }}>Qoniqarli</option>
+                                <option value="Salbiy" {{ (old('lab_uskunalarini_mosligi', $asbobuskunaexpert->lab_uskunalarini_mosligi ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy</option>
 
-                                <option value="Qoniqarli">Qoniqarli</option>
-
-                                <option value="Salbiy">Salbiy</option>
 
 
                             </select><br>
@@ -330,11 +203,9 @@
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy">Ijobiy</option>
-
-                                <option value="Qoniqarli">Qoniqarli</option>
-
-                                <option value="Salbiy">Salbiy</option>
+                                <option value="Ijobiy" {{ (old('ilmiy_tadqiqot_ishilari', $asbobuskunaexpert->ilmiy_tadqiqot_ishilari ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Qoniqarli" {{ (old('ilmiy_tadqiqot_ishilari', $asbobuskunaexpert->ilmiy_tadqiqot_ishilari ?? '') == 'Qoniqarli') ? 'selected' : '' }}>Qoniqarli</option>
+                                <option value="Salbiy" {{ (old('ilmiy_tadqiqot_ishilari', $asbobuskunaexpert->ilmiy_tadqiqot_ishilari ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy</option>
 
                             </select><br>
 
@@ -351,11 +222,10 @@
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy">Ijobiy</option>
+                                <option value="Ijobiy" {{ (old('ilmiy_tadqiqot_hajmi', $asbobuskunaexpert->ilmiy_tadqiqot_hajmi ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Qoniqarli" {{ (old('ilmiy_tadqiqot_hajmi', $asbobuskunaexpert->ilmiy_tadqiqot_hajmi ?? '') == 'Qoniqarli') ? 'selected' : '' }}>Qoniqarli</option>
+                                <option value="Salbiy" {{ (old('ilmiy_tadqiqot_hajmi', $asbobuskunaexpert->ilmiy_tadqiqot_hajmi ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy</option>
 
-                                <option value="Qoniqarli">Qoniqarli</option>
-
-                                <option value="Salbiy">Salbiy</option>
 
                             </select><br>
 
@@ -372,11 +242,10 @@
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy">Ijobiy</option>
+                                <option value="Ijobiy" {{ (old('lab_zaxirasi', $asbobuskunaexpert->lab_zaxirasi ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Yetarli" {{ (old('lab_zaxirasi', $asbobuskunaexpert->lab_zaxirasi ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
+                                <option value="Mavjud emas" {{ (old('lab_zaxirasi', $asbobuskunaexpert->lab_zaxirasi ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
 
-                                <option value="Yetarli">Yetarli</option>
-
-                                <option value="Mavjud emas">Mavjud emas</option>
 
                             </select><br>
 
@@ -394,11 +263,9 @@
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy">Ijobiy</option>
-
-                                <option value="Qoniqarli">Qoniqarli</option>
-
-                                <option value="Salbiy">Salbiy</option>
+                                <option value="Ijobiy" {{ (old('foy_uchun_ariz', $asbobuskunaexpert->foy_uchun_ariz ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Qoniqarli" {{ (old('foy_uchun_ariz', $asbobuskunaexpert->foy_uchun_ariz ?? '') == 'Qoniqarli') ? 'selected' : '' }}>Qoniqarli</option>
+                                <option value="Salbiy" {{ (old('foy_uchun_ariz', $asbobuskunaexpert->foy_uchun_ariz ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy</option>
 
                             </select><br>
 
@@ -416,11 +283,10 @@
 
                                 <option value=""></option>
 
-                                <option value="Mavjud">Mavjud</option>
+                                <option value="Mavjud" {{ (old('asbob_usk_ehtiyoji', $asbobuskunaexpert->asbob_usk_ehtiyoji ?? '') == 'Mavjud') ? 'selected' : '' }}>Mavjud</option>
+                                <option value="Yetarli" {{ (old('asbob_usk_ehtiyoji', $asbobuskunaexpert->asbob_usk_ehtiyoji ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
+                                <option value="Mavjud emas" {{ (old('asbob_usk_ehtiyoji', $asbobuskunaexpert->asbob_usk_ehtiyoji ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
 
-                                <option value="Yetarli">Yetarli</option>
-
-                                <option value="Mavjud emas">Mavjud emas</option>
 
                             </select><br>
 
@@ -438,11 +304,10 @@
 
                                 <option value=""></option>
 
-                                <option value="Mavjud">Mavjud</option>
+                                <option value="Mavjud" {{ (old('zarur_ehtiyoji', $asbobuskunaexpert->zarur_ehtiyoji ?? '') == 'Mavjud') ? 'selected' : '' }}>Mavjud</option>
+                                <option value="Yetarli" {{ (old('zarur_ehtiyoji', $asbobuskunaexpert->zarur_ehtiyoji ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
+                                <option value="Mavjud emas" {{ (old('zarur_ehtiyoji', $asbobuskunaexpert->zarur_ehtiyoji ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
 
-                                <option value="Yetarli">Yetarli</option>
-
-                                <option value="Mavjud emas">Mavjud emas</option>
 
                             </select><br>
 
@@ -459,12 +324,9 @@
                             <select name="lab_ishga_yaroqliligi" id="science-sub-category" class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
-
-                                <option value="Mavjud">Mavjud</option>
-
-                                <option value="Yetarli">Yetarli</option>
-
-                                <option value="Mavjud emas">Mavjud emas</option>
+                                <option value="Mavjud" {{ (old('lab_ishga_yaroqliligi', $asbobuskunaexpert->lab_ishga_yaroqliligi ?? '') == 'Mavjud') ? 'selected' : '' }}>Mavjud</option>
+                                <option value="Yetarli" {{ (old('lab_ishga_yaroqliligi', $asbobuskunaexpert->lab_ishga_yaroqliligi ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
+                                <option value="Mavjud emas" {{ (old('lab_ishga_yaroqliligi', $asbobuskunaexpert->lab_ishga_yaroqliligi ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
 
                             </select><br>
 
@@ -481,11 +343,9 @@
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy">Ijobiy</option>
-
-                                <option value="Qoniqarli">Qoniqarli</option>
-
-                                <option value="Salbiy">Salbiy</option>
+                                <option value="Ijobiy" {{ (old('status', $asbobuskunaexpert->status ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Qoniqarli" {{ (old('status', $asbobuskunaexpert->status ?? '') == 'Qoniqarli') ? 'selected' : '' }}>Qoniqarli</option>
+                                <option value="Salbiy" {{ (old('status', $asbobuskunaexpert->status ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy</option>
 
 
                             </select><br>
@@ -498,7 +358,7 @@
                         <div class="w-full col-span-6 ">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
-                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5">{{ $asbobuskunaexpert->comment }}</textarea>
                         </div>
                     </div>
 
@@ -514,10 +374,6 @@
                 </div>
             </div>
         </div>
-        @endforelse
-
-
-        @endrole
     </div>
 
 

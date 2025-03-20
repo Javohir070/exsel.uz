@@ -176,23 +176,23 @@
 
             <div class="form-group">
                 <div class="form-row">
-                    <span class="form-label">Tashkilot nomi:</span>
+                    <span class="form-label title">Tashkilot nomi:</span>
                     <span class="form-input">{{ $asbobuskuna->tashkilot->name }}</span>
                 </div>
                 <div class="form-row">
-                    <span class="form-label">Foydalanishga mas'ul tarkibiy bo'linma (laboratoriya, kafedra, sho‘ba) nomi:</span>
+                    <span class="form-label title">Foydalanishga mas'ul tarkibiy bo'linma (laboratoriya, kafedra, sho‘ba) nomi:</span>
                     <span class="form-input">{{  $asbobuskuna->laboratory_id ? $asbobuskuna->laboratory->name : $asbobuskuna->kafedralar->name }}</span>
                 </div>
                 <div class="form-row">
-                    <span class="form-label">Asbob-uskuna nomi:</span>
+                    <span class="form-label title">Asbob-uskuna nomi:</span>
                     <span class="form-input">{{  $asbobuskuna->name }}</span>
                 </div>
                 <div class="form-row">
-                    <span class="form-label">Modeli:</span>
+                    <span class="form-label title">Modeli:</span>
                     <span class="form-input">{{  $asbobuskuna->model }}</span>
                 </div>
                 <div class="form-row">
-                    <span class="form-label">Moliyalashtirish manbai:</span>
+                    <span class="form-label title">Moliyalashtirish manbai:</span>
                     <span class="form-input">{{  $asbobuskuna->moliya_manbasi }}</span>
                 </div>
             </div>
@@ -200,9 +200,9 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>№</th>
-                        <th>Mezon va talablar</th>
-                        <th>Xulosa</th>
+                        <th>T/r</th>
+                        <th class="title">Mezon va talablar</th>
+                        <th class="title">Xulosa</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -273,10 +273,20 @@
                         </td>
                         <td>{{  $tekshirivchilar->lab_ishga_yaroqliligi ?? null }}</td>
                     </tr>
+                    <tr>
+                        <td class="text-center title" colspan="2">Ekspert xulosasi </td>
+                        <td>{{  $tekshirivchilar->status ?? null }}</td>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <td class="text-center title" colspan="2">
+                            Izoh
+                        </td>
+                        <td>{{  $tekshirivchilar->comment ?? null }}</td>
+                    </tr>
                 </tbody>
             </table>
 
-            <div class="conclusion-section">
+            {{-- <div class="conclusion-section">
                 <div class="conclusion-row">
                     <div class="conclusion-label">Ekspert xulosasi</div>
                     <div class="conclusion-content">{{  $tekshirivchilar->status ?? null }}</div>
@@ -285,7 +295,7 @@
                     <div class="conclusion-label">Izoh</div>
                     <div class="conclusion-content">{{  $tekshirivchilar->comment ?? null }}</div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="footer">
                 <div class="footer-info">
