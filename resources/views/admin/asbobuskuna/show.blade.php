@@ -16,11 +16,11 @@
                 Orqaga
             </a>
             @endrole
-
+            @role('Ekspert')
             <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 pdf genertsiya
             </a>
-
+            @endrole
         </div>
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
@@ -164,7 +164,7 @@
             </table>
         </div>
 
-
+        @role('Ekspert')
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
             style="background: white; padding: 20px 20px; border-radius: 20px">
             <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
@@ -388,7 +388,7 @@
                 </div>
             </div>
         </div>
-
+        @endrole
     </div>
 
 

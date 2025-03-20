@@ -129,7 +129,7 @@
         </div>
         
 
-        <div class="flex justify-between align-center mt-10">
+        <!-- <div class="flex justify-between align-center mt-10">
             
             <h2 class="intro-y text-lg font-medium">Yuklangan excellar</h2>
             <div>
@@ -138,8 +138,9 @@
                     Import
                 </a>
             </div>
-        </div>
-        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+        </div> -->
+
+        <!-- <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
             <table class="table table-report -mt-2">
                 <thead>
                     <tr>
@@ -189,7 +190,7 @@
 
                 </tbody>
             </table>
-        </div>
+        </div> -->
 
     </div>
 
