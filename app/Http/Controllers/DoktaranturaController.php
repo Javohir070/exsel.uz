@@ -6,6 +6,7 @@ use App\Models\Doktaranturaexpert;
 use App\Models\Izlanuvchilar;
 use App\Models\Tashkilot;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class DoktaranturaController extends Controller
 {
@@ -27,6 +28,11 @@ class DoktaranturaController extends Controller
 
     public function show($id)
     {
+        $sms_username = 'single_database_user2024@gmail.com';
+        $sms_password = '6qZFYRMI$ZRQ1lY@CUQcmJ5';
+        $response = Http::withBasicAuth($sms_username, $sms_password)
+            ->post('https://api-phd.mininnovation.uz/api-monitoring/doctorate-statistics/32602874310109');
+        dd($response->json());
         $tashkilot = Tashkilot::findOrFail($id);
         $lab_izlanuvchilar = Izlanuvchilar::where('tashkilot_id', $id)->count();
         $phd = [

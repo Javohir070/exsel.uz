@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asbobuskuna;
+use App\Models\Asbobuskunaexpert;
 use App\Models\Dalolatnoma;
 use App\Models\Doktaranturaexpert;
 use App\Models\IlmiybnTaminlanga;
@@ -15,7 +16,9 @@ use App\Models\Izlanuvchilar;
 use App\Models\Kafedralar;
 use App\Models\Laboratory;
 use App\Models\Monografiyalar;
+use App\Models\Region;
 use App\Models\Stajirovka;
+use App\Models\Stajirovkaexpert;
 use App\Models\Tashkilot;
 use App\Models\TashkilotRahbari;
 use App\Models\Tekshirivchilar;
@@ -138,6 +141,7 @@ class HomeController extends Controller
 
         $itm_count = Tashkilot::where('tashkilot_turi', 'itm')->count();
 
+
         return view('admin.home', [
             'tekshirivchilar' => $tekshirivchilar,
             'tashkiot_haqida' => $tashkilot,
@@ -196,14 +200,27 @@ class HomeController extends Controller
         $stajirovka_count = Stajirovka::count();
         $asboblar_count = Asbobuskuna::count();
         $loy_count = IlmiyLoyiha::count();
-
         $doktarantura = Doktaranturaexpert::count();
+
+        $stajirovka_expert = Stajirovkaexpert::count();
+        $asboblar_expert = Asbobuskunaexpert::count();
+        $loy_expert = 0;
+        $doktarantura_expert = Doktaranturaexpert::count();
+
+        $regions = Region::all();
+        $tashkilotlar = Tashkilot::where('status', 1)->paginate(25);
 
         return view("admin.monitoring",[
             'loy_count' => $loy_count,
             'stajirovka_count' => $stajirovka_count,
             'asboblar_count' => $asboblar_count,
-            'doktarantura' => $doktarantura
+            'doktarantura' => $doktarantura,
+            'stajirovka_expert' => $stajirovka_expert,
+            'asboblar_expert' => $asboblar_expert,
+            'loy_expert' => $loy_expert,
+            'doktarantura_expert' => $doktarantura_expert,
+            'regions' => $regions,
+            'tashkilotlar' => $tashkilotlar,
         ]);
 
 
