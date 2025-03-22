@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Region;
 use App\Models\Tashkilot;
 use Illuminate\Http\Request;
 use App\Exports\TashkilotExport;
@@ -147,7 +148,8 @@ class TashkilotController extends Controller
     public function tashkilotlar()
     {
         $tashkilotlar =Tashkilot::orderBy('id_raqam', 'asc')->paginate(20);
-        return view('admin.tashkilot.tashkilotlar',['tashkilotlar'=>$tashkilotlar]);
+        $regions = Region::all();
+        return view('admin.tashkilot.tashkilotlar',['tashkilotlar'=>$tashkilotlar, 'regions'=>$regions]);
 
     }
 
@@ -157,9 +159,11 @@ class TashkilotController extends Controller
         $tashkilotlar = Tashkilot::where('name','like','%'.$querysearch.'%')
                 ->orWhere('id_raqam','like','%'.$querysearch.'%')
                 ->orWhere('tashkilot_turi','like','%'.$querysearch.'%')
+                ->orWhere('region_id','like','%'.$querysearch.'%')
                 ->paginate(50);
+                $regions = Region::all();
 
-        return view('admin.tashkilot.tashkilotlar', compact('tashkilotlar'));
+        return view('admin.tashkilot.tashkilotlar', ['tashkilotlar' => $tashkilotlar, 'regions'=>$regions]);
     }
 
     public function exportashkilot()

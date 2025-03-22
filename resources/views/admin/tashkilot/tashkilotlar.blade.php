@@ -26,7 +26,7 @@
                         onchange="this.form.submit()">
                         <option value="">Status</option>
                         <option value="Jarayonda">Jarayonda</option>
-                        <option value="Yakunlangan">Yakunlangan</option>
+                    <option value="Yakunlangan">Yakunlangan</option>
                     </select>
                 </form>
             </div> --}}
@@ -54,10 +54,9 @@
                 <form method="GET" action="{{ route('search') }}">
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
                         <option value="">Viloyatlari</option>
-                        <option value="Andijon viloyati">Andijon viloyati</option>
-                        <option value="Buxoro viloyati">Buxoro viloyati</option>
-                        <option value="Farg'ona viloyati">Farg'ona viloyati</option>
-                        <option value="Jizzax viloyati">Jizzax viloyati</option>
+                        @foreach ($regions as $v)
+                        <option value="{{ $v->id }}">{{ $v->oz }}</option>
+                        @endforeach
                     </select>
                 </form>
             </div>
@@ -172,7 +171,7 @@
                 </table>
             </div>
             <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-                {{$tashkilotlar->links()}}
+                {{ $tashkilotlar->appends(request()->query())->links() }}
             </div>
         </div>
 

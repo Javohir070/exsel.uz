@@ -234,6 +234,15 @@
                             @endif
                         </td>
                     </tr>
+                    <tr >
+                        <td class="border border-b-2 ">9.</td>
+                        <td class="border border-b-2 ">
+                            Ekspert F.I.Sh
+                        </td>
+                        <td class="border border-b-2 ">
+                            {{ $tekshirivchilar->fish }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>

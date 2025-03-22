@@ -16,11 +16,6 @@
                 Orqaga
             </a>
             @endrole
-            @role('Ekspert')
-            <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                pdf genertsiya
-            </a>
-            @endrole
         </div>
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
@@ -160,6 +155,8 @@
                         <td class="border">{{ $asbobuskuna->zarur_ehtiyoji  }}</td>
                     </tr>
 
+
+
                 </tbody>
             </table>
         </div>
@@ -285,6 +282,15 @@
                                 <a href="{{ asset('storage/' . $tekshirivchilar->file) }}"
                                     class="button  bg-theme-1 text-white">Faylni ko'rish</a>
                             @endif
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="border border-b-2 ">12.</td>
+                        <td class="border border-b-2 ">
+                            Ekspert F.I.Sh
+                        </td>
+                        <td class="border border-b-2 ">
+                            {{ $tekshirivchilar->fish }}
                         </td>
                     </tr>
                 </tbody>

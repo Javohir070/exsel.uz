@@ -35,9 +35,9 @@
 
                     <tr class="intro-x">
                         <td>{{$loop->index+1}}</td>
-                        <td>{{$k->tashkilot->name}}</td>
+                        <td> <a href="{{ route('asbobuskuna.show',['asbobuskuna'=>$k->id]) }}" class="font-medium ">{{$k->tashkilot->name}}</a></td>
                         <td>
-                            <a href="{{ route('asbobuskuna.edit',['asbobuskuna'=>$k->id]) }}" class="font-medium ">{{ $k->name  }} </a>
+                            <a href="{{ route('asbobuskuna.show',['asbobuskuna'=>$k->id]) }}" class="font-medium ">{{ $k->name  }} </a>
                         </td>
                         <td>
                             {{ $k->turi }}

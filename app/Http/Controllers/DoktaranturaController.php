@@ -10,24 +10,31 @@ use Illuminate\Support\Facades\Http;
 
 class DoktaranturaController extends Controller
 {
-    public function show()
+    public function show($id)
     {
 
         $sms_username = env('API_USERNAME', 'single_database_user2024@gmail.com');
         $sms_password = env('API_PASSWORD', '6qZFYRMI$ZRQ1lY@CUQcmJ5');
-        $url = "https://api-phd.mininnovation.uz/api-monitoring/doctorate-statistics/32602874310109/";
+        $url = "https://api-phd.mininnovation.uz/api-monitoring/doctorate-statistics/309965572/";
 
+        $url_tach = 'https://api-phd.mininnovation.uz/api-monitoring/advisor-monitoring-statistics/309965572/';
         // Agar SSL xato bersa, verify => false qilib ko‘ring
         $response = Http::withBasicAuth($sms_username, $sms_password)
                         ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
                         ->get($url);
 
+        $response_tach = Http::withBasicAuth($sms_username, $sms_password)
+                        ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
+                        ->get($url_tach);
         // Agar so‘rov muvaffaqiyatli bo‘lsa, JSON qaytarish
 
         $data = $response->json();
         if (!isset($data[0]['data']) || !is_array($data[0]['data'])) {
-            return response()->json(["error" => "Noto‘g‘ri JSON format"], 400);
+            return response()->json(["error" => "Noto‘g‘ri malumot  format"], 400);
         }
+
+        $data_tach = $response_tach->json();
+        // dd($data_tach);
 
         // Dinamik o‘zgaruvchilarga saqlash
         foreach ($data[0]['data'] as $item) {
@@ -48,7 +55,7 @@ class DoktaranturaController extends Controller
         $dc_type1100 = $dc_type1100 ?? null;
         $dc_type1200 = $dc_type1200 ?? null;
         $dc_type1300 = $dc_type1300 ?? null;
-        dd($dc_type200, $dc_type1300);
+        // dd($dc_type200, $dc_type1300);
 
         $tashkilot = Tashkilot::findOrFail($id);
         $lab_izlanuvchilar = Izlanuvchilar::where('tashkilot_id', $id)->count();
@@ -76,6 +83,7 @@ class DoktaranturaController extends Controller
                     ->where('talim_turi', 'Mustaqil tadqiqotchi, PhD')->count();
 
         $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->get();
+
         return view("admin.doktarantura.show", [
                 'phd_soni' => $phd_soni,
                 'dsc_soni' => $dsc_soni,
@@ -85,6 +93,20 @@ class DoktaranturaController extends Controller
                 'doktaranturaexpert' => $doktaranturaexpert,
                 'dscmus_soni' => $dscmus_soni,
                 'phdmus_soni' => $phdmus_soni,
+                'dc_type100' => $dc_type100,
+                'dc_type200' => $dc_type200,
+                'dc_type300' => $dc_type300,
+                'dc_type400' => $dc_type400,
+                'dc_type500' => $dc_type500,
+                'dc_type600' => $dc_type600,
+                'dc_type700' => $dc_type700,
+                'dc_type800' => $dc_type800,
+                'dc_type900' => $dc_type900,
+                'dc_type1000' => $dc_type100,
+                'dc_type1100' => $dc_type1100,
+                'dc_type1200' => $dc_type1200,
+                'dc_type1300' => $dc_type1300,
+                'data_tach' => $data_tach,
             ]);
     }
     public function index(){
@@ -103,5 +125,5 @@ class DoktaranturaController extends Controller
         return view('admin.doktarantura.index', compact('tashkilotlar'));
     }
 
-    
+
 }

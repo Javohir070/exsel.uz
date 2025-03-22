@@ -99,6 +99,132 @@
                 </a>
             </div>
         </div>
+
+        <div class="grid grid-cols-12 gap-6 mt-5">
+            <div class="col-span-6 mt-2 " style="background: white; border-radius: 10px;">
+                <div class="intro-y block sm:flex items-center py-4">
+                    <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
+                        Ilmiy izlanuvchilar
+                    </h2>
+                </div>
+                <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                    <table class="table">
+                        <thead style="background: #F4F8FC;">
+                            <tr>
+                                <th class="whitespace-no-wrap">Nomi</th>
+                                <th class="whitespace-no-wrap">1-kurs </th>
+                                <th class="whitespace-no-wrap">2-kurs </th>
+                                <th class="whitespace-no-wrap">3-kurs </th>
+                                <th class="whitespace-no-wrap">To'ldirmaganlari </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Dokrorantura(DSc)</td>
+                                <td>{{ $dc_type100['1'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type100['2'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type100['3'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type100['-1'] ?? 0 }} nafar</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Tayanch(PhD)</td>
+                                <td>{{ $dc_type200['1'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type200['2'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type200['3'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type200['-1'] ?? 0 }} nafar</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Mustaqil(PhD)</td>
+                                <td>{{ $dc_type300['1'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type300['2'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type300['3'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type300['-1'] ?? 0 }} nafar</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">400</td>
+                                <td>{{ $dc_type400['1'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type400['2'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type400['3'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type400['-1'] ?? 0 }} nafar</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">500</td>
+                                <td>{{ $dc_type500['1'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type500['2'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type500['3'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type500['-1'] ?? 0 }} nafar</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">600</td>
+                                <td>{{ $dc_type600['1'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type600['2'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type600['3'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type600['-1'] ?? 0 }} nafar</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">700</td>
+                                <td>{{ $dc_type700['1'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type700['2'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type700['3'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type700['-1'] ?? 0 }} nafar</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">800</td>
+                                <td>{{ $dc_type800['1'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type800['2'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type800['3'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type800['-1'] ?? 0 }} nafar</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">900</td>
+                                <td>{{ $dc_type900['1'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type900['2'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type900['3'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type900['-1'] ?? 0 }} nafar</td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">1000</td>
+                                <td>{{ $dc_type1000['1'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type1000['2'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type1000['3'] ?? 0}} nafar</td>
+                                <td>{{ $dc_type1000['-1'] ?? 0 }} nafar</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="col-span-6 mt-2 " style="background: white; border-radius: 10px;">
+                <div class="intro-y block sm:flex items-center py-4">
+                    <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
+                        Fan nomzodlari
+                    </h2>
+                </div>
+                <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                    <table class="table">
+                        <thead style="background: #F4F8FC;">
+                            <tr>
+                                <th class="whitespace-no-wrap" style="width: 40px;">T/r</th>
+                                <th class="whitespace-no-wrap">F.I.Sh</th>
+                                <th class="whitespace-no-wrap">Izlanvchi soni </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($data_tach as $t)
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td >{{ $loop->iteration }}</td>
+                                <td style="color:#1881D3; font-weight: 400;">{{ $t['full_name'] }}</td>
+                                <td>{{ $t['total_doctorates'] ?? 0}} nafar</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+
         @role('Ekspert')
         @forelse ($doktaranturaexpert as $tekshirivchilar)
             <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
@@ -211,6 +337,15 @@
                                     <a href="{{ asset('storage/' . $tekshirivchilar->file) }}"
                                         class="button  bg-theme-1 text-white">Faylni ko'rish</a>
                                 @endif
+                            </td>
+                        </tr>
+                        <tr >
+                            <td class="border border-b-2 ">10.</td>
+                            <td class="border border-b-2 ">
+                                Ekspert F.I.Sh
+                            </td>
+                            <td class="border border-b-2 ">
+                                {{ $tekshirivchilar->fish }}
                             </td>
                         </tr>
                     </tbody>

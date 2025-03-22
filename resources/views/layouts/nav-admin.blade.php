@@ -36,7 +36,7 @@
             </a>
         </li>
         <!-- start superadmin -->
-        @role('super-admin')
+        @role(['super-admin', 'Ekspert'])
         <li>
             <a href="javascript:;"
                 class="side-menu side-menu{{ request()->is('iqtisodiylar*') ? '--active' : '' }}{{ request()->is('tashkilotrahbarilar*') ? '--active' : '' }}{{ request()->is('tashkilot*') ? '--active' : '' }}">
