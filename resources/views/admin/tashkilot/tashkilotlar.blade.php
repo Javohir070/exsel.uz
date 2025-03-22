@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">404 ta tashkilot topildi.</h2>
+            <h2 class="intro-y text-lg font-medium">{{ $tash_count ?? 404 }}  ta tashkilot topildi.</h2>
 
             <!-- <a href="{{ route('tashkilot.create') }}"  class="button w-24 bg-theme-1 text-white">
                     Qo'shish

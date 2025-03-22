@@ -117,7 +117,7 @@
                                             <div class="flex">
                                                 <i data-feather="file-text" class="report-box__icon text-theme-3"></i>
                                             </div>
-                                            <div class="text-3xl font-bold leading-8 mt-6">{{ $doktarantura }}/{{ $doktarantura_expert }}</div>
+                                            <div class="text-3xl font-bold leading-8 mt-6">339/{{ $doktarantura_expert }}</div>
                                             <div class="text-base text-gray-600 mt-1">Doktarantura</div>
                                         </div>
                                     </div>
@@ -132,7 +132,7 @@
                                                 <i data-feather="users" class="report-box__icon text-theme-3" style="color: #E64242;" ></i>
                                             </div>
                                             <div class="w-2/4 flex-none">
-                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $doktarantura }}/{{ $doktarantura_expert }}</div>
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">239/{{ $doktarantura_expert }}</div>
                                                 <div class="text-gray-600 mt-1" style="font-size: 16px;">Doktarantura</div>
                                             </div>
                                         </div>
@@ -164,7 +164,11 @@
                                         <tbody>
                                             @foreach ($regions as $region)
                                             <tr style="border-bottom: 1px solid #E6E6E6;">
-                                                <td style="color:#1881D3; font-weight: 400;">{{ $region->oz }}</td>
+                                                <td style="color:#1881D3; font-weight: 400;">
+                                                    <a href="{{ route('search', ['query' => $region->id]) }}">
+                                                        {{ $region->oz }}
+                                                    </a>
+                                                </td>
                                                 <td>{{ $region->tashkilots()->where('tashkilot_turi', 'otm')->count() }} ta</td>
                                                 <td>{{ $region->tashkilots()->where('tashkilot_turi', 'itm')->count() }} ta</td>
                                                 <td>{{ $region->tashkilots()->withCount('ilmiyloyhalar')->get()->sum('ilmiyloyhalar_count') }} ta</td>

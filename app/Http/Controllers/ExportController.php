@@ -12,7 +12,7 @@ class ExportController extends Controller
         $servername = "localhost";
         $username = "suhrob";
         $password = "123P@ssw0rd";
-        $dbname = "exsel";
+        $dbname = "monitoring.uz";
     
         // Bazaga ulanish
         $conn = new  \mysqli($servername, $username, $password, $dbname);

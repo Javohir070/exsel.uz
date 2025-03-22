@@ -156,14 +156,20 @@ class TashkilotController extends Controller
     public function search(Request $request)
     {
         $querysearch = $request->input('query');
-        $tashkilotlar = Tashkilot::where('name','like','%'.$querysearch.'%')
-                ->orWhere('id_raqam','like','%'.$querysearch.'%')
-                ->orWhere('tashkilot_turi','like','%'.$querysearch.'%')
-                ->orWhere('region_id','like','%'.$querysearch.'%')
-                ->paginate(50);
+        if (ctype_digit($querysearch)) {
+            $tashkilotlar = Tashkilot::where('region_id', '=', $querysearch)->paginate(50);
+            $tash_count = Tashkilot::where('region_id', '=', $querysearch)->count();
+        } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
+            $tashkilotlar = Tashkilot::where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
+        } else {
+            $tashkilotlar = Tashkilot::where('name', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::where('name', 'like', '%' . $querysearch . '%')->count();
+        }
+        
                 $regions = Region::all();
 
-        return view('admin.tashkilot.tashkilotlar', ['tashkilotlar' => $tashkilotlar, 'regions'=>$regions]);
+        return view('admin.tashkilot.tashkilotlar', ['tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);
     }
 
     public function exportashkilot()

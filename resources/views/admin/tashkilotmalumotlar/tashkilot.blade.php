@@ -181,15 +181,15 @@
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route("tashkilot.xodimlar.index",['tashkilot'=>$id]) }}">
+                            <a href="{{ route("doktarantura.show",['doktarantura'=>$id]) }}">
                                 <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
                                     <div class="flex" style="background: #c8ecec; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="users" class="report-box__icon text-theme-3" style="color: #29ca67;" ></i>
+                                        <i data-feather="users" class="report-box__icon text-theme-3" style="color:rgb(113, 140, 230);" ></i>
                                     </div>
                                     <div class="w-2/4 flex-none">
 
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $xodim_count }}</div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Xodimlar</div>
+                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $phd_count }}</div>
+                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy izlanuvchilar</div>
                                     </div>
                                 </div>
                             </a>

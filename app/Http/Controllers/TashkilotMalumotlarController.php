@@ -10,6 +10,7 @@ use App\Models\Tashkilot;
 use App\Models\User;
 use App\Models\Xodimlar;
 use App\Models\Xujalik;
+use App\Models\Izlanuvchilar;
 use Illuminate\Http\Request;
 
 class TashkilotMalumotlarController extends Controller
@@ -36,6 +37,7 @@ class TashkilotMalumotlarController extends Controller
         $xujalik_count = Xujalik::where('tashkilot_id',$tashkilotmalumotlar)->count();
         $loyiha_bilan_t = IlmiybnTaminlanga::where('tashkilot_id',$tashkilotmalumotlar)->count();
         $loy_count = IlmiyLoyiha::where('tashkilot_id',$tashkilotmalumotlar)->count();
+        $phd_count = Izlanuvchilar::where('tashkilot_id',$tashkilotmalumotlar)->count();
 
         $stajirovka_count = Stajirovka::where('tashkilot_id',$tashkilotmalumotlar)->count();
         $asboblar_count = Asbobuskuna::where('tashkilot_id',$tashkilotmalumotlar)->count();
@@ -51,6 +53,7 @@ class TashkilotMalumotlarController extends Controller
             'loyiha_bilan_t' => $loyiha_bilan_t,
             'stajirovka_count' => $stajirovka_count,
             'asboblar_count' => $asboblar_count,
+            'phd_count' => $phd_count,
         ]);
     }
 }

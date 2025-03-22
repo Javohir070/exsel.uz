@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">404 ta tashkilot topildi.</h2>
+            <h2 class="intro-y text-lg font-medium">{{ $tash_count ?? 404 }} ta tashkilot topildi.</h2>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
@@ -36,6 +36,15 @@
                         <option value="Jizzax viloyati">Jizzax viloyati</option>
                     </select>
                 </form> --}}
+
+                <form method="GET" action="{{ route('search_dok') }}">
+                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
+                        <option value="">Viloyatlari</option>
+                        @foreach ($regions as $v)
+                        <option value="{{ $v->id }}">{{ $v->oz }}</option>
+                        @endforeach
+                    </select>
+                </form>
             </div>
 
 
@@ -94,7 +103,7 @@
                 </table>
             </div>
             <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-                {{$tashkilotlar->links()}}
+                {{ $tashkilotlar->appends(request()->query())->links() }}
             </div>
         </div>
 
