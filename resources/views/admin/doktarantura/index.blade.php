@@ -27,15 +27,6 @@
                         <option value="itm">ITM</option>
                     </select>
                 </form>
-                {{-- <form method="GET" action="{{ route('search') }}">
-                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
-                        <option value="">Viloyatlari</option>
-                        <option value="Andijon viloyati">Andijon viloyati</option>
-                        <option value="Buxoro viloyati">Buxoro viloyati</option>
-                        <option value="Farg'ona viloyati">Farg'ona viloyati</option>
-                        <option value="Jizzax viloyati">Jizzax viloyati</option>
-                    </select>
-                </form> --}}
 
                 <form method="GET" action="{{ route('search_dok') }}">
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">

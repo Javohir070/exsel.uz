@@ -120,6 +120,8 @@ Route::middleware('auth')->group(function () {
     //end itm
 
     Route::get('/search-dok', [DoktaranturaController::class, 'search_dok'])->name('search_dok');
+    Route::get('/search-sta', [StajirovkaController::class, 'search_stajirovka'])->name('search_stajirovka');
+    Route::get('/search-asbob', [AsbobuskunaController::class, 'search_asbobuskunalar'])->name('search_asbobuskunalar');
 
 
     // labaratoriya uchun
@@ -183,6 +185,7 @@ Route::middleware('auth')->group(function () {
     //asbob uskunlar
     Route::get('asbobuskunalar', [AsbobuskunaController::class, "asbobuskunalar"])->name("asbobuskunalar.index");
     Route::get('stajirovkalar', [StajirovkaController::class, "stajirovkalar"])->name("stajirovkalar.index");
+    // Route::get('stajirovka/{id}', [StajirovkaController::class, "stajirovka_tashkilot"])->name("stajirovka_tashkilot.index");
 
     Route::get('asbobus/{id}', [AsbobuskunaController::class, "asbobu"])->name("asbobu.index");
     Route::get('stajiro/{id}', [StajirovkaController::class, "stajirov"])->name("stajirov.index");

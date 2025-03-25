@@ -125,21 +125,21 @@
 
         <li>
             <a href="{{ route('asbobuskunalar.index') }}"
-                class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
+                class="side-menu side-menu{{ request()->is('asbobus*') ? '--active' : '' }}{{ request()->is('search-asbob*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Asbob-uskunalar</div>
             </a>
         </li>
         <li>
             <a href="{{ route('stajirovkalar.index') }}"
-                class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
+                class="side-menu side-menu{{ request()->is('staji*') ? '--active' : '' }}{{ request()->is('search-sta*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Stajirovkalar</div>
             </a>
         </li>
         <li>
             <a href="{{ route('doktarantura.index') }}"
-                class="side-menu side-menu{{ request()->is('doktarantura*') ? '--active' : '' }}">
+                class="side-menu side-menu{{ request()->is('doktarantura*') ? '--active' : '' }}{{ request()->is('search-dok*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Izlanuvchilar</div>
             </a>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Region;
 use App\Models\Stajirovka;
 use App\Http\Requests\StoreStajirovkaRequest;
 use App\Http\Requests\UpdateStajirovkaRequest;
 use App\Models\Stajirovkaexpert;
+use App\Models\Tashkilot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -23,14 +25,37 @@ class StajirovkaController extends Controller
     {
 
         $stajirovkas = Stajirovka::paginate(20);
-        return view('admin.stajirovka.stajirovkalar', ['stajirovkas' => $stajirovkas]);
+        $tashkilotlar = Tashkilot::paginate(20);
+        $regions = Region::all();
+        return view('admin.stajirovka.stajirovkalar', ['stajirovkas' => $stajirovkas, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions]);
     }
 
-    public function stajirov(Request $request)
+    public function search_stajirovka(Request $request)
     {
 
-        $stajirovkas = Stajirovka::where('tashkilot_id', $request->id)->paginate(20);
-        return view('admin.stajirovka.stajirovkalar', ['stajirovkas' => $stajirovkas]);
+        $querysearch = $request->input('query');
+        if (ctype_digit($querysearch)) {
+            $tashkilotlar = Tashkilot::where('region_id', '=', $querysearch)->paginate(50);
+            $tash_count = Tashkilot::where('region_id', '=', $querysearch)->count();
+        } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
+            $tashkilotlar = Tashkilot::where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
+        } else {
+            $tashkilotlar = Tashkilot::where('name', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::where('name', 'like', '%' . $querysearch . '%')->count();
+        }
+
+        $regions = Region::all();
+
+        return view('admin.stajirovka.stajirovkalar', ['tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);
+    }
+
+    public function stajirov($id)
+    {
+
+        $stajirovkas = Stajirovka::where('tashkilot_id', '=',$id)->paginate(20);
+        $tashkilot = Tashkilot::findOrFail($id);
+        return view('admin.stajirovka.stajirovka', ['stajirovkas' => $stajirovkas, 'tashkilot'=>$tashkilot]);
     }
 
 

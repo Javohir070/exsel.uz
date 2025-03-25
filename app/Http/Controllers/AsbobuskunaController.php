@@ -10,6 +10,8 @@ use App\Models\Asbobuskunafile;
 use App\Models\IlmiyLoyiha;
 use App\Models\Kafedralar;
 use App\Models\Laboratory;
+use App\Models\Region;
+use App\Models\Tashkilot;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -39,13 +41,35 @@ class AsbobuskunaController extends Controller
     public function asbobuskunalar()
     {
         $asbobuskunas = Asbobuskuna::paginate(20);
-        return view('admin.asbobuskuna.asbobuskunalar', ['asbobuskunas' => $asbobuskunas]);
+        $tashkilotlar = Tashkilot::paginate(20);
+        $regions = Region::all();
+        return view('admin.asbobuskuna.tashkilotlar', ['asbobuskunas' => $asbobuskunas, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions]);
     }
 
-    public function asbobu(Request $request)
+    public function search_asbobuskunalar(Request $request)
     {
-        $asbobuskunas = Asbobuskuna::where('tashkilot_id', $request->id)->paginate(20);
-        return view('admin.asbobuskuna.asbobuskunalar', ['asbobuskunas' => $asbobuskunas]);
+        $querysearch = $request->input('query');
+        if (ctype_digit($querysearch)) {
+            $tashkilotlar = Tashkilot::where('region_id', '=', $querysearch)->paginate(50);
+            $tash_count = Tashkilot::where('region_id', '=', $querysearch)->count();
+        } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
+            $tashkilotlar = Tashkilot::where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
+        } else {
+            $tashkilotlar = Tashkilot::where('name', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::where('name', 'like', '%' . $querysearch . '%')->count();
+        }
+
+        $regions = Region::all();
+
+        return view('admin.asbobuskuna.tashkilotlar', ['tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);
+    }
+
+    public function asbobu($id)
+    {
+        $tashkilot = Tashkilot::findOrFail($id);
+        $asbobuskunas = Asbobuskuna::where('tashkilot_id', '=',$id)->paginate(20);
+        return view('admin.asbobuskuna.asbobuskunalar', ['asbobuskunas' => $asbobuskunas, 'tashkilot' => $tashkilot]);
     }
 
 

@@ -5,12 +5,12 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">Xarid qilingan asbob-uskunalar</h2>
-        <div>
+        <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }} xarid qilingan asbob-uskunalar</h2>
+        {{-- <div>
             <a href="{{ route("asbobuskuna.create") }}" class="button w-24 bg-theme-1 text-white mr-2">
                 Qo'shish
             </a>
-        </div>
+        </div> --}}
     </div>
     @if (session('status'))
         <div class="alert alert-success">{{ session('status') }}</div>
@@ -21,7 +21,6 @@
                 <thead>
                 <tr>
                         <th class="whitespace-no-wrap">№</th>
-                        <th class="whitespace-no-wrap">Tashkilot nomi</th>
                         <th class="whitespace-no-wrap">Nomi</th>
                         <th class="whitespace-no-wrap">Turi</th>
                         <th class="whitespace-no-wrap">Ishlab chiqligan yili</th>
@@ -30,12 +29,10 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    @foreach ($asbobuskunas as $k )
+                    @forelse ($asbobuskunas as $k )
 
                     <tr class="intro-x">
                         <td>{{$loop->index+1}}</td>
-                        <td> <a href="{{ route('asbobuskuna.show',['asbobuskuna'=>$k->id]) }}" class="font-medium ">{{$k->tashkilot->name}}</a></td>
                         <td>
                             <a href="{{ route('asbobuskuna.show',['asbobuskuna'=>$k->id]) }}" class="font-medium ">{{ $k->name  }} </a>
                         </td>
@@ -66,7 +63,7 @@
                                     Ko'rish
                                 </a>
 
-                                <form action="{{ route('asbobuskuna.destroy',['asbobuskuna'=>$k->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                {{-- <form action="{{ route('asbobuskuna.destroy',['asbobuskuna'=>$k->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                     <button type="submit" class="flex delete-action items-center text-theme-6" >
                                     @csrf
                                     @method("DELETE")
@@ -79,12 +76,16 @@
                                         </svg>
                                         O'chirish
                                     </button>
-                                </form>
+                                </form> --}}
 
                             </div>
                         </td>
                     </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">Ma'lumotlar mavjud emas</td>
+                        </tr>
+                    @endforelse
 
 
                 </tbody>

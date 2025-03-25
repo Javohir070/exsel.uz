@@ -9,7 +9,7 @@
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
-                    <form action="{{ route('search_stajirovka') }}" method="GET">
+                    <form action="{{ route('search_asbobuskunalar') }}" method="GET">
                         <input type="text" name="query"
                             class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13" placeholder="Search...">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -20,7 +20,7 @@
                         </svg>
                     </form>
                 </div>
-                <form method="GET" action="{{ route('search_stajirovka') }}">
+                <form method="GET" action="{{ route('search_asbobuskunalar') }}">
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
                         <option value="">Barchasi OTM & ITM</option>
                         <option value="otm">OTM</option>
@@ -28,7 +28,7 @@
                     </select>
                 </form>
 
-                <form method="GET" action="{{ route('search_stajirovka') }}">
+                <form method="GET" action="{{ route('search_asbobuskunalar') }}">
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
                         <option value="">Viloyatlari</option>
                         @foreach ($regions as $v)
@@ -60,7 +60,7 @@
                             <tr class="intro-x">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <a href="{{ route('stajirov.index', ['id' => $tashkilots->id]) }}"
+                                    <a href="{{ route('asbobu.index', ['id' => $tashkilots->id]) }}"
                                         class="font-medium">{{ $tashkilots->name }}</a>
                                 </td>
                                 <td>
@@ -70,7 +70,7 @@
                                     <div class="flex justify-center items-center">
 
                                         <a class="flex science-update-action items-center mr-3"
-                                            href="{{ route('stajirov.index', ['id' => $tashkilots->id]) }}"
+                                            href="{{ route('asbobu.index', ['id' => $tashkilots->id]) }}"
                                             data-id="2978" data-name="sdfd"
                                             data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
                                             data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66"
