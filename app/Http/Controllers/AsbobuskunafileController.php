@@ -34,6 +34,15 @@ class AsbobuskunafileController extends Controller
 
     }
 
+    public function update(Request $request, Asbobuskunafile $asbobuskunafile)
+    {
+        $asbobuskunafile->update([
+            'status' => $request->status,
+        ]);
+
+        return redirect()->back()->with('status',"Ma\'lumotlar muvaffaqiyatli tasdiqlandi.");
+    }
+
     public function destroy(Asbobuskunafile $asbobuskunafile)
     {
         if ($asbobuskunafile->file) {
