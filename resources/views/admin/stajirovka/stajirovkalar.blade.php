@@ -50,7 +50,9 @@
                         <tr>
                             <th class="whitespace-no-wrap" style="width: 40px;">№</th>
                             <th class="whitespace-no-wrap">Tashkilot Nomi</th>
+                            <th class="whitespace-no-wrap">Tashkilot STIR raqami</th>
                             <th class="whitespace-no-wrap">Turi</th>
+                            <th class="whitespace-no-wrap">Stajorlar soni</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
@@ -64,7 +66,13 @@
                                         class="font-medium">{{ $tashkilots->name }}</a>
                                 </td>
                                 <td>
+                                    {{ $tashkilots->stir_raqami  }}
+                                </td>
+                                <td>
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
+                                </td>
+                                <td>
+                                    {{ $tashkilots->stajirovkalar()->count()  }}
                                 </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
