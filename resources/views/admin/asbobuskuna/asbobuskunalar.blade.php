@@ -5,7 +5,7 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }} xarid qilingan asbob-uskunalar</h2>
+        <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }}</h2>
         {{-- <div>
             <a href="{{ route("asbobuskuna.create") }}" class="button w-24 bg-theme-1 text-white mr-2">
                 Qo'shish
@@ -20,29 +20,29 @@
             <table class="table table-report -mt-2">
                 <thead>
                 <tr>
-                        <th class="whitespace-no-wrap">№</th>
-                        <th class="whitespace-no-wrap">Nomi</th>
-                        <th class="whitespace-no-wrap">Turi</th>
-                        <th class="whitespace-no-wrap">Ishlab chiqligan yili</th>
-                        <th class="whitespace-no-wrap">Holati</th>
-                        <th class="whitespace-no-wrap text-center">Harakat</th>
-                    </tr>
+                    <th class="whitespace-no-wrap">№</th>
+                    <th class="whitespace-no-wrap">Asbob-uskuna nomi</th>
+                    <th class="whitespace-no-wrap">Asbob-uskuna turi</th>
+                    <th class="whitespace-no-wrap" style="text-align: center;">Ishlab chiqarilgan yili</th>
+                    <th class="whitespace-no-wrap" style="text-align: center;">Holati</th>
+                    <th class="whitespace-no-wrap text-center">Harakat</th>
+                </tr>
                 </thead>
                 <tbody>
                     @forelse ($asbobuskunas as $k )
 
                     <tr class="intro-x">
-                        <td>{{$loop->index+1}}</td>
+                        <td>{{$loop->index+1}}.</td>
                         <td>
                             <a href="{{ route('asbobuskuna.show',['asbobuskuna'=>$k->id]) }}" class="font-medium ">{{ $k->name  }} </a>
                         </td>
                         <td>
                             {{ $k->turi }}
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                             {{ $k->ishlabchiq_yil }}
                         </td>
-                        <td>
+                        <td style="text-align: center;">
                             {{ $k->holati }}
                         </td>
                         <td class="table-report__action w-56">

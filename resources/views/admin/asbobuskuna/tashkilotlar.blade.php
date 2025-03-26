@@ -3,9 +3,9 @@
 @section('content')
 
     <div class="content">
-        <div class="flex justify-between align-center mt-10" style="align-items: center;">
+        <div class="flex justify-between align-center mt-6" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">{{ $tash_count ?? 404 }} ta tashkilot topildi.</h2>
+            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 404 }} ta</h2>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
@@ -38,21 +38,18 @@
                 </form>
             </div>
 
-
-
         </div>
-        <div class="grid grid-cols-12 gap-6 mt-5">
-
+        <div class="grid grid-cols-12 gap-6 ">
 
             <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-                <table class="table table-report -mt-2">
+                <table class="table table-report ">
                     <thead>
                         <tr>
                             <th class="whitespace-no-wrap" style="width: 40px;">№</th>
                             <th class="whitespace-no-wrap">Tashkilot Nomi</th>
                             <th class="whitespace-no-wrap">Tashkilot STIR raqami</th>
-                            <th class="whitespace-no-wrap">Turi</th>
-                            <th class="whitespace-no-wrap">Stajorlar soni</th>
+                            <th class="whitespace-no-wrap">Tashkilot turi</th>
+                            <th class="whitespace-no-wrap">Asbob-uskuna soni</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
@@ -60,18 +57,18 @@
                         @foreach ($tashkilotlar as $tashkilots)
 
                             <tr class="intro-x">
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration }}.</td>
                                 <td>
                                     <a href="{{ route('asbobu.index', ['id' => $tashkilots->id]) }}"
                                         class="font-medium">{{ $tashkilots->name }}</a>
                                 </td>
-                                <td>
+                                <td style="text-align: center;">
                                     {{ $tashkilots->stir_raqami  }}
                                 </td>
-                                <td>
+                                <td style="text-align: center;">
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
                                 </td>
-                                <td>
+                                <td style="text-align: center;">
                                     {{ $tashkilots->asbobuskunalar()->count()  }}
                                 </td>
                                 <td class="table-report__action w-56">

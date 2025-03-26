@@ -127,26 +127,27 @@
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
             {{$asbobuskunas->links()}}
         </div>
-        
 
-        <!-- <div class="flex justify-between align-center mt-10">
-            
+
+        <div class="flex justify-between align-center mt-10">
+
             <h2 class="intro-y text-lg font-medium">Yuklangan excellar</h2>
-            <div>
+            {{-- <div>
                 <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                     class="button w-24 ml-3 bg-theme-1 text-white">
                     Import
                 </a>
-            </div>
-        </div> -->
+            </div> --}}
+        </div>
 
-        <!-- <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+        <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
             <table class="table table-report -mt-2">
                 <thead>
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">Fayl</th>
                         <th class="whitespace-no-wrap">Status</th>
+                        <th class="whitespace-no-wrap">Izoh</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -161,7 +162,8 @@
                                     class="font-medium ">Excelni ko'rish
                                 </a>
                             </td>
-                            <td style="color:green;">{{ ($k->status == 'new') ? 'Yangi' : "tugagan"  }}</td>
+                            <td style="color: {{ $k->status == 'rejected' ? 'red' : 'green' }};">{{ $k->status == 'new' ? 'Yangi' : ($k->status == 'rejected' ? 'Rad etedi' : 'Tasdiqlandi')  }}</td>
+                            <td>{{ ($k->status == 'rejected') ? 'Platformaga yuklangan excelda kamchiliklar aniqlandi va qo‘lda kiritishingiz soʻraladi' : ($k->status == 'new' ? "Ko'rib chiqilmoqda..." : 'Tasdiqlandi' ) }}</td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
                                     <form action="{{ route('asbobuskunafile.destroy', ['asbobuskunafile' => $k->id]) }}" method="post"
@@ -190,7 +192,7 @@
 
                 </tbody>
             </table>
-        </div> -->
+        </div>
 
     </div>
 

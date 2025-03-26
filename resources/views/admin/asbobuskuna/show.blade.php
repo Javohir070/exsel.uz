@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="content">
-        <div class="flex justify-between align-center mt-10">
+        <div class="flex justify-between align-center mt-6">
 
             <h2 class="intro-y text-lg font-medium">{{ $asbobuskuna->name }}</h2>
             @role('super-admin')
@@ -21,12 +21,12 @@
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
 
-        <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
+        <div class="overflow-x-auto" style="background-color: white;margin-top:20px;border-radius:8px;padding:10px 20px;">
             <table class="table">
                 <tbody>
                     <div
                         style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;"> {{$asbobuskuna->name}} xaqida ma’lumot</div>
+                        {{-- <div style="font-size:18px;font-weight: 400;"> {{$asbobuskuna->name}} xaqida ma’lumot</div> --}}
                         @can("tashkilotrahbari delete edit")
 
                             <div style="text-align: end;">
@@ -43,7 +43,7 @@
                     <tr>
                         <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>
                                     <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
-                        <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">Ma’lumot</th>
+                        <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">Asbob-uskuna haqida ma’lumot</th>
                     </tr>
                     <tr class="bg-gray-200">
                         <th class=" border" style="width:50%;">Nomi</th>
@@ -168,10 +168,10 @@
             <table class="table">
                 <div
                         style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;">
+                        {{-- <div style="font-size:18px;font-weight: 400;">
                             {{ $tekshirivchilar->name . ' Asbob-uskuna ' }} xaqida ma’lumot
-                        </div>
-                        <div style="text-align: end;display: flex;">
+                        </div> --}}
+                        <div style="text-align: center;display: flex;">
                             <a href="{{ route('asbobuskunaexpert.edit', ['asbobuskunaexpert' => $tekshirivchilar->id]) }}"
                                 class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
@@ -186,8 +186,8 @@
                             </form>
                         </div>
 
-                            <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                                pdf genertsiya
+                            <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
+                                Xulosani genertsiya qilish
                             </a>
                     </div>
                 <thead>

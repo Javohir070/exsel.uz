@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">{{ $tash_count ?? 404 }} ta tashkilot topildi.</h2>
+            <h2 class="intro-y text-lg font-medium"> Tashkilotlar soni: {{ $tash_count ?? 404 }} ta</h2>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
@@ -23,8 +23,9 @@
                 <form method="GET" action="{{ route('search_stajirovka') }}">
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
                         <option value="">Barchasi OTM & ITM</option>
-                        <option value="otm">OTM</option>
-                        <option value="itm">ITM</option>
+                        <option value="otm" {{ $querysearch == "otm" ? "selected" : ""}}>OTM</option>
+                        <option value="itm" {{ $querysearch == "itm" ? "selected" : ""}}>ITM</option>
+                        <option value="boshqa" {{ $querysearch == "boshqa" ? "selected" : ""}}>Boshqa</option>
                     </select>
                 </form>
 
@@ -32,7 +33,7 @@
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
                         <option value="">Viloyatlari</option>
                         @foreach ($regions as $v)
-                        <option value="{{ $v->id }}">{{ $v->oz }}</option>
+                        <option value="{{ $v->id }}" {{ $querysearch == $v->id ? "selected" : ""}}>{{ $v->oz }}</option>
                         @endforeach
                     </select>
                 </form>
@@ -41,18 +42,18 @@
 
 
         </div>
-        <div class="grid grid-cols-12 gap-6 mt-5">
+        <div class="grid grid-cols-12 gap-6 ">
 
 
             <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
-                <table class="table table-report -mt-2">
+                <table class="table table-report mt-2">
                     <thead>
                         <tr>
                             <th class="whitespace-no-wrap" style="width: 40px;">№</th>
-                            <th class="whitespace-no-wrap">Tashkilot Nomi</th>
-                            <th class="whitespace-no-wrap">Tashkilot STIR raqami</th>
-                            <th class="whitespace-no-wrap">Turi</th>
-                            <th class="whitespace-no-wrap">Stajorlar soni</th>
+                            <th class="whitespace-no-wrap" style="width: 600px;">Tashkilot nomi</th>
+                            <th class="whitespace-no-wrap" style="text-align: center;">Tashkilot STIR raqami</th>
+                            <th class="whitespace-no-wrap" style="text-align: center;">Tashkilot turi</th>
+                            <th class="whitespace-no-wrap" style="text-align: center;">Stajorlar soni</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
@@ -60,18 +61,18 @@
                         @foreach ($tashkilotlar as $tashkilots)
 
                             <tr class="intro-x">
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration }}.</td>
                                 <td>
                                     <a href="{{ route('stajirov.index', ['id' => $tashkilots->id]) }}"
                                         class="font-medium">{{ $tashkilots->name }}</a>
                                 </td>
-                                <td>
+                                <td style="text-align: center;">
                                     {{ $tashkilots->stir_raqami  }}
                                 </td>
-                                <td>
+                                <td style="text-align: center;">
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
                                 </td>
-                                <td>
+                                <td style="text-align: center;">
                                     {{ $tashkilots->stajirovkalar()->count()  }}
                                 </td>
                                 <td class="table-report__action w-56">

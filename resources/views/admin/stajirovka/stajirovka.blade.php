@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10">
 
-            <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }}  yosh olimlari</h2>
+            <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }}  </h2>
 
         </div>
         @if (session('status'))
@@ -16,8 +16,8 @@
                 <thead>
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
-                        <th class="whitespace-no-wrap">FISH </th>
-                        <th class="whitespace-no-wrap">Lavozimi</th>
+                        <th class="whitespace-no-wrap">Stajorning F.I.Sh </th>
+                        <th class="whitespace-no-wrap">Stajorning lavozimi</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>

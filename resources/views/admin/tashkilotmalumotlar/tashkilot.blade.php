@@ -78,7 +78,7 @@
                                         <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E64242;" ></i>
                                     </div>
                                     <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $stajirovka_count }}</div>
+                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $asboblar_count }}</div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Asbob-uskunalar</div>
                                     </div>
                                 </div>
@@ -95,7 +95,7 @@
                                         <i data-feather="thermometer" class="report-box__icon text-theme-3" style="color: #E64242;" ></i>
                                     </div>
                                     <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $asboblar_count }}</div>
+                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $stajirovka_count }}</div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Laboratoriyalar</div>
                                     </div>
                                 </div>

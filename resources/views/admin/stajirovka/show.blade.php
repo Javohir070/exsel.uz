@@ -16,11 +16,6 @@
                 Orqaga
             </a>
             @endrole
-            @role('Ekspert')
-            <a href="{{ url('generate-pdfsajiyor/' . $stajirovka->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                pdf genertsiya
-            </a>
-            @endrole
         </div>
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
@@ -31,7 +26,7 @@
                 <tbody>
                     <div
                         style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;"> {{$stajirovka->fish}} xaqida ma’lumot</div>
+                        {{-- <div style="font-size:18px;font-weight: 400;"> {{$stajirovka->fish}} xaqida ma’lumot</div> --}}
                         @can("tashkilotrahbari delete edit")
 
                             <div style="text-align: end;">
@@ -51,8 +46,8 @@
                         <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">Ma’lumot</th>
                     </tr>
                     <tr class="bg-gray-200">
-                        <th class=" border" style="width:50%;">Yosh olimning F.I.O.</th>
-                        <th class=" border" style="width:50%;">Yosh olimning lavozimi</th>
+                        <th class=" border" style="width:50%;">Stajorning F.I.Sh</th>
+                        <th class=" border" style="width:50%;">Stajorning lavozimi</th>
                     </tr>
                     <tr>
                         <td class="border">{{ $stajirovka->fish }}</td>
@@ -132,7 +127,7 @@
                 <div
                         style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="font-size:18px;font-weight: 400;">
-                            {{ $tekshirivchilar->stajirovkalar->name . ' Stajirovka ' }} xaqida ma’lumot
+                            {{ $tekshirivchilar->stajirovkalar->name . ' Stajirovka ' }} haqida ma’lumot
                         </div>
                         <div style="text-align: end;display: flex;">
                             <a href="{{ route('stajirovkaexpert.edit', ['stajirovkaexpert' => $tekshirivchilar->id]) }}"
@@ -149,8 +144,8 @@
                             </form>
                         </div>
 
-                            <a href="{{ url('generate-pdfsajiyor/' . $stajirovka->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                                pdf genertsiya
+                            <a href="{{ url('generate-pdfsajiyor/' . $stajirovka->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
+                                Xulosan generatsiya qilish
                             </a>
                     </div>
                 <thead>
