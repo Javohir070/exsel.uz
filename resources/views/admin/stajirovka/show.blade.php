@@ -55,6 +55,15 @@
                     </tr>
 
                     <tr class="bg-gray-200">
+                        <th class=" border" style="width:50%;">Stajirovkaga yuborilgan yili</th>
+                        <th class=" border" style="width:50%;">Ilmiy stajirovka yo‘nalishi</th>
+                    </tr>
+                    <tr>
+                        <td class="border">{{ $stajirovka->yil }} yil</td>
+                        <td class="border">{{ $stajirovka->yunalishi }}</td>
+                    </tr>
+
+                    <tr class="bg-gray-200">
                         <th class=" border">Ilmiy hisobot taqdim etilganligi (Pdf)</th>
                         <th class=" border">Stajirovka davrida egallangan bilim va ko'nikmalarni amalga oshirilishi uchun
                             zarur shart-sharoitlar yaratilganligi. (Asoslantiruvchi hujjatlar, rasm va videolar, zip)</th>

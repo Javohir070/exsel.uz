@@ -21,11 +21,11 @@
             <div>
                 <div>
                     <a href="/admin/Ilmiyloyihalar2024_10_21_07_48_14.xlsx"
-                        class="button box flex items-center text-gray-700"> <i data-feather="file-text"
-                            class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </a>
+                        class="button box flex items-center text-gray-700">
+                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
+                    </a>
                 </div>
                 <div>
-
                     <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                         class="button w-24 ml-3 bg-theme-1 text-white">
                         Ilmiy loyiha biriktirish
@@ -129,18 +129,11 @@
             </table>
         </div>
 
-
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
             {{$ilmiyloyihalar->links()}}
         </div>
 
-
     </div>
-
-
-
-
-
 
     </div>
 

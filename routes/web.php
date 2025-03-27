@@ -71,6 +71,8 @@ Route::middleware('auth')->group(function () {
     //excel uchun export url lar
     Route::post('/import', [XodimlarController::class, 'import'])->name('import');
     Route::post('/ilmiyloyiha-import', [IlmiyLoyihaController::class, 'IlmiyLoyiha_import'])->name('IlmiyLoyiha_import');
+    Route::post('/stajirovka-import', [StajirovkaController::class, 'stajirovka_import'])->name('stajirovka_import');
+    Route::post('/asbobuskuna-import', [AsbobuskunaController::class, 'asbobuskuna_import'])->name('asbobuskuna_import');
     // Route::get('/search', [SearchController::class, 'search'])->name('search');
 
     // end excel uchun export url lar

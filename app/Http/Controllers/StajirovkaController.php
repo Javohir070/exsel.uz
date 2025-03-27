@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\StajirovkaImport;
 use App\Models\Region;
 use App\Models\Stajirovka;
 use App\Http\Requests\StoreStajirovkaRequest;
@@ -10,6 +11,7 @@ use App\Models\Stajirovkaexpert;
 use App\Models\Tashkilot;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StajirovkaController extends Controller
 {
@@ -107,6 +109,9 @@ class StajirovkaController extends Controller
             'ishlar_natijalari' => $path_ishlar_natijalari,
             'xalqarotan_jur_nashr' => $path_xalqarotan_jur_nashr,
             'biryil_davomida' => $path_biryil_davomida,
+            'yunalishi' => $request->yunalishi,
+            'holati' => $request->holati,
+            'yil' => $request->yil,
         ]);
 
         return redirect()->route('stajirovka.index')->with('status', "Ma\'lumotlar muvaffaqiyatli qo'shildi.");
@@ -128,7 +133,7 @@ class StajirovkaController extends Controller
 
     public function update(UpdateStajirovkaRequest $request, Stajirovka $stajirovka)
     {
-        $data = $request->only(['fish', 'lavozim']); // Faqat oddiy ma'lumotlarni olish
+        $data = $request->only(['fish', 'lavozim', 'yunalishi','holati', 'yil',]); // Faqat oddiy ma'lumotlarni olish
 
         // Fayllar saqlanadigan papka
         $folder = 'Stajirovka-file';
@@ -178,6 +183,17 @@ class StajirovkaController extends Controller
         $stajirovka->delete();
 
         return redirect()->route('stajirovka.index')->with('status', "Ma'lumotlar muvaffaqiyatli o‘chirildi.");
+    }
+
+    public function stajirovka_import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv',
+        ]);
+
+        Excel::import(new StajirovkaImport, $request->file('file'));
+
+        return back()->with('status', 'Fayl muvaffaqiyatli yuklandi!');
     }
 
 }

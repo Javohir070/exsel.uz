@@ -19,6 +19,9 @@ class Stajirovka extends Model
         'ishlar_natijalari',
         'xalqarotan_jur_nashr',
         'biryil_davomida',
+        'yunalishi',
+        'holati',
+        'yil',
     ];
 
     public function tashkilot()

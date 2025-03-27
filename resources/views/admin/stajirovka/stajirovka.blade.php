@@ -18,6 +18,8 @@
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">Stajorning F.I.Sh </th>
                         <th class="whitespace-no-wrap">Stajorning lavozimi</th>
+                        <th class="whitespace-no-wrap">Stajirovka yo'nalishi</th>
+                        <th class="whitespace-no-wrap">Stajirovka holati</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -32,6 +34,12 @@
                             </td>
                             <td>
                                 {{ $xodimlar->lavozim }}
+                            </td>
+                            <td>
+                                {{ $xodimlar->yunalishi }}
+                            </td>
+                            <td>
+                                {{ $xodimlar->holati }}
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">

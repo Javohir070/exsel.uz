@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\AsbobuskunaImport;
 use App\Models\Asbobuskuna;
 use App\Http\Requests\StoreAsbobuskunaRequest;
 use App\Http\Requests\UpdateAsbobuskunaRequest;
@@ -14,6 +15,7 @@ use App\Models\Region;
 use App\Models\Tashkilot;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AsbobuskunaController extends Controller
 {
@@ -183,5 +185,17 @@ class AsbobuskunaController extends Controller
     {
         $asbobuskuna->delete();
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
+    }
+
+
+    public function asbobuskuna_import(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|mimes:xlsx,csv',
+        ]);
+
+        Excel::import(new AsbobuskunaImport, $request->file('file'));
+
+        return back()->with('status', 'Fayl muvaffaqiyatli yuklandi!');
     }
 }
