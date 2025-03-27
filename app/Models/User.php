@@ -71,4 +71,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Kafedralar::class);
     }
+
+    public function ilmiyloyhalar()
+    {
+        return $this->hasMany(IlmiyLoyiha::class);
+    }
 }

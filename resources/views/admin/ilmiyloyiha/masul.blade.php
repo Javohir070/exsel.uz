@@ -9,14 +9,14 @@
             <div class="search hidden sm:block">
             <form action="{{ route('searchuser') }}" method="GET">
                 <input type="text" name="query" class="search__input input placeholder-theme-13" placeholder="Search...">
-                <i data-feather="search" class="search__icon"></i> 
+                <i data-feather="search" class="search__icon"></i>
             </form>
             </div>
             <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
         </div> --}}
         <div>
             <div>
-               
+
             </div>
         </div>
     </div>
@@ -80,7 +80,7 @@
 
                     </div>
                     {{-- <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-                        
+
                         <select class="w-20 input box mt-3 sm:mt-0">
                             <option>10</option>
                             <option>25</option>
