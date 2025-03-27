@@ -37,10 +37,10 @@ class StoreIlmiyLoyihaRequest extends FormRequest
             'rahbar_name' => "required|max:1024",
             'sanasi' => "required|max:255",
             'sum' => "required|max:255",
-            'tijoratlashtirish' => "required|max:255",
-            'file' => 'required|file|max:20480', // 20MB = 20480 KB
-            'savolnoma' => 'required|file|max:20480', // 20MB = 20480 KB
-            'malumotnoma' => 'required|file|max:20480', // 20MB = 20480 KB
+            // 'tijoratlashtirish' => "required|max:255",
+            // 'file' => 'required|file|max:20480', // 20MB = 20480 KB
+            // 'savolnoma' => 'required|file|max:20480', // 20MB = 20480 KB
+            // 'malumotnoma' => 'required|file|max:20480', // 20MB = 20480 KB
         ];
     }
 }

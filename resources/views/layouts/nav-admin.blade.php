@@ -107,7 +107,7 @@
         </li>
         @endrole
 
-        @role(['super-admin', 'Ekspert'])
+        @role([ 'Ekspert'])
         <li>
             <a href="{{ route('monitoring.index') }}"
                 class="side-menu side-menu{{ request()->is('monitoring*') ? '--active' : '' }}">

@@ -41,23 +41,24 @@ class AsbobuskunaController extends Controller
     public function asbobuskunalar()
     {
         $asbobuskunas = Asbobuskuna::paginate(20);
-        $tashkilotlar = Tashkilot::paginate(20);
+        $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->paginate(20);
+        $tash_count = Tashkilot::where('asbobuskuna_is', 1)->count();
         $regions = Region::all();
-        return view('admin.asbobuskuna.tashkilotlar', ['asbobuskunas' => $asbobuskunas, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions]);
+        return view('admin.asbobuskuna.tashkilotlar', ['asbobuskunas' => $asbobuskunas, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'tash_count'=>$tash_count]);
     }
 
     public function search_asbobuskunalar(Request $request)
     {
         $querysearch = $request->input('query');
         if (ctype_digit($querysearch)) {
-            $tashkilotlar = Tashkilot::where('region_id', '=', $querysearch)->paginate(50);
-            $tash_count = Tashkilot::where('region_id', '=', $querysearch)->count();
+            $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->where('region_id', '=', $querysearch)->paginate(50);
+            $tash_count = Tashkilot::where('asbobuskuna_is', 1)->where('region_id', '=', $querysearch)->count();
         } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
-            $tashkilotlar = Tashkilot::where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::where('asbobuskuna_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
         } else {
-            $tashkilotlar = Tashkilot::where('name', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('name', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::where('asbobuskuna_is', 1)->where('name', 'like', '%' . $querysearch . '%')->count();
         }
 
         $regions = Region::all();
