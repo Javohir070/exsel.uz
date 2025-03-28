@@ -198,7 +198,7 @@ class HomeController extends Controller
     public function monitoring()
     {
         $stajirovka_count = Stajirovka::count();
-        $asboblar_count = Asbobuskuna::count();
+        $asboblar_count = Asbobuskuna::where('is_active',1)->count();
         $loy_count = IlmiyLoyiha::count();
         $doktarantura = Doktaranturaexpert::count();
 

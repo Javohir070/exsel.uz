@@ -40,7 +40,8 @@
                     @foreach ($stajirovkas as $xodimlar)
 
                         <tr class="intro-x">
-                            <td>{{$loop->index + 1}}</td>
+                            <td>{{ ($stajirovkas->currentPage() - 1) * $stajirovkas->perPage() + $loop->iteration }}.</td>
+
                             <td>
                                 {{ $xodimlar->fish }}
                             </td>

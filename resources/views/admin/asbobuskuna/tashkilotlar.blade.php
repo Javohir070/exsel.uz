@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-6" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 404 }} ta</h2>
+            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 404 }} ta,  Asbob-uskunalar soni: {{ $asbobuskunas ?? 0 }}</h2>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
@@ -38,12 +38,12 @@
                 </form>
             </div>
 
-            <div>
+            <!-- <div>
                 <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                     class="button w-24 ml-3 bg-theme-1 text-white">
                     Import
                 </a>
-            </div>
+            </div> -->
 
         </div>
         <div class="grid grid-cols-12 gap-6 ">
@@ -64,7 +64,7 @@
                         @foreach ($tashkilotlar as $tashkilots)
 
                             <tr class="intro-x">
-                                <td>{{ $loop->iteration }}.</td>
+                                <td>{{ ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}.</td>
                                 <td>
                                     <a href="{{ route('asbobu.index', ['id' => $tashkilots->id]) }}"
                                         class="font-medium">{{ $tashkilots->name }}</a>
@@ -76,7 +76,7 @@
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->asbobuskunalar()->count()  }}
+                                    {{ $tashkilots->asbobuskunalar()->where('is_active', 1)->count()  }}
                                 </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">

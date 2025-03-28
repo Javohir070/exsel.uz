@@ -15,11 +15,12 @@ class AsbobuskunaImport implements ToModel
     */
     public function model(array $row)
     {
-        $tashkilot = Tashkilot::where('stir_raqami', '=' ,$row[0])->first();
+        $tashkilot = Tashkilot::where('stir_raqami', '=' ,$row[1])->first();
         return new Asbobuskuna([
             'tashkilot_id' => $tashkilot->id,
             'user_id' => auth()->user()->id,
-            'name' => $row[1],
+            'name' => $row[0],
+            'is_active' => 1,
         ]);
     }
 }

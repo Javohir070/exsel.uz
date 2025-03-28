@@ -114,7 +114,7 @@
                         <th class="border">FIO</th>
                     </tr>
                     <tr>
-                        <td class="border">{{ $asbobuskuna->laboratory->name ?? $asbobuskuna->kafedralar->name }}</td>
+                        <td class="border"></td>
                         <td class="border">{{ $asbobuskuna->fish  }}</td>
                     </tr>
 

@@ -43,9 +43,12 @@ class AsbobuskunaController extends Controller
     public function asbobuskunalar()
     {
         $asbobuskunas = Asbobuskuna::paginate(20);
-        $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->paginate(20);
+        $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->paginate(50);
         $tash_count = Tashkilot::where('asbobuskuna_is', 1)->count();
         $regions = Region::all();
+        $asbobuskunas = Asbobuskuna::where('is_active', 1)->count();
+        // $asbobuskuna = 
+        // dd($asbobuskunas);
         return view('admin.asbobuskuna.tashkilotlar', ['asbobuskunas' => $asbobuskunas, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'tash_count'=>$tash_count]);
     }
 
@@ -62,16 +65,16 @@ class AsbobuskunaController extends Controller
             $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
             $tash_count = Tashkilot::where('asbobuskuna_is', 1)->where('name', 'like', '%' . $querysearch . '%')->count();
         }
-
+        $asbobuskunas = Asbobuskuna::where('is_active', 1)->count();
         $regions = Region::all();
 
-        return view('admin.asbobuskuna.tashkilotlar', ['tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);
+        return view('admin.asbobuskuna.tashkilotlar', ['asbobuskunas' => $asbobuskunas, 'tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);
     }
 
     public function asbobu($id)
     {
         $tashkilot = Tashkilot::findOrFail($id);
-        $asbobuskunas = Asbobuskuna::where('tashkilot_id', '=',$id)->paginate(20);
+        $asbobuskunas = Asbobuskuna::where('is_active', 1)->where('tashkilot_id', '=',$id)->paginate(20);
         return view('admin.asbobuskuna.asbobuskunalar', ['asbobuskunas' => $asbobuskunas, 'tashkilot' => $tashkilot]);
     }
 

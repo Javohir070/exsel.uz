@@ -181,7 +181,7 @@
                 </div>
                 <div class="form-row">
                     <span class="form-label title">Foydalanishga mas'ul tarkibiy bo'linma (laboratoriya, kafedra, sho‘ba) nomi:</span>
-                    <span class="form-input">{{  $asbobuskuna->laboratory_id ? $asbobuskuna->laboratory->name : $asbobuskuna->kafedralar->name }}</span>
+                    <span class="form-input"></span>
                 </div>
                 <div class="form-row">
                     <span class="form-label title">Asbob-uskuna nomi:</span>

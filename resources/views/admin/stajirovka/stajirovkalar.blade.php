@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium"> Tashkilotlar soni: {{ $tash_count ?? 404 }} ta</h2>
+            <h2 class="intro-y text-lg font-medium"> Tashkilotlar soni: {{ $tash_count ?? 404 }} ta Stajorlar soni {{ $stajirovkas ?? 0 }}</h2>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
@@ -41,12 +41,12 @@
                 </form>
             </div>
 
-            <div>
+            <!-- <div>
                 <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                     class="button w-24 ml-3 bg-theme-1 text-white">
                     Import
                 </a>
-            </div>
+            </div> -->
 
 
 
@@ -70,7 +70,7 @@
                         @foreach ($tashkilotlar as $tashkilots)
 
                             <tr class="intro-x">
-                                <td>{{ $loop->iteration }}.</td>
+                                <td>{{ ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}.</td>
                                 <td>
                                     <a href="{{ route('stajirov.index', ['id' => $tashkilots->id]) }}"
                                         class="font-medium">{{ $tashkilots->name }}</a>

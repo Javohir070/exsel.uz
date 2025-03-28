@@ -32,7 +32,7 @@
                     @forelse ($asbobuskunas as $k )
 
                     <tr class="intro-x">
-                        <td>{{$loop->index+1}}.</td>
+                        <td>{{ ($asbobuskunas->currentPage() - 1) * $asbobuskunas->perPage() + $loop->iteration }}.</td>
                         <td>
                             <a href="{{ route('asbobuskuna.show',['asbobuskuna'=>$k->id]) }}" class="font-medium ">{{ $k->name  }} </a>
                         </td>

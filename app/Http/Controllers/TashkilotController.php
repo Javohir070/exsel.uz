@@ -81,7 +81,7 @@ class TashkilotController extends Controller
             'hisob_raqam' => $request->hisob_raqam ?? null
         ]);
 
-        return redirect('/tashkilotlar');
+        return redirect('/tashkilotlar')->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
     }
 
     /**

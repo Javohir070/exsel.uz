@@ -20,6 +20,7 @@ class Asbobuskuna extends Model
         'foy_uchun_ariz',
         'asbob_usk_ehtiyoji',
         'zarur_ehtiyoji',
+        'is_active',
     ];
 
     // Aloqalar
