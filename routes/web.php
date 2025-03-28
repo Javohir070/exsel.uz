@@ -15,6 +15,7 @@ use App\Http\Controllers\IlmiyLoyihaController;
 use App\Http\Controllers\IlmiymaqolalarController;
 use App\Http\Controllers\IlmiytezislarController;
 use App\Http\Controllers\IlmiyUnvonController;
+use App\Http\Controllers\IntellektualController;
 use App\Http\Controllers\IntellektualmulkController;
 use App\Http\Controllers\IqtisodiyMoliyaviyController;
 use App\Http\Controllers\ItmController;
@@ -224,6 +225,7 @@ Route::middleware('auth')->group(function () {
         'asbobuskunaexpert' => AsbobuskunaexpertController::class,
         'doktarantura' => DoktaranturaController::class,
         'doktaranturaexpert' => DoktaranturaexpertController::class,
+        'intellektual' => IntellektualController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });

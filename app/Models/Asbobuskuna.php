@@ -21,6 +21,7 @@ class Asbobuskuna extends Model
         'asbob_usk_ehtiyoji',
         'zarur_ehtiyoji',
         'is_active',
+        'asos',
     ];
 
     // Aloqalar

@@ -20,6 +20,7 @@ class AsbobuskunaImport implements ToModel
             'tashkilot_id' => $tashkilot->id,
             'user_id' => auth()->user()->id,
             'name' => $row[0],
+            'asos' => $row[2],
             'is_active' => 1,
         ]);
     }

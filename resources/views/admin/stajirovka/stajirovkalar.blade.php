@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium"> Tashkilotlar soni: {{ $tash_count ?? 404 }} ta Stajorlar soni {{ $stajirovkas ?? 0 }}</h2>
+            <h2 class="intro-y text-lg font-medium"> Tashkilotlar soni: {{ $tash_count ?? 404 }} ta Stajorlar soni {{ $stajirovkas ?? 0 }} ta</h2>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">

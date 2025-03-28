@@ -5,12 +5,12 @@
 <div class="content">
     <div class="flex justify-between align-center mt-10">
 
-        <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }}</h2>
-        {{-- <div>
-            <a href="{{ route("asbobuskuna.create") }}" class="button w-24 bg-theme-1 text-white mr-2">
+        <h2 class="intro-y text-lg font-medium">Ilmiy loyihalar intellektual</h2>
+        <div>
+            <a href="{{ route("intellektual.create") }}" class="button w-24 bg-theme-1 text-white mr-2">
                 Qo'shish
             </a>
-        </div> --}}
+        </div>
     </div>
     @if (session('status'))
         <div class="alert alert-success">{{ session('status') }}</div>
@@ -20,42 +20,39 @@
             <table class="table table-report -mt-2">
                 <thead>
                 <tr>
-                    <th class="whitespace-no-wrap">№</th>
-                    <th class="whitespace-no-wrap">Asbob-uskuna nomi</th>
-                    <th class="whitespace-no-wrap">Asos</th>
-                    {{-- <th class="whitespace-no-wrap" style="text-align: center;">Ishlab chiqarilgan yili</th> --}}
-                    {{-- <th class="whitespace-no-wrap" style="text-align: center;">Holati</th> --}}
-                    <th class="whitespace-no-wrap text-center">Harakat</th>
-                </tr>
+                        <th class="whitespace-no-wrap">№</th>
+                        <th class="whitespace-no-wrap">mal_jur_reja</th>
+                        <th class="whitespace-no-wrap">mal_jur_amalda</th>
+                        <th class="whitespace-no-wrap">xor_jur_reja</th>
+                        <th class="whitespace-no-wrap text-center">Harakat</th>
+                    </tr>
                 </thead>
                 <tbody>
-                    @forelse ($asbobuskunas as $k )
+
+                    @foreach ($intellektuals as $xodimlar )
 
                     <tr class="intro-x">
-                        <td>{{ ($asbobuskunas->currentPage() - 1) * $asbobuskunas->perPage() + $loop->iteration }}.</td>
+                        <td>{{$loop->index+1}}</td>
                         <td>
-                            <a href="{{ route('asbobuskuna.show',['asbobuskuna'=>$k->id]) }}" class="font-medium ">{{ $k->name  }} </a>
+                            <a href="" class="font-medium ">{{ $xodimlar->mal_jur_reja  }} </a>
                         </td>
                         <td>
-                            {{ $k->asos }}
+                            <a href="" class="font-medium ">{{ $xodimlar->mal_jur_amalda }}</a>
                         </td>
-                        {{-- <td style="text-align: center;">
-                            {{ $k->ishlabchiq_yil }}
+                        <td>
+                            <a href="" class="font-medium ">{{ $xodimlar->xor_jur_reja }}</a>
                         </td>
-                        <td style="text-align: center;">
-                            {{ $k->holati }}
-                        </td> --}}
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
-                                {{-- <a class="flex science-update-action items-center mr-3" href="{{ route('asbobuskuna.edit',['asbobuskuna'=>$k->id]) }}" data-id="2978" data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png" data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None" data-doi="" data-publisher="" data-description="None" data-authors-count="None" data-toggle="modal" data-target="#science-paper-update-modal">
+                                <a class="flex science-update-action items-center mr-3" href="{{ route('intellektual.edit',['intellektual'=>$xodimlar->id]) }}" data-id="2978" data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png" data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None" data-doi="" data-publisher="" data-description="None" data-authors-count="None" data-toggle="modal" data-target="#science-paper-update-modal">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square w-4 h-4 mr-1">
                                         <polyline points="9 11 12 14 22 4"></polyline>
                                         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
                                     </svg>
                                     Tahrirlash
-                                </a> --}}
+                                </a>
 
-                                <a class="flex science-update-action items-center mr-3" href="{{ route('asbobuskuna.show',['asbobuskuna'=>$k->id]) }}" data-id="2978" data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png" data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None" data-doi="" data-publisher="" data-description="None" data-authors-count="None" data-toggle="modal" data-target="#science-paper-update-modal">
+                                <a class="flex science-update-action items-center mr-3" href="{{ route('intellektual.show',['intellektual'=>$xodimlar->id]) }}" data-id="2978" data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png" data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66" data-date="None" data-doi="" data-publisher="" data-description="None" data-authors-count="None" data-toggle="modal" data-target="#science-paper-update-modal">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="feather feather-check-square w-4 h-4 mr-1">
                                         <polyline points="9 11 12 14 22 4"></polyline>
                                         <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
@@ -63,7 +60,7 @@
                                     Ko'rish
                                 </a>
 
-                                {{-- <form action="{{ route('asbobuskuna.destroy',['asbobuskuna'=>$k->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                <form action="{{ route('intellektual.destroy',['intellektual'=>$xodimlar->id]) }}" method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                     <button type="submit" class="flex delete-action items-center text-theme-6" >
                                     @csrf
                                     @method("DELETE")
@@ -76,16 +73,12 @@
                                         </svg>
                                         O'chirish
                                     </button>
-                                </form> --}}
+                                </form>
 
                             </div>
                         </td>
                     </tr>
-                    @empty
-                        <tr>
-                            <td colspan="6" class="text-center">Ma'lumotlar mavjud emas</td>
-                        </tr>
-                    @endforelse
+                    @endforeach
 
 
                 </tbody>
@@ -96,7 +89,7 @@
 
         <!-- END: Data List -->
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-            {{$asbobuskunas->links()}}
+            {{$intellektuals->links()}}
         </div>
 
     </div>

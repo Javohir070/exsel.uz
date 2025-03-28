@@ -259,6 +259,14 @@
         </li>
 
         <li>
+            <a href="{{ route('intellektual.index') }}"
+                class="side-menu side-menu{{ request()->is('intellektual*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Intellektual </div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('fakultetlar.index') }}"
                 class="side-menu side-menu{{ request()->is('fakultetlar*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
