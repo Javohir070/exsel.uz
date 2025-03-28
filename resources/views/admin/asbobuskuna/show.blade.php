@@ -111,11 +111,20 @@
 
                     <tr class="bg-gray-200">
                         <th class="border">Foydalanishga mas'ul tarkibiy bo‘linma (laboratoriya, kafedra, sho‘ba) nomi</th>
-                        <th class="border">FIO</th>
+                        <th class="border">F.I.Sh</th>
                     </tr>
                     <tr>
                         <td class="border"></td>
                         <td class="border">{{ $asbobuskuna->fish  }}</td>
+                    </tr>
+
+                    <tr class="bg-gray-200">
+                        <th class="border">Asos</th>
+                        <th class="border"></th>
+                    </tr>
+                    <tr>
+                        <td class="border">{{ $asbobuskuna->asos  }}</td>
+                        <td class="border"></td>
                     </tr>
 
                     <tr class="bg-gray-200">
