@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="w-2/4 flex-none">
                                                 <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $stajirovka_count }}/{{ $stajirovka_expert }}</div>
-                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy Stajirovka</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy stajirovka</div>
                                             </div>
                                         </div>
                                     </a>
@@ -133,7 +133,7 @@
                                             </div>
                                             <div class="w-2/4 flex-none">
                                                 <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">239/{{ $doktarantura_expert }}</div>
-                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Doktarantura</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Doktorantura</div>
                                             </div>
                                         </div>
                                     </a>
