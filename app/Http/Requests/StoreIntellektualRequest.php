@@ -47,7 +47,9 @@ class StoreIntellektualRequest extends FormRequest
             'ixtiro_ber_psreja' => 'required|integer',
             'ixtiro_ber_psamalda' => 'required|integer',
             'dasturiy_gsreja' => 'required|integer',
-            'dasturiy_gsamalda' => 'required|integer'
+            'dasturiy_gsamalda' => 'required|integer',
+            'nashr_uquv_reja' => 'required|integer',
+            'nashr_uquv_amalda' => 'required|integer'
         ];
     }
 }

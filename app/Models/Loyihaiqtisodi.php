@@ -12,7 +12,7 @@ class Loyihaiqtisodi extends Model
     protected $fillable = [
         'tashkilot_id',
         'user_id',
-        'ilmiyloyiha_id',
+        'ilmiy_loyiha_id',
 
         'hisobot_davri',
         'hisobot_davri_i',
@@ -44,9 +44,9 @@ class Loyihaiqtisodi extends Model
         'tashustama_xarajat_a',
         'xarid_qilingan_xarid',
         'xarid_qilingan_i',
-        'xarid_sh',
-        'xarid_r',
         'xarid_s',
+        'xarid_r',
+        'xarid_sh',
         'yetkb_yuridik_nomi',
     ];
 

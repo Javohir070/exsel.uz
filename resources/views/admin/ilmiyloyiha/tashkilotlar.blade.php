@@ -5,11 +5,11 @@
     <div class="content">
         <div class="flex justify-between align-center mt-6" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 404 }} ta  Asbob-uskunalar soni: {{ $asbobuskunas ?? 0 }} ta</h2>
+            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 404 }} ta  Ilmiy loyihalar soni: {{ $ilmiyloyiha ?? 0 }} ta</h2>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
-                    <form action="{{ route('search_asbobuskunalar') }}" method="GET">
+                    <form action="{{ route('search_ilmiy_loyhalar') }}" method="GET">
                         <input type="text" name="query"
                             class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13" placeholder="Search...">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -20,7 +20,7 @@
                         </svg>
                     </form>
                 </div>
-                <form method="GET" action="{{ route('search_asbobuskunalar') }}">
+                <form method="GET" action="{{ route('search_ilmiy_loyhalar') }}">
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
                         <option value="">Barchasi OTM & ITM</option>
                         <option value="otm">OTM</option>
@@ -28,7 +28,7 @@
                     </select>
                 </form>
 
-                <form method="GET" action="{{ route('search_asbobuskunalar') }}">
+                <form method="GET" action="{{ route('search_ilmiy_loyhalar') }}">
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
                         <option value="">Viloyatlari</option>
                         @foreach ($regions as $v)
@@ -56,7 +56,7 @@
                             <th class="whitespace-no-wrap">Tashkilot Nomi</th>
                             <th class="whitespace-no-wrap">Tashkilot STIR raqami</th>
                             <th class="whitespace-no-wrap">Tashkilot turi</th>
-                            <th class="whitespace-no-wrap">Asbob-uskunalar soni</th>
+                            <th class="whitespace-no-wrap">Ilmiy loyihalar soni</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
@@ -76,13 +76,13 @@
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->asbobuskunalar()->where('is_active', 1)->count()  }}
+                                    {{ $tashkilots->ilmiyloyhalar()->where('is_active', 1)->count()  }}
                                 </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
 
                                         <a class="flex science-update-action items-center mr-3"
-                                            href="{{ route('asbobu.index', ['id' => $tashkilots->id]) }}"
+                                            href="{{ route('ilmiy_loyihalar.index', ['id' => $tashkilots->id]) }}"
                                             data-id="2978" data-name="sdfd"
                                             data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
                                             data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66"

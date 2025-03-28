@@ -31,6 +31,9 @@ return new class extends Migration
             $table->unsignedInteger('ilmiy_mon_reja')->nullable();
             $table->unsignedInteger('ilmiy_mon_amalda')->nullable();
             $table->text('ilmiy_mon_izoh')->nullable();
+            $table->unsignedInteger('nashr_uquv_reja')->nullable();
+            $table->unsignedInteger('nashr_uquv_amalda')->nullable();
+            $table->text('nashr_uquv_izoh')->nullable();
             $table->unsignedInteger('darslik_reja')->nullable();
             $table->unsignedInteger('darslik_amalda')->nullable();
             $table->text('darslik_izoh')->nullable();

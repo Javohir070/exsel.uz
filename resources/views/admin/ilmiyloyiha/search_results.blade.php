@@ -40,6 +40,7 @@
                         <th class="whitespace-no-wrap">Loyiha mavzusi</th>
                         <th class="whitespace-no-wrap">Loyiha rahbari</th>
                         <th class="whitespace-no-wrap">Loyiha turi</th>
+                        <th class="whitespace-no-wrap">Raqami</th>
                         <th class="whitespace-no-wrap" style="width: 150px;">
                             <form method="GET" action="{{ route('searchloyiha') }}">
                                 <select class="form-select" aria-label="Default select example" name="query" onchange="this.form.submit()">
@@ -66,6 +67,9 @@
                         </td>
                         <td>
                             {{ $xodimlar->turi }}
+                        </td>
+                        <td>
+                            {{ $xodimlar->raqami }}
                         </td>
                         <td>
                             {{ $xodimlar->status }}

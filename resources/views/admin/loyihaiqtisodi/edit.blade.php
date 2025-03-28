@@ -11,9 +11,10 @@
             padding: 20px 20px;
             border-radius: 20px">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <form id="science-paper-create-form" method="POST" action="{{ route("loyihaiqtisodi.store") }}"
+            <form id="science-paper-create-form" method="POST" action="{{ route("loyihaiqtisodi.update", $loyihaiqtisodi->id) }}"
                 class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                 @csrf
+                @method('PUT')
                 <div class="grid grid-cols-12 gap-2">
 
                     <div class="w-full col-span-12">
@@ -29,10 +30,9 @@
                                 <td class="border" style="text-size:16px;font-weight:700;">
                                     Hisobot davrida qoʻlga kiritilgan muhim natijalar
                                 </td>
-                                <input type="hidden" name="ilmiy_loyiha_id" value="885">
                                 <td class="border" colspan="2">
                                     <textarea name="hisobot_davri" value="" cols="5" rows="3" class="input w-full border mt-2"
-                                        required="">{{ old('hisobot_davri') }}</textarea>
+                                        required="">{{ $loyihaiqtisodi->hisobot_davri }}</textarea>
                                     @error('hisobot_davri')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
@@ -45,7 +45,7 @@
                                 </td>
                                 <td class="border" colspan="2">
                                     <textarea name="loyihabaj_ishlanma" cols="5" rows="3" class="input w-full border mt-2"
-                                        required="">{{ old('loyihabaj_ishlanma') }}</textarea>
+                                        required="">{{ $loyihaiqtisodi->loyihabaj_ishlanma }}</textarea>
                                     @error('loyihabaj_ishlanma')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
@@ -58,7 +58,7 @@
                                 </td>
                                 <td class="border" colspan="2">
                                     <textarea name="ilmiy_ishlanmalar" cols="5" rows="3" class="input w-full border mt-2"
-                                        required="">{{ old('ilmiy_ishlanmalar') }}</textarea>
+                                        required="">{{ $loyihaiqtisodi->ilmiy_ishlanmalar }}</textarea>
                                     @error('ilmiy_ishlanmalar')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
@@ -81,14 +81,14 @@
                                     Mehnatga haq toʻlash (5.1.-shakl)
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="mehnat_haq_r" value="{{ old('mehnat_haq_r') }}"
+                                    <input type="number" name="mehnat_haq_r" value="{{ $loyihaiqtisodi->mehnat_haq_r }}"
                                         class="input w-full border mt-2" required="">
                                     @error('mehnat_haq_r')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="mehnat_haq_a" value="{{ old('mehnat_haq_a') }}"
+                                    <input type="number" name="mehnat_haq_a" value="{{ $loyihaiqtisodi->mehnat_haq_a }}"
                                         class="input w-full border mt-2" required="">
                                     @error('mehnat_haq_a')
                                         <div class="error">{{ $message }}</div>
@@ -100,14 +100,14 @@
                                     Xizmat safarlari xarajatlari (5.2.-shakl)
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="xizmat_saf_r" value="{{ old('xizmat_saf_r') }}"
+                                    <input type="number" name="xizmat_saf_r" value="{{ $loyihaiqtisodi->xizmat_saf_r }}"
                                         class="input w-full border mt-2" required="">
                                     @error('xizmat_saf_r')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="xizmat_saf_a" value="{{ old('xizmat_saf_a') }}"
+                                    <input type="number" name="xizmat_saf_a" value="{{ $loyihaiqtisodi->xizmat_saf_a }}"
                                         class="input w-full border mt-2" required="">
                                     @error('xizmat_saf_a')
                                         <div class="error">{{ $message }}</div>
@@ -120,14 +120,14 @@
                                     tovar-moddiy boyliklarning xaridi uchun xarajatlar (5.4.-shakl)
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="xarid_xaraja_r" value="{{ old('xarid_xaraja_r') }}"
+                                    <input type="number" name="xarid_xaraja_r" value="{{ $loyihaiqtisodi->xarid_xaraja_r }}"
                                         class="input w-full border mt-2" required="">
                                     @error('xarid_xaraja_r')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="xarid_xaraja_a" value="{{ old('xarid_xaraja_a') }}"
+                                    <input type="number" name="xarid_xaraja_a" value="{{ $loyihaiqtisodi->xarid_xaraja_a }}"
                                         class="input w-full border mt-2" required="">
                                     @error('xarid_xaraja_a')
                                         <div class="error">{{ $message }}</div>
@@ -140,14 +140,14 @@
                                     (5.5.-shakl)
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="mat_butlovchi_r" value="{{ old('mat_butlovchi_r') }}"
+                                    <input type="number" name="mat_butlovchi_r" value="{{ $loyihaiqtisodi->mat_butlovchi_r }}"
                                         class="input w-full border mt-2" required="">
                                     @error('mat_butlovchi_r')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="mat_butlovchi_a" value="{{ old('mat_butlovchi_a') }}"
+                                    <input type="number" name="mat_butlovchi_a" value="{{ $loyihaiqtisodi->mat_butlovchi_a }}"
                                         class="input w-full border mt-2" required="">
                                     @error('mat_butlovchi_a')
                                         <div class="error">{{ $message }}</div>
@@ -160,14 +160,14 @@
                                     toʻlov (5.6.-shakl)
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="jalb_etilgan_r" value="{{ old('jalb_etilgan_r') }}"
+                                    <input type="number" name="jalb_etilgan_r" value="{{ $loyihaiqtisodi->jalb_etilgan_r }}"
                                         class="input w-full border mt-2" required="">
                                     @error('jalb_etilgan_r')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="jalb_etilgan_a" value="{{ old('jalb_etilgan_a') }}"
+                                    <input type="number" name="jalb_etilgan_a" value="{{ $loyihaiqtisodi->jalb_etilgan_a }}"
                                         class="input w-full border mt-2" required="">
                                     @error('jalb_etilgan_a')
                                         <div class="error">{{ $message }}</div>
@@ -179,14 +179,14 @@
                                     Loyihani amalga oshirish uchun boshqa xarajatlar (5.7.-shakl)
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="boshqa_xarajat_r" value="{{ old('boshqa_xarajat_r') }}"
+                                    <input type="number" name="boshqa_xarajat_r" value="{{ $loyihaiqtisodi->boshqa_xarajat_r }}"
                                         class="input w-full border mt-2" required="">
                                     @error('boshqa_xarajat_r')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </td>
                                 <td class="border">
-                                    <input type="number" name="boshqa_xarajat_a" value="{{ old('boshqa_xarajat_a') }}"
+                                    <input type="number" name="boshqa_xarajat_a" value="{{ $loyihaiqtisodi->boshqa_xarajat_a }}"
                                         class="input w-full border mt-2" required="">
                                     @error('boshqa_xarajat_a')
                                         <div class="error">{{ $message }}</div>
@@ -200,7 +200,7 @@
                                 </td>
                                 <td class="border">
                                     <input type="number" name="tashustama_xarajat_r"
-                                        value="{{ old('tashustama_xarajat_r') }}" class="input w-full border mt-2"
+                                        value="{{ $loyihaiqtisodi->tashustama_xarajat_r }}" class="input w-full border mt-2"
                                         required="tashustama_xarajat_r">
                                     @error('fish')
                                         <div class="error">{{ $message }}</div>
@@ -208,7 +208,7 @@
                                 </td>
                                 <td class="border">
                                     <input type="number" name="tashustama_xarajat_a"
-                                        value="{{ old('tashustama_xarajat_a') }}" class="input w-full border mt-2"
+                                        value="{{ $loyihaiqtisodi->tashustama_xarajat_a }}" class="input w-full border mt-2"
                                         required="tashustama_xarajat_a">
                                     @error('fish')
                                         <div class="error">{{ $message }}</div>
@@ -240,14 +240,14 @@
                                     Xarid shartnomasining raqami va sanasi
                                 </td>
                                 <td class="border">
-                                    <input type="text" name="xarid_s" value="{{ old('xarid_s') }}"
+                                    <input type="text" name="xarid_s" value="{{ $loyihaiqtisodi->xarid_s }}"
                                         class="input w-full border mt-2" required="">
                                     @error('xarid_s')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </td>
                                 <td class="border">
-                                    <input type="date" name="xarid_r" value="{{ old('xarid_r') }}"
+                                    <input type="date" name="xarid_r" value="{{ $loyihaiqtisodi->xarid_r }}"
                                         class="input w-full border mt-2" required="">
                                     @error('xarid_r')
                                         <div class="error">{{ $message }}</div>
@@ -259,7 +259,7 @@
                                     Sotuvchi kompaniyaning nomi
                                 </td>
                                 <td class="border" colspan="2">
-                                    <input type="text" name="xarid_sh" value="{{ old('xarid_sh') }}"
+                                    <input type="text" name="xarid_sh" value="{{ $loyihaiqtisodi->xarid_sh }}"
                                         class="input w-full border mt-2" required="">
                                     @error('xarid_sh')
                                         <div class="error">{{ $message }}</div>
@@ -271,7 +271,7 @@
                                     Yetkazib beruvchi yuridik shaxsning nomi
                                 </td>
                                 <td class="border" colspan="2">
-                                    <input type="text" name="yetkb_yuridik_nomi" value="{{ old('yetkb_yuridik_nomi') }}"
+                                    <input type="text" name="yetkb_yuridik_nomi" value="{{ $loyihaiqtisodi->yetkb_yuridik_nomi }}"
                                         class="input w-full border mt-2" required="">
                                     @error('yetkb_yuridik_nomi')
                                         <div class="error">{{ $message }}</div>
@@ -294,7 +294,5 @@
             </div>
         </div>
     </div>
-
-
 
 @endsection

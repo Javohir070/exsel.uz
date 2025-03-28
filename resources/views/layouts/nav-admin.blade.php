@@ -267,6 +267,14 @@
         </li>
 
         <li>
+            <a href="{{ route('loyihaiqtisodi.index') }}"
+                class="side-menu side-menu{{ request()->is('loyihaiqtisodi*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Loyihaiqtisodi </div>
+            </a>
+        </li>
+
+        <li>
             <a href="{{ route('fakultetlar.index') }}"
                 class="side-menu side-menu{{ request()->is('fakultetlar*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>

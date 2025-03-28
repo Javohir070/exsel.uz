@@ -42,12 +42,12 @@ class AsbobuskunaController extends Controller
 
     public function asbobuskunalar()
     {
-        $asbobuskunas = Asbobuskuna::paginate(20);
+        // $asbobuskunas = Asbobuskuna::paginate(20);
         $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->paginate(50);
         $tash_count = Tashkilot::where('asbobuskuna_is', 1)->count();
         $regions = Region::all();
         $asbobuskunas = Asbobuskuna::where('is_active', 1)->count();
-        // $asbobuskuna = 
+        // $asbobuskuna =
         // dd($asbobuskunas);
         return view('admin.asbobuskuna.tashkilotlar', ['asbobuskunas' => $asbobuskunas, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'tash_count'=>$tash_count]);
     }

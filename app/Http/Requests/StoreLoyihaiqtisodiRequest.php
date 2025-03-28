@@ -22,7 +22,7 @@ class StoreLoyihaiqtisodiRequest extends FormRequest
     public function rules(): array
     {
         return [
-        'ilmiyloyiha_id'=>'required|',
+        // 'ilmiy_loyiha_id'=>'required|',
         'hisobot_davri'=>'required|',
         'hisobot_davri_i'=>'nullable|',
         'loyihabaj_ishlanma'=>'required|',

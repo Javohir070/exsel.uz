@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10">
 
-            <h2 class="intro-y text-lg font-medium"> Ilmiy loyhilalar</h2>
+            <h2 class="intro-y text-lg font-medium"> {{ $tashkilot->name }}</h2>
 
             <div class="intro-x relative mr-3 sm:mr-6">
                 <div class="search hidden sm:block">
@@ -45,9 +45,10 @@
                 <thead>
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
-                        <th class="whitespace-no-wrap">Tashkilot nomi</th>
                         <th class="whitespace-no-wrap">Loyiha mavzusi</th>
                         <th class="whitespace-no-wrap">Loyiha turi</th>
+                        <th class="whitespace-no-wrap">Loyiha rahbari F.I.Sh</th>
+                        <th class="whitespace-no-wrap">Raqami</th>
                         <th class="whitespace-no-wrap" style="width: 150px;">
                             <form method="GET" action="{{ route('searchloyiha') }}">
                                 <select class="form-select" aria-label="Default select example" name="query"
@@ -66,15 +67,18 @@
                     @foreach ($ilmiyloyihalar as $xodimlar)
 
                         <tr class="intro-x">
-                            <td>{{ $xodimlar->tashkilot->id_raqam }}</td>
-                            <td>
-                                {{ $xodimlar->tashkilot->name }}
-                            </td>
+                            <td>{{ ($ilmiyloyihalar->currentPage() - 1) * $ilmiyloyihalar->perPage() + $loop->iteration }}</td>
                             <td>
                                 {{ $xodimlar->mavzusi  }}
                             </td>
                             <td>
                                 {{ $xodimlar->turi }}
+                            </td>
+                            <td>
+                                {{ $xodimlar->rahbar_name }}
+                            </td>
+                            <td>
+                                {{ $xodimlar->raqami }}
                             </td>
                             <td>
                                 {{ $xodimlar->status }}

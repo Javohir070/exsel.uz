@@ -22,6 +22,7 @@ use App\Http\Controllers\ItmController;
 use App\Http\Controllers\IzlanuvchilarController;
 use App\Http\Controllers\KafedralarController;
 use App\Http\Controllers\LaboratoryController;
+use App\Http\Controllers\LoyihaiqtisodiController;
 use App\Http\Controllers\MonografiyalarController;
 use App\Http\Controllers\StajirovkaController;
 use App\Http\Controllers\StajirovkaexpertController;
@@ -125,6 +126,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/search-dok', [DoktaranturaController::class, 'search_dok'])->name('search_dok');
     Route::get('/search-sta', [StajirovkaController::class, 'search_stajirovka'])->name('search_stajirovka');
     Route::get('/search-asbob', [AsbobuskunaController::class, 'search_asbobuskunalar'])->name('search_asbobuskunalar');
+    Route::get('/search-ilmiy', [IlmiyLoyihaController::class, 'search_ilmiy_loyhalar'])->name('search_ilmiy_loyhalar');
 
 
     // labaratoriya uchun
@@ -191,6 +193,7 @@ Route::middleware('auth')->group(function () {
     // Route::get('stajirovka/{id}', [StajirovkaController::class, "stajirovka_tashkilot"])->name("stajirovka_tashkilot.index");
 
     Route::get('asbobus/{id}', [AsbobuskunaController::class, "asbobu"])->name("asbobu.index");
+    Route::get('ilmiy/{id}', [IlmiyLoyihaController::class, "ilmiy_loyihalar"])->name("ilmiy_loyihalar.index");
     Route::get('stajiro/{id}', [StajirovkaController::class, "stajirov"])->name("stajirov.index");
 
 
@@ -226,6 +229,7 @@ Route::middleware('auth')->group(function () {
         'doktarantura' => DoktaranturaController::class,
         'doktaranturaexpert' => DoktaranturaexpertController::class,
         'intellektual' => IntellektualController::class,
+        'loyihaiqtisodi' => LoyihaiqtisodiController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });
