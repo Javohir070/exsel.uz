@@ -4,7 +4,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10">
 
-            <h2 class="intro-y text-lg font-medium">{{ $ilmiyloyiha->tashkilot->name }} </h2>
+            <h2 class="intro-y text-lg font-medium">{{ $ilmiyloyiha->tashkilot->name }} Ilmiy loyihalar </h2>
 
             @role(['super-admin', 'Ekspert'])
                 <a href="{{ route('ilmiyloyihalar.index') }}" class="button w-24 bg-theme-1 text-white">
@@ -26,6 +26,7 @@
                     Orqaga
                 </a>
             @endrole
+
 
         </div>
         @if (session('status'))
@@ -57,12 +58,14 @@
                             @endif
                         @endrole
                     </div>
-
                     <tr>
+                        <!-- <th class="border border-b-2 " style="width: 40px;">#</th> -->
+                        <!-- <th class="border border-b-2 " style="width: 50%;" >Ma’lumot nomlanishi</th> -->
                         <th class="border border-b-2 " style="width: 100%;text-align:center;font-size: 16px;"
                             colspan="2">Ma’lumotlar</th>
                     </tr>
                     <tr class="bg-gray-200">
+                        <!-- <th class="border border-b-2 ">1</th> -->
                         <th class="border border-b-2" style="text-align: center;" colspan="2">Loyiha mavzusi</th>
                         <!-- <td class="border " >{{ $ilmiyloyiha->mavzusi }}</td> -->
                     </tr>
