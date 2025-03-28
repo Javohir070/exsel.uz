@@ -5,7 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MA'LUMOTNOMA</title>
-    <link rel="stylesheet" href="./style.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -90,7 +89,6 @@
 <body>
     <div class="container">
         <!-- First Page -->
-        <div class="page">
             <div class="header">
                 <p style="font-weight: 500;font-size: 18px;">{{ $ilmiyloyiha->tashkilot->name }} da amalga
                     oshirilayotgan "Innovasion texnologiyali radiologiyasi bo'yuk texnologiyalar fondlanmasi holda
@@ -108,7 +106,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td colspan="3" class="section-header">I. LOYIHANING ASOSIY KO'RSATKICHLARI</td>
+                        <td  class="section-header" colspan="3">I. LOYIHANING ASOSIY KO'RSATKICHLARI</td>
                     </tr>
                     <tr>
                         <td>1.1.</td>
@@ -162,7 +160,7 @@
                     </tr>
 
                     <tr>
-                        <td colspan="6" class="section-header">II. LOYIHANING RAHBARI VA IJROCHILARI</td>
+                        <td colspan="3" class="section-header">II. LOYIHANING RAHBARI VA IJROCHILARI</td>
                     </tr>
                     <tr>
                         <td>2.1.</td>
@@ -237,10 +235,8 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
 
         <!-- Second Page -->
-        <div class="page">
             <table>
                 <thead>
                     <tr>
@@ -358,8 +354,7 @@
                         <td></td>
                     </tr>
                     <tr>
-                        <td colspan="6" class="subsection-header">III.2. IXTIRO UCHUN PATENT VA DASTURIY TAʼMINOTLAR
-                        </td>
+                        <td colspan="6" class="subsection-header">III.2. IXTIRO UCHUN PATENT VA DASTURIY TAʼMINOTLAR </td>
                     </tr>
                     <tr>
                         <th>№</th>
@@ -432,7 +427,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
 
 
         <table>
