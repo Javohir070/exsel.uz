@@ -5,8 +5,8 @@
     <div class="content">
         <div class="flex justify-between align-center mt-6" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ? 164 : $tash_count }} ta Ilmiy
-                loyihalar soni: {{ $ilmiyloyiha ? 449 : $ilmiyloyiha }} ta</h2>
+            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 164  }} ta Ilmiy
+                loyihalar soni: {{ $ilmiyloyiha ?? 449  }} ta</h2>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">

@@ -198,14 +198,14 @@ class HomeController extends Controller
     public function monitoring()
     {
         $stajirovka_count = Stajirovka::count();
-        $asboblar_count = Asbobuskuna::where('is_active',1)->count();
         $loy_count = IlmiyLoyiha::count();
+        $asboblar_count = Asbobuskuna::where('is_active',1)->count();
         $doktarantura = Doktaranturaexpert::count();
 
         $stajirovka_expert = Stajirovkaexpert::count();
         $asboblar_expert = Asbobuskunaexpert::count();
-        $loy_expert = 0;
         $doktarantura_expert = Doktaranturaexpert::count();
+        $loy_expert = 0;
 
         $regions = Region::all();
         $tashkilotlar = Tashkilot::where('status', 1)->paginate(25);

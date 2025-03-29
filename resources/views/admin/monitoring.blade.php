@@ -4,29 +4,11 @@
         <div class="grid grid-cols-12 gap-6">
             <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
                 <div class="col-span-12 mt-8">
-                    {{-- <div class="intro-y flex items-center h-10"> --}}
-                        {{-- <h2 class="text-lg font-medium truncate mr-5">
-                            Monitoring
-                        </h2> --}}
-                        <!-- <a href="" class="ml-auto flex text-theme-1"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i>
-                            Ma'lumotlarni qayta yuklash </a> -->
-                    {{-- </div> --}}
+
 
                     <div class="grid grid-cols-12 gap-6 mt-5">
 
-                            {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                                <a href="{{ route('ilmiyloyihalar.index') }}">
-                                    <div class="report-box zoom-in">
-                                        <div class="box p-5">
-                                            <div class="flex">
-                                                <i data-feather="file-text" class="report-box__icon text-theme-3"></i>
-                                            </div>
-                                            <div class="text-3xl font-bold leading-8 mt-6">449/{{ $loy_expert }}</div>
-                                            <div class="text-base text-gray-600 mt-1">Ilmiy loyhalar</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div> --}}
+
                             <style>
                                 .report-box__icon{
                                     width: 32px;
@@ -50,19 +32,7 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                                <a href="{{ route('stajirovkalar.index') }}">
-                                    <div class="report-box zoom-in">
-                                        <div class="box p-5">
-                                            <div class="flex">
-                                                <i data-feather="file-text" class="report-box__icon text-theme-3"></i>
-                                            </div>
-                                            <div class="text-3xl font-bold leading-8 mt-6">{{ $stajirovka_count }}/{{ $stajirovka_expert }}</div>
-                                            <div class="text-base text-gray-600 mt-1">Stajirovka</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div> --}}
+
 
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -80,19 +50,7 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                                <a href="{{ route('asbobuskunalar.index') }}">
-                                    <div class="report-box zoom-in">
-                                        <div class="box p-5">
-                                            <div class="flex">
-                                                <i data-feather="file-text" class="report-box__icon text-theme-3"></i>
-                                            </div>
-                                            <div class="text-3xl font-bold leading-8 mt-6">{{ $asboblar_count }}/{{ $asboblar_expert }}</div>
-                                            <div class="text-base text-gray-600 mt-1">Asbob-uskunalar</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div> --}}
+
 
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -110,19 +68,6 @@
                                 </div>
                             </div>
 
-                            {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                                <a href="{{ route('doktarantura.index') }}">
-                                    <div class="report-box zoom-in">
-                                        <div class="box p-5">
-                                            <div class="flex">
-                                                <i data-feather="file-text" class="report-box__icon text-theme-3"></i>
-                                            </div>
-                                            <div class="text-3xl font-bold leading-8 mt-6">339/{{ $doktarantura_expert }}</div>
-                                            <div class="text-base text-gray-600 mt-1">Doktarantura</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div> --}}
 
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">

@@ -5,11 +5,11 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">404 ta tashkilot topildi.</h2>
+            <h2 class="intro-y text-lg font-medium">{{ $tash_count ?? 404 }} ta tashkilot topildi.</h2>
 
             <!-- <a href="{{ route('tashkilot.create') }}"  class="button w-24 bg-theme-1 text-white">
-                    Qo'shish
-                </a> -->
+                        Qo'shish
+                    </a> -->
             {{-- <div class="intro-x relative mr-3 sm:mr-6">
                 <div class="search hidden sm:block">
                     <form action="{{ route('search') }}" method="GET">
@@ -45,19 +45,20 @@
                     </form>
                 </div>
                 <form method="GET" action="{{ route('search') }}">
-                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
+                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query"
+                        onchange="this.form.submit()">
                         <option value="">Barchasi OTM & ITM</option>
                         <option value="otm">OTM</option>
                         <option value="itm">ITM</option>
                     </select>
                 </form>
                 <form method="GET" action="{{ route('search') }}">
-                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
+                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query"
+                        onchange="this.form.submit()">
                         <option value="">Viloyatlari</option>
-                        <option value="Andijon viloyati">Andijon viloyati</option>
-                        <option value="Buxoro viloyati">Buxoro viloyati</option>
-                        <option value="Farg'ona viloyati">Farg'ona viloyati</option>
-                        <option value="Jizzax viloyati">Jizzax viloyati</option>
+                        @foreach ($regions as $v)
+                            <option value="{{ $v->id }}">{{ $v->oz }}</option>
+                        @endforeach
                     </select>
                 </form>
             </div>
@@ -66,15 +67,15 @@
                 @role('super-admin')
                 <div>
                     <!-- <a href="{{ route("tashqoshish.create") }}" class="button w-24 bg-theme-1 text-white">
-                            Qo'shish
-                        </a> -->
+                                Qo'shish
+                            </a> -->
                     <a href="{{ route('exportashkilot') }}" class="button box flex items-center text-gray-700"> <i
                             data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </a>
                 </div>
                 <!-- <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
-                                class="button w-24 ml-3 bg-theme-1 text-white">
-                                Excel yuklash
-                            </a> -->
+                                    class="button w-24 ml-3 bg-theme-1 text-white">
+                                    Excel yuklash
+                                </a> -->
                 @endrole
 
             </div> --}}
@@ -82,8 +83,99 @@
         </div>
         <div class="grid grid-cols-12 gap-6 mt-5">
 
-
             <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
+                <div class="grid grid-cols-12 gap-6 mt-5">
+
+
+                    <style>
+                        .report-box__icon {
+                            width: 32px;
+                            height: 32px;
+                        }
+                    </style>
+
+                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                            <a href="{{ route('ilmiyloyihalar.index') }}">
+                                <div class="flex items-center pl-5"
+                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                    <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
+                                        <i data-feather="list" class="report-box__icon text-theme-3"></i>
+                                    </div>
+                                    <div class="w-2/4 flex-none">
+                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                            {{ $loy_count }}/{{ $loy_expert }}</div>
+                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                            <a href="{{ route('stajirovkalar.index') }}">
+                                <div class="flex items-center pl-5"
+                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                    <div class="flex" style="background: #EBFBEB; padding: 15px; border-radius: 100%;">
+                                        <i data-feather="git-pull-request" class="report-box__icon text-theme-3"
+                                            style="color: #00A705;"></i>
+                                    </div>
+                                    <div class="w-2/4 flex-none">
+                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                            {{ $stajirovka_count }}/{{ $stajirovka_expert }}</div>
+                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy stajirovka</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                            <a href="{{ route('asbobuskunalar.index') }}">
+                                <div class="flex items-center pl-5"
+                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                    <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
+                                        <i data-feather="printer" class="report-box__icon text-theme-3"
+                                            style="color: #E0B973;"></i>
+                                    </div>
+                                    <div class="w-2/4 flex-none">
+                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                            {{ $asboblar_count }}/{{ $asboblar_expert }}</div>
+                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Asbob-uskunalar</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                            <a href="{{ route('doktarantura.index') }}">
+                                <div class="flex items-center pl-5"
+                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                    <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                        <i data-feather="users" class="report-box__icon text-theme-3"
+                                            style="color: #E64242;"></i>
+                                    </div>
+                                    <div class="w-2/4 flex-none">
+                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                            {{ $doktarantura_count }}/{{ $doktarantura_expert }}</div>
+                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Doktorantura</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+
+
+                </div>
                 <table class="table table-report -mt-2">
                     <thead>
                         <tr>
@@ -94,7 +186,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tashkilot_search as $tashkilots)
+                        @foreach ($tashkilotlar as $tashkilots)
 
                             <tr class="intro-x">
                                 <td>{{ $loop->iteration }}</td>
@@ -172,7 +264,7 @@
                 </table>
             </div>
             <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-                {{$tashkilot_search->links()}}
+                {{ $tashkilotlar->appends(request()->query())->links() }}
             </div>
         </div>
 
