@@ -325,7 +325,6 @@
 
                                 <option value="Ijobiy">Ijobiy</option>
 
-                                <option value="Qoniqarli">Qoniqarli</option>
 
                                 <option value="Salbiy">Salbiy</option>
 
@@ -347,7 +346,6 @@
 
                                 <option value="Ijobiy">Ijobiy</option>
 
-                                <option value="Qoniqarli">Qoniqarli</option>
 
                                 <option value="Salbiy">Salbiy</option>
 
@@ -368,7 +366,6 @@
 
                                 <option value="Ijobiy">Ijobiy</option>
 
-                                <option value="Qoniqarli">Qoniqarli</option>
 
                                 <option value="Salbiy">Salbiy</option>
 
@@ -389,7 +386,6 @@
 
                                 <option value="Ijobiy">Ijobiy</option>
 
-                                <option value="Yetarli">Yetarli</option>
 
                                 <option value="Mavjud emas">Mavjud emas</option>
 
@@ -411,7 +407,6 @@
 
                                 <option value="Ijobiy">Ijobiy</option>
 
-                                <option value="Qoniqarli">Qoniqarli</option>
 
                                 <option value="Salbiy">Salbiy</option>
 
@@ -433,7 +428,6 @@
 
                                 <option value="Mavjud">Mavjud</option>
 
-                                <option value="Yetarli">Yetarli</option>
 
                                 <option value="Mavjud emas">Mavjud emas</option>
 
@@ -455,7 +449,6 @@
 
                                 <option value="Mavjud">Mavjud</option>
 
-                                <option value="Yetarli">Yetarli</option>
 
                                 <option value="Mavjud emas">Mavjud emas</option>
 
@@ -477,7 +470,6 @@
 
                                 <option value="Mavjud">Mavjud</option>
 
-                                <option value="Yetarli">Yetarli</option>
 
                                 <option value="Mavjud emas">Mavjud emas</option>
 
@@ -498,7 +490,6 @@
 
                                 <option value="Ijobiy">Ijobiy</option>
 
-                                <option value="Qoniqarli">Qoniqarli</option>
 
                                 <option value="Salbiy">Salbiy</option>
 
