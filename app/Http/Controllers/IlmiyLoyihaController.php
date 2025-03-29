@@ -6,7 +6,9 @@ use App\Imports\IlmiyLoyihaImport;
 use App\Models\IlmiyLoyiha;
 use App\Http\Requests\StoreIlmiyLoyihaRequest;
 use App\Http\Requests\UpdateIlmiyLoyihaRequest;
+use App\Models\Intellektual;
 use App\Models\Laboratory;
+use App\Models\Loyihaiqtisodi;
 use App\Models\Region;
 use App\Models\Tashkilot;
 use App\Models\Tekshirivchilar;
@@ -100,7 +102,9 @@ class IlmiyLoyihaController extends Controller
      */
     public function show(IlmiyLoyiha $ilmiyloyiha)
     {
-        return view('admin.ilmiyloyiha.show', ['ilmiyloyiha' => $ilmiyloyiha]);
+        $intellektual = Intellektual::where('ilmiy_loyiha_id','=',$ilmiyloyiha->id)->first();
+        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id','=',$ilmiyloyiha->id)->first();
+        return view('admin.ilmiyloyiha.show', ['ilmiyloyiha' => $ilmiyloyiha, 'intellektual' => $intellektual, 'loyihaiqtisodi' => $loyihaiqtisodi]);
     }
 
     /**
