@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MA'LUMOTNOMA</title>
+    <title>MA‘LUMOTNOMA</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -91,22 +91,22 @@
         <!-- First Page -->
             <div class="header">
                 <p style="font-weight: 500;font-size: 18px;">{{ $ilmiyloyiha->tashkilot->name }} da amalga
-                    oshirilayotgan "Innovasion texnologiyali radiologiyasi bo'yuk texnologiyalar fondlanmasi holda
-                    O'zbekistondagi ruxsatlanishi bo'yicha qo'llanilishi belga olish" mavzusidagi loyihaning bajarilishi
-                    holati bo'yicha <br>MA'LUMOTNOMA</p>
+                    oshirilayotgan "Innovasion texnologiyali radiologiyasi bo‘yuk texnologiyalar fondlanmasi holda
+                    O‘zbekistondagi ruxsatlanishi bo‘yicha qo‘llanilishi belga olish" mavzusidagi loyihaning bajarilishi
+                    holati bo‘yicha <br>MA‘LUMOTNOMA</p>
             </div>
 
             <table>
                 <thead>
                     <tr>
-                        <th>№</th>
-                        <th>MA'LUMOT NOMI</th>
-                        <th>BAJARILISHI BO'YICHA NATIJA KO'RSATKICHLARI</th>
+                        <th>T/r</th>
+                        <th>MA‘LUMOT NOMI</th>
+                        <th>BAJARILISHI BO‘YICHA NATIJA KO‘RSATKICHLARI</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td  class="section-header" colspan="3">I. LOYIHANING ASOSIY KO'RSATKICHLARI</td>
+                        <td  class="section-header" colspan="3">I. LOYIHANING ASOSIY KO‘RSATKICHLARI</td>
                     </tr>
                     <tr>
                         <td>1.1.</td>
@@ -190,7 +190,7 @@
 
                     <tr>
                         <td>2.3.</td>
-                        <td><b>Loyiha rahbari o'zgargan<b></td>
+                        <td><b>Loyiha rahbari o‘zgargan<b></td>
                         <td>Ha</td>
                     </tr>
                     <tr>
@@ -246,7 +246,7 @@
                         <td colspan="6" class="subsection-header">III.1. INTELLEKTUAL FAOLIYAT NATIJALARI</td>
                     </tr>
                     <tr>
-                        <th>№</th>
+                        <th>T/r</th>
                         <th>Ko‘rsatkichlar</th>
                         <th>Reja</th>
                         <th>Amalda</th>
@@ -357,8 +357,8 @@
                         <td colspan="6" class="subsection-header">III.2. IXTIRO UCHUN PATENT VA DASTURIY TAʼMINOTLAR </td>
                     </tr>
                     <tr>
-                        <th>№</th>
-                        <th>Ko'rsatkichlar</th>
+                        <th>T/r</th>
+                        <th>Ko‘rsatkichlar</th>
                         <th>Reja</th>
                         <th>Amalda</th>
                         <th>Farqi</th>
@@ -396,14 +396,14 @@
                         <td colspan="6" class="subsection-header">III.3. LOYIHANING MUHIM NATIJALARI</td>
                     </tr>
                     <tr>
-                        <th>№</th>
-                        <th>Ko'rsatkichlar</th>
+                        <th>T/r</th>
+                        <th>Ko‘rsatkichlar</th>
                         <th colspan="3">Bajarilishi holatining tahlili</th>
                         <td>Izoh</td>
                     </tr>
                     <tr>
                         <td>3.3.1.</td>
-                        <td><b> Hisobot davrida qo'lga kiritilgan muhim natijalar</b></td>
+                        <td><b> Hisobot davrida qo‘lga kiritilgan muhim natijalar</b></td>
                         <td colspan="3">Text</td>
                         <td></td>
 
@@ -438,11 +438,11 @@
                     <td colspan="6" class="subsection-header">(AJRATILGAN MABLAGʻLARNING MAQSADLI ISHLATILISHI)</td>
                 </tr>
                 <tr>
-                    <th>№</th>
-                    <th>Ko'rsatkichlar</th>
-                    <th>Reja, so'm</th>
-                    <th>Amalda, so'm</th>
-                    <th>Farqi, so'm</th>
+                    <th>T/r</th>
+                    <th>Ko‘rsatkichlar</th>
+                    <th>Reja, so‘m</th>
+                    <th>Amalda, so‘m</th>
+                    <th>Farqi, so‘m</th>
                     <th>Izoh</th>
                 </tr>
             </thead>
@@ -535,7 +535,7 @@
         </table>
 
         <h2 class="subtitle">Monitoring xulosasi: {{$ilmiyloyiha->tekshirivchilars->status }}</h2>
-        <p>Monitoring o'tkazilgan sana: {{ $ilmiyloyiha->updated_at }} y.</p>
+        <p>Monitoring o‘tkazilgan sana: {{ $ilmiyloyiha->updated_at }} y.</p>
         <p>Oʻrganish oʻtkazgan ishchi guruh:</p>
         <p>{{$ilmiyloyiha->tekshirivchilars->fish }}</p>
         <!--  QrCode  yozasiz -->

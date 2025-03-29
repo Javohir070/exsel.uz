@@ -321,16 +321,18 @@
                                 <tr>
                                     <td class="border">1.</td>
                                     <th class="border" style="width: 50%;">Koʻrsatkichlar</th>
-                                    <th class="border" colspan="4">Bajarilishi holatining tahlili</th>
+                                    <th class="border" colspan="3">Bajarilishi holatining tahlili</th>
+                                    <th class="border">Izoh</th>
                                 </tr>
                                 <tr>
                                     <td class="border">2.</td>
                                     <td class="border" style="text-size:14px;">
                                         Hisobot davrida qoʻlga kiritilgan muhim natijalar
                                     </td>
-                                    <td class="border" colspan="4">
+                                    <td class="border" colspan="3">
                                         {{ $loyihaiqtisodi->hisobot_davri ?? "yo'q" }}
                                     </td>
+                                    <td class="border">{{ $loyihaiqtisodi->hisobot_davri_i ?? "yo'q"}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">3.</td>
@@ -338,9 +340,10 @@
                                         Loyihaning bajarilishi davrida yaratilgan ishlanma (texnologiya) nomi va qisqacha
                                         tavsifi
                                     </td>
-                                    <td class="border" colspan="4">
+                                    <td class="border" colspan="3">
                                         {{ $loyihaiqtisodi->loyihabaj_ishlanma ?? "yo'q" }}
                                     </td>
+                                    <td class="border">{{ $loyihaiqtisodi->loyihabaj_ishlanma_i ?? "yo'q"}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">4.</td>
@@ -349,9 +352,10 @@
                                         kutilayotgan
                                         natijalar (mavjud ehtiyoj, iqtisodiy samaradorlik tahlili)
                                     </td>
-                                    <td class="border" colspan="4">
+                                    <td class="border" colspan="3">
                                         {{ $loyihaiqtisodi->ilmiy_ishlanmalar ?? "yo'q" }}
                                     </td>
+                                    <td class="border">{{ $loyihaiqtisodi->ilmiy_ishlanmalar_i ?? "yo'q"}}</td>
                                 </tr>
 
                                 <tr>
@@ -381,7 +385,7 @@
                                         {{ $loyihaiqtisodi->mehnat_haq_a ?? "yo'q" }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->mehnat_haq_r ?? 0) - ($loyihaiqtisodi->mehnat_haq_a ?? 0) }}</td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $loyihaiqtisodi->mehnat_haq_i ?? "yo'q"}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">3.</td>
@@ -395,7 +399,7 @@
                                         {{ $loyihaiqtisodi->xizmat_saf_a ?? "yo'q" }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->xizmat_saf_r ?? 0) - ($loyihaiqtisodi->xizmat_saf_a ?? 0) }}</td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $loyihaiqtisodi->xizmat_saf_i ?? "yo'q"}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">4.</td>
@@ -410,7 +414,7 @@
                                         {{ $loyihaiqtisodi->xarid_xaraja_a ?? "yo'q" }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->xarid_xaraja_r ?? 0) - ($loyihaiqtisodi->xarid_xaraja_a ?? 0)}}</td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $loyihaiqtisodi->xarid_xaraja_i ?? "yo'q"}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">5.</td>
@@ -425,7 +429,7 @@
                                         {{ $loyihaiqtisodi->mat_butlovchi_a ?? "yo'q" }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->mat_butlovchi_r ?? 0) - ($loyihaiqtisodi->mat_butlovchi_a ?? 0)}}</td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $loyihaiqtisodi->mat_butlovchi_i ?? "yo'q"}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">6.</td>
@@ -441,7 +445,7 @@
                                         {{ $loyihaiqtisodi->jalb_etilgan_a ?? "yo'q" }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->jalb_etilgan_r ?? 0) - ($loyihaiqtisodi->jalb_etilgan_a ?? 0) }}</td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $loyihaiqtisodi->jalb_etilgan_i ?? "yo'q"}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">7.</td>
@@ -455,7 +459,7 @@
                                         {{ $loyihaiqtisodi->boshqa_xarajat_a ?? "yo'q" }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->boshqa_xarajat_r ?? 0) - ($loyihaiqtisodi->boshqa_xarajat_a ?? 0) }}</td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $loyihaiqtisodi->boshqa_xarajat_i ?? "yo'q"}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">8.</td>
@@ -471,7 +475,7 @@
                                         {{ $loyihaiqtisodi->tashustama_xarajat_a ?? "yo'q" }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->tashustama_xarajat_r ?? 0) - ($loyihaiqtisodi->tashustama_xarajat_a ?? 0) }}</td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $loyihaiqtisodi->tashustama_xarajat_i ?? "yo'q"}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">9.</td>
@@ -482,7 +486,7 @@
                                     <td class="border" colspan="3">
                                         {{ $loyihaiqtisodi->xarid_qilingan_xarid ?? "yo'q" }}
                                     </td>
-                                    <td class="border" rowspan="4" ></td>
+                                    <td  rowspan="4" class="border">{{ $loyihaiqtisodi->xarid_qilingan_i ?? "yo'q"}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">10.</td>

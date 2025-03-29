@@ -170,8 +170,8 @@
     <div class="container">
         <div class="content">
             <h1 class="title">INNOVATSION RIVOJLANISH AGENTLIGI</h1>
-            <h2 class="subtitle">Zamonaviy ilmiy va yuqori texnologiyaga asoslangan asbob-uskunalar xaridi bo'yicha
-                o'tkazilgan texnik expertiza</h2>
+            <h2 class="subtitle">Zamonaviy ilmiy va yuqori texnologiyaga asoslangan asbob-uskunalar xaridi bo‘yicha
+                o‘tkazilgan texnik expertiza</h2>
             <h3 class="heading">XULOSASI</h3>
 
             <div class="form-group">
@@ -180,7 +180,7 @@
                     <span class="form-input">{{ $asbobuskuna->tashkilot->name }}</span>
                 </div>
                 <div class="form-row">
-                    <span class="form-label title">Foydalanishga mas'ul tarkibiy bo'linma (laboratoriya, kafedra, sho‘ba) nomi:</span>
+                    <span class="form-label title">Foydalanishga mas‘ul tarkibiy bo‘linma (laboratoriya, kafedra, sho‘ba) nomi:</span>
                     <span class="form-input"></span>
                 </div>
                 <div class="form-row">
@@ -209,7 +209,7 @@
                     <tr>
                         <td>1.</td>
                         <td>
-                            Laboratoriya uskunalarini o'rnatilgan ilmiy bo'linma faoliyatiga mosligi
+                            Laboratoriya uskunalarini o‘rnatilgan ilmiy bo‘linma faoliyatiga mosligi
                             <div class="italic">(Agar ijobiy status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
                         <td>{{  $tekshirivchilar->lab_uskunalarini_mosligi ?? null }}</td>
@@ -225,7 +225,7 @@
                     <tr>
                         <td>3.</td>
                         <td>
-                            Ilmiy-tadqiqot dasturlaridagi ish hajmi bilan bog'liqligi
+                            Ilmiy-tadqiqot dasturlaridagi ish hajmi bilan bog‘liqligi
                             <div class="italic">(Agar ijobiy status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
                         <td>{{  $tekshirivchilar->ilmiy_tadqiqot_hajmi ?? null }}</td>
@@ -241,7 +241,7 @@
                     <tr>
                         <td>5.</td>
                         <td>
-                            Foydalanish uchun arizalarning ro'yxatga olinishi va foydalanish jadvalining yuritilishi
+                            Foydalanish uchun arizalarning ro‘yxatga olinishi va foydalanish jadvalining yuritilishi
                             holatiga baho berish
                             <div class="italic">(Agar ijobiy status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
@@ -250,8 +250,8 @@
                     <tr>
                         <td>6.</td>
                         <td>
-                            Ilmiy tadqiqot va oliy ta'lim muassasalari laboratoriyalarining qo'shimcha asbob-uskunalar
-                            bo'yicha ehtiyoji
+                            Ilmiy tadqiqot va oliy ta‘lim muassasalari laboratoriyalarining qo‘shimcha asbob-uskunalar
+                            bo‘yicha ehtiyoji
                             <div class="italic">(Agar mavjud status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
                         <td>{{  $tekshirivchilar->asbob_usk_ehtiyoji ?? null }}</td>
@@ -259,7 +259,7 @@
                     <tr>
                         <td>7.</td>
                         <td>
-                            Zarur sarflash materiallari va butlovchi qismlar bo'yicha ehtiyojar mavjudligi
+                            Zarur sarflash materiallari va butlovchi qismlar bo‘yicha ehtiyojar mavjudligi
                             <div class="italic">(Agar mavjud status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
                         <td>{{  $tekshirivchilar->zarur_ehtiyoji ?? null }}</td>

@@ -173,7 +173,7 @@
     <div class="container">
         <div class="content">
             <h1 class="title">INNOVATSION RIVOJLANISH AGENTLIGI</h1>
-            <h2 class="subtitle">Yosh olimlarni qisqa muddatli ilmiy stajirovkasi natijalari bo'yicha o'tkazilgan
+            <h2 class="subtitle">Yosh olimlarni qisqa muddatli ilmiy stajirovkasi natijalari bo‘yicha o‘tkazilgan
                 texnik ekspertiza</h2>
             <h3 class="heading">XULOSASI</h3>
 
@@ -212,7 +212,7 @@
                     <tr>
                         <td>2</td>
                         <td>
-                            Stajirovka davrida egallangan bilim va ko'nikmalarni amalga oshirilishi uchun zarur
+                            Stajirovka davrida egallangan bilim va ko‘nikmalarni amalga oshirilishi uchun zarur
                             shart-sharoitlar yaratilganligi. (Asoslantiruvchi hujjatlar, rasm va videolar)
                             <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
@@ -221,7 +221,7 @@
                     <tr>
                         <td>3</td>
                         <td>
-                            Ilmiy-tadqiqot ishlari natijalari bo'yicha xorijiy ilmiy anjumanlarda ma'ruza bilan ishtirok
+                            Ilmiy-tadqiqot ishlari natijalari bo‘yicha xorijiy ilmiy anjumanlarda ma‘ruza bilan ishtirok
                             etganligi. (Asoslantiruvchi hujjatlar, rasm va videolar hamda havolalar)
                             <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
@@ -230,7 +230,7 @@
                     <tr>
                         <td>4</td>
                         <td>
-                            Xalqaro tan olingan ma'lumotlar bazasidagi yetakchi ilmiy jurnallarda nashr qilinganligi.
+                            Xalqaro tan olingan ma‘lumotlar bazasidagi yetakchi ilmiy jurnallarda nashr qilinganligi.
                             (Pdf)
                             <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
@@ -240,7 +240,7 @@
                         <td>5</td>
                         <td>
                             Kamida bir yil davomida Agentlik tomonidan tashkil etiladigan va boshqa tadbirlarda
-                            stajirovka davrida to'plangan tajribalar va olgan bilim va ko'nikmalari borasida o'z fikr va
+                            stajirovka davrida to‘plangan tajribalar va olgan bilim va ko‘nikmalari borasida o‘z fikr va
                             mulohazalarini bayon etilganligi tafsiloti. (Asoslantiruvchi hujjatlar, rasm va videolar
                             hamda havolalar)
                             <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
