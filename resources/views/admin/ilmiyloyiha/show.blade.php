@@ -68,6 +68,17 @@
                      LOYIHANING MUHIM NATIJALARI
                 </a>
 
+                <a data-toggle="tab" data-target="#add-expert" href="javascript:;"
+                    class="py-4 sm:mr-8 flex items-center">
+                    {{-- <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                        viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                        stroke-linejoin="round" class="feather feather-lock w-4 h-4 mr-2">
+                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                        <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                    </svg> --}}
+                    EKSPERT XULOSASI
+                </a>
+
             </div>
         </div>
 
@@ -107,7 +118,7 @@
                                                 {{ $intellektual->mal_jur_amalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->mal_jur_reja ?? 0) - ($intellektual->mal_jur_amalda ?? 0)}}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->mal_jur_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">2.</td>
@@ -121,7 +132,7 @@
                                                 {{ $intellektual->xor_jur_amalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->xor_jur_reja ?? 0) - ($intellektual->xor_jur_amalda ?? 0)}}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->xor_jur_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">3.</td>
@@ -135,7 +146,7 @@
                                                 {{ $intellektual->web_jur_amalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->web_jur_reja ?? 0) - ($intellektual->web_jur_amalda ?? 0)}}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->web_jur_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">4.</td>
@@ -149,7 +160,7 @@
                                                 {{ $intellektual->tezislar_amalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->tezislar_reja ?? 0) - ($intellektual->tezislar_amalda ?? 0)}}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->tezislar_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">5.</td>
@@ -163,7 +174,7 @@
                                                 {{ $intellektual->ilmiy_mon_amalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->ilmiy_mon_reja ?? 0) - ($intellektual->ilmiy_mon_amalda ?? 0) }}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->ilmiy_mon_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">6.</td>
@@ -177,7 +188,7 @@
                                                 {{ $intellektual->nashr_uquv_amalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->nashr_uquv_reja ?? 0) - ($intellektual->nashr_uquv_amalda ?? 0) }}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->nashr_uquv_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">7.</td>
@@ -191,7 +202,7 @@
                                                 {{ $intellektual->darslik_amalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->darslik_reja ?? 0) - ($intellektual->darslik_amalda ?? 0) }}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->darslik_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">8.</td>
@@ -205,7 +216,7 @@
                                                 {{ $intellektual->b_bitiruv_mamalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->b_bitiruv_mreja ?? 0) - ($intellektual->b_bitiruv_mamalda ?? 0) }}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->b_bitiruv_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">9.</td>
@@ -219,7 +230,7 @@
                                                 {{ $intellektual->m_bitiruv_damalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->m_bitiruv_dreja ?? 0) - ($intellektual->m_bitiruv_damalda ?? 0) }}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->m_bitiruv_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">10.</td>
@@ -233,7 +244,7 @@
                                                 {{ $intellektual->p_bitiruv_damalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->p_bitiruv_dreja ?? 0) - ($intellektual->p_bitiruv_damalda ?? 0) }}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->p_bitiruv_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">11.</td>
@@ -247,7 +258,7 @@
                                                 {{ $intellektual->i_mulk_aamalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->i_mulk_areja ?? 0) - ($intellektual->i_mulk_aamalda ?? 0) }}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->i_mulk_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <th class="border" style="text-align: center;" colspan="6">IXTIRO UCHUN PATENT
@@ -273,7 +284,7 @@
                                                 {{ $intellektual->ixtiro_olingan_psamalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->ixtiro_olingan_psreja ?? 0) - ($intellektual->ixtiro_olingan_psamalda ?? 0)}}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->ixtiro_olingan_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">2.</td>
@@ -287,7 +298,7 @@
                                                 {{ $intellektual->ixtiro_ber_psamalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->ixtiro_ber_psreja ?? 0) - ($intellektual->ixtiro_ber_psamalda ?? 0)}}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->ixtiro_ber_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
                                             <td class="border">3.</td>
@@ -301,7 +312,7 @@
                                                 {{ $intellektual->dasturiy_gsamalda ?? 0 }}
                                             </td>
                                             <td class="border">{{ ($intellektual->dasturiy_gsreja ?? 0) - ($intellektual->dasturiy_gsamalda ?? 0)}}</td>
-                                            <td class="border"></td>
+                                            <td class="border">{{ $intellektual->dasturiy_izoh ?? null }}</td>
                                         </tr>
                                     </table>
                                 </div>
@@ -330,9 +341,9 @@
                                         Hisobot davrida qoʻlga kiritilgan muhim natijalar
                                     </td>
                                     <td class="border" colspan="3">
-                                        {{ $loyihaiqtisodi->hisobot_davri ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->hisobot_davri ?? null }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->hisobot_davri_i ?? "yo'q"}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->hisobot_davri_i ?? null}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">3.</td>
@@ -341,9 +352,9 @@
                                         tavsifi
                                     </td>
                                     <td class="border" colspan="3">
-                                        {{ $loyihaiqtisodi->loyihabaj_ishlanma ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->loyihabaj_ishlanma ?? null }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->loyihabaj_ishlanma_i ?? "yo'q"}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->loyihabaj_ishlanma_i ?? null}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">4.</td>
@@ -353,9 +364,9 @@
                                         natijalar (mavjud ehtiyoj, iqtisodiy samaradorlik tahlili)
                                     </td>
                                     <td class="border" colspan="3">
-                                        {{ $loyihaiqtisodi->ilmiy_ishlanmalar ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->ilmiy_ishlanmalar ?? null }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->ilmiy_ishlanmalar_i ?? "yo'q"}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->ilmiy_ishlanmalar_i ?? null}}</td>
                                 </tr>
 
                                 <tr>
@@ -379,13 +390,13 @@
                                         Mehnatga haq toʻlash (5.1.-shakl)
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->mehnat_haq_r ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->mehnat_haq_r ?? null }}
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->mehnat_haq_a ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->mehnat_haq_a ?? null }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->mehnat_haq_r ?? 0) - ($loyihaiqtisodi->mehnat_haq_a ?? 0) }}</td>
-                                    <td class="border">{{ $loyihaiqtisodi->mehnat_haq_i ?? "yo'q"}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->mehnat_haq_i ?? null}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">3.</td>
@@ -393,13 +404,13 @@
                                         Xizmat safarlari xarajatlari (5.2.-shakl)
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->xizmat_saf_r ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->xizmat_saf_r ?? null }}
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->xizmat_saf_a ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->xizmat_saf_a ?? null }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->xizmat_saf_r ?? 0) - ($loyihaiqtisodi->xizmat_saf_a ?? 0) }}</td>
-                                    <td class="border">{{ $loyihaiqtisodi->xizmat_saf_i ?? "yo'q"}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->xizmat_saf_i ?? null}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">4.</td>
@@ -408,13 +419,13 @@
                                         tovar-moddiy boyliklarning xaridi uchun xarajatlar (5.4.-shakl)
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->xarid_xaraja_r ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->xarid_xaraja_r ?? null }}
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->xarid_xaraja_a ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->xarid_xaraja_a ?? null }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->xarid_xaraja_r ?? 0) - ($loyihaiqtisodi->xarid_xaraja_a ?? 0)}}</td>
-                                    <td class="border">{{ $loyihaiqtisodi->xarid_xaraja_i ?? "yo'q"}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->xarid_xaraja_i ?? null}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">5.</td>
@@ -423,13 +434,13 @@
                                         (5.5.-shakl)
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->mat_butlovchi_r ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->mat_butlovchi_r ?? null }}
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->mat_butlovchi_a ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->mat_butlovchi_a ?? null }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->mat_butlovchi_r ?? 0) - ($loyihaiqtisodi->mat_butlovchi_a ?? 0)}}</td>
-                                    <td class="border">{{ $loyihaiqtisodi->mat_butlovchi_i ?? "yo'q"}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->mat_butlovchi_i ?? null}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">6.</td>
@@ -439,13 +450,13 @@
                                         toʻlov (5.6.-shakl)
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->jalb_etilgan_r ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->jalb_etilgan_r ?? null }}
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->jalb_etilgan_a ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->jalb_etilgan_a ?? null }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->jalb_etilgan_r ?? 0) - ($loyihaiqtisodi->jalb_etilgan_a ?? 0) }}</td>
-                                    <td class="border">{{ $loyihaiqtisodi->jalb_etilgan_i ?? "yo'q"}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->jalb_etilgan_i ?? null}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">7.</td>
@@ -453,13 +464,13 @@
                                         Loyihani amalga oshirish uchun boshqa xarajatlar (5.7.-shakl)
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->boshqa_xarajat_r ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->boshqa_xarajat_r ?? null }}
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->boshqa_xarajat_a ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->boshqa_xarajat_a ?? null }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->boshqa_xarajat_r ?? 0) - ($loyihaiqtisodi->boshqa_xarajat_a ?? 0) }}</td>
-                                    <td class="border">{{ $loyihaiqtisodi->boshqa_xarajat_i ?? "yo'q"}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->boshqa_xarajat_i ?? null}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">8.</td>
@@ -469,13 +480,13 @@
                                         bazaviy moliyalashtiriladigan ilmiy tashkilotlar tomonidan rejalashtirilmaydi)
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->tashustama_xarajat_r ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->tashustama_xarajat_r ?? null }}
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->tashustama_xarajat_a ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->tashustama_xarajat_a ?? null }}
                                     </td>
                                     <td class="border">{{ ($loyihaiqtisodi->tashustama_xarajat_r ?? 0) - ($loyihaiqtisodi->tashustama_xarajat_a ?? 0) }}</td>
-                                    <td class="border">{{ $loyihaiqtisodi->tashustama_xarajat_i ?? "yo'q"}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->tashustama_xarajat_i ?? null}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">9.</td>
@@ -484,9 +495,9 @@
                                         mavjudligi, dalolatnomasining rasmiylashtirilganligi
                                     </td>
                                     <td class="border" colspan="3">
-                                        {{ $loyihaiqtisodi->xarid_qilingan_xarid ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->xarid_qilingan_xarid ?? null }}
                                     </td>
-                                    <td  rowspan="4" class="border">{{ $loyihaiqtisodi->xarid_qilingan_i ?? "yo'q"}}</td>
+                                    <td  rowspan="4" class="border">{{ $loyihaiqtisodi->xarid_qilingan_i ?? null}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">10.</td>
@@ -494,10 +505,10 @@
                                         Xarid shartnomasining raqami va sanasi
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->xarid_s ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->xarid_s ?? null }}
                                     </td>
                                     <td class="border" colspan="2">
-                                        {{ $loyihaiqtisodi->xarid_r ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->xarid_r ?? null }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -506,7 +517,7 @@
                                         Sotuvchi kompaniyaning nomi
                                     </td>
                                     <td class="border" colspan="3">
-                                        {{ $loyihaiqtisodi->xarid_sh ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->xarid_sh ?? null }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -515,7 +526,7 @@
                                         Yetkazib beruvchi yuridik shaxsning nomi
                                     </td>
                                     <td class="border" colspan="3">
-                                        {{ $loyihaiqtisodi->yetkb_yuridik_nomi ?? "yo'q" }}
+                                        {{ $loyihaiqtisodi->yetkb_yuridik_nomi ?? null }}
                                     </td>
                                 </tr>
                             </table>
@@ -549,7 +560,7 @@
                                 <tr>
                                     <td class="border">4.</td>
                                     <td class="border">Shartnoma raqami va sanasi</td>
-                                    <td class="border">0</td>
+                                    <td class="border">{{ $ilmiyloyiha->raqami }},  {{ $ilmiyloyiha->sanasi }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">5.</td>
@@ -587,7 +598,7 @@
                                 </tr>
                                 <tr>
                                     <td class="border">11.</td>
-                                    <td class="border"><b> Loyihaning amaldagi rahbarining familiyasi, ismi, sharifi</b></td>
+                                    <td class="border"> Loyihaning amaldagi rahbarining familiyasi, ismi, sharifi</td>
                                     <td class="border">{{ $ilmiyloyiha->rahbar_name }}</td>
                                 </tr>
                                 <tr>
@@ -613,7 +624,7 @@
 
                                 <tr>
                                     <td class="border">16.</td>
-                                    <td class="border"><b>Loyiha rahbari o'zgargan<b></td>
+                                    <td class="border">Loyiha rahbari o'zgargan<b></td>
                                     <td class="border">Ha</td>
                                 </tr>
                                 <tr>
@@ -661,61 +672,100 @@
                     </div>
                 </div>
 
-            </div>
+                <div class="tab-content__pane active" id="add-expert">
 
-        </div>
-    </div>
+                    <div class="p-5">
+                        @forelse ($tekshirivchilar as $t)
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <th class="border" style="width: 40px;">T/r</th>
+                                    <th  colspan="2" class="border" style="text-align: center;">EKSPERT XULOSASI</th>
+                                </tr>
+                                <tr>
+                                    <td class="border">1.</td>
+                                    <td class="border">>Monitoring xulosasi</td>
+                                    <td class="border">{{  $tekshirivchilar->status }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="border">2.</td>
+                                    <td class="border">Izoh</td>
+                                    <td class="border">{{ $tekshirivchilar->comment }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="border">3.</td>
+                                    <td class="border">Ekspert F.I.Sh</td>
+                                    <td class="border">{{ $tekshirivchilar->fish }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="border">4.</td>
+                                    <td class="border">Monitoring o‘tkazilgan sana</td>
+                                    <td class="border">{{ $tekshirivchilar->updated_at }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @empty
+                            @role('Ekspert')
+                            <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
+                                style="background: white; padding: 20px 20px; border-radius: 20px">
+                                <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                                    <form id="science-paper-create-form" method="POST" action="{{ route('tekshirivchilar.store') }}"
+                                        class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                                        @csrf
+                                        <div class="grid grid-cols-12 gap-2">
+                                            <input type="hidden" name="ilmiyloyiha_id" value="{{ $ilmiyloyiha->id }}">
 
-    @role('Ekspert')
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-        style="background: white; padding: 20px 20px; border-radius: 20px">
-        <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <form id="science-paper-create-form" method="POST" action="{{ route('tekshirivchilar.store') }}"
-                class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
-                @csrf
-                <div class="grid grid-cols-12 gap-2">
-                    <input type="hidden" name="ilmiyloyiha_id" value="{{ $ilmiyloyiha->id }}">
+                                            <div class="w-full col-span-6">
+                                                <label class="flex flex-col sm:flex-row"> <span
+                                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
+                                                </label>
+                                                <select name="status" id="science-sub-category" class="input border w-full mt-2" required="">
 
-                    <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
-                        </label>
-                        <select name="status" id="science-sub-category" class="input border w-full mt-2" required="">
+                                                    <option value=""></option>
 
-                            <option value=""></option>
+                                                    <option value="Qoniqarli">Qoniqarli</option>
 
-                            <option value="Qoniqarli">Qoniqarli</option>
-
-                            <option value="Qoniqarsiz">Qoniqarsiz</option>
+                                                    <option value="Qoniqarsiz">Qoniqarsiz</option>
 
 
-                        </select><br>
+                                                </select><br>
 
-                        @error('muddat')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
+                                                @error('muddat')
+                                                    <div class="error">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+
+                                            <div class="w-full col-span-6 ">
+                                                <label class="flex flex-col sm:flex-row"> <span
+                                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
+                                                <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                                            </div>
+                                        </div>
+
+                                    </form><br>
+                                    <div class="px-5 pb-5 text-center">
+                                        <a href="{{ route('ilmiyloyiha.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                                            Bekor qilish
+                                        </a>
+                                        <button type="submit" form="science-paper-create-form"
+                                            class="update-confirm button w-24 bg-theme-1 text-white">
+                                            Tasdiqlash
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            @endrole
+                        @endforelse
                     </div>
 
-                    <div class="w-full col-span-6 ">
-                        <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
-                        <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
-                    </div>
                 </div>
 
-            </form><br>
-            <div class="px-5 pb-5 text-center">
-                <a href="{{ route('ilmiyloyiha.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                    Bekor qilish
-                </a>
-                <button type="submit" form="science-paper-create-form"
-                    class="update-confirm button w-24 bg-theme-1 text-white">
-                    Tasdiqlash
-                </button>
             </div>
+
         </div>
     </div>
-    @endrole
+
+
 
     </div>
 @endsection

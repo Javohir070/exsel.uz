@@ -102,9 +102,13 @@ class IlmiyLoyihaController extends Controller
      */
     public function show(IlmiyLoyiha $ilmiyloyiha)
     {
-        $intellektual = Intellektual::where('ilmiy_loyiha_id','=',$ilmiyloyiha->id)->first();
-        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id','=',$ilmiyloyiha->id)->first();
-        return view('admin.ilmiyloyiha.show', ['ilmiyloyiha' => $ilmiyloyiha, 'intellektual' => $intellektual, 'loyihaiqtisodi' => $loyihaiqtisodi]);
+        $intellektual = Intellektual::where('ilmiy_loyiha_id','=',885)->first();
+        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id','=',885)->first();
+        $tekshirivchilar =  Tekshirivchilar::where('ilmiy_loyiha_id', 885)
+                                            ->orderBy('id', 'desc') // Eng oxirgi yozuvni olish uchun
+                                            ->take(1) // Faqat 1 ta yozuv olish
+                                            ->get();
+        return view('admin.ilmiyloyiha.show', ['ilmiyloyiha' => $ilmiyloyiha, 'intellektual' => $intellektual, 'loyihaiqtisodi' => $loyihaiqtisodi, 'tekshirivchilar' => $tekshirivchilar]);
     }
 
     /**
