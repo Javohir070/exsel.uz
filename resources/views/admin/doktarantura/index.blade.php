@@ -50,7 +50,8 @@
                         <tr>
                             <th class="whitespace-no-wrap" style="width: 40px;">№</th>
                             <th class="whitespace-no-wrap">Tashkilot Nomi</th>
-                            <th class="whitespace-no-wrap">Turi</th>
+                            <th class="whitespace-no-wrap">Tashkilot STIR raqami</th>
+                            <th class="whitespace-no-wrap">Tashkilot turi</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
@@ -62,6 +63,9 @@
                                 <td>
                                     <a href="{{ route('doktarantura.show', ['doktarantura' => $tashkilots->id]) }}"
                                         class="font-medium">{{ $tashkilots->name }}</a>
+                                </td>
+                                <td style="text-align: center;">
+                                    {{ $tashkilots->stir_raqami  }}
                                 </td>
                                 <td>
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
