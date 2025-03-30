@@ -4,19 +4,14 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10">
 
-            <h2 class="intro-y text-lg font-medium">Izlanuvchilar</h2>
-
-            <a href="{{ url('generate-pdfdoktarantura/' . $tashkilot->id) }}"
-                class="button delete-cancel w-32 border text-gray-700 mr-1">
-                pdf genertsiya
-            </a>
+            <h2 class="intro-y text-lg font-medium">Ilmiy izlanuvchilar</h2>
 
         </div>
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
 
-        <div class="grid grid-cols-12 gap-6 mt-5">
+        {{-- <div class="grid grid-cols-12 gap-6 mt-5">
 
             <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                 <a href="#">
@@ -101,7 +96,7 @@
                     </div>
                 </a>
             </div>
-        </div>
+        </div> --}}
 
 
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-10"
@@ -114,7 +109,7 @@
                     <div class="grid grid-cols-12 gap-2">
 
 
-                        <div class="w-full col-span-6">
+                       {{-- <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Yagona elektron tizimdagi
                                 izlanuvchilar sonining tashkilot buyruqlari bilan mutanosibligi. Son qiymati izohda
@@ -132,7 +127,7 @@
                             @error('muddat')
                                 <div class="error">{{ $message }}</div>
                             @enderror
-                        </div>
+                         </div>
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
@@ -265,7 +260,7 @@
                             @error('hujjatlar_kiritish_holati')
                                 <div class="error">{{ $message }}</div>
                             @enderror
-                        </div>
+                        </div> --}}
 
 
                         <div class="w-full col-span-6">
@@ -301,7 +296,7 @@
                     </a>
                     <button type="submit" form="science-paper-create-form"
                         class="update-confirm button w-24 bg-theme-1 text-white">
-                        Qo'shish
+                        Tasdiqlash
                     </button>
                 </div>
             </div>

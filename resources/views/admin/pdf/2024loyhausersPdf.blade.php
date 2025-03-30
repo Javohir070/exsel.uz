@@ -423,3 +423,167 @@
 </body>
 
 </html>
+{{-- <div class="col-span-7 mt-2 " style="background: white; border-radius: 10px;">
+                <div class="intro-y block sm:flex items-center py-4">
+                    <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
+                        Ilmiy izlanuvchilar
+                    </h2>
+                </div>
+                <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                    <table class="table">
+                        <thead style="background: #F4F8FC;">
+                            <tr>
+                                <th class="whitespace-no-wrap">Nomi</th>
+                                <th class="whitespace-no-wrap">1-kurs </th>
+                                <th class="whitespace-no-wrap">2-kurs </th>
+                                <th class="whitespace-no-wrap">3-kurs </th>
+                                <th class="whitespace-no-wrap">To'ldirmaganlari </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Dokrorantura(DSc)</td>
+                                <td>{{ $dc_type100['1'] ?? 0}} </td>
+                                <td>{{ $dc_type100['2'] ?? 0}} </td>
+                                <td>{{ $dc_type100['3'] ?? 0}} </td>
+                                <td>{{ $dc_type100['-1'] ?? 0 }} </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Tayanch doktorantura (PhD)</td>
+                                <td>{{ $dc_type200['1'] ?? 0}} </td>
+                                <td>{{ $dc_type200['2'] ?? 0}} </td>
+                                <td>{{ $dc_type200['3'] ?? 0}} </td>
+                                <td>{{ $dc_type200['-1'] ?? 0 }} </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Stajyor-tadqiqotchi </td>
+                                <td>{{ $dc_type300['1'] ?? 0}} </td>
+                                <td>{{ $dc_type300['2'] ?? 0}} </td>
+                                <td>{{ $dc_type300['3'] ?? 0}} </td>
+                                <td>{{ $dc_type300['-1'] ?? 0 }} </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Mustaqil izlanuvchi(DSc)</td>
+                                <td>{{ $dc_type400['1'] ?? 0}} </td>
+                                <td>{{ $dc_type400['2'] ?? 0}} </td>
+                                <td>{{ $dc_type400['3'] ?? 0}} </td>
+                                <td>{{ $dc_type400['-1'] ?? 0 }} </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Mustaqil izlanuvchi(PhD)</td>
+                                <td>{{ $dc_type500['1'] ?? 0}} </td>
+                                <td>{{ $dc_type500['2'] ?? 0}} </td>
+                                <td>{{ $dc_type500['3'] ?? 0}} </td>
+                                <td>{{ $dc_type500['-1'] ?? 0 }} </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Maqsadli doktorantura (DSc)</td>
+                                <td>{{ $dc_type600['1'] ?? 0}} </td>
+                                <td>{{ $dc_type600['2'] ?? 0}} </td>
+                                <td>{{ $dc_type600['3'] ?? 0}} </td>
+                                <td>{{ $dc_type600['-1'] ?? 0 }} </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Maqsadli tayanch doktorantura (PhD)</td>
+                                <td>{{ $dc_type700['1'] ?? 0}} </td>
+                                <td>{{ $dc_type700['2'] ?? 0}} </td>
+                                <td>{{ $dc_type700['3'] ?? 0}} </td>
+                                <td>{{ $dc_type700['-1'] ?? 0 }} </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Tashkilot o‘z hisobidan doktorantura (DSc)</td>
+                                <td>{{ $dc_type800['1'] ?? 0}} </td>
+                                <td>{{ $dc_type800['2'] ?? 0}} </td>
+                                <td>{{ $dc_type800['3'] ?? 0}} </td>
+                                <td>{{ $dc_type800['-1'] ?? 0 }} </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Tashkilot o‘z hisobidan tayanch doktorantura (PhD)</td>
+                                <td>{{ $dc_type900['1'] ?? 0}} </td>
+                                <td>{{ $dc_type900['2'] ?? 0}} </td>
+                                <td>{{ $dc_type900['3'] ?? 0}} </td>
+                                <td>{{ $dc_type900['-1'] ?? 0 }} </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Tashkilot o‘z hisobidan stajyor-tadqiqotchi </td>
+                                <td>{{ $dc_type1000['1'] ?? 0}} </td>
+                                <td>{{ $dc_type1000['2'] ?? 0}} </td>
+                                <td>{{ $dc_type1000['3'] ?? 0}} </td>
+                                <td>{{ $dc_type1000['-1'] ?? 0 }} </td>
+                            </tr>
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Doktorantura (xorijiy fuqoro)</td>
+                                <td>{{ $dc_type1100['1'] ?? 0}} </td>
+                                <td>{{ $dc_type1100['2'] ?? 0}} </td>
+                                <td>{{ $dc_type1100['3'] ?? 0}} </td>
+                                <td>{{ $dc_type1100['-1'] ?? 0 }} </td>
+                            </tr>
+
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Tayanch doktorantura (xorijiy fuqoro)</td>
+                                <td>{{ $dc_type1200['1'] ?? 0}} </td>
+                                <td>{{ $dc_type1200['2'] ?? 0}} </td>
+                                <td>{{ $dc_type1200['3'] ?? 0}} </td>
+                                <td>{{ $dc_type1200['-1'] ?? 0 }} </td>
+                            </tr>
+
+                            <tr style="border-bottom: 1px solid #E6E6E6;">
+                                <td style="color:#1881D3; font-weight: 400;">Stajyor-tadqiqotchi (xorijiy fuqoro)</td>
+                                <td>{{ $dc_type1300['1'] ?? 0}} </td>
+                                <td>{{ $dc_type1300['2'] ?? 0}} </td>
+                                <td>{{ $dc_type1300['3'] ?? 0}} </td>
+                                <td>{{ $dc_type1300['-1'] ?? 0 }} </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div> --}}
+            <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
+            style="background: white; padding: 20px 20px; border-radius: 20px">
+            <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                <form id="science-paper-create-form" method="POST" action="{{ route('tekshirivchilar.store') }}"
+                    class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                    @csrf
+                    <div class="grid grid-cols-12 gap-2">
+                        <input type="hidden" name="ilmiyloyiha_id" value="{{ $ilmiyloyiha->id }}">
+
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
+                            </label>
+                            <select name="status" id="science-sub-category" class="input border w-full mt-2" required="">
+
+                                <option value=""></option>
+
+                                <option value="Qoniqarli">Qoniqarli</option>
+
+                                <option value="Qoniqarsiz">Qoniqarsiz</option>
+
+
+                            </select><br>
+
+                            @error('muddat')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6 ">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
+                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                        </div>
+                    </div>
+
+                </form><br>
+                <div class="px-5 pb-5 text-center">
+                    <a href="{{ route('ilmiyloyiha.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                        Bekor qilish
+                    </a>
+                    <button type="submit" form="science-paper-create-form"
+                        class="update-confirm button w-24 bg-theme-1 text-white">
+                        Tasdiqlash
+                    </button>
+                </div>
+            </div>
+        </div>

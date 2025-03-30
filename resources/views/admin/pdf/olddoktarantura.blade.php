@@ -173,141 +173,88 @@
                 izlanuvchilari faoliyati samaradorligining monitoringi bo‘yicha
             </h1>
 
-            <h3 class="heading">NATIJALARI</h3>
+            <h3 class="heading">XULOSASI</h3>
 
 
             <table class="table">
                 <thead>
                     <tr>
                         <th>T/r</th>
-                        <th class="title">Ko‘rsatkichlar</th>
-                        <th class="title">Miqdori</th>
+                        <th class="title">Mezon va talablar</th>
+                        <th class="title">Xulosa</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>1.</td>
                         <td>
-                            Tashkilot buyrug‘i asosida qabul qilingan umumiy izlanuvchilar soni.
+                            Yagona elektron tizimdagi izlanuvchilar sonining tashkilot buyruqlari bilan mutanosibligi. Son qiymati izohda keltiriladi.
                         </td>
-                        <td>0</td>
+                        <td>{{  $tekshirivchilar->tash_buyruq_mutanosi ?? null }}</td>
                     </tr>
-                    <tr class="bg-gray-200">
+                    <tr>
                         <td>2.</td>
                         <td>
-                            Yagona elektron tizimdagi tahsil olayotgan izlanuvchilar soni.
+                            Izlanuvchilarning yakka tartibdagi ish rejasini tasdiqlanganlik holati. Kamchiliklar izohda keltiriladi.
                         </td>
-                        <td>0</td>
+                        <td>{{  $tekshirivchilar->ish_rejasi ?? null }}</td>
                     </tr>
                     <tr>
                         <td>3.</td>
                         <td>
-                            Chetlashtirilgan izlanuvchilar soni.
+                            Izlanuvchilarning ta’lim bosqichi bo‘yicha belgilangan me’zonlarni bajarganligi. Kurslar kesimida ko‘rib chiqilib, kamchiliklar izohda keltiriladi.
                         </td>
-                        <td>0</td>
+                        <td>{{  $tekshirivchilar->kurs_kesimi ?? null }}</td>
                     </tr>
-                    <tr class="bg-gray-200">
+                    <tr>
                         <td>4.</td>
                         <td>
-                            Akademik ta’tildagi izlanuvchilar soni.
+                            O‘z muddatida va muddatidan oldin himoya qilgan izlanuvchilar miqdori (oxirgi uch yilda), bitiruvchilar soniga nisbatan. Son qiymati izohda keltiriladi.
                         </td>
-                        <td>0</td>
+                        <td>{{  $tekshirivchilar->mud_oldin ?? null }}</td>
                     </tr>
                     <tr>
                         <td>5.</td>
                         <td>
-                            Muddatidan oldin himoya qilgan izlanuvchilar soni.
+                            Ilmiy rahbarga izlanuvchilar biriktirilganlik holati. Me’yordan ortiq izlanuvchi biriktirilgan ilmiy rahbar son qiymati izohda keltiriladi.
                         </td>
-                        <td>0</td>
+                        <td>{{  $tekshirivchilar->ilmiy_rah_birikisoni ?? null }}</td>
                     </tr>
-                    <tr class="bg-gray-200">
+                    <tr>
                         <td>6.</td>
                         <td>
-                            Yagona elektron tizimga kiritilmagan izlanuvchilar soni.
+                            Yagona elektron tizimga 2 va 3 bosqich izlanuvchilarning monitoring hujjatlarini kiritish holati.
                         </td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>7.</td>
-                        <td>
-                            Yakka tartibdagi rejani bajarmagan izlanuvchilar soni .
-                        </td>
-                        <td>0</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td>8.</td>
-                        <td>
-                            Monitoring natijasi kiritilmagan izlanuvchilar soni .
-                        </td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>9.</td>
-                        <td>
-                            Tashkilot izlanuvchilari biriktirilgan ilmiy rahbarlar soni .
-                        </td>
-                        <td>0</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td>10.</td>
-                        <td>
-                            Qo‘shimcha izlanuvchi biriktirish bo‘yicha kollegial organ qarori mavjud bo'lmagan ilmiy rahbarlar soni .
-                        </td>
-                        <td>0</td>
-                    </tr>
-                    <tr>
-                        <td>11.</td>
-                        <td>
-                            Me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni .
-                        </td>
-                        <td>0</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td>12.</td>
-                        <td>
-                            Tashkilot miqyosida me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni .
-                        </td>
-                        <td>0</td>
+                        <td>{{  $tekshirivchilar->hujjatlar_kiritish_holati ?? null }}</td>
                     </tr>
 
+                    <tr>
+                        <td class="text-center title" colspan="2">Ekspert xulosasi </td>
+                        <td>{{  $tekshirivchilar->status ?? null }}</td>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <td class="text-center title" colspan="2">
+                            Izoh
+                        </td>
+                        <td>{{  $tekshirivchilar->comment ?? null }}</td>
+                    </tr>
                 </tbody>
             </table>
 
-            <table class="table" style="margin-top: 20px">
-                <tr class="bg-gray-200">
-                    <td class="text-center title" colspan="2">
-                        Izoh
-                    </td>
-                    <td>{{  $tekshirivchilar->comment ?? null }}</td>
-                </tr>
-                <tr class="bg-gray-200">
-                    <td class="text-center title" colspan="2">
-                        Komissiya a'zolari
-                    </td>
-                    <td>{{  $tekshirivchilar->fish ?? null }} </td>
-                </tr>
-            </table>
-
-            <table class="table" style="margin-top: 20px;border:none;">
-                <tr>
-                    <td colspan="2" style="text-align: left;border:none;">
-                        Tashkilotning mas'ul rahbari
-                    </td>
-                    <td style="font-size: 8px;margin-top: 20px;padding-top:20px;border:none;text-align: left;">
-                        F.I.SH
-                    </td>
-                    <td style="font-size: 8px;margin-top: 20px;padding-top:20px;border:none;text-align: right;">
-                        imzo
-                    </td>
-                    <td style="font-size: 8px;margin-top: 20px;padding-top:20px;border:none;text-align: center;">
-                        sana
-                    </td>
-                </tr>
-            </table>
+            {{-- <div class="conclusion-section">
+                <div class="conclusion-row">
+                    <div class="conclusion-label">Ekspert xulosasi</div>
+                    <div class="conclusion-content">{{  $tekshirivchilar->status ?? null }}</div>
+                </div>
+                <div class="conclusion-row">
+                    <div class="conclusion-label">Izoh</div>
+                    <div class="conclusion-content">{{  $tekshirivchilar->comment ?? null }}</div>
+                </div>
+            </div> --}}
 
             <div class="footer">
                 <div class="footer-info">
-                    {{-- <p>Ekspert F.I.Sh: {{  $tekshirivchilar->fish ?? null }} </p> --}}
+                    <p>Ekspert F.I.Sh: {{  $tekshirivchilar->fish ?? null }} </p>
                     <p>Sana: {{  $tekshirivchilar->created_at ?? null }}</p>
                 </div>
                 <div class="qr-code">
