@@ -27,7 +27,7 @@
                     <div
                         style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         {{-- <div style="font-size:18px;font-weight: 400;"> {{$stajirovka->fish}} xaqida ma’lumot</div> --}}
-                        @can("tashkilotrahbari delete edit")
+                        {{-- @can("tashkilotrahbari delete edit")
 
                             <div style="text-align: end;">
                                 <a href="{{ route('stajirovka.edit', ['stajirovka' => $stajirovka->id])}}"
@@ -38,7 +38,7 @@
                                     O'chirish
                                 </a>
                             </div>
-                        @endcan
+                        @endcan --}}
                     </div>
                     <tr>
                         <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>

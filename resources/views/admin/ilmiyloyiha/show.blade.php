@@ -5,10 +5,11 @@
         <div class="flex justify-between align-center mt-10">
 
             <h2 class="intro-y text-lg font-medium">{{ $ilmiyloyiha->tashkilot->name }} </h2>
-
+            @role('Ekspert')
             <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
                 Xulosani genertsiya qilish
             </a>
+            @endrole
             @role(['super-admin', 'Ekspert'])
             <a href="{{ route('ilmiyloyihalar.index') }}" class="button w-24 bg-theme-1 text-white">
                 Orqaga

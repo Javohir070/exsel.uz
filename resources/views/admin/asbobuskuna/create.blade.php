@@ -11,8 +11,8 @@
 
     </div><br>
     <div class="intro-y col-span-6 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
-                    padding: 20px 20px;
-                    border-radius: 20px">
+                        padding: 20px 20px;
+                        border-radius: 20px">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <form id="science-paper-create-form" method="POST" action="{{ route("asbobuskuna.store") }}"
                 class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
@@ -406,7 +406,7 @@
                             bo‘linma (laboratoriya,
                             kafedra, sho‘ba) nomi</label>
                         <select name="laboratory_id" id="laboratory_id" value="{{ old('laboratory_id') }}"
-                            class="input border w-full mt-2 " required="" required onchange="toggleLoyihaShifri()">
+                            class="input border w-full mt-2 " required="" required onchange="toggleLoyShifriLabaratoriya()">
                             <option value=""></option>
                             @foreach ($laboratorys as $l)
                                 <option value="{{ $l->id }}">{{ $l->name }}</option>
@@ -588,14 +588,7 @@
             }
         }
 
-        // Eski ma'lumotni tiklash (old input)
-        window.onload = function () {
-            toggleLoyihaShifri();
-        };
-    </script>
-
-    <script>
-        function toggleLoyShifri() {
+        function toggleLoyShifriLabaratoriya() {
             const moliyaSelect = document.getElementById('laboratory_id');
             const loyDiv = document.getElementById('kafedralar_id_div');
 
@@ -606,11 +599,13 @@
             }
         }
 
-        // Eski ma'lumotni tiklash (old input)
+        // Ikkala funksiyani bitta window.onload ichida chaqirish
         window.onload = function () {
-            toggleLoyShifri();
+            toggleLoyihaShifri();
+            toggleLoyShifriLabaratoriya();
         };
     </script>
+
 
     <script>
         function formatNumber(input) {
