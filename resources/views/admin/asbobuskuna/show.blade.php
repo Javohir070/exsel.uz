@@ -24,12 +24,11 @@
         <div class="overflow-x-auto" style="background-color: white;margin-top:20px;border-radius:8px;padding:10px 20px;">
             <table class="table">
                 <tbody>
-                    <div
-                        style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
+                    <div class="pt-4"
+                        style="display: flex;justify-content: end; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         {{-- <div style="font-size:18px;font-weight: 400;"> {{$asbobuskuna->name}} xaqida ma’lumot</div> --}}
                         @can("tashkilotrahbari delete edit")
-
-                            <div style="text-align: end;">
+                            <div style="text-align: center;">
                                 <a href="{{ route('asbobuskuna.edit', ['asbobuskuna' => $asbobuskuna->id])}}"
                                     class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                     Tahrirlash
