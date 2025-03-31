@@ -40,7 +40,7 @@ class HomeController extends Controller
     {
         $user = Auth::user();
         $tashRId = $user->tashkilot_id;
-
+        // dd($tashRId);
         // Barcha kerakli ma'lumotlarni bitta so'rovda olish
         $tashkilot = Tashkilot::with([
             'xodimlar',
@@ -48,7 +48,6 @@ class HomeController extends Controller
             'xujaliklar',
             'ilmiydarajalar'
         ])->find($tashRId);
-
         $tash_count = Tashkilot::count();
         $loy_count = IlmiyLoyiha::count();
         $xodim_count = Xodimlar::count();
