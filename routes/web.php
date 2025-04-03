@@ -195,7 +195,7 @@ Route::middleware('auth')->group(function () {
     Route::get('asbobus/{id}', [AsbobuskunaController::class, "asbobu"])->name("asbobu.index");
     Route::get('ilmiy/{id}', [IlmiyLoyihaController::class, "ilmiy_loyihalar"])->name("ilmiy_loyihalar.index");
     Route::get('stajiro/{id}', [StajirovkaController::class, "stajirov"])->name("stajirov.index");
-
+    Route::get('/export-asbobuskunalar', [AsbobuskunaController::class, 'export_asbobuskunalar'])->name('export.asbobuskunalar');
 
     Route::resources([
         'tashkilot' => TashkilotController::class,

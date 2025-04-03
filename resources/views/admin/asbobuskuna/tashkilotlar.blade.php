@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-6" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 404 }} ta  Asbob-uskunalar soni: {{ $asbobuskunas ?? 0 }} ta</h2>
+            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 404 }} ta   Asbob-uskunalar soni: {{ $asbobuskunas ?? 0 }} ta</h2>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
@@ -38,12 +38,16 @@
                 </form>
             </div>
 
-            <!-- <div>
-                <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
+            <div>
+                {{-- <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                     class="button w-24 ml-3 bg-theme-1 text-white">
                     Import
+                </a> --}}
+                <a href="{{ route('export.asbobuskunalar') }}"
+                    class="button w-24 ml-3 bg-theme-1 text-white">
+                    Export
                 </a>
-            </div> -->
+            </div>
 
         </div>
         <div class="grid grid-cols-12 gap-6 ">

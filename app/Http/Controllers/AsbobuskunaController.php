@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AsbobuskunaExport;
 use App\Imports\AsbobuskunaImport;
 use App\Models\Asbobuskuna;
 use App\Http\Requests\StoreAsbobuskunaRequest;
@@ -200,5 +201,10 @@ class AsbobuskunaController extends Controller
         Excel::import(new AsbobuskunaImport, $request->file('file'));
 
         return back()->with('status', 'Fayl muvaffaqiyatli yuklandi!');
+    }
+
+    public function export_asbobuskunalar()
+    {
+        return Excel::download(new AsbobuskunaExport, 'asbobuskunalar.xlsx');
     }
 }
