@@ -28,7 +28,7 @@ class LoyihaiqtisodiController extends Controller
         Loyihaiqtisodi::create([
             'tashkilot_id'=> auth()->user()->tashkilot_id,
             'user_id'=> auth()->user()->id,
-            'ilmiy_loyiha_id'=> 885,
+            'ilmiy_loyiha_id'=> $request->ilmiy_loyiha_id,
             'hisobot_davri'=> $request->hisobot_davri,
             'loyihabaj_ishlanma'=> $request->loyihabaj_ishlanma,
             'ilmiy_ishlanmalar'=> $request->ilmiy_ishlanmalar,
@@ -53,7 +53,7 @@ class LoyihaiqtisodiController extends Controller
             'yetkb_yuridik_nomi'=> $request->yetkb_yuridik_nomi,
         ]);
 
-        return redirect('/loyihaiqtisodi')->with('status','Loyiha qisodi yangilandi');
+        return redirect()->back()->with('status','Loyiha qisodi yangilandi');
     }
 
 
@@ -75,6 +75,7 @@ class LoyihaiqtisodiController extends Controller
             'hisobot_davri'=> $request->hisobot_davri,
             'loyihabaj_ishlanma'=> $request->loyihabaj_ishlanma,
             'ilmiy_ishlanmalar'=> $request->ilmiy_ishlanmalar,
+            
             'mehnat_haq_r'=> $request->mehnat_haq_r,
             'mehnat_haq_a'=> $request->mehnat_haq_a,
             'xizmat_saf_r'=> $request->xizmat_saf_r,
@@ -89,14 +90,15 @@ class LoyihaiqtisodiController extends Controller
             'boshqa_xarajat_a'=> $request->boshqa_xarajat_a,
             'tashustama_xarajat_r'=> $request->tashustama_xarajat_r,
             'tashustama_xarajat_a'=> $request->tashustama_xarajat_a,
+
             'xarid_qilingan_xarid'=> $request->xarid_qilingan_xarid,
-            'xarid_sh'=> $request->xarid_sh,
-            'xarid_r'=> $request->xarid_r,
-            'xarid_s'=> $request->xarid_s,
-            'yetkb_yuridik_nomi'=> $request->yetkb_yuridik_nomi,
+            'xarid_sh'=>$request->xarid_qilingan_xarid == "yo'q" ? null : $request->xarid_sh,
+            'xarid_r'=> $request->xarid_qilingan_xarid == "yo'q" ? null : $request->xarid_r,
+            'xarid_s'=> $request->xarid_qilingan_xarid == "yo'q" ? null : $request->xarid_s,
+            'yetkb_yuridik_nomi'=> $request->xarid_qilingan_xarid == "yo'q" ? null : $request->yetkb_yuridik_nomi,
         ]);
 
-        return redirect('/loyihaiqtisodi')->with('status','Loyiha qisodi yangilandi');
+        return redirect()->back()->with('status','Loyiha qisodi yangilandi');
     }
 
 

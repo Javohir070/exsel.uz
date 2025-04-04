@@ -53,10 +53,10 @@ class StoreLoyihaiqtisodiRequest extends FormRequest
         'tashustama_xarajat_a'=>'required|',
         'xarid_qilingan_xarid'=>'required|',
         'xarid_qilingan_i'=>'nullable|',
-        'xarid_sh'=>'required|',
-        'xarid_r'=>'required|',
-        'xarid_s'=>'required|',
-        'yetkb_yuridik_nomi'=>'required|',
+        'xarid_sh'=>'nullable|',
+        'xarid_r'=>'nullable|',
+        'xarid_s'=>'nullable|',
+        'yetkb_yuridik_nomi'=>'nullable|',
         ];
     }
 }

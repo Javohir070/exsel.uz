@@ -44,12 +44,13 @@ return new class extends Migration
             $table->string('tashustama_xarajat_r');
             $table->string('tashustama_xarajat_a');
             $table->text('tashustama_xarajat_i')->nullable();
+            
             $table->string('xarid_qilingan_xarid');
             $table->string('xarid_qilingan_i')->nullable();
-            $table->string('xarid_sh');
-            $table->string('xarid_r');
-            $table->string('xarid_s');
-            $table->string('yetkb_yuridik_nomi');
+            $table->string('xarid_sh')->nullable();
+            $table->string('xarid_r')->nullable();
+            $table->string('xarid_s')->nullable();
+            $table->string('yetkb_yuridik_nomi')->nullable();
             $table->timestamps();
         });
     }

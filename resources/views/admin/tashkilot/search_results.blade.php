@@ -176,99 +176,134 @@
 
 
                 </div>
-                <table class="table table-report -mt-2">
-                    <thead>
+            </div>
+            {{-- <table class="table table-report -mt-2">
+                <thead>
+                    <tr>
+                        <th class="whitespace-no-wrap" style="width: 40px;">№</th>
+                        <th class="whitespace-no-wrap">Tashkilot Nomi</th>
+                        <th class="whitespace-no-wrap">Turi</th>
+                        <th class="whitespace-no-wrap text-center">Harakat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tashkilotlar as $tashkilots)
+
+                        <tr class="intro-x">
+                            <td>{{ $loop->iteration }}</td>
+                            <td>
+                                <a href="{{ route('tashkilotmalumotlar.show', ['tashkilotmalumotlar' => $tashkilots->id]) }}"
+                                    class="font-medium">{{ $tashkilots->name }}</a>
+                            </td>
+                            <td>
+                                {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
+                            </td>
+                            <td class="table-report__action w-56">
+                                <div class="flex justify-center items-center">
+
+                                    <a class="flex science-update-action items-center mr-3"
+                                        href="{{ route('tashkilot.show', ['tashkilot' => $tashkilots->id]) }}"
+                                        data-id="2978" data-name="sdfd"
+                                        data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
+                                        data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66"
+                                        data-date="None" data-doi="" data-publisher="" data-description="None"
+                                        data-authors-count="None" data-toggle="modal"
+                                        data-target="#science-paper-update-modal">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round" class="feather feather-check-square w-4 h-4 mr-1">
+                                            <polyline points="9 11 12 14 22 4"></polyline>
+                                            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+                                        </svg>
+                                        Ko'rish
+                                    </a>
+
+                                    <form action="{{ route('tashkilot.destroy', ['tashkilot' => $tashkilots->id]) }}"
+                                        method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                        <button type="submit" class="flex delete-action items-center text-theme-6">
+                                            @csrf
+                                            @method('DELETE')
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-trash-2 w-4 h-4 mr-1">
+                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                <path
+                                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                </path>
+                                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                                            </svg>
+                                            O'chirish
+                                        </button>
+                                    </form>
+                                    <form action="{{ route('xodimlar.deleteAll', ['tashkilot' => $tashkilots->id]) }}"
+                                        method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                        <button type="submit" class="flex delete-action items-center text-theme-6">
+                                            @csrf
+                                            @method('DELETE')
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                                stroke-linecap="round" stroke-linejoin="round"
+                                                class="feather feather-trash-2 w-4 h-4 mr-1">
+                                                <polyline points="3 6 5 6 21 6"></polyline>
+                                                <path
+                                                    d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                </path>
+                                                <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                <line x1="14" y1="11" x2="14" y2="17"></line>
+                                            </svg>
+                                            Xodimlar o'chirish
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+
+                </tbody>
+            </table> --}}
+            {{-- <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
+                {{ $tashkilotlar->appends(request()->query())->links() }}
+            </div> --}}
+        </div>
+
+        <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
+            <div class="intro-y block sm:flex items-center py-4">
+                <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
+                    Tashkilotlar kesimida
+                </h2>
+            </div>
+            <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                <table class="table">
+                    <thead style="background: #F4F8FC;">
                         <tr>
-                            <th class="whitespace-no-wrap" style="width: 40px;">№</th>
-                            <th class="whitespace-no-wrap">Tashkilot Nomi</th>
-                            <th class="whitespace-no-wrap">Turi</th>
-                            <th class="whitespace-no-wrap text-center">Harakat</th>
+                            <th class="whitespace-no-wrap">Tashkilot nomi</th>
+                            <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
+                            <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
+                            <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
+                            <th class="whitespace-no-wrap" style="text-align: center;">Doktorantura</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tashkilotlar as $tashkilots)
-
-                            <tr class="intro-x">
-                                <td>{{ $loop->iteration }}</td>
-                                <td>
-                                    <a href="{{ route('tashkilotmalumotlar.show', ['tashkilotmalumotlar' => $tashkilots->id]) }}"
-                                        class="font-medium">{{ $tashkilots->name }}</a>
-                                </td>
-                                <td>
-                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
-                                </td>
-                                <td class="table-report__action w-56">
-                                    <div class="flex justify-center items-center">
-
-                                        <a class="flex science-update-action items-center mr-3"
-                                            href="{{ route('tashkilot.show', ['tashkilot' => $tashkilots->id]) }}"
-                                            data-id="2978" data-name="sdfd"
-                                            data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
-                                            data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66"
-                                            data-date="None" data-doi="" data-publisher="" data-description="None"
-                                            data-authors-count="None" data-toggle="modal"
-                                            data-target="#science-paper-update-modal">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" class="feather feather-check-square w-4 h-4 mr-1">
-                                                <polyline points="9 11 12 14 22 4"></polyline>
-                                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                                            </svg>
-                                            Ko'rish
-                                        </a>
-
-                                        {{-- <form action="{{ route('tashkilot.destroy', ['tashkilot' => $tashkilots->id]) }}"
-                                            method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
-                                            <button type="submit" class="flex delete-action items-center text-theme-6">
-                                                @csrf
-                                                @method('DELETE')
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-trash-2 w-4 h-4 mr-1">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path
-                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                    </path>
-                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                </svg>
-                                                O'chirish
-                                            </button>
-                                        </form> --}}
-                                        {{-- <form action="{{ route('xodimlar.deleteAll', ['tashkilot' => $tashkilots->id]) }}"
-                                            method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
-                                            <button type="submit" class="flex delete-action items-center text-theme-6">
-                                                @csrf
-                                                @method('DELETE')
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-trash-2 w-4 h-4 mr-1">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path
-                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                    </path>
-                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                </svg>
-                                                Xodimlar o'chirish
-                                            </button>
-                                        </form> --}}
-                                    </div>
-                                </td>
-                            </tr>
+                        @foreach ($tashkilotlar as $region)
+                        <tr style="border-bottom: 1px solid #E6E6E6;">
+                            <td style="color:#1881D3; font-weight: 400;">
+                              <a href="{{ route('tashkilotmalumotlar.show', $region->id) }}">{{ $region->name }}</a>
+                            </td>
+                            <td style="text-align: center;">{{ $region->ilmiyloyhalar()->where('is_active', 1)->count() }}</td>
+                            <td style="text-align: center;">{{ $region->stajirovkalar()->count() }}</td>
+                            <td style="text-align: center;">{{ $region->asbobuskunalar()->where('is_active', 1)->count() }}</td>
+                            <td style="text-align: center;">{{ $region->doktarantura_is ? '✓' : '✗' }}</td>
+                        </tr>
                         @endforeach
-
                     </tbody>
                 </table>
             </div>
-            <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
+            <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap mb-3 items-center mt-3">
                 {{ $tashkilotlar->appends(request()->query())->links() }}
             </div>
         </div>
-
-
 
 
 

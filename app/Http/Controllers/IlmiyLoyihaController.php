@@ -127,20 +127,21 @@ class IlmiyLoyihaController extends Controller
      */
     public function update(UpdateIlmiyLoyihaRequest $request, IlmiyLoyiha $ilmiyloyiha)
     {
-        if ($request->hasFile('malumotnoma')) {
-            $name_malumotnoma = time() . $request->file('malumotnoma')->getClientOriginalName();
-            $path_malumotnoma = $request->file('malumotnoma')->storeAs('IlmiyLoyiha-file', $name_malumotnoma);
-        }
-        if ($request->hasFile('savolnoma')) {
-            $name_savolnoma = time() . $request->file('savolnoma')->getClientOriginalName();
-            $path_savolnoma = $request->file('savolnoma')->storeAs('IlmiyLoyiha-file', $name_savolnoma);
-        }
+        // if ($request->hasFile('malumotnoma')) {
+        //     $name_malumotnoma = time() . $request->file('malumotnoma')->getClientOriginalName();
+        //     $path_malumotnoma = $request->file('malumotnoma')->storeAs('IlmiyLoyiha-file', $name_malumotnoma);
+        // }
+        // if ($request->hasFile('savolnoma')) {
+        //     $name_savolnoma = time() . $request->file('savolnoma')->getClientOriginalName();
+        //     $path_savolnoma = $request->file('savolnoma')->storeAs('IlmiyLoyiha-file', $name_savolnoma);
+        // }
 
-        if ($request->hasFile('file')) {
-            $name_file = time() . $request->file('file')->getClientOriginalName();
-            $path_file = $request->file('')->storeAs('IlmiyLoyiha-file', $name_file);
-        }
+        // if ($request->hasFile('file')) {
+        //     $name_file = time() . $request->file('file')->getClientOriginalName();
+        //     $path_file = $request->file('')->storeAs('IlmiyLoyiha-file', $name_file);
+        // }
 
+        dd($request->toArray());
         $umumiyyil = Umumiyyil::findOrFail($ilmiyloyiha->umumiyyil_id);
         $umumiyyil->update([
             "y2017" => $request->y2017 ?? 0,
@@ -155,75 +156,83 @@ class IlmiyLoyihaController extends Controller
 
         $ilmiyloyiha->update([
             "user_id" => auth()->id(),
-            "tashkilot_id" => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
-            "kafedralar_id" => auth()->user()->kafedralar_id,
             "umumiyyil_id" => $umumiyyil->id,
             "mavzusi" => $request->mavzusi,
+            "mavzusi_ru" => $request->mavzusi_ru,
             "turi" => $request->turi ?? "yo'q",
-            "dastyri" => $request->dastyri,
-            "q_hamkor_tashkilot" => $request->q_hamkor_tashkilot ?? "yo'q",
-            "hamkor_davlat" => $request->hamkor_davlat ?? "yo'q",
-            "muddat" => $request->muddat,
+            "raqami" => $request->raqami,
+            "sh_raqami" => $request->sh_raqami,
+            "sanasi" => $request->sanasi,
             "bosh_sana" => $request->bosh_sana,
             "tug_sana" => $request->tug_sana,
-            "pan_yunalish" => $request->pan_yunalish,
-            "rahbar_name" => $request->rahbar_name,
-            "raqami" => $request->raqami,
-            "sanasi" => $request->sanasi,
             "sum" => $request->sum,
-            "umumiy_mablag" => $request->sum,
-            "olingan_natija" => $request->olingan_natija,
-            "joriy_holati" => $request->joriy_holati,
-            "tijoratlashtirish" => $request->tijoratlashtirish,
-
-
+            "joriy_yil_sum" => $request->joriy_yil_sum,
+            "jami_summa_nisbat" => $request->jami_summa_nisbat,
+            "rahbar_name" => $request->rahbar_name,
             "rahbariilmiy_darajasi" => $request->rahbariilmiy_darajasi,
             "rahbariilmiy_unvoni" => $request->rahbariilmiy_unvoni,
             "r_lavozimi" => $request->r_lavozimi,
+            "rsh_raqami" => $request->rsh_raqami,
+            "rsh_sanasi" => $request->rsh_sanasi,
+            "loyiha_rahbari_uzgargan" => $request->loyiha_rahbari_uzgargan,
+            "avvr_fish" => $request->avvr_fish,
+            "avvr_ilmiy_daraja" => $request->avvr_ilmiy_daraja,
+            "avvr_ilmiy_unvon" => $request->avvr_ilmiy_unvon,
+            "avvr_lavozimi" => $request->avvr_lavozimi,
+            "avvr_kelishuv_raqami" => $request->avvr_kelishuv_raqami,
+            "avvr_kelishuv_sanasi" => $request->avvr_kelishuv_sanasi,
+            "loyiha_hamrahbari" => $request->loyiha_hamrahbari,
             "hamrahbar_fish" => $request->hamrahbar_fish,
             "hamr_ishjoyi" => $request->hamr_ishjoyi,
             "hamr_lavozimi" => $request->hamr_lavozimi,
             "hamr_davlati" => $request->hamr_davlati,
-            "joyyilajratilgan_mablag" => $request->joyyilajratilgan_mablag,
-            "shtat_birligi" => $request->shtat_birligi,
-            "ijrochilar_soni" => $request->ijrochilar_soni,
-            "ortacha_yoshi" => $request->ortacha_yoshi,
-            "moddiy_texnik_mablaglar" => $request->moddiy_texnik_mablaglar,
-            "jami_summaga_nisbatan" => $request->jami_summaga_nisbatan,
-            "jami_chop_joriyyil" => $request->jami_chop_joriyyil,
-            "jami_chop_jami" => $request->jami_chop_jami,
-            "mahalliymaqola_joriyyil" => $request->mahalliymaqola_joriyyil,
-            "mahalliymaqol_jami" => $request->mahalliymaqol_jami,
-            "xorijiymaqola_joriyyil" => $request->xorijiymaqola_joriyyil,
-            "xorijiymaqola_jami" => $request->xorijiymaqola_jami,
-            "scopus_joriyyil" => $request->scopus_joriyyil,
-            "scopus_jami" => $request->scopus_jami,
-            "tezislar_joriyyil" => $request->tezislar_joriyyil,
-            "tezislar_jami" => $request->tezislar_jami,
-            "ilmiy_mon_joriyyil" => $request->ilmiy_mon_joriyyil,
-            "ilmiy_mon_jami" => $request->ilmiy_mon_jami,
-            "olinganpatent_joriyyil" => $request->olinganpatent_joriyyil,
-            "olinganpatent_jami" => $request->olinganpatent_jami,
-            "patentga_berilgansoni" => $request->patentga_berilgansoni,
-            "dasturiy_maxguv_joriyyil" => $request->dasturiy_maxguv_joriyyil,
-            "dasturiy_maxguv_jami" => $request->dasturiy_maxguv_jami,
-            "hisobot_davrida_natijalar" => $request->hisobot_davrida_natijalar,
-            "loyiha_yakunida" => $request->loyiha_yakunida,
-            "ilmiy_ishlanma" => $request->ilmiy_ishlanma,
-            "mavzusi_ru" => $request->mavzusi_ru,
-            "moliyalashtirilganmi" => $request->moliyalashtirilganmi,
-            "ijrochi_tashkilot" => $request->ijrochi_tashkilot,
-            "malumotnoma" => $path_malumotnoma,
-            "savolnoma" => $path_savolnoma,
-            "file" => $path_file,
         ]);
-        if (auth()->user()->hasRole('labaratoriyaga_masul')) {
-            return redirect()->route('lab_ilmiyloyiha.index')->with('status', "Ma\'lumotlar muvaffaqiyatli yangilandi.");
-        } else if (auth()->user()->hasRole('kafedra_mudiri')) {
-            return redirect("/kafedralar-ilmiyloyhi")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
-        } else {
-            return redirect()->route("ilmiyloyiha.index")->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi');
-        }
+        // "muddat" => $request->muddat,
+        // "pan_yunalish" => $request->pan_yunalish,
+        // "umumiy_mablag" => $request->sum,
+        // "olingan_natija" => $request->olingan_natija,
+        // "joriy_holati" => $request->joriy_holati,
+        // "tijoratlashtirish" => $request->tijoratlashtirish,
+        // "dastyri" => $request->dastyri,
+        // "q_hamkor_tashkilot" => $request->q_hamkor_tashkilot ?? "yo'q",
+        // "joyyilajratilgan_mablag" => $request->joyyilajratilgan_mablag,
+        // "shtat_birligi" => $request->shtat_birligi,
+        // "ijrochilar_soni" => $request->ijrochilar_soni,
+        // "ortacha_yoshi" => $request->ortacha_yoshi,
+        // "moddiy_texnik_mablaglar" => $request->moddiy_texnik_mablaglar,
+        // "jami_summaga_nisbatan" => $request->jami_summaga_nisbatan,
+        // "jami_chop_joriyyil" => $request->jami_chop_joriyyil,
+        // "jami_chop_jami" => $request->jami_chop_jami,
+        // "mahalliymaqola_joriyyil" => $request->mahalliymaqola_joriyyil,
+        // "mahalliymaqol_jami" => $request->mahalliymaqol_jami,
+        // "xorijiymaqola_joriyyil" => $request->xorijiymaqola_joriyyil,
+        // "xorijiymaqola_jami" => $request->xorijiymaqola_jami,
+        // "scopus_joriyyil" => $request->scopus_joriyyil,
+        // "scopus_jami" => $request->scopus_jami,
+        // "tezislar_joriyyil" => $request->tezislar_joriyyil,
+        // "tezislar_jami" => $request->tezislar_jami,
+        // "ilmiy_mon_joriyyil" => $request->ilmiy_mon_joriyyil,
+        // "ilmiy_mon_jami" => $request->ilmiy_mon_jami,
+        // "olinganpatent_joriyyil" => $request->olinganpatent_joriyyil,
+        // "olinganpatent_jami" => $request->olinganpatent_jami,
+        // "patentga_berilgansoni" => $request->patentga_berilgansoni,
+        // "dasturiy_maxguv_joriyyil" => $request->dasturiy_maxguv_joriyyil,
+        // "dasturiy_maxguv_jami" => $request->dasturiy_maxguv_jami,
+        // "hisobot_davrida_natijalar" => $request->hisobot_davrida_natijalar,
+        // "loyiha_yakunida" => $request->loyiha_yakunida,
+        // "ilmiy_ishlanma" => $request->ilmiy_ishlanma,
+        // "moliyalashtirilganmi" => $request->moliyalashtirilganmi,
+        // "ijrochi_tashkilot" => $request->ijrochi_tashkilot,
+        // "malumotnoma" => $path_malumotnoma,
+        // "savolnoma" => $path_savolnoma,
+        // "file" => $path_file,
+        // if (auth()->user()->hasRole('labaratoriyaga_masul')) {
+        //     return redirect()->route('lab_ilmiyloyiha.index')->with('status', "Ma\'lumotlar muvaffaqiyatli yangilandi.");
+        // } else if (auth()->user()->hasRole('kafedra_mudiri')) {
+        //     return redirect("/kafedralar-ilmiyloyhi")->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+        // } else {
+        // }
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi');
 
 
     }

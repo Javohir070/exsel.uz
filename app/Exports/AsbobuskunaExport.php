@@ -13,7 +13,7 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Asbobuskuna::where('is_active', 0)->with('tashkilot')->get()->map(function ($asbobuskuna) {
+        return Asbobuskuna::where('is_active', null)->with('tashkilot')->get()->map(function ($asbobuskuna) {
 
             return [
                 'id' => $asbobuskuna->id,

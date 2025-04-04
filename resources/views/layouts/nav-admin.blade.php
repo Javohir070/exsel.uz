@@ -117,9 +117,9 @@
         </li>
         <li>
             <a href="{{ route('ilmiyloyihalar.index') }}"
-                class="side-menu side-menu{{ request()->is('ilmiyloyiha*') ? '--active' : '' }}">
+                class="side-menu side-menu{{ request()->is('ilmiy*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="side-menu__title"> Ilmiy loyihalar </div>
+                <div class="side-menu__title"> Ilmiy loyihalar  </div>
             </a>
         </li>
 

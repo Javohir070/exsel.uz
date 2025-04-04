@@ -24,7 +24,7 @@
                                                 <i data-feather="list" class="report-box__icon text-theme-3" ></i>
                                             </div>
                                             <div class="w-2/4 flex-none">
-                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">449/{{ $loy_expert }}</div>
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $loy_count }}/{{ $loy_expert }}</div>
                                                 <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar</div>
                                             </div>
                                         </div>
@@ -77,7 +77,7 @@
                                                 <i data-feather="users" class="report-box__icon text-theme-3" style="color: #E64242;" ></i>
                                             </div>
                                             <div class="w-2/4 flex-none">
-                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">239/{{ $doktarantura_expert }}</div>
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $doktarantura }}/{{ $doktarantura_expert }}</div>
                                                 <div class="text-gray-600 mt-1" style="font-size: 16px;">Doktorantura</div>
                                             </div>
                                         </div>
@@ -97,13 +97,13 @@
                                         <thead style="background: #F4F8FC;">
                                             <tr>
                                                 <th class="whitespace-no-wrap">Hudud nomi</th>
-                                                <th class="whitespace-no-wrap">OTM</th>
-                                                <th class="whitespace-no-wrap">ITM</th>
-                                                <th class="whitespace-no-wrap">Loyihalar</th>
-                                                <th class="whitespace-no-wrap">Yosh olimlar</th>
-                                                <th class="whitespace-no-wrap">Asbob-uskunalar</th>
-                                                <th class="whitespace-no-wrap">Xo‘jalik shartnomalar</th>
-                                                <th class="whitespace-no-wrap">Laboratoriyalar</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Jami</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">OTM</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">ITM</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Doktorantura</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -114,13 +114,30 @@
                                                         {{ $region->oz }}
                                                     </a>
                                                 </td>
-                                                <td>{{ $region->tashkilots()->where('tashkilot_turi', 'otm')->count() }} ta</td>
-                                                <td>{{ $region->tashkilots()->where('tashkilot_turi', 'itm')->count() }} ta</td>
-                                                <td>{{ $region->tashkilots()->withCount('ilmiyloyhalar')->get()->sum('ilmiyloyhalar_count') }} ta</td>
-                                                <td>{{ $region->tashkilots()->withCount('stajirovkalar')->get()->sum('stajirovkalar_count') }} ta</td>
-                                                <td>{{ $region->tashkilots()->withCount('asbobuskunalar')->get()->sum('asbobuskunalar_count') }} ta</td>
-                                                <td>{{ $region->tashkilots()->withCount('xujaliklar')->get()->sum('xujaliklar_count') }} ta</td>
-                                                <td>{{ $region->tashkilots()->withCount('laboratorys')->get()->sum('laboratorys_count') }} ta</td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('tashkilot_turi', 'otm')->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('tashkilot_turi', 'itm')->count() }} </td>
+                                                <td style="text-align: center;">
+                                                    {{
+                                                        $region->tashkilots()
+                                                            ->withCount(['ilmiyloyhalar' => function ($q) {
+                                                                $q->where('is_active', 1);
+                                                            }])
+                                                            ->get()
+                                                            ->sum('ilmiyloyhalar_count');
+                                                    }}
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    {{
+                                                        $region->tashkilots()->withCount('stajirovkalar')->get()->sum('stajirovkalar_count')
+                                                    }}
+                                                </td>
+                                                <td style="text-align: center;">
+                                                    {{ $region->tashkilots()->withCount(['asbobuskunalar'=> function ($q) {
+                                                        $q->where('is_active', 1);
+                                                    }])->get()->sum('asbobuskunalar_count') }}
+                                                </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->count() }} </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -141,13 +158,10 @@
                                         <thead style="background: #F4F8FC;">
                                             <tr>
                                                 <th class="whitespace-no-wrap">Tashkilot nomi</th>
-                                                <th class="whitespace-no-wrap">Loyihalar</th>
-                                                <th class="whitespace-no-wrap">Xo‘jalik shartnomalar</th>
-                                                <th class="whitespace-no-wrap">Fakultetlar</th>
-                                                <th class="whitespace-no-wrap">Kafedralar</th>
-                                                <th class="whitespace-no-wrap">Laboratoriyalar</th>
-                                                <th class="whitespace-no-wrap">Yosh olimlar</th>
-                                                <th class="whitespace-no-wrap">Asbob-uskunalar</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Doktorantura</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -156,13 +170,10 @@
                                                 <td style="color:#1881D3; font-weight: 400;">
                                                   <a href="{{ route('tashkilotmalumotlar.show', $region->id) }}">{{ $region->name }}</a>
                                                 </td>
-                                                <td>{{ $region->ilmiyloyhalar()->count() }} ta</td>
-                                                <td>{{ $region->xujaliklar()->count() }} ta</td>
-                                                <td>{{ $region->fakultetlar()->count() }} ta</td>
-                                                <td>{{ $region->kafedralar()->count() }} ta</td>
-                                                <td>{{ $region->laboratorys()->count() }} ta</td>
-                                                <td>{{ $region->stajirovkalar()->count() }} ta</td>
-                                                <td>{{ $region->asbobuskunalar()->count() }} ta</td>
+                                                <td style="text-align: center;">{{ $region->ilmiyloyhalar()->where('is_active', 1)->count() }}</td>
+                                                <td style="text-align: center;">{{ $region->stajirovkalar()->count() }}</td>
+                                                <td style="text-align: center;">{{ $region->asbobuskunalar()->where('is_active', 1)->count() }}</td>
+                                                <td style="text-align: center;">{{ $region->doktarantura_is ? '✓' : '✗' }}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>

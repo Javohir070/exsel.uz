@@ -73,6 +73,22 @@ class IlmiyLoyiha extends Model
         'kafedralar_id',
         'status',
         'moliyalashtirilganmi',
+
+
+        "sh_raqami",
+        "joriy_yil_sum",
+        "jami_summa_nisbat",
+        "rsh_raqami",
+        "rsh_sanasi",
+        "loyiha_rahbari_uzgargan",
+        "avvr_fish",
+        "avvr_ilmiy_daraja",
+        "avvr_ilmiy_unvon",
+        "avvr_lavozimi",
+        "avvr_kelishuv_sanasi",
+        "loyiha_hamrahbari",
+        "avvr_kelishuv_raqami",
+
     ];
 
     public function tashkilot()
