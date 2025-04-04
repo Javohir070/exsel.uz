@@ -15,10 +15,14 @@ class DoktaranturaController extends Controller
     {
         $request->validate([
             'year' => 'nullable|integer|min:2000|max:2100',
-            'quarter' => 'nullable|integer|in:1,2,3,4'
+            'admission_year' => 'nullable|integer|min:2000|max:2100',
+            'quarter' => 'nullable|integer|in:1,2,3,4',
+            'admission_quarter' => 'nullable|integer|in:1,2,3,4'
         ]);
         $year = $request->year ?? 2024;
         $quarter = $request->quarter ?? 4;
+        $admission_quarter = $request->admission_quarter ?? 1;
+        $admission_year = $request->admission_year ?? 2024;
         // dd($request->all());
         $tashkilot = Tashkilot::findOrFail($id);
         // dd($tashkilot->stir_raqami);
@@ -44,8 +48,10 @@ class DoktaranturaController extends Controller
         $response_main = Http::withBasicAuth($sms_username, $sms_password)
                         ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
                         ->get($url_main, [
-                            'quarter' => $quarter,
-                            'year' => $year
+                            'quarter' => $quarter, //chorak
+                            'year' => $year,
+                            'admission_quarter' => $admission_quarter,
+                            'admission_year' => $admission_year
                         ]);
 
         $data_tach = $response_tach->json();
@@ -131,6 +137,8 @@ class DoktaranturaController extends Controller
                 'id' => $id,
                 'year' => $year,
                 'quarter' => $quarter,
+                'admission_quarter' => $admission_quarter,
+                'admission_year' => $admission_year,
             ]);
     }
     public function index(){

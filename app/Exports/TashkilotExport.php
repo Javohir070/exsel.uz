@@ -14,14 +14,14 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
     */
     public function collection()
     {
-        return Tashkilot::all();
+        return Tashkilot::with('region')->get();
     }
 
     public function headings(): array
     {
         return [
             'ID',
-            'ID raqami',
+            'Viloyat id',
             'Tashkilot nomi',
             'Tashkil etilgan yili',
             'Yuridik manzili',
@@ -48,11 +48,11 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
     {
         return [
             $tashkilot->id,
-            $tashkilot->id_raqam,
+            $tashkilot->region_id,
             $tashkilot->name,
             $tashkilot->tash_yil,
             $tashkilot->yur_manzil,
-            $tashkilot->viloyat,
+            $tashkilot->region->oz ?? 'Nomaʼlum',
             $tashkilot->tuman,
             $tashkilot->paoliyat_manzil,
             $tashkilot->phone,

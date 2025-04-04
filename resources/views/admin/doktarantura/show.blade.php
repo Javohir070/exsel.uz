@@ -45,9 +45,42 @@
                                 <form id="science-felter-create-form" method="GET" action="{{ route('doktarantura.show', ['doktarantura' => $id]) }}" class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
 
                                 <div class="grid grid-cols-12 gap-2 mb-3 px-4">
+                                <div class="w-full col-span-4">
+                                        <label class="flex flex-col sm:flex-row">  Qabul yili
+                                        </label>
+                                        <select name="admission_year" id="science-sub-category" class="input border w-full mt-2"
+                                            required="">
+                                            <option value=""></option>
+                                            <option value="2020" {{ $admission_year == "2020" ? "selected" : ""}}>2020</option>
+                                            <option value="2021" {{ $admission_year == "2021" ? "selected" : ""}}>2021</option>
+                                            <option value="2022" {{ $admission_year == "2022" ? "selected" : ""}}>2022</option>
+                                            <option value="2023" {{ $admission_year == "2023" ? "selected" : ""}}>2023</option>
+                                            <option value="2024" {{ $admission_year == "2024" ? "selected" : ""}}>2024</option>
+                                            <option value="2025" {{ $admission_year == "2025" ? "selected" : ""}}>2025</option>
+                                        </select>
+                                        @error('admission_year')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
 
                                     <div class="w-full col-span-4">
-                                        <label class="flex flex-col sm:flex-row">  Chorak
+                                        <label class="flex flex-col sm:flex-row">   Qabul choragi
+                                        </label>
+                                        <select name="admission_quarter" class="input border w-full mt-2"
+                                            required="">
+                                            <option value=""></option>
+                                            <option value="1" {{ $admission_quarter == "1" ? "selected" : ""}}>1</option>
+                                            <option value="2" {{ $admission_quarter == "2" ? "selected" : ""}}>2</option>
+                                            <option value="3" {{ $admission_quarter == "3" ? "selected" : ""}}>3</option>
+                                            <option value="4" {{ $admission_quarter == "4" ? "selected" : ""}}>4</option>
+                                        </select>
+                                        @error('admission_quarter')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+
+                                    <div class="w-full col-span-4">
+                                        <label class="flex flex-col sm:flex-row"> Monitoring choragi
                                         </label>
                                         <select name="quarter" class="input border w-full mt-2"
                                             required="">
@@ -62,7 +95,7 @@
                                         @enderror
                                     </div>
                                     <div class="w-full col-span-4">
-                                        <label class="flex flex-col sm:flex-row">  Yil
+                                        <label class="flex flex-col sm:flex-row">Monitoring  yili
                                         </label>
                                         <select name="year" id="science-sub-category" class="input border w-full mt-2"
                                             required="">
@@ -78,6 +111,10 @@
                                             <div class="error">{{ $message }}</div>
                                         @enderror
                                     </div>
+
+
+
+
                                     <div class="w-full col-span-4">
                                     <button type="submit" form="science-felter-create-form" style="margin-top: 30px;"
                                             class="update-confirm button w-32  bg-theme-1 text-white">
@@ -122,7 +159,7 @@
                                                     @endswitch
                                                 </td>
                                                 <td>{{ $m['course'] ?? 0}} </td>
-                                                <td>{{ $m['status'] ?? 0 }} </td>
+                                                <td style="color:{{ $m['status'] == 0 ? "red" : "green" }};">{{ $m['status'] == 0 ? 'Monitoring natijasi tasdiqlanmagan' : "Monitoring natijasi tasdiqlangan"}} </td>
                                             </tr>
                                             @endforeach
 
@@ -150,8 +187,8 @@
                                             <tr>
                                                 <th class="whitespace-no-wrap" style="width: 40px;">T/r</th>
                                                 <th class="whitespace-no-wrap">F.I.Sh</th>
-                                                <th class="whitespace-no-wrap">Izlanuvchilar soni </th>
-                                                <th class="whitespace-no-wrap">Hammasi </th>
+                                                <th class="whitespace-no-wrap">Mazkur tashkilotdan biriktirilgan izlanuvchilar soni </th>
+                                                <th class="whitespace-no-wrap">Barcha tashkilotlardan biriktirilgan izlanuvchilar soni </th>
                                             </tr>
                                         </thead>
                                         <tbody>

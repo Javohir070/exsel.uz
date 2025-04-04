@@ -258,21 +258,21 @@
             </a>
         </li>
 
-        <li>
+        {{-- <li>
             <a href="{{ route('intellektual.index') }}"
                 class="side-menu side-menu{{ request()->is('intellektual*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Intellektual </div>
             </a>
-        </li>
+        </li> --}}
 
-        <li>
+        {{-- <li>
             <a href="{{ route('loyihaiqtisodi.index') }}"
                 class="side-menu side-menu{{ request()->is('loyihaiqtisodi*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Loyihaiqtisodi </div>
             </a>
-        </li>
+        </li> --}}
 
         <li>
             <a href="{{ route('fakultetlar.index') }}"
