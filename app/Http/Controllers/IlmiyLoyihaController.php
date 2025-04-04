@@ -141,7 +141,7 @@ class IlmiyLoyihaController extends Controller
         //     $path_file = $request->file('')->storeAs('IlmiyLoyiha-file', $name_file);
         // }
 
-        dd($request->toArray());
+
         $umumiyyil = Umumiyyil::findOrFail($ilmiyloyiha->umumiyyil_id);
         $umumiyyil->update([
             "y2017" => $request->y2017 ?? 0,

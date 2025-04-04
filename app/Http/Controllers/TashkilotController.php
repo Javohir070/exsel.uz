@@ -163,14 +163,14 @@ class TashkilotController extends Controller
     {
         $querysearch = $request->input('query');
         if (ctype_digit($querysearch)) {
-            $tashkilotlar = Tashkilot::where('region_id', '=', $querysearch)->paginate(50);
-            $tash_count = Tashkilot::where('region_id', '=', $querysearch)->count();
+            $tashkilotlar = Tashkilot::where('status', 1)->where('region_id', '=', $querysearch)->paginate(50);
+            $tash_count = Tashkilot::where('status', 1)->where('region_id', '=', $querysearch)->count();
         } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
-            $tashkilotlar = Tashkilot::where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::where('status', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::where('status', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
         } else {
-            $tashkilotlar = Tashkilot::where('name', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('name', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::where('status', 1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::where('status', 1)->where('name', 'like', '%' . $querysearch . '%')->count();
         }
         $tashkilot_ids = $tashkilotlar->pluck('id');
         $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $tashkilot_ids)->count();

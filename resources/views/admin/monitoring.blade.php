@@ -114,12 +114,12 @@
                                                         {{ $region->oz }}
                                                     </a>
                                                 </td>
-                                                <td style="text-align: center;">{{ $region->tashkilots()->count() }} </td>
-                                                <td style="text-align: center;">{{ $region->tashkilots()->where('tashkilot_turi', 'otm')->count() }} </td>
-                                                <td style="text-align: center;">{{ $region->tashkilots()->where('tashkilot_turi', 'itm')->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', 'otm')->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', 'itm')->count() }} </td>
                                                 <td style="text-align: center;">
                                                     {{
-                                                        $region->tashkilots()
+                                                        $region->tashkilots()->where('status', 1)
                                                             ->withCount(['ilmiyloyhalar' => function ($q) {
                                                                 $q->where('is_active', 1);
                                                             }])
@@ -129,15 +129,15 @@
                                                 </td>
                                                 <td style="text-align: center;">
                                                     {{
-                                                        $region->tashkilots()->withCount('stajirovkalar')->get()->sum('stajirovkalar_count')
+                                                        $region->tashkilots()->where('status', 1)->withCount('stajirovkalar')->get()->sum('stajirovkalar_count')
                                                     }}
                                                 </td>
                                                 <td style="text-align: center;">
-                                                    {{ $region->tashkilots()->withCount(['asbobuskunalar'=> function ($q) {
+                                                    {{ $region->tashkilots()->where('status', 1)->withCount(['asbobuskunalar'=> function ($q) {
                                                         $q->where('is_active', 1);
                                                     }])->get()->sum('asbobuskunalar_count') }}
                                                 </td>
-                                                <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('doktarantura_is', 1)->count() }} </td>
                                             </tr>
                                             @endforeach
                                         </tbody>

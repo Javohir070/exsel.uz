@@ -101,7 +101,7 @@
                                 <tr>
                                     <td class="border">1.4.</td>
                                     <td class="border">Shartnoma raqami va sanasi</td>
-                                    <td class="border"> </td>
+                                    <td class="border">{{ $ilmiyloyiha->sh_raqami }}, {{ $ilmiyloyiha->sanasi }} </td>
                                 </tr>
                                 <tr>
                                     <td class="border">1.5.</td>
@@ -124,7 +124,7 @@
                                 <tr>
                                     <td class="border">1.6.1.</td>
                                     <td class="border">Joriy yil uchun ajratilgan mablagʻ, ming soʻm</td>
-                                    <td class="border">0</td>
+                                    <td class="border">{{ $ilmiyloyiha->joriy_yil_sum }}</td>
                                 </tr>
                                 {{-- <tr>
                                     <td class="border">1.9.</td>
@@ -135,7 +135,7 @@
                                 <tr>
                                     <td class="border">1.6.2.</td>
                                     <td class="border">Jami summaga nisbatan, foiz</td>
-                                    <td class="border">0</td>
+                                    <td class="border">{{ $ilmiyloyiha->jami_summa_nisbat }}</td>
                                 </tr>
 
                                 <tr>
@@ -166,45 +166,45 @@
                                 <tr>
                                     <td class="border">2.1.4.</td>
                                     <td class="border">Rahbar bilan kelishuvning raqami va sanasi </td>
-                                    <td class="border">0</td>
+                                    <td class="border">{{ $ilmiyloyiha->rsh_raqami }} , {{ $ilmiyloyiha->rsh_sanasi }}</td>
                                 </tr>
 
                                 <tr>
                                     <td class="border">2.2.</td>
                                     <td class="border"><b>Loyiha rahbari o'zgargan</b></td>
-                                    <td class="border">Ha</td>
+                                    <td class="border">{{ $ilmiyloyiha->loyiha_rahbari_uzgargan }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">2.2.1.</td>
                                     <td class="border">Loyihaning avvalgi rahbarining familiyasi, ismi, sharifi</td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $ilmiyloyiha->avvr_fish }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">2.2.2.</td>
                                     <td class="border">Ilmiy darajasi </td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $ilmiyloyiha->avvr_ilmiy_daraja }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">2.2.3.</td>
                                     <td class="border">Ilmiy unvoni</td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $ilmiyloyiha->avvr_ilmiy_unvon }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">2.2.4.</td>
                                     <td class="border">Lavozimi</td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $ilmiyloyiha->avvr_lavozimi }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">2.2.5.</td>
                                     <td class="border">Rahbar bilan kelishuvning raqami va sanasi </td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $ilmiyloyiha->avvr_kelishuv_raqami }}, {{ $ilmiyloyiha->avvr_kelishuv_sanasi }}</td>
                                 </tr>
 
 
                                 <tr>
                                     <td class="border">2.3.</td>
                                     <td class="border"><b>Loyihaning hamrahbari mavjud</b></td>
-                                    <td class="border">Ha</td>
+                                    <td class="border">{{ $ilmiyloyiha->loyiha_hamrahbari }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">2.3.1.</td>
@@ -640,7 +640,7 @@
                                         {{-- {{ $loyihaiqtisodi->mehnat_haq_r ?? null }} --}}
                                         {{-- {{ number_format($loyihaiqtisodi->mehnat_haq_r, 0, '.', ' ') }} --}}
                                     <td class="border">
-                                        {{ number_format((int) preg_replace('/\D/', '', $ilmiyloyiha->mehnat_haq_r), 0, '.', ' ') }}
+                                        {{ $loyihaiqtisodi->mehnat_haq_r ?? null }}
                                     </td>
                                     {{-- </td> --}}
                                     <td class="border">
@@ -650,7 +650,7 @@
                                         {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_a ?? 0)) }}
                                     </td>
                                     <td class="border">
-                                        {{ number_format($loyihaiqtisodi->mehnat_haq_i ?? null, 0, '.', ' ')}}
+                                        {{ $loyihaiqtisodi->mehnat_haq_i ?? null}}
                                     </td>
                                 </tr>
                                 <tr>
@@ -659,7 +659,7 @@
                                         Xizmat safarlari xarajatlari (5.2.-shakl)
                                     </td>
                                     <td class="border">
-                                        {{ number_format($loyihaiqtisodi->xizmat_saf_r ?? null, 0, '.', ' ')}}
+                                        {{ $loyihaiqtisodi->xizmat_saf_r ?? null}}
                                     </td>
                                     <td class="border">
                                         {{ $loyihaiqtisodi->xizmat_saf_a ?? null }}
@@ -987,14 +987,14 @@
                                                 Mehnatga haq toʻlash (5.1.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="mehnat_haq_r" value="{{ old('mehnat_haq_r') }}"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="mehnat_haq_r" value="{{ old('mehnat_haq_r') }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('mehnat_haq_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="mehnat_haq_a" value="{{ old('mehnat_haq_a') }}"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="mehnat_haq_a" value="{{ old('mehnat_haq_a') }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('mehnat_haq_a')
                                                     <div class="error">{{ $message }}</div>
@@ -1006,14 +1006,14 @@
                                                 Xizmat safarlari xarajatlari (5.2.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="xizmat_saf_r" value="{{ old('xizmat_saf_r') }}"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="xizmat_saf_r" value="{{ old('xizmat_saf_r') }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('xizmat_saf_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="xizmat_saf_a" value="{{ old('xizmat_saf_a') }}"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="xizmat_saf_a" value="{{ old('xizmat_saf_a') }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('xizmat_saf_a')
                                                     <div class="error">{{ $message }}</div>
@@ -1027,7 +1027,7 @@
                                                 tovar-moddiy boyliklarning xaridi uchun xarajatlar (5.4.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="xarid_xaraja_r"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="xarid_xaraja_r"
                                                     value="{{ old('xarid_xaraja_r') }}" class="input w-full border mt-2"
                                                     required="">
                                                 @error('xarid_xaraja_r')
@@ -1035,7 +1035,7 @@
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="xarid_xaraja_a"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="xarid_xaraja_a"
                                                     value="{{ old('xarid_xaraja_a') }}" class="input w-full border mt-2"
                                                     required="">
                                                 @error('xarid_xaraja_a')
@@ -1050,7 +1050,7 @@
                                                 (5.5.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="mat_butlovchi_r"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="mat_butlovchi_r"
                                                     value="{{ old('mat_butlovchi_r') }}" class="input w-full border mt-2"
                                                     required="">
                                                 @error('mat_butlovchi_r')
@@ -1058,7 +1058,7 @@
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="mat_butlovchi_a"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="mat_butlovchi_a"
                                                     value="{{ old('mat_butlovchi_a') }}" class="input w-full border mt-2"
                                                     required="">
                                                 @error('mat_butlovchi_a')
@@ -1073,7 +1073,7 @@
                                                 toʻlov (5.6.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="jalb_etilgan_r"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="jalb_etilgan_r"
                                                     value="{{ old('jalb_etilgan_r') }}" class="input w-full border mt-2"
                                                     required="">
                                                 @error('jalb_etilgan_r')
@@ -1081,7 +1081,7 @@
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="jalb_etilgan_a"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="jalb_etilgan_a"
                                                     value="{{ old('jalb_etilgan_a') }}" class="input w-full border mt-2"
                                                     required="">
                                                 @error('jalb_etilgan_a')
@@ -1094,7 +1094,7 @@
                                                 Loyihani amalga oshirish uchun boshqa xarajatlar (5.7.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="boshqa_xarajat_r"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="boshqa_xarajat_r"
                                                     value="{{ old('boshqa_xarajat_r') }}" class="input w-full border mt-2"
                                                     required="">
                                                 @error('boshqa_xarajat_r')
@@ -1102,7 +1102,7 @@
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="boshqa_xarajat_a"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="boshqa_xarajat_a"
                                                     value="{{ old('boshqa_xarajat_a') }}" class="input w-full border mt-2"
                                                     required="">
                                                 @error('boshqa_xarajat_a')
@@ -1118,7 +1118,7 @@
                                                 rejalashtirilmaydi)
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="tashustama_xarajat_r"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="tashustama_xarajat_r"
                                                     value="{{ old('tashustama_xarajat_r') }}"
                                                     class="input w-full border mt-2" required="tashustama_xarajat_r">
                                                 @error('fish')
@@ -1126,7 +1126,7 @@
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="tashustama_xarajat_a"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="tashustama_xarajat_a"
                                                     value="{{ old('tashustama_xarajat_a') }}"
                                                     class="input w-full border mt-2" required="tashustama_xarajat_a">
                                                 @error('fish')
