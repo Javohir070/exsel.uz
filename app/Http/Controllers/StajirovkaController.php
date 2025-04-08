@@ -27,11 +27,13 @@ class StajirovkaController extends Controller
     {
 
         $stajirovkas = Stajirovka::count();
-        $tashkilotlar = Tashkilot::where('stajirovka_is',1)->paginate(20);
-        $tash_count = Tashkilot::where('stajirovka_is',1)->count();
+        $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is',1)->paginate(30);
+        $tash_count = Tashkilot::orderBy('name')->where('stajirovka_is',1)->count();
         $querysearch = null;
-        $regions = Region::all();
-        return view('admin.stajirovka.stajirovkalar', ['tash_count' => $tash_count, 'stajirovkas' => $stajirovkas, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'querysearch' => $querysearch]);
+        $regions = Region::orderBy('order')->get();
+        $stajirovka_count = Stajirovka::count();
+        $stajirovka_expert = Stajirovkaexpert::count();
+        return view('admin.stajirovka.viloyat', ['tash_count' => $tash_count, 'stajirovka_count' => $stajirovka_count, 'stajirovka_expert' => $stajirovka_expert, 'regions' => $regions, 'querysearch' => $querysearch]);
     }
 
     public function search_stajirovka(Request $request)
@@ -39,19 +41,19 @@ class StajirovkaController extends Controller
 
         $querysearch = $request->input('query');
         if (ctype_digit($querysearch)) {
-            $tashkilotlar = Tashkilot::where('stajirovka_is',1)->where('region_id', '=', $querysearch)->paginate(50);
-            $tash_count = Tashkilot::where('stajirovka_is',1)->where('region_id', '=', $querysearch)->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('region_id', '=', $querysearch)->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('region_id', '=', $querysearch)->count();
         } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
-            $tashkilotlar = Tashkilot::where('stajirovka_is',1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('stajirovka_is',1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
         } else {
-            $tashkilotlar = Tashkilot::where('stajirovka_is',1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('stajirovka_is',1)->where('name', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('name', 'like', '%' . $querysearch . '%')->count();
         }
 
         $stajirovkas = Stajirovka::count();
 
-        $regions = Region::all();
+        $regions = Region::orderBy('order')->get();
 
         return view('admin.stajirovka.stajirovkalar', ['stajirovkas' => $stajirovkas, 'tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count, 'querysearch' => $querysearch]);
     }

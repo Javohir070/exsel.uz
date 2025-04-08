@@ -104,7 +104,9 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $loy_count }}/{{ $loy_expert }}</div>
+                                            {{ $loy_count }}
+                                            {{-- /{{ $loy_expert }} --}}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar</div>
                                     </div>
                                 </div>
@@ -125,7 +127,9 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $stajirovka_count }}/{{ $stajirovka_expert }}</div>
+                                            {{ $stajirovka_count }}
+                                            {{-- /{{ $stajirovka_expert }} --}}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy stajirovka</div>
                                     </div>
                                 </div>
@@ -146,7 +150,9 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $asboblar_count }}/{{ $asboblar_expert }}</div>
+                                            {{ $asboblar_count }}
+                                            {{-- /{{ $asboblar_expert }} --}}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Asbob-uskunalar</div>
                                     </div>
                                 </div>
@@ -166,7 +172,9 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $doktarantura_count }}/{{ $doktarantura_expert }}</div>
+                                            {{ $doktarantura_count }}
+                                            {{-- /{{ $doktarantura_expert }} --}}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Doktorantura</div>
                                     </div>
                                 </div>

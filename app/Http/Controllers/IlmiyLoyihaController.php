@@ -299,28 +299,30 @@ class IlmiyLoyihaController extends Controller
     public function ilmiyloyihalar()
     {
         // $asbobuskunas = IlmiyLoyiha::paginate(20);
-        $tashkilotlar = Tashkilot::where('ilmiyloyiha_is', 1)->paginate(30);
-        $tash_count = Tashkilot::where('ilmiyloyiha_is', 1)->count();
-        $regions = Region::all();
+        $tashkilotlar = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->paginate(30);
+        $tash_count = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->count();
+        $regions = Region::orderBy('order')->get();
         $ilmiyloyiha = IlmiyLoyiha::where('is_active', 1)->count();
-        return view('admin.ilmiyloyiha.tashkilotlar', ['ilmiyloyiha' => $ilmiyloyiha, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'tash_count'=>$tash_count]);
+        $loy_count = IlmiyLoyiha::where('is_active',1)->count();
+        $loy_expert = Tekshirivchilar::where('is_active',1)->count();
+        return view('admin.ilmiyloyiha.viloyat', ['loy_count' => $loy_count, 'loy_expert' => $loy_expert, 'regions' => $regions, 'tash_count'=>$tash_count]);
     }
 
     public function search_ilmiy_loyhalar(Request $request)
     {
         $querysearch = $request->input('query');
         if (ctype_digit($querysearch)) {
-            $tashkilotlar = Tashkilot::where('ilmiyloyiha_is', 1)->where('region_id', '=', $querysearch)->paginate(50);
-            $tash_count = Tashkilot::where('ilmiyloyiha_is', 1)->where('region_id', '=', $querysearch)->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->where('region_id', '=', $querysearch)->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->where('region_id', '=', $querysearch)->count();
         } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
-            $tashkilotlar = Tashkilot::where('ilmiyloyiha_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('ilmiyloyiha_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
         } else {
-            $tashkilotlar = Tashkilot::where('ilmiyloyiha_is', 1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('ilmiyloyiha_is', 1)->where('name', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->where('name', 'like', '%' . $querysearch . '%')->count();
         }
         $ilmiyloyiha = IlmiyLoyiha::where('is_active', 1)->count();
-        $regions = Region::all();
+        $regions = Region::orderBy('order')->get();
 
         return view('admin.ilmiyloyiha.tashkilotlar', ['ilmiyloyiha' => $ilmiyloyiha, 'tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);
     }

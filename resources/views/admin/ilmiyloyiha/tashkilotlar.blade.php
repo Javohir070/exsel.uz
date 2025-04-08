@@ -69,7 +69,7 @@
                             <tr class="intro-x">
                                 <td>{{ ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}.</td>
                                 <td>
-                                    <a href="{{ route('asbobu.index', ['id' => $tashkilots->id]) }}" class="font-medium">
+                                    <a href="{{ route('ilmiy_loyihalar.index', ['id' => $tashkilots->id]) }}" class="font-medium">
                                         {{ $tashkilots->name }}
                                     </a>
                                 </td>

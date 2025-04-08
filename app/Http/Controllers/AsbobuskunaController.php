@@ -44,30 +44,33 @@ class AsbobuskunaController extends Controller
     public function asbobuskunalar()
     {
         // $asbobuskunas = Asbobuskuna::paginate(20);
-        $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->paginate(50);
-        $tash_count = Tashkilot::where('asbobuskuna_is', 1)->count();
-        $regions = Region::all();
+        $tashkilotlar = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)->paginate(50);
+        $tash_count = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)->count();
+        
+        $asboblar_count = Asbobuskuna::where('is_active',1)->count();
+        $asboblar_expert = Asbobuskunaexpert::count();
+        $regions = Region::orderBy('order')->get();
         $asbobuskunas = Asbobuskuna::where('is_active', 1)->count();
         // $asbobuskuna =
         // dd($asbobuskunas);
-        return view('admin.asbobuskuna.tashkilotlar', ['asbobuskunas' => $asbobuskunas, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'tash_count'=>$tash_count]);
+        return view('admin.asbobuskuna.viloyat', ['asbobuskunas' => $asbobuskunas, 'asboblar_count' => $asboblar_count, 'regions' => $regions, 'asboblar_expert'=>$asboblar_expert]);
     }
 
     public function search_asbobuskunalar(Request $request)
     {
         $querysearch = $request->input('query');
         if (ctype_digit($querysearch)) {
-            $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->where('region_id', '=', $querysearch)->paginate(50);
-            $tash_count = Tashkilot::where('asbobuskuna_is', 1)->where('region_id', '=', $querysearch)->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)->where('region_id', '=', $querysearch)->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)->where('region_id', '=', $querysearch)->count();
         } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
-            $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('asbobuskuna_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
         } else {
-            $tashkilotlar = Tashkilot::where('asbobuskuna_is', 1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('asbobuskuna_is', 1)->where('name', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)->where('name', 'like', '%' . $querysearch . '%')->count();
         }
         $asbobuskunas = Asbobuskuna::where('is_active', 1)->count();
-        $regions = Region::all();
+        $regions = Region::orderBy('order')->get();
 
         return view('admin.asbobuskuna.tashkilotlar', ['asbobuskunas' => $asbobuskunas, 'tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);
     }

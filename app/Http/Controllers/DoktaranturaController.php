@@ -143,10 +143,12 @@ class DoktaranturaController extends Controller
             ]);
     }
     public function index(){
-        $tashkilotlar = Tashkilot::where('doktarantura_is', 1)->paginate(30);
-        $regions = Region::all();
-        $tash_count = Tashkilot::where('doktarantura_is', 1)->count();
-        return view('admin.doktarantura.index', ['tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);
+        $tashkilotlar = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->paginate(30);
+        $regions = Region::orderBy('order')->get();
+        $doktarantura = Tashkilot::where('doktarantura_is',1)->count();
+        $tash_count = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->count();
+        $doktarantura_expert = Doktaranturaexpert::count();
+        return view('admin.doktarantura.viloyat', ['doktarantura_expert' => $doktarantura_expert, 'regions'=>$regions, 'doktarantura'=>$doktarantura]);
     }
 
     public function search_dok(Request $request)
@@ -154,17 +156,17 @@ class DoktaranturaController extends Controller
 
         $querysearch = $request->input('query');
         if (ctype_digit($querysearch)) {
-            $tashkilotlar = Tashkilot::where('doktarantura_is', 1)->where('region_id', '=', $querysearch)->paginate(50);
-            $tash_count = Tashkilot::where('doktarantura_is', 1)->where('region_id', '=', $querysearch)->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->where('region_id', '=', $querysearch)->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->where('region_id', '=', $querysearch)->count();
         } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
-            $tashkilotlar = Tashkilot::where('doktarantura_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('doktarantura_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
         } else {
-            $tashkilotlar = Tashkilot::where('doktarantura_is', 1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::where('doktarantura_is', 1)->where('name', 'like', '%' . $querysearch . '%')->count();
+            $tashkilotlar = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
+            $tash_count = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->where('name', 'like', '%' . $querysearch . '%')->count();
         }
 
-        $regions = Region::all();
+        $regions = Region::orderBy('order')->get();
 
 
         return view('admin.doktarantura.index', ['tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);

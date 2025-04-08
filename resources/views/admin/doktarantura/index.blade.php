@@ -59,7 +59,7 @@
                         @foreach ($tashkilotlar as $tashkilots)
 
                             <tr class="intro-x">
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}.</td>
                                 <td>
                                     <a href="{{ route('doktarantura.show', ['doktarantura' => $tashkilots->id]) }}"
                                         class="font-medium">{{ $tashkilots->name }}</a>

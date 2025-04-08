@@ -100,6 +100,7 @@
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Jami</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">OTM</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">ITM</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Boshqalari</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
@@ -114,9 +115,10 @@
                                                         {{ $region->oz }}
                                                     </a>
                                                 </td>
-                                                <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->count() }} </td>
+                                                <td style="text-align: center;font-weight: 600;">{{ $region->tashkilots()->where('status', 1)->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', 'otm')->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', 'itm')->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', null)->count() }} </td>
                                                 <td style="text-align: center;">
                                                     {{
                                                         $region->tashkilots()->where('status', 1)
