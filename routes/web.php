@@ -22,6 +22,7 @@ use App\Http\Controllers\ItmController;
 use App\Http\Controllers\IzlanuvchilarController;
 use App\Http\Controllers\KafedralarController;
 use App\Http\Controllers\LaboratoryController;
+use App\Http\Controllers\LoyihaijrochilarController;
 use App\Http\Controllers\LoyihaiqtisodiController;
 use App\Http\Controllers\MonografiyalarController;
 use App\Http\Controllers\StajirovkaController;
@@ -230,6 +231,7 @@ Route::middleware('auth')->group(function () {
         'doktaranturaexpert' => DoktaranturaexpertController::class,
         'intellektual' => IntellektualController::class,
         'loyihaiqtisodi' => LoyihaiqtisodiController::class,
+        'loyihaijrochilar' => LoyihaijrochilarController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });

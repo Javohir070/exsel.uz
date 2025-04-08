@@ -204,7 +204,7 @@ class HomeController extends Controller
         $stajirovka_expert = Stajirovkaexpert::count();
         $asboblar_expert = Asbobuskunaexpert::count();
         $doktarantura_expert = Doktaranturaexpert::count();
-        $loy_expert = 0;
+        $loy_expert = Tekshirivchilar::where('is_active',1)->count();
 
         $regions = Region::all();
         $tashkilotlar = Tashkilot::where('status', 1)->paginate(25);

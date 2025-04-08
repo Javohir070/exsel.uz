@@ -109,7 +109,7 @@ class DoktaranturaController extends Controller
         //             ->where('talim_turi', 'Mustaqil tadqiqotchi, PhD')->count();
 
         $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->get();
-
+        $tekshirivchilar =Doktaranturaexpert::where('tashkilot_id', $id)->first();
         return view("admin.doktarantura.show", [
                 'phd_soni' => $phd_soni ?? null,
                 'dsc_soni' => $dsc_soni ?? null,
@@ -117,6 +117,7 @@ class DoktaranturaController extends Controller
                 'tashkilot' => $tashkilot ?? null,
                 'lab_izlanuvchilar' => $lab_izlanuvchilar ?? null,
                 'doktaranturaexpert' => $doktaranturaexpert,
+                'tekshirivchilar' => $tekshirivchilar ?? 1,
                 'dscmus_soni' => $dscmus_soni ?? null,
                 'phdmus_soni' => $phdmus_soni ?? null,
                 'dc_type100' => $dc_type100 ?? null,
@@ -132,8 +133,8 @@ class DoktaranturaController extends Controller
                 'dc_type1100' => $dc_type1100 ?? null,
                 'dc_type1200' => $dc_type1200 ?? null,
                 'dc_type1300' => $dc_type1300 ?? null,
-                'data_tach' => $data_tach,
-                'data_main' => $data_main,
+                'data_tach' => $data_tach ?? [],
+                'data_main' => $data_main ?? [],
                 'id' => $id,
                 'year' => $year,
                 'quarter' => $quarter,

@@ -8,6 +8,7 @@ use App\Http\Requests\StoreIlmiyLoyihaRequest;
 use App\Http\Requests\UpdateIlmiyLoyihaRequest;
 use App\Models\Intellektual;
 use App\Models\Laboratory;
+use App\Models\Loyihaijrochilar;
 use App\Models\Loyihaiqtisodi;
 use App\Models\Region;
 use App\Models\Tashkilot;
@@ -17,6 +18,8 @@ use Illuminate\Http\Request;
 use App\Exports\IlmiyLoyihasExport;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\User;
+use Illuminate\Support\Facades\Http;
+
 class IlmiyLoyihaController extends Controller
 {
     /**
@@ -25,7 +28,7 @@ class IlmiyLoyihaController extends Controller
     public function index()
     {
         $tashRId = auth()->user()->tashkilot_id;
-        $ilmiyloyiha = IlmiyLoyiha::where('tashkilot_id', $tashRId)->latest()->paginate(20);
+        $ilmiyloyiha = IlmiyLoyiha::where('is_active', 1)->where('tashkilot_id', $tashRId)->latest()->paginate(20);
 
         return view('admin.ilmiyloyiha.index', ['ilmiyloyiha' => $ilmiyloyiha]);
     }
@@ -100,16 +103,49 @@ class IlmiyLoyihaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(IlmiyLoyiha $ilmiyloyiha)
+    public function show(IlmiyLoyiha $ilmiyloyiha, Request $request)
     {
-        $intellektual = Intellektual::where('ilmiy_loyiha_id','=',$ilmiyloyiha->id)->first();
-        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id','=',$ilmiyloyiha->id)->first();
-        $tekshirivchilar =  Tekshirivchilar::where('ilmiy_loyiha_id', 885)
-                                            ->orderBy('id', 'desc') // Eng oxirgi yozuvni olish uchun
-                                            ->take(1) // Faqat 1 ta yozuv olish
-                                            ->get();
-        return view('admin.ilmiyloyiha.show', ['ilmiyloyiha' => $ilmiyloyiha, 'intellektual' => $intellektual, 'loyihaiqtisodi' => $loyihaiqtisodi, 'tekshirivchilar' => $tekshirivchilar]);
+        $scienceid = $request->scienceid ?? null;
+        $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
+        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
+        $tekshirivchilar = Tekshirivchilar::where('is_active',1)->where('ilmiy_loyiha_id', '=',$ilmiyloyiha->id)->first();
+    
+        $data = null;
+        $errorMessage = null;
+    
+        if ($scienceid) {
+            $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$scienceid}/";
+            $response_main = Http::withBasicAuth(
+                                    "PxNhTIvMGoVdUSFOsmfaVrc3fwb5HABmZ9Y4WLYb",
+                                    "4JnUEYZ3rWBntf3Rxatl2bwQ8tepv06gmh5WkKCl0YNHc4C8I0wHms5oG4EkTvWz2wMAhqVliOTnZHwPXjKbv5jZufjEeS3WftD9hRPef7OclBUuesIixWKOSpus8zZm"
+                                )
+                                ->withOptions(["verify" => false])
+                                ->get($url_main);
+    
+            $data = $response_main->json();
+    
+            // Agar 'detail' mavjud bo'lsa, error message yaratamiz
+            if (isset($data['detail'])) {
+                $errorMessage = "Bunday Science ID raqamiga ega  foydalanuvchisi mavjud emas.";
+                $data = null; // Ma'lumotni bekor qilamiz
+            }
+        }
+    
+        $loyihaijrochilar = Loyihaijrochilar::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->get();
+    
+        return view('admin.ilmiyloyiha.show', [
+            'ilmiyloyiha' => $ilmiyloyiha,
+            'intellektual' => $intellektual,
+            'loyihaiqtisodi' => $loyihaiqtisodi,
+            'tekshirivchilar' => $tekshirivchilar,
+            'data' => $data,
+            'create' => $create ?? null,
+            'loyihaijrochilar' => $loyihaijrochilar,
+            'errorMessage' => $errorMessage,
+            'scienceid' => $scienceid ?? '',
+        ]);
     }
+    
 
     /**
      * Show the form for editing the specified resource.

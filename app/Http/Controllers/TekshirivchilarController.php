@@ -17,6 +17,7 @@ class TekshirivchilarController extends Controller
             'fish' => auth()->user()->name,
             "status" => $request->status,
             "comment" => $request->comment,
+            'is_active' => 1,
         ]);
 
         return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');

@@ -6,29 +6,29 @@
 
             <h2 class="intro-y text-lg font-medium">{{ $ilmiyloyiha->tashkilot->name }} </h2>
             @role('Ekspert')
-            <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
-                Xulosani genertsiya qilish
-            </a>
+                <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
+                    Xulosani genertsiya qilish
+                </a>
             @endrole
             @role(['super-admin', 'Ekspert'])
-            <a href="{{ route('ilmiyloyihalar.index') }}" class="button w-24 bg-theme-1 text-white">
-                Orqaga
-            </a>
+                <a href="{{ route('ilmiyloyihalar.index') }}" class="button w-24 bg-theme-1 text-white">
+                    Orqaga
+                </a>
             @endrole
             @role('admin')
-            <a href="{{ route('ilmiyloyiha.index') }}" class="button w-24 bg-theme-1 text-white">
-                Orqaga
-            </a>
+                <a href="{{ route('ilmiyloyiha.index') }}" class="button w-24 bg-theme-1 text-white">
+                    Orqaga
+                </a>
             @endrole
             @role('Itm-tashkilotlar')
-            <a href="{{ route('itm.ilmiyloyiha') }}" class="button w-24 bg-theme-1 text-white">
-                Orqaga
-            </a>
+                <a href="{{ route('itm.ilmiyloyiha') }}" class="button w-24 bg-theme-1 text-white">
+                    Orqaga
+                </a>
             @endrole
             @role('Ilmiy_loyiha_rahbari')
-            <a href="{{ route('scientific_project.index') }}" class="button w-24 bg-theme-1 text-white">
-                Orqaga
-            </a>
+                <a href="{{ route('scientific_project.index') }}" class="button w-24 bg-theme-1 text-white">
+                    Orqaga
+                </a>
             @endrole
         </div>
 
@@ -36,7 +36,7 @@
 
             <div class="nav-tabs flex flex-col sm:flex-row justify-center lg:justify-start">
                 <a data-toggle="tab" data-target="#add-hersh" href="javascript:;"
-                    class="py-4 sm:mr-8 flex items-center active">
+                    class="py-4 sm:mr-8 flex items-center {{ $data || $create || $errorMessage ? '' : 'active' }}">
                     LOYIHANING ASOSIY KO'RSATKICHLARI
                 </a>
                 <a data-toggle="tab" data-target="#settings" href="javascript:;" class="py-4 sm:mr-8 flex items-center">
@@ -46,7 +46,11 @@
                     class="py-4 sm:mr-8 flex items-center">
                     LOYIHANING MUHIM NATIJALARI
                 </a>
-                <a data-toggle="tab" data-target="#add-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center">
+                <a data-toggle="tab" data-target="#add-ijrochilari" href="javascript:;"
+                    class="py-4 sm:mr-8 flex items-center {{ $data || $create || $errorMessage ? 'active' : '' }}">
+                    LOYIHA IJROCHILARI
+                </a>
+                <a data-toggle="tab" data-target="#add-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center ">
                     EKSPERT XULOSASI
                 </a>
             </div>
@@ -54,11 +58,24 @@
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
+        <style>
+            .alert-danger {
+                background-color: #f8d7da;
+                color: #721c24;
+                border: 1px solid #f5c6cb;
+                padding: 15px;
+                border-radius: 5px;
+                margin-top: 15px;
+                font-size: 16px;
+            }
+        </style>
+
+
         <div class="overflow-x-auto mt-2" style="background-color: white;border-radius:8px;">
 
             <div class="tab-content mt-5">
 
-                <div class="tab-content__pane active" id="add-hersh">
+                <div class="tab-content__pane {{ $data || $create || $errorMessage ? '' : 'active' }}" id="add-hersh">
                     <div class="p-5">
                         <table class="table table-bordered">
                             <div
@@ -106,7 +123,8 @@
                                 <tr>
                                     <td class="border">1.5.</td>
                                     <td class="border">Bajarilish muddati</td>
-                                    <td class="border">{{ $ilmiyloyiha->bosh_sana . ' - ' . $ilmiyloyiha->tug_sana }} yillar
+                                    <td class="border">{{ $ilmiyloyiha->bosh_sana . ' - ' . $ilmiyloyiha->tug_sana }}
+                                        yillar
                                     </td>
                                 </tr>
                                 {{-- <tr>
@@ -166,7 +184,8 @@
                                 <tr>
                                     <td class="border">2.1.4.</td>
                                     <td class="border">Rahbar bilan kelishuvning raqami va sanasi </td>
-                                    <td class="border">{{ $ilmiyloyiha->rsh_raqami }} , {{ $ilmiyloyiha->rsh_sanasi }}</td>
+                                    <td class="border">{{ $ilmiyloyiha->rsh_raqami }} , {{ $ilmiyloyiha->rsh_sanasi }}
+                                    </td>
                                 </tr>
 
                                 <tr>
@@ -197,7 +216,8 @@
                                 <tr>
                                     <td class="border">2.2.5.</td>
                                     <td class="border">Rahbar bilan kelishuvning raqami va sanasi </td>
-                                    <td class="border">{{ $ilmiyloyiha->avvr_kelishuv_raqami }}, {{ $ilmiyloyiha->avvr_kelishuv_sanasi }}</td>
+                                    <td class="border">{{ $ilmiyloyiha->avvr_kelishuv_raqami }},
+                                        {{ $ilmiyloyiha->avvr_kelishuv_sanasi }}</td>
                                 </tr>
 
 
@@ -267,7 +287,8 @@
                                             <div style="text-align: center;">
                                                 @if (empty($intellektual->id))
                                                     <a href="javascript:;" data-target="#intellektual-paper-create-modal"
-                                                        data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
+                                                        data-toggle="modal"
+                                                        class="button w-24 ml-3 bg-theme-1 text-white">
                                                         Qo'shish
                                                     </a>
                                                 @else
@@ -277,7 +298,8 @@
                                                         Tahrirlash
                                                     </a> --}}
                                                     <a href="javascript:;" data-target="#intellektual-paper-edit-modal"
-                                                        data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
+                                                        data-toggle="modal"
+                                                        class="button w-24 ml-3 bg-theme-1 text-white">
                                                         Tahrirlash
                                                     </a>
                                                 @endif
@@ -287,7 +309,8 @@
                                             </div>
                                         </div>
                                         <tr>
-                                            <th class="border" style="text-align: center;" colspan="6">INTELLEKTUAL FAOLIYAT
+                                            <th class="border" style="text-align: center;" colspan="6">INTELLEKTUAL
+                                                FAOLIYAT
                                                 NATIJALARI</th>
                                         </tr>
                                         <tr>
@@ -310,7 +333,7 @@
                                                 {{ $intellektual->mal_jur_amalda ?? 0 }}
                                             </td>
                                             <td class="border">
-                                                {{ ($intellektual->mal_jur_reja ?? 0) - ($intellektual->mal_jur_amalda ?? 0)}}
+                                                {{ ($intellektual->mal_jur_reja ?? 0) - ($intellektual->mal_jur_amalda ?? 0) }}
                                             </td>
                                             <td class="border">{{ $intellektual->mal_jur_izoh ?? null }}</td>
                                         </tr>
@@ -326,7 +349,7 @@
                                                 {{ $intellektual->xor_jur_amalda ?? 0 }}
                                             </td>
                                             <td class="border">
-                                                {{ ($intellektual->xor_jur_reja ?? 0) - ($intellektual->xor_jur_amalda ?? 0)}}
+                                                {{ ($intellektual->xor_jur_reja ?? 0) - ($intellektual->xor_jur_amalda ?? 0) }}
                                             </td>
                                             <td class="border">{{ $intellektual->xor_jur_izoh ?? null }}</td>
                                         </tr>
@@ -342,7 +365,7 @@
                                                 {{ $intellektual->web_jur_amalda ?? 0 }}
                                             </td>
                                             <td class="border">
-                                                {{ ($intellektual->web_jur_reja ?? 0) - ($intellektual->web_jur_amalda ?? 0)}}
+                                                {{ ($intellektual->web_jur_reja ?? 0) - ($intellektual->web_jur_amalda ?? 0) }}
                                             </td>
                                             <td class="border">{{ $intellektual->web_jur_izoh ?? null }}</td>
                                         </tr>
@@ -358,7 +381,7 @@
                                                 {{ $intellektual->tezislar_amalda ?? 0 }}
                                             </td>
                                             <td class="border">
-                                                {{ ($intellektual->tezislar_reja ?? 0) - ($intellektual->tezislar_amalda ?? 0)}}
+                                                {{ ($intellektual->tezislar_reja ?? 0) - ($intellektual->tezislar_amalda ?? 0) }}
                                             </td>
                                             <td class="border">{{ $intellektual->tezislar_izoh ?? null }}</td>
                                         </tr>
@@ -475,7 +498,8 @@
                                             <td class="border">{{ $intellektual->i_mulk_izoh ?? null }}</td>
                                         </tr>
                                         <tr>
-                                            <th class="border" style="text-align: center;" colspan="6">IXTIRO UCHUN PATENT
+                                            <th class="border" style="text-align: center;" colspan="6">IXTIRO UCHUN
+                                                PATENT
                                                 VA DASTURIY TAʼMINOTLAR</th>
                                         </tr>
                                         <tr>
@@ -498,7 +522,7 @@
                                                 {{ $intellektual->ixtiro_olingan_psamalda ?? 0 }}
                                             </td>
                                             <td class="border">
-                                                {{ ($intellektual->ixtiro_olingan_psreja ?? 0) - ($intellektual->ixtiro_olingan_psamalda ?? 0)}}
+                                                {{ ($intellektual->ixtiro_olingan_psreja ?? 0) - ($intellektual->ixtiro_olingan_psamalda ?? 0) }}
                                             </td>
                                             <td class="border">{{ $intellektual->ixtiro_olingan_izoh ?? null }}</td>
                                         </tr>
@@ -514,7 +538,7 @@
                                                 {{ $intellektual->ixtiro_ber_psamalda ?? 0 }}
                                             </td>
                                             <td class="border">
-                                                {{ ($intellektual->ixtiro_ber_psreja ?? 0) - ($intellektual->ixtiro_ber_psamalda ?? 0)}}
+                                                {{ ($intellektual->ixtiro_ber_psreja ?? 0) - ($intellektual->ixtiro_ber_psamalda ?? 0) }}
                                             </td>
                                             <td class="border">{{ $intellektual->ixtiro_ber_izoh ?? null }}</td>
                                         </tr>
@@ -530,7 +554,7 @@
                                                 {{ $intellektual->dasturiy_gsamalda ?? 0 }}
                                             </td>
                                             <td class="border">
-                                                {{ ($intellektual->dasturiy_gsreja ?? 0) - ($intellektual->dasturiy_gsamalda ?? 0)}}
+                                                {{ ($intellektual->dasturiy_gsreja ?? 0) - ($intellektual->dasturiy_gsamalda ?? 0) }}
                                             </td>
                                             <td class="border">{{ $intellektual->dasturiy_izoh ?? null }}</td>
                                         </tr>
@@ -551,8 +575,8 @@
                                 </div> --}}
                                 <div style="text-align: center;">
                                     @if (empty($loyihaiqtisodi->id))
-                                        <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
-                                            class="button w-24 ml-3 bg-theme-1 text-white">
+                                        <a href="javascript:;" data-target="#science-paper-create-modal"
+                                            data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
                                             Qo'shish
                                         </a>
                                     @else
@@ -561,8 +585,8 @@
                                             class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                             Tahrirlash
                                         </a> --}}
-                                        <a href="javascript:;" data-target="#science-paper-edit-modal" data-toggle="modal"
-                                            class="button w-24 ml-3 bg-theme-1 text-white">
+                                        <a href="javascript:;" data-target="#science-paper-edit-modal"
+                                            data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
                                             Tahrirlash
                                         </a>
                                     @endif
@@ -590,7 +614,7 @@
                                     <td class="border" colspan="3">
                                         {{ $loyihaiqtisodi->hisobot_davri ?? null }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->hisobot_davri_i ?? null}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->hisobot_davri_i ?? null }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">3.3.2.</td>
@@ -601,7 +625,7 @@
                                     <td class="border" colspan="3">
                                         {{ $loyihaiqtisodi->loyihabaj_ishlanma ?? null }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->loyihabaj_ishlanma_i ?? null}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->loyihabaj_ishlanma_i ?? null }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">3.3.3.</td>
@@ -613,7 +637,7 @@
                                     <td class="border" colspan="3">
                                         {{ $loyihaiqtisodi->ilmiy_ishlanmalar ?? null }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->ilmiy_ishlanmalar_i ?? null}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->ilmiy_ishlanmalar_i ?? null }}</td>
                                 </tr>
 
                                 <tr>
@@ -637,8 +661,8 @@
                                         Mehnatga haq toʻlash (5.1.-shakl)
                                     </td>
                                     {{-- <td class="border"> --}}
-                                        {{-- {{ $loyihaiqtisodi->mehnat_haq_r ?? null }} --}}
-                                        {{-- {{ number_format($loyihaiqtisodi->mehnat_haq_r, 0, '.', ' ') }} --}}
+                                    {{-- {{ $loyihaiqtisodi->mehnat_haq_r ?? null }} --}}
+                                    {{-- {{ number_format($loyihaiqtisodi->mehnat_haq_r, 0, '.', ' ') }} --}}
                                     <td class="border">
                                         {{ $loyihaiqtisodi->mehnat_haq_r ?? null }}
                                     </td>
@@ -650,7 +674,7 @@
                                         {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_a ?? 0)) }}
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->mehnat_haq_i ?? null}}
+                                        {{ $loyihaiqtisodi->mehnat_haq_i ?? null }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -659,7 +683,7 @@
                                         Xizmat safarlari xarajatlari (5.2.-shakl)
                                     </td>
                                     <td class="border">
-                                        {{ $loyihaiqtisodi->xizmat_saf_r ?? null}}
+                                        {{ $loyihaiqtisodi->xizmat_saf_r ?? null }}
                                     </td>
                                     <td class="border">
                                         {{ $loyihaiqtisodi->xizmat_saf_a ?? null }}
@@ -667,7 +691,7 @@
                                     <td class="border">
                                         {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_a ?? 0)) }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->xizmat_saf_i ?? null}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->xizmat_saf_i ?? null }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">4.3.</td>
@@ -682,9 +706,9 @@
                                         {{ $loyihaiqtisodi->xarid_xaraja_a ?? null }}
                                     </td>
                                     <td class="border">
-                                        {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_a ?? 0))}}
+                                        {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_a ?? 0)) }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->xarid_xaraja_i ?? null}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->xarid_xaraja_i ?? null }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">4.4.</td>
@@ -699,9 +723,9 @@
                                         {{ $loyihaiqtisodi->mat_butlovchi_a ?? null }}
                                     </td>
                                     <td class="border">
-                                        {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_a ?? 0))}}
+                                        {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_a ?? 0)) }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->mat_butlovchi_i ?? null}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->mat_butlovchi_i ?? null }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">4.5.</td>
@@ -719,7 +743,7 @@
                                     <td class="border">
                                         {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_a ?? 0)) }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->jalb_etilgan_i ?? null}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->jalb_etilgan_i ?? null }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">4.6.</td>
@@ -735,7 +759,7 @@
                                     <td class="border">
                                         {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_a ?? 0)) }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->boshqa_xarajat_i ?? null}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->boshqa_xarajat_i ?? null }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">4.7.</td>
@@ -753,7 +777,7 @@
                                     <td class="border">
                                         {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_a ?? 0)) }}
                                     </td>
-                                    <td class="border">{{ $loyihaiqtisodi->tashustama_xarajat_i ?? null}}</td>
+                                    <td class="border">{{ $loyihaiqtisodi->tashustama_xarajat_i ?? null }}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">4.8.</td>
@@ -764,7 +788,8 @@
                                     <td class="border" colspan="3">
                                         {{ $loyihaiqtisodi->xarid_qilingan_xarid ?? null }}
                                     </td>
-                                    <td rowspan="4" class="border">{{ $loyihaiqtisodi->xarid_qilingan_i ?? null}}</td>
+                                    <td rowspan="4" class="border">{{ $loyihaiqtisodi->xarid_qilingan_i ?? null }}
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="border">4.8.1.</td>
@@ -804,17 +829,18 @@
                 <div class="tab-content__pane" id="add-expert">
 
                     <div class="p-5">
-                        @forelse ($tekshirivchilar as $t)
+                        @if ($tekshirivchilar != null)
                             <table class="table table-bordered">
                                 <tbody>
                                     <tr>
                                         <th class="border" style="width: 40px;">T/r</th>
-                                        <th colspan="2" class="border" style="text-align: center;">EKSPERT XULOSASI</th>
+                                        <th colspan="2" class="border" style="text-align: center;">EKSPERT XULOSASI
+                                        </th>
                                     </tr>
                                     <tr>
                                         <td class="border">1.</td>
-                                        <td class="border">>Monitoring xulosasi</td>
-                                        <td class="border">{{  $tekshirivchilar->status }}</td>
+                                        <td class="border">Monitoring xulosasi</td>
+                                        <td class="border">{{ $tekshirivchilar->status }}</td>
                                     </tr>
                                     <tr>
                                         <td class="border">2.</td>
@@ -833,62 +859,259 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        @empty
+                        @else
                             @role('Ekspert')
-                            <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-                                style="background: white; padding: 20px 20px; border-radius: 20px">
-                                <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                                    <form id="science-paper-edit-form" method="POST"
-                                        action="{{ route('tekshirivchilar.store') }}" class="validate-form"
-                                        enctype="multipart/form-data" novalidate="novalidate">
-                                        @csrf
-                                        <div class="grid grid-cols-12 gap-2">
-                                            <input type="hidden" name="ilmiyloyiha_id" value="{{ $ilmiyloyiha->id }}">
+                                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
+                                    style="background: white; padding: 20px 20px; border-radius: 20px">
+                                    <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                                        <form id="science-paper-edit-form" method="POST"
+                                            action="{{ route('tekshirivchilar.store') }}" class="validate-form"
+                                            enctype="multipart/form-data" novalidate="novalidate">
+                                            @csrf
+                                            <div class="grid grid-cols-12 gap-2">
+                                                <input type="hidden" name="ilmiyloyiha_id" value="{{ $ilmiyloyiha->id }}">
 
-                                            <div class="w-full col-span-6">
-                                                <label class="flex flex-col sm:flex-row"> <span
-                                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
-                                                </label>
-                                                <select name="status" id="science-sub-category" class="input border w-full mt-2"
-                                                    required="">
+                                                <div class="w-full col-span-6">
+                                                    <label class="flex flex-col sm:flex-row"> <span
+                                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
+                                                    </label>
+                                                    <select name="status" id="science-sub-category"
+                                                        class="input border w-full mt-2" required="">
 
-                                                    <option value=""></option>
+                                                        <option value=""></option>
 
-                                                    <option value="Qoniqarli">Qoniqarli</option>
+                                                        <option value="Qoniqarli">Qoniqarli</option>
 
-                                                    <option value="Qoniqarsiz">Qoniqarsiz</option>
+                                                        <option value="Qoniqarsiz">Qoniqarsiz</option>
 
 
-                                                </select><br>
+                                                    </select><br>
 
-                                                @error('muddat')
-                                                    <div class="error">{{ $message }}</div>
-                                                @enderror
+                                                    @error('muddat')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="w-full col-span-6 ">
+                                                    <label class="flex flex-col sm:flex-row"> <span
+                                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>
+                                                        Izoh</label>
+                                                    <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                                                </div>
                                             </div>
 
-                                            <div class="w-full col-span-6 ">
-                                                <label class="flex flex-col sm:flex-row"> <span
-                                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
-                                                <textarea name="comment" id="" class="input w-full border mt-2" cols="5"
-                                                    rows="5"></textarea>
-                                            </div>
+                                        </form><br>
+                                        <div class="px-5 pb-5 text-center">
+                                            <a href="{{ route('ilmiyloyiha.index') }}"
+                                                class="button delete-cancel w-32 border text-gray-700 mr-1">
+                                                Bekor qilish
+                                            </a>
+                                            <button type="submit" form="science-paper-edit-form"
+                                                class="update-confirm button w-24 bg-theme-1 text-white">
+                                                Tasdiqlash
+                                            </button>
                                         </div>
-
-                                    </form><br>
-                                    <div class="px-5 pb-5 text-center">
-                                        <a href="{{ route('ilmiyloyiha.index') }}"
-                                            class="button delete-cancel w-32 border text-gray-700 mr-1">
-                                            Bekor qilish
-                                        </a>
-                                        <button type="submit" form="science-paper-edit-form"
-                                            class="update-confirm button w-24 bg-theme-1 text-white">
-                                            Tasdiqlash
-                                        </button>
                                     </div>
                                 </div>
-                            </div>
                             @endrole
-                        @endforelse
+                        @endif
+                        
+                    </div>
+
+                </div>
+
+                <div class="tab-content__pane {{ $data || $create || $errorMessage ? 'active' : '' }}"
+                    id="add-ijrochilari">
+
+                    <div class="px-5">
+                        <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center"
+                            style="background: white; border-radius: 20px">
+                            <div class="w-full sm:mt-0 sm:ml-auto md:ml-0">
+                                <form id="science-qidirish-edit-form" method="GET"
+                                    action="{{ route('ilmiyloyiha.show', $ilmiyloyiha->id) }}" class="validate-form"
+                                    enctype="multipart/form-data" novalidate="novalidate">
+                                    <div class="grid grid-cols-12 gap-2">
+                                        <div class="w-full col-span-6">
+                                            <label class="flex flex-col sm:flex-row"> <span
+                                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Science ID
+                                                (BQD-1124-0011)
+                                            </label>
+                                            <input type="text" name="scienceid" value="{{ $scienceid }}"
+                                                placeholder="Science ID ..." class="input w-full border mt-2">
+                                        </div>
+
+
+                                        <div class="grid grid-cols-6 gap-2 mt-8">
+                                            <div class="px-5 pb-5 text-center">
+                                                <button type="submit" form="science-qidirish-edit-form"
+                                                    class="update-confirm button w-24 bg-theme-1 text-white">
+                                                    Qidirish
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="w-full col-span-12">
+                                            @if ($errorMessage)
+                                                <div class="alert alert-danger">
+                                                    {{ $errorMessage }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        @if ($data != null)
+                            <div class="overflow-x-auto"
+                                style="background-color: white;border-radius:8px;padding:30px 0px;">
+                                <form id="loyihaijrochilar-paper-create-form" method="POST"
+                                    action="{{ route('loyihaijrochilar.store') }}" class="validate-form"
+                                    enctype="multipart/form-data" novalidate="novalidate">
+                                    @csrf
+                                    <table class="table">
+
+                                        <thead>
+                                            <tr class="bg-gray-200">
+                                                <th class="border border-b-2 " style="width: 40px;">№</th>
+                                                <th class="border border-b-2 " style="width: 50%;">Nomi</th>
+                                                <th class="border border-b-2 ">Ma'lumoti</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-b-2 ">1.</td>
+                                                <td class="border border-b-2 ">
+                                                    F.I.Sh.
+                                                </td>
+                                                <td class="border border-b-2 ">
+                                                    <input type="text" name="fio"
+                                                        value="{{ $data['full_name'] ?? "ma'lumot topilamdi Science qaytadan kiritib ko'ring" }}"
+                                                        readonly class="input w-full border mt-2">
+                                                    <input type="hidden" name="ilmiy_loyiha_id" readonly
+                                                        value="{{ $ilmiyloyiha->id }}">
+                                                    <input type="hidden" name="jshshir" readonly
+                                                        value="{{ $data['pin'] ?? "ma'lumot topilamdi Science qaytadan kiritib ko'ring " }}">
+                                                </td>
+                                            </tr>
+                                            <tr class="bg-gray-200">
+                                                <td class="border border-b-2 ">2.</td>
+                                                <td class="border border-b-2 ">
+                                                    Science ID.
+                                                </td>
+                                                <td class="border border-b-2 ">
+                                                    <input type="text" name="science_id"
+                                                        value="{{ $data['science_id'] ?? "ma'lumot topilamdi Science qaytadan kiritib ko'ring" }}"
+                                                        readonly class="input w-full border mt-2">
+                                                    @error('science_id')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td class="border border-b-2 ">3.</td>
+                                                <td class="border border-b-2 ">
+                                                    Shtat birligi.
+                                                </td>
+                                                <td class="border border-b-2 ">
+                                                    <select name="shtat_birligi" value="{{ old('shtat_birligi') }}"
+                                                        id="science-sub-category" class="input border w-full mt-2"
+                                                        required>
+
+                                                        <option value=""></option>
+
+                                                        <option value="0.25">0.25</option>
+
+                                                        <option value="0.5">0.5</option>
+
+                                                        <option value="0.75">0.75</option>
+
+                                                        <option value="1">1</option>
+
+                                                        <option value="1.25">1.25</option>
+
+                                                        <option value="1.5">1.5</option>
+
+                                                    </select>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </form><br>
+                                <div class="px-5 pb-5 text-center">
+                                    <button type="button" data-dismiss="modal"
+                                        class="button delete-cancel w-32 border text-gray-700 mr-1">
+                                        Bekor qilish
+                                    </button>
+                                    <button type="submit" form="loyihaijrochilar-paper-create-form"
+                                        class="update-confirm button w-24 bg-theme-1 text-white">
+                                        Tasdiqlash
+                                    </button>
+                                </div>
+                            </div>
+                        @endif
+
+                        <div class="overflow-x-auto" style="background-color: white;border-radius:8px;padding:30px 0px;">
+                            <table class="table">
+
+                                <thead>
+                                    <tr class="bg-gray-200">
+                                        <th class="border border-b-2 " style="width: 40px;">№</th>
+                                        <th class="border border-b-2 " style="width: 50%;">F.I.Sh</th>
+                                        <th class="border border-b-2 ">Science ID</th>
+                                        <th class="border border-b-2 ">Shtat birligi</th>
+                                        <th class="border border-b-2 "></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($loyihaijrochilar as $l)
+                                        <tr>
+                                            <td class="border border-b-2 ">{{ $loop->iteration }}.</td>
+                                            <td class="border border-b-2 ">
+                                                {{ $l->fio }}
+                                            </td>
+                                            <td class="border border-b-2 ">
+                                                {{ $l->science_id }}
+
+                                            </td>
+                                            <td class="border border-b-2 ">
+                                                {{ $l->shtat_birligi }}
+                                            </td>
+                                            <td class="border border-b-2 ">
+                                                <form
+                                                    action="{{ route('loyihaijrochilar.destroy', ['loyihaijrochilar' => $l->id]) }}"
+                                                    method="post"
+                                                    onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                                    <button type="submit"
+                                                        class="flex delete-action items-center text-theme-6">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none"
+                                                            stroke="currentColor" stroke-width="1.5"
+                                                            stroke-linecap="round" stroke-linejoin="round"
+                                                            class="feather feather-trash-2 w-4 h-4 mr-1">
+                                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                                            <path
+                                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                            </path>
+                                                            <line x1="10" y1="11" x2="10"
+                                                                y2="17"></line>
+                                                            <line x1="14" y1="11" x2="14"
+                                                                y2="17"></line>
+                                                        </svg>
+                                                        O'chirish
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
 
                 </div>
@@ -906,15 +1129,17 @@
 
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                        <form id="science-paper-create-form" method="POST" action="{{ route("loyihaiqtisodi.store") }}"
-                            class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                        <form id="science-paper-create-form" method="POST"
+                            action="{{ route('loyihaiqtisodi.store') }}" class="validate-form"
+                            enctype="multipart/form-data" novalidate="novalidate">
                             @csrf
                             <div class="grid grid-cols-12 gap-2">
 
                                 <div class="w-full col-span-12">
                                     <table class="table table-bordered">
                                         <tr>
-                                            <th class="border" style="text-align: center;" colspan="3">LOYIHANING MUHIM
+                                            <th class="border" style="text-align: center;" colspan="3">LOYIHANING
+                                                MUHIM
                                                 NATIJALARI</th>
                                         </tr>
                                         <tr>
@@ -927,10 +1152,10 @@
                                             <td class="border" style="text-size:16px;">
                                                 Hisobot davrida qoʻlga kiritilgan muhim natijalar
                                             </td>
-                                            <input type="hidden" name="ilmiy_loyiha_id" value="{{ $ilmiyloyiha->id }}">
+                                            <input type="hidden" name="ilmiy_loyiha_id"
+                                                value="{{ $ilmiyloyiha->id }}">
                                             <td class="border" colspan="2">
-                                                <textarea name="hisobot_davri" value="" cols="5" rows="3"
-                                                    class="input w-full border mt-2"
+                                                <textarea name="hisobot_davri" value="" cols="5" rows="3" class="input w-full border mt-2"
                                                     required="">{{ old('hisobot_davri') }}</textarea>
                                                 @error('hisobot_davri')
                                                     <div class="error">{{ $message }}</div>
@@ -944,9 +1169,7 @@
                                                 tavsifi
                                             </td>
                                             <td class="border" colspan="2">
-                                                <textarea name="loyihabaj_ishlanma" cols="5" rows="3"
-                                                    class="input w-full border mt-2"
-                                                    required="">{{ old('loyihabaj_ishlanma') }}</textarea>
+                                                <textarea name="loyihabaj_ishlanma" cols="5" rows="3" class="input w-full border mt-2" required="">{{ old('loyihabaj_ishlanma') }}</textarea>
                                                 @error('loyihabaj_ishlanma')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -959,9 +1182,7 @@
                                                 natijalar (mavjud ehtiyoj, iqtisodiy samaradorlik tahlili)
                                             </td>
                                             <td class="border" colspan="2">
-                                                <textarea name="ilmiy_ishlanmalar" cols="5" rows="3"
-                                                    class="input w-full border mt-2"
-                                                    required="">{{ old('ilmiy_ishlanmalar') }}</textarea>
+                                                <textarea name="ilmiy_ishlanmalar" cols="5" rows="3" class="input w-full border mt-2" required="">{{ old('ilmiy_ishlanmalar') }}</textarea>
                                                 @error('ilmiy_ishlanmalar')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -969,7 +1190,8 @@
                                         </tr>
 
                                         <tr>
-                                            <th class="border" style="text-align: center;" colspan="3">LOYIHANING MOLIYAVIY
+                                            <th class="border" style="text-align: center;" colspan="3">LOYIHANING
+                                                MOLIYAVIY
                                                 VA IQTISODIY
                                                 KOʻRSATKICHLARI
                                                 (AJRATILGAN MABLAGʻLARNING MAQSADLI ISHLATILISHI)
@@ -987,14 +1209,16 @@
                                                 Mehnatga haq toʻlash (5.1.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="mehnat_haq_r" value="{{ old('mehnat_haq_r') }}"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="mehnat_haq_r" value="{{ old('mehnat_haq_r') }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('mehnat_haq_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="mehnat_haq_a" value="{{ old('mehnat_haq_a') }}"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="mehnat_haq_a" value="{{ old('mehnat_haq_a') }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('mehnat_haq_a')
                                                     <div class="error">{{ $message }}</div>
@@ -1006,14 +1230,16 @@
                                                 Xizmat safarlari xarajatlari (5.2.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="xizmat_saf_r" value="{{ old('xizmat_saf_r') }}"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="xizmat_saf_r" value="{{ old('xizmat_saf_r') }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('xizmat_saf_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="xizmat_saf_a" value="{{ old('xizmat_saf_a') }}"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="xizmat_saf_a" value="{{ old('xizmat_saf_a') }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('xizmat_saf_a')
                                                     <div class="error">{{ $message }}</div>
@@ -1027,17 +1253,17 @@
                                                 tovar-moddiy boyliklarning xaridi uchun xarajatlar (5.4.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="xarid_xaraja_r"
-                                                    value="{{ old('xarid_xaraja_r') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="xarid_xaraja_r" value="{{ old('xarid_xaraja_r') }}"
+                                                    class="input w-full border mt-2" required="">
                                                 @error('xarid_xaraja_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="xarid_xaraja_a"
-                                                    value="{{ old('xarid_xaraja_a') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="xarid_xaraja_a" value="{{ old('xarid_xaraja_a') }}"
+                                                    class="input w-full border mt-2" required="">
                                                 @error('xarid_xaraja_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1050,17 +1276,17 @@
                                                 (5.5.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="mat_butlovchi_r"
-                                                    value="{{ old('mat_butlovchi_r') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="mat_butlovchi_r" value="{{ old('mat_butlovchi_r') }}"
+                                                    class="input w-full border mt-2" required="">
                                                 @error('mat_butlovchi_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="mat_butlovchi_a"
-                                                    value="{{ old('mat_butlovchi_a') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="mat_butlovchi_a" value="{{ old('mat_butlovchi_a') }}"
+                                                    class="input w-full border mt-2" required="">
                                                 @error('mat_butlovchi_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1073,17 +1299,17 @@
                                                 toʻlov (5.6.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="jalb_etilgan_r"
-                                                    value="{{ old('jalb_etilgan_r') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="jalb_etilgan_r" value="{{ old('jalb_etilgan_r') }}"
+                                                    class="input w-full border mt-2" required="">
                                                 @error('jalb_etilgan_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="jalb_etilgan_a"
-                                                    value="{{ old('jalb_etilgan_a') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="jalb_etilgan_a" value="{{ old('jalb_etilgan_a') }}"
+                                                    class="input w-full border mt-2" required="">
                                                 @error('jalb_etilgan_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1094,17 +1320,17 @@
                                                 Loyihani amalga oshirish uchun boshqa xarajatlar (5.7.-shakl)
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="boshqa_xarajat_r"
-                                                    value="{{ old('boshqa_xarajat_r') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="boshqa_xarajat_r" value="{{ old('boshqa_xarajat_r') }}"
+                                                    class="input w-full border mt-2" required="">
                                                 @error('boshqa_xarajat_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="boshqa_xarajat_a"
-                                                    value="{{ old('boshqa_xarajat_a') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="boshqa_xarajat_a" value="{{ old('boshqa_xarajat_a') }}"
+                                                    class="input w-full border mt-2" required="">
                                                 @error('boshqa_xarajat_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1118,7 +1344,8 @@
                                                 rejalashtirilmaydi)
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="tashustama_xarajat_r"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="tashustama_xarajat_r"
                                                     value="{{ old('tashustama_xarajat_r') }}"
                                                     class="input w-full border mt-2" required="tashustama_xarajat_r">
                                                 @error('fish')
@@ -1126,7 +1353,8 @@
                                                 @enderror
                                             </td>
                                             <td class="border">
-                                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="tashustama_xarajat_a"
+                                                <input type="text" id="sumInput1" oninput="formatNumber(this)"
+                                                    name="tashustama_xarajat_a"
                                                     value="{{ old('tashustama_xarajat_a') }}"
                                                     class="input w-full border mt-2" required="tashustama_xarajat_a">
                                                 @error('fish')
@@ -1196,8 +1424,8 @@
                                             </td>
                                             <td class="border" colspan="2">
                                                 <input type="text" name="yetkb_yuridik_nomi"
-                                                    value="{{ old('yetkb_yuridik_nomi') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('yetkb_yuridik_nomi') }}"
+                                                    class="input w-full border mt-2" required="">
                                                 @error('yetkb_yuridik_nomi')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1231,8 +1459,8 @@
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                         <form id="science-paper-edit-form-edit" method="POST"
-                            action="{{ route("loyihaiqtisodi.update", $loyihaiqtisodi->id ?? 0) }}" class="validate-form"
-                            enctype="multipart/form-data" novalidate="novalidate">
+                            action="{{ route('loyihaiqtisodi.update', $loyihaiqtisodi->id ?? 0) }}"
+                            class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                             @csrf
                             @method('PUT')
                             <div class="grid grid-cols-12 gap-2">
@@ -1240,7 +1468,8 @@
                                 <div class="w-full col-span-12">
                                     <table class="table table-bordered">
                                         <tr>
-                                            <th class="border" style="text-align: center;" colspan="3">LOYIHANING MUHIM
+                                            <th class="border" style="text-align: center;" colspan="3">LOYIHANING
+                                                MUHIM
                                                 NATIJALARI</th>
                                         </tr>
                                         <tr>
@@ -1254,8 +1483,7 @@
                                                 Hisobot davrida qoʻlga kiritilgan muhim natijalar
                                             </td>
                                             <td class="border" colspan="2">
-                                                <textarea name="hisobot_davri" value="" cols="5" rows="3"
-                                                    class="input w-full border mt-2"
+                                                <textarea name="hisobot_davri" value="" cols="5" rows="3" class="input w-full border mt-2"
                                                     required="">{{ $loyihaiqtisodi->hisobot_davri ?? 'yoq' }}</textarea>
                                                 @error('hisobot_davri')
                                                     <div class="error">{{ $message }}</div>
@@ -1269,9 +1497,7 @@
                                                 tavsifi
                                             </td>
                                             <td class="border" colspan="2">
-                                                <textarea name="loyihabaj_ishlanma" cols="5" rows="3"
-                                                    class="input w-full border mt-2"
-                                                    required="">{{ $loyihaiqtisodi->loyihabaj_ishlanma ?? 'yoq'}}</textarea>
+                                                <textarea name="loyihabaj_ishlanma" cols="5" rows="3" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->loyihabaj_ishlanma ?? 'yoq' }}</textarea>
                                                 @error('loyihabaj_ishlanma')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1284,9 +1510,7 @@
                                                 natijalar (mavjud ehtiyoj, iqtisodiy samaradorlik tahlili)
                                             </td>
                                             <td class="border" colspan="2">
-                                                <textarea name="ilmiy_ishlanmalar" cols="5" rows="3"
-                                                    class="input w-full border mt-2"
-                                                    required="">{{ $loyihaiqtisodi->ilmiy_ishlanmalar ?? 'yoq' }}</textarea>
+                                                <textarea name="ilmiy_ishlanmalar" cols="5" rows="3" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->ilmiy_ishlanmalar ?? 'yoq' }}</textarea>
                                                 @error('ilmiy_ishlanmalar')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1294,7 +1518,8 @@
                                         </tr>
 
                                         <tr>
-                                            <th class="border" style="text-align: center;" colspan="3">LOYIHANING MOLIYAVIY
+                                            <th class="border" style="text-align: center;" colspan="3">LOYIHANING
+                                                MOLIYAVIY
                                                 VA IQTISODIY
                                                 KOʻRSATKICHLARI
                                                 (AJRATILGAN MABLAGʻLARNING MAQSADLI ISHLATILISHI)
@@ -1342,7 +1567,8 @@
                                             </td>
                                             <td class="border">
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this)"
-                                                    name="xizmat_saf_a" value="{{ $loyihaiqtisodi->xizmat_saf_a ?? 0 }}"
+                                                    name="xizmat_saf_a"
+                                                    value="{{ $loyihaiqtisodi->xizmat_saf_a ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('xizmat_saf_a')
                                                     <div class="error">{{ $message }}</div>
@@ -1357,7 +1583,8 @@
                                             </td>
                                             <td class="border">
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this)"
-                                                    name="xarid_xaraja_r" value="{{ $loyihaiqtisodi->xarid_xaraja_r ?? 0 }}"
+                                                    name="xarid_xaraja_r"
+                                                    value="{{ $loyihaiqtisodi->xarid_xaraja_r ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('xarid_xaraja_r')
                                                     <div class="error">{{ $message }}</div>
@@ -1365,7 +1592,8 @@
                                             </td>
                                             <td class="border">
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this)"
-                                                    name="xarid_xaraja_a" value="{{ $loyihaiqtisodi->xarid_xaraja_a ?? 0 }}"
+                                                    name="xarid_xaraja_a"
+                                                    value="{{ $loyihaiqtisodi->xarid_xaraja_a ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('xarid_xaraja_a')
                                                     <div class="error">{{ $message }}</div>
@@ -1405,7 +1633,8 @@
                                             </td>
                                             <td class="border">
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this)"
-                                                    name="jalb_etilgan_r" value="{{ $loyihaiqtisodi->jalb_etilgan_r ?? 0 }}"
+                                                    name="jalb_etilgan_r"
+                                                    value="{{ $loyihaiqtisodi->jalb_etilgan_r ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('jalb_etilgan_r')
                                                     <div class="error">{{ $message }}</div>
@@ -1413,7 +1642,8 @@
                                             </td>
                                             <td class="border">
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this)"
-                                                    name="jalb_etilgan_a" value="{{ $loyihaiqtisodi->jalb_etilgan_a ?? 0 }}"
+                                                    name="jalb_etilgan_a"
+                                                    value="{{ $loyihaiqtisodi->jalb_etilgan_a ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('jalb_etilgan_a')
                                                     <div class="error">{{ $message }}</div>
@@ -1478,8 +1708,9 @@
                                             <td class="border">
                                                 <div class="flex items-center text-gray-700 mr-2">
                                                     <input type="radio" class="input border mr-2"
-                                                        id="horizontal-radio-chris-evans-edit" name="xarid_qilingan_xarid"
-                                                        value="ha" @if(old('xarid_qilingan_xarid', $loyihaiqtisodi->xarid_qilingan_xarid ?? 0) == 'ha') checked @endif>
+                                                        id="horizontal-radio-chris-evans-edit"
+                                                        name="xarid_qilingan_xarid" value="ha"
+                                                        @if (old('xarid_qilingan_xarid', $loyihaiqtisodi->xarid_qilingan_xarid ?? 0) == 'ha') checked @endif>
                                                     <label class="cursor-pointer select-none"
                                                         for="horizontal-radio-chris-evans-edit">Ha</label>
                                                 </div>
@@ -1487,8 +1718,9 @@
                                             <td class="border">
                                                 <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
                                                     <input type="radio" class="input border mr-2"
-                                                        id="horizontal-radio-liam-neeson-edit" name="xarid_qilingan_xarid"
-                                                        value="yo'q" @if(old('xarid_qilingan_xarid', $loyihaiqtisodi->xarid_qilingan_xarid ?? 0) == "yo'q") checked @endif>
+                                                        id="horizontal-radio-liam-neeson-edit"
+                                                        name="xarid_qilingan_xarid" value="yo'q"
+                                                        @if (old('xarid_qilingan_xarid', $loyihaiqtisodi->xarid_qilingan_xarid ?? 0) == "yo'q") checked @endif>
                                                     <label class="cursor-pointer select-none"
                                                         for="horizontal-radio-liam-neeson-edit">Yo'q</label>
                                                 </div>
@@ -1501,7 +1733,7 @@
                                             </td>
                                             <td class="border">
                                                 <input type="text" name="xarid_s"
-                                                    value="{{ $loyihaiqtisodi->xarid_s ?? ''}}"
+                                                    value="{{ $loyihaiqtisodi->xarid_s ?? '' }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('xarid_s')
                                                     <div class="error">{{ $message }}</div>
@@ -1509,7 +1741,7 @@
                                             </td>
                                             <td class="border">
                                                 <input type="date" name="xarid_r"
-                                                    value="{{ $loyihaiqtisodi->xarid_r ?? ''}}"
+                                                    value="{{ $loyihaiqtisodi->xarid_r ?? '' }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('xarid_r')
                                                     <div class="error">{{ $message }}</div>
@@ -1535,7 +1767,7 @@
                                             </td>
                                             <td class="border" colspan="2">
                                                 <input type="text" name="yetkb_yuridik_nomi"
-                                                    value="{{ $loyihaiqtisodi->yetkb_yuridik_nomi ?? ''}}"
+                                                    value="{{ $loyihaiqtisodi->yetkb_yuridik_nomi ?? '' }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('yetkb_yuridik_nomi')
                                                     <div class="error">{{ $message }}</div>
@@ -1555,7 +1787,8 @@
             <div class="px-5 pb-5 text-center">
 
 
-                <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                <button type="button" data-dismiss="modal"
+                    class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
                 </button>
                 <button type="submit" form="science-paper-edit-form-edit"
@@ -1567,11 +1800,12 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             let haRadio = document.getElementById("horizontal-radio-chris-evans-edit");
             let yoqRadio = document.getElementById("horizontal-radio-liam-neeson-edit");
 
-            let extraFields = document.querySelectorAll("[name='xarid_s'], [name='xarid_r'], [name='xarid_sh'], [name='yetkb_yuridik_nomi']");
+            let extraFields = document.querySelectorAll(
+                "[name='xarid_s'], [name='xarid_r'], [name='xarid_sh'], [name='yetkb_yuridik_nomi']");
 
             function toggleRequired() {
                 if (haRadio.checked) {
@@ -1601,11 +1835,12 @@
 
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             let haRadio = document.getElementById("horizontal-radio-chris-evans");
             let yoqRadio = document.getElementById("horizontal-radio-liam-neeson");
 
-            let extraFields = document.querySelectorAll("[name='xarid_s'], [name='xarid_r'], [name='xarid_sh'], [name='yetkb_yuridik_nomi']");
+            let extraFields = document.querySelectorAll(
+                "[name='xarid_s'], [name='xarid_r'], [name='xarid_sh'], [name='yetkb_yuridik_nomi']");
 
             function toggleRequired() {
                 if (haRadio.checked) {
@@ -1637,15 +1872,17 @@
 
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                        <form id="intellektual-paper-create-form" method="POST" action="{{ route("intellektual.store") }}"
-                            class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                        <form id="intellektual-paper-create-form" method="POST"
+                            action="{{ route('intellektual.store') }}" class="validate-form"
+                            enctype="multipart/form-data" novalidate="novalidate">
                             @csrf
                             <div class="grid grid-cols-12 gap-2">
 
                                 <div class="w-full col-span-12">
                                     <table class="table table-bordered">
                                         <tr>
-                                            <th class="border" style="text-align: center;" colspan="3">INTELLEKTUAL FAOLIYAT
+                                            <th class="border" style="text-align: center;" colspan="3">INTELLEKTUAL
+                                                FAOLIYAT
                                                 NATIJALARI</th>
                                         </tr>
                                         <tr>
@@ -1660,14 +1897,16 @@
                                                 Mahalliy ilmiy jurnallardagi maqolalar soni
                                             </td>
                                             <td class="border">
-                                                <input type="hidden" name="ilmiy_loyiha_id" value="{{ $ilmiyloyiha->id }}">
-                                                <input type="number" name="mal_jur_reja" value="{{ old('mal_jur_reja') }}"
-                                                    class="input w-full border mt-2" required="">
+                                                <input type="hidden" name="ilmiy_loyiha_id"
+                                                    value="{{ $ilmiyloyiha->id }}">
+                                                <input type="number" name="mal_jur_reja"
+                                                    value="{{ old('mal_jur_reja') }}" class="input w-full border mt-2"
+                                                    required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="mal_jur_amalda"
-                                                    value="{{ old('mal_jur_amalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('mal_jur_amalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -1675,13 +1914,14 @@
                                                 Xorijiy jurnallardagi ilmiy maqolalar soni
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="xor_jur_reja" value="{{ old('xor_jur_reja') }}"
-                                                    class="input w-full border mt-2" required="">
+                                                <input type="number" name="xor_jur_reja"
+                                                    value="{{ old('xor_jur_reja') }}" class="input w-full border mt-2"
+                                                    required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="xor_jur_amalda"
-                                                    value="{{ old('xor_jur_amalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('xor_jur_amalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -1689,13 +1929,14 @@
                                                 Web of intellektual va Scopus bazasidagi xalqaro nashrlardagi maqolalar soni
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="web_jur_reja" value="{{ old('web_jur_reja') }}"
-                                                    class="input w-full border mt-2" required="">
+                                                <input type="number" name="web_jur_reja"
+                                                    value="{{ old('web_jur_reja') }}" class="input w-full border mt-2"
+                                                    required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="web_jur_amalda"
-                                                    value="{{ old('web_jur_amalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('web_jur_amalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -1703,13 +1944,14 @@
                                                 Tezislar soni
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="tezislar_reja" value="{{ old('tezislar_reja') }}"
+                                                <input type="number" name="tezislar_reja"
+                                                    value="{{ old('tezislar_reja') }}"
                                                     class="input w-full border mt-2" required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="tezislar_amalda"
-                                                    value="{{ old('tezislar_amalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('tezislar_amalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -1718,13 +1960,13 @@
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="ilmiy_mon_reja"
-                                                    value="{{ old('ilmiy_mon_reja') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('ilmiy_mon_reja') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="ilmiy_mon_amalda"
-                                                    value="{{ old('ilmiy_mon_amalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('ilmiy_mon_amalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -1733,13 +1975,13 @@
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="nashr_uquv_reja"
-                                                    value="{{ old('nashr_uquv_reja') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('nashr_uquv_reja') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="nashr_uquv_amalda"
-                                                    value="{{ old('nashr_uquv_amalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('nashr_uquv_amalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -1747,13 +1989,14 @@
                                                 Nashr qilingan darsliklar soni
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="darslik_reja" value="{{ old('darslik_reja') }}"
-                                                    class="input w-full border mt-2" required="">
+                                                <input type="number" name="darslik_reja"
+                                                    value="{{ old('darslik_reja') }}" class="input w-full border mt-2"
+                                                    required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="darslik_amalda"
-                                                    value="{{ old('darslik_amalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('darslik_amalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -1762,13 +2005,13 @@
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="b_bitiruv_mreja"
-                                                    value="{{ old('b_bitiruv_mreja') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('b_bitiruv_mreja') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="b_bitiruv_mamalda"
-                                                    value="{{ old('b_bitiruv_mamalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('b_bitiruv_mamalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -1777,13 +2020,13 @@
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="m_bitiruv_dreja"
-                                                    value="{{ old('m_bitiruv_dreja') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('m_bitiruv_dreja') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="m_bitiruv_damalda"
-                                                    value="{{ old('m_bitiruv_damalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('m_bitiruv_damalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -1792,13 +2035,13 @@
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="p_bitiruv_dreja"
-                                                    value="{{ old('p_bitiruv_dreja') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('p_bitiruv_dreja') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="p_bitiruv_damalda"
-                                                    value="{{ old('p_bitiruv_damalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('p_bitiruv_damalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                         <tr>
@@ -1806,17 +2049,19 @@
                                                 Intellektual mulk obyektlari uchun berilgan arizalar soni
                                             </td>
                                             <td class="border">
-                                                <input type="number" name="i_mulk_areja" value="{{ old('i_mulk_areja') }}"
-                                                    class="input w-full border mt-2" required="">
+                                                <input type="number" name="i_mulk_areja"
+                                                    value="{{ old('i_mulk_areja') }}" class="input w-full border mt-2"
+                                                    required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="i_mulk_aamalda"
-                                                    value="{{ old('i_mulk_aamalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('i_mulk_aamalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="border" style="text-align: center;" colspan="3">IXTIRO UCHUN PATENT
+                                            <th class="border" style="text-align: center;" colspan="3">IXTIRO UCHUN
+                                                PATENT
                                                 VA DASTURIY TAʼMINOTLAR</th>
                                         </tr>
                                         <tr>
@@ -1847,8 +2092,8 @@
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="ixtiro_ber_psreja"
-                                                    value="{{ old('ixtiro_ber_psreja') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('ixtiro_ber_psreja') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="ixtiro_ber_psamalda"
@@ -1862,13 +2107,13 @@
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="dasturiy_gsreja"
-                                                    value="{{ old('dasturiy_gsreja') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('dasturiy_gsreja') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                             <td class="border">
                                                 <input type="number" name="dasturiy_gsamalda"
-                                                    value="{{ old('dasturiy_gsamalda') }}" class="input w-full border mt-2"
-                                                    required="">
+                                                    value="{{ old('dasturiy_gsamalda') }}"
+                                                    class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
                                     </table>
@@ -1881,7 +2126,8 @@
 
             </div>
             <div class="px-5 pb-5 text-center">
-                <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                <button type="button" data-dismiss="modal"
+                    class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
                 </button>
                 <button type="submit" form="intellektual-paper-create-form"
@@ -1899,7 +2145,7 @@
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                         <form id="intellektual-paper-edit-form" method="POST"
-                            action="{{ route("intellektual.update", $intellektual->id ?? '') }}" class="validate-form"
+                            action="{{ route('intellektual.update', $intellektual->id ?? '') }}" class="validate-form"
                             enctype="multipart/form-data" novalidate="novalidate">
                             @csrf
                             @method('PUT')
@@ -1908,7 +2154,8 @@
                                 <div class="w-full col-span-12">
                                     <table class="table table-bordered">
                                         <tr>
-                                            <th class="border" style="text-align: center;" colspan="3">INTELLEKTUAL FAOLIYAT
+                                            <th class="border" style="text-align: center;" colspan="3">INTELLEKTUAL
+                                                FAOLIYAT
                                                 NATIJALARI</th>
                                         </tr>
                                         <tr>
@@ -2085,7 +2332,8 @@
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th class="border" style="text-align: center;" colspan="3">IXTIRO UCHUN PATENT
+                                            <th class="border" style="text-align: center;" colspan="3">IXTIRO UCHUN
+                                                PATENT
                                                 VA DASTURIY TAʼMINOTLAR</th>
                                         </tr>
                                         <tr>
@@ -2150,7 +2398,8 @@
 
             </div>
             <div class="px-5 pb-5 text-center">
-                <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                <button type="button" data-dismiss="modal"
+                    class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
                 </button>
                 <button type="submit" form="intellektual-paper-edit-form"
@@ -2179,7 +2428,7 @@
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                         <form id="ilmiyloyiha-paper-edit-form-edit" method="POST"
-                            action="{{ route("ilmiyloyiha.update", $ilmiyloyiha->id) }}" class="validate-form"
+                            action="{{ route('ilmiyloyiha.update', $ilmiyloyiha->id) }}" class="validate-form"
                             enctype="multipart/form-data" novalidate="novalidate">
                             @csrf
                             @method('PUT')
@@ -2193,12 +2442,14 @@
                                                 {{-- <th class="border" style="width: 40px;">T/r</th> --}}
                                                 <th class="border" style="text-align: center; width: 40%;">MA'LUMOT NOMI
                                                 </th>
-                                                <th class="border" style="text-align: center;">BAJARILISHI NATIJALARINING
+                                                <th class="border" style="text-align: center;">BAJARILISHI
+                                                    NATIJALARINING
                                                     KO'RSATKICHARI
                                                 </th>
                                             </tr>
                                             <tr>
-                                                <th colspan="3" class="border" style="text-align: center;">I. LOYIHANING
+                                                <th colspan="3" class="border" style="text-align: center;">I.
+                                                    LOYIHANING
                                                     ASOSIY
                                                     KO'RSATKICHLARI</th>
                                             </tr>
@@ -2226,7 +2477,8 @@
                                                 {{-- <td class="border">1.2.</td> --}}
                                                 <td class="border">Loyiha turi</td>
                                                 <td class="border">
-                                                    <input type="text" name="turi" value="{{ $ilmiyloyiha->turi ?? '' }}"
+                                                    <input type="text" name="turi"
+                                                        value="{{ $ilmiyloyiha->turi ?? '' }}"
                                                         class="input w-full border mt-2" required="">
                                                 </td>
                                             </tr>
@@ -2252,7 +2504,8 @@
                                                 {{-- <td class="border">1.4.</td> --}}
                                                 <td class="border">Shartnoma sanasi</td>
                                                 <td class="border">
-                                                    <input type="date" name="sanasi" value="{{ $ilmiyloyiha->abcd ?? '' }}"
+                                                    <input type="date" name="sanasi"
+                                                        value="{{ $ilmiyloyiha->abcd ?? '' }}"
                                                         class="input w-full border mt-2" required="">
                                                 </td>
                                             </tr>
@@ -2278,7 +2531,8 @@
                                                 {{-- <td class="border">1.6.</td> --}}
                                                 <td class="border">Loyihaning umumiy qiymati, ming soʻm</td>
                                                 <td class="border">
-                                                    <input type="text" name="sum" value="{{ $ilmiyloyiha->sum ?? '' }}"
+                                                    <input type="text" name="sum"
+                                                        value="{{ $ilmiyloyiha->sum ?? '' }}"
                                                         class="input w-full border mt-2" required="">
                                                 </td>
                                             </tr>
@@ -2302,7 +2556,8 @@
                                             </tr>
 
                                             <tr>
-                                                <th colspan="3" class="border" style="text-align: center;">II. LOYIHANING
+                                                <th colspan="3" class="border" style="text-align: center;">II.
+                                                    LOYIHANING
                                                     RAHBARI VA
                                                     IJROCHILARI</th>
                                             </tr>
@@ -2373,14 +2628,18 @@
                                                     <div class="flex items-center text-gray-700 mr-2">
                                                         <input type="radio" class="input border mr-2"
                                                             id="loyiha_rahbari_uzgargan-evans"
-                                                            name="loyiha_rahbari_uzgargan" @if(old('loyiha_rahbari_uzgargan', $loyihaiqtisodi->loyiha_rahbari_uzgargan ?? 0) == 'ha') checked @endif value="ha">
+                                                            name="loyiha_rahbari_uzgargan"
+                                                            @if (old('loyiha_rahbari_uzgargan', $loyihaiqtisodi->loyiha_rahbari_uzgargan ?? 0) == 'ha') checked @endif
+                                                            value="ha">
                                                         <label class="cursor-pointer select-none"
                                                             for="loyiha_rahbari_uzgargan-evans">Ha</label>
                                                     </div>
                                                     <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
                                                         <input type="radio" class="input border mr-2"
                                                             name="loyiha_rahbari_uzgargan"
-                                                            id="loyiha_rahbari_uzgargan-neeson" @if(old('loyiha_rahbari_uzgargan', $loyihaiqtisodi->loyiha_rahbari_uzgargan ?? 0) == "yo'q") checked @endif value="yo'q">
+                                                            id="loyiha_rahbari_uzgargan-neeson"
+                                                            @if (old('loyiha_rahbari_uzgargan', $loyihaiqtisodi->loyiha_rahbari_uzgargan ?? 0) == "yo'q") checked @endif
+                                                            value="yo'q">
                                                         <label class="cursor-pointer select-none"
                                                             for="loyiha_rahbari_uzgargan-neeson">Yo'q</label>
                                                     </div>
@@ -2389,7 +2648,8 @@
 
                                             <tr>
                                                 {{-- <td class="border">2.2.1.</td> --}}
-                                                <td class="border">Loyihaning avvalgi rahbarining familiyasi, ismi, sharifi
+                                                <td class="border">Loyihaning avvalgi rahbarining familiyasi, ismi,
+                                                    sharifi
                                                 </td>
                                                 <td class="border">
                                                     <input type="text" name="avvr_fish"
@@ -2451,14 +2711,16 @@
                                                 <td class="border">
                                                     <div class="flex items-center text-gray-700 mr-2">
                                                         <input type="radio" class="input border mr-2"
-                                                            id="loyiha_hamrahbari-evans" name="loyiha_hamrahbari" @if(old('loyiha_hamrahbari', $loyihaiqtisodi->loyiha_hamrahbari ?? 0) == 'ha') checked @endif
+                                                            id="loyiha_hamrahbari-evans" name="loyiha_hamrahbari"
+                                                            @if (old('loyiha_hamrahbari', $loyihaiqtisodi->loyiha_hamrahbari ?? 0) == 'ha') checked @endif
                                                             value="ha">
                                                         <label class="cursor-pointer select-none"
                                                             for="loyiha_hamrahbari-evans">Ha</label>
                                                     </div>
                                                     <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
                                                         <input type="radio" class="input border mr-2"
-                                                            name="loyiha_hamrahbari" id="loyiha_hamrahbari-neeson" @if(old('loyiha_hamrahbari', $loyihaiqtisodi->loyiha_hamrahbari ?? 0) == "yo'q") checked @endif
+                                                            name="loyiha_hamrahbari" id="loyiha_hamrahbari-neeson"
+                                                            @if (old('loyiha_hamrahbari', $loyihaiqtisodi->loyiha_hamrahbari ?? 0) == "yo'q") checked @endif
                                                             value="yo'q">
                                                         <label class="cursor-pointer select-none"
                                                             for="loyiha_hamrahbari-neeson">Yo'q</label>
@@ -2513,7 +2775,8 @@
 
             </div>
             <div class="px-5 pb-5 text-center">
-                <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                <button type="button" data-dismiss="modal"
+                    class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
                 </button>
                 <button type="submit" form="ilmiyloyiha-paper-edit-form-edit"
@@ -2525,11 +2788,13 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             let haRadio = document.getElementById("loyiha_rahbari_uzgargan-evans");
             let yoqRadio = document.getElementById("loyiha_rahbari_uzgargan-neeson");
 
-            let extraFields = document.querySelectorAll("[name='avvr_fish'], [name='avvr_ilmiy_daraja'], [name='avvr_ilmiy_unvon'], [name='avvr_lavozimi'], [name='avvr_kelishuv_raqami'], [name='avvr_kelishuv_sanasi']");
+            let extraFields = document.querySelectorAll(
+                "[name='avvr_fish'], [name='avvr_ilmiy_daraja'], [name='avvr_ilmiy_unvon'], [name='avvr_lavozimi'], [name='avvr_kelishuv_raqami'], [name='avvr_kelishuv_sanasi']"
+            );
 
             function toggleRequired() {
                 if (haRadio.checked) {
@@ -2555,11 +2820,12 @@
     </script>
 
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             let haRadio = document.getElementById("loyiha_hamrahbari-evans");
             let yoqRadio = document.getElementById("loyiha_hamrahbari-neeson");
 
-            let extraFields = document.querySelectorAll("[name='hamrahbar_fish'], [name='hamr_ishjoyi'], [name='hamr_lavozimi'], [name='hamr_davlati']");
+            let extraFields = document.querySelectorAll(
+                "[name='hamrahbar_fish'], [name='hamr_ishjoyi'], [name='hamr_lavozimi'], [name='hamr_davlati']");
 
             function toggleRequired() {
                 if (haRadio.checked) {

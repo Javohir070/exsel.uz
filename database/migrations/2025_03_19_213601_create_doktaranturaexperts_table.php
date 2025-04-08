@@ -19,12 +19,18 @@ return new class extends Migration
             $table->string('status');
             $table->text('comment');
             $table->string('file')->nullable();
-            $table->string('tash_buyruq_mutanosi');
-            $table->string('ish_rejasi');
-            $table->string('kurs_kesimi');
-            $table->string('mud_oldin');
-            $table->string('ilmiy_rah_birikisoni');
-            $table->string('hujjatlar_kiritish_holati');
+            $table->string('umumiy_izlanuvchilar');
+            $table->string('yagonae_tah_soni');
+            $table->string('chetlash_soni');
+            $table->string('akademik_soni');
+            $table->string('muddatidano_soni');
+            $table->string('kiritilmagan_soni');
+            $table->string('rejani_bajarmagan');
+            $table->string('mon_nat_kiritilmagan');
+            $table->string('biriktirilgan_rahbarlar');
+            $table->string('kollegial_rahbarlar');
+            $table->string('meyoridan_rahbarlar');
+            $table->string('tash_ortiq_rahbarlar');
             $table->timestamps();
         });
     }
