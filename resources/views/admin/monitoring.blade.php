@@ -99,8 +99,8 @@
                                                 <th class="whitespace-no-wrap">Hudud nomi</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Jami</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">OTM</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">ITM</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Boshqalari</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy tashkilotlar</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Boshqa tashkilotlar</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
@@ -218,14 +218,14 @@
                                                 <td style="text-align: center;">{{ $results['otm']['doktarantura'] ? '✓' : '✗' }}</td>
                                             </tr>
                                             <tr>
-                                                <td style="color:#1881D3; font-weight: 400;">ITM</td>
+                                                <td style="color:#1881D3; font-weight: 400;"> Ilmiy tashkilotlar</td>
                                                 <td style="text-align: center;">{{ $results['itm']['ilmiyloyhalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['itm']['stajirovkalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['itm']['asbobuskunalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['itm']['doktarantura'] ? '✓' : '✗' }}</td>
                                             </tr>
                                             <tr>
-                                                <td style="color:#1881D3; font-weight: 400;">Boshqalari</td>
+                                                <td style="color:#1881D3; font-weight: 400;">Boshqa tashkilotlar</td>
                                                 <td style="text-align: center;">{{ $results['other']['ilmiyloyhalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['other']['stajirovkalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['other']['asbobuskunalar'] }}</td>
@@ -235,15 +235,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                {{-- <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap mb-3 items-center mt-3">
-                                    {{ $tashkilotlar->links() }}
-                                    <select class="w-20 input box mt-3 sm:mt-0">
-                                        <option>10</option>
-                                        <option>25</option>
-                                        <option>35</option>
-                                        <option>50</option>
-                                    </select>
-                                </div> --}}
                             </div>
 
                     </div>

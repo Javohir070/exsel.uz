@@ -20,8 +20,8 @@ class LoyihaijrochilarController extends Controller
         $sms_password = "4JnUEYZ3rWBntf3Rxatl2bwQ8tepv06gmh5WkKCl0YNHc4C8I0wHms5oG4EkTvWz2wMAhqVliOTnZHwPXjKbv5jZufjEeS3WftD9hRPef7OclBUuesIixWKOSpus8zZm";
         $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$request->scienceid}/";
         $response_main = Http::withBasicAuth($sms_username, $sms_password)
-                        ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
-                        ->get($url_main);
+            ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
+            ->get($url_main);
 
         $data_tach = $response_main->json();
 
@@ -37,35 +37,61 @@ class LoyihaijrochilarController extends Controller
             'science_id.required' => 'Science ID majburiy!',
             'science_id.unique' => 'Bu Science ID bazada mavjud!',
         ]);
-        
+
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiy_loyiha_id);
         $scienceid = $request->scienceid ?? null;
-        $intellektual = Intellektual::where('ilmiy_loyiha_id','=',$ilmiyloyiha->id)->first();
-        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id','=',$ilmiyloyiha->id)->first();
-        $tekshirivchilar =  Tekshirivchilar::where('ilmiy_loyiha_id', 885)
-                                            ->orderBy('id', 'desc') // Eng oxirgi yozuvni olish uchun
-                                            ->take(1) // Faqat 1 ta yozuv olish
-                                            ->get();
-        $sms_username = "PxNhTIvMGoVdUSFOsmfaVrc3fwb5HABmZ9Y4WLYb";
-        $sms_password = "4JnUEYZ3rWBntf3Rxatl2bwQ8tepv06gmh5WkKCl0YNHc4C8I0wHms5oG4EkTvWz2wMAhqVliOTnZHwPXjKbv5jZufjEeS3WftD9hRPef7OclBUuesIixWKOSpus8zZm";
-        $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$scienceid}/";
-        $response_main = Http::withBasicAuth($sms_username, $sms_password)
-                        ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
-                        ->get($url_main);
+        $intellektual = Intellektual::where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
+        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
+        $tekshirivchilar = Tekshirivchilar::where('is_active', 1)->where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
+        // $sms_username = "PxNhTIvMGoVdUSFOsmfaVrc3fwb5HABmZ9Y4WLYb";
+        // $sms_password = "4JnUEYZ3rWBntf3Rxatl2bwQ8tepv06gmh5WkKCl0YNHc4C8I0wHms5oG4EkTvWz2wMAhqVliOTnZHwPXjKbv5jZufjEeS3WftD9hRPef7OclBUuesIixWKOSpus8zZm";
+        // $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$scienceid}/";
+        // $response_main = Http::withBasicAuth($sms_username, $sms_password)
+        //     ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
+        //     ->get($url_main);
 
-        $data = $response_main->json();
+        $data = null;
+        $errorMessage = null;
+        
+        $shtat_sum = 0;
+
+
+        if ($scienceid) {
+            $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$scienceid}/";
+            $response_main = Http::withBasicAuth(
+                "PxNhTIvMGoVdUSFOsmfaVrc3fwb5HABmZ9Y4WLYb",
+                "4JnUEYZ3rWBntf3Rxatl2bwQ8tepv06gmh5WkKCl0YNHc4C8I0wHms5oG4EkTvWz2wMAhqVliOTnZHwPXjKbv5jZufjEeS3WftD9hRPef7OclBUuesIixWKOSpus8zZm"
+            )
+                ->withOptions(["verify" => false])
+                ->get($url_main);
+
+            $data = $response_main->json();
+
+            // Agar 'detail' mavjud bo'lsa, error message yaratamiz
+            if (isset($data['detail'])) {
+                $errorMessage = "Bunday Science ID raqamiga ega  foydalanuvchisi mavjud emas.";
+                $data = null; // Ma'lumotni bekor qilamiz
+            }
+        }
+        
+
+        // $data = $response_main->json();
         $create = Loyihaijrochilar::create([
-                'user_id' => auth()->id(),
-                'tashkilot_id' =>auth()->user()->tashkilot_id,
-                'ilmiy_loyiha_id' => $request->ilmiy_loyiha_id,
-                'fio' => $request->fio,
-                'science_id' => $request->science_id,
-                'shtat_birligi' => $request->shtat_birligi,
-                'jshshir' => $request->jshshir,
+            'user_id' => auth()->id(),
+            'tashkilot_id' => auth()->user()->tashkilot_id,
+            'ilmiy_loyiha_id' => $request->ilmiy_loyiha_id,
+            'fio' => $request->fio,
+            'science_id' => $request->science_id,
+            'shtat_birligi' => $request->shtat_birligi,
+            'jshshir' => $request->jshshir,
+            'shtat_sum' => $shtat_sum,
         ]);
 
-        $loyihaijrochilar = Loyihaijrochilar::where('ilmiy_loyiha_id','=',$request->ilmiy_loyiha_id)->get();
-
+        $loyihaijrochilar = Loyihaijrochilar::where('ilmiy_loyiha_id', '=', $request->ilmiy_loyiha_id)->get();
+        $shtat_sum = 0;
+        foreach ($loyihaijrochilar as $loyihaijrochi) {
+            $shtat_sum += $loyihaijrochi->shtat_birligi;
+        }
         return view('admin.ilmiyloyiha.show', [
             'ilmiyloyiha' => $ilmiyloyiha,
             'intellektual' => $intellektual,
@@ -75,14 +101,16 @@ class LoyihaijrochilarController extends Controller
             'loyihaijrochilar' => $loyihaijrochilar,
             'create' => $create,
             'scienceid' => $scienceid ?? '',
-        ])->with('status','Loyiha ijrochisi qo‘shildi.');
+            'errorMessage' => $errorMessage,
+            'shtat_sum' => $shtat_sum,
+        ])->with('status', 'Loyiha ijrochisi qo‘shildi.');
     }
 
     public function destroy(Loyihaijrochilar $loyihaijrochilar)
     {
         $loyihaijrochilar->delete();
 
-        return redirect()->back()->with('status','Loyiha ijrochisi o‘chirildi');
+        return redirect()->back()->with('status', 'Loyiha ijrochisi o‘chirildi');
     }
 
 }

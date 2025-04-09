@@ -165,21 +165,25 @@ class TashkilotController extends Controller
 
         // Avval so'rovni qisqartirish va optimallashtirish
         if (ctype_digit($querysearch)) {
-            $tashkilotlar = Tashkilot::orderBy('name')->where('status', 1)
+            $tashkilotlar = Tashkilot::orderBy('name')
                 ->where('region_id', '=', $querysearch)
                 ->paginate(50);
-            $tashkilotlars = Tashkilot::orderBy('name')->where('status', 1)
+            $tashkilotlars = Tashkilot::orderBy('name')
                 ->where('region_id', '=', $querysearch)->get();
             $tash_count = $tashkilotlar->total(); // `count()` o'rniga `total()` ishlating, chunki paginate ishlatilgan
         } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
-            $tashkilotlar = Tashkilot::orderBy('name')->where('status', 1)
+            $tashkilotlar = Tashkilot::orderBy('name')
                 ->where('tashkilot_turi', 'like', '%' . $querysearch . '%')
                 ->paginate(50);
+            $tashkilotlars = Tashkilot::orderBy('name')
+                ->where('tashkilot_turi', '=', $querysearch)->get();
             $tash_count = $tashkilotlar->total(); // Yana `total()` ishlatish
         } else {
-            $tashkilotlar = Tashkilot::orderBy('name')->where('status', 1)
+            $tashkilotlar = Tashkilot::orderBy('name')
                 ->where('name', 'like', '%' . $querysearch . '%')
                 ->paginate(50);
+                $tashkilotlars = Tashkilot::orderBy('name')
+                ->where('name',  $querysearch)->get();
             $tash_count = $tashkilotlar->total(); // Yana `total()` ishlatish
         }
 

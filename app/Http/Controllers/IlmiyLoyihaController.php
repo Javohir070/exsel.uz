@@ -112,6 +112,8 @@ class IlmiyLoyihaController extends Controller
     
         $data = null;
         $errorMessage = null;
+        
+        
     
         if ($scienceid) {
             $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$scienceid}/";
@@ -130,8 +132,12 @@ class IlmiyLoyihaController extends Controller
                 $data = null; // Ma'lumotni bekor qilamiz
             }
         }
-    
         $loyihaijrochilar = Loyihaijrochilar::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->get();
+        $shtat_sum = 0;
+
+        foreach ($loyihaijrochilar as $loyihaijrochi) {
+            $shtat_sum += $loyihaijrochi->shtat_birligi;
+        }
     
         return view('admin.ilmiyloyiha.show', [
             'ilmiyloyiha' => $ilmiyloyiha,
@@ -143,6 +149,7 @@ class IlmiyLoyihaController extends Controller
             'loyihaijrochilar' => $loyihaijrochilar,
             'errorMessage' => $errorMessage,
             'scienceid' => $scienceid ?? '',
+            'shtat_sum' => $shtat_sum,
         ]);
     }
     

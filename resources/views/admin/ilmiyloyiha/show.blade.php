@@ -246,17 +246,17 @@
                                     <td class="border">Davlati</td>
                                     <td class="border">{{ $ilmiyloyiha->hamr_davlati }}</td>
                                 </tr>
-                                {{-- <tr>
+                                <tr>
                                     <td class="border">2.4.</td>
                                     <td class="border">Shtat birligi</td>
-                                    <td class="border">a</td>
+                                    <td class="border">{{ $shtat_sum ?? 0}}</td>
                                 </tr>
                                 <tr>
                                     <td class="border">2.5</td>
                                     <td class="border">Ijrochilar soni, nafar</td>
-                                    <td class="border">a</td>
+                                    <td class="border">{{ $loyihaijrochilar->count() }}</td>
                                 </tr>
-                                <tr>
+                               {{--  <tr>
                                     <td class="border">13.</td>
                                     <td class="border">Ijrochilar roʻyxati oʻzgargan</td>
                                     <td class="border">Ijrochilarning amaldagi roʻyxati</td>
@@ -270,6 +270,9 @@
                         </table>
                     </div>
                 </div>
+
+
+
 
                 <div class="tab-content__pane" id="settings">
 
@@ -306,6 +309,12 @@
                                                 {{-- <a href="" class="button w-24 bg-theme-6 text-white">
                                                     O'chirish
                                                 </a> --}}
+
+                                                {{-- <a href="javascript:;" data-target="#intellektualekspert-paper-edit-modal"
+                                                        data-toggle="modal"
+                                                        class="button w-24 ml-3 bg-theme-1 text-white">
+                                                        Izoh
+                                                    </a> --}}
                                             </div>
                                         </div>
                                         <tr>
@@ -593,6 +602,11 @@
                                     {{-- <a href="" class="button w-24 bg-theme-6 text-white">
                                         O'chirish
                                     </a> --}}
+                                    {{-- <a href="javascript:;" data-target="#loyihaiqtisodiekspert-paper-edit-modal"
+                                        data-toggle="modal"
+                                        class="button w-24 ml-3 bg-theme-1 text-white">
+                                        Izoh
+                                    </a> --}}
                                 </div>
                             </div>
                             <table class="table table-bordered">
@@ -825,6 +839,9 @@
                         </div>
                     </div>
                 </div>
+
+
+
 
                 <div class="tab-content__pane" id="add-expert">
 
@@ -2477,9 +2494,26 @@
                                                 {{-- <td class="border">1.2.</td> --}}
                                                 <td class="border">Loyiha turi</td>
                                                 <td class="border">
-                                                    <input type="text" name="turi"
+                                                    {{-- <input type="text" name="turi"
                                                         value="{{ $ilmiyloyiha->turi ?? '' }}"
-                                                        class="input w-full border mt-2" required="">
+                                                        class="input w-full border mt-2" required=""> --}}
+                                                        <select name="turi" value="{{old('turi')}}" id="science-sub12-category"
+                                                            class="input border w-full mt-2" required="">
+
+                                                            <option value=""></option>
+
+                                                            <option value="Amaliy">Amaliy</option>
+
+                                                            <option value="Fundamental">Fundamental</option>
+
+                                                            <option value="Innovatsion">Innovatsion</option>
+
+                                                            <option value="Tajriba-konstruktorlik">Tajriba-konstruktorlik</option>
+
+
+
+
+                                                        </select>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -2576,27 +2610,108 @@
                                                 {{-- <td class="border">2.1.1.</td> --}}
                                                 <td class="border">Ilmiy darajasi </td>
                                                 <td class="border">
-                                                    <input type="text" name="rahbariilmiy_darajasi"
+                                                    {{-- <input type="text" name="rahbariilmiy_darajasi"
                                                         value="{{ $ilmiyloyiha->rahbariilmiy_darajasi ?? '' }}"
-                                                        class="input w-full border mt-2" required="">
+                                                        class="input w-full border mt-2" required=""> --}}
+                                                        <select name="rahbariilmiy_darajasi" id="rahbariilmiy_darajasi" value="{{ old('rahbariilmiy_darajasi') }}" id="science-sub-category" class="input border w-full mt-2">
+
+                                                            <option value=""></option>
+                                    
+                                                            <option value="Fan nomzodi">Fan nomzodi</option>
+                                    
+                                                            <option value="Falsafa doktori (PhD)">Falsafa doktori (PhD)</option>
+                                    
+                                                            <option value="Fan doktori (DSc)">Fan doktori (DSc)</option>
+                                    
+                                                            <option value="Fan doktori">Fan doktori</option>
+                                    
+                                                            <option value="Akademik">Akademik</option>
+                                                            <option value="mavjud emas">mavjud emas</option>
+                                    
+                                                        </select><br>
+                                                        @error('rahbariilmiy_darajasi')
+                                                            <div class="error">{{ $message }}</div>
+                                                        @enderror
                                                 </td>
                                             </tr>
                                             <tr>
                                                 {{-- <td class="border">2.1.2.</td> --}}
                                                 <td class="border">Ilmiy unvoni</td>
                                                 <td class="border">
-                                                    <input type="text" name="rahbariilmiy_unvoni"
+                                                    {{-- <input type="text" name="rahbariilmiy_unvoni"
                                                         value="{{ $ilmiyloyiha->rahbariilmiy_unvoni ?? '' }}"
-                                                        class="input w-full border mt-2" required="">
+                                                        class="input w-full border mt-2" required=""> --}}
+                                                        <select name="rahbariilmiy_unvoni" id="rahbariilmiy_unvoni" value="{{ old('rahbariilmiy_unvoni') }}" id="science-sub-category" class="input border w-full mt-2">
+
+                                                            <option value=""></option>
+                                    
+                                                            <option value="Professor">Professor</option>
+                                    
+                                                            <option value="Dotsent">Dotsent</option>
+                                                            <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
+                                                            <option value="Akademik">Akademik</option>
+                                                            <option value="mavjud emas">mavjud emas</option>
+                                    
+                                                        </select><br>
+                                                        @error('rahbariilmiy_unvoni')
+                                                            <div class="error">{{ $message }}</div>
+                                                        @enderror
                                                 </td>
                                             </tr>
                                             <tr>
                                                 {{-- <td class="border">2.1.3.</td> --}}
                                                 <td class="border">Lavozimi</td>
                                                 <td class="border">
-                                                    <input type="text" name="r_lavozimi"
+                                                    {{-- <input type="text" name="r_lavozimi"
                                                         value="{{ $ilmiyloyiha->r_lavozimi ?? '' }}"
-                                                        class="input w-full border mt-2" required="">
+                                                        class="input w-full border mt-2" required=""> --}}
+                                                        <select name="r_lavozimi" value="{{ old('r_lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+                                                            <option value=""></option>
+                                                            <option value="Dekan o‘rinbosari">Dekan o‘rinbosari</option>
+                                                            <option value="Kafedra mudiri">Kafedra mudiri</option>
+                                                            <option value="Professor">Professor</option>
+                                                            <option value="Dotsent">Dotsent</option>
+                                                            <option value="Katta o‘qituvchi">Katta o‘qituvchi</option>
+                                                            <option value="Assistent, o‘qituvchi">Assistent, o‘qituvchi</option>
+                                                            <option value="O‘qituvchi-stajer">O‘qituvchi-stajer</option>
+                                                            <option value="Rektor">Rektor</option>
+                                                            <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option>
+                                                            <option value="Direktor">Direktor</option>
+                                                            <option value="Prorektor">Prorektor</option>
+                                                            <option value="Filial direktorining o‘rinbosari">Filial direktorining o‘rinbosari</option>
+                                                            <option value="Dekan">Dekan</option>
+                                                            <option value="Filial direktori">Filial direktori</option>
+                                                            <option value="Ilmiy kotib">Ilmiy kotib</option>
+                                                            <option value="Ilmiy ishlar bo‘yicha direktor o‘rinbosari">Ilmiy ishlar bo‘yicha direktor o‘rinbosari</option>
+                                                            <option value="Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri">Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri</option>
+                                                            <option value="Umumiy masalalar bo‘yicha direktor o‘rinbosari">Umumiy masalalar bo‘yicha direktor o‘rinbosari</option>
+                                                            <option value="Moliya-iqtisod bo‘limi boshlig‘i">Moliya-iqtisod bo‘limi boshlig‘i</option>
+                                    
+                                                            <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option>
+                                                            <option value="Bosh muhandis">Bosh muhandis</option>
+                                                            <option value="Bosh energetik">Bosh energetik</option>
+                                                            <option value="Bosh mexanik">Bosh mexanik</option>
+                                                            <option value="Mutaxassis">Mutaxassis</option>
+                                                            <option value="Expert">Expert</option>
+                                                            <option value="Hisobchi">Hisobchi</option>
+                                                            <option value="Ilmiy maslahatchi">Ilmiy maslahatchi</option>
+                                                            <option value="Maslahatchi">Maslahatchi</option>
+                                                            <option value="Laborant">Laborant</option>
+                                                            <option value="Kadrlar bo‘yicha mutaxassis">Kadrlar bo‘yicha mutaxassis</option>
+                                    
+                                                            <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option>
+                                                            <option value="Yetakchi muhandis">Yetakchi muhandis</option>
+                                                            <option value="Bosh ilmiy xodim">Bosh ilmiy xodim</option>
+                                                            <option value="Yetakchi ilmiy xodim">Yetakchi ilmiy xodim</option>
+                                                            <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
+                                                            <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
+                                                            <option value="Ishlab chiqarish bo‘yicha direktor o‘rinbosari">Ishlab chiqarish bo‘yicha direktor o‘rinbosari</option>
+                                    
+                                    
+                                                        </select><br>
+                                                        @error('r_lavozimi')
+                                                            <div class="error">{{ $message }}</div>
+                                                        @enderror
                                                 </td>
                                             </tr>
                                             <tr>
@@ -2661,27 +2776,108 @@
                                                 {{-- <td class="border">2.2.2.</td> --}}
                                                 <td class="border">Ilmiy darajasi </td>
                                                 <td class="border">
-                                                    <input type="text" name="avvr_ilmiy_daraja"
+                                                    {{-- <input type="text" name="avvr_ilmiy_daraja"
                                                         value="{{ $ilmiyloyiha->avvr_ilmiy_daraja ?? '' }}"
-                                                        class="input w-full border mt-2" required="">
+                                                        class="input w-full border mt-2" required=""> --}}
+                                                        <select name="avvr_ilmiy_daraja" id="avvr_ilmiy_daraja" value="{{ old('avvr_ilmiy_daraja') }}" id="science-sub-category" class="input border w-full mt-2">
+
+                                                            <option value=""></option>
+                                    
+                                                            <option value="Fan nomzodi">Fan nomzodi</option>
+                                    
+                                                            <option value="Falsafa doktori (PhD)">Falsafa doktori (PhD)</option>
+                                    
+                                                            <option value="Fan doktori (DSc)">Fan doktori (DSc)</option>
+                                    
+                                                            <option value="Fan doktori">Fan doktori</option>
+                                    
+                                                            <option value="Akademik">Akademik</option>
+                                                            <option value="mavjud emas">mavjud emas</option>
+                                    
+                                                        </select><br>
+                                                        @error('avvr_ilmiy_daraja')
+                                                            <div class="error">{{ $message }}</div>
+                                                        @enderror
                                                 </td>
                                             </tr>
                                             <tr>
                                                 {{-- <td class="border">2.2.3.</td> --}}
                                                 <td class="border">Ilmiy unvoni</td>
                                                 <td class="border">
-                                                    <input type="text" name="avvr_ilmiy_unvon"
+                                                    {{-- <input type="text" name="avvr_ilmiy_unvon"
                                                         value="{{ $ilmiyloyiha->avvr_ilmiy_unvon ?? '' }}"
-                                                        class="input w-full border mt-2" required="">
+                                                        class="input w-full border mt-2" required=""> --}}
+                                                        <select name="avvr_ilmiy_unvon" id="avvr_ilmiy_unvon" value="{{ old('avvr_ilmiy_unvon') }}" id="science-sub-category" class="input border w-full mt-2">
+
+                                                            <option value=""></option>
+                                    
+                                                            <option value="Professor">Professor</option>
+                                    
+                                                            <option value="Dotsent">Dotsent</option>
+                                                            <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
+                                                            <option value="Akademik">Akademik</option>
+                                                            <option value="mavjud emas">mavjud emas</option>
+                                    
+                                                        </select><br>
+                                                        @error('avvr_ilmiy_unvon')
+                                                            <div class="error">{{ $message }}</div>
+                                                        @enderror
                                                 </td>
                                             </tr>
                                             <tr>
                                                 {{-- <td class="border">2.2.4.</td> --}}
                                                 <td class="border">Lavozimi</td>
                                                 <td class="border">
-                                                    <input type="text" name="avvr_lavozimi"
+                                                    {{-- <input type="text" name="avvr_lavozimi"
                                                         value="{{ $ilmiyloyiha->avvr_lavozimi ?? '' }}"
-                                                        class="input w-full border mt-2" required="">
+                                                        class="input w-full border mt-2" required=""> --}}
+                                                        <select name="avvr_lavozimi" value="{{ old('avvr_lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+                                                            <option value=""></option>
+                                                            <option value="Dekan o‘rinbosari">Dekan o‘rinbosari</option>
+                                                            <option value="Kafedra mudiri">Kafedra mudiri</option>
+                                                            <option value="Professor">Professor</option>
+                                                            <option value="Dotsent">Dotsent</option>
+                                                            <option value="Katta o‘qituvchi">Katta o‘qituvchi</option>
+                                                            <option value="Assistent, o‘qituvchi">Assistent, o‘qituvchi</option>
+                                                            <option value="O‘qituvchi-stajer">O‘qituvchi-stajer</option>
+                                                            <option value="Rektor">Rektor</option>
+                                                            <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option>
+                                                            <option value="Direktor">Direktor</option>
+                                                            <option value="Prorektor">Prorektor</option>
+                                                            <option value="Filial direktorining o‘rinbosari">Filial direktorining o‘rinbosari</option>
+                                                            <option value="Dekan">Dekan</option>
+                                                            <option value="Filial direktori">Filial direktori</option>
+                                                            <option value="Ilmiy kotib">Ilmiy kotib</option>
+                                                            <option value="Ilmiy ishlar bo‘yicha direktor o‘rinbosari">Ilmiy ishlar bo‘yicha direktor o‘rinbosari</option>
+                                                            <option value="Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri">Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri</option>
+                                                            <option value="Umumiy masalalar bo‘yicha direktor o‘rinbosari">Umumiy masalalar bo‘yicha direktor o‘rinbosari</option>
+                                                            <option value="Moliya-iqtisod bo‘limi boshlig‘i">Moliya-iqtisod bo‘limi boshlig‘i</option>
+                                    
+                                                            <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option>
+                                                            <option value="Bosh muhandis">Bosh muhandis</option>
+                                                            <option value="Bosh energetik">Bosh energetik</option>
+                                                            <option value="Bosh mexanik">Bosh mexanik</option>
+                                                            <option value="Mutaxassis">Mutaxassis</option>
+                                                            <option value="Expert">Expert</option>
+                                                            <option value="Hisobchi">Hisobchi</option>
+                                                            <option value="Ilmiy maslahatchi">Ilmiy maslahatchi</option>
+                                                            <option value="Maslahatchi">Maslahatchi</option>
+                                                            <option value="Laborant">Laborant</option>
+                                                            <option value="Kadrlar bo‘yicha mutaxassis">Kadrlar bo‘yicha mutaxassis</option>
+                                    
+                                                            <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option>
+                                                            <option value="Yetakchi muhandis">Yetakchi muhandis</option>
+                                                            <option value="Bosh ilmiy xodim">Bosh ilmiy xodim</option>
+                                                            <option value="Yetakchi ilmiy xodim">Yetakchi ilmiy xodim</option>
+                                                            <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
+                                                            <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
+                                                            <option value="Ishlab chiqarish bo‘yicha direktor o‘rinbosari">Ishlab chiqarish bo‘yicha direktor o‘rinbosari</option>
+                                    
+                                    
+                                                        </select><br>
+                                                        @error('avvr_lavozimi')
+                                                            <div class="error">{{ $message }}</div>
+                                                        @enderror
                                                 </td>
                                             </tr>
                                             <tr>
@@ -2749,9 +2945,56 @@
                                                 {{-- <td class="border">2.3.3.</td> --}}
                                                 <td class="border">Lavozimi</td>
                                                 <td class="border">
-                                                    <input type="text" name="hamr_lavozimi"
+                                                    {{-- <input type="text" name="hamr_lavozimi"
                                                         value="{{ $ilmiyloyiha->hamr_lavozimi ?? '' }}"
-                                                        class="input w-full border mt-2" required="">
+                                                        class="input w-full border mt-2" required=""> --}}
+                                                        <select name="hamr_lavozimi" value="{{ old('hamr_lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+                                                            <option value=""></option>
+                                                            <option value="Dekan o‘rinbosari">Dekan o‘rinbosari</option>
+                                                            <option value="Kafedra mudiri">Kafedra mudiri</option>
+                                                            <option value="Professor">Professor</option>
+                                                            <option value="Dotsent">Dotsent</option>
+                                                            <option value="Katta o‘qituvchi">Katta o‘qituvchi</option>
+                                                            <option value="Assistent, o‘qituvchi">Assistent, o‘qituvchi</option>
+                                                            <option value="O‘qituvchi-stajer">O‘qituvchi-stajer</option>
+                                                            <option value="Rektor">Rektor</option>
+                                                            <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option>
+                                                            <option value="Direktor">Direktor</option>
+                                                            <option value="Prorektor">Prorektor</option>
+                                                            <option value="Filial direktorining o‘rinbosari">Filial direktorining o‘rinbosari</option>
+                                                            <option value="Dekan">Dekan</option>
+                                                            <option value="Filial direktori">Filial direktori</option>
+                                                            <option value="Ilmiy kotib">Ilmiy kotib</option>
+                                                            <option value="Ilmiy ishlar bo‘yicha direktor o‘rinbosari">Ilmiy ishlar bo‘yicha direktor o‘rinbosari</option>
+                                                            <option value="Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri">Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri</option>
+                                                            <option value="Umumiy masalalar bo‘yicha direktor o‘rinbosari">Umumiy masalalar bo‘yicha direktor o‘rinbosari</option>
+                                                            <option value="Moliya-iqtisod bo‘limi boshlig‘i">Moliya-iqtisod bo‘limi boshlig‘i</option>
+                                    
+                                                            <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option>
+                                                            <option value="Bosh muhandis">Bosh muhandis</option>
+                                                            <option value="Bosh energetik">Bosh energetik</option>
+                                                            <option value="Bosh mexanik">Bosh mexanik</option>
+                                                            <option value="Mutaxassis">Mutaxassis</option>
+                                                            <option value="Expert">Expert</option>
+                                                            <option value="Hisobchi">Hisobchi</option>
+                                                            <option value="Ilmiy maslahatchi">Ilmiy maslahatchi</option>
+                                                            <option value="Maslahatchi">Maslahatchi</option>
+                                                            <option value="Laborant">Laborant</option>
+                                                            <option value="Kadrlar bo‘yicha mutaxassis">Kadrlar bo‘yicha mutaxassis</option>
+                                    
+                                                            <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option>
+                                                            <option value="Yetakchi muhandis">Yetakchi muhandis</option>
+                                                            <option value="Bosh ilmiy xodim">Bosh ilmiy xodim</option>
+                                                            <option value="Yetakchi ilmiy xodim">Yetakchi ilmiy xodim</option>
+                                                            <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
+                                                            <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
+                                                            <option value="Ishlab chiqarish bo‘yicha direktor o‘rinbosari">Ishlab chiqarish bo‘yicha direktor o‘rinbosari</option>
+                                    
+                                    
+                                                        </select><br>
+                                                        @error('hamr_lavozimi')
+                                                            <div class="error">{{ $message }}</div>
+                                                        @enderror
                                                 </td>
                                             </tr>
                                             <tr>
@@ -2849,4 +3092,644 @@
             yoqRadio.addEventListener("change", toggleRequired);
         });
     </script>
+
+    <div class="modal" id="intellektualekspert-paper-edit-modal">
+        <div class="modal__content modal__content--xl">
+            <div class="p-5">
+
+                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
+                    <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                        <form id="intellektualekspert-paper-edit-form-edit" method="POST"
+                            action="{{ route('intellektual.update', $intellektual->id ?? 0) }}" class="validate-form"
+                            enctype="multipart/form-data" novalidate="novalidate">
+                            @csrf
+                            @method('PUT')
+                            <div class="grid grid-cols-12 gap-2">
+
+                                <div class="w-full col-span-12">
+
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th class="border" style="text-align: center;" colspan="6">INTELLEKTUAL
+                                                FAOLIYAT
+                                                NATIJALARI</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="border" style="width: 40px;">T/r</th>
+                                            <th class="border" style="width: 200px;">Koʻrsatkichlar</th>
+                                            <th class="border">Rejada</th>
+                                            <th class="border">Amalda</th>
+                                            <th class="border">Farqi</th>
+                                            <th class="border">Izoh</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">1.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Mahalliy ilmiy jurnallardagi maqolalar soni
+                                            </td>
+                                            <td class="border">
+                                                <input type="hidden" name="izohlar" value="1">
+                                                {{ $intellektual->mal_jur_reja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->mal_jur_amalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->mal_jur_reja ?? 0) - ($intellektual->mal_jur_amalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="mal_jur_izoh"
+                                                            value="{{ $intellektual->mal_jur_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">2.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Xorijiy jurnallardagi ilmiy maqolalar soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->xor_jur_reja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->xor_jur_amalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->xor_jur_reja ?? 0) - ($intellektual->xor_jur_amalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="xor_jur_izoh"
+                                                            value="{{ $intellektual->xor_jur_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">3.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Web of Science va Scopus bazasidagi xalqaro nashrlardagi maqolalar soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->web_jur_reja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->web_jur_amalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->web_jur_reja ?? 0) - ($intellektual->web_jur_amalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="web_jur_izoh"
+                                                            value="{{ $intellektual->web_jur_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">4.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Tezislar soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->tezislar_reja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->tezislar_amalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->tezislar_reja ?? 0) - ($intellektual->tezislar_amalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="tezislar_izoh"
+                                                            value="{{ $intellektual->tezislar_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">5.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Ilmiy monografiyalar soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->ilmiy_mon_reja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->ilmiy_mon_amalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->ilmiy_mon_reja ?? 0) - ($intellektual->ilmiy_mon_amalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="ilmiy_mon_izoh"
+                                                            value="{{ $intellektual->ilmiy_mon_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">6.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Nashr qilingan oʻquv qoʻllanmalari soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->nashr_uquv_reja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->nashr_uquv_amalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->nashr_uquv_reja ?? 0) - ($intellektual->nashr_uquv_amalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="nashr_uquv_izoh"
+                                                            value="{{ $intellektual->nashr_uquv_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">7.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Nashr qilingan darsliklar soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->darslik_reja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->darslik_amalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->darslik_reja ?? 0) - ($intellektual->darslik_amalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="darslik_izoh"
+                                                            value="{{ $intellektual->darslik_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">8.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Bakalavriat bosqichida tayyorlangan bitiruv malakaviy ishlari soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->b_bitiruv_mreja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->b_bitiruv_mamalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->b_bitiruv_mreja ?? 0) - ($intellektual->b_bitiruv_mamalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="b_bitiruv_izoh"
+                                                            value="{{ $intellektual->b_bitiruv_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">9.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Tayyorlangan magistrlik dissertatsiyalari soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->m_bitiruv_dreja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->m_bitiruv_damalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->m_bitiruv_dreja ?? 0) - ($intellektual->m_bitiruv_damalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="m_bitiruv_izoh"
+                                                            value="{{ $intellektual->m_bitiruv_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">10.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Tayyorlangan doktorlik dissertatsiyalari soni (PhD, DSc)
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->p_bitiruv_dreja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->p_bitiruv_damalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->p_bitiruv_dreja ?? 0) - ($intellektual->p_bitiruv_damalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="p_bitiruv_izoh"
+                                                            value="{{ $intellektual->p_bitiruv_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">11.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Intellektual mulk obyektlari uchun berilgan arizalar soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->i_mulk_areja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->i_mulk_aamalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->i_mulk_areja ?? 0) - ($intellektual->i_mulk_aamalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="i_mulk_izoh"
+                                                            value="{{ $intellektual->i_mulk_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="border" style="text-align: center;" colspan="6">IXTIRO UCHUN
+                                                PATENT
+                                                VA DASTURIY TAʼMINOTLAR</th>
+                                        </tr>
+                                        <tr>
+                                            <th class="border" style="width: 40px;">T/r</th>
+                                            <th class="border">Koʻrsatkichlar</th>
+                                            <th class="border">Rejada</th>
+                                            <th class="border">Amalda</th>
+                                            <th class="border">Farqi</th>
+                                            <th class="border">Izoh</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">1.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Ixtiro uchun olingan patentlari soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->ixtiro_olingan_psreja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->ixtiro_olingan_psamalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->ixtiro_olingan_psreja ?? 0) - ($intellektual->ixtiro_olingan_psamalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="ixtiro_olingan_izoh"
+                                                            value="{{ $intellektual->ixtiro_olingan_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">2.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Ixtiro uchun patentga berilgan buyurtmalar soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->ixtiro_ber_psreja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->ixtiro_ber_psamalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->ixtiro_ber_psreja ?? 0) - ($intellektual->ixtiro_ber_psamalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="ixtiro_ber_izoh"
+                                                            value="{{ $intellektual->ixtiro_ber_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">3.</td>
+                                            <td class="border" style="text-size:14px;">
+                                                Dasturiy mahsulotga olingan guvohnomalar soni
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->dasturiy_gsreja ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $intellektual->dasturiy_gsamalda ?? 0 }}
+                                            </td>
+                                            <td class="border">
+                                                {{ ($intellektual->dasturiy_gsreja ?? 0) - ($intellektual->dasturiy_gsamalda ?? 0) }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="text" name="dasturiy_izoh"
+                                                            value="{{ $intellektual->dasturiy_izoh ?? null }}"
+                                                            class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                    </table>
+
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="px-5 pb-5 text-center">
+                <button type="button" data-dismiss="modal"
+                    class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </button>
+                <button type="submit" form="intellektualekspert-paper-edit-form-edit"
+                    class="update-confirm button w-24 bg-theme-1 text-white">
+                    Qo'shish
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="loyihaiqtisodiekspert-paper-edit-modal">
+        <div class="modal__content modal__content--xl">
+            <div class="p-5">
+    
+                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
+                    <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                        <form id="loyihaiqtisodiekspert-paper-edit-form-edit" method="POST"
+                            action="{{ route('loyihaiqtisodi.update', $loyihaiqtisodi->id ?? 0) }}" class="validate-form"
+                            enctype="multipart/form-data" novalidate="novalidate">
+                            @csrf
+                            @method('PUT')
+                            <div class="grid grid-cols-12 gap-2">
+    
+                                <div class="w-full col-span-12">
+    
+                                    <table class="table table-bordered">
+                                        <tr>
+                                            <th class="border" style="text-align: center;" colspan="6">III. LOYIHANING MUHIM
+                                                NATIJALARI </th>
+                                        </tr>
+                                        <tr>
+                                            {{-- <th class="border" style="width: 40px;">T/r</th> --}}
+                                            <th class="border" style="width: 30%;">Koʻrsatkichlar</th>
+                                            <th class="border" colspan="3" style="width: 30%;">Bajarilishi holatining tahlili</th>
+                                            <th class="border">Izoh</th>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">3.3.1.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Hisobot davrida qoʻlga kiritilgan muhim natijalar
+                                            </td>
+                                            <td class="border" colspan="3">
+                                                {{ $loyihaiqtisodi->hisobot_davri ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                <input type="hidden" name="izohlar" value="1">
+                                                <textarea name="hisobot_davri_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->hisobot_davri_i ?? null }}</textarea>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">3.3.2.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Loyihaning bajarilishi davrida yaratilgan ishlanma (texnologiya) nomi va qisqacha
+                                                tavsifi
+                                            </td>
+                                            <td class="border" colspan="3">
+                                                {{ $loyihaiqtisodi->loyihabaj_ishlanma ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                <textarea name="loyihabaj_ishlanma_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->loyihabaj_ishlanma_i ?? null }}</textarea>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">3.3.3.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Ilmiy ishlanma joriy etiladigan (tijoratlashtiriladigan) tarmoq (soha) va
+                                                kutilayotgan
+                                                natijalar (mavjud ehtiyoj, iqtisodiy samaradorlik tahlili)
+                                            </td>
+                                            <td class="border" colspan="3">
+                                                {{ $loyihaiqtisodi->ilmiy_ishlanmalar ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                <textarea name="ilmiy_ishlanmalar_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->ilmiy_ishlanmalar_i ?? null }}
+                                                </textarea>
+                                                
+                                            </td>
+                                        </tr>
+        
+                                        <tr>
+                                            <th class="border" style="text-align: center;" colspan="6">LOYIHANING MOLIYAVIY VA
+                                                IQTISODIY
+                                                KOʻRSATKICHLARI
+                                                (AJRATILGAN MABLAGʻLARNING MAQSADLI ISHLATILISHI)
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">T/r.</td> --}}
+                                            <th class="border" style="width: 30%;">Koʻrsatkichlar</th>
+                                            <th class="border">Rejada</th>
+                                            <th class="border">Amalda</th>
+                                            <th class="border">Farqi</th>
+                                            <th class="border">Izoh</th>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.1.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Mehnatga haq toʻlash (5.1.-shakl)
+                                            </td>
+                                            {{-- <td class="border"> --}}
+                                            {{-- {{ $loyihaiqtisodi->mehnat_haq_r ?? null }} --}}
+                                            {{-- {{ number_format($loyihaiqtisodi->mehnat_haq_r, 0, '.', ' ') }} --}}
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->mehnat_haq_r ?? null }}
+                                            </td>
+                                            {{-- </td> --}}
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->mehnat_haq_a ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_a ?? 0)) }}
+                                            </td>
+                                            <td class="border">
+                                                <textarea name="mehnat_haq_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->mehnat_haq_i ?? null }}</textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.2.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Xizmat safarlari xarajatlari (5.2.-shakl)
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->xizmat_saf_r ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->xizmat_saf_a ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_a ?? 0)) }}
+                                            </td>
+                                            <td class="border">
+                                                <textarea name="xizmat_saf_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->xizmat_saf_i ?? null }}</textarea>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.3.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Ilmiy-tadqiqot uchun zarur boʻlgan asbob-uskunalar, texnik vositalar va boshqa
+                                                tovar-moddiy boyliklarning xaridi uchun xarajatlar (5.4.-shakl)
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->xarid_xaraja_r ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->xarid_xaraja_a ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_a ?? 0)) }}
+                                            </td>
+                                            <td class="border">
+                                                <textarea name="xarid_xaraja_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->xarid_xaraja_i ?? null }}</textarea>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.4.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Ilmiy-tadqiqot uchun materiallar va butlovchi qismlarni sotib olish xarajatlari
+                                                (5.5.-shakl)
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->mat_butlovchi_r ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->mat_butlovchi_a ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_a ?? 0)) }}
+                                            </td>
+                                            <td class="border">
+                                                <textarea name="mat_butlovchi_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->mat_butlovchi_i ?? null }}</textarea>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.5.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Loyihani amalga oshirishga jalb etilgan boshqa tashkilotlarning tadqiqot ishlari
+                                                uchun
+                                                toʻlov (5.6.-shakl)
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->jalb_etilgan_r ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->jalb_etilgan_a ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_a ?? 0)) }}
+                                            </td>
+                                            <td class="border">
+                                                <textarea name="jalb_etilgan_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->jalb_etilgan_i ?? null }}</textarea>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.6.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Loyihani amalga oshirish uchun boshqa xarajatlar (5.7.-shakl)
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->boshqa_xarajat_r ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->boshqa_xarajat_a ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_a ?? 0)) }}
+                                            </td>
+                                            <td class="border">
+                                                <textarea name="boshqa_xarajat_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->boshqa_xarajat_i ?? null }}</textarea>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.7.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Tashkilotning ustama xarajatlari (ushbu xarajat turi byudjetdan toʻgʻridan-toʻgʻri
+                                                va
+                                                bazaviy moliyalashtiriladigan ilmiy tashkilotlar tomonidan rejalashtirilmaydi)
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->tashustama_xarajat_r ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->tashustama_xarajat_a ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_a ?? 0)) }}
+                                            </td>
+                                            <td class="border">
+                                                <textarea name="tashustama_xarajat_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->tashustama_xarajat_i ?? null }}</textarea>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.8.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Xarid qilingan asbob-uskunalar va boshqa asosiy vositalar xaridining shartnomalari
+                                                mavjudligi, dalolatnomasining rasmiylashtirilganligi
+                                            </td>
+                                            <td class="border" colspan="3">
+                                                {{ $loyihaiqtisodi->xarid_qilingan_xarid ?? null }}
+                                            </td>
+                                            <td rowspan="4" class="border">
+                                                <textarea name="xarid_qilingan_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->xarid_qilingan_i ?? null }}</textarea>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.8.1.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Xarid shartnomasining raqami va sanasi
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->xarid_s ?? null }}
+                                            </td>
+                                            <td class="border" colspan="2">
+                                                {{ $loyihaiqtisodi->xarid_r ?? null }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.8.2.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Sotuvchi kompaniyaning nomi
+                                            </td>
+                                            <td class="border" colspan="3">
+                                                {{ $loyihaiqtisodi->xarid_sh ?? null }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.8.3.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Yetkazib beruvchi yuridik shaxsning nomi
+                                            </td>
+                                            <td class="border" colspan="3">
+                                                {{ $loyihaiqtisodi->yetkb_yuridik_nomi ?? null }}
+                                            </td>
+                                        </tr>
+                                    </table>
+    
+                                </div>
+    
+                            </div>
+                        </form>
+                    </div>
+                </div>
+    
+            </div>
+            <div class="px-5 pb-5 text-center">
+                <button type="button" data-dismiss="modal"
+                    class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </button>
+                <button type="submit" form="loyihaiqtisodiekspert-paper-edit-form-edit"
+                    class="update-confirm button w-24 bg-theme-1 text-white">
+                    Qo'shish
+                </button>
+            </div>
+        </div>
+    </div>
 @endsection
