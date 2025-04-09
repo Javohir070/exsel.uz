@@ -18,6 +18,10 @@ class TekshirivchilarController extends Controller
             "status" => $request->status,
             "comment" => $request->comment,
             'is_active' => 1,
+            'kalendar' => $request->kalendar,
+            'shart_sharoit_yaratib' => $request->shart_sharoit_yaratib,
+            'yakuniy_natijalar' => $request->yakuniy_natijalar,
+            'loyiha_ijrochilari' => $request->loyiha_ijrochilari,
         ]);
 
         return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');

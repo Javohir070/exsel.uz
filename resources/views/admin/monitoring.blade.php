@@ -121,7 +121,7 @@
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', null)->count() }} </td>
                                                 <td style="text-align: center;">
                                                     {{
-                                                        $region->tashkilots()->where('status', 1)
+                                                        $region->tashkilots()
                                                             ->withCount(['ilmiyloyhalar' => function ($q) {
                                                                 $q->where('is_active', 1);
                                                             }])

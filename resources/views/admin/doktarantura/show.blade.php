@@ -301,7 +301,7 @@
 
                                     <a href="{{ url('generate-pdfdoktarantura/' . $tashkilot->id) }}"
                                         class="button delete-cancel border text-gray-700 mr-1">
-                                        Xulosani genertsiya qilish
+                                         Eksport
                                     </a>
                                 </div>
 

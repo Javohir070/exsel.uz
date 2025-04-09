@@ -195,7 +195,7 @@
                         </div>
 
                             <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
-                                Xulosani genertsiya qilish
+                                 Eksport
                             </a>
                     </div>
                 <thead>

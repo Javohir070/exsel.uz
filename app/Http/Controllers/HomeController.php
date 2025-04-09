@@ -209,8 +209,7 @@ class HomeController extends Controller
         $regions = Region::orderBy('order')->get();
         $tashkilotlar = Tashkilot::where('status', 1)->paginate(25);
 
-        $tashkilotlarQuery = Tashkilot::where('status', 1)
-            ->with(['ilmiyloyhalar', 'asbobuskunalar', 'stajirovkalar'])
+        $tashkilotlarQuery = Tashkilot::with(['ilmiyloyhalar', 'asbobuskunalar', 'stajirovkalar'])
             ->get();
 
         // Turga qarab guruhlash

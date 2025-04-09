@@ -17,18 +17,18 @@
                 </div>
                 <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
             </div>
-            @role('super-admin')
+            <!-- <div>
+                <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
+                    class="button w-24 ml-3 bg-theme-1 text-white">
+                    Ilmiy loyiha biriktirish
+                </a>
+            </div> -->
+            @role(['super-admin', 'Ekspert'])
             <div>
                 <div>
-                    <a href="/admin/Ilmiyloyihalar2024_10_21_07_48_14.xlsx"
+                    <a href="{{ route('exportilmiy') }}"
                         class="button box flex items-center text-gray-700">
                         <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
-                    </a>
-                </div>
-                <div>
-                    <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
-                        class="button w-24 ml-3 bg-theme-1 text-white">
-                        Ilmiy loyiha biriktirish
                     </a>
                 </div>
 

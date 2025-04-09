@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\IlmiyLoyiha;
+use App\Models\Tashkilot;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Carbon\Carbon;
@@ -15,18 +16,20 @@ class IlmiyLoyihaImport implements ToModel, WithStartRow
     */
     public function model(array $row)
     {
+        $tashkilot = Tashkilot::where('stir_raqami', '=' ,$row[3])->first();
         return new IlmiyLoyiha([
             'user_id' => auth()->id(),
-            'tashkilot_id' => $row[1],
-            'turi' => $row[2],
-            'dastyri' => $row[3],
-            'bosh_sana' =>$this->transformDate($row[4]),
-            'tug_sana' =>$this->transformDate($row[5]),
-            'raqami' => $row[6],
-            'mavzusi' => $row[7],
-            'rahbar_name' => $row[8],
-            'sum' => $row[9],
-            'pan_yunalish' => $row[10],
+            'tashkilot_id' => $tashkilot->id,
+            'turi' => $row[0],
+            'raqami' => $row[4],
+            'mavzusi' => $row[1],
+            'rahbar_name' => $row[2],
+            // 'dastyri' => $row[3],
+            // 'bosh_sana' =>$this->transformDate($row[4]),
+            // 'tug_sana' =>$this->transformDate($row[5]),
+            // 'sum' => $row[9],
+            // 'pan_yunalish' => $row[10],
+            'is_active' => 1,
         ]);
     }
 
@@ -48,6 +51,6 @@ class IlmiyLoyihaImport implements ToModel, WithStartRow
 
     public function startRow(): int
     {
-        return 2;
+        return 0;
     }
 }

@@ -7,7 +7,7 @@
             <h2 class="intro-y text-lg font-medium">{{ $ilmiyloyiha->tashkilot->name }} </h2>
             @role('Ekspert')
                 <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
-                    Xulosani genertsiya qilish
+                     Eksport
                 </a>
             @endrole
             @role(['super-admin', 'Ekspert'])
@@ -835,6 +835,21 @@
                                         {{ $loyihaiqtisodi->yetkb_yuridik_nomi ?? null }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td class="border">4.9.</td>
+                                    <td class="border" style="text-size:14px;">
+                                        <b>Mablag‘ning o‘zlashtirilishi, mln.so‘m</b>
+                                    </td>
+                                    <td class="border">
+                                        
+                                    </td>
+                                    <td class="border">
+                                        
+                                    </td>
+                                    <td class="border">
+                                    </td>
+                                    <td class="border"></td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -856,24 +871,45 @@
                                     </tr>
                                     <tr>
                                         <td class="border">1.</td>
+                                        <td class="border">Ilmiy-tadqiqot ishlarining shartnoma va uning kalendar rejasiga asosan bajarilish holati</td>
+                                        <td class="border">{{ $tekshirivchilar->kalendar  }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border">2.</td>
+                                        <td class="border">Ijrochi tashkilot tomonidan loyihaning amalga oshirilishi uchun zarur shart-sharoitlar yaratib berilganligi</td>
+                                        <td class="border">{{ $tekshirivchilar->shart_sharoit_yaratib  }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border">3.</td>
+                                        <td class="border">Loyiha doirasida qo‘lga kiritilgan yakuniy natijalar va ularni tijoratlashtirish imkoniyatlari</td>
+                                        <td class="border">{{ $tekshirivchilar->yakuniy_natijalar  }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border">4.</td>
+                                        <td class="border">Loyiha ijrochilarining o‘zgarishi holati</td>
+                                        <td class="border">{{ $tekshirivchilar->loyiha_ijrochilari  }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border">5.</td>
                                         <td class="border">Monitoring xulosasi</td>
                                         <td class="border">{{ $tekshirivchilar->status }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border">2.</td>
+                                        <td class="border">6.</td>
                                         <td class="border">Izoh</td>
                                         <td class="border">{{ $tekshirivchilar->comment }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border">3.</td>
+                                        <td class="border">7.</td>
                                         <td class="border">Ekspert F.I.Sh</td>
                                         <td class="border">{{ $tekshirivchilar->fish }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border">4.</td>
+                                        <td class="border">8.</td>
                                         <td class="border">Monitoring o‘tkazilgan sana</td>
                                         <td class="border">{{ $tekshirivchilar->updated_at }}</td>
                                     </tr>
+                                    
                                 </tbody>
                             </table>
                         @else
@@ -887,6 +923,90 @@
                                             @csrf
                                             <div class="grid grid-cols-12 gap-2">
                                                 <input type="hidden" name="ilmiyloyiha_id" value="{{ $ilmiyloyiha->id }}">
+
+                                                <div class="w-full col-span-6">
+                                                    <label class="flex flex-col sm:flex-row"> <span
+                                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy-tadqiqot ishlarining shartnoma va uning kalendar rejasiga asosan bajarilish holati
+                                                    </label>
+                                                    <select name="kalendar" id="science-sub-category"
+                                                        class="input border w-full mt-2" required="">
+
+                                                        <option value=""></option>
+
+                                                        <option value="Bajarilgan ">Bajarilgan </option>
+
+                                                        <option value="Bajarilmagan">Bajarilmagan</option>
+
+
+                                                    </select><br>
+
+                                                    @error('muddat')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="w-full col-span-6">
+                                                    <label class="flex flex-col sm:flex-row"> <span
+                                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ijrochi tashkilot tomonidan loyihaning amalga oshirilishi uchun zarur shart-sharoitlar yaratib berilganligi
+                                                    </label>
+                                                    <select name="shart_sharoit_yaratib" id="science-sub-category"
+                                                        class="input border w-full mt-2" required="">
+
+                                                        <option value=""></option>
+
+                                                        <option value="Yaratilgan">Yaratilgan</option>
+
+                                                        <option value="Yaratilmagan">Yaratilmagan</option>
+
+
+                                                    </select><br>
+
+                                                    @error('muddat')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="w-full col-span-6">
+                                                    <label class="flex flex-col sm:flex-row"> <span
+                                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha doirasida qo‘lga kiritilgan yakuniy natijalar va ularni tijoratlashtirish imkoniyatlari
+                                                    </label>
+                                                    <select name="yakuniy_natijalar" id="science-sub-category"
+                                                        class="input border w-full mt-2" required="">
+
+                                                        <option value=""></option>
+
+                                                        <option value="Imkoniyat mavjud">Imkoniyat mavjud</option>
+
+                                                        <option value="Imkoniyat mavjud emas">Imkoniyat mavjud emas</option>
+
+
+                                                    </select><br>
+
+                                                    @error('muddat')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+
+                                                <div class="w-full col-span-6">
+                                                    <label class="flex flex-col sm:flex-row"> <span
+                                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha ijrochilarining o‘zgarishi holati
+                                                    </label>
+                                                    <select name="loyiha_ijrochilari" id="science-sub-category"
+                                                        class="input border w-full mt-2" required="">
+
+                                                        <option value=""></option>
+
+                                                        <option value="Mavjud emas">Mavjud emas</option>
+
+                                                        <option value="O‘zgarish mavjud">O‘zgarish mavjud</option>
+
+
+                                                    </select><br>
+
+                                                    @error('muddat')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
 
                                                 <div class="w-full col-span-6">
                                                     <label class="flex flex-col sm:flex-row"> <span

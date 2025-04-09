@@ -7,7 +7,7 @@
     <title>MA‘LUMOTNOMA</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            /* font-family: Arial, sans-serif; */
             margin: 20px;
         }
 
@@ -93,57 +93,57 @@
                 <p style="font-weight: 500;font-size: 18px;">{{ $ilmiyloyiha->tashkilot->name }} da amalga
                     oshirilayotgan "Innovasion texnologiyali radiologiyasi bo‘yuk texnologiyalar fondlanmasi holda
                     O‘zbekistondagi ruxsatlanishi bo‘yicha qo‘llanilishi belga olish" mavzusidagi loyihaning bajarilishi
-                    holati bo‘yicha <br>MA‘LUMOTNOMA</p>
+                    holati bo‘yicha <br>MA'LUMOTNOMA</p>
             </div>
 
             <table>
                 <thead>
                     <tr>
-                        <th>T/r</th>
-                        <th>MA‘LUMOT NOMI</th>
+                        <!-- <th>T/r</th> -->
+                        <th style="width: 300px;">MA'LUMOT NOMI</th>
                         <th>BAJARILISHI BO‘YICHA NATIJA KO‘RSATKICHLARI</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td  class="section-header" colspan="3">I. LOYIHANING ASOSIY KO‘RSATKICHLARI</td>
+                        <td  class="section-header" colspan="2">LOYIHANING ASOSIY KO‘RSATKICHLARI</td>
                     </tr>
                     <tr>
-                        <td>1.1.</td>
+                        <!-- <td>1.1.</td> -->
                         <td>Loyiha mavzusi</td>
                         <td>{{ $ilmiyloyiha->mavzusi }}, {{ $ilmiyloyiha->mavzusi_ru }}</td>
                     </tr>
                     <tr>
-                        <td>1.2.</td>
+                        <!-- <td>1.2.</td> -->
                         <td>Loyiha turi</td>
                         <td>{{ $ilmiyloyiha->turi }}</td>
                     </tr>
                     <tr>
-                        <td>1.3.</td>
+                        <!-- <td>1.3.</td> -->
                         <td>Loyiha shifri</td>
                         <td>{{ $ilmiyloyiha->raqami }}</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>1.4.</td>
                         <td>Shartnoma raqami va sanasi</td>
                         <td>0</td>
-                    </tr>
+                    </tr> -->
                     <tr>
-                        <td>1.5.</td>
+                        <!-- <td>1.5.</td> -->
                         <td>Bajarilish muddati</td>
                         <td>{{ $ilmiyloyiha->bosh_sana }} - {{ $ilmiyloyiha->tug_sana }} yillar</td>
                     </tr>
                     <tr>
-                        <td>1.6.</td>
+                        <!-- <td>1.6.</td> -->
                         <td>Ijrochi tashkilot</td>
                         <td>{{ $ilmiyloyiha->ijrochi_tashkilot }}</td>
                     </tr>
                     <tr>
-                        <td>1.7.</td>
+                        <!-- <td>1.7.</td> -->
                         <td>Loyihaning umumiy qiymati, mln.soʻm</td>
                         <td>{{ $ilmiyloyiha->sum }}</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>1.7.1.</td>
                         <td>Joriy yil uchun ajratilgan mablagʻ, mln.soʻm</td>
                         <td>0</td>
@@ -152,22 +152,22 @@
                         <td>1.7.2.</td>
                         <td>Loyiha moddiy-texnik bazasi uchun yoʻnaltirilgan mablagʻ, mln.soʻm</td>
                         <td>{{ $ilmiyloyiha->moddiy_texnik_mablaglar }}</td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td>1.7.2.1.</td>
                         <td>Jami summaga nisbatan, foiz</td>
                         <td>0</td>
-                    </tr>
+                    </tr> -->
 
-                    <tr>
+                    <!-- <tr>
                         <td colspan="3" class="section-header">II. LOYIHANING RAHBARI VA IJROCHILARI</td>
-                    </tr>
+                    </tr> -->
                     <tr>
-                        <td>2.1.</td>
+                        <!-- <td>2.1.</td> -->
                         <td><b> Loyihaning amaldagi rahbarining familiyasi, ismi, sharifi</b></td>
                         <td>{{ $ilmiyloyiha->rahbar_name }}</td>
                     </tr>
-                    <tr>
+                    <!-- <tr>
                         <td>2.1.1.</td>
                         <td>Ilmiy darajasi va unvoni</td>
                         <td>{{ $ilmiyloyiha->rahbariilmiy_darajasi }} , {{ $ilmiyloyiha->rahbariilmiy_unvoni }}</td>
@@ -232,23 +232,23 @@
                         <td>2.6.</td>
                         <td>Ilmiy jamoaning oʻrtacha yoshi</td>
                         <td>{{ $ilmiyloyiha->ortacha_yoshi }}</td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
 
         <!-- Second Page -->
             <table>
                 <thead>
-                    <tr>
+                    <!-- <tr>
                         <td colspan="6" class="section-header">III. ILMIY TADQIQOT LOYIHASI NATIJALARI</td>
                     </tr>
                     <tr>
                         <td colspan="6" class="subsection-header">III.1. INTELLEKTUAL FAOLIYAT NATIJALARI</td>
-                    </tr>
+                    </tr> -->
                     <tr>
-                        <th>T/r</th>
-                        <th>Ko‘rsatkichlar</th>
-                        <th>Reja</th>
+                        <!-- <th>T/r</th> -->
+                        <th style="width: 200px;">MONITORING KO‘RSATKICHLARI</th>
+                        <th style="width: 80px;">Reja</th>
                         <th>Amalda</th>
                         <th>Farqi</th>
                         <th>Izoh</th>
@@ -256,7 +256,7 @@
                     <tr>
                 </thead>
                 <tbody>
-                    <tr>
+                    <!-- <tr>
                         <td>3.1.1.</td>
                         <td><b> Jami chop etilgan maqolalar soni </b></td>
                         <td></td>
@@ -264,8 +264,8 @@
                         <td></td>
                         <td></td>
 
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td>3.1.1.1.</td>
                         <td>Mahalliy ilmiy jurnallardagi maqolalar soni</td>
                         <td></td>
@@ -320,43 +320,73 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                    </tr>
+                    </tr> -->
                     <tr>
-                        <td>3.1.2.</td>
+                        <!-- <td>3.1.2.</td> -->
                         <td><b> Bakalavrlat bosqichida yakunlangan bittiruv malakaviy ishlari soni</b></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            {{ $intellektual->b_bitiruv_mreja ?? 0 }}
+                        </td>
+                        <td>
+                            {{ $intellektual->b_bitiruv_mamalda ?? 0 }}
+                        </td>
+                        <td>
+                            {{ ($intellektual->b_bitiruv_mreja ?? 0) - ($intellektual->b_bitiruv_mamalda ?? 0) }}
+                        </td>
+                        <td>{{ $intellektual->b_bitiruv_izoh ?? null }}</td>
                     </tr>
                     <tr>
-                        <td>3.1.3.</td>
+                        <!-- <td>3.1.3.</td> -->
                         <td><b> Tayyorlangan magistrlik dissertatsiyaning soni</b></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td>
+                            {{ $intellektual->m_bitiruv_dreja ?? 0 }}
+                        </td>
+                        <td>
+                            {{ $intellektual->m_bitiruv_damalda ?? 0 }}
+                        </td>
+                        <td>
+                            {{ ($intellektual->m_bitiruv_dreja ?? 0) - ($intellektual->m_bitiruv_damalda ?? 0) }}
+                        </td>
+                        <td>{{ $intellektual->m_bitiruv_izoh ?? null }}</td>
                     </tr>
                     <tr>
-                        <td>3.1.4.</td>
+                        <!-- <td>3.1.4.</td> -->
                         <td><b> Tayyorlangan doktorlik dissertatsiyalarning soni (PhD, DSc)</b></td>
+                        <td>
+                            {{ $intellektual->p_bitiruv_dreja ?? 0 }}
+                        </td>
+                        <td>
+                            {{ $intellektual->p_bitiruv_damalda ?? 0 }}
+                        </td>
+                        <td>
+                            {{ ($intellektual->p_bitiruv_dreja ?? 0) - ($intellektual->p_bitiruv_damalda ?? 0) }}
+                        </td>
+                        <td>{{ $intellektual->p_bitiruv_izoh ?? null }}</td>
+                    </tr>
+                    <tr>
+                        <!-- <td>3.1.5.</td> -->
+                        <td><b> Intellektual faoliyat natijalari soni </b>(ixtiro uchun olingan patentlari, ixtiro uchun patentga berilgan buyurtmalar, dasturiy mahsulotga olingan guvohnomalar)</td>
                         <td></td>
                         <td></td>
                         <td></td>
                         <td></td>
                     </tr>
+
                     <tr>
-                        <td>3.1.5.</td>
-                        <td><b> Intellektual mulk obyektlari uchun berilgan arizalar soni</b></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <!-- <td>3.1.5.</td> -->
+                        <td><b> Umumiy ajratilgan mablag‘, mln.so‘m</b></td>
+                        <td colspan="4">{{ $ilmiyloyiha->sum }}</td>
                     </tr>
+
                     <tr>
+                        <!-- <td>3.1.5.</td> -->
+                        <td><b> Mablag‘ning o‘zlashtirilishi, mln.so‘mi</b></td>
+                        <td colspan="4"></td>
+                    </tr>
+                    <!-- <tr>
                         <td colspan="6" class="subsection-header">III.2. IXTIRO UCHUN PATENT VA DASTURIY TAʼMINOTLAR </td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <th>T/r</th>
                         <th>Ko‘rsatkichlar</th>
                         <th>Reja</th>
@@ -394,25 +424,25 @@
                     </tr>
                     <tr>
                         <td colspan="6" class="subsection-header">III.3. LOYIHANING MUHIM NATIJALARI</td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <th>T/r</th>
                         <th>Ko‘rsatkichlar</th>
-                        <th colspan="3">Bajarilishi holatining tahlili</th>
+                        <th colspan="4">Bajarilishi holatining tahlili</th>
                         <td>Izoh</td>
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td>3.3.1.</td>
                         <td><b> Hisobot davrida qo‘lga kiritilgan muhim natijalar</b></td>
-                        <td colspan="3">Text</td>
+                        <td colspan="4">Text</td>
                         <td></td>
 
-                    </tr>
-                    <tr>
+                    </tr> -->
+                    <!-- <tr>
                         <td>3.3.2.</td>
                         <td><b>Loyiha bajarilishi davrida yaratilgan ishlanma (texnologiya) nomi va qisqacha tavsifi</b>
                         </td>
-                        <td colspan="3">Text</td>
+                        <td colspan="4">Text</td>
                         <td></td>
 
                     </tr>
@@ -421,15 +451,35 @@
                         <td><b>Ilmiy ishlanma joriy etilayotgan (tijoratlashtiriladigan) tarmoq (soha) va kutilayotgan
                                 natijalar (mavjud shartnomalar, natijalari samaradorlik va rentabellik darajasi
                                 bilan)</b></td>
-                        <td colspan="3">Text</td>
+                        <td colspan="4">Text</td>
                         <td></td>
 
+                    </tr> -->
+                    <tr>
+                        <!-- <td>1.</td> -->
+                        <td>Ilmiy-tadqiqot ishlarining shartnoma va uning kalendar rejasiga asosan bajarilish holati</td>
+                        <td colspan="4">{{$ilmiyloyiha->tekshirivchilars->kalendar }}</td>
+                    </tr>
+                    <tr>
+                        <!-- <td>2.</td> -->
+                        <td>Ijrochi tashkilot tomonidan loyihaning amalga oshirilishi uchun zarur shart-sharoitlar yaratib berilganligi</td>
+                        <td colspan="4">{{$ilmiyloyiha->tekshirivchilars->shart_sharoit_yaratib }}</td>
+                    </tr>
+                    <tr>
+                        <!-- <td>3.</td> -->
+                        <td>Loyiha doirasida qo‘lga kiritilgan yakuniy natijalar va ularni tijoratlashtirish imkoniyatlari</td>
+                        <td colspan="4">{{$ilmiyloyiha->tekshirivchilars->yakuniy_natijalar }}</td>
+                    </tr>
+                    <tr>
+                        <!-- <td>4.</td> -->
+                        <td>Loyiha ijrochilarining o‘zgarishi holati</td>
+                        <td colspan="4">{{$ilmiyloyiha->tekshirivchilars->loyiha_ijrochilari }}</td>
                     </tr>
                 </tbody>
             </table>
 
 
-        <table>
+        <!-- <table>
             <thead>
                 <tr>
                     <td colspan="6" class="section-header">IV. LOYIHANING MOLIYAVIY VA IQTISODIY KOʻRSATKICHLARI</td>
@@ -532,11 +582,11 @@
                     <td colspan="4"></td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
 
         <h2 class="subtitle">Monitoring xulosasi: {{$ilmiyloyiha->tekshirivchilars->status }}</h2>
-        <p>Monitoring o‘tkazilgan sana: {{ $ilmiyloyiha->updated_at }} y.</p>
-        <p>Oʻrganish oʻtkazgan ishchi guruh:</p>
+        <p>Monitoring o'tkazilgan sana: {{ $ilmiyloyiha->updated_at }} y.</p>
+        <p>O'rganish o'tkazgan ishchi guruh:</p>
         <p>{{$ilmiyloyiha->tekshirivchilars->fish }}</p>
         <!--  QrCode  yozasiz -->
         <div class="footer-qr" style="display: flex;gap:10px;">

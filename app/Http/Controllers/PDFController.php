@@ -9,6 +9,7 @@ use App\Models\IlmiyLoyiha;
 use App\Models\Stajirovka;
 use App\Models\Stajirovkaexpert;
 use App\Models\Tashkilot;
+use App\Models\Intellektual;
 use App\Models\Tekshirivchilar;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -24,7 +25,7 @@ class PDFController extends Controller
         $fileName = 'users-lists-' . time() . '.pdf';
         $fileRelativePath = 'pdfs/' . $fileName;
         $filePath = storage_path('app/public/' . $fileRelativePath);
-
+        $intellektual = Intellektual::where('ilmiy_loyiha_id', '=',$ilmiyId)->first();
         // Generate a URL for the PDF
         $pdfUrl = asset('storage/' . $fileRelativePath);
 
@@ -36,6 +37,7 @@ class PDFController extends Controller
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
             'date' => date('m/d/Y'),
             'ilmiyloyiha' => $ilmiyloyiha,
+            'intellektual' => $intellektual,
             'qrCode' => $qrCode, // Pass QR Code image as base64
         ];
 

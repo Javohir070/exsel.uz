@@ -31,7 +31,7 @@ class IlmiyLoyiha extends Model
         "olingan_natija",
         "joriy_holati",
         "tijoratlashtirish",
-
+        'is_active',
         "rahbariilmiy_darajasi",
         "rahbariilmiy_unvoni",
         "r_lavozimi",
@@ -122,6 +122,11 @@ class IlmiyLoyiha extends Model
     public function kafedralar()
     {
         return $this->belongsTo(Kafedralar::class);
+    }
+
+    public function intellektual() 
+    {
+        return $this->hasMany(Intellektual::class);
     }
 
     // App\Models\IlmiyLoyiha.php
