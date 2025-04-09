@@ -40,7 +40,12 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
             'STIR raqami',
             'Tashkilot hisob raqami',
             'Xizmat ko‘rsatuvchi bank',
-            'Tashkilot turi'
+            'turi',
+            'status',
+            'asbobuskuna_is',
+            'stajirovka_is',
+            'ilmiyloyiha_is',
+            'doktarantura_is',
         ];
     }
 
@@ -68,6 +73,11 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
             $tashkilot->hisob_raqam,
             $tashkilot->bank,
             $tashkilot->tashkilot_turi ?? "otm",
+            $tashkilot->status ?? 0,
+            $tashkilot->asbobuskuna_is ?? 0,
+            $tashkilot->stajirovka_is ?? 0,
+            $tashkilot->ilmiyloyiha_is ?? 0,
+            $tashkilot->doktarantura_is ?? 0,
         ];
     }
 }
