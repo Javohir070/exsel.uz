@@ -115,6 +115,8 @@
                 <div class="side-menu__title">Monitoring</div>
             </a>
         </li>
+        @endrole
+        @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
         <li>
             <a href="{{ route('ilmiyloyihalar.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiy*') ? '--active' : '' }}">
@@ -122,7 +124,8 @@
                 <div class="side-menu__title"> Ilmiy loyihalar  </div>
             </a>
         </li>
-
+        @endrole
+        @role(['Asbob-uskunalar boyicha masul', 'Ekspert'])
         <li>
             <a href="{{ route('asbobuskunalar.index') }}"
                 class="side-menu side-menu{{ request()->is('asbobus*') ? '--active' : '' }}{{ request()->is('search-asbob*') ? '--active' : '' }}">
@@ -130,6 +133,8 @@
                 <div class="side-menu__title"> Asbob-uskunalar</div>
             </a>
         </li>
+        @endrole
+        @role(['Stajirovka boyicha masul', 'Ekspert'])
         <li>
             <a href="{{ route('stajirovkalar.index') }}"
                 class="side-menu side-menu{{ request()->is('staji*') ? '--active' : '' }}{{ request()->is('search-sta*') ? '--active' : '' }}">
@@ -137,6 +142,8 @@
                 <div class="side-menu__title"> Stajirovkalar</div>
             </a>
         </li>
+        @endrole
+        @role(['Izlanuvchilar boyicha masul', 'Ekspert'])
         <li>
             <a href="{{ route('doktarantura.index') }}"
                 class="side-menu side-menu{{ request()->is('doktarantura*') ? '--active' : '' }}{{ request()->is('search-dok*') ? '--active' : '' }}">

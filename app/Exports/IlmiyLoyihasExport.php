@@ -13,7 +13,7 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return IlmiyLoyiha::with('tashkilot')->get()->map(function ($ilmiyloyhalar){
+        return IlmiyLoyiha::where('is_active', 1)->with('tashkilot')->get()->map(function ($ilmiyloyhalar){
             return [
                 'id' => $ilmiyloyhalar->id,
                 'Tashkilot' => $ilmiyloyhalar->tashkilot->name,
@@ -30,17 +30,18 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
                 'Raqami' => $ilmiyloyhalar->raqami,
                 'Sanasi' => $ilmiyloyhalar->sanasi,
                 'Summasi (ming so‘mda)' => $ilmiyloyhalar->sum,
-                '2017 yil' => $ilmiyloyhalar->umumiyyil->y2017,
-                '2018 yil' => $ilmiyloyhalar->umumiyyil->y2018,
-                '2019 yil' => $ilmiyloyhalar->umumiyyil->y2019,
-                '2020 yil' => $ilmiyloyhalar->umumiyyil->y2020,
-                '2021 yil' => $ilmiyloyhalar->umumiyyil->y2021,
-                '2022 yil' => $ilmiyloyhalar->umumiyyil->y2022,
-                '2023 yil' => $ilmiyloyhalar->umumiyyil->y2023,
-                '2024 yil' => $ilmiyloyhalar->umumiyyil->y2024,
+                '2017 yil' => $ilmiyloyhalar->umumiyyil->y2017 ?? 0,
+                '2018 yil' => $ilmiyloyhalar->umumiyyil->y2018 ?? 0,
+                '2019 yil' => $ilmiyloyhalar->umumiyyil->y2019 ?? 0,
+                '2020 yil' => $ilmiyloyhalar->umumiyyil->y2020 ?? 0,
+                '2021 yil' => $ilmiyloyhalar->umumiyyil->y2021 ?? 0,
+                '2022 yil' => $ilmiyloyhalar->umumiyyil->y2022 ?? 0,
+                '2023 yil' => $ilmiyloyhalar->umumiyyil->y2023 ?? 0,
+                '2024 yil' => $ilmiyloyhalar->umumiyyil->y2024 ?? 0,
                 'Olingan asosiy natija' => $ilmiyloyhalar->olingan_natija,
                 'Joriy etish (Tatbiq etish) holati' => $ilmiyloyhalar->joriy_holati,
                 'Tijoratlashtirish holati' => $ilmiyloyhalar->tijoratlashtirish,
+                'is_active' => $ilmiyloyhalar->is_active,
 
             ];
         });
@@ -75,7 +76,7 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
             'Olingan asosiy natija',
             'Joriy etish (Tatbiq etish) holati',
             'Tijoratlashtirish holati',
-
+            'Active'
         ];
     }
 }

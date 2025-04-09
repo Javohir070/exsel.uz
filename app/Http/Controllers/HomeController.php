@@ -209,6 +209,28 @@ class HomeController extends Controller
         $regions = Region::orderBy('order')->get();
         $tashkilotlar = Tashkilot::where('status', 1)->paginate(25);
 
+        $tashkilotlarQuery = Tashkilot::where('status', 1)
+            ->with(['ilmiyloyhalar', 'asbobuskunalar', 'stajirovkalar'])
+            ->get();
+
+        // Turga qarab guruhlash
+        $groups = [
+            'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
+            'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
+            'other' => $tashkilotlarQuery->whereNull('tashkilot_turi'),
+        ];
+
+        $results = [];
+
+        foreach ($groups as $key => $group) {
+            $results[$key] = [
+                'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->where('is_active', 1)->count(),
+                'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->count(),
+                'asbobuskunalar' => $group->pluck('asbobuskunalar')->flatten()->where('is_active', 1)->count(),
+                'doktarantura' => $group->whereNotNull('doktarantura_is')->isNotEmpty(),
+            ];
+        }
+
         return view("admin.monitoring",[
             'loy_count' => $loy_count,
             'stajirovka_count' => $stajirovka_count,
@@ -220,6 +242,8 @@ class HomeController extends Controller
             'doktarantura_expert' => $doktarantura_expert,
             'regions' => $regions,
             'tashkilotlar' => $tashkilotlar,
+            'tashkilotlarQuery' => $tashkilotlarQuery,
+            'results' => $results,
         ]);
 
 
