@@ -32,7 +32,7 @@ class UserController extends Controller
 
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::where('is_active', 1)->pluck('name','name')->all();
         $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $tashkilot_id = auth()->user()->tashkilot_id;
@@ -43,7 +43,7 @@ class UserController extends Controller
 
     public function kafedra_rol()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::where('is_active', 1)->pluck('name','name')->all();
         $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $tashkilot_id = auth()->user()->tashkilot_id;
@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public function asbobuskuna_rol()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::where('is_active', 1)->pluck('name','name')->all();
         $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $tashkilot_id = auth()->user()->tashkilot_id;
@@ -160,7 +160,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = Role::where('is_active', 1)->pluck('name','name')->all();
         $userRoles = $user->roles->pluck('name','name')->all();
         $tashkilot_id = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
