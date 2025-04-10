@@ -20,7 +20,7 @@
                         </svg>
                     </form>
                 </div>
-                <form method="GET" action="{{ route('search_asbobuskunalar') }}">
+                {{-- <form method="GET" action="{{ route('search_asbobuskunalar') }}">
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
                         <option value="">Barchasi OTM & ITM</option>
                         <option value="otm">OTM</option>
@@ -35,7 +35,7 @@
                         <option value="{{ $v->id }}">{{ $v->oz }}</option>
                         @endforeach
                     </select>
-                </form>
+                </form> --}}
             </div>
 
             <div>

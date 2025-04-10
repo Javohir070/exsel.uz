@@ -119,7 +119,7 @@
         @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
         <li>
             <a href="{{ route('ilmiyloyihalar.index') }}"
-                class="side-menu side-menu{{ request()->is('ilmiy*') ? '--active' : '' }}">
+                class="side-menu side-menu{{ request()->is('ilmiy*') ? '--active' : '' }}{{ request()->is('search-ilmiy*') ? '--active' : '' }}{{ request()->is('turi*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Ilmiy loyihalar  </div>
             </a>

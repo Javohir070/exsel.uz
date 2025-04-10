@@ -198,6 +198,11 @@ Route::middleware('auth')->group(function () {
     Route::get('stajiro/{id}', [StajirovkaController::class, "stajirov"])->name("stajirov.index");
     Route::get('/export-asbobuskunalar', [AsbobuskunaController::class, 'export_asbobuskunalar'])->name('export.asbobuskunalar');
 
+    Route::get('turi/{id}', [IlmiyLoyihaController::class,'tashkilot_turi'])->name('tashkilot_turi');
+    Route::get('tashkilot-turi/{id}', [AsbobuskunaController::class,'tashkilot_turi_asbobuskuna'])->name('tashkilot_turi_asbobuskuna');
+    Route::get('stajiroka-turi/{id}', [StajirovkaController::class,'tashkilot_turi_stajiroka'])->name('tashkilot_turi_stajiroka');
+    Route::get('doktarantura-turi/{id}', [DoktaranturaController::class,'tashkilot_turi_doktarantura'])->name('tashkilot_turi_doktarantura');
+
     Route::resources([
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,

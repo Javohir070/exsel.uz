@@ -28,31 +28,65 @@ class StajirovkaController extends Controller
 
         $stajirovkas = Stajirovka::count();
         $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is',1)->paginate(30);
-        $tash_count = Tashkilot::orderBy('name')->where('stajirovka_is',1)->count();
+        $tashkilots = Tashkilot::orderBy('name')->where('stajirovka_is',1)->count();
         $querysearch = null;
         $regions = Region::orderBy('order')->get();
         $stajirovka_count = Stajirovka::count();
         $stajirovka_expert = Stajirovkaexpert::count();
-        return view('admin.stajirovka.viloyat', ['tash_count' => $tash_count, 'stajirovka_count' => $stajirovka_count, 'stajirovka_expert' => $stajirovka_expert, 'regions' => $regions, 'querysearch' => $querysearch]);
+        return view('admin.stajirovka.viloyat', ['tashkilots' => $tashkilots, 'stajirovka_count' => $stajirovka_count, 'stajirovka_expert' => $stajirovka_expert, 'regions' => $regions, 'querysearch' => $querysearch]);
+    }
+
+    public function tashkilot_turi_stajiroka($id)
+    {
+        $tashkilotlarQuery = Tashkilot::where('stajirovka_is',1)->where('region_id', '=', $id)->with(['stajirovkalar'])
+        ->get();
+
+        // Turga qarab guruhlash
+        $groups = [
+            'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
+            'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
+            'other' => $tashkilotlarQuery->where('tashkilot_turi','boshqa'),
+        ];
+
+        $results = [];
+
+        foreach ($groups as $key => $group) {
+            $results[$key] = [
+                'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->count(),
+            ];
+        }
+        $regions = Region::findOrFail( $id );
+
+        return view('admin.stajirovka.tashkilot_turi',['results' => $results, 'regions'=>$regions]);
     }
 
     public function search_stajirovka(Request $request)
     {
 
         $querysearch = $request->input('query');
-        if (ctype_digit($querysearch)) {
-            $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('region_id', '=', $querysearch)->paginate(50);
-            $tash_count = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('region_id', '=', $querysearch)->count();
-        } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
-            $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('tashkilot_turi', 'like', '%' . $querysearch . '%')->count();
-        } else {
-            $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('name', 'like', '%' . $querysearch . '%')->paginate(50);
-            $tash_count = Tashkilot::orderBy('name')->where('stajirovka_is',1)->where('name', 'like', '%' . $querysearch . '%')->count();
+        $id = $request->input('id');
+        $type = $request->input('type');
+        if (ctype_digit($id)) {
+            $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is', 1)
+                                ->where('region_id', '=', $id)
+                                ->where('tashkilot_turi', '=', $type)
+                                ->paginate(50);
+            $tashkilotlars = Tashkilot::orderBy('name')->where('stajirovka_is', 1)
+                                ->where('region_id', '=', $id)
+                                ->where('tashkilot_turi', '=', $type)
+                                ->get();
+            $tash_count = $tashkilotlar->total();
+           } else {
+            $tashkilotlar = Tashkilot::orderBy('name')
+                                    ->where('stajirovka_is', 1)
+                                    ->where('name', 'like', '%' . $querysearch . '%')
+                                    ->paginate(50);
+            $tash_count = $tashkilotlar->total();
         }
-
-        $stajirovkas = Stajirovka::count();
-
+        
+        $id = $tashkilotlars->pluck('id');
+        
+        $stajirovkas = Stajirovka::whereIn('tashkilot_id', $id)->count();
         $regions = Region::orderBy('order')->get();
 
         return view('admin.stajirovka.stajirovkalar', ['stajirovkas' => $stajirovkas, 'tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count, 'querysearch' => $querysearch]);

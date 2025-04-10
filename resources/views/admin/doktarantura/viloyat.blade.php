@@ -17,13 +17,29 @@
 
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                                    <a href="{{ route('ilmiyloyihalar.index') }}">
+                                        <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                            <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
+                                                <i data-feather="home" class="report-box__icon text-theme-3" ></i>
+                                            </div>
+                                            <div class="w-2/4 flex-none">
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $doktarantura }}/{{ $doktarantura_expert }}</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                                <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                                     <a href="{{ route('doktarantura.index') }}">
                                         <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
                                             <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
                                                 <i data-feather="users" class="report-box__icon text-theme-3" style="color: #E64242;" ></i>
                                             </div>
                                             <div class="w-2/4 flex-none">
-                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $doktarantura }}/{{ $doktarantura_expert }}</div>
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">0/0</div>
                                                 <div class="text-gray-600 mt-1" style="font-size: 16px;">Doktorantura</div>
                                             </div>
                                         </div>
@@ -54,7 +70,7 @@
                                             @foreach ($regions as $region)
                                             <tr style="border-bottom: 1px solid #E6E6E6;">
                                                 <td style="color:#1881D3; font-weight: 400;">
-                                                    <a href="{{ route('search_dok', ['query' => $region->id]) }}">
+                                                    <a href="{{ route('tashkilot_turi_doktarantura', ['id' => $region->id]) }}">
                                                         {{ $region->oz }}
                                                     </a>
                                                 </td>
