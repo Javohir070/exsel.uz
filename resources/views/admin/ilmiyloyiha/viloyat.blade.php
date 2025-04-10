@@ -45,8 +45,8 @@
                                                 <th class="whitespace-no-wrap">Hudud nomi</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Jami</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">OTM</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">ITM</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Boshqalari</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy tashkilotlar</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Boshqa tashkilotlar</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
                                             </tr>
                                         </thead>

@@ -16,6 +16,8 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
         return IlmiyLoyiha::where('is_active', 1)->with('tashkilot')->get()->map(function ($ilmiyloyhalar){
             return [
                 'id' => $ilmiyloyhalar->id,
+                'Tashkilot id' => $ilmiyloyhalar->tashkilot->id,
+                'is active' => $ilmiyloyhalar->tashkilot->ilmiyloyiha_is,
                 'Tashkilot' => $ilmiyloyhalar->tashkilot->name,
                 'Tashkilot turi' => $ilmiyloyhalar->tashkilot->tashkilot_turi == 'otm' ? 'OTM' : ($ilmiyloyhalar->tashkilot->tashkilot_turi == 'itm'? 'ITM':'boshqa'),
                 'Tashkilot stir' => $ilmiyloyhalar->tashkilot->stir_raqami,
@@ -54,6 +56,8 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
     {
         return [
             'id',
+            'Tashkilot id',
+            'is active',
             'Tashkilot',
             'Tashkilot turi',
             'Tashkilot stir',

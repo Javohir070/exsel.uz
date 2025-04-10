@@ -121,7 +121,7 @@
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', null)->count() }} </td>
                                                 <td style="text-align: center;">
                                                     {{
-                                                        $region->tashkilots()
+                                                        $region->tashkilots()->where('ilmiyloyiha_is', 1)
                                                             ->withCount(['ilmiyloyhalar' => function ($q) {
                                                                 $q->where('is_active', 1);
                                                             }])
@@ -215,21 +215,21 @@
                                                 <td style="text-align: center;">{{ $results['otm']['ilmiyloyhalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['otm']['stajirovkalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['otm']['asbobuskunalar'] }}</td>
-                                                <td style="text-align: center;">{{ $results['otm']['doktarantura'] ? '✓' : '✗' }}</td>
+                                                <td style="text-align: center;">{{ $results['otm']['doktarantura'] }}</td>
                                             </tr>
                                             <tr>
                                                 <td style="color:#1881D3; font-weight: 400;"> Ilmiy tashkilotlar</td>
                                                 <td style="text-align: center;">{{ $results['itm']['ilmiyloyhalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['itm']['stajirovkalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['itm']['asbobuskunalar'] }}</td>
-                                                <td style="text-align: center;">{{ $results['itm']['doktarantura'] ? '✓' : '✗' }}</td>
+                                                <td style="text-align: center;">{{ $results['itm']['doktarantura'] }}</td>
                                             </tr>
                                             <tr>
                                                 <td style="color:#1881D3; font-weight: 400;">Boshqa tashkilotlar</td>
                                                 <td style="text-align: center;">{{ $results['other']['ilmiyloyhalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['other']['stajirovkalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['other']['asbobuskunalar'] }}</td>
-                                                <td style="text-align: center;">{{ $results['other']['doktarantura'] ? '✓' : '✗' }}</td>
+                                                <td style="text-align: center;">{{ $results['other']['doktarantura'] }}</td>
                                             </tr>
                                             
                                         </tbody>

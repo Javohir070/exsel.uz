@@ -226,7 +226,7 @@ class HomeController extends Controller
                 'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->where('is_active', 1)->count(),
                 'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->count(),
                 'asbobuskunalar' => $group->pluck('asbobuskunalar')->flatten()->where('is_active', 1)->count(),
-                'doktarantura' => $group->whereNotNull('doktarantura_is')->isNotEmpty(),
+                'doktarantura' => $group->where('doktarantura_is', 1)->count(),
             ];
         }
 
