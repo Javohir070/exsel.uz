@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-    @role(['super-admin', 'Xujalik_shartnomalari', 'Ilmiy_loyiha_rahbari', 'Ekspert'])
         <div class="grid grid-cols-12 gap-6">
             <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
                 <div class="col-span-12 mt-8">
@@ -69,5 +68,4 @@
                 </div>
             </div>
         </div>
-    @endrole
 @endsection

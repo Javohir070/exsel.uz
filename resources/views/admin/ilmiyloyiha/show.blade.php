@@ -5,7 +5,7 @@
         <div class="flex justify-between align-center mt-10">
 
             <h2 class="intro-y text-lg font-medium">{{ $ilmiyloyiha->tashkilot->name }} </h2>
-            @role('Ekspert')
+            @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
                 <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
                      Eksport
                 </a>
@@ -913,7 +913,7 @@
                                 </tbody>
                             </table>
                         @else
-                            @role('Ekspert')
+                            @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
                                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
                                     style="background: white; padding: 20px 20px; border-radius: 20px">
                                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
