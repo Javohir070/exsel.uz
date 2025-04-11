@@ -72,13 +72,13 @@
                         <td class="border">
                             @if ($stajirovka->ilmiy_hisobot)
                                 <a href="{{ asset('storage/' . $stajirovka->ilmiy_hisobot) }}"
-                                    class="button  bg-theme-1 text-white">Faylni ko'rish</a>
+                                    class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
                             @endif
                         </td>
                         <td class="border">
                             @if ($stajirovka->egallangan_bilim)
                                 <a href="{{ asset('storage/' . $stajirovka->egallangan_bilim) }}"
-                                    class="button  bg-theme-1 text-white">Faylni ko'rish</a>
+                                    class="button  bg-theme-1 text-white"  target="_blank">Faylni ko'rish</a>
                             @endif
                         </td>
                     </tr>
@@ -94,13 +94,13 @@
                         <td class="border">
                             @if ($stajirovka->ishlar_natijalari)
                                 <a href="{{ asset('storage/' . $stajirovka->ishlar_natijalari) }}"
-                                    class="button  bg-theme-1 text-white">Faylni ko'rish</a>
+                                    class="button  bg-theme-1 text-white"  target="_blank">Faylni ko'rish</a>
                             @endif
                         </td>
                         <td class="border">
                             @if ($stajirovka->xalqarotan_jur_nashr)
                                 <a href="{{ asset('storage/' . $stajirovka->xalqarotan_jur_nashr) }}"
-                                    class="button  bg-theme-1 text-white">Faylni ko'rish</a>
+                                    class="button  bg-theme-1 text-white"  target="_blank">Faylni ko'rish</a>
                             @endif
                         </td>
                     </tr>
@@ -117,7 +117,7 @@
                         <td class="border">
                             @if ($stajirovka->biryil_davomida)
                                 <a href="{{ asset('storage/' . $stajirovka->biryil_davomida) }}"
-                                    class="button  bg-theme-1 text-white">Faylni ko'rish</a>
+                                    class="button  bg-theme-1 text-white"  target="_blank">Faylni ko'rish</a>
                             @endif
                         </td>
                         <td class="border"></td>

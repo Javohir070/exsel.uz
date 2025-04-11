@@ -21,45 +21,42 @@ class PDFController extends Controller
     public function generatePDF($ilmiyId)
     {
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($ilmiyId);
-        // Define a file name and path for the PDF
-        $fileName = 'users-lists-' . time() . '.pdf';
+        $fileName = 'test-lists-' . time() . '.pdf';
         $fileRelativePath = 'pdfs/' . $fileName;
         $filePath = storage_path('app/public/' . $fileRelativePath);
-        $intellektual = Intellektual::where('ilmiy_loyiha_id', '=',$ilmiyId)->first();
-        // Generate a URL for the PDF
+    
+        $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyId)->first();
         $pdfUrl = asset('storage/' . $fileRelativePath);
-
-        // Generate the QR Code as a base64 image
+    
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
-
-        // Prepare data for the PDF
+    
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
             'date' => date('m/d/Y'),
             'ilmiyloyiha' => $ilmiyloyiha,
             'intellektual' => $intellektual,
-            'qrCode' => $qrCode, // Pass QR Code image as base64
+            'qrCode' => $qrCode,
         ];
-
-        $tekshirivchilar = Tekshirivchilar::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
-
-        // Generate the PDF
+    
+        $tekshirivchilar = Tekshirivchilar::where('is_active',1)->where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
+    
         $pdf = PDF::loadView('admin.pdf.usersPdf', $data);
-
-        // Save the PDF to the specified path
+    
         if (!file_exists(storage_path('app/public/pdfs'))) {
             mkdir(storage_path('app/public/pdfs'), 0755, true);
         }
+    
         $pdf->save($filePath);
-
-        // Store the PDF path in the database (example for one user)
+    
         if ($tekshirivchilar) {
-            $tekshirivchilar->file = $fileRelativePath; // Faylning nisbiy yo'lini saqlash
+            $tekshirivchilar->file = $fileRelativePath;
             $tekshirivchilar->save();
         }
-
-        return response()->download($filePath)->deleteFileAfterSend(true);
+    
+        // Faylni yuklamasdan, faqat xabar yuboramiz
+        return back()->with('status', 'PDF muvaffaqiyatli yaratildi va saqlandi.');
     }
+    
 
     public function generatePDFsajiyor($Id)
     {
@@ -97,11 +94,11 @@ class PDFController extends Controller
 
         // Store the PDF path in the database (example for one user)
         if ($tekshirivchilar) {
-            $tekshirivchilar->file = $fileRelativePath; // Faylning nisbiy yo'lini saqlash
+            $tekshirivchilar->file = $fileRelativePath; 
             $tekshirivchilar->save();
         }
 
-        return response()->download($filePath)->deleteFileAfterSend(true);
+       return back()->with('status', 'PDF muvaffaqiyatli yaratildi va saqlandi.');
     }
 
     public function generatePDFAsbobuskuna($Id)
@@ -140,11 +137,11 @@ class PDFController extends Controller
 
         // Store the PDF path in the database (example for one user)
         if ($tekshirivchilar) {
-            $tekshirivchilar->file = $fileRelativePath; // Faylning nisbiy yo'lini saqlash
+            $tekshirivchilar->file = $fileRelativePath; 
             $tekshirivchilar->save();
         }
 
-        return response()->download($filePath)->deleteFileAfterSend(true);
+       return back()->with('status', 'PDF muvaffaqiyatli yaratildi va saqlandi.');
     }
 
 
@@ -184,11 +181,11 @@ class PDFController extends Controller
 
         // Store the PDF path in the database (example for one user)
         if ($tekshirivchilar) {
-            $tekshirivchilar->file = $fileRelativePath; // Faylning nisbiy yo'lini saqlash
+            $tekshirivchilar->file = $fileRelativePath;
             $tekshirivchilar->save();
         }
 
-        return response()->download($filePath)->deleteFileAfterSend(true);
+       return back()->with('status', 'PDF muvaffaqiyatli yaratildi va saqlandi.');
     }
 
 

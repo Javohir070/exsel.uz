@@ -10,7 +10,7 @@
                      Eksport
                 </a>
             @endrole
-            @role(['super-admin', 'Ekspert'])
+            @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
                 <a href="{{ route('ilmiyloyihalar.index') }}" class="button w-24 bg-theme-1 text-white">
                     Orqaga
                 </a>
@@ -309,12 +309,15 @@
                                                 {{-- <a href="" class="button w-24 bg-theme-6 text-white">
                                                     O'chirish
                                                 </a> --}}
-
-                                                {{-- <a href="javascript:;" data-target="#intellektualekspert-paper-edit-modal"
+                                                @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
+                                                @if (!empty($intellektual->id))
+                                                    <a href="javascript:;" data-target="#intellektualekspert-paper-edit-modal"
                                                         data-toggle="modal"
                                                         class="button w-24 ml-3 bg-theme-1 text-white">
                                                         Izoh
-                                                    </a> --}}
+                                                    </a>
+                                                    @endif
+                                                @endrole
                                             </div>
                                         </div>
                                         <tr>
@@ -577,7 +580,7 @@
 
                 <div class="tab-content__pane" id="change-password">
                     <div class="intro-y box">
-                        <div class="p-2">
+                        <div class="p-5">
                             <div
                                 style="display: flex;justify-content: end; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                                 {{-- <div style="font-size:18px;font-weight: 400;"> {{$asbobuskuna->name}} xaqida ma’lumot
@@ -602,11 +605,15 @@
                                     {{-- <a href="" class="button w-24 bg-theme-6 text-white">
                                         O'chirish
                                     </a> --}}
-                                    {{-- <a href="javascript:;" data-target="#loyihaiqtisodiekspert-paper-edit-modal"
+                                    @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
+                                    @if (!empty($loyihaiqtisodi->id))
+                                    <a href="javascript:;" data-target="#loyihaiqtisodiekspert-paper-edit-modal"
                                         data-toggle="modal"
                                         class="button w-24 ml-3 bg-theme-1 text-white">
                                         Izoh
-                                    </a> --}}
+                                    </a>
+                                    @endif
+                                    @endrole
                                 </div>
                             </div>
                             <table class="table table-bordered">
@@ -909,7 +916,16 @@
                                         <td class="border">Monitoring o‘tkazilgan sana</td>
                                         <td class="border">{{ $tekshirivchilar->updated_at }}</td>
                                     </tr>
-                                    
+                                    <tr>
+                                        <td class="border">9.</td>
+                                        <td class="border">Fayl</td>
+                                        <td class="border">
+                                        @if ($tekshirivchilar->file)
+                                            <a href="{{ asset('storage/' . $tekshirivchilar->file) }}"
+                                                class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
+                                        @endif
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
                         @else
