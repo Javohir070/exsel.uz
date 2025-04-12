@@ -10,8 +10,11 @@
         <div class="intro-y box px-4   ">
 
             <div class="nav-tabs flex flex-col sm:flex-row justify-center lg:justify-start">
-                <a data-toggle="tab" data-target="#add-hersh" href="javascript:;" class="py-4 sm:mr-8 flex items-center active">
+                <a data-toggle="tab" data-target="#ilmiy-izlanuvchilar" href="javascript:;" class="py-4 sm:mr-8 flex items-center active">
                     Ilmiy izlanuvchilar
+                </a>
+                <a data-toggle="tab" data-target="#add-hersh" href="javascript:;" class="py-4 sm:mr-8 flex items-center">
+                    Monitoring bo'lgan ilmiy izlanuvchilar
                 </a>
                 <a data-toggle="tab" data-target="#change-password" href="javascript:;"
                     class="py-4 sm:mr-8 flex items-center">
@@ -31,13 +34,87 @@
         <div class="overflow-x-auto mt-2" style="background-color: white;border-radius:8px;">
 
             <div class="tab-content">
-                <div class="tab-content__pane active" id="add-hersh">
+                <div class="tab-content__pane active" id="ilmiy-izlanuvchilar">
                     <div class="p-5">
                         <div class="grid grid-cols-12 gap-6 ">
                             <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
                                 <div class="intro-y block sm:flex items-center py-4">
                                     <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
                                         Ilmiy izlanuvchilar
+                                    </h2>
+                                </div>
+                                <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+                                    <table class="table">
+                                        <thead style="background: #F4F8FC;">
+                                            <tr>
+                                                <th class="whitespace-no-wrap" style="width: 40px;">T/r</th>
+                                                <th class="whitespace-no-wrap">F.I.Sh</th>
+                                                <th class="whitespace-no-wrap">Turi </th>
+                                                <th class="whitespace-no-wrap">Kurs </th>
+                                                <th class="whitespace-no-wrap">Harakat</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($doktaranturas as $m)
+                                                <tr style="border-bottom: 1px solid #E6E6E6;">
+                                                    <td>{{ ($doktaranturas->currentPage() - 1) * $doktaranturas->perPage() + $loop->iteration }}.</td>
+                                                    <td style="color:#1881D3; font-weight: 400;">
+                                                        {{ $m->full_name }}
+                                                    </td>
+                                                    <td>
+                                                        {{ $m->dc_type }}
+                                                    </td>
+                                                    <td>{{ $m->course }} </td>
+                                                    <td>
+                                                        <a onclick="openShowIlmiIzlanuvchiModal({{ $m->id }})"
+                                                            class="button px-2 mr-1 mb-2 border text-gray-700"
+                                                            style="display: inline-block;">
+                                                            <span class="w-5 h-5 flex items-center justify-center">
+                                                                <i data-feather="eye" class="w-4 h-4"></i>
+                                                            </span>
+                                                        </a>
+                                                        <a onclick="openEditIlmiIzlanuvchiModal({{ $m->id }})"
+                                                            class="button px-2 mr-1 mb-2 bg-theme-1 text-white"
+                                                            style="display: inline-block;">
+                                                            <span class="w-5 h-5 flex items-center justify-center">
+                                                                <i data-feather="edit" class="w-4 h-4"></i>
+                                                            </span>
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            @empty
+                                                <tr style="border-bottom: 1px solid #E6E6E6;">
+                                                    <td colspan="4">
+                                                        <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}" style="font-size: 20px;">daraja.ilmiy.uz import qilish</a>
+                                                    </td>
+                                                </tr>
+                                            @endforelse
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap mb-1 items-center mt-4">
+                                    {{ $doktaranturas->links() }}
+                                    <select class="w-20 input box mt-3 sm:mt-0">
+                                        <option>10</option>
+                                        <option>25</option>
+                                        <option>35</option>
+                                        <option>50</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content__pane" id="add-hersh">
+                    <div class="p-5">
+                        <div class="grid grid-cols-12 gap-6 ">
+                            <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
+                                <div class="intro-y block sm:flex items-center py-4">
+                                    <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
+                                        Monitoring bo'lgan ilmiy izlanuvchilar
                                     </h2>
                                 </div>
                                 <form id="science-felter-create-form" method="GET"
@@ -229,6 +306,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="tab-content__pane" id="change-password">
                     <div class="p-5">
                         <div class="grid grid-cols-12 gap-6 ">
@@ -237,7 +315,6 @@
                                     <h2 class="text-lg font-medium truncate ml-4"
                                         style="font-size: 24px;font-weight:500;">
                                         Ilmiy rahbarlar
-
                                     </h2>
                                 </div>
                                 <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
@@ -246,26 +323,55 @@
                                             <tr>
                                                 <th class="whitespace-no-wrap" style="width: 40px;">T/r</th>
                                                 <th class="whitespace-no-wrap">F.I.Sh</th>
-                                                <th class="">Mazkur tashkilotdan biriktirilgan izlanuvchilar soni
-                                                </th>
-                                                <th class="">Barcha tashkilotlardan biriktirilgan izlanuvchilar soni
-                                                </th>
+                                                <th class="">Mazkur tashkilotdan biriktirilgan izlanuvchilar soni</th>
+                                                <th class="">Barcha tashkilotlardan biriktirilgan izlanuvchilar soni</th>
+                                                <th class="whitespace-no-wrap">Harakat</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($data_tach as $t)
+                                            @forelse ($ilmiyrahbarlars as $t)
                                                 <tr style="border-bottom: 1px solid #E6E6E6;">
                                                     <td>{{ $loop->iteration }}</td>
-                                                    <td style="color:#1881D3; font-weight: 400;">{{ $t['full_name'] }}
+                                                    <td style="color:#1881D3; font-weight: 400;">{{ $t->full_name }}
                                                     </td>
-                                                    <td>{{ $t['org'] ?? 0 }} </td>
-                                                    <td>{{ $t['all'] ?? 0 }} </td>
+                                                    <td>{{ $t->org }} </td>
+                                                    <td>{{ $t->all }} </td>
+                                                    <td>
+                                                        <a onclick="openShowIlmiRahbarModal({{ $t->id }})"
+                                                            class="button px-2 mr-1 mb-2 border text-gray-700"
+                                                            style="display: inline-block;">
+                                                            <span class="w-5 h-5 flex items-center justify-center">
+                                                                <i data-feather="eye" class="w-4 h-4"></i>
+                                                            </span>
+                                                        </a>
+                                                        <a onclick="openEditIlmiRahbarModal({{ $t->id }})"
+                                                            class="button px-2 mr-1 mb-2 bg-theme-1 text-white"
+                                                            style="display: inline-block;">
+                                                            <span class="w-5 h-5 flex items-center justify-center">
+                                                                <i data-feather="edit" class="w-4 h-4"></i>
+                                                            </span>
+                                                        </a>
+                                                    </td>
                                                 </tr>
-                                            @endforeach
+                                                @empty
+                                                <tr style="border-bottom: 1px solid #E6E6E6;">
+                                                    <td colspan="4">
+                                                        <a href="{{ route('ilmiy_rahbarlar_import', ['stir' => $tashkilot->stir_raqami]) }}" style="font-size: 20px;">daraja.ilmiy.uz import qilish</a>
+                                                    </td>
+                                                </tr>
+                                            @endforelse
                                         </tbody>
                                     </table>
                                 </div>
-
+                                <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap mb-1 items-center mt-4">
+                                    {{ $ilmiyrahbarlars->links() }}
+                                    <select class="w-20 input box mt-3 sm:mt-0">
+                                        <option>10</option>
+                                        <option>25</option>
+                                        <option>35</option>
+                                        <option>50</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -647,6 +753,13 @@
             </div>
         </div>
     </div>
+    <style>
+                       .ilmiy_izlanuvchi{
+                        width:40%;
+                        background-color: rgba(0, 0, 0, 0.02);
+                        color:black;
+                       }
+                </style>
 
     <div class="modal" id="doktarantura-paper-create-modal">
         <div class="modal__content modal__content--xl">
@@ -865,4 +978,513 @@
             </div>
         </div>
     </div>
+    <div class="modal" id="science-ilmiy-izlanuvchi-show-modal">
+        <div class="modal__content modal__content--xl" style="margin-top:revert-layer;">
+            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
+                <h2 class="font-medium text-base mr-auto" style="font-size:24px;color:black;">Ma'lumotlarni ko'rish</h2>
+                <button type="button" class="button border items-center text-gray-700 hidden sm:flex"
+                    data-dismiss="modal">
+                    <i data-feather="x" class="w-4 h-4 "></i></button>
+            </div>
+            <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+
+                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
+                    <div class="w-full  sm:mt-0 sm:ml-auto md:ml-0">
+                        <table class="table" style="border-radius: 8px;">
+                            <tbody>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">F.I.Sh</th>
+                                    <td class="border" style="width:60%;color:black;" id="full_name"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Dissertatsiya mavzusi</th>
+                                    <td class="border" style="width:60%;color:black;" id="direction_name"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Ixtisoslik</th>
+                                    <td class="border" style="width:60%;color:black;" id="direction_code"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Tashkilot</th>
+                                    <td class="border" style="width:60%;color:black;" id="org_name"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Ta'lim turi</th>
+                                    <td class="border" style="width:60%;color:black;" id="dc_type"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Qabul yili</th>
+                                    <td class="border" style="width:60%;color:black;" id="admission_year"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Qabul choragi</th>
+                                    <td class="border" style="width:60%;color:black;" id="admission_quarter"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Ilmiy rahbar</th>
+                                    <td class="border" style="width:60%;color:black;" id="advisor"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Kurs</th>
+                                    <td class="border" style="width:60%;color:black;" id="course"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Monitoring 1</th>
+                                    <td class="border" style="width:60%;color:black;" id="monitoring_1"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Monitoring 2</th>
+                                    <td class="border" style="width:60%;color:black;" id="monitoring_2"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Monitoring 3</th>
+                                    <td class="border" style="width:60%;color:black;" id="monitoring_3"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Yakka tartibdagi reja tasdiqlanganligi</th>
+                                    <td class="border" style="width:60%;color:black;" id="reja_t"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Yakka tartibdagi rejani bajarganligi</th>
+                                    <td class="border" style="width:60%;color:black;" id="reja_b"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Monitoring natijasi kiritilganligi</th>
+                                    <td class="border" style="width:60%;color:black;" id="monitoring_natijasik"></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal" id="science-ilmiy-izlanuvchi-edit-modal">
+        <div class="modal__content modal__content--xl" style="margin-top:revert-layer;">
+            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
+                <h2 class="font-medium text-base mr-auto" style="font-size:24px;color:black;">Ma'lumotlarni ko'rish</h2>
+                <button type="button" class="button border items-center text-gray-700 hidden sm:flex"
+                    data-dismiss="modal">
+                    <i data-feather="x" class="w-4 h-4 "></i></button>
+            </div>
+            <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+
+                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
+                    <div class="w-full  sm:mt-0 sm:ml-auto md:ml-0">
+                        <table class="table" style="border-radius: 8px;">
+                            <tbody>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">F.I.Sh</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_full_name"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Dissertatsiya mavzusi</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_direction_name"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Ixtisoslik</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_direction_code"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Tashkilot</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_org_name"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Ta'lim turi</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_dc_type"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Qabul yili</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_admission_year"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Qabul choragi</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_admission_quarter"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Ilmiy rahbar</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_advisor"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Kurs</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_course"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Monitoring 1</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_monitoring_1"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Monitoring 2</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_monitoring_2"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Monitoring 3</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_monitoring_3"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Yakka tartibdagi reja tasdiqlanganligi</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_reja_t"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Yakka tartibdagi rejani bajarganligi</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_reja_b"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Monitoring natijasi kiritilganligi</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_monitoring_natijasik"></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+                        <div class="w-full mt-6 sm:ml-auto md:ml-0 ">
+                            <form id="science-paper-edit-form" method="POST" action="" class="validate-form"
+                                enctype="multipart/form-data" novalidate="novalidate">
+                                @csrf
+                                @method('PUT')
+                                <div class="grid grid-cols-12 gap-2">
+                                    <div class="w-full col-span-4">
+                                        <label class="flex flex-col sm:flex-row"> <span
+                                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Yakka tartibdagi reja tasdiqlanganligi:
+                                        </label>
+                                        <select name="reja_t"
+                                                class="input border w-full mt-2" required="">
+                                                <option value=""></option>
+                                                <option value="Ha">Ha</option>
+                                                <option value="Yo'q">Yo'q</option>
+                                            </select>
+                                        @error('reja_t')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="w-full col-span-4">
+                                        <label class="flex flex-col sm:flex-row"> <span
+                                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Yakka tartibdagi rejani bajarganligi:
+                                        </label>
+                                        <select name="reja_b"
+                                                class="input border w-full mt-2" required="">
+                                                <option value=""></option>
+                                                <option value="Ha">Ha</option>
+                                                <option value="Yo'q">Yo'q</option>
+                                            </select>
+                                        @error('reja_b')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="w-full col-span-4">
+                                        <label class="flex flex-col sm:flex-row"> <span
+                                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Monitoring natijasi kiritilganligi:
+                                        </label>
+                                        <select name="monitoring_natijasik"
+                                                class="input border w-full mt-2" required="">
+                                                <option value=""></option>
+                                                <option value="Ha">Ha</option>
+                                                <option value="Yo'q">Yo'q</option>
+                                            </select>
+                                        @error('monitoring_natijasik')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="px-5 pb-5 text-center mt-4">
+                                <button type="button" data-dismiss="modal"
+                                    class="button delete-cancel w-32 border text-gray-700 mr-1">
+                                    Bekor qilish
+                                </button>
+                                <button type="submit" form="science-paper-edit-form"
+                                    class="update-confirm button w-24 bg-theme-1 text-white">
+                                    Tasdiqlash
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="science-ilmiy-rahbar-show-modal">
+        <div class="modal__content modal__content--xl" style="margin-top:revert-layer;">
+            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
+                <h2 class="font-medium text-base mr-auto" style="font-size:24px;color:black;">Ma'lumotlarni ko'rish</h2>
+                <button type="button" class="button border items-center text-gray-700 hidden sm:flex"
+                    data-dismiss="modal">
+                    <i data-feather="x" class="w-4 h-4 "></i></button>
+            </div>
+            <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+
+                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
+                    <div class="w-full  sm:mt-0 sm:ml-auto md:ml-0">
+                        <table class="table" style="border-radius: 8px;">
+                            <tbody>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Ilmiy rahbarlar F.I.SH.</th>
+                                    <td class="border" style="width:60%;color:black;" id="ir_full_name"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Tashkilotdan biriktiilgan izlanuvchilar soni</th>
+                                    <td class="border" style="width:60%;color:black;" id="org"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Umumiy biriktirilgan izlanuvchilar soni</th>
+                                    <td class="border" style="width:60%;color:black;" id="all"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Ilmiy rahbarga qo’shimcha izlanuvchi biriktirish mumkinligi bo’yicha kollegial organ qarori mavjudigi</th>
+                                    <td class="border" style="width:60%;color:black;" id="kollegial_organ_qarori"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Meyoridan ortiq</th>
+                                    <td class="border" style="width:60%;color:black;" id="meyoridan_ortiq"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Tashkilot miqyosida meyoridan ortiq</th>
+                                    <td class="border" style="width:60%;color:black;" id="tash_meyoridan_ortiq"></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="science-ilmiy-rahbar-edit-modal">
+        <div class="modal__content modal__content--xl" style="margin-top:revert-layer;">
+            <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
+                <h2 class="font-medium text-base mr-auto" style="font-size:24px;color:black;">Ma'lumotlarni ko'rish</h2>
+                <button type="button" class="button border items-center text-gray-700 hidden sm:flex"
+                    data-dismiss="modal">
+                    <i data-feather="x" class="w-4 h-4 "></i></button>
+            </div>
+            <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
+
+                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
+                    <div class="w-full  sm:mt-0 sm:ml-auto md:ml-0">
+                        <table class="table" style="border-radius: 8px;">
+                            <tbody>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Ilmiy rahbarlar F.I.SH.</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_ir_full_name"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Tashkilotdan biriktiilgan izlanuvchilar soni</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_org"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Umumiy biriktirilgan izlanuvchilar soni</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_all"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Ilmiy rahbarga qo’shimcha izlanuvchi biriktirish mumkinligi bo’yicha kollegial organ qarori mavjudigi</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_kollegial_organ_qarori"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Meyoridan ortiq</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_meyoridan_ortiq"></td>
+                                </tr>
+                                <tr>
+                                    <th class="border ilmiy_izlanuvchi">Tashkilot miqyosida meyoridan ortiq</th>
+                                    <td class="border" style="width:60%;color:black;" id="edit_tash_meyoridan_ortiq"></td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+                        <div class="w-full mt-6 sm:ml-auto md:ml-0 ">
+                            <form id="science-ilmiy-rahbar-edit-form" method="POST" action="" class="validate-form"
+                                enctype="multipart/form-data" novalidate="novalidate">
+                                @csrf
+                                @method('PUT')
+                                <div class="grid grid-cols-12 gap-2">
+                                    <div class="w-full col-span-4">
+                                        <label class="flex flex-col sm:flex-row"> <span
+                                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy rahbarga qo’shimcha izlanuvchi biriktirish mumkinligi bo’yicha kollegial organ qarori mavjudigi:
+                                        </label>
+                                        <select name="kollegial_organ_qarori"
+                                                class="input border w-full mt-2" required="">
+                                                <option value=""></option>
+                                                <option value="Ha">Ha</option>
+                                                <option value="Yo'q">Yo'q</option>
+                                            </select>
+                                        @error('kollegial_organ_qarori')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="w-full col-span-4">
+                                        <label class="flex flex-col sm:flex-row"> <span
+                                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Meyoridan ortiq:
+                                        </label>
+                                        <select name="meyoridan_ortiq"
+                                                class="input border w-full mt-2" required="">
+                                                <option value=""></option>
+                                                <option value="Ha">Ha</option>
+                                                <option value="Yo'q">Yo'q</option>
+                                            </select>
+                                        @error('meyoridan_ortiq')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                    <div class="w-full col-span-4">
+                                        <label class="flex flex-col sm:flex-row"> <span
+                                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkilot miqyosida meyoridan ortiq:
+                                        </label>
+                                        <select name="tash_meyoridan_ortiq"
+                                                class="input border w-full mt-2" required="">
+                                                <option value=""></option>
+                                                <option value="Ha">Ha</option>
+                                                <option value="Yo'q">Yo'q</option>
+                                            </select>
+                                        @error('tash_meyoridan_ortiq')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="px-5 pb-5 text-center mt-4">
+                                <button type="button" data-dismiss="modal"
+                                    class="button delete-cancel w-32 border text-gray-700 mr-1">
+                                    Bekor qilish
+                                </button>
+                                <button type="submit" form="science-ilmiy-rahbar-edit-form"
+                                    class="update-confirm button w-24 bg-theme-1 text-white">
+                                    Tasdiqlash
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>          
+        // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
+        function openShowIlmiIzlanuvchiModal(id) {
+            // AJAX so'rovni yuboramiz
+            $.ajax({
+                url: `/ilmiy-izlanuvchi/${id}`,
+                type: 'GET',
+                success: function (data) {
+                    // Ma'lumotlarni modal shaklida aks ettiramiz
+                    $('#full_name').text(data.full_name);
+                    $('#direction_name').text(data.direction_name);
+                    $('#direction_code').text(data.direction_code);
+                    $('#org_name').text(data.org_name);
+                    $('#dc_type').text(data.dc_type);
+                    $('#admission_year').text(data.admission_year);
+                    $('#admission_quarter').text(data.admission_quarter);
+                    $('#advisor').text(data.advisor);
+                    $('#course').text(data.course);
+                    $('#monitoring_1').text(data.monitoring_1);
+                    $('#monitoring_2').text(data.monitoring_2);
+                    $('#monitoring_3').text(data.monitoring_3);
+                    $('#reja_t').text(data.reja_t);
+                    $('#reja_b').text(data.reja_b);
+                    $('#monitoring_natijasik').text(data.monitoring_natijasik);
+
+                    $('#science-ilmiy-izlanuvchi-show-modal').modal('show');
+                },
+                error: function (error) {
+                    console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
+                }
+            });
+        }
+    </script>
+
+    <script>          
+        // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
+        function openEditIlmiIzlanuvchiModal(id) {
+            // AJAX so'rovni yuboramiz
+            $.ajax({
+                url: `/ilmiy-izlanuvchi/${id}`,
+                type: 'GET',
+                success: function (data) {
+                    // Ma'lumotlarni modal shaklida aks ettiramiz
+                    $('#edit_full_name').text(data.full_name);
+                    $('#edit_direction_name').text(data.direction_name);
+                    $('#edit_direction_code').text(data.direction_code);
+                    $('#edit_org_name').text(data.org_name);
+                    $('#edit_dc_type').text(data.dc_type);
+                    $('#edit_admission_year').text(data.admission_year);
+                    $('#edit_admission_quarter').text(data.admission_quarter);
+                    $('#edit_advisor').text(data.advisor);
+                    $('#edit_course').text(data.course);
+                    $('#edit_monitoring_1').text(data.monitoring_1);
+                    $('#edit_monitoring_2').text(data.monitoring_2);
+                    $('#edit_monitoring_3').text(data.monitoring_3);
+                    $('#edit_reja_t').text(data.reja_t);
+                    $('#edit_reja_b').text(data.reja_b);
+                    $('#edit_monitoring_natijasik').text(data.monitoring_natijasik);
+
+                    $('#science-paper-edit-form').attr('action', `/ilmiy-izlanuvchi/${id}/edit`);
+
+                    $('#science-ilmiy-izlanuvchi-edit-modal').modal('show');
+                },
+                error: function (error) {
+                    console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
+                }
+            });
+        }
+    </script>
+
+        <script>          
+            // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
+            function openShowIlmiRahbarModal(id) {
+                // AJAX so'rovni yuboramiz
+                $.ajax({
+                    url: `/ilmiyrahbarlar/${id}`,
+                    type: 'GET',
+                    success: function (data) {
+                        // Ma'lumotlarni modal shaklida aks ettiramiz
+                        $('#ir_full_name').text(data.full_name);
+                        $('#org').text(data.org);
+                        $('#all').text(data.all);
+                        $('#kollegial_organ_qarori').text(data.kollegial_organ_qarori);
+                        $('#meyoridan_ortiq').text(data.meyoridan_ortiq);
+                        $('#tash_meyoridan_ortiq').text(data.tash_meyoridan_ortiq);
+
+                        $('#science-ilmiy-rahbar-show-modal').modal('show');
+                    },
+                    error: function (error) {
+                        console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
+                    }
+                });
+            }
+        </script>
+
+        <script>          
+            // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
+            function openEditIlmiRahbarModal(id) {
+                // AJAX so'rovni yuboramiz
+                $.ajax({
+                    url: `/ilmiyrahbarlar/${id}`,
+                    type: 'GET',
+                    success: function (data) {
+                        // Ma'lumotlarni modal shaklida aks ettiramiz
+                        $('#edit_ir_full_name').text(data.full_name);
+                        $('#edit_org').text(data.org);
+                        $('#edit_all').text(data.all);
+                        $('#edit_kollegial_organ_qarori').text(data.kollegial_organ_qarori);
+                        $('#edit_meyoridan_ortiq').text(data.meyoridan_ortiq);
+                        $('#edit_tash_meyoridan_ortiq').text(data.tash_meyoridan_ortiq);
+                        
+
+                        $('#science-ilmiy-rahbar-edit-form').attr('action', `/ilmiy-rahbar/${id}/edit`);
+
+                        $('#science-ilmiy-rahbar-edit-modal').modal('show');
+                    },
+                    error: function (error) {
+                        console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
+                    }
+                });
+            }
+        </script>
 @endsection

@@ -13,6 +13,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\IlmiybnTaminlangaController;
 use App\Http\Controllers\IlmiyLoyihaController;
 use App\Http\Controllers\IlmiymaqolalarController;
+use App\Http\Controllers\IlmiyrahbarlarController;
 use App\Http\Controllers\IlmiytezislarController;
 use App\Http\Controllers\IlmiyUnvonController;
 use App\Http\Controllers\IntellektualController;
@@ -203,6 +204,12 @@ Route::middleware('auth')->group(function () {
     Route::get('stajiroka-turi/{id}', [StajirovkaController::class,'tashkilot_turi_stajiroka'])->name('tashkilot_turi_stajiroka');
     Route::get('doktarantura-turi/{id}', [DoktaranturaController::class,'tashkilot_turi_doktarantura'])->name('tashkilot_turi_doktarantura');
 
+    Route::get('php-import/{stir}', [DoktaranturaController::class, 'importDoktaranturaData'])->name('php_import');
+    Route::get('ilmiy-rahbarlar-import/{stir}', [DoktaranturaController::class, 'importIlmiyRahbarlarData'])->name('ilmiy_rahbarlar_import');
+
+    Route::get('ilmiy-izlanuvchi/{id}', [DoktaranturaController::class, 'ilmiyIzlanuvchi_show'])->name('ilmiyIzlanuvchi_show');
+    Route::put('ilmiy-izlanuvchi/{id}/edit', [DoktaranturaController::class, 'update'])->name('ilmiyIzlanuvchi_edit');
+    Route::put('ilmiy-rahbar/{id}/edit', [IlmiyrahbarlarController::class, 'update'])->name('ilmiyrahbar_edit');
     Route::resources([
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,
@@ -237,6 +244,7 @@ Route::middleware('auth')->group(function () {
         'intellektual' => IntellektualController::class,
         'loyihaiqtisodi' => LoyihaiqtisodiController::class,
         'loyihaijrochilar' => LoyihaijrochilarController::class,
+        'ilmiyrahbarlar' => IlmiyrahbarlarController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
 });
