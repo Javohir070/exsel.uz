@@ -84,8 +84,8 @@
                                                 </tr>
                                             @empty
                                                 <tr style="border-bottom: 1px solid #E6E6E6;">
-                                                    <td colspan="4">
-                                                        <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}" style="font-size: 20px;">daraja.ilmiy.uz import qilish</a>
+                                                    <td colspan="5" style="text-align: center;">
+                                                        <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}" class="button w-24 bg-theme-1 text-white mr-4" style="font-size: 20px;">daraja.ilmiy.uz import qilish</a>
                                                     </td>
                                                 </tr>
                                             @endforelse
@@ -355,8 +355,8 @@
                                                 </tr>
                                                 @empty
                                                 <tr style="border-bottom: 1px solid #E6E6E6;">
-                                                    <td colspan="4">
-                                                        <a href="{{ route('ilmiy_rahbarlar_import', ['stir' => $tashkilot->stir_raqami]) }}" style="font-size: 20px;">daraja.ilmiy.uz import qilish</a>
+                                                    <td colspan="5" style="text-align: center;">
+                                                        <a href="{{ route('ilmiy_rahbarlar_import', ['stir' => $tashkilot->stir_raqami]) }}" class="button w-24 bg-theme-1 text-white mr-4" style="font-size: 20px;">daraja.ilmiy.uz import qilish</a>
                                                     </td>
                                                 </tr>
                                             @endforelse
@@ -582,7 +582,7 @@
                                                         </td>
                                                         <td class="border border-b-2 ">
                                                             <input type="number" name="umumiy_izlanuvchilar"
-                                                                class="input w-full border mt-2">
+                                                                class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
                                                     <tr class="bg-gray-200">
@@ -591,8 +591,8 @@
                                                             Yagona elektron tizimdagi tahsil olayotgan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="yagonae_tah_soni"
-                                                                class="input w-full border mt-2">
+                                                            <input type="number" name="yagonae_tah_soni" value="{{$data[0]['count']}}"
+                                                                class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -601,8 +601,8 @@
                                                             Chetlashtirilgan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="chetlash_soni"
-                                                                class="input w-full border mt-2">
+                                                            <input type="number" name="chetlash_soni" value="{{$data[1]['count']}}"
+                                                                class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
                                                     <tr class="bg-gray-200">
@@ -611,8 +611,8 @@
                                                             Akademik ta’tildagi izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="akademik_soni"
-                                                                class="input w-full border mt-2">
+                                                            <input type="number" name="akademik_soni" value="{{$data[3]['count']}}"
+                                                                class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -621,8 +621,8 @@
                                                             Muddatidan oldin himoya qilgan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="muddatidano_soni"
-                                                                class="input w-full border mt-2">
+                                                            <input type="number" name="muddatidano_soni" value="{{$data[2]['count']}}"
+                                                                class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
                                                     <tr class="bg-gray-200">
@@ -632,7 +632,7 @@
                                                         </td>
                                                         <td class="border border-b-2 ">
                                                             <input type="number" name="kiritilmagan_soni"
-                                                                class="input w-full border mt-2">
+                                                                class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -641,8 +641,8 @@
                                                             Yakka tartibdagi rejani bajarmagan izlanuvchilar soni .
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="rejani_bajarmagan"
-                                                                class="input w-full border mt-2">
+                                                            <input type="number" name="rejani_bajarmagan" value="{{$doktaranturas->where('rija_b', null)->count() ?? ""}}"
+                                                                class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
                                                     <tr class="bg-gray-200">
@@ -651,8 +651,8 @@
                                                             Monitoring natijasi kiritilmagan izlanuvchilar soni .
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="mon_nat_kiritilmagan"
-                                                                class="input w-full border mt-2">
+                                                            <input type="number" name="mon_nat_kiritilmagan" value="{{$doktaranturas->where('monitoring_natijasik', null)->count() ?? ""}}"
+                                                                class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -661,8 +661,8 @@
                                                             Tashkilot izlanuvchilari biriktirilgan ilmiy rahbarlar soni .
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="biriktirilgan_rahbarlar"
-                                                                class="input w-full border mt-2">
+                                                            <input type="number" name="biriktirilgan_rahbarlar" value="{{ $doktaranturas->where('advisor', null)->count() ?? "" }}"
+                                                                class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
                                                     <tr class="bg-gray-200">
@@ -674,7 +674,7 @@
                                                         </td>
                                                         <td class="border border-b-2 ">
                                                             <input type="number" name="kollegial_rahbarlar"
-                                                                class="input w-full border mt-2">
+                                                                class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -684,7 +684,7 @@
                                                         </td>
                                                         <td class="border border-b-2 ">
                                                             <input type="number" name="meyoridan_rahbarlar"
-                                                                class="input w-full border mt-2">
+                                                                class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
                                                     <tr class="bg-gray-200">
@@ -696,7 +696,7 @@
                                                         </td>
                                                         <td class="border border-b-2 ">
                                                             <input type="number" name="tash_ortiq_rahbarlar"
-                                                                class="input w-full border mt-2">
+                                                                class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
 

@@ -124,16 +124,16 @@ class DoktaranturaController extends Controller
         // dd($tashkilot->stir_raqami);
         $sms_username = env('API_USERNAME', 'single_database_user2024@gmail.com');
         $sms_password = env('API_PASSWORD', '6qZFYRMI$ZRQ1lY@CUQcmJ5');
-        // $url = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-status-statistics/{$tashkilot->stir_raqami}/";
+        $url = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-status-statistics/{$tashkilot->stir_raqami}/";
 
         // $url_list = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-list/{$tashkilot->stir_raqami}/";
 
         // $url_tach = "https://api-phd.mininnovation.uz/api-monitoring/advisor-list-monitoring-statistics/{$tashkilot->stir_raqami}/";
 
         // Agar SSL xato bersa, verify => false qilib ko‘ring
-        // $response = Http::withBasicAuth($sms_username, $sms_password)
-        //     ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
-        //     ->get($url);
+        $response = Http::withBasicAuth($sms_username, $sms_password)
+            ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
+            ->get($url);
         // $response_list = Http::withBasicAuth($sms_username, $sms_password)
         //     ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
         //     ->get($url_list);
@@ -154,19 +154,21 @@ class DoktaranturaController extends Controller
 
         // $data_tach = $response_tach->json();
         $data_main = $response_main->json();
-        // $data = $response->json();
+        $data = $response->json();
         // $data_last = $response_list->json();
-        // dd($data_last);
+
+        
         if (!isset($data_main) || !is_array($data_main)) {
             return response()->json(["error" => "daraja.ilmiy.uz platformasida tashkilot STIR raqami kiritilmagan yoki noto'g'ri kiritilgan"], 400);
         }
-
-
+        
+        
         $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->get();
         $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->first();
         $doktaranturas = Doktarantura::where('tashkilot_id', '=', $id)->paginate(20);
         $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->paginate(20);
-        
+        $biriktirilgan_ir = Doktarantura::where('tashkilot_id', '=', $id)->where('advisor', null)->count();
+        // $ishreja_b = Doktarantura::where('tashkilot_id', '=', $id)->where('rija_b', null)->count();
         return view("admin.doktarantura.show", [
             'phd_soni' => $phd_soni ?? null,
             'dsc_soni' => $dsc_soni ?? null,
@@ -177,6 +179,7 @@ class DoktaranturaController extends Controller
             'tekshirivchilar' => $tekshirivchilar ?? 1,
             'data_tach' => $data_tach ?? [],
             'data_main' => $data_main ?? [],
+            'data' => $data ?? null,
             'id' => $id,
             'year' => $year,
             'quarter' => $quarter,
@@ -184,6 +187,8 @@ class DoktaranturaController extends Controller
             'admission_year' => $admission_year,
             'doktaranturas' => $doktaranturas ?? null,
             'ilmiyrahbarlars' => $ilmiyrahbarlars ?? null,
+            'biriktirilgan_ir' => $biriktirilgan_ir ?? null,
+            'ishreja_b' => $ishreja_b ?? null,
         ]);
     }
     public function index()
