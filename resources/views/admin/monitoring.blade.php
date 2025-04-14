@@ -78,7 +78,7 @@
                                             </div>
                                             <div class="w-2/4 flex-none">
                                                 <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $doktarantura }}/{{ $doktarantura_expert }}</div>
-                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Doktorantura</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy izlanuvchilar</div>
                                             </div>
                                         </div>
                                     </a>
@@ -104,7 +104,7 @@
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Doktorantura</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy izlanuvchilar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -163,7 +163,7 @@
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Doktorantura</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy izlanuvchilar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -206,7 +206,7 @@
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Doktorantura</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy izlanuvchilar</th>
                                             </tr>
                                         </thead>
                                         <tbody>

@@ -40,7 +40,7 @@
                                             </div>
                                             <div class="w-2/4 flex-none">
                                                 <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">0/0</div>
-                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Doktorantura</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy izlanuvchilar</div>
                                             </div>
                                         </div>
                                     </a>
@@ -63,7 +63,7 @@
                                                 <th class="whitespace-no-wrap" style="text-align: center;">OTM</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">ITM</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Boshqalari</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Doktorantura</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy izlanuvchilar</th>
                                             </tr>
                                         </thead>
                                         <tbody>
