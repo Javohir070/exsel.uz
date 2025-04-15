@@ -118,7 +118,7 @@
                                                 <td style="text-align: center;font-weight: 600;">{{ $region->tashkilots()->where('status', 1)->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', 'otm')->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', 'itm')->count() }} </td>
-                                                <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', null)->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', 'boshqa')->count() }} </td>
                                                 <td style="text-align: center;">
                                                     {{
                                                         $region->tashkilots()->where('ilmiyloyiha_is', 1)

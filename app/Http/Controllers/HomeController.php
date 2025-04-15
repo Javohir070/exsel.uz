@@ -216,7 +216,7 @@ class HomeController extends Controller
         $groups = [
             'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
             'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
-            'other' => $tashkilotlarQuery->whereNull('tashkilot_turi'),
+            'other' => $tashkilotlarQuery->where('tashkilot_turi', 'boshqa'),
         ];
 
         $results = [];

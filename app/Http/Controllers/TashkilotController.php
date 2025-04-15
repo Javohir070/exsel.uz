@@ -161,6 +161,7 @@ class TashkilotController extends Controller
 
     public function tashkilot_region($id)
     {
+        
         $tashkilotlarQuery = Tashkilot::where('status', 1)->where('region_id', '=', $id)->with(['ilmiyloyhalar', 'asbobuskunalar', 'stajirovkalar'])
             ->get();
 
@@ -175,8 +176,12 @@ class TashkilotController extends Controller
 
         foreach ($groups as $key => $group) {
             $results[$key] = [
+                'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->where('is_active', 1)->count(),
+                'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->count(),
                 'asbobuskunalar' => $group->pluck('asbobuskunalar')->flatten()->where('is_active', 1)->count(),
+                'doktarantura' => $group->where('doktarantura_is', 1)->count(),
             ];
+            
         }
         $regions = Region::findOrFail( $id );
 

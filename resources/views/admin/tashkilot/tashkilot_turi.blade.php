@@ -27,7 +27,10 @@
                                             <tr>
                                                 <th class="whitespace-no-wrap">Tashkilot turi</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Jami</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy izlanuvchilar</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -36,27 +39,36 @@
                                                     <a href="{{ route('search', ['id' => $regions->id, 'type'=>'otm']) }}">OTM</a>
                                                     </td>
                                                 <td style="text-align: center;">
-                                                    {{ $regions->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'otm')->count() }}
+                                                    {{ $regions->tashkilots()->where('status', 1)->where('tashkilot_turi', 'otm')->count() }}
                                                 </td>
+                                                <td style="text-align: center;">{{ $results['otm']['ilmiyloyhalar'] }}</td>
+                                                <td style="text-align: center;">{{ $results['otm']['stajirovkalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['otm']['asbobuskunalar'] }}</td>
+                                                <td style="text-align: center;">{{ $results['otm']['doktarantura'] }}</td>
                                             </tr>
                                             <tr>
                                                 <td style="color:#1881D3; font-weight: 400;">
                                                     <a href="{{ route('search', ['id' => $regions->id,'type'=>'itm']) }}"> Ilmiy tashkilotlar</a>
                                                 </td>
                                                 <td style="text-align: center;">
-                                                    {{ $regions->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'itm')->count() }}
+                                                    {{ $regions->tashkilots()->where('status', 1)->where('tashkilot_turi', 'itm')->count() }}
                                                 </td>
+                                                <td style="text-align: center;">{{ $results['itm']['ilmiyloyhalar'] }}</td>
+                                                <td style="text-align: center;">{{ $results['itm']['stajirovkalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['itm']['asbobuskunalar'] }}</td>
+                                                <td style="text-align: center;">{{ $results['itm']['doktarantura'] }}</td>
                                             </tr>
                                             <tr>
                                                 <td style="color:#1881D3; font-weight: 400;">
                                                     <a href="{{ route('search', ['id' => $regions->id, 'type'=>'boshqa']) }}">Boshqa tashkilotlar</a>
                                                 </td>
                                                 <td style="text-align: center;">
-                                                    {{ $regions->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'boshqa')->count() }}
+                                                    {{ $regions->tashkilots()->where('status', 1)->where('tashkilot_turi', 'boshqa')->count() }}
                                                 </td>
+                                                <td style="text-align: center;">{{ $results['other']['ilmiyloyhalar'] }}</td>
+                                                <td style="text-align: center;">{{ $results['other']['stajirovkalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['other']['asbobuskunalar'] }}</td>
+                                                <td style="text-align: center;">{{ $results['other']['doktarantura'] }}</td>
                                             </tr>
 
                                         </tbody>
