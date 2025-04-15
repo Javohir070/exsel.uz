@@ -95,7 +95,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/ilmiyloyihalar',[IlmiyLoyihaController::class, 'ilmiyloyihalar'])->name('ilmiyloyihalar.index');
     Route::get('/xujaliklar',[xujalikController::class, 'xujaliklar'])->name('xujaliklar.index');
     Route::get('/ilmiydarajalar',[IlmiybnTaminlangaController::class, 'ilmiydarajalar'])->name('ilmiydarajalar.index');
-    Route::get('/search', [TashkilotController::class, 'search'])->name('search');
     Route::get('/searchloyiha', [IlmiyLoyihaController::class, 'searchloyiha'])->name('searchloyiha');
     Route::get('/searchxujalik', [XujalikController::class, 'searchxujalik'])->name('searchxujalik');
     Route::get('/searchxodimlar', [XodimlarController::class, 'searchxodimlar'])->name('searchxodimlar');
@@ -129,6 +128,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/search-sta', [StajirovkaController::class, 'search_stajirovka'])->name('search_stajirovka');
     Route::get('/search-asbob', [AsbobuskunaController::class, 'search_asbobuskunalar'])->name('search_asbobuskunalar');
     Route::get('/search-ilmiy', [IlmiyLoyihaController::class, 'search_ilmiy_loyhalar'])->name('search_ilmiy_loyhalar');
+    Route::get('/search', [TashkilotController::class, 'search'])->name('search');
 
 
     // labaratoriya uchun
@@ -198,6 +198,8 @@ Route::middleware('auth')->group(function () {
     Route::get('ilmiy/{id}', [IlmiyLoyihaController::class, "ilmiy_loyihalar"])->name("ilmiy_loyihalar.index");
     Route::get('stajiro/{id}', [StajirovkaController::class, "stajirov"])->name("stajirov.index");
     Route::get('/export-asbobuskunalar', [AsbobuskunaController::class, 'export_asbobuskunalar'])->name('export.asbobuskunalar');
+    Route::get('/export-kafedralar', [KafedralarController::class, 'kafedralar_export'])->name('export.kafedralar');
+    Route::get('/export-fakultetlar', [FakultetlarController::class, 'fakultetlar_export'])->name('export.fakultetlar');
 
     Route::get('turi/{id}', [IlmiyLoyihaController::class,'tashkilot_turi'])->name('tashkilot_turi');
     Route::get('tashkilot-turi/{id}', [AsbobuskunaController::class,'tashkilot_turi_asbobuskuna'])->name('tashkilot_turi_asbobuskuna');

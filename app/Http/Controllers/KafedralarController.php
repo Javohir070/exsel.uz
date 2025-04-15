@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KafedralarExport;
 use App\Models\Fakultetlar;
 use App\Models\IlmiyLoyiha;
 use App\Models\Kafedralar;
@@ -11,6 +12,7 @@ use App\Models\User;
 use App\Models\Xodimlar;
 use App\Models\Xujalik;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KafedralarController extends Controller
 {
@@ -192,5 +194,11 @@ class KafedralarController extends Controller
         $kafedralar->delete();
 
         return redirect()->back()->with("status",'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+    }
+
+    public function kafedralar_export()
+    {
+        $fileName = 'Kafedralar_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new KafedralarExport, $fileName);
     }
 }

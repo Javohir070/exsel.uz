@@ -159,33 +159,56 @@ class TashkilotController extends Controller
 
     }
 
+    public function tashkilot_turi_asbobuskuna($id)
+    {
+        // dd($id);
+
+        $tashkilotlarQuery = Tashkilot::where('asbobuskuna_is',1)->where('region_id', '=', $id)->with(['asbobuskunalar'])
+            ->get();
+
+        // Turga qarab guruhlash
+        $groups = [
+            'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
+            'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
+            'other' => $tashkilotlarQuery->where('tashkilot_turi','boshqa'),
+        ];
+
+        $results = [];
+
+        foreach ($groups as $key => $group) {
+            $results[$key] = [
+                'asbobuskunalar' => $group->pluck('asbobuskunalar')->flatten()->where('is_active', 1)->count(),
+            ];
+        }
+        $regions = Region::findOrFail( $id );
+
+        return view('admin.asbobuskuna.tashkilot_turi',['results' => $results, 'regions'=>$regions]);
+    }
+
     public function search(Request $request)
     {
         $querysearch = $request->input('query');
-
-        // Avval so'rovni qisqartirish va optimallashtirish
-        if (ctype_digit($querysearch)) {
+        $id = $request->input('id');
+        $type = $request->input('type');
+        if (ctype_digit($id)) {
+            $tashkilotlar = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)
+                                ->where('region_id', '=', $id)
+                                ->where('tashkilot_turi', '=', $type)
+                                ->paginate(50);
+            $tashkilotlars = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)
+                                ->where('region_id', '=', $id)
+                                ->where('tashkilot_turi', '=', $type)
+                                ->get();
+            $tash_count = $tashkilotlar->total();
+           } else {
             $tashkilotlar = Tashkilot::orderBy('name')
-                ->where('region_id', '=', $querysearch)
-                ->paginate(50);
-            $tashkilotlars = Tashkilot::orderBy('name')
-                ->where('region_id', '=', $querysearch)->get();
-            $tash_count = $tashkilotlar->total(); // `count()` o'rniga `total()` ishlating, chunki paginate ishlatilgan
-        } elseif ($querysearch == 'otm' || $querysearch == 'itm') {
-            $tashkilotlar = Tashkilot::orderBy('name')
-                ->where('tashkilot_turi', 'like', '%' . $querysearch . '%')
-                ->paginate(50);
-            $tashkilotlars = Tashkilot::orderBy('name')
-                ->where('tashkilot_turi', '=', $querysearch)->get();
-            $tash_count = $tashkilotlar->total(); // Yana `total()` ishlatish
-        } else {
-            $tashkilotlar = Tashkilot::orderBy('name')
-                ->where('name', 'like', '%' . $querysearch . '%')
-                ->paginate(50);
-                $tashkilotlars = Tashkilot::orderBy('name')
-                ->where('name',  $querysearch)->get();
-            $tash_count = $tashkilotlar->total(); // Yana `total()` ishlatish
+                                    ->where('asbobuskuna_is', 1)
+                                    ->where('name', 'like', '%' . $querysearch . '%')
+                                    ->paginate(50);
+            $tash_count = $tashkilotlar->total();
         }
+
+        // $id = $tashkilotlars->pluck('id');
 
         // `tashkilot_ids` olish
         $tashkilot_ids = $tashkilotlars->pluck('id');
@@ -198,7 +221,7 @@ class TashkilotController extends Controller
         // Tashkilotlar bo'yicha maxsus hisoblashlar
         $tash_countest = Tashkilot::where('doktarantura_is', 1)->where('region_id', '=', 13)->count();
         $doktarantura_count = $tashkilotlars->where('doktarantura_is', 1)->count();
-        
+
         // Endi to'liq hisobotlarni olish
         $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $tashkilot_ids)->count();
         $stajirovka_expert = Stajirovkaexpert::count();

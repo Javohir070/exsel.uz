@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\FakultetlarExport;
 use App\Models\Fakultetlar;
 use App\Http\Requests\StoreFakultetlarRequest;
 use App\Http\Requests\UpdateFakultetlarRequest;
 use App\Models\Kafedralar;
+use Maatwebsite\Excel\Facades\Excel;
 
 class FakultetlarController extends Controller
 {
@@ -82,5 +84,11 @@ class FakultetlarController extends Controller
         $fakultetlar->delete();
 
         return redirect('/fakultetlar')->with("status",'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+    }
+
+    public function fakultetlar_export()
+    {
+        $fileName = 'Fakultetlar_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new FakultetlarExport, $fileName);
     }
 }
