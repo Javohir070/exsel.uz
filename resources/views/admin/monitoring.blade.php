@@ -121,7 +121,7 @@
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', 'boshqa')->count() }} </td>
                                                 <td style="text-align: center;">
                                                     {{
-                                                        $region->tashkilots()->where('ilmiyloyiha_is', 1)
+                                                        $region->tashkilots()->where('status', 1)->where('ilmiyloyiha_is', 1)
                                                             ->withCount(['ilmiyloyhalar' => function ($q) {
                                                                 $q->where('is_active', 1);
                                                             }])
@@ -139,7 +139,7 @@
                                                         $q->where('is_active', 1);
                                                     }])->get()->sum('asbobuskunalar_count') }}
                                                 </td>
-                                                <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->where('doktarantura_is', 1)->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->withCount('doktaranturalar')->get()->sum('doktaranturalar_count') }} </td>
                                             </tr>
                                             @endforeach
                                         </tbody>

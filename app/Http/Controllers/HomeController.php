@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Asbobuskuna;
 use App\Models\Asbobuskunaexpert;
 use App\Models\Dalolatnoma;
+use App\Models\Doktarantura;
 use App\Models\Doktaranturaexpert;
 use App\Models\IlmiybnTaminlanga;
 use App\Models\IlmiyLoyiha;
@@ -196,8 +197,8 @@ class HomeController extends Controller
 
     public function monitoring()
     {
-        $doktarantura = Tashkilot::where('doktarantura_is',1)->count();
-        
+        $doktarantura = Doktarantura::count();
+
         $stajirovka_count = Stajirovka::count();
         $stajirovka_expert = Stajirovkaexpert::count();
         $asboblar_count = Asbobuskuna::where('is_active',1)->count();
@@ -226,7 +227,7 @@ class HomeController extends Controller
                 'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->where('is_active', 1)->count(),
                 'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->count(),
                 'asbobuskunalar' => $group->pluck('asbobuskunalar')->flatten()->where('is_active', 1)->count(),
-                'doktarantura' => $group->where('doktarantura_is', 1)->count(),
+                'doktarantura' => $group->pluck('doktaranturalar')->flatten()->count(),
             ];
         }
 

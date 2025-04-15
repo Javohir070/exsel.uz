@@ -78,4 +78,9 @@ class Tashkilot extends Model
     {
         return $this->hasMany(Kafedralar::class);
     }
+
+    public function doktaranturalar()
+    {
+        return $this->hasMany(Doktarantura::class);
+    }
 }
