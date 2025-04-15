@@ -26,7 +26,9 @@ class ImportDoktaranturaData extends Command
             $this->info("🔄 {$tashkilot->nomi} ({$stir}) tashkilot uchun ma'lumotlar yuklanmoqda...");
 
             do {
-                $response = Http::withBasicAuth($sms_username, $sms_password)
+                $response = Http::retry(3, 5000)
+                ->timeout(120)
+                ->withBasicAuth($sms_username, $sms_password)
                     ->withOptions(["verify" => false])
                     ->get($url);
 

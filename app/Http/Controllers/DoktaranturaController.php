@@ -14,57 +14,50 @@ use Illuminate\Support\Facades\Http;
 class DoktaranturaController extends Controller
 {
 
-    function importDoktaranturaData()
+    function importDoktaranturaData($stir)
     {
-        $stirs = Tashkilot::where('doktarantura_is', 1)->get(); 
-
+        $tashkilot = Tashkilot::where('stir_raqami','=',$stir)->first();
+        $url = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-list/{$stir}/";
         $sms_username = env('API_USERNAME', 'single_database_user2024@gmail.com');
         $sms_password = env('API_PASSWORD', '6qZFYRMI$ZRQ1lY@CUQcmJ5');
+        do {
+            $response = Http::withBasicAuth($sms_username, $sms_password)
+                        ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
+                        ->get($url);
 
-        foreach ($stirs as $tashkilot) {
-            $stir = $tashkilot->stir_raqami;
-            $url = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-list/{$stir}/";
+            if ($response->failed()) {
+                throw new \Exception("API so'rovida xatolik: " . $response->status());
+            }
 
-            do {
-                $response = Http::withBasicAuth($sms_username, $sms_password)
-                    ->withOptions(["verify" => false])
-                    ->get($url);
+            $data = $response->json();
 
-                if ($response->failed()) {
-                    throw new \Exception("API so'rovida xatolik: " . $response->status(). $tashkilot->stir_raqami);
+            if (isset($data['results'])) {
+                foreach ($data['results'] as $item) {
+                    Doktarantura::updateOrCreate(
+                        ['id' => $item['id']], // unique key
+                        [
+                            "user_id" => auth()->id(),
+                            "tashkilot_id" => $tashkilot->id,
+                            'full_name' => $item['full_name'],
+                            'direction_name' => $item['direction_name'],
+                            'direction_code' => $item['direction_code'],
+                            'org_name' => $item['org_name'],
+                            'dc_type' => $item['dc_type'],
+                            'admission_year' => $item['admission_year'],
+                            'admission_quarter' => $item['admission_quarter'],
+                            'advisor' => $item['advisor']?? null,
+                            'course' => $item['course'],
+                            'monitoring_1' => $item['monitoring_1'],
+                            'monitoring_2' => $item['monitoring_2'],
+                            'monitoring_3' => $item['monitoring_3'],
+                        ]
+                    );
                 }
+            }
 
-                $data = $response->json();
+            $url = $data['next'] ?? null;
 
-                if (isset($data['results'])) {
-                    foreach ($data['results'] as $item) {
-                        Doktarantura::updateOrCreate(
-                            ['id' => $item['id']],
-                            [
-                                "user_id" => auth()->id(),
-                                "tashkilot_id" => $tashkilot->id,
-                                'full_name' => $item['full_name'],
-                                'direction_name' => $item['direction_name'],
-                                'direction_code' => $item['direction_code'],
-                                'org_name' => $item['org_name'],
-                                'dc_type' => $item['dc_type'],
-                                'admission_year' => $item['admission_year'],
-                                'admission_quarter' => $item['admission_quarter'],
-                                'advisor' => $item['advisor'] ?? null,
-                                'course' => $item['course'],
-                                'monitoring_1' => $item['monitoring_1'],
-                                'monitoring_2' => $item['monitoring_2'],
-                                'monitoring_3' => $item['monitoring_3'],
-                            ]
-                        );
-                    }
-                }
-
-                $url = $data['next'] ?? null;
-
-            } while ($url);
-        }
-
+        } while ($url);
 
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli import qilindi!');
     }
