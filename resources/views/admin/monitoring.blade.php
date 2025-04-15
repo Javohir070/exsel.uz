@@ -111,7 +111,7 @@
                                             @foreach ($regions as $region)
                                             <tr style="border-bottom: 1px solid #E6E6E6;">
                                                 <td style="color:#1881D3; font-weight: 400;">
-                                                    <a href="{{ route('search', ['query' => $region->id]) }}">
+                                                    <a href="{{ route('tashkilot_region', ['id' => $region->id]) }}">
                                                         {{ $region->oz }}
                                                     </a>
                                                 </td>
@@ -231,7 +231,7 @@
                                                 <td style="text-align: center;">{{ $results['other']['asbobuskunalar'] }}</td>
                                                 <td style="text-align: center;">{{ $results['other']['doktarantura'] }}</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>

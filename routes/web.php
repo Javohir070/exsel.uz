@@ -205,6 +205,7 @@ Route::middleware('auth')->group(function () {
     Route::get('tashkilot-turi/{id}', [AsbobuskunaController::class,'tashkilot_turi_asbobuskuna'])->name('tashkilot_turi_asbobuskuna');
     Route::get('stajiroka-turi/{id}', [StajirovkaController::class,'tashkilot_turi_stajiroka'])->name('tashkilot_turi_stajiroka');
     Route::get('doktarantura-turi/{id}', [DoktaranturaController::class,'tashkilot_turi_doktarantura'])->name('tashkilot_turi_doktarantura');
+    Route::get('region/{id}', [TashkilotController::class,'tashkilot_region'])->name('tashkilot_region');
 
     Route::get('php-import/{stir}', [DoktaranturaController::class, 'importDoktaranturaData'])->name('php_import');
     Route::get('ilmiy-rahbarlar-import/{stir}', [DoktaranturaController::class, 'importIlmiyRahbarlarData'])->name('ilmiy_rahbarlar_import');
@@ -212,6 +213,7 @@ Route::middleware('auth')->group(function () {
     Route::get('ilmiy-izlanuvchi/{id}', [DoktaranturaController::class, 'ilmiyIzlanuvchi_show'])->name('ilmiyIzlanuvchi_show');
     Route::put('ilmiy-izlanuvchi/{id}/edit', [DoktaranturaController::class, 'update'])->name('ilmiyIzlanuvchi_edit');
     Route::put('ilmiy-rahbar/{id}/edit', [IlmiyrahbarlarController::class, 'update'])->name('ilmiyrahbar_edit');
+
     Route::resources([
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,

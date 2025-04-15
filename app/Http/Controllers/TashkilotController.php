@@ -159,11 +159,9 @@ class TashkilotController extends Controller
 
     }
 
-    public function tashkilot_turi_asbobuskuna($id)
+    public function tashkilot_region($id)
     {
-        // dd($id);
-
-        $tashkilotlarQuery = Tashkilot::where('asbobuskuna_is',1)->where('region_id', '=', $id)->with(['asbobuskunalar'])
+        $tashkilotlarQuery = Tashkilot::where('status', 1)->where('region_id', '=', $id)->with(['ilmiyloyhalar', 'asbobuskunalar', 'stajirovkalar'])
             ->get();
 
         // Turga qarab guruhlash
@@ -182,7 +180,7 @@ class TashkilotController extends Controller
         }
         $regions = Region::findOrFail( $id );
 
-        return view('admin.asbobuskuna.tashkilot_turi',['results' => $results, 'regions'=>$regions]);
+        return view('admin.tashkilot.tashkilot_turi',['results' => $results, 'regions'=>$regions]);
     }
 
     public function search(Request $request)
@@ -191,18 +189,18 @@ class TashkilotController extends Controller
         $id = $request->input('id');
         $type = $request->input('type');
         if (ctype_digit($id)) {
-            $tashkilotlar = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)
+            $tashkilotlar = Tashkilot::orderBy('name')->where('status', 1)
                                 ->where('region_id', '=', $id)
                                 ->where('tashkilot_turi', '=', $type)
                                 ->paginate(50);
-            $tashkilotlars = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)
+            $tashkilotlars = Tashkilot::orderBy('name')->where('status', 1)
                                 ->where('region_id', '=', $id)
                                 ->where('tashkilot_turi', '=', $type)
                                 ->get();
             $tash_count = $tashkilotlar->total();
            } else {
             $tashkilotlar = Tashkilot::orderBy('name')
-                                    ->where('asbobuskuna_is', 1)
+                                    ->where('status', 1)
                                     ->where('name', 'like', '%' . $querysearch . '%')
                                     ->paginate(50);
             $tash_count = $tashkilotlar->total();
