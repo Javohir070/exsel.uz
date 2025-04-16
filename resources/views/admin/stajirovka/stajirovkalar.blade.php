@@ -82,7 +82,7 @@
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->stajirovkalar()->count()  }}
+                                    {{ $tashkilots->stajirovkalar()->count() }}/{{ $tashkilots->stajirovkaexperts()->count() }}
                                 </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">

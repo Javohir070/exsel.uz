@@ -175,28 +175,24 @@
         <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
             <table class="table">
                 <div
-                        style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        {{-- <div style="font-size:18px;font-weight: 400;">
-                            {{ $tekshirivchilar->name . ' Asbob-uskuna ' }} xaqida ma’lumot
-                        </div> --}}
+                        style="display: flex;justify-content:center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="text-align: center;display: flex;">
+                            <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}" class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
+                                Eksport
+                           </a>
                             <a href="{{ route('asbobuskunaexpert.edit', ['asbobuskunaexpert' => $tekshirivchilar->id]) }}"
                                 class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
                             </a>
-                            {{-- <a href="" class="button w-24 bg-theme-6 text-white">
-                                O'chirish
-                            </a> --}}
+
                             <form action="{{ route('asbobuskunaexpert.destroy', $tekshirivchilar->id) }}" method="POST" onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
                             </form>
+
                         </div>
 
-                            <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
-                                 Eksport
-                            </a>
                     </div>
                 <thead>
                     <tr class="bg-gray-200">

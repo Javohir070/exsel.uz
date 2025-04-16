@@ -61,4 +61,9 @@ class Asbobuskuna extends Model
     {
         return $this->belongsTo(Kafedralar::class);
     }
+
+    public function asbobuskunaexperts()
+    {
+        return $this->hasMany(AsbobuskunaExpert::class);
+    }
 }

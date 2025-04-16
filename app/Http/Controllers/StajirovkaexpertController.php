@@ -11,9 +11,10 @@ class StajirovkaexpertController extends Controller
 {
     public function store(Request $request)
     {
+        $stajirovka = Stajirovka::findOrFail($request->stajirovka_id);
         Stajirovkaexpert::create([
             'user_id' => auth()->id(),
-            'tashkilot_id' => auth()->user()->tashkilot_id,
+            'tashkilot_id' => $stajirovka->tashkilot_id,
             'fish' => auth()->user()->name,
             'stajirovka_id' => $request->stajirovka_id,
             'ilmiy_hisobot' => $request->ilmiy_hisobot,

@@ -22,7 +22,7 @@
                 </a>
 
                 <a data-toggle="tab" data-target="#add-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center">
-                    EKSPERT XULOSASI
+                    Ekspert xulosasi
                 </a>
 
             </div>
@@ -363,15 +363,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap mb-1 items-center mt-4">
-                                    {{ $ilmiyrahbarlars->links() }}
-                                    <select class="w-20 input box mt-3 sm:mt-0">
-                                        <option>10</option>
-                                        <option>25</option>
-                                        <option>35</option>
-                                        <option>50</option>
-                                    </select>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -384,18 +375,18 @@
                             <table class="table">
 
                                 <div
-                                    style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                                    {{-- <div style="font-size:18px;font-weight: 400;">
-                                        {{ $tashkilot->name . ' Izlanuvchilar ' }} xaqida ma’lumot
-                                    </div> --}}
-                                    <div style="text-align: end;display: flex;">
+                                    style="display: flex;justify-content: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
+
+                                    <div style="text-align: end;display: flex;gap:10px;">
+                                        <a href="{{ url('generate-pdfdoktarantura/' . $tashkilot->id) }}"
+                                            class="button delete-cancel border text-gray-700 mr-1">
+                                             Eksport
+                                        </a>
                                         <a href="javascript:;" data-target="#doktarantura-paper-create-modal"
                                             data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
                                             Tahrirlash
                                         </a>
-                                        {{-- <a href="" class="button w-24 bg-theme-6 text-white">
-                                            O'chirish
-                                        </a> --}}
+
                                         <form action="{{ route('doktaranturaexpert.destroy', $tekshirivchilar->id ?? 1) }}"
                                             method="POST" onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
                                             @csrf
@@ -405,10 +396,7 @@
                                         </form>
                                     </div>
 
-                                    <a href="{{ url('generate-pdfdoktarantura/' . $tashkilot->id) }}"
-                                        class="button delete-cancel border text-gray-700 mr-1">
-                                         Eksport
-                                    </a>
+
                                 </div>
 
                                 <thead>
@@ -750,12 +738,12 @@
         </div>
     </div>
     <style>
-                       .ilmiy_izlanuvchi{
-                        width:40%;
-                        background-color: rgba(0, 0, 0, 0.02);
-                        color:black;
-                       }
-                </style>
+            .ilmiy_izlanuvchi{
+            width:40%;
+            background-color: rgba(0, 0, 0, 0.02);
+            color:black;
+            }
+    </style>
 
     <div class="modal" id="doktarantura-paper-create-modal">
         <div class="modal__content modal__content--xl">
@@ -916,7 +904,7 @@
                                                 </td>
                                             </tr>
 
-                                            <tr class="bg-gray-200">
+                                            <tr>
                                                 <td class="border border-b-2 ">13.</td>
                                                 <td class="border border-b-2 ">
                                                     Status.
@@ -1431,56 +1419,56 @@
         }
     </script>
 
-        <script>
-            // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
-            function openShowIlmiRahbarModal(id) {
-                // AJAX so'rovni yuboramiz
-                $.ajax({
-                    url: `/ilmiyrahbarlar/${id}`,
-                    type: 'GET',
-                    success: function (data) {
-                        // Ma'lumotlarni modal shaklida aks ettiramiz
-                        $('#ir_full_name').text(data.full_name);
-                        $('#org').text(data.org);
-                        $('#all').text(data.all);
-                        $('#kollegial_organ_qarori').text(data.kollegial_organ_qarori);
-                        $('#meyoridan_ortiq').text(data.meyoridan_ortiq);
-                        $('#tash_meyoridan_ortiq').text(data.tash_meyoridan_ortiq);
+    <script>
+        // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
+        function openShowIlmiRahbarModal(id) {
+            // AJAX so'rovni yuboramiz
+            $.ajax({
+                url: `/ilmiyrahbarlar/${id}`,
+                type: 'GET',
+                success: function (data) {
+                    // Ma'lumotlarni modal shaklida aks ettiramiz
+                    $('#ir_full_name').text(data.full_name);
+                    $('#org').text(data.org);
+                    $('#all').text(data.all);
+                    $('#kollegial_organ_qarori').text(data.kollegial_organ_qarori);
+                    $('#meyoridan_ortiq').text(data.meyoridan_ortiq);
+                    $('#tash_meyoridan_ortiq').text(data.tash_meyoridan_ortiq);
 
-                        $('#science-ilmiy-rahbar-show-modal').modal('show');
-                    },
-                    error: function (error) {
-                        console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
-                    }
-                });
-            }
-        </script>
+                    $('#science-ilmiy-rahbar-show-modal').modal('show');
+                },
+                error: function (error) {
+                    console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
+                }
+            });
+        }
+    </script>
 
-        <script>
-            // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
-            function openEditIlmiRahbarModal(id) {
-                // AJAX so'rovni yuboramiz
-                $.ajax({
-                    url: `/ilmiyrahbarlar/${id}`,
-                    type: 'GET',
-                    success: function (data) {
-                        // Ma'lumotlarni modal shaklida aks ettiramiz
-                        $('#edit_ir_full_name').text(data.full_name);
-                        $('#edit_org').text(data.org);
-                        $('#edit_all').text(data.all);
-                        $('#edit_kollegial_organ_qarori').text(data.kollegial_organ_qarori);
-                        $('#edit_meyoridan_ortiq').text(data.meyoridan_ortiq);
-                        $('#edit_tash_meyoridan_ortiq').text(data.tash_meyoridan_ortiq);
+    <script>
+        // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
+        function openEditIlmiRahbarModal(id) {
+            // AJAX so'rovni yuboramiz
+            $.ajax({
+                url: `/ilmiyrahbarlar/${id}`,
+                type: 'GET',
+                success: function (data) {
+                    // Ma'lumotlarni modal shaklida aks ettiramiz
+                    $('#edit_ir_full_name').text(data.full_name);
+                    $('#edit_org').text(data.org);
+                    $('#edit_all').text(data.all);
+                    $('#edit_kollegial_organ_qarori').text(data.kollegial_organ_qarori);
+                    $('#edit_meyoridan_ortiq').text(data.meyoridan_ortiq);
+                    $('#edit_tash_meyoridan_ortiq').text(data.tash_meyoridan_ortiq);
 
 
-                        $('#science-ilmiy-rahbar-edit-form').attr('action', `/ilmiy-rahbar/${id}/edit`);
+                    $('#science-ilmiy-rahbar-edit-form').attr('action', `/ilmiy-rahbar/${id}/edit`);
 
-                        $('#science-ilmiy-rahbar-edit-modal').modal('show');
-                    },
-                    error: function (error) {
-                        console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
-                    }
-                });
-            }
-        </script>
+                    $('#science-ilmiy-rahbar-edit-modal').modal('show');
+                },
+                error: function (error) {
+                    console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
+                }
+            });
+        }
+    </script>
 @endsection

@@ -11,11 +11,12 @@ class AsbobuskunaexpertController extends Controller
 {
     public function store(Request $request)
     {
+        $asbobuskuna = Asbobuskuna::findOrFail($request->asbobuskuna_id);
         Asbobuskunaexpert::create([
             'user_id' => auth()->id(),
-            'tashkilot_id' => auth()->user()->tashkilot_id,
+            'tashkilot_id' => $asbobuskuna->tashkilot_id,
             'fish' => auth()->user()->name,
-            'asbobuskuna_id' => $request->asbobuskuna_id,
+            'asbobuskuna_id' => $asbobuskuna->id,
             'status' => $request->status,
             'comment' => $request->comment,
             'lab_uskunalarini_mosligi' => $request->lab_uskunalarini_mosligi,

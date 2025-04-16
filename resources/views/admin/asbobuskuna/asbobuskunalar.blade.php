@@ -24,7 +24,7 @@
                     <th class="whitespace-no-wrap">Asbob-uskuna nomi</th>
                     <th class="whitespace-no-wrap">Asos</th>
                     {{-- <th class="whitespace-no-wrap" style="text-align: center;">Ishlab chiqarilgan yili</th> --}}
-                    {{-- <th class="whitespace-no-wrap" style="text-align: center;">Holati</th> --}}
+                    {{-- <th class="whitespace-no-wrap" style="text-align: center;">Status</th> --}}
                     <th class="whitespace-no-wrap text-center">Harakat</th>
                 </tr>
                 </thead>

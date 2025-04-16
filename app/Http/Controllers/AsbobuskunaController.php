@@ -79,12 +79,19 @@ class AsbobuskunaController extends Controller
         }
         $regions = Region::findOrFail( $id );
 
-        $id = $tashkilotlarQuery->pluck('id');
+        $id_tash = $tashkilotlarQuery->pluck('id');
         $tashkilots = $tashkilotlarQuery->count();
-        $asboblar_count = Asbobuskuna::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
-        $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id)->count();
+        $asboblar_count = Asbobuskuna::where('is_active', 1)->whereIn('tashkilot_id', $id_tash)->count();
+        $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id_tash)->count();
 
-        return view('admin.asbobuskuna.tashkilot_turi',['results' => $results, 'regions'=>$regions, 'tashkilots'=>$tashkilots, 'asboblar_count'=>$asboblar_count, 'asboblar_expert'=>$asboblar_expert]);
+
+        return view('admin.asbobuskuna.tashkilot_turi',[
+                            'results' => $results,
+                            'regions'=>$regions,
+                            'tashkilots'=>$tashkilots,
+                            'asboblar_count'=>$asboblar_count,
+                            'asboblar_expert'=>$asboblar_expert
+                        ]);
     }
 
     public function search_asbobuskunalar(Request $request)

@@ -16,11 +16,6 @@
                 Orqaga
             </a>
             @endrole
-            @role('Ekspert')
-            <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                pdf genertsiya
-            </a>
-            @endrole
         </div>
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
@@ -119,7 +114,9 @@
                         <th class="border">FIO</th>
                     </tr>
                     <tr>
-                        <td class="border">{{ $asbobuskuna->laboratory->name ?? $asbobuskuna->kafedralar->name }}</td>
+                        <td class="border">
+                            {{ optional($asbobuskuna->laboratory)->name ?? optional($asbobuskuna->kafedralar)->name ?? 'Maʼlumot yo‘q' }}
+                        </td>
                         <td class="border">{{ $asbobuskuna->fish  }}</td>
                     </tr>
 
@@ -364,12 +361,12 @@
 
                 </form><br>
                 <div class="px-5 pb-5 text-center">
-                    <a href="#" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    <a href="{{ route('asbobuskuna.show', ['asbobuskuna' => $asbobuskunaexpert->asbobuskuna_id]) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
                         Bekor qilish
                     </a>
                     <button type="submit" form="science-paper-create-form"
                         class="update-confirm button w-24 bg-theme-1 text-white">
-                        Qo'shish
+                        Tasdiqlash
                     </button>
                 </div>
             </div>

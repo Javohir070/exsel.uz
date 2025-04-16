@@ -128,24 +128,21 @@
             </table>
         </div>
 
-        @role('Ekspert')
+        @role(['Ekspert', 'Stajirovka boyicha masul'])
 
         @forelse ($stajirovkaexpert as $tekshirivchilar)
         <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
             <table class="table">
                 <div
-                        style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;">
-                            {{ $tekshirivchilar->stajirovkalar->name . ' Stajirovka ' }} haqida ma’lumot
-                        </div>
+                        style="display: flex;justify-content: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="text-align: end;display: flex;">
+                            <a href="{{ url('generate-pdfsajiyor/' . $stajirovka->id) }}" class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
+                                Eksport
+                            </a>
                             <a href="{{ route('stajirovkaexpert.edit', ['stajirovkaexpert' => $tekshirivchilar->id]) }}"
                                 class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
                             </a>
-                            {{-- <a href="" class="button w-24 bg-theme-6 text-white">
-                                O'chirish
-                            </a> --}}
                             <form action="{{ route('stajirovkaexpert.destroy', $tekshirivchilar->id) }}" method="POST" onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
                                 @csrf
                                 @method('DELETE')
@@ -153,9 +150,6 @@
                             </form>
                         </div>
 
-                            <a href="{{ url('generate-pdfsajiyor/' . $stajirovka->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
-                                Xulosan generatsiya qilish
-                            </a>
                     </div>
                 <thead>
                     <tr>

@@ -109,6 +109,7 @@ class DoktaranturaController extends Controller
 
     public function show($id, Request $request)
     {
+
         $request->validate([
             'year' => 'nullable|integer|min:2000|max:2100',
             'admission_year' => 'nullable|integer|min:2000|max:2100',
@@ -119,28 +120,13 @@ class DoktaranturaController extends Controller
         $quarter = $request->quarter ?? 4;
         $admission_quarter = $request->admission_quarter ?? 1;
         $admission_year = $request->admission_year ?? 2024;
-        // dd($request->all());
         $tashkilot = Tashkilot::findOrFail($id);
-        // dd($tashkilot->stir_raqami);
         $sms_username = env('API_USERNAME', 'single_database_user2024@gmail.com');
         $sms_password = env('API_PASSWORD', '6qZFYRMI$ZRQ1lY@CUQcmJ5');
         $url = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-status-statistics/{$tashkilot->stir_raqami}/";
-
-        // $url_list = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-list/{$tashkilot->stir_raqami}/";
-
-        // $url_tach = "https://api-phd.mininnovation.uz/api-monitoring/advisor-list-monitoring-statistics/{$tashkilot->stir_raqami}/";
-
-        // Agar SSL xato bersa, verify => false qilib ko‘ring
         $response = Http::withBasicAuth($sms_username, $sms_password)
             ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
             ->get($url);
-        // $response_list = Http::withBasicAuth($sms_username, $sms_password)
-        //     ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
-        //     ->get($url_list);
-
-        // $response_tach = Http::withBasicAuth($sms_username, $sms_password)
-        //     ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
-        //     ->get($url_tach);
 
         $url_main = "https://api-phd.mininnovation.uz/api-monitoring/doctorate-list-monitoring-statistics/{$tashkilot->stir_raqami}/";
         $response_main = Http::withBasicAuth($sms_username, $sms_password)
@@ -152,10 +138,8 @@ class DoktaranturaController extends Controller
                 'admission_year' => $admission_year
             ]);
 
-        // $data_tach = $response_tach->json();
         $data_main = $response_main->json();
         $data = $response->json();
-        // $data_last = $response_list->json();
 
 
         if (!isset($data_main) || !is_array($data_main)) {
@@ -166,18 +150,14 @@ class DoktaranturaController extends Controller
         $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->get();
         $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->first();
         $doktaranturas = Doktarantura::where('tashkilot_id', '=', $id)->paginate(20);
-        $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->paginate(20);
+        $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->get();
         $biriktirilgan_ir = Doktarantura::where('tashkilot_id', '=', $id)->where('advisor', null)->count();
         // $ishreja_b = Doktarantura::where('tashkilot_id', '=', $id)->where('rija_b', null)->count();
         return view("admin.doktarantura.show", [
-            'phd_soni' => $phd_soni ?? null,
-            'dsc_soni' => $dsc_soni ?? null,
-            'stajyor_soni' => $stajyor_soni ?? null,
             'tashkilot' => $tashkilot ?? null,
             'lab_izlanuvchilar' => $lab_izlanuvchilar ?? null,
             'doktaranturaexpert' => $doktaranturaexpert,
             'tekshirivchilar' => $tekshirivchilar ?? 1,
-            'data_tach' => $data_tach ?? [],
             'data_main' => $data_main ?? [],
             'data' => $data ?? null,
             'id' => $id,
