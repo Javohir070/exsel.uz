@@ -17,7 +17,7 @@
 
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                                    <a href="{{ route('ilmiyloyihalar.index') }}">
+                                    <a href="{{ route('doktarantura.index') }}">
                                         <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
                                             <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
                                                 <i data-feather="home" class="report-box__icon text-theme-3" ></i>

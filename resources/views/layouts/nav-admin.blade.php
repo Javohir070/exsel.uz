@@ -39,13 +39,13 @@
         @role(['super-admin', 'Ekspert'])
         <li>
             <a href="javascript:;"
-                class="side-menu side-menu{{ request()->is('iqtisodiylar*') ? '--active' : '' }}{{ request()->is('tashkilotrahbarilar*') ? '--active' : '' }}{{ request()->is('tashkilot*') ? '--active' : '' }}">
+                class="side-menu side-menu{{ request()->is('iqtisodiylar*') ? '--active' : '' }}{{ request()->is('tashkilotrahbarilar*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                 <div class="side-menu__title"> Tashkilotlar <i data-feather="chevron-down"
                         class="side-menu__sub-icon"></i> </div>
             </a>
             <ul
-                class="{{ request()->is('iqtisodiylar*') ? 'side-menu__sub-open' : '' }}{{ request()->is('tashkilotrahbarilar') ? 'side-menu__sub-open' : '' }}{{ request()->is('tashkilot*') ? 'side-menu__sub-open' : '' }}">
+                class="{{ request()->is('iqtisodiylar*') ? 'side-menu__sub-open' : '' }}{{ request()->is('tashkilotrahbarilar') ? 'side-menu__sub-open' : '' }}">
 
                 <li>
                     <a href="{{ route('tashkilotlar.index') }}"
@@ -128,7 +128,7 @@
         @role(['Asbob-uskunalar boyicha masul', 'Ekspert'])
         <li>
             <a href="{{ route('asbobuskunalar.index') }}"
-                class="side-menu side-menu{{ request()->is('asbobus*') ? '--active' : '' }}{{ request()->is('search-asbob*') ? '--active' : '' }}">
+                class="side-menu side-menu{{ request()->is('asbobus*') ? '--active' : '' }}{{ request()->is('search-asbob*') ? '--active' : '' }}{{ request()->is('tashkilot-turi*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Asbob-uskunalar</div>
             </a>

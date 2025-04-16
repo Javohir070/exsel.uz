@@ -57,7 +57,12 @@ class StajirovkaController extends Controller
         }
         $regions = Region::findOrFail( $id );
 
-        return view('admin.stajirovka.tashkilot_turi',['results' => $results, 'regions'=>$regions]);
+        $id = $tashkilotlarQuery->pluck('id');
+        $tashkilots = $tashkilotlarQuery->count();
+        $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->count();
+        $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->count();
+
+        return view('admin.stajirovka.tashkilot_turi',['results' => $results, 'regions'=>$regions, 'tashkilots'=>$tashkilots, 'stajirovka_count'=>$stajirovka_count, 'stajirovka_expert'=>$stajirovka_expert]);
     }
 
     public function search_stajirovka(Request $request)
@@ -83,9 +88,9 @@ class StajirovkaController extends Controller
                                     ->paginate(50);
             $tash_count = $tashkilotlar->total();
         }
-        
+
         $id = $tashkilotlars->pluck('id');
-        
+
         $stajirovkas = Stajirovka::whereIn('tashkilot_id', $id)->count();
         $regions = Region::orderBy('order')->get();
 

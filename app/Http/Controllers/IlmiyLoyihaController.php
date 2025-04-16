@@ -109,12 +109,12 @@ class IlmiyLoyihaController extends Controller
         $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
         $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
         $tekshirivchilar = Tekshirivchilar::where('is_active',1)->where('ilmiy_loyiha_id', '=',$ilmiyloyiha->id)->first();
-    
+
         $data = null;
         $errorMessage = null;
-        
-        
-    
+
+
+
         if ($scienceid) {
             $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$scienceid}/";
             $response_main = Http::withBasicAuth(
@@ -123,9 +123,9 @@ class IlmiyLoyihaController extends Controller
                                 )
                                 ->withOptions(["verify" => false])
                                 ->get($url_main);
-    
+
             $data = $response_main->json();
-    
+
             // Agar 'detail' mavjud bo'lsa, error message yaratamiz
             if (isset($data['detail'])) {
                 $errorMessage = "Bunday Science ID raqamiga ega  foydalanuvchisi mavjud emas.";
@@ -138,7 +138,7 @@ class IlmiyLoyihaController extends Controller
         foreach ($loyihaijrochilar as $loyihaijrochi) {
             $shtat_sum += $loyihaijrochi->shtat_birligi;
         }
-    
+
         return view('admin.ilmiyloyiha.show', [
             'ilmiyloyiha' => $ilmiyloyiha,
             'intellektual' => $intellektual,
@@ -152,7 +152,7 @@ class IlmiyLoyihaController extends Controller
             'shtat_sum' => $shtat_sum,
         ]);
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -339,7 +339,12 @@ class IlmiyLoyihaController extends Controller
         }
         $regions = Region::findOrFail( $id );
 
-        return view('admin.ilmiyloyiha.tashkilot_turi',['results' => $results, 'regions'=>$regions]);
+        $id = $tashkilotlarQuery->pluck('id');
+        $tashkilots = $tashkilotlarQuery->count();
+        $loy_count = IlmiyLoyiha::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
+        $loy_expert = Tekshirivchilar::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
+
+        return view('admin.ilmiyloyiha.tashkilot_turi',['results' => $results, 'regions'=>$regions, 'tashkilots'=>$tashkilots, 'loy_count'=>$loy_count, 'loy_expert'=>$loy_expert]);
     }
 
     public function search_ilmiy_loyhalar(Request $request)
@@ -365,9 +370,9 @@ class IlmiyLoyihaController extends Controller
                                     ->paginate(50);
             $tash_count = $tashkilotlar->total();
         }
-        
+
         $id = $tashkilotlars->pluck('id');
-        
+
         $ilmiyloyiha = IlmiyLoyiha::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
         $regions = Region::orderBy('order')->get();
 

@@ -224,8 +224,12 @@ class DoktaranturaController extends Controller
         }
         $regions = Region::findOrFail($id);
         // dd($results);
+        $doktarantura = $tashkilotlarQuery->count();
+        $id = $tashkilotlarQuery->pluck('id');
+        $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->count();
+        $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->count();
 
-        return view('admin.doktarantura.tashkilot_turi', ['results' => $results, 'regions' => $regions]);
+        return view('admin.doktarantura.tashkilot_turi', ['results' => $results, 'regions' => $regions, 'doktarantura'=>$doktarantura, 'doktarantura_expert'=>$doktarantura_expert, 'doktarantura_count'=>$doktarantura_count]);
     }
 
     public function search_dok(Request $request)
