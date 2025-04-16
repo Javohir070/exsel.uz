@@ -200,7 +200,7 @@
                         <tr class="intro-x">
                             <td>{{ $loop->iteration }}</td>
                             <td>
-                                <a href="{{ route('tashkilotmalumotlar.show', ['tashkilotmalumotlar' => $tashkilots->id]) }}"
+                                <a href="#"
                                     class="font-medium">{{ $tashkilots->name }}</a>
                             </td>
                             <td>
@@ -299,7 +299,7 @@
                         <tr style="border-bottom: 1px solid #E6E6E6;">
                             <td style="text-align: center;">{{  ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}</td>
                             <td style="color:#1881D3; font-weight: 400;">
-                              <a href="{{ route('tashkilotmalumotlar.show', $region->id) }}">{{ $region->name }}</a>
+                              <a href="#">{{ $region->name }}</a>
                             </td>
                             <td style="text-align: center;">{{ $region->ilmiyloyhalar()->where('is_active', 1)->count() }}</td>
                             <td style="text-align: center;">{{ $region->stajirovkalar()->count() }}</td>

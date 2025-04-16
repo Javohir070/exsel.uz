@@ -28,9 +28,9 @@
                                                 <th class="whitespace-no-wrap">Tashkilot turi</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Jami</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy izlanuvchilar</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
                                                 <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
+                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy izlanuvchilar</th>
                                             </tr>
                                         </thead>
                                         <tbody>

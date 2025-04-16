@@ -98,7 +98,7 @@
                             <tr class="intro-x">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <a href="{{ route('tashkilotmalumotlar.show', ['tashkilotmalumotlar' => $tashkilots->id]) }}"
+                                    <a href="#"
                                         class="font-medium">{{ $tashkilots->name }}</a>
                                 </td>
                                 <td>
