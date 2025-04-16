@@ -13,6 +13,7 @@ class AsbobuskunaexpertController extends Controller
     {
         Asbobuskunaexpert::create([
             'user_id' => auth()->id(),
+            'tashkilot_id' => auth()->user()->tashkilot_id,
             'fish' => auth()->user()->name,
             'asbobuskuna_id' => $request->asbobuskuna_id,
             'status' => $request->status,

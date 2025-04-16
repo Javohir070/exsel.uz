@@ -21,6 +21,7 @@ class Stajirovkaexpert extends Model
         'status',
         'comment',
         'file',
+        'tashkilot_id',
     ];
 
     public function user()

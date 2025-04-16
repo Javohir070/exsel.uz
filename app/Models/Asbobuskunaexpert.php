@@ -24,5 +24,6 @@ class Asbobuskunaexpert extends Model
         'asbob_usk_ehtiyoji',
         'zarur_ehtiyoji',
         'lab_ishga_yaroqliligi',
+        'tashkilot_id',
     ];
 }

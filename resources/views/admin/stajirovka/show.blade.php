@@ -38,7 +38,7 @@
                                     O'chirish
                                 </a>
                             </div>
-                        @endcan 
+                        @endcan
                     </div>
                     <tr>
                         <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>
@@ -234,7 +234,7 @@
                         <td class="border border-b-2 ">
                             @if ($tekshirivchilar->file)
                                 <a href="{{ asset('storage/' . $tekshirivchilar->file) }}"
-                                    class="button  bg-theme-1 text-white">Faylni ko'rish</a>
+                                    class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
                             @endif
                         </td>
                     </tr>

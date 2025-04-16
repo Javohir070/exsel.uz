@@ -713,10 +713,6 @@
 
                                                 <option value=""></option>
 
-                                                <option value="A’lo">A’lo</option>
-
-                                                <option value="Yaxshi">Yaxshi</option>
-
                                                 <option value="Qoniqarli">Qoniqarli</option>
 
                                                 <option value="Qoniqarsiz">Qoniqarsiz</option>
@@ -1365,7 +1361,7 @@
         </div>
     </div>
 
-    <script>          
+    <script>
         // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
         function openShowIlmiIzlanuvchiModal(id) {
             // AJAX so'rovni yuboramiz
@@ -1399,7 +1395,7 @@
         }
     </script>
 
-    <script>          
+    <script>
         // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
         function openEditIlmiIzlanuvchiModal(id) {
             // AJAX so'rovni yuboramiz
@@ -1435,7 +1431,7 @@
         }
     </script>
 
-        <script>          
+        <script>
             // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
             function openShowIlmiRahbarModal(id) {
                 // AJAX so'rovni yuboramiz
@@ -1460,7 +1456,7 @@
             }
         </script>
 
-        <script>          
+        <script>
             // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
             function openEditIlmiRahbarModal(id) {
                 // AJAX so'rovni yuboramiz
@@ -1475,7 +1471,7 @@
                         $('#edit_kollegial_organ_qarori').text(data.kollegial_organ_qarori);
                         $('#edit_meyoridan_ortiq').text(data.meyoridan_ortiq);
                         $('#edit_tash_meyoridan_ortiq').text(data.tash_meyoridan_ortiq);
-                        
+
 
                         $('#science-ilmiy-rahbar-edit-form').attr('action', `/ilmiy-rahbar/${id}/edit`);
 

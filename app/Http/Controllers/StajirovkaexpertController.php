@@ -13,6 +13,7 @@ class StajirovkaexpertController extends Controller
     {
         Stajirovkaexpert::create([
             'user_id' => auth()->id(),
+            'tashkilot_id' => auth()->user()->tashkilot_id,
             'fish' => auth()->user()->name,
             'stajirovka_id' => $request->stajirovka_id,
             'ilmiy_hisobot' => $request->ilmiy_hisobot,

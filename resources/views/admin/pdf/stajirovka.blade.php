@@ -11,10 +11,10 @@
 <body>
     <style>
         * {
+            font-family: 'DejaVu Sans', sans-serif !important;
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
         .container {
@@ -34,10 +34,10 @@
 
         .title {
             text-align: center;
-            font-weight: bold;
+            font-weight: bold !important;
             font-size: 14px;
             margin-bottom: 1rem;
-            text-transform: uppercase;
+
         }
 
         .subtitle {
@@ -56,7 +56,7 @@
             font-weight: bold;
             font-size: 14px;
             margin-bottom: 1.5rem;
-            text-transform: uppercase;
+
         }
 
         .form-group {
@@ -195,65 +195,60 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>T/r</th>
+                        <th class="title">T/r</th>
                         <th class="title">Mezon va talablar</th>
                         <th class="title">Xulosa</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1</td>
+                        <td class="title">1.</td>
                         <td>
                             Ilmiy hisobot taqdim etilganligi (Pdf).
-                            <div class="italic">(Agar taqdim etilgan status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
-                        <td>{{  $tekshirivchilar->ilmiy_hisobot ?? null }}</td>
+                        <td style="text-align: center;">{{  $tekshirivchilar->ilmiy_hisobot ?? null }}</td>
                     </tr>
                     <tr>
-                        <td>2</td>
+                        <td class="title">2.</td>
                         <td>
                             Stajirovka davrida egallangan bilim va ko‘nikmalarni amalga oshirilishi uchun zarur
                             shart-sharoitlar yaratilganligi. (Asoslantiruvchi hujjatlar, rasm va videolar)
-                            <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
-                        <td>{{  $tekshirivchilar->egallangan_bilim ?? null }}</td>
+                        <td style="text-align: center;">{{  $tekshirivchilar->egallangan_bilim ?? null }}</td>
                     </tr>
                     <tr>
-                        <td>3</td>
+                        <td class="title">3.</td>
                         <td>
                             Ilmiy-tadqiqot ishlari natijalari bo‘yicha xorijiy ilmiy anjumanlarda ma‘ruza bilan ishtirok
                             etganligi. (Asoslantiruvchi hujjatlar, rasm va videolar hamda havolalar)
-                            <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
-                        <td>{{  $tekshirivchilar->ishlar_natijalari ?? null }}</td>
+                        <td style="text-align: center;">{{  $tekshirivchilar->ishlar_natijalari ?? null }}</td>
                     </tr>
                     <tr>
-                        <td>4</td>
+                        <td class="title">4.</td>
                         <td>
                             Xalqaro tan olingan ma‘lumotlar bazasidagi yetakchi ilmiy jurnallarda nashr qilinganligi.
                             (Pdf)
-                            <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
-                        <td>{{  $tekshirivchilar->xalqarotan_jur_nashr ?? null }}</td>
+                        <td style="text-align: center;">{{  $tekshirivchilar->xalqarotan_jur_nashr ?? null }}</td>
                     </tr>
                     <tr>
-                        <td>5</td>
+                        <td class="title">5.</td>
                         <td>
                             Kamida bir yil davomida Agentlik tomonidan tashkil etiladigan va boshqa tadbirlarda
                             stajirovka davrida to‘plangan tajribalar va olgan bilim va ko‘nikmalari borasida o‘z fikr va
                             mulohazalarini bayon etilganligi tafsiloti. (Asoslantiruvchi hujjatlar, rasm va videolar
                             hamda havolalar)
-                            <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
                         </td>
-                        <td>{{  $tekshirivchilar->biryil_davomida ?? null }}</td>
+                        <td style="text-align: center;">{{  $tekshirivchilar->biryil_davomida ?? null }}</td>
                     </tr>
 
                     <tr>
-                        <td class="text-center title" colspan="2">Ekspert xulosasi </td>
-                        <td>{{  $tekshirivchilar->status ?? null }}</td>
+                        <td class="text-center title" colspan="2" >Ekspert xulosasi </td>
+                        <td style="text-align: center;">{{  $tekshirivchilar->status ?? null }}</td>
                     </tr>
                     <tr class="bg-gray-200">
-                        <td class="text-center title" colspan="2">
+                        <td class="text-center title" colspan="2" style="text-align: center;">
                             Izoh
                         </td>
                         <td>{{  $tekshirivchilar->comment ?? null }}</td>
@@ -261,21 +256,11 @@
                 </tbody>
             </table>
 
-            {{-- <div class="conclusion-section">
-                <div class="conclusion-row">
-                    <div class="conclusion-label">Ekspert xulosasi</div>
-                    <div class="conclusion-content">{{  $tekshirivchilar->status ?? null }}</div>
-                </div>
-                <div class="conclusion-row">
-                    <div class="conclusion-label">Izoh</div>
-                    <div class="conclusion-content">{{  $tekshirivchilar->comment ?? null }}</div>
-                </div>
-            </div> --}}
 
             <div class="footer">
                 <div class="footer-info">
-                    <p>Ekspert F.I.Sh: {{  $tekshirivchilar->fish ?? null }} </p>
-                    <p>Sana: {{  $tekshirivchilar->created_at ?? null }}</p>
+                    <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
+                    <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at ?? null }}</p>
                 </div>
                 <div class="qr-code">
                     <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;"

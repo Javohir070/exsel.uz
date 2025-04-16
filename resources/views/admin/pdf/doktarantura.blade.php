@@ -15,7 +15,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'DejaVu Sans', sans-serif !important;
         }
 
         .container {
@@ -35,10 +35,10 @@
 
         .title {
             text-align: center;
-            font-weight: bold;
+            font-weight: bold !important;
             font-size: 14px;
             margin-bottom: 1rem;
-            text-transform: uppercase;
+
         }
 
         .subtitle {
@@ -53,7 +53,7 @@
             font-weight: bold;
             font-size: 14px;
             margin-bottom: 1.5rem;
-            text-transform: uppercase;
+
         }
 
         .form-group {
@@ -179,95 +179,95 @@
             <table class="table">
                 <thead>
                     <tr>
-                        <th>T/r</th>
+                        <th class="title">T/r</th>
                         <th class="title">Ko‘rsatkichlar</th>
                         <th class="title">Miqdori</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>1.</td>
+                        <td class="title">1.</td>
                         <td>
                             Tashkilot buyrug‘i asosida qabul qilingan umumiy izlanuvchilar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->umumiy_izlanuvchilar ?? null }}</td>
                     </tr>
                     <tr class="bg-gray-200">
-                        <td>2.</td>
+                        <td class="title">2.</td>
                         <td>
                             Yagona elektron tizimdagi tahsil olayotgan izlanuvchilar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->yagonae_tah_soni ?? null }}</td>
                     </tr>
                     <tr>
-                        <td>3.</td>
+                        <td class="title">3.</td>
                         <td>
                             Chetlashtirilgan izlanuvchilar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->chetlash_soni ?? null }}</td>
                     </tr>
                     <tr class="bg-gray-200">
-                        <td>4.</td>
+                        <td class="title">4.</td>
                         <td>
                             Akademik ta’tildagi izlanuvchilar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->akademik_soni ?? null }}</td>
                     </tr>
                     <tr>
-                        <td>5.</td>
+                        <td class="title">5.</td>
                         <td>
                             Muddatidan oldin himoya qilgan izlanuvchilar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->muddatidano_soni ?? null }}</td>
                     </tr>
                     <tr class="bg-gray-200">
-                        <td>6.</td>
+                        <td class="title">6.</td>
                         <td>
                             Yagona elektron tizimga kiritilmagan izlanuvchilar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->kiritilmagan_soni ?? null }}</td>
                     </tr>
                     <tr>
-                        <td>7.</td>
+                        <td class="title">7.</td>
                         <td>
-                            Yakka tartibdagi rejani bajarmagan izlanuvchilar soni .
+                            Yakka tartibdagi rejani bajarmagan izlanuvchilar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->rejani_bajarmagan ?? null }}</td>
                     </tr>
                     <tr class="bg-gray-200">
-                        <td>8.</td>
+                        <td class="title">8.</td>
                         <td>
-                            Monitoring natijasi kiritilmagan izlanuvchilar soni .
+                            Monitoring natijasi kiritilmagan izlanuvchilar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->mon_nat_kiritilmagan ?? null }}</td>
                     </tr>
                     <tr>
-                        <td>9.</td>
+                        <td class="title">9.</td>
                         <td>
-                            Tashkilot izlanuvchilari biriktirilgan ilmiy rahbarlar soni .
+                            Tashkilot izlanuvchilari biriktirilgan ilmiy rahbarlar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->biriktirilgan_rahbarlar ?? null }}</td>
                     </tr>
                     <tr class="bg-gray-200">
-                        <td>10.</td>
+                        <td class="title">10.</td>
                         <td>
-                            Qo‘shimcha izlanuvchi biriktirish bo‘yicha kollegial organ qarori mavjud bo'lmagan ilmiy rahbarlar soni .
+                            Qo‘shimcha izlanuvchi biriktirish bo‘yicha kollegial organ qarori mavjud bo'lmagan ilmiy rahbarlar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->kollegial_rahbarlar ?? null }}</td>
                     </tr>
                     <tr>
-                        <td>11.</td>
+                        <td class="title">11.</td>
                         <td>
-                            Me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni .
+                            Me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->meyoridan_rahbarlar ?? null }}</td>
                     </tr>
                     <tr class="bg-gray-200">
-                        <td>12.</td>
+                        <td class="title">12.</td>
                         <td>
-                            Tashkilot miqyosida me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni .
+                            Tashkilot miqyosida me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni.
                         </td>
-                        <td>0</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->tash_ortiq_rahbarlar ?? null }}</td>
                     </tr>
 
                 </tbody>
@@ -308,7 +308,7 @@
             <div class="footer">
                 <div class="footer-info">
                     {{-- <p>Ekspert F.I.Sh: {{  $tekshirivchilar->fish ?? null }} </p> --}}
-                    <p>Sana: {{  $tekshirivchilar->created_at ?? null }}</p>
+                    <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at ?? null }}</p>
                 </div>
                 <div class="qr-code">
                     <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;"
