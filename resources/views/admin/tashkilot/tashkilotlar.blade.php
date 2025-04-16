@@ -102,7 +102,7 @@
                                         class="font-medium">{{ $tashkilots->name }}</a>
                                 </td>
                                 <td>
-                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
+                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
                                 </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">

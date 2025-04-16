@@ -39,7 +39,7 @@
                                                 <i data-feather="users" class="report-box__icon text-theme-3" style="color: #E64242;" ></i>
                                             </div>
                                             <div class="w-2/4 flex-none">
-                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">0/0</div>
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $doktarantura_count }}/0</div>
                                                 <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy izlanuvchilar</div>
                                             </div>
                                         </div>
@@ -77,9 +77,9 @@
                                                 <td style="text-align: center;font-weight: 600;">{{ $region->tashkilots()->where('doktarantura_is', 1)->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->where('tashkilot_turi', 'otm')->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->where('tashkilot_turi', 'itm')->count() }} </td>
-                                                <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->where('tashkilot_turi', null)->count() }} </td>
-                                            
-                                                <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->where('doktarantura_is', 1)->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->where('tashkilot_turi', 'boshqa')->count() }} </td>
+
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->withCount('doktaranturalar')->get()->sum('doktaranturalar_count') }} </td>
                                             </tr>
                                             @endforeach
                                         </tbody>

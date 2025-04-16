@@ -46,6 +46,10 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
             'stajirovka_is',
             'ilmiyloyiha_is',
             'doktarantura_is',
+            'Asbob-uskunalar soni',
+            'Ilmiy stajirovka nafar',
+            'Ilmiy loyihalar soni',
+            'Ilmiy izlanuvchilar nafar',
         ];
     }
 
@@ -78,6 +82,10 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
             $tashkilot->stajirovka_is ?? 0,
             $tashkilot->ilmiyloyiha_is ?? 0,
             $tashkilot->doktarantura_is ?? 0,
+            $tashkilot->asbobuskunalar->count() ?? 0,
+            $tashkilot->stajirovkalar->count() ?? 0,
+            $tashkilot->ilmiyloyhalar->count() ?? 0,
+            $tashkilot->doktaranturalar->count() ?? 0,
         ];
     }
 }

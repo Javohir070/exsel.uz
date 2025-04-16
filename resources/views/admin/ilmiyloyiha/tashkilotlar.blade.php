@@ -77,7 +77,7 @@
                                     {{ $tashkilots->stir_raqami  }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
+                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
                                 </td>
                                 <td style="text-align: center;">
                                     {{ $tashkilots->ilmiyloyhalar()->where('is_active', 1)->count()  }}

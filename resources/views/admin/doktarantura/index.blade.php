@@ -52,6 +52,7 @@
                             <th class="whitespace-no-wrap">Tashkilot Nomi</th>
                             <th class="whitespace-no-wrap">Tashkilot STIR raqami</th>
                             <th class="whitespace-no-wrap">Tashkilot turi</th>
+                            <th class="whitespace-no-wrap">Ilmiy izlanivchilar</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
@@ -67,8 +68,11 @@
                                 <td style="text-align: center;">
                                     {{ $tashkilots->stir_raqami  }}
                                 </td>
-                                <td>
-                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
+                                <td style="text-align: center;">
+                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
+                                </td>
+                                <td style="text-align: center;">
+                                    {{ $tashkilots->doktaranturalar->count() }}
                                 </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">

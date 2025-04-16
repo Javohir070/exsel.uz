@@ -96,7 +96,7 @@ class DoktaranturaController extends Controller
 
         } while ($url);
 
-        
+
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli import qilindi!');
     }
 
@@ -104,7 +104,7 @@ class DoktaranturaController extends Controller
     {
         $doktarantura = Doktarantura::findOrFail($id);
 
-        return response()->json($doktarantura); 
+        return response()->json($doktarantura);
     }
 
     public function show($id, Request $request)
@@ -157,12 +157,12 @@ class DoktaranturaController extends Controller
         $data = $response->json();
         // $data_last = $response_list->json();
 
-        
+
         if (!isset($data_main) || !is_array($data_main)) {
             return response()->json(["error" => "daraja.ilmiy.uz platformasida tashkilot STIR raqami kiritilmagan yoki noto'g'ri kiritilgan"], 400);
         }
-        
-        
+
+
         $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->get();
         $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->first();
         $doktaranturas = Doktarantura::where('tashkilot_id', '=', $id)->paginate(20);
@@ -196,9 +196,9 @@ class DoktaranturaController extends Controller
         $tashkilotlar = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->paginate(30);
         $regions = Region::orderBy('order')->get();
         $doktarantura = Tashkilot::where('doktarantura_is', 1)->count();
-        $tash_count = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->count();
+        $doktarantura_count = Doktarantura::count();
         $doktarantura_expert = Doktaranturaexpert::count();
-        return view('admin.doktarantura.viloyat', ['doktarantura_expert' => $doktarantura_expert, 'regions' => $regions, 'doktarantura' => $doktarantura]);
+        return view('admin.doktarantura.viloyat', ['doktarantura_expert' => $doktarantura_expert, 'regions' => $regions, 'doktarantura' => $doktarantura, 'doktarantura_count'=>$doktarantura_count]);
     }
 
     public function tashkilot_turi_doktarantura($id)
@@ -219,10 +219,11 @@ class DoktaranturaController extends Controller
 
         foreach ($groups as $key => $group) {
             $results[$key] = [
-                'oktarantura' => $group->pluck('oktarantura')->flatten()->where('is_active', 1)->count(),
+                'doktaranturalar' => $group->pluck('doktaranturalar')->flatten()->count(),
             ];
         }
         $regions = Region::findOrFail($id);
+        // dd($results);
 
         return view('admin.doktarantura.tashkilot_turi', ['results' => $results, 'regions' => $regions]);
     }

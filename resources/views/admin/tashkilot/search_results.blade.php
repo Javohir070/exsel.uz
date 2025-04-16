@@ -204,7 +204,7 @@
                                     class="font-medium">{{ $tashkilots->name }}</a>
                             </td>
                             <td>
-                                {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : 'OTM' }}
+                                {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
@@ -286,6 +286,7 @@
                 <table class="table">
                     <thead style="background: #F4F8FC;">
                         <tr>
+                            <th class="whitespace-no-wrap">T/r</th>
                             <th class="whitespace-no-wrap">Tashkilot nomi</th>
                             <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
                             <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
@@ -296,13 +297,14 @@
                     <tbody>
                         @foreach ($tashkilotlar as $region)
                         <tr style="border-bottom: 1px solid #E6E6E6;">
+                            <td style="text-align: center;">{{  ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}</td>
                             <td style="color:#1881D3; font-weight: 400;">
                               <a href="{{ route('tashkilotmalumotlar.show', $region->id) }}">{{ $region->name }}</a>
                             </td>
                             <td style="text-align: center;">{{ $region->ilmiyloyhalar()->where('is_active', 1)->count() }}</td>
                             <td style="text-align: center;">{{ $region->stajirovkalar()->count() }}</td>
                             <td style="text-align: center;">{{ $region->asbobuskunalar()->where('is_active', 1)->count() }}</td>
-                            <td style="text-align: center;">{{ $region->doktarantura_is ? '✓' : '✗' }}</td>
+                            <td style="text-align: center;">{{ $region->doktaranturalar()->count() }}</td>
                         </tr>
                         @endforeach
                     </tbody>

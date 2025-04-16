@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Asbobuskuna;
 use App\Models\Asbobuskunaexpert;
+use App\Models\Doktarantura;
 use App\Models\Doktaranturaexpert;
 use App\Models\IlmiyLoyiha;
 use App\Models\Region;
@@ -223,7 +224,7 @@ class TashkilotController extends Controller
 
         // Tashkilotlar bo'yicha maxsus hisoblashlar
         $tash_countest = Tashkilot::where('doktarantura_is', 1)->where('region_id', '=', 13)->count();
-        $doktarantura_count = $tashkilotlars->where('doktarantura_is', 1)->count();
+        $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $tashkilot_ids)->count();
 
         // Endi to'liq hisobotlarni olish
         $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $tashkilot_ids)->count();

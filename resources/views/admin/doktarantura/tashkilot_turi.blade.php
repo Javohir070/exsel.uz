@@ -12,7 +12,7 @@
                                 }
                             </style>
 
-                           
+
 
                             <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
                                 <div class="intro-y block sm:flex items-center py-4" style="justify-content: space-between;">
@@ -35,32 +35,32 @@
                                         <tbody>
                                             <tr>
                                                 <td style="color:#1881D3; font-weight: 400;">
-                                                    <a href="{{ route('search_dok', ['id' => $regions->id, 'type'=>'otm']) }}">OTM</a>     
+                                                    <a href="{{ route('search_dok', ['id' => $regions->id, 'type'=>'otm']) }}">OTM</a>
                                                     </td>
                                                 <td style="text-align: center;">
                                                     {{ $regions->tashkilots()->where('doktarantura_is', 1)->where('tashkilot_turi', 'otm')->count() }}
                                                 </td>
-                                                <td style="text-align: center;">0</td>
+                                                <td style="text-align: center;">{{ $results['otm']['doktaranturalar'] }}</td>
                                             </tr>
                                             <tr>
                                                 <td style="color:#1881D3; font-weight: 400;">
-                                                    <a href="{{ route('search_dok', ['id' => $regions->id,'type'=>'itm']) }}"> Ilmiy tashkilotlar</a>    
+                                                    <a href="{{ route('search_dok', ['id' => $regions->id,'type'=>'itm']) }}"> Ilmiy tashkilotlar</a>
                                                 </td>
                                                 <td style="text-align: center;">
                                                     {{ $regions->tashkilots()->where('doktarantura_is', 1)->where('tashkilot_turi', 'itm')->count() }}
                                                 </td>
-                                                <td style="text-align: center;">0</td>
+                                                <td style="text-align: center;">{{ $results['itm']['doktaranturalar'] }}</td>
                                             </tr>
                                             <tr>
                                                 <td style="color:#1881D3; font-weight: 400;">
-                                                    <a href="{{ route('search_dok', ['id' => $regions->id, 'type'=>'boshqa']) }}">Boshqa tashkilotlar</a>    
+                                                    <a href="{{ route('search_dok', ['id' => $regions->id, 'type'=>'boshqa']) }}">Boshqa tashkilotlar</a>
                                                 </td>
                                                 <td style="text-align: center;">
                                                     {{ $regions->tashkilots()->where('doktarantura_is', 1)->where('tashkilot_turi', 'boshqa')->count() }}
                                                 </td>
-                                                <td style="text-align: center;">0</td>
+                                                <td style="text-align: center;">{{ $results['other']['doktaranturalar'] }}</td>
                                             </tr>
-                                            
+
                                         </tbody>
                                     </table>
                                 </div>
