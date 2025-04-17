@@ -48,6 +48,8 @@ class Loyihaiqtisodi extends Model
         'xarid_r',
         'xarid_sh',
         'yetkb_yuridik_nomi',
+        'uzlashtirilishi_summasi',
+        'uzlashtirilishi_sum_i',
     ];
 
     public function tashkilot()

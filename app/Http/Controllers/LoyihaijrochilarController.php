@@ -13,21 +13,20 @@ use Illuminate\Support\Facades\Http;
 
 class LoyihaijrochilarController extends Controller
 {
-    public function index(Request $request)
-    {
+    // public function index(Request $request)
+    // {
 
-        $sms_username = "PxNhTIvMGoVdUSFOsmfaVrc3fwb5HABmZ9Y4WLYb";
-        $sms_password = "4JnUEYZ3rWBntf3Rxatl2bwQ8tepv06gmh5WkKCl0YNHc4C8I0wHms5oG4EkTvWz2wMAhqVliOTnZHwPXjKbv5jZufjEeS3WftD9hRPef7OclBUuesIixWKOSpus8zZm";
-        $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$request->scienceid}/";
-        $response_main = Http::withBasicAuth($sms_username, $sms_password)
-            ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
-            ->get($url_main);
+    //     $sms_username = "PxNhTIvMGoVdUSFOsmfaVrc3fwb5HABmZ9Y4WLYb";
+    //     $sms_password = "4JnUEYZ3rWBntf3Rxatl2bwQ8tepv06gmh5WkKCl0YNHc4C8I0wHms5oG4EkTvWz2wMAhqVliOTnZHwPXjKbv5jZufjEeS3WftD9hRPef7OclBUuesIixWKOSpus8zZm";
+    //     $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$request->scienceid}/";
+    //     $response_main = Http::withBasicAuth($sms_username, $sms_password)
+    //         ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
+    //         ->get($url_main);
 
-        $data_tach = $response_main->json();
+    //     $data_tach = $response_main->json();
 
-        dd($data_tach);
-        return view('loyihaijrochilar', compact('data_tach'));
-    }
+    //     return view('loyihaijrochilar', compact('data_tach'));
+    // }
 
     public function store(Request $request)
     {
@@ -52,7 +51,7 @@ class LoyihaijrochilarController extends Controller
 
         $data = null;
         $errorMessage = null;
-        
+
         $shtat_sum = 0;
 
 
@@ -73,7 +72,7 @@ class LoyihaijrochilarController extends Controller
                 $data = null; // Ma'lumotni bekor qilamiz
             }
         }
-        
+
 
         // $data = $response_main->json();
         $create = Loyihaijrochilar::create([

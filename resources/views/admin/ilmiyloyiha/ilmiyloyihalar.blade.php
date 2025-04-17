@@ -49,7 +49,7 @@
                         <th class="whitespace-no-wrap">Loyiha turi</th>
                         <th class="whitespace-no-wrap">Loyiha rahbari F.I.Sh</th>
                         <th class="whitespace-no-wrap">Raqami</th>
-                        <th class="whitespace-no-wrap" style="width: 150px;">
+                        {{-- <th class="whitespace-no-wrap" style="width: 150px;">
                             <form method="GET" action="{{ route('searchloyiha') }}">
                                 <select class="form-select" aria-label="Default select example" name="query"
                                     onchange="this.form.submit()">
@@ -58,7 +58,7 @@
                                     <option value="Yakunlangan">Yakunlangan</option>
                                 </select>
                             </form>
-                        </th>
+                        </th> --}}
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -80,9 +80,9 @@
                             <td>
                                 {{ $xodimlar->raqami }}
                             </td>
-                            <td>
+                            {{-- <td>
                                 {{ $xodimlar->status }}
-                            </td>
+                            </td> --}}
 
 
                             <td class="table-report__action w-56">

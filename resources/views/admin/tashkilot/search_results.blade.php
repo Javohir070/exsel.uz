@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">{{ $tash_count ?? 404 }} ta tashkilot topildi.</h2>
+            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 404 }} ta</h2>
 
             <!-- <a href="{{ route('tashkilot.create') }}"  class="button w-24 bg-theme-1 text-white">
                         Qo'shish
@@ -44,7 +44,7 @@
                         </svg>
                     </form>
                 </div>
-                <form method="GET" action="{{ route('search') }}">
+                {{-- <form method="GET" action="{{ route('search') }}">
                     <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query"
                         onchange="this.form.submit()">
                         <option value="">Barchasi OTM & ITM</option>
@@ -60,7 +60,7 @@
                             <option value="{{ $v->id }}">{{ $v->oz }}</option>
                         @endforeach
                     </select>
-                </form>
+                </form> --}}
             </div>
 
             {{-- <div>

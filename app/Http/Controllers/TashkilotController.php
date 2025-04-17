@@ -11,6 +11,7 @@ use App\Models\Region;
 use App\Models\Stajirovka;
 use App\Models\Stajirovkaexpert;
 use App\Models\Tashkilot;
+use App\Models\Tekshirivchilar;
 use Illuminate\Http\Request;
 use App\Exports\TashkilotExport;
 use App\Exports\TashkilotXodimlarExport;
@@ -186,7 +187,32 @@ class TashkilotController extends Controller
         }
         $regions = Region::findOrFail( $id );
 
-        return view('admin.tashkilot.tashkilot_turi',['results' => $results, 'regions'=>$regions]);
+        $id_tash = $tashkilotlarQuery->pluck('id');
+        $tashkilotlar = $tashkilotlarQuery->count();
+
+        $doktarantura = Doktarantura::whereIn('tashkilot_id', $id_tash)->count();
+        $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id_tash)->count();
+        $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id_tash)->count();
+        $asboblar_count = Asbobuskuna::where('is_active',1)->whereIn('tashkilot_id', $id_tash)->count();
+        $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id_tash)->count();
+        $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id_tash)->count();
+        $loy_count = IlmiyLoyiha::where('is_active',1)->whereIn('tashkilot_id', $id_tash)->count();
+        $loy_expert = Tekshirivchilar::where('is_active',1)->whereIn('tashkilot_id', $id_tash)->count();
+
+        return view('admin.tashkilot.tashkilot_turi',[
+                        'results' => $results,
+                        'regions' => $regions,
+                        'tashkilotlar' => $tashkilotlar,
+                        'loy_count' => $loy_count,
+                        'stajirovka_count' => $stajirovka_count,
+                        'asboblar_count' => $asboblar_count,
+                        'doktarantura' => $doktarantura,
+                        'stajirovka_expert' => $stajirovka_expert,
+                        'asboblar_expert' => $asboblar_expert,
+                        'loy_expert' => $loy_expert,
+                        'doktarantura_expert' => $doktarantura_expert,
+                        'tashkilotlarQuery' => $tashkilotlarQuery,
+        ]);
     }
 
     public function search(Request $request)

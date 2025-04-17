@@ -109,7 +109,7 @@
                     <tr>
                         <!-- <td>1.1.</td> -->
                         <td>Loyiha mavzusi</td>
-                        <td>{{ $ilmiyloyiha->mavzusi }}, {{ $ilmiyloyiha->mavzusi_ru }}</td>
+                        <td>Uz: {{ $ilmiyloyiha->mavzusi }}, <br> Ru:{{ $ilmiyloyiha->mavzusi_ru }}</td>
                     </tr>
                     <tr>
                         <!-- <td>1.2.</td> -->
@@ -205,50 +205,46 @@
                     <tr>
                         <!-- <td>3.1.5.</td> -->
                         <td><b> Intellektual faoliyat natijalari soni </b>(ixtiro uchun olingan patentlari, ixtiro uchun patentga berilgan buyurtmalar, dasturiy mahsulotga olingan guvohnomalar)</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-
-                    <tr>
-                        <!-- <td>3.1.5.</td> -->
-                        <td><b> Umumiy ajratilgan mablag‘, mln.so‘m</b></td>
-                        <td colspan="4">{{ $ilmiyloyiha->sum }}</td>
+                        <td>{{ ($intellektual->ixtiro_olingan_psreja ?? 0) + ($intellektual->ixtiro_ber_psreja ?? 0) + ($intellektual->dasturiy_gsreja ?? 0)}}</td>
+                        <td>{{ ($intellektual->dasturiy_gsamalda ?? 0) + ($intellektual->ixtiro_ber_psamalda ?? 0) + ($intellektual->ixtiro_olingan_psamalda ?? 0)}}</td>
+                        <td>{{ (($intellektual->ixtiro_olingan_psreja ?? 0) + ($intellektual->ixtiro_ber_psreja ?? 0) + ($intellektual->dasturiy_gsreja ?? 0)) - (($intellektual->dasturiy_gsamalda ?? 0) + ($intellektual->ixtiro_ber_psamalda ?? 0) + ($intellektual->ixtiro_olingan_psamalda ?? 0))}}</td>
+                        <td>
+                            {{ $intellektual->ixtiro_olingan_izoh }}, {{ $intellektual->ixtiro_ber_izoh ?? null }},  {{ $intellektual->dasturiy_izoh ?? null }}
+                        </td>
                     </tr>
 
                     <tr>
                         <!-- <td>3.1.5.</td> -->
                         <td><b> Mablag‘ning o‘zlashtirilishi, mln.so‘mi</b></td>
-                        <td colspan="4"></td>
+                        <td colspan="4">{{ $loyihaiqtisodi->uzlashtirilishi_summasi ?? "" }}</td>
                     </tr>
 
                     <tr>
                         <!-- <td>1.</td> -->
                         <td>Ilmiy-tadqiqot ishlarining shartnoma va uning kalendar rejasiga asosan bajarilish holati</td>
-                        <td colspan="4">{{$ilmiyloyiha->tekshirivchilars->kalendar }}</td>
+                        <td colspan="4">{{$tekshirivchilar->kalendar ?? "" }}</td>
                     </tr>
                     <tr>
                         <!-- <td>2.</td> -->
                         <td>Ijrochi tashkilot tomonidan loyihaning amalga oshirilishi uchun zarur shart-sharoitlar yaratib berilganligi</td>
-                        <td colspan="4">{{$ilmiyloyiha->tekshirivchilars->shart_sharoit_yaratib }}</td>
+                        <td colspan="4">{{$tekshirivchilar->shart_sharoit_yaratib ?? "" }}</td>
                     </tr>
                     <tr>
                         <!-- <td>3.</td> -->
                         <td>Loyiha doirasida qo‘lga kiritilgan yakuniy natijalar va ularni tijoratlashtirish imkoniyatlari</td>
-                        <td colspan="4">{{$ilmiyloyiha->tekshirivchilars->yakuniy_natijalar }}</td>
+                        <td colspan="4">{{$tekshirivchilar->yakuniy_natijalar ?? "" }}</td>
                     </tr>
                     <tr>
                         <!-- <td>4.</td> -->
                         <td>Loyiha ijrochilarining o‘zgarishi holati</td>
-                        <td colspan="4">{{$ilmiyloyiha->tekshirivchilars->loyiha_ijrochilari }}</td>
+                        <td colspan="4">{{$tekshirivchilar->loyiha_ijrochilari ?? "" }}</td>
                     </tr>
                 </tbody>
             </table>
-        <h2 class="subtitle">Monitoring xulosasi: {{$ilmiyloyiha->tekshirivchilars->status }}</h2>
-        <p>Monitoring o'tkazilgan sana: {{ $ilmiyloyiha->updated_at }} y.</p>
+        <h2 class="subtitle">Monitoring xulosasi: {{$tekshirivchilar->status ?? "" }}</h2>
+        <p>Monitoring o'tkazilgan sana: {{ $tekshirivchilar->updated_at ?? "" }} y.</p>
         <p>O'rganish o'tkazgan ishchi guruh:</p>
-        <p>{{$ilmiyloyiha->tekshirivchilars->fish }}</p>
+        <p>{{$tekshirivchilar->fish ?? "" }}</p>
         <!--  QrCode  yozasiz -->
         <div class="footer-qr" style="display: flex;gap:10px;">
             <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;" alt="Qr code"

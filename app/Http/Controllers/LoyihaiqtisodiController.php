@@ -51,6 +51,7 @@ class LoyihaiqtisodiController extends Controller
             'xarid_r'=> $request->xarid_r,
             'xarid_s'=> $request->xarid_s,
             'yetkb_yuridik_nomi'=> $request->yetkb_yuridik_nomi,
+            'uzlashtirilishi_summasi' => $request->uzlashtirilishi_summasi,
         ]);
 
         return redirect()->back()->with('status','Loyiha qisodi yangilandi');
@@ -71,7 +72,7 @@ class LoyihaiqtisodiController extends Controller
 
     public function update(UpdateLoyihaiqtisodiRequest $request, Loyihaiqtisodi $loyihaiqtisodi)
     {
-        
+
         if ($request->izohlar==1) {
             $loyihaiqtisodi->update([
             "hisobot_davri_i" =>$request->hisobot_davri_i,
@@ -85,13 +86,14 @@ class LoyihaiqtisodiController extends Controller
             "boshqa_xarajat_i" =>$request->boshqa_xarajat_i,
             "tashustama_xarajat_i" =>$request->tashustama_xarajat_i,
             "xarid_qilingan_i" =>$request->xarid_qilingan_i,
+            'uzlashtirilishi_sum_i' => $request->uzlashtirilishi_sum_i,
             ]);
         } else {
             $loyihaiqtisodi->update([
                 'hisobot_davri'=> $request->hisobot_davri,
                 'loyihabaj_ishlanma'=> $request->loyihabaj_ishlanma,
                 'ilmiy_ishlanmalar'=> $request->ilmiy_ishlanmalar,
-                
+
                 'mehnat_haq_r'=> $request->mehnat_haq_r,
                 'mehnat_haq_a'=> $request->mehnat_haq_a,
                 'xizmat_saf_r'=> $request->xizmat_saf_r,
@@ -106,15 +108,16 @@ class LoyihaiqtisodiController extends Controller
                 'boshqa_xarajat_a'=> $request->boshqa_xarajat_a,
                 'tashustama_xarajat_r'=> $request->tashustama_xarajat_r,
                 'tashustama_xarajat_a'=> $request->tashustama_xarajat_a,
-    
+
                 'xarid_qilingan_xarid'=> $request->xarid_qilingan_xarid,
                 'xarid_sh'=>$request->xarid_qilingan_xarid == "yo'q" ? null : $request->xarid_sh,
                 'xarid_r'=> $request->xarid_qilingan_xarid == "yo'q" ? null : $request->xarid_r,
                 'xarid_s'=> $request->xarid_qilingan_xarid == "yo'q" ? null : $request->xarid_s,
                 'yetkb_yuridik_nomi'=> $request->xarid_qilingan_xarid == "yo'q" ? null : $request->yetkb_yuridik_nomi,
+                'uzlashtirilishi_summasi' => $request->uzlashtirilishi_summasi,
             ]);
         }
-        
+
 
         return redirect()->back()->with('status','Loyiha qisodi yangilandi');
     }

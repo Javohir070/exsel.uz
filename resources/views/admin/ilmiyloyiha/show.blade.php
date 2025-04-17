@@ -847,15 +847,17 @@
                                     <td class="border" style="text-size:14px;">
                                         <b>Mablag‘ning o‘zlashtirilishi, mln.so‘m</b>
                                     </td>
+
                                     <td class="border">
-                                        
+                                        {{ $loyihaiqtisodi->uzlashtirilishi_summasi ?? null }}
+                                     </td>
+                                    <td class="border">
+                                        {{ $ilmiyloyiha->sum ?? null }}
                                     </td>
                                     <td class="border">
-                                        
+                                        {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->uzlashtirilishi_summasi ?? 0) - preg_replace('/\D/', '', $ilmiyloyiha->sum ?? 0)) }}
                                     </td>
-                                    <td class="border">
-                                    </td>
-                                    <td class="border"></td>
+                                    <td class="border">{{ $loyihaiqtisodi->uzlashtirilishi_sum_i ?? null }}</td>
                                 </tr>
                             </table>
                         </div>
@@ -1068,7 +1070,7 @@
                                 </div>
                             @endrole
                         @endif
-                        
+
                     </div>
 
                 </div>
@@ -1584,6 +1586,19 @@
                                                 @enderror
                                             </td>
                                         </tr>
+                                        <tr>
+                                            <td class="border" style="text-size:16px;">
+                                                Mablag‘ning o‘zlashtirilishi, mln.so‘m
+                                            </td>
+                                            <td class="border" colspan="2">
+                                                <input type="text" name="uzlashtirilishi_summasi" id="sumInput1" oninput="formatNumber(this)"
+                                                    value="{{ old('uzlashtirilishi_summasi') }}"
+                                                    class="input w-full border mt-2" required="">
+                                                @error('uzlashtirilishi_summasi')
+                                                    <div class="error">{{ $message }}</div>
+                                                @enderror
+                                            </td>
+                                        </tr>
                                     </table>
                                 </div>
 
@@ -1923,6 +1938,19 @@
                                                     value="{{ $loyihaiqtisodi->yetkb_yuridik_nomi ?? '' }}"
                                                     class="input w-full border mt-2" required="">
                                                 @error('yetkb_yuridik_nomi')
+                                                    <div class="error">{{ $message }}</div>
+                                                @enderror
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border" style="text-size:16px;">
+                                                Mablag‘ning o‘zlashtirilishi, mln.so‘m
+                                            </td>
+                                            <td class="border" colspan="2">
+                                                <input type="text" name="uzlashtirilishi_summasi" id="sumInput1" oninput="formatNumber(this)"
+                                                     value="{{ $loyihaiqtisodi->uzlashtirilishi_summasi ?? '' }}"
+                                                    class="input w-full border mt-2" required="">
+                                                @error('uzlashtirilishi_summasi')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
                                             </td>
@@ -2636,7 +2664,7 @@
                                                         <select name="turi" value="{{old('turi')}}" id="science-sub12-category"
                                                             class="input border w-full mt-2" required="">
 
-                                                            <option value=""></option>
+                                                            <option value="{{ $ilmiyloyiha->turi ?? ''}}">{{ $ilmiyloyiha->turi ?? ''}}</option>
 
                                                             <option value="Amaliy">Amaliy</option>
 
@@ -2666,7 +2694,7 @@
                                                 <td class="border">Shartnoma raqami</td>
                                                 <td class="border">
                                                     <input type="text" name="sh_raqami"
-                                                        value="{{ $ilmiyloyiha->abcd ?? '' }}"
+                                                        value="{{ $ilmiyloyiha->sh_raqami ?? '' }}"
                                                         class="input w-full border mt-2" required="">
                                                 </td>
                                             </tr>
@@ -2675,7 +2703,7 @@
                                                 <td class="border">Shartnoma sanasi</td>
                                                 <td class="border">
                                                     <input type="date" name="sanasi"
-                                                        value="{{ $ilmiyloyiha->abcd ?? '' }}"
+                                                        value="{{ $ilmiyloyiha->sanasi ?? '' }}"
                                                         class="input w-full border mt-2" required="">
                                                 </td>
                                             </tr>
@@ -2701,7 +2729,7 @@
                                                 {{-- <td class="border">1.6.</td> --}}
                                                 <td class="border">Loyihaning umumiy qiymati, ming soʻm</td>
                                                 <td class="border">
-                                                    <input type="text" name="sum"
+                                                    <input type="text" name="sum"  id="sumInput1" oninput="formatNumber(this)"
                                                         value="{{ $ilmiyloyiha->sum ?? '' }}"
                                                         class="input w-full border mt-2" required="">
                                                 </td>
@@ -2710,7 +2738,7 @@
                                                 {{-- <td class="border">1.6.1.</td> --}}
                                                 <td class="border">Joriy yil uchun ajratilgan mablagʻ, ming soʻm</td>
                                                 <td class="border">
-                                                    <input type="text" name="joriy_yil_sum"
+                                                    <input type="text" name="joriy_yil_sum" id="sumInput1" oninput="formatNumber(this)"
                                                         value="{{ $ilmiyloyiha->joriy_yil_sum ?? '' }}"
                                                         class="input w-full border mt-2" required="">
                                                 </td>
@@ -2751,19 +2779,19 @@
                                                         class="input w-full border mt-2" required=""> --}}
                                                         <select name="rahbariilmiy_darajasi" id="rahbariilmiy_darajasi" value="{{ old('rahbariilmiy_darajasi') }}" id="science-sub-category" class="input border w-full mt-2">
 
-                                                            <option value=""></option>
-                                    
+                                                            <option value="{{ $ilmiyloyiha->rahbariilmiy_darajasi ?? ''}}">{{ $ilmiyloyiha->rahbariilmiy_darajasi ?? ''}}</option>
+
                                                             <option value="Fan nomzodi">Fan nomzodi</option>
-                                    
+
                                                             <option value="Falsafa doktori (PhD)">Falsafa doktori (PhD)</option>
-                                    
+
                                                             <option value="Fan doktori (DSc)">Fan doktori (DSc)</option>
-                                    
+
                                                             <option value="Fan doktori">Fan doktori</option>
-                                    
+
                                                             <option value="Akademik">Akademik</option>
                                                             <option value="mavjud emas">mavjud emas</option>
-                                    
+
                                                         </select><br>
                                                         @error('rahbariilmiy_darajasi')
                                                             <div class="error">{{ $message }}</div>
@@ -2779,15 +2807,15 @@
                                                         class="input w-full border mt-2" required=""> --}}
                                                         <select name="rahbariilmiy_unvoni" id="rahbariilmiy_unvoni" value="{{ old('rahbariilmiy_unvoni') }}" id="science-sub-category" class="input border w-full mt-2">
 
-                                                            <option value=""></option>
-                                    
+                                                            <option value="{{ $ilmiyloyiha->rahbariilmiy_unvoni ?? ''}}">{{ $ilmiyloyiha->rahbariilmiy_unvoni ?? ''}}</option>
+
                                                             <option value="Professor">Professor</option>
-                                    
+
                                                             <option value="Dotsent">Dotsent</option>
                                                             <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
                                                             <option value="Akademik">Akademik</option>
                                                             <option value="mavjud emas">mavjud emas</option>
-                                    
+
                                                         </select><br>
                                                         @error('rahbariilmiy_unvoni')
                                                             <div class="error">{{ $message }}</div>
@@ -2802,7 +2830,7 @@
                                                         value="{{ $ilmiyloyiha->r_lavozimi ?? '' }}"
                                                         class="input w-full border mt-2" required=""> --}}
                                                         <select name="r_lavozimi" value="{{ old('r_lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
-                                                            <option value=""></option>
+                                                            <option value="{{ $ilmiyloyiha->r_lavozimi ?? ''}}">{{ $ilmiyloyiha->r_lavozimi ?? ''}}</option>
                                                             <option value="Dekan o‘rinbosari">Dekan o‘rinbosari</option>
                                                             <option value="Kafedra mudiri">Kafedra mudiri</option>
                                                             <option value="Professor">Professor</option>
@@ -2822,7 +2850,7 @@
                                                             <option value="Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri">Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri</option>
                                                             <option value="Umumiy masalalar bo‘yicha direktor o‘rinbosari">Umumiy masalalar bo‘yicha direktor o‘rinbosari</option>
                                                             <option value="Moliya-iqtisod bo‘limi boshlig‘i">Moliya-iqtisod bo‘limi boshlig‘i</option>
-                                    
+
                                                             <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option>
                                                             <option value="Bosh muhandis">Bosh muhandis</option>
                                                             <option value="Bosh energetik">Bosh energetik</option>
@@ -2834,7 +2862,7 @@
                                                             <option value="Maslahatchi">Maslahatchi</option>
                                                             <option value="Laborant">Laborant</option>
                                                             <option value="Kadrlar bo‘yicha mutaxassis">Kadrlar bo‘yicha mutaxassis</option>
-                                    
+
                                                             <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option>
                                                             <option value="Yetakchi muhandis">Yetakchi muhandis</option>
                                                             <option value="Bosh ilmiy xodim">Bosh ilmiy xodim</option>
@@ -2842,8 +2870,8 @@
                                                             <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
                                                             <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
                                                             <option value="Ishlab chiqarish bo‘yicha direktor o‘rinbosari">Ishlab chiqarish bo‘yicha direktor o‘rinbosari</option>
-                                    
-                                    
+
+
                                                         </select><br>
                                                         @error('r_lavozimi')
                                                             <div class="error">{{ $message }}</div>
@@ -2917,19 +2945,19 @@
                                                         class="input w-full border mt-2" required=""> --}}
                                                         <select name="avvr_ilmiy_daraja" id="avvr_ilmiy_daraja" value="{{ old('avvr_ilmiy_daraja') }}" id="science-sub-category" class="input border w-full mt-2">
 
-                                                            <option value=""></option>
-                                    
+                                                            <option value="{{ $ilmiyloyiha->avvr_ilmiy_daraja ?? ''}}">{{ $ilmiyloyiha->avvr_ilmiy_daraja ?? ''}}</option>
+
                                                             <option value="Fan nomzodi">Fan nomzodi</option>
-                                    
+
                                                             <option value="Falsafa doktori (PhD)">Falsafa doktori (PhD)</option>
-                                    
+
                                                             <option value="Fan doktori (DSc)">Fan doktori (DSc)</option>
-                                    
+
                                                             <option value="Fan doktori">Fan doktori</option>
-                                    
+
                                                             <option value="Akademik">Akademik</option>
                                                             <option value="mavjud emas">mavjud emas</option>
-                                    
+
                                                         </select><br>
                                                         @error('avvr_ilmiy_daraja')
                                                             <div class="error">{{ $message }}</div>
@@ -2945,15 +2973,15 @@
                                                         class="input w-full border mt-2" required=""> --}}
                                                         <select name="avvr_ilmiy_unvon" id="avvr_ilmiy_unvon" value="{{ old('avvr_ilmiy_unvon') }}" id="science-sub-category" class="input border w-full mt-2">
 
-                                                            <option value=""></option>
-                                    
+                                                            <option value="{{ $ilmiyloyiha->avvr_ilmiy_unvon ?? ''}}">{{ $ilmiyloyiha->avvr_ilmiy_unvon ?? ''}}</option>
+
                                                             <option value="Professor">Professor</option>
-                                    
+
                                                             <option value="Dotsent">Dotsent</option>
                                                             <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
                                                             <option value="Akademik">Akademik</option>
                                                             <option value="mavjud emas">mavjud emas</option>
-                                    
+
                                                         </select><br>
                                                         @error('avvr_ilmiy_unvon')
                                                             <div class="error">{{ $message }}</div>
@@ -2968,7 +2996,7 @@
                                                         value="{{ $ilmiyloyiha->avvr_lavozimi ?? '' }}"
                                                         class="input w-full border mt-2" required=""> --}}
                                                         <select name="avvr_lavozimi" value="{{ old('avvr_lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
-                                                            <option value=""></option>
+                                                            <option value="{{ $ilmiyloyiha->avvr_lavozimi ?? ''}}">{{ $ilmiyloyiha->avvr_lavozimi ?? ''}}</option>
                                                             <option value="Dekan o‘rinbosari">Dekan o‘rinbosari</option>
                                                             <option value="Kafedra mudiri">Kafedra mudiri</option>
                                                             <option value="Professor">Professor</option>
@@ -2988,7 +3016,7 @@
                                                             <option value="Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri">Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri</option>
                                                             <option value="Umumiy masalalar bo‘yicha direktor o‘rinbosari">Umumiy masalalar bo‘yicha direktor o‘rinbosari</option>
                                                             <option value="Moliya-iqtisod bo‘limi boshlig‘i">Moliya-iqtisod bo‘limi boshlig‘i</option>
-                                    
+
                                                             <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option>
                                                             <option value="Bosh muhandis">Bosh muhandis</option>
                                                             <option value="Bosh energetik">Bosh energetik</option>
@@ -3000,7 +3028,7 @@
                                                             <option value="Maslahatchi">Maslahatchi</option>
                                                             <option value="Laborant">Laborant</option>
                                                             <option value="Kadrlar bo‘yicha mutaxassis">Kadrlar bo‘yicha mutaxassis</option>
-                                    
+
                                                             <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option>
                                                             <option value="Yetakchi muhandis">Yetakchi muhandis</option>
                                                             <option value="Bosh ilmiy xodim">Bosh ilmiy xodim</option>
@@ -3008,8 +3036,8 @@
                                                             <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
                                                             <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
                                                             <option value="Ishlab chiqarish bo‘yicha direktor o‘rinbosari">Ishlab chiqarish bo‘yicha direktor o‘rinbosari</option>
-                                    
-                                    
+
+
                                                         </select><br>
                                                         @error('avvr_lavozimi')
                                                             <div class="error">{{ $message }}</div>
@@ -3085,7 +3113,7 @@
                                                         value="{{ $ilmiyloyiha->hamr_lavozimi ?? '' }}"
                                                         class="input w-full border mt-2" required=""> --}}
                                                         <select name="hamr_lavozimi" value="{{ old('hamr_lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
-                                                            <option value=""></option>
+                                                            <option value="{{ $ilmiyloyiha->hamr_lavozimi ?? ''}}">{{ $ilmiyloyiha->hamr_lavozimi ?? ''}}</option>
                                                             <option value="Dekan o‘rinbosari">Dekan o‘rinbosari</option>
                                                             <option value="Kafedra mudiri">Kafedra mudiri</option>
                                                             <option value="Professor">Professor</option>
@@ -3105,7 +3133,7 @@
                                                             <option value="Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri">Ilmiy-tadqiqot laboratoriyasi (bo‘lim) mudiri</option>
                                                             <option value="Umumiy masalalar bo‘yicha direktor o‘rinbosari">Umumiy masalalar bo‘yicha direktor o‘rinbosari</option>
                                                             <option value="Moliya-iqtisod bo‘limi boshlig‘i">Moliya-iqtisod bo‘limi boshlig‘i</option>
-                                    
+
                                                             <option value="Boshqarma boshlig‘i">Boshqarma boshlig‘i</option>
                                                             <option value="Bosh muhandis">Bosh muhandis</option>
                                                             <option value="Bosh energetik">Bosh energetik</option>
@@ -3117,7 +3145,7 @@
                                                             <option value="Maslahatchi">Maslahatchi</option>
                                                             <option value="Laborant">Laborant</option>
                                                             <option value="Kadrlar bo‘yicha mutaxassis">Kadrlar bo‘yicha mutaxassis</option>
-                                    
+
                                                             <option value="Bo‘lim boshlig‘i">Bo‘lim boshlig‘i</option>
                                                             <option value="Yetakchi muhandis">Yetakchi muhandis</option>
                                                             <option value="Bosh ilmiy xodim">Bosh ilmiy xodim</option>
@@ -3125,8 +3153,8 @@
                                                             <option value="Katta ilmiy xodim">Katta ilmiy xodim</option>
                                                             <option value="Kichik ilmiy xodim">Kichik ilmiy xodim</option>
                                                             <option value="Ishlab chiqarish bo‘yicha direktor o‘rinbosari">Ishlab chiqarish bo‘yicha direktor o‘rinbosari</option>
-                                    
-                                    
+
+
                                                         </select><br>
                                                         @error('hamr_lavozimi')
                                                             <div class="error">{{ $message }}</div>
@@ -3578,7 +3606,7 @@
     <div class="modal" id="loyihaiqtisodiekspert-paper-edit-modal">
         <div class="modal__content modal__content--xl">
             <div class="p-5">
-    
+
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                         <form id="loyihaiqtisodiekspert-paper-edit-form-edit" method="POST"
@@ -3587,9 +3615,9 @@
                             @csrf
                             @method('PUT')
                             <div class="grid grid-cols-12 gap-2">
-    
+
                                 <div class="w-full col-span-12">
-    
+
                                     <table class="table table-bordered">
                                         <tr>
                                             <th class="border" style="text-align: center;" colspan="6">III. LOYIHANING MUHIM
@@ -3642,10 +3670,10 @@
                                             <td class="border">
                                                 <textarea name="ilmiy_ishlanmalar_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->ilmiy_ishlanmalar_i ?? null }}
                                                 </textarea>
-                                                
+
                                             </td>
                                         </tr>
-        
+
                                         <tr>
                                             <th class="border" style="text-align: center;" colspan="6">LOYIHANING MOLIYAVIY VA
                                                 IQTISODIY
@@ -3846,15 +3874,35 @@
                                                 {{ $loyihaiqtisodi->yetkb_yuridik_nomi ?? null }}
                                             </td>
                                         </tr>
+                                        <tr>
+                                            {{-- <td class="border">4.7.</td> --}}
+                                            <td class="border" style="text-size:14px;">
+                                                Mablag‘ning o‘zlashtirilishi, mln.so‘m
+                                            </td>
+                                            <td class="border">
+                                                {{ $loyihaiqtisodi->uzlashtirilishi_summasi ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ $ilmiyloyiha->sum ?? null }}
+                                            </td>
+                                            <td class="border">
+                                                {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->uzlashtirilishi_summasi ?? 0) - preg_replace('/\D/', '', $ilmiyloyiha->sum ?? 0)) }}
+                                            </td>
+                                            <td class="border">
+                                                <textarea name="uzlashtirilishi_sum_i" class="input w-full border mt-2" required="">{{ $loyihaiqtisodi->uzlashtirilishi_sum_i ?? null }}</textarea>
+
+                                            </td>
+                                        </tr>
+
                                     </table>
-    
+
                                 </div>
-    
+
                             </div>
                         </form>
                     </div>
                 </div>
-    
+
             </div>
             <div class="px-5 pb-5 text-center">
                 <button type="button" data-dismiss="modal"

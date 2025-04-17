@@ -185,21 +185,20 @@ class IlmiyLoyihaController extends Controller
         // }
 
 
-        $umumiyyil = Umumiyyil::findOrFail($ilmiyloyiha->umumiyyil_id);
-        $umumiyyil->update([
-            "y2017" => $request->y2017 ?? 0,
-            "y2018" => $request->y2018 ?? 0,
-            "y2019" => $request->y2019 ?? 0,
-            "y2020" => $request->y2020 ?? 0,
-            "y2021" => $request->y2021 ?? 0,
-            "y2022" => $request->y2022 ?? 0,
-            "y2023" => $request->y2023 ?? 0,
-            "y2024" => $request->y2024 ?? 0,
-        ]);
-
+        // $umumiyyil = Umumiyyil::findOrFail($ilmiyloyiha->umumiyyil_id);
+        // $umumiyyil->update([
+        //     "y2017" => $request->y2017 ?? 0,
+        //     "y2018" => $request->y2018 ?? 0,
+        //     "y2019" => $request->y2019 ?? 0,
+        //     "y2020" => $request->y2020 ?? 0,
+        //     "y2021" => $request->y2021 ?? 0,
+        //     "y2022" => $request->y2022 ?? 0,
+        //     "y2023" => $request->y2023 ?? 0,
+        //     "y2024" => $request->y2024 ?? 0,
+        // ]);
         $ilmiyloyiha->update([
             "user_id" => auth()->id(),
-            "umumiyyil_id" => $umumiyyil->id,
+            // "umumiyyil_id" => $umumiyyil->id,
             "mavzusi" => $request->mavzusi,
             "mavzusi_ru" => $request->mavzusi_ru,
             "turi" => $request->turi ?? "yo'q",
