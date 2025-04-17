@@ -9,7 +9,7 @@ class Tekshirivchilar extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'fish', 'comment', 'file',  'status', 'ilmiy_loyiha_id', 'is_active',
+    protected $fillable = ['user_id','tashkilot_id', 'fish', 'comment', 'file',  'status', 'ilmiy_loyiha_id', 'is_active',
     'kalendar',
     'shart_sharoit_yaratib',
     'yakuniy_natijalar',

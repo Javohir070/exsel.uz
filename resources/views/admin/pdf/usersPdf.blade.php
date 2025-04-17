@@ -129,7 +129,7 @@
                     <tr>
                         <!-- <td>1.6.</td> -->
                         <td>Ijrochi tashkilot</td>
-                        <td>{{ $ilmiyloyiha->ijrochi_tashkilot }}</td>
+                        <td>{{ $ilmiyloyiha->tashkilot->name }}</td>
                     </tr>
                     <tr>
                         <!-- <td>1.7.</td> -->

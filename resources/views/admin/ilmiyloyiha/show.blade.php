@@ -55,9 +55,11 @@
                 </a>
             </div>
         </div>
+        
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
+
         <style>
             .alert-danger {
                 background-color: #f8d7da;
@@ -69,7 +71,6 @@
                 font-size: 16px;
             }
         </style>
-
 
         <div class="overflow-x-auto mt-2" style="background-color: white;border-radius:8px;">
 
@@ -270,9 +271,6 @@
                         </table>
                     </div>
                 </div>
-
-
-
 
                 <div class="tab-content__pane" id="settings">
 
@@ -863,9 +861,6 @@
                         </div>
                     </div>
                 </div>
-
-
-
 
                 <div class="tab-content__pane" id="add-expert">
 
@@ -2014,7 +2009,6 @@
         });
     </script>
 
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             let haRadio = document.getElementById("horizontal-radio-chris-evans");
@@ -2045,7 +2039,6 @@
             yoqRadio.addEventListener("change", toggleRequired);
         });
     </script>
-
 
     <div class="modal" id="intellektual-paper-create-modal">
         <div class="modal__content modal__content--xl">
@@ -2600,7 +2593,6 @@
             input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
         }
     </script>
-
 
     <div class="modal" id="ilmiyloyiha-paper-edit-modal">
         <div class="modal__content modal__content--xl">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\IlmiyLoyiha;
 use App\Models\Tekshirivchilar;
 use Illuminate\Http\Request;
 use App\Exports\TekshirivchilarExport;
@@ -11,8 +12,10 @@ class TekshirivchilarController extends Controller
 {
     public function store(Request $request)
     {
+        $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiyloyiha_id);
         Tekshirivchilar::create([
             'user_id' => auth()->id(),
+            'tashkilot_id' => $ilmiyloyiha->tashkilot_id,
             'ilmiy_loyiha_id' => $request->ilmiyloyiha_id,
             'fish' => auth()->user()->name,
             "status" => $request->status,
