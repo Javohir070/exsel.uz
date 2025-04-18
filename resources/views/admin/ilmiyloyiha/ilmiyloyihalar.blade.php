@@ -23,7 +23,7 @@
                     Ilmiy loyiha biriktirish
                 </a>
             </div> -->
-            @role(['super-admin', 'Ekspert'])
+            {{-- @role(['super-admin', 'Ekspert'])
             <div>
                 <div>
                     <a href="{{ route('exportilmiy') }}"
@@ -33,7 +33,7 @@
                 </div>
 
             </div>
-            @endrole
+            @endrole --}}
 
         </div>
         @if (session('status'))

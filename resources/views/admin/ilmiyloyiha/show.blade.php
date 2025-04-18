@@ -867,7 +867,7 @@
                     <div class="p-5">
                         @if ($tekshirivchilar != null)
                             <table class="table table-bordered">
-
+                                @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
                                 <div
                                     style="display: flex;justify-content:center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                                     <div style="text-align: center;display: flex;">
@@ -888,6 +888,7 @@
                                     </div>
 
                                 </div>
+                                @endrole
                                 <tbody>
                                     <tr>
                                         <th class="border" style="width: 40px;">T/r</th>
