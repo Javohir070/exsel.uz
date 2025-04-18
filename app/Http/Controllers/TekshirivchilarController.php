@@ -35,4 +35,16 @@ class TekshirivchilarController extends Controller
         $fileName = 'Ilmiyloyiha2024' . now()->format('Y_m_d_H_i_s') . '.xlsx';
         return Excel::download(new TekshirivchilarExport, $fileName);
     }
+
+    public function update(Request $request, Tekshirivchilar $tekshirivchilar)
+    {
+        $tekshirivchilar->update($request->all());
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+    }
+
+    public function destroy(Tekshirivchilar $tekshirivchilar)
+    {
+        $tekshirivchilar->delete();
+        return redirect()->back()->with('status', 'Dalolatnoma muvaffaqiyatli o‘chirildi.');
+    }
 }

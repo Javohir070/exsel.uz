@@ -5,11 +5,11 @@
         <div class="flex justify-between align-center mt-10">
 
             <h2 class="intro-y text-lg font-medium">{{ $ilmiyloyiha->tashkilot->name }} </h2>
-            @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
+            {{-- @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
                 <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
                      Eksport
                 </a>
-            @endrole
+            @endrole --}}
             @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
                 <a href="{{ route('ilmiyloyihalar.index') }}" class="button w-24 bg-theme-1 text-white">
                     Orqaga
@@ -867,6 +867,27 @@
                     <div class="p-5">
                         @if ($tekshirivchilar != null)
                             <table class="table table-bordered">
+
+                                <div
+                                    style="display: flex;justify-content:center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
+                                    <div style="text-align: center;display: flex;">
+                                        <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
+                                            Eksport
+                                       </a>
+                                       <a href="javascript:;" data-target="#doktarantura-paper-create-modal"
+                                            data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white" style="margin-right:20px;">
+                                            Tahrirlash
+                                        </a>
+
+                                        <form action="{{ route('tekshirivchilar.destroy', $tekshirivchilar->id) }}" method="POST" onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
+                                        </form>
+
+                                    </div>
+
+                                </div>
                                 <tbody>
                                     <tr>
                                         <th class="border" style="width: 40px;">T/r</th>
@@ -3904,6 +3925,176 @@
                 <button type="submit" form="loyihaiqtisodiekspert-paper-edit-form-edit"
                     class="update-confirm button w-24 bg-theme-1 text-white">
                     Qo'shish
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="doktarantura-paper-create-modal">
+        <div class="modal__content modal__content--xl">
+            <div class="p-5">
+
+                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
+                    <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                        <form id="doktarantura-paper-create-form" method="POST"
+                            action="{{ route('tekshirivchilar.update', $tekshirivchilar->id ?? 1) }}" class="validate-form"
+                            enctype="multipart/form-data" novalidate="novalidate">
+                            @csrf
+                            @method('PUT')
+                            <div class="grid grid-cols-12 gap-2">
+
+                                <div class="w-full col-span-12">
+                                    <table class="table">
+
+                                        <thead>
+                                            <tr class="bg-gray-200">
+                                                <th class="border border-b-2 " style="width: 40px;">№</th>
+                                                <th class="border border-b-2 " style="width: 60%;">Ko‘rsatkichlar</th>
+                                                <th class="border border-b-2 ">Miqdori</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="border border-b-2 ">1.</td>
+                                                <td class="border border-b-2 ">
+                                                    Ilmiy-tadqiqot ishlarining shartnoma va uning kalendar rejasiga asosan bajarilish holati
+                                                </td>
+                                                <td class="border border-b-2 ">
+                                                    <select name="kalendar" id="science-sub-category"
+                                                        class="input border w-full mt-2" required="">
+
+                                                        <option value="{{ $tekshirivchilar->kalendar }}">{{ $tekshirivchilar->kalendar }}</option>
+
+                                                        <option value="Bajarilgan ">Bajarilgan </option>
+
+                                                        <option value="Bajarilmagan">Bajarilmagan</option>
+                                                    </select><br>
+
+                                                    @error('muddat')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                </td>
+                                            </tr>
+                                            <tr class="bg-gray-200">
+                                                <td class="border border-b-2 ">2.</td>
+                                                <td class="border border-b-2 ">
+                                                    Ijrochi tashkilot tomonidan loyihaning amalga oshirilishi uchun zarur shart-sharoitlar yaratib berilganligi.
+                                                </td>
+                                                <td class="border border-b-2 ">
+                                                    <select name="shart_sharoit_yaratib" id="science-sub-category"
+                                                        class="input border w-full mt-2" required="">
+
+                                                        <option value="{{ $tekshirivchilar->shart_sharoit_yaratib }}">{{ $tekshirivchilar->shart_sharoit_yaratib }}</option>
+
+                                                        <option value="Yaratilgan">Yaratilgan</option>
+
+                                                        <option value="Yaratilmagan">Yaratilmagan</option>
+
+
+                                                    </select><br>
+
+                                                    @error('muddat')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-b-2 ">3.</td>
+                                                <td class="border border-b-2 ">
+                                                    Loyiha doirasida qo‘lga kiritilgan yakuniy natijalar va ularni tijoratlashtirish imkoniyatlari.
+                                                </td>
+                                                <td class="border border-b-2 ">
+                                                    <select name="yakuniy_natijalar" id="science-sub-category"
+                                                        class="input border w-full mt-2" required="">
+
+                                                        <option value="{{ $tekshirivchilar->yakuniy_natijalar }}">{{ $tekshirivchilar->yakuniy_natijalar }}</option>
+
+                                                        <option value="Imkoniyat mavjud">Imkoniyat mavjud</option>
+
+                                                        <option value="Imkoniyat mavjud emas">Imkoniyat mavjud emas</option>
+
+
+                                                    </select><br>
+
+                                                    @error('muddat')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                </td>
+                                            </tr>
+                                            <tr class="bg-gray-200">
+                                                <td class="border border-b-2 ">4.</td>
+                                                <td class="border border-b-2 ">
+                                                    Loyiha ijrochilarining o‘zgarishi holati.
+                                                </td>
+                                                <td class="border border-b-2 ">
+                                                    <select name="loyiha_ijrochilari" id="science-sub-category"
+                                                        class="input border w-full mt-2" required="">
+
+                                                        <option value="{{ $tekshirivchilar->loyiha_ijrochilari }}">{{ $tekshirivchilar->loyiha_ijrochilari }}</option>
+
+                                                        <option value="Mavjud emas">Mavjud emas</option>
+
+                                                        <option value="O‘zgarish mavjud">O‘zgarish mavjud</option>
+
+
+                                                    </select><br>
+
+                                                    @error('muddat')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="border border-b-2 ">5.</td>
+                                                <td class="border border-b-2 ">
+                                                    Monitoring xulosasi.
+                                                </td>
+                                                <td class="border border-b-2 ">
+                                                    <select name="status" id="science-sub-category"
+                                                        class="input border w-full mt-2" required="">
+
+                                                        <option value="{{ $tekshirivchilar->status }}">{{ $tekshirivchilar->status }}</option>
+
+                                                        <option value="Qoniqarli">Qoniqarli</option>
+
+                                                        <option value="Qoniqarsiz">Qoniqarsiz</option>
+
+
+                                                    </select><br>
+
+                                                    @error('muddat')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
+                                                </td>
+                                            </tr>
+
+                                            <tr class="bg-gray-200">
+                                                <td class="border border-b-2 ">14.</td>
+                                                <td class="border border-b-2 ">
+                                                    Izoh.
+                                                </td>
+                                                <td class="border border-b-2 ">
+                                                        <textarea name="comment" id="" class="input w-full border mt-2">{{ $tekshirivchilar->comment ?? null}}</textarea>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="px-5 pb-5 text-center">
+                <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </button>
+                <button type="submit" form="doktarantura-paper-create-form"
+                    class="update-confirm button w-24 bg-theme-1 text-white">
+                    Tasdiqlash
                 </button>
             </div>
         </div>

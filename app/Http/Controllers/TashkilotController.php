@@ -225,7 +225,7 @@ class TashkilotController extends Controller
                                 ->where('region_id', '=', $id)
                                 ->where('tashkilot_turi', '=', $type)
                                 ->paginate(50);
-            $tashkilotlars = Tashkilot::orderBy('name')->where('status', 1)
+            $tashkilotlars = Tashkilot::where('status', 1)
                                 ->where('region_id', '=', $id)
                                 ->where('tashkilot_turi', '=', $type)
                                 ->get();
@@ -235,6 +235,9 @@ class TashkilotController extends Controller
                                     ->where('status', 1)
                                     ->where('name', 'like', '%' . $querysearch . '%')
                                     ->paginate(50);
+            $tashkilotlars = Tashkilot::where('status', 1)
+                                    ->where('name', 'like', '%' . $querysearch . '%')
+                                    ->get();
             $tash_count = $tashkilotlar->total();
         }
 
