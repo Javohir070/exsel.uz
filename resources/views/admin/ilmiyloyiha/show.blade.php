@@ -868,26 +868,26 @@
                         @if ($tekshirivchilar != null)
                             <table class="table table-bordered">
                                 @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
-                                <div
-                                    style="display: flex;justify-content:center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                                    <div style="text-align: center;display: flex;">
-                                        <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
-                                            Eksport
-                                       </a>
-                                       <a href="javascript:;" data-target="#doktarantura-paper-create-modal"
-                                            data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white" style="margin-right:20px;">
-                                            Tahrirlash
+                                    <div
+                                        style="display: flex;justify-content:center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
+                                        <div style="text-align: center;display: flex;">
+                                            <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
+                                                Eksport
                                         </a>
+                                        <a href="javascript:;" data-target="#doktarantura-paper-create-modal"
+                                                data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white" style="margin-right:20px;">
+                                                Tahrirlash
+                                            </a>
 
-                                        <form action="{{ route('tekshirivchilar.destroy', $tekshirivchilar->id) }}" method="POST" onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
-                                        </form>
+                                            <form action="{{ route('tekshirivchilar.destroy', $tekshirivchilar->id) }}" method="POST" onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
+                                            </form>
+
+                                        </div>
 
                                     </div>
-
-                                </div>
                                 @endrole
                                 <tbody>
                                     <tr>
@@ -1133,7 +1133,7 @@
                             </div>
 
                         </div>
-                        {{-- @if ($data != null) --}}
+                        @if ($data != null)
                             <div class="overflow-x-auto"
                                 style="background-color: white;border-radius:8px;padding:30px 0px;">
                                 <form id="loyihaijrochilar-paper-create-form" method="POST"
@@ -1222,7 +1222,7 @@
                                     </button>
                                 </div>
                             </div>
-                        {{-- @endif --}}
+                        @endif
 
                         <div class="overflow-x-auto" style="background-color: white;border-radius:8px;padding:30px 0px;">
                             <table class="table">
@@ -1237,7 +1237,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($loyihaijrochilar as $l)
+                                    @forelse ($loyihaijrochilar as $l)
                                         <tr>
                                             <td class="border border-b-2 ">{{ $loop->iteration }}.</td>
                                             <td class="border border-b-2 ">
@@ -1278,7 +1278,11 @@
                                                 </form>
                                             </td>
                                         </tr>
-                                    @endforeach
+                                        @empty
+                                                <tr class="border" >
+                                                    <td colspan="4" style="text-align: center;">Ma'lumot yo'q</td>
+                                                </tr>
+                                        @endforelse
 
                                 </tbody>
                             </table>

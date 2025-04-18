@@ -33,9 +33,9 @@
                                     class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                     Tahrirlash
                                 </a>
-                                <a href="" class="button w-24 bg-theme-6 text-white">
+                                {{-- <a href="" class="button w-24 bg-theme-6 text-white">
                                     O'chirish
-                                </a>
+                                </a> --}}
                             </div>
                         @endcan
                     </div>
