@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asbobuskuna;
+use App\Models\Doktarantura;
 use App\Models\IlmiybnTaminlanga;
 use App\Models\IlmiyLoyiha;
 use App\Models\Stajirovka;
@@ -36,11 +37,11 @@ class TashkilotMalumotlarController extends Controller
         $admins = User::where('tashkilot_id',$tashkilotmalumotlar)->count();
         $xujalik_count = Xujalik::where('tashkilot_id',$tashkilotmalumotlar)->count();
         $loyiha_bilan_t = IlmiybnTaminlanga::where('tashkilot_id',$tashkilotmalumotlar)->count();
-        $loy_count = IlmiyLoyiha::where('tashkilot_id',$tashkilotmalumotlar)->count();
-        $phd_count = Izlanuvchilar::where('tashkilot_id',$tashkilotmalumotlar)->count();
+        $loy_count = IlmiyLoyiha::where('is_active',1)->where('tashkilot_id',$tashkilotmalumotlar)->count();
+        $phd_count = Doktarantura::where('tashkilot_id',$tashkilotmalumotlar)->count();
 
         $stajirovka_count = Stajirovka::where('tashkilot_id',$tashkilotmalumotlar)->count();
-        $asboblar_count = Asbobuskuna::where('tashkilot_id',$tashkilotmalumotlar)->count();
+        $asboblar_count = Asbobuskuna::where('is_active',1)->where('tashkilot_id',$tashkilotmalumotlar)->count();
 
 
         return view('admin.tashkilotmalumotlar.tashkilot',[

@@ -55,7 +55,7 @@
                 </a>
             </div>
         </div>
-        
+
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
@@ -1111,7 +1111,7 @@
                             </div>
 
                         </div>
-                        @if ($data != null)
+                        {{-- @if ($data != null) --}}
                             <div class="overflow-x-auto"
                                 style="background-color: white;border-radius:8px;padding:30px 0px;">
                                 <form id="loyihaijrochilar-paper-create-form" method="POST"
@@ -1200,7 +1200,7 @@
                                     </button>
                                 </div>
                             </div>
-                        @endif
+                        {{-- @endif --}}
 
                         <div class="overflow-x-auto" style="background-color: white;border-radius:8px;padding:30px 0px;">
                             <table class="table">

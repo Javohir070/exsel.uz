@@ -10,8 +10,8 @@
                             {{ $tash->name }} haqida qisqacha malumot
                         @endforeach
                     </h2>
-                    <a href="" class="ml-auto flex text-theme-1"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i>
-                    Ma'lumotlarni qayta yuklash </a>
+                    {{-- <a href="" class="ml-auto flex text-theme-1"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i>
+                    Ma'lumotlarni qayta yuklash </a> --}}
                 </div>
                 <div class="grid grid-cols-12 gap-6 mt-5">
 
@@ -24,7 +24,7 @@
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('tashkilot.ilmiyloyiha.index',['tashkilot'=>$id]) }}">
+                            <a href="{{ route('ilmiy_loyihalar.index',['id' => $id]) }}">
                                 <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
                                     <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
                                         <i data-feather="list" class="report-box__icon text-theme-3" ></i>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
 
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route('tashkilot.xujalik.index',['tashkilot'=>$id]) }}">
                                 <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
@@ -52,7 +52,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -72,7 +72,7 @@
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('asbobuskunalar.index') }}">
+                            <a href="{{ route('asbobu.index',['id' => $id]) }}">
                                 <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
                                     <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
                                         <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E64242;" ></i>
@@ -87,7 +87,7 @@
                     </div>
 
 
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route('asbobu.index', ['id' => $id]) }}">
                                 <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
@@ -101,7 +101,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <a href="{{ route('asbobu.index', ['id' => $id]) }}">
@@ -131,7 +131,7 @@
                         </a>
                     </div> --}}
 
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route("tashkilot.userlar.index",['tashkilot'=>$id]) }}">
                                 <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
@@ -146,7 +146,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
 
                     {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <a href="{{ route("tashkilot.userlar.index",['tashkilot'=>$id]) }}">
@@ -162,7 +162,7 @@
                         </a>
                     </div> --}}
 
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route("tashkilot.xodimlar.index",['tashkilot'=>$id]) }}">
                                 <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
@@ -177,7 +177,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
