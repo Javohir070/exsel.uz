@@ -3964,7 +3964,7 @@
                                                     <select name="kalendar" id="science-sub-category"
                                                         class="input border w-full mt-2" required="">
 
-                                                        <option value="{{ $tekshirivchilar->kalendar }}">{{ $tekshirivchilar->kalendar }}</option>
+                                                        <option value="{{ $tekshirivchilar->kalendar ?? 0 }}">{{ $tekshirivchilar->kalendar ?? 0 }}</option>
 
                                                         <option value="Bajarilgan ">Bajarilgan </option>
 
@@ -3985,7 +3985,7 @@
                                                     <select name="shart_sharoit_yaratib" id="science-sub-category"
                                                         class="input border w-full mt-2" required="">
 
-                                                        <option value="{{ $tekshirivchilar->shart_sharoit_yaratib }}">{{ $tekshirivchilar->shart_sharoit_yaratib }}</option>
+                                                        <option value="{{ $tekshirivchilar->shart_sharoit_yaratib ?? null }}">{{ $tekshirivchilar->shart_sharoit_yaratib ?? null }}</option>
 
                                                         <option value="Yaratilgan">Yaratilgan</option>
 
@@ -4008,7 +4008,7 @@
                                                     <select name="yakuniy_natijalar" id="science-sub-category"
                                                         class="input border w-full mt-2" required="">
 
-                                                        <option value="{{ $tekshirivchilar->yakuniy_natijalar }}">{{ $tekshirivchilar->yakuniy_natijalar }}</option>
+                                                        <option value="{{ $tekshirivchilar->yakuniy_natijalar ?? null }}">{{ $tekshirivchilar->yakuniy_natijalar ?? null }}</option>
 
                                                         <option value="Imkoniyat mavjud">Imkoniyat mavjud</option>
 
@@ -4031,7 +4031,7 @@
                                                     <select name="loyiha_ijrochilari" id="science-sub-category"
                                                         class="input border w-full mt-2" required="">
 
-                                                        <option value="{{ $tekshirivchilar->loyiha_ijrochilari }}">{{ $tekshirivchilar->loyiha_ijrochilari }}</option>
+                                                        <option value="{{ $tekshirivchilar->loyiha_ijrochilari ?? null }}">{{ $tekshirivchilar->loyiha_ijrochilari ?? null }}</option>
 
                                                         <option value="Mavjud emas">Mavjud emas</option>
 
@@ -4054,7 +4054,7 @@
                                                     <select name="status" id="science-sub-category"
                                                         class="input border w-full mt-2" required="">
 
-                                                        <option value="{{ $tekshirivchilar->status }}">{{ $tekshirivchilar->status }}</option>
+                                                        <option value="{{ $tekshirivchilar->status ?? null }}">{{ $tekshirivchilar->status ?? null }}</option>
 
                                                         <option value="Qoniqarli">Qoniqarli</option>
 
