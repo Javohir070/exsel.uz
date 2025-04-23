@@ -162,7 +162,7 @@
                     <!-- Harid summa -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Harid qilingan summasi (buxgalteriya balans summasi ming so'mda)</label>
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Harid qilingan summasi (buxgalteriya balans summasi  so'mda)</label>
                         <input type="text" name="harid_summa" id="sumInput2" oninput="formatNumber(this, 'writtenWords')" value="{{ $asbobuskuna->harid_summa }}" class="input w-full border mt-2" required>
                         <span id="writtenWords" class="mt-2 text-gray-600"></span> so'm
                         @error('harid_summa')
@@ -173,7 +173,7 @@
                     <!-- Buxgalteriya summa -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Buxgalteriya bo'yicha qoldiq summasi (ming so'mda)</label>
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Buxgalteriya bo'yicha qoldiq summasi ( so'mda)</label>
                         <input type="text" name="buxgalteriya_summa" id="sumInput2" oninput="formatNumber(this, 'buxgalteriya_summa_writtenWords')" value="{{ $asbobuskuna->buxgalteriya_summa }}" class="input w-full border mt-2" required>
                         <span id="buxgalteriya_summa_writtenWords" class="mt-2 text-gray-600"></span> so'm
                         @error('buxgalteriya_summa')
