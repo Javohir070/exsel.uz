@@ -150,8 +150,10 @@ class DoktaranturaController extends Controller
         $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->get();
         $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->first();
         $doktaranturas = Doktarantura::where('tashkilot_id', '=', $id)->paginate(20);
+        $doktarantura = Doktarantura::where('tashkilot_id', '=', $id)->get();
         $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->get();
-        $biriktirilgan_ir = Doktarantura::where('tashkilot_id', '=', $id)->where('advisor', null)->count();
+        $biriktirilgan_ir = Doktarantura::where('tashkilot_id', '=', $id)->whereNotNull('advisor')->count();
+        // dd($data);
         // $ishreja_b = Doktarantura::where('tashkilot_id', '=', $id)->where('rija_b', null)->count();
         return view("admin.doktarantura.show", [
             'tashkilot' => $tashkilot ?? null,
@@ -166,6 +168,7 @@ class DoktaranturaController extends Controller
             'admission_quarter' => $admission_quarter,
             'admission_year' => $admission_year,
             'doktaranturas' => $doktaranturas ?? null,
+            'doktarantura' => $doktarantura ?? null,
             'ilmiyrahbarlars' => $ilmiyrahbarlars ?? null,
             'biriktirilgan_ir' => $biriktirilgan_ir ?? null,
             'ishreja_b' => $ishreja_b ?? null,

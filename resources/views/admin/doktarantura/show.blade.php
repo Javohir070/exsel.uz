@@ -36,10 +36,15 @@
                     <div class="p-5">
                         <div class="grid grid-cols-12 gap-6 ">
                             <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
-                                <div class="intro-y block sm:flex items-center py-4">
+                                <div class="intro-y block sm:flex items-center py-4" style="justify-content: space-between;">
                                     <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
                                         Ilmiy izlanuvchilar
                                     </h2>
+                                    <tr style="border-bottom: 1px solid #E6E6E6;">
+                                        <td colspan="5" style="text-align: center;">
+                                            <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}" class="button  bg-theme-1 text-white mr-4" style="font-size: 16px;">Ma'lumotni yangilash</a>
+                                        </td>
+                                    </tr>
                                 </div>
                                 <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
                                     <table class="table">
@@ -49,6 +54,9 @@
                                                 <th class="whitespace-no-wrap">F.I.Sh</th>
                                                 <th class="whitespace-no-wrap">Turi </th>
                                                 <th class="whitespace-no-wrap">Kurs </th>
+                                                <th style="text-align:center;">Yakka tartibdagi reja tasdiqlanganligi </th>
+                                                <th style="text-align:center;">Yakka tartibdagi rejani bajarganligi </th>
+                                                <th style="text-align:center;">Monitoring natijasi kiritilganligi </th>
                                                 <th class="whitespace-no-wrap">Harakat</th>
                                             </tr>
                                         </thead>
@@ -62,7 +70,10 @@
                                                     <td>
                                                         {{ $m->dc_type }}
                                                     </td>
-                                                    <td>{{ $m->course }} </td>
+                                                    <td style="text-align:center;">{{ $m->course }} </td>
+                                                    <td style="text-align:center;">{{ $m->reja_t }} </td>
+                                                    <td style="text-align:center;">{{ $m->reja_b }} </td>
+                                                    <td>{{ $m->monitoring_natijasik }} </td>
                                                     <td>
                                                         <a onclick="openShowIlmiIzlanuvchiModal({{ $m->id }})"
                                                             class="button px-2 mr-1 mb-2 border text-gray-700"
@@ -607,8 +618,8 @@
                                                             Muddatidan oldin himoya qilgan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="muddatidano_soni" value="{{$data[2]['count']}}"
-                                                                class="input w-full border mt-2" required="" readonly>
+                                                            <input type="number" name="muddatidano_soni" value=""
+                                                                class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
                                                     <tr class="bg-gray-200">
@@ -627,27 +638,27 @@
                                                             Yakka tartibdagi rejani bajarmagan izlanuvchilar soni .
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="rejani_bajarmagan" value="{{$doktaranturas->where('rija_b', null)->count() ?? ""}}"
+                                                            <input type="number" name="rejani_bajarmagan" value="{{ $doktarantura->where('reja_b', "Yo'q")->count() ?? "" }}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
                                                     <tr class="bg-gray-200">
                                                         <td class="border border-b-2 ">8.</td>
                                                         <td class="border border-b-2 ">
-                                                            Monitoring natijasi kiritilmagan izlanuvchilar soni .
+                                                            Monitoring natijasi kiritilmagan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="mon_nat_kiritilmagan" value="{{$doktaranturas->where('monitoring_natijasik', null)->count() ?? ""}}"
+                                                            <input type="number" name="mon_nat_kiritilmagan" value="{{ $doktarantura->where('monitoring_natijasik', "Yo'q")->count() ?? ""}}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="border border-b-2 ">9.</td>
                                                         <td class="border border-b-2 ">
-                                                            Tashkilot izlanuvchilari biriktirilgan ilmiy rahbarlar soni .
+                                                            Tashkilot izlanuvchilari biriktirilgan ilmiy rahbarlar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="biriktirilgan_rahbarlar" value="{{ $doktaranturas->where('advisor', null)->count() ?? "" }}"
+                                                            <input type="number" name="biriktirilgan_rahbarlar" value="{{ $ilmiyrahbarlars->count() ?? "" }}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
