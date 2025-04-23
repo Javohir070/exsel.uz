@@ -367,6 +367,9 @@ class IlmiyLoyihaController extends Controller
                                     ->where('ilmiyloyiha_is', 1)
                                     ->where('name', 'like', '%' . $querysearch . '%')
                                     ->paginate(50);
+            $tashkilotlars = Tashkilot::where('status', 1)
+                                    ->where('name', 'like', '%' . $querysearch . '%')
+                                    ->get();
             $tash_count = $tashkilotlar->total();
         }
 

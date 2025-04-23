@@ -259,7 +259,7 @@
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy hisobot taqdim etilganligi (Pdf)
                             </label>
-                            <select name="ilmiy_hisobot" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="ilmiy_hisobot"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -279,7 +279,7 @@
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Stajirovka davrida egallangan bilim va ko'nikmalarni amalga oshirilishi uchun
                                     zarur shart-sharoitlar yaratilganligi. (Asoslantiruvchi hujjatlar, rasm va videolar, zip)
                             </label>
-                            <select name="egallangan_bilim" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="egallangan_bilim"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -300,7 +300,7 @@
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy-tadqiqot ishlari natijalari bo'yicha xorijiy ilmiy anjumanlarda ma'ruza
                                     bilan ishtirok etganligi. (Asoslantiruvchi hujjatlar, rasm va videolar hamda havolalar, zip)
                             </label>
-                            <select name="ishlar_natijalari" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="ishlar_natijalari"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -321,7 +321,7 @@
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xalqaro tan olingan ma'lumotlar bazasidagi yetakchi ilmiy jurnallarda nashr
                                     qilinganligi. (Pdf)
                             </label>
-                            <select name="xalqarotan_jur_nashr" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="xalqarotan_jur_nashr"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -344,7 +344,7 @@
                                     fikr va mulohazalarini bayon etilganligi tafsiloti. (Asoslantiruvchi hujjatlar, rasm va videolar
                                     hamda havolalar, zip)
                             </label>
-                            <select name="biryil_davomida" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="biryil_davomida"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -364,7 +364,7 @@
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
                             </label>
-                            <select name="status" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="status"  class="input border w-full mt-2" required="">
 
                                 <option value="">Status tanlang</option>
 
@@ -384,7 +384,7 @@
                         <div class="w-full col-span-6 ">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
-                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5" required></textarea>
                         </div>
                     </div>
 

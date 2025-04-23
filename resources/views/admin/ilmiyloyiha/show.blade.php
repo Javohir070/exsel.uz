@@ -963,7 +963,7 @@
                                                     <label class="flex flex-col sm:flex-row"> <span
                                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy-tadqiqot ishlarining shartnoma va uning kalendar rejasiga asosan bajarilish holati
                                                     </label>
-                                                    <select name="kalendar" id="science-sub-category"
+                                                    <select name="kalendar"
                                                         class="input border w-full mt-2" required="">
 
                                                         <option value=""></option>
@@ -984,7 +984,7 @@
                                                     <label class="flex flex-col sm:flex-row"> <span
                                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ijrochi tashkilot tomonidan loyihaning amalga oshirilishi uchun zarur shart-sharoitlar yaratib berilganligi
                                                     </label>
-                                                    <select name="shart_sharoit_yaratib" id="science-sub-category"
+                                                    <select name="shart_sharoit_yaratib"
                                                         class="input border w-full mt-2" required="">
 
                                                         <option value=""></option>
@@ -1005,7 +1005,7 @@
                                                     <label class="flex flex-col sm:flex-row"> <span
                                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha doirasida qo‘lga kiritilgan yakuniy natijalar va ularni tijoratlashtirish imkoniyatlari
                                                     </label>
-                                                    <select name="yakuniy_natijalar" id="science-sub-category"
+                                                    <select name="yakuniy_natijalar"
                                                         class="input border w-full mt-2" required="">
 
                                                         <option value=""></option>
@@ -1026,7 +1026,7 @@
                                                     <label class="flex flex-col sm:flex-row"> <span
                                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha ijrochilarining o‘zgarishi holati
                                                     </label>
-                                                    <select name="loyiha_ijrochilari" id="science-sub-category"
+                                                    <select name="loyiha_ijrochilari"
                                                         class="input border w-full mt-2" required="">
 
                                                         <option value=""></option>
@@ -1047,7 +1047,7 @@
                                                     <label class="flex flex-col sm:flex-row"> <span
                                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
                                                     </label>
-                                                    <select name="status" id="science-sub-category"
+                                                    <select name="status"
                                                         class="input border w-full mt-2" required="">
 
                                                         <option value=""></option>
@@ -1187,7 +1187,7 @@
                                                 </td>
                                                 <td class="border border-b-2 ">
                                                     <select name="shtat_birligi" value="{{ old('shtat_birligi') }}"
-                                                        id="science-sub-category" class="input border w-full mt-2"
+                                                         class="input border w-full mt-2"
                                                         required>
 
                                                         <option value=""></option>
@@ -2795,7 +2795,7 @@
                                                     {{-- <input type="text" name="rahbariilmiy_darajasi"
                                                         value="{{ $ilmiyloyiha->rahbariilmiy_darajasi ?? '' }}"
                                                         class="input w-full border mt-2" required=""> --}}
-                                                        <select name="rahbariilmiy_darajasi" id="rahbariilmiy_darajasi" value="{{ old('rahbariilmiy_darajasi') }}" id="science-sub-category" class="input border w-full mt-2">
+                                                        <select name="rahbariilmiy_darajasi" id="rahbariilmiy_darajasi" value="{{ old('rahbariilmiy_darajasi') }}"  class="input border w-full mt-2">
 
                                                             <option value="{{ $ilmiyloyiha->rahbariilmiy_darajasi ?? ''}}">{{ $ilmiyloyiha->rahbariilmiy_darajasi ?? ''}}</option>
 
@@ -2823,7 +2823,7 @@
                                                     {{-- <input type="text" name="rahbariilmiy_unvoni"
                                                         value="{{ $ilmiyloyiha->rahbariilmiy_unvoni ?? '' }}"
                                                         class="input w-full border mt-2" required=""> --}}
-                                                        <select name="rahbariilmiy_unvoni" id="rahbariilmiy_unvoni" value="{{ old('rahbariilmiy_unvoni') }}" id="science-sub-category" class="input border w-full mt-2">
+                                                        <select name="rahbariilmiy_unvoni" id="rahbariilmiy_unvoni" value="{{ old('rahbariilmiy_unvoni') }}"  class="input border w-full mt-2">
 
                                                             <option value="{{ $ilmiyloyiha->rahbariilmiy_unvoni ?? ''}}">{{ $ilmiyloyiha->rahbariilmiy_unvoni ?? ''}}</option>
 
@@ -2847,7 +2847,7 @@
                                                     {{-- <input type="text" name="r_lavozimi"
                                                         value="{{ $ilmiyloyiha->r_lavozimi ?? '' }}"
                                                         class="input w-full border mt-2" required=""> --}}
-                                                        <select name="r_lavozimi" value="{{ old('r_lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+                                                        <select name="r_lavozimi" value="{{ old('r_lavozimi') }}"  class="input border w-full mt-2" required="">
                                                             <option value="{{ $ilmiyloyiha->r_lavozimi ?? ''}}">{{ $ilmiyloyiha->r_lavozimi ?? ''}}</option>
                                                             <option value="Dekan o‘rinbosari">Dekan o‘rinbosari</option>
                                                             <option value="Kafedra mudiri">Kafedra mudiri</option>
@@ -2961,7 +2961,7 @@
                                                     {{-- <input type="text" name="avvr_ilmiy_daraja"
                                                         value="{{ $ilmiyloyiha->avvr_ilmiy_daraja ?? '' }}"
                                                         class="input w-full border mt-2" required=""> --}}
-                                                        <select name="avvr_ilmiy_daraja" id="avvr_ilmiy_daraja" value="{{ old('avvr_ilmiy_daraja') }}" id="science-sub-category" class="input border w-full mt-2">
+                                                        <select name="avvr_ilmiy_daraja" id="avvr_ilmiy_daraja" value="{{ old('avvr_ilmiy_daraja') }}"  class="input border w-full mt-2">
 
                                                             <option value="{{ $ilmiyloyiha->avvr_ilmiy_daraja ?? ''}}">{{ $ilmiyloyiha->avvr_ilmiy_daraja ?? ''}}</option>
 
@@ -2989,7 +2989,7 @@
                                                     {{-- <input type="text" name="avvr_ilmiy_unvon"
                                                         value="{{ $ilmiyloyiha->avvr_ilmiy_unvon ?? '' }}"
                                                         class="input w-full border mt-2" required=""> --}}
-                                                        <select name="avvr_ilmiy_unvon" id="avvr_ilmiy_unvon" value="{{ old('avvr_ilmiy_unvon') }}" id="science-sub-category" class="input border w-full mt-2">
+                                                        <select name="avvr_ilmiy_unvon" id="avvr_ilmiy_unvon" value="{{ old('avvr_ilmiy_unvon') }}"  class="input border w-full mt-2">
 
                                                             <option value="{{ $ilmiyloyiha->avvr_ilmiy_unvon ?? ''}}">{{ $ilmiyloyiha->avvr_ilmiy_unvon ?? ''}}</option>
 
@@ -3013,7 +3013,7 @@
                                                     {{-- <input type="text" name="avvr_lavozimi"
                                                         value="{{ $ilmiyloyiha->avvr_lavozimi ?? '' }}"
                                                         class="input w-full border mt-2" required=""> --}}
-                                                        <select name="avvr_lavozimi" value="{{ old('avvr_lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+                                                        <select name="avvr_lavozimi" value="{{ old('avvr_lavozimi') }}"  class="input border w-full mt-2" required="">
                                                             <option value="{{ $ilmiyloyiha->avvr_lavozimi ?? ''}}">{{ $ilmiyloyiha->avvr_lavozimi ?? ''}}</option>
                                                             <option value="Dekan o‘rinbosari">Dekan o‘rinbosari</option>
                                                             <option value="Kafedra mudiri">Kafedra mudiri</option>
@@ -3130,7 +3130,7 @@
                                                     {{-- <input type="text" name="hamr_lavozimi"
                                                         value="{{ $ilmiyloyiha->hamr_lavozimi ?? '' }}"
                                                         class="input w-full border mt-2" required=""> --}}
-                                                        <select name="hamr_lavozimi" value="{{ old('hamr_lavozimi') }}" id="science-sub-category" class="input border w-full mt-2" required="">
+                                                        <select name="hamr_lavozimi" value="{{ old('hamr_lavozimi') }}"  class="input border w-full mt-2" required="">
                                                             <option value="{{ $ilmiyloyiha->hamr_lavozimi ?? ''}}">{{ $ilmiyloyiha->hamr_lavozimi ?? ''}}</option>
                                                             <option value="Dekan o‘rinbosari">Dekan o‘rinbosari</option>
                                                             <option value="Kafedra mudiri">Kafedra mudiri</option>
@@ -3965,7 +3965,7 @@
                                                     Ilmiy-tadqiqot ishlarining shartnoma va uning kalendar rejasiga asosan bajarilish holati
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <select name="kalendar" id="science-sub-category"
+                                                    <select name="kalendar"
                                                         class="input border w-full mt-2" required="">
 
                                                         <option value="{{ $tekshirivchilar->kalendar ?? 0 }}">{{ $tekshirivchilar->kalendar ?? 0 }}</option>
@@ -3986,7 +3986,7 @@
                                                     Ijrochi tashkilot tomonidan loyihaning amalga oshirilishi uchun zarur shart-sharoitlar yaratib berilganligi.
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <select name="shart_sharoit_yaratib" id="science-sub-category"
+                                                    <select name="shart_sharoit_yaratib"
                                                         class="input border w-full mt-2" required="">
 
                                                         <option value="{{ $tekshirivchilar->shart_sharoit_yaratib ?? null }}">{{ $tekshirivchilar->shart_sharoit_yaratib ?? null }}</option>
@@ -4009,7 +4009,7 @@
                                                     Loyiha doirasida qo‘lga kiritilgan yakuniy natijalar va ularni tijoratlashtirish imkoniyatlari.
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <select name="yakuniy_natijalar" id="science-sub-category"
+                                                    <select name="yakuniy_natijalar"
                                                         class="input border w-full mt-2" required="">
 
                                                         <option value="{{ $tekshirivchilar->yakuniy_natijalar ?? null }}">{{ $tekshirivchilar->yakuniy_natijalar ?? null }}</option>
@@ -4032,7 +4032,7 @@
                                                     Loyiha ijrochilarining o‘zgarishi holati.
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <select name="loyiha_ijrochilari" id="science-sub-category"
+                                                    <select name="loyiha_ijrochilari"
                                                         class="input border w-full mt-2" required="">
 
                                                         <option value="{{ $tekshirivchilar->loyiha_ijrochilari ?? null }}">{{ $tekshirivchilar->loyiha_ijrochilari ?? null }}</option>
@@ -4055,7 +4055,7 @@
                                                     Monitoring xulosasi.
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <select name="status" id="science-sub-category"
+                                                    <select name="status"
                                                         class="input border w-full mt-2" required="">
 
                                                         <option value="{{ $tekshirivchilar->status ?? null }}">{{ $tekshirivchilar->status ?? null }}</option>

@@ -314,7 +314,7 @@
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalarini o'rnatilgan ilmiy bo'linma faoliyatiga mosligi
                             </label>
-                            <select name="lab_uskunalarini_mosligi" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="lab_uskunalarini_mosligi"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -335,7 +335,7 @@
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Bajarilavotgan ilmiy-tadqiqot ishlari uchun zarurligi
                             </label>
-                            <select name="ilmiy_tadqiqot_ishilari" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="ilmiy_tadqiqot_ishilari"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -355,7 +355,7 @@
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy-tadqiqot dasturlaridagi ish hajmi bilan bog'liqligi
                             </label>
-                            <select name="ilmiy_tadqiqot_hajmi" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="ilmiy_tadqiqot_hajmi"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -375,7 +375,7 @@
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalari uchun zarur reagent va reaktivlar zaxirasining mavjudligi
                             </label>
-                            <select name="lab_zaxirasi" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="lab_zaxirasi"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -396,7 +396,7 @@
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Foydalanish uchun arizalarning ro'yxatga olinishi va foydalanish jadvalining yuritilishi
                                     holatiga baho berish
                             </label>
-                            <select name="foy_uchun_ariz" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="foy_uchun_ariz"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -417,7 +417,7 @@
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy tadqiqot va oliy ta'lim muassasalari laboratoriyalarining qo'shimcha asbob-uskunalar
                                     bo'yicha ehtiyoji
                             </label>
-                            <select name="asbob_usk_ehtiyoji" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="asbob_usk_ehtiyoji"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -438,7 +438,7 @@
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Zarur sarflash materiallari va butlovchi qismlar bo'yicha ehtiyojar mavjudligi
                             </label>
-                            <select name="zarur_ehtiyoji" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="zarur_ehtiyoji"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -459,7 +459,7 @@
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalarining ishga yaroqliligi
                             </label>
-                            <select name="lab_ishga_yaroqliligi" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="lab_ishga_yaroqliligi"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -479,7 +479,7 @@
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
                             </label>
-                            <select name="status" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="status"  class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
@@ -499,7 +499,7 @@
                         <div class="w-full col-span-6 ">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
-                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5"></textarea>
+                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5" required></textarea>
                         </div>
                     </div>
 

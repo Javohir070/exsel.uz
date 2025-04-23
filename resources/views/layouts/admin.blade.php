@@ -11,7 +11,7 @@
         <title>Ilmiy-innovatsion faoliyat monitoringi tizimi </title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="/admin/dist/css/app.css" />
-        
+
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
@@ -33,7 +33,7 @@
                 </li>
                 <!-- start superadmin -->
                 @role('super-admin')
-                    
+
                     <li>
                         <a href="javascript:;" class="menu menu{{ request()->is('iqtisodiylar*') ? '--active':'' }}{{ request()->is('tashkilotrahbarilar*') ? '--active':'' }}{{ request()->is('tashkilot*') ? '--active':'' }}">
                             <div class="menu__icon"> <i data-feather="file-text"></i> </div>
@@ -41,21 +41,21 @@
                                     class="menu__sub-icon"></i> </div>
                         </a>
                         <ul class="{{ request()->is('iqtisodiylar*') ? 'menu__sub-open':'' }}{{ request()->is('tashkilotrahbarilar') ? 'menu__sub-open':'' }}{{ request()->is('tashkilot*') ? 'menu__sub-open':'' }}">
-                            
+
                             <li>
                                 <a href="{{ route('tashkilotlar.index') }}" class="menu menu{{ request()->is('tashkilot*') ? '--active':'' }}">
                                     <div class="menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="menu__title"> Tashkilot pasportilari </div>
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="{{ route("tashkilotrahbarilar.index") }}" class="menu menu{{ request()->is('tashkilotrahbarilar*') ? '--active':'' }}">
                                     <div class="menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="menu__title">  Tashkilotlar raxbarlari  </div>
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="{{ route('iqtisodiylar.index') }}" class="menu menu{{ request()->is('iqtisodiylar*') ? '--active':'' }}">
                                     <div class="menu__icon"> <i data-feather="activity"></i> </div>
@@ -75,7 +75,7 @@
                         </a>
                     </li>
                 @endrole
-                
+
                 @role('super-admin')
                     <li>
                         <a href="{{ route('ilmiyloyihalar.index') }}" class="menu menu{{ request()->is('ilmiyloyiha*') ? '--active':'' }}">
@@ -104,7 +104,7 @@
                 @endrole
 
                 @role('super-admin')
-                    
+
                     <li>
                         <a href="javascript:;" class="menu menu{{ request()->is('users*') ? '--active':'' }}{{ request()->is('permissions*') ? '--active':'' }}{{ request()->is('roles*') ? '--active':'' }}{{ request()->is('tashqoshish*') ? '--active':'' }}">
                             <div class="menu__icon"> <i data-feather="settings"></i> </div>
@@ -127,14 +127,14 @@
                                 </a>
                             </li>
 
-                            
+
                             <li>
                                 <a href="{{ route("roles.index") }}" class="menu menu{{ request()->is('roles*') ? '--active':'' }}">
                                     <div class="menu__icon"> <i data-feather="activity"></i> </div>
                                     <div class="menu__title"> Rolelar </div>
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="{{ route('permissions.index') }}" class="menu menu{{ request()->is('permissions*') ? '--active':'' }}">
                                     <div class="menu__icon"> <i data-feather="activity"></i> </div>
@@ -166,7 +166,7 @@
                                     <div class="menu__title">  Iqtisodiy moliyaviy faoliyat  </div>
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="{{ route("tashkilotrahbari.index") }}" class="menu menu{{ request()->is('tashkilotrahbari*') ? '--active':'' }}">
                                     <div class="menu__icon"> <i data-feather="activity"></i> </div>
@@ -176,7 +176,7 @@
                         </ul>
                     </li>
                 @endrole
-        
+
                 @role(['admin','Xodimlar_uchun_masul'])
                     <li>
                         <a href="{{ route('xodimlar.index') }}" class="menu menu{{ request()->is('xodimlar*') ? '--active':'' }}">
@@ -234,7 +234,7 @@
                                     <div class="menu__title">  Iqtisodiy moliyaviy faoliyat  </div>
                                 </a>
                             </li>
-                            
+
                             <li>
                                 <a href="{{ route("itm.tashkilotrahbari") }}" class="menu menu{{ request()->is('tashkilotrahbari*') ? '--active':'' }}{{ request()->is('itmtashkilotrahbari*') ? '--active':'' }}">
                                     <div class="menu__icon"> <i data-feather="activity"></i> </div>
@@ -250,14 +250,14 @@
                             <div class="menu__title"> Xodimlar </div>
                         </a>
                     </li>
-                
+
                     <li>
                         <a href="{{ route("itm.ilmiyloyiha") }}" class="menu menu{{ request()->is('ilmiyloyiha*') ? '--active':'' }}{{ request()->is('itmilmiyloyiha*') ? '--active':'' }}">
                             <div class="menu__icon"> <i data-feather="file-text"></i> </div>
                             <div class="menu__title"> Ilmiy loyihalar </div>
                         </a>
                     </li>
-                    
+
                     <li>
                         <a href="{{ route("itm.xujalik") }}" class="menu menu{{ request()->is('xujalik*') ? '--active':'' }}{{ request()->is('itmxujalik*') ? '--active':'' }}">
                             <div class="menu__icon"> <i data-feather="file-text"></i> </div>
@@ -299,7 +299,7 @@
             @include('layouts.nav-admin')
             <!-- END: Side Menu -->
 
-            
+
             <!-- BEGIN: Content -->
             <div class="content">
                 <!-- BEGIN: Top Bar -->
@@ -313,13 +313,13 @@
                         </marquee>
                     </div> -->
                     <!-- BEGIN: Search -->
-                    <div class="intro-x relative mr-3 sm:mr-6">
+                    {{-- <div class="intro-x relative mr-3 sm:mr-6">
                         <div class="search hidden sm:block">
                             <input type="text"  class="search__input input placeholder-theme-13" placeholder="Search...">
-                            <i data-feather="search" class="search__icon"></i> 
+                            <i data-feather="search" class="search__icon"></i>
                         </div>
                         <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
-                    </div>
+                    </div> --}}
                     <!-- END: Search -->
                     <!-- BEGIN: Notifications -->
                     <div class="intro-x dropdown relative mr-auto sm:mr-6">
@@ -354,7 +354,7 @@
                                            <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Chiqish
                                         </x-dropdown-link>
                                     </form>
-                                    
+
                                 </div>
                             </div>
                         </div>
