@@ -163,7 +163,8 @@
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Harid qilingan summasi (buxgalteriya balans summasi ming so'mda)</label>
-                        <input type="text" name="harid_summa" id="sumInput2" oninput="formatNumber(this)" value="{{ $asbobuskuna->harid_summa }}" class="input w-full border mt-2" required>
+                        <input type="text" name="harid_summa" id="sumInput2" oninput="formatNumber(this, 'writtenWords')" value="{{ $asbobuskuna->harid_summa }}" class="input w-full border mt-2" required>
+                        <span id="writtenWords" class="mt-2 text-gray-600"></span> so'm
                         @error('harid_summa')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -173,7 +174,8 @@
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Buxgalteriya bo'yicha qoldiq summasi (ming so'mda)</label>
-                        <input type="text" name="buxgalteriya_summa" id="sumInput2" oninput="formatNumber(this)" value="{{ $asbobuskuna->buxgalteriya_summa }}" class="input w-full border mt-2" required>
+                        <input type="text" name="buxgalteriya_summa" id="sumInput2" oninput="formatNumber(this, 'buxgalteriya_summa_writtenWords')" value="{{ $asbobuskuna->buxgalteriya_summa }}" class="input w-full border mt-2" required>
+                        <span id="buxgalteriya_summa_writtenWords" class="mt-2 text-gray-600"></span> so'm
                         @error('buxgalteriya_summa')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -497,13 +499,52 @@
         }
     </script>
     <script>
-        function formatNumber(input) {
-            // Faqat raqamlarni olib tashlaymiz va bo‘sh joylarni yo‘qotamiz
-            let value = input.value.replace(/\D/g, "");
+    const ones = ["", "bir", "ikki", "uch", "to‘rt", "besh", "olti", "yetti", "sakkiz", "to‘qqiz"];
+    const tens = ["", "o‘n", "yigirma", "o‘ttiz", "qirq", "ellik", "oltmish", "yetmish", "sakson", "to‘qson"];
+    const thousands = ["", " ming", " million", " milliard"];
 
-            // Raqamlarni 3 xonadan bo‘sh joy bilan ajratamiz
-            input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    function formatNumber(input, outputId) {
+        // Faqat raqamlar
+        let value = input.value.replace(/\D/g, "");
+
+        // 3 xonadan bo‘sh joy bilan formatlash (masalan: 100 000)
+        input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+        // So‘z ko‘rinishiga o‘girish
+        document.getElementById(outputId).textContent = numberToWords(Number(value));
+    }
+
+    function numberToWords(num) {
+        if (num === 0) return "nol";
+        let words = '';
+        let groupIndex = 0;
+
+        while (num > 0) {
+            let chunk = num % 1000;
+            if (chunk > 0) {
+                words = chunkToWords(chunk) + thousands[groupIndex] + ' ' + words;
+            }
+            num = Math.floor(num / 1000);
+            groupIndex++;
         }
-    </script>
 
+        return words.trim();
+    }
+
+    function chunkToWords(n) {
+        let result = '';
+        if (n >= 100) {
+            result += ones[Math.floor(n / 100)] + ' yuz ';
+            n %= 100;
+        }
+        if (n >= 10) {
+            result += tens[Math.floor(n / 10)] + ' ';
+            n %= 10;
+        }
+        if (n > 0) {
+            result += ones[n] + ' ';
+        }
+        return result;
+    }
+</script>
 @endsection
