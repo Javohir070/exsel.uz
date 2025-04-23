@@ -13,11 +13,12 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Asbobuskuna::where('is_active', null)->with('tashkilot')->get()->map(function ($asbobuskuna) {
+        return Asbobuskuna::with('tashkilot')->get()->map(function ($asbobuskuna) {
 
             return [
                 'id' => $asbobuskuna->id,
                 'Tashkilot nomi' => $asbobuskuna->tashkilot->name,
+                'Tashkilot turi' => $asbobuskuna->tashkilot->tashkilot_turi,
                 "Nomi" => $asbobuskuna->name,
                 "Model" => $asbobuskuna->model,
                 "Turi" => $asbobuskuna->turi,
@@ -53,6 +54,7 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
         return [
             'id',
             'Tashkilot nomi',
+            'Tashkilot turi',
             "Nomi",
             "Model",
             "Turi",

@@ -14,17 +14,15 @@
                     Ilmiy izlanuvchilar
                 </a>
                 <a data-toggle="tab" data-target="#add-hersh" href="javascript:;" class="py-4 sm:mr-8 flex items-center">
-                    Monitoring bo'lgan ilmiy izlanuvchilar
+                    Izlanuvchilar monitoringi holati
                 </a>
                 <a data-toggle="tab" data-target="#change-password" href="javascript:;"
                     class="py-4 sm:mr-8 flex items-center">
                     Ilmiy rahbarlar
                 </a>
-
                 <a data-toggle="tab" data-target="#add-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center">
                     Ekspert xulosasi
                 </a>
-
             </div>
         </div>
 
@@ -96,12 +94,12 @@
                                 </div>
                                 <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap mb-1 items-center mt-4">
                                     {{ $doktaranturas->links() }}
-                                    <select class="w-20 input box mt-3 sm:mt-0">
+                                    {{-- <select class="w-20 input box mt-3 sm:mt-0">
                                         <option>10</option>
                                         <option>25</option>
                                         <option>35</option>
                                         <option>50</option>
-                                    </select>
+                                    </select> --}}
                                 </div>
                             </div>
                         </div>
