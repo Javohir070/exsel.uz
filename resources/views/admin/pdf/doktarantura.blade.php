@@ -275,11 +275,13 @@
 
             <table class="table" style="margin-top: 20px">
                 <tr class="bg-gray-200">
-                    <td class="text-center title" colspan="2">
-                        Izoh
+                    <td  colspan="3">
+                        <span class="text-center title">Izoh</span> : {{  $tekshirivchilar->comment ?? null }}
                     </td>
-                    <td>{{  $tekshirivchilar->comment ?? null }}</td>
                 </tr>
+                <!-- <tr class="bg-gray-200">
+                    <td colspan="3">{{  $tekshirivchilar->comment ?? null }}</td>
+                </tr> -->
                 <tr class="bg-gray-200">
                     <td class="text-center title" colspan="2">
                         Komissiya a'zolari

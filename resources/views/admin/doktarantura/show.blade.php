@@ -539,7 +539,7 @@
                                         @endif
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr class="bg-gray-200">
                                     <td class="border border-b-2 ">
                                         Komissiya a'zolari
                                     </td>
