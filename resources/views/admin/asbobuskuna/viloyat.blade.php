@@ -80,7 +80,7 @@
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'otm')->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'itm')->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'boshqa')->count() }} </td>
-                                                
+
                                                 <td style="text-align: center;">
                                                     {{ $region->tashkilots()->where('asbobuskuna_is', 1)->withCount(['asbobuskunalar'=> function ($q) {
                                                         $q->where('is_active', 1);

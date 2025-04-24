@@ -948,7 +948,7 @@
                                 </tbody>
                             </table>
                         @else
-                            @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
+                            @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi'])
                                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
                                     style="background: white; padding: 20px 20px; border-radius: 20px">
                                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">

@@ -177,7 +177,11 @@ class DoktaranturaController extends Controller
     public function index()
     {
         $tashkilotlar = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->paginate(30);
-        $regions = Region::orderBy('order')->get();
+        if ((auth()->user()->region_id != null)) {
+            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+        } else {
+            $regions = Region::orderBy('order')->get();
+        }
         $doktarantura = Tashkilot::where('doktarantura_is', 1)->count();
         $doktarantura_count = Doktarantura::count();
         $doktarantura_expert = Doktaranturaexpert::count();
@@ -245,7 +249,11 @@ class DoktaranturaController extends Controller
         $id = $tashkilotlars->pluck('id');
 
         $doktarantura = Tashkilot::whereIn('id', $id)->count();
-        $regions = Region::orderBy('order')->get();
+        if ((auth()->user()->region_id != null)) {
+            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+        } else {
+            $regions = Region::orderBy('order')->get();
+        }
 
         return view('admin.doktarantura.index', ['doktarantura' => $doktarantura, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'tash_count' => $tash_count]);
 

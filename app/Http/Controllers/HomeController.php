@@ -207,7 +207,11 @@ class HomeController extends Controller
         $loy_count = IlmiyLoyiha::where('is_active',1)->count();
         $loy_expert = Tekshirivchilar::where('is_active',1)->count();
 
-        $regions = Region::orderBy('order')->get();
+        if ((auth()->user()->region_id != null)) {
+            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+        } else {
+            $regions = Region::orderBy('order')->get();
+        }
         $tashkilotlar = Tashkilot::where('status', 1)->paginate(25);
 
         $tashkilotlarQuery = Tashkilot::with(['ilmiyloyhalar', 'asbobuskunalar', 'stajirovkalar'])

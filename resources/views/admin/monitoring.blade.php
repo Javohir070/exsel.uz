@@ -1,6 +1,5 @@
 @extends('layouts.admin')
 @section('content')
-    @role(['super-admin', 'Xujalik_shartnomalari', 'Ilmiy_loyiha_rahbari', 'Ekspert'])
         <div class="grid grid-cols-12 gap-6">
             <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
                 <div class="col-span-12 mt-8">
@@ -149,7 +148,7 @@
                             </div>
 
 
-                            <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
+                            {{-- <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
                                 <div class="intro-y block sm:flex items-center py-4">
                                     <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
                                         Tashkilotlar kesimida
@@ -190,7 +189,7 @@
                                         <option>50</option>
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
                                 <div class="intro-y block sm:flex items-center py-4">
@@ -241,5 +240,4 @@
                 </div>
             </div>
         </div>
-    @endrole
 @endsection

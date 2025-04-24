@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\IlmiyLoyiha;
 use App\Models\Kafedralar;
 use App\Models\Laboratory;
+use App\Models\Region;
 use App\Models\Tashkilot;
 use App\Models\Xodimlar;
 use Illuminate\Http\Request;
@@ -38,7 +39,15 @@ class UserController extends Controller
         $tashkilot_id = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
         $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
-        return view('role-permission.user.create', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar, 'lab' => $lab, 'kafedralar' => $kafedralar]);
+        $regions = Region::all();
+        return view('role-permission.user.create', [
+            'roles' => $roles,
+            'tashkilots' => $tashkilots,
+            'xodimlar'=>$xodimlar,
+            'lab' => $lab,
+            'kafedralar' => $kafedralar,
+            'regions' => $regions
+        ]);
     }
 
     public function kafedra_rol()
@@ -83,6 +92,7 @@ class UserController extends Controller
         $roluchun = $request->roles;
         $user = User::create([
                         'name' => $request->name,
+                        'region_id' => $request->region_id,
                         'laboratory_id' => $request->laboratory_id,
                         'kafedralar_id' => $request->kafedralar_id,
                         'email' => $request->email,

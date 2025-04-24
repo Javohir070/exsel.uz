@@ -30,7 +30,11 @@ class StajirovkaController extends Controller
         $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is',1)->paginate(30);
         $tashkilots = Tashkilot::orderBy('name')->where('stajirovka_is',1)->count();
         $querysearch = null;
-        $regions = Region::orderBy('order')->get();
+        if ((auth()->user()->region_id != null)) {
+            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+        } else {
+            $regions = Region::orderBy('order')->get();
+        }
         $stajirovka_count = Stajirovka::count();
         $stajirovka_expert = Stajirovkaexpert::count();
         return view('admin.stajirovka.viloyat', ['tashkilots' => $tashkilots, 'stajirovka_count' => $stajirovka_count, 'stajirovka_expert' => $stajirovka_expert, 'regions' => $regions, 'querysearch' => $querysearch]);
@@ -95,7 +99,11 @@ class StajirovkaController extends Controller
         $id = $tashkilotlars->pluck('id');
 
         $stajirovkas = Stajirovka::whereIn('tashkilot_id', $id)->count();
-        $regions = Region::orderBy('order')->get();
+        if ((auth()->user()->region_id != null)) {
+            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+        } else {
+            $regions = Region::orderBy('order')->get();
+        }
 
         return view('admin.stajirovka.stajirovkalar', ['stajirovkas' => $stajirovkas, 'tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count, 'querysearch' => $querysearch]);
     }

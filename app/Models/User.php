@@ -25,6 +25,7 @@ class User extends Authenticatable
         'tashkilot_id',
         'kafedralar_id',
         'laboratory_id',
+        'region_id',
     ];
 
     /**

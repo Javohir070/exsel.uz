@@ -307,7 +307,11 @@ class IlmiyLoyihaController extends Controller
         // $asbobuskunas = IlmiyLoyiha::paginate(20);
         $tashkilotlar = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->paginate(30);
         $tash_count = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->count();
-        $regions = Region::orderBy('order')->get();
+        if ((auth()->user()->region_id != null)) {
+            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+        } else {
+            $regions = Region::orderBy('order')->get();
+        }
         $ilmiyloyiha = IlmiyLoyiha::where('is_active', 1)->count();
         $loy_count = IlmiyLoyiha::where('is_active',1)->count();
         $loy_expert = Tekshirivchilar::where('is_active',1)->count();
@@ -376,7 +380,11 @@ class IlmiyLoyihaController extends Controller
         $id = $tashkilotlars->pluck('id');
 
         $ilmiyloyiha = IlmiyLoyiha::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
-        $regions = Region::orderBy('order')->get();
+        if ((auth()->user()->region_id != null)) {
+            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+        } else {
+            $regions = Region::orderBy('order')->get();
+        }
 
         return view('admin.ilmiyloyiha.tashkilotlar', ['ilmiyloyiha' => $ilmiyloyiha, 'tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);
     }

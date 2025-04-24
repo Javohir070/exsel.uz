@@ -49,7 +49,13 @@ class AsbobuskunaController extends Controller
 
         $asboblar_count = Asbobuskuna::where('is_active',1)->count();
         $asboblar_expert = Asbobuskunaexpert::count();
-        $regions = Region::orderBy('order')->get();
+
+        if ((auth()->user()->region_id != null)) {
+            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+        } else {
+            $regions = Region::orderBy('order')->get();
+        }
+
         $asbobuskunas = Asbobuskuna::where('is_active', 1)->count();
         // $asbobuskuna =
         // dd($asbobuskunas);
@@ -123,7 +129,11 @@ class AsbobuskunaController extends Controller
         $id = $tashkilotlars->pluck('id');
 
         $asbobuskunas = Asbobuskuna::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
-        $regions = Region::orderBy('order')->get();
+        if ((auth()->user()->region_id != null)) {
+            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+        } else {
+            $regions = Region::orderBy('order')->get();
+        }
 
         return view('admin.asbobuskuna.tashkilotlar', ['asbobuskunas' => $asbobuskunas, 'tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);
     }

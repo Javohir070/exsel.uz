@@ -1054,8 +1054,6 @@
         </div>
     </div>
 
-
-
     <div class="modal" id="science-ilmiy-izlanuvchi-edit-modal">
         <div class="modal__content modal__content--xl" style="margin-top:revert-layer;">
             <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">

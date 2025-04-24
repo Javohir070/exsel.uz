@@ -169,8 +169,7 @@
             </table>
         </div>
 
-        @role(['Asbob-uskunalar boyicha masul', 'Ekspert'])
-
+        @role(['Asbob-uskunalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
         @forelse ($asbobuskunaexpert as $tekshirivchilar)
         <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
             <table class="table">
@@ -516,8 +515,6 @@
             </div>
         </div>
         @endforelse
-
-
         @endrole
     </div>
 

@@ -167,6 +167,18 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
+
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Viloyat
+                        </label>
+                        <select name="region_id" class="input border w-full mt-2">
+                            <option value=""> Viloyat tanlash</option>
+                            @foreach ($regions as $region)
+                                <option value="{{ $region->id }}">{{ $region->oz }}</option>
+                            @endforeach
+                        </select>
+                    </div>
                     @endrole
                     @role('admin')
                     <input type="hidden" name="tashkilot_id" value="{{ auth()->user()->tashkilot->id }}">

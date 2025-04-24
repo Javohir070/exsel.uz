@@ -36,7 +36,7 @@
             </a>
         </li>
         <!-- start superadmin -->
-        @role(['super-admin', 'Ekspert'])
+        @role(['super-admin', 'Ekspert', 'Rahbar'])
         <li>
             <a href="javascript:;"
                 class="side-menu side-menu{{ request()->is('iqtisodiylar*') ? '--active' : '' }}{{ request()->is('tashkilotrahbarilar*') ? '--active' : '' }}">
@@ -107,7 +107,7 @@
         </li>
         @endrole
 
-        @role([ 'Ekspert'])
+        @role([ 'Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
         <li>
             <a href="{{ route('monitoring.index') }}"
                 class="side-menu side-menu{{ request()->is('monitoring*') ? '--active' : '' }}">
@@ -116,7 +116,7 @@
             </a>
         </li>
         @endrole
-        @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
+        @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
         <li>
             <a href="{{ route('ilmiyloyihalar.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiy*') ? '--active' : '' }}{{ request()->is('search-ilmiy*') ? '--active' : '' }}{{ request()->is('turi*') ? '--active' : '' }}">
@@ -125,7 +125,7 @@
             </a>
         </li>
         @endrole
-        @role(['Asbob-uskunalar boyicha masul', 'Ekspert'])
+        @role(['Asbob-uskunalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
         <li>
             <a href="{{ route('asbobuskunalar.index') }}"
                 class="side-menu side-menu{{ request()->is('asbobus*') ? '--active' : '' }}{{ request()->is('search-asbob*') ? '--active' : '' }}{{ request()->is('tashkilot-turi*') ? '--active' : '' }}">
@@ -134,7 +134,7 @@
             </a>
         </li>
         @endrole
-        @role(['Stajirovka boyicha masul', 'Ekspert'])
+        @role(['Stajirovka boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
         <li>
             <a href="{{ route('stajirovkalar.index') }}"
                 class="side-menu side-menu{{ request()->is('staji*') ? '--active' : '' }}{{ request()->is('search-sta*') ? '--active' : '' }}">
@@ -143,7 +143,7 @@
             </a>
         </li>
         @endrole
-        @role(['Izlanuvchilar boyicha masul', 'Ekspert'])
+        @role(['Izlanuvchilar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
         <li>
             <a href="{{ route('doktarantura.index') }}"
                 class="side-menu side-menu{{ request()->is('doktarantura*') ? '--active' : '' }}{{ request()->is('search-dok*') ? '--active' : '' }}">

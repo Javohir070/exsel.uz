@@ -156,7 +156,11 @@ class TashkilotController extends Controller
     public function tashkilotlar()
     {
         $tashkilotlar = Tashkilot::orderBy('id_raqam', 'asc')->paginate(20);
-        $regions = Region::orderBy('order')->get();
+        if ((auth()->user()->region_id != null)) {
+            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+        } else {
+            $regions = Region::orderBy('order')->get();
+        }
         return view('admin.tashkilot.tashkilotlar', ['tashkilotlar' => $tashkilotlar, 'regions' => $regions]);
 
     }
@@ -262,7 +266,11 @@ class TashkilotController extends Controller
         $loy_expert = 0; // Bu qiymatni saqlab turishingiz kerak bo'lsa, kerakli ma'lumotni qo'shing
 
         // Regionlar
-        $regions = Region::orderBy('order')->get(); // Agar juda ko'p regionlar bo'lsa, faqat kerakli maydonlarni olishni o'ylab ko'ring
+        if ((auth()->user()->region_id != null)) {
+            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+        } else {
+            $regions = Region::orderBy('order')->get();
+        } // Agar juda ko'p regionlar bo'lsa, faqat kerakli maydonlarni olishni o'ylab ko'ring
 
         // Yaratilgan view ga natijalarni yuborish
         return view('admin.tashkilot.search_results', [
