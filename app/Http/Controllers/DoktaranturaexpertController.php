@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Doktaranturaexpert;
 use App\Models\Izlanuvchilar;
 use App\Models\Tashkilot;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -12,10 +13,11 @@ class DoktaranturaexpertController extends Controller
 {
     public function store(Request $request)
     {
+        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
         // dd($request->all());
         Doktaranturaexpert::create([
             'user_id' => auth()->id(),
-            'fish' => auth()->user()->name,
+            'fish' => $user->name,
             'tashkilot_id' => $request->tashkilot_id,
             'status' => $request->status,
             'comment' => $request->comment,
@@ -81,9 +83,10 @@ class DoktaranturaexpertController extends Controller
 
     public function update(Request $request, Doktaranturaexpert $doktaranturaexpert)
     {
+        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
         $doktaranturaexpert->update([
             'user_id' => auth()->id(),
-            'fish' => auth()->user()->name,
+            'fish' => $user->name,
             'status' => $request->status,
             'comment' => $request->comment,
             "umumiy_izlanuvchilar" => $request->umumiy_izlanuvchilar,

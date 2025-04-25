@@ -867,7 +867,7 @@
                     <div class="p-5">
                         @if ($tekshirivchilar != null)
                             <table class="table table-bordered">
-                                @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
+                                @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi'])
                                     <div
                                         style="display: flex;justify-content:center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                                         <div style="text-align: center;display: flex;">
@@ -930,13 +930,22 @@
                                         <td class="border">Ekspert F.I.Sh</td>
                                         <td class="border">{{ $tekshirivchilar->fish }}</td>
                                     </tr>
+                                    <tr >
+                                        <td class="border border-b-2 ">8.</td>
+                                        <td class="border border-b-2 ">
+                                            Ishchi guruh azosi F.I.Sh
+                                        </td>
+                                        <td class="border border-b-2 ">
+                                            {{ $tekshirivchilar->user->name }}
+                                        </td>
+                                    </tr>
                                     <tr>
-                                        <td class="border">8.</td>
+                                        <td class="border">9.</td>
                                         <td class="border">Monitoring o‘tkazilgan sana</td>
                                         <td class="border">{{ $tekshirivchilar->updated_at }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border">9.</td>
+                                        <td class="border">10.</td>
                                         <td class="border">Fayl</td>
                                         <td class="border">
                                         @if ($tekshirivchilar->file)

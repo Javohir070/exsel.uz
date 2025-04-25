@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stajirovka;
 use App\Models\Stajirovkaexpert;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,11 +12,12 @@ class StajirovkaexpertController extends Controller
 {
     public function store(Request $request)
     {
+        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
         $stajirovka = Stajirovka::findOrFail($request->stajirovka_id);
         Stajirovkaexpert::create([
             'user_id' => auth()->id(),
             'tashkilot_id' => $stajirovka->tashkilot_id,
-            'fish' => auth()->user()->name,
+            'fish' => $user->name,
             'stajirovka_id' => $request->stajirovka_id,
             'ilmiy_hisobot' => $request->ilmiy_hisobot,
             'egallangan_bilim' => $request->egallangan_bilim,
@@ -38,9 +40,10 @@ class StajirovkaexpertController extends Controller
 
     public function update(Request $request, Stajirovkaexpert $Stajirovkaexpert)
     {
+        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
         $Stajirovkaexpert->update([
             'user_id' => auth()->id(),
-            'fish' => auth()->user()->name,
+            'fish' => $user->name,
             'ilmiy_hisobot' => $request->ilmiy_hisobot,
             'egallangan_bilim' => $request->egallangan_bilim,
             'ishlar_natijalari' => $request->ishlar_natijalari,

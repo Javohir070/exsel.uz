@@ -179,12 +179,21 @@ class DoktaranturaController extends Controller
         $tashkilotlar = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->paginate(30);
         if ((auth()->user()->region_id != null)) {
             $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            foreach ($regions as $region) {
+                $doktarantura = $region->tashkilots()
+                    ->where('doktarantura_is', 1)
+                    ->count();
+            }
+            $region_id = Region::where('id', auth()->user()->region_id)->first();
+            $id = $region_id->tashkilots()->pluck('id');
+            $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->count();
+            $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->count();
         } else {
             $regions = Region::orderBy('order')->get();
+            $doktarantura = Tashkilot::where('doktarantura_is', 1)->count();
+            $doktarantura_count = Doktarantura::count();
+            $doktarantura_expert = Doktaranturaexpert::count();
         }
-        $doktarantura = Tashkilot::where('doktarantura_is', 1)->count();
-        $doktarantura_count = Doktarantura::count();
-        $doktarantura_expert = Doktaranturaexpert::count();
         return view('admin.doktarantura.viloyat', ['doktarantura_expert' => $doktarantura_expert, 'regions' => $regions, 'doktarantura' => $doktarantura, 'doktarantura_count'=>$doktarantura_count]);
     }
 

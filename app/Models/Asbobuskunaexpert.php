@@ -26,4 +26,9 @@ class Asbobuskunaexpert extends Model
         'lab_ishga_yaroqliligi',
         'tashkilot_id',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

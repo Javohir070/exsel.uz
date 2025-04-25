@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Asbobuskuna;
 use App\Models\Asbobuskunaexpert;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -11,11 +12,12 @@ class AsbobuskunaexpertController extends Controller
 {
     public function store(Request $request)
     {
+        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
         $asbobuskuna = Asbobuskuna::findOrFail($request->asbobuskuna_id);
         Asbobuskunaexpert::create([
             'user_id' => auth()->id(),
             'tashkilot_id' => $asbobuskuna->tashkilot_id,
-            'fish' => auth()->user()->name,
+            'fish' => $user->name,
             'asbobuskuna_id' => $asbobuskuna->id,
             'status' => $request->status,
             'comment' => $request->comment,
@@ -44,9 +46,10 @@ class AsbobuskunaexpertController extends Controller
 
     public function update(Request $request, Asbobuskunaexpert $asbobuskunaexpert)
     {
+        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
         $asbobuskunaexpert->update([
             'user_id' => auth()->id(),
-            'fish' => auth()->user()->name,
+            'fish' => $user->name,
             'status' => $request->status,
             'comment' => $request->comment,
             'lab_uskunalarini_mosligi' => $request->lab_uskunalarini_mosligi,

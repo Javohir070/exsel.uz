@@ -43,23 +43,31 @@ class AsbobuskunaController extends Controller
 
     public function asbobuskunalar()
     {
-        // $asbobuskunas = Asbobuskuna::paginate(20);
-        $tashkilots = Tashkilot::where('asbobuskuna_is', 1)->count();
-        $tash_count = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)->count();
-
-        $asboblar_count = Asbobuskuna::where('is_active',1)->count();
-        $asboblar_expert = Asbobuskunaexpert::count();
 
         if ((auth()->user()->region_id != null)) {
             $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            foreach ($regions as $region) {
+                $tashkilots = $region->tashkilots()
+                    ->where('asbobuskuna_is', 1)
+                    ->count();
+            }
+            $region_id = Region::where('id', auth()->user()->region_id)->first();
+            $id = $region_id->tashkilots()->pluck('id');
+            $asboblar_count = Asbobuskuna::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
+            $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id)->count();
         } else {
             $regions = Region::orderBy('order')->get();
+            $tashkilots = Tashkilot::where('asbobuskuna_is', 1)->count();
+            $asboblar_count = Asbobuskuna::where('is_active',1)->count();
+            $asboblar_expert = Asbobuskunaexpert::count();
         }
 
-        $asbobuskunas = Asbobuskuna::where('is_active', 1)->count();
-        // $asbobuskuna =
-        // dd($asbobuskunas);
-        return view('admin.asbobuskuna.viloyat', ['asbobuskunas' => $asbobuskunas, 'asboblar_count' => $asboblar_count, 'regions' => $regions, 'asboblar_expert'=>$asboblar_expert, 'tashkilots'=>$tashkilots]);
+        return view('admin.asbobuskuna.viloyat', [
+                            'asboblar_count' => $asboblar_count,
+                            'regions' => $regions,
+                            'asboblar_expert'=>$asboblar_expert,
+                            'tashkilots'=>$tashkilots
+                        ]);
     }
 
     public function tashkilot_turi_asbobuskuna($id)

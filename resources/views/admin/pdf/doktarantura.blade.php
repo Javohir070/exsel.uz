@@ -286,7 +286,7 @@
                     <td class="text-center title" colspan="2">
                         Komissiya a'zolari
                     </td>
-                    <td>{{  $tekshirivchilar->fish ?? null }} </td>
+                    <td>{{  $tekshirivchilar->fish ?? null }} <br> {{  $tekshirivchilar->user->name ?? null }}</td>
                 </tr>
             </table>
 

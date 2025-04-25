@@ -544,7 +544,7 @@
                                         Komissiya a'zolari
                                     </td>
                                     <td class="border border-b-2 ">
-                                        {{ $tekshirivchilar->fish }}
+                                        {{ $tekshirivchilar->fish }} <br> {{ $tekshirivchilar->user->name }}
                                     </td>
                                 </tr>
                             </table>

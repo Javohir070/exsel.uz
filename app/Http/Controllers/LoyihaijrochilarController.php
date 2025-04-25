@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Http;
 
 class LoyihaijrochilarController extends Controller
 {
+    public function index(Request $request)
+    {
+        dd($request->all());
+        return redirect()->back()->with('status', 'Loyiha ijrochisi o‘chirildi');
+    }
     // public function index(Request $request)
     // {
 
@@ -83,7 +88,6 @@ class LoyihaijrochilarController extends Controller
             'science_id' => $request->science_id,
             'shtat_birligi' => $request->shtat_birligi,
             'jshshir' => $request->jshshir,
-            'shtat_sum' => $shtat_sum,
         ]);
 
         $loyihaijrochilar = Loyihaijrochilar::where('ilmiy_loyiha_id', '=', $request->ilmiy_loyiha_id)->get();
@@ -91,18 +95,9 @@ class LoyihaijrochilarController extends Controller
         foreach ($loyihaijrochilar as $loyihaijrochi) {
             $shtat_sum += $loyihaijrochi->shtat_birligi;
         }
-        return view('admin.ilmiyloyiha.show', [
-            'ilmiyloyiha' => $ilmiyloyiha,
-            'intellektual' => $intellektual,
-            'loyihaiqtisodi' => $loyihaiqtisodi,
-            'tekshirivchilar' => $tekshirivchilar,
-            'data' => $data,
-            'loyihaijrochilar' => $loyihaijrochilar,
-            'create' => $create,
-            'scienceid' => $scienceid ?? '',
-            'errorMessage' => $errorMessage,
-            'shtat_sum' => $shtat_sum,
-        ])->with('status', 'Loyiha ijrochisi qo‘shildi.');
+        return redirect()
+            ->route('ilmiyloyiha.show', $request->ilmiy_loyiha_id)
+            ->with('status', 'Loyiha ijrochisi muvaffaqiyatli qo‘shildi.');
     }
 
     public function destroy(Loyihaijrochilar $loyihaijrochilar)

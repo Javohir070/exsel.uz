@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\IlmiyLoyiha;
 use App\Models\Tekshirivchilar;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Exports\TekshirivchilarExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -13,11 +14,12 @@ class TekshirivchilarController extends Controller
     public function store(Request $request)
     {
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiyloyiha_id);
+        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
         Tekshirivchilar::create([
             'user_id' => auth()->id(),
             'tashkilot_id' => $ilmiyloyiha->tashkilot_id,
             'ilmiy_loyiha_id' => $request->ilmiyloyiha_id,
-            'fish' => auth()->user()->name,
+            'fish' => $user->name,
             "status" => $request->status,
             "comment" => $request->comment,
             'is_active' => 1,

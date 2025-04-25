@@ -25,19 +25,31 @@ class StajirovkaController extends Controller
 
     public function stajirovkalar()
     {
-
-        $stajirovkas = Stajirovka::count();
-        $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is',1)->paginate(30);
-        $tashkilots = Tashkilot::orderBy('name')->where('stajirovka_is',1)->count();
         $querysearch = null;
         if ((auth()->user()->region_id != null)) {
             $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            foreach ($regions as $region) {
+                $tashkilots = $region->tashkilots()
+                    ->where('stajirovka_is', 1)
+                    ->count();
+            }
+            $region_id = Region::where('id', auth()->user()->region_id)->first();
+            $id = $region_id->tashkilots()->pluck('id');
+            $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->count();
+            $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->count();
         } else {
             $regions = Region::orderBy('order')->get();
+            $tashkilots = Tashkilot::orderBy('name')->where('stajirovka_is',1)->count();
+            $stajirovka_count = Stajirovka::count();
+            $stajirovka_expert = Stajirovkaexpert::count();
         }
-        $stajirovka_count = Stajirovka::count();
-        $stajirovka_expert = Stajirovkaexpert::count();
-        return view('admin.stajirovka.viloyat', ['tashkilots' => $tashkilots, 'stajirovka_count' => $stajirovka_count, 'stajirovka_expert' => $stajirovka_expert, 'regions' => $regions, 'querysearch' => $querysearch]);
+        return view('admin.stajirovka.viloyat', [
+                        'tashkilots' => $tashkilots,
+                        'stajirovka_count' => $stajirovka_count,
+                        'stajirovka_expert' => $stajirovka_expert,
+                        'regions' => $regions,
+                        'querysearch' => $querysearch
+                    ]);
     }
 
     public function tashkilot_turi_stajiroka($id)

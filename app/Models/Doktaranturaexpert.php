@@ -29,4 +29,9 @@ class Doktaranturaexpert extends Model
         "meyoridan_rahbarlar",
         "tash_ortiq_rahbarlar",
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

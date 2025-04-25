@@ -209,7 +209,7 @@
                         <td>{{ ($intellektual->dasturiy_gsamalda ?? 0) + ($intellektual->ixtiro_ber_psamalda ?? 0) + ($intellektual->ixtiro_olingan_psamalda ?? 0)}}</td>
                         <td>{{ (($intellektual->ixtiro_olingan_psreja ?? 0) + ($intellektual->ixtiro_ber_psreja ?? 0) + ($intellektual->dasturiy_gsreja ?? 0)) - (($intellektual->dasturiy_gsamalda ?? 0) + ($intellektual->ixtiro_ber_psamalda ?? 0) + ($intellektual->ixtiro_olingan_psamalda ?? 0))}}</td>
                         <td>
-                            {{ $intellektual->ixtiro_olingan_izoh }}, {{ $intellektual->ixtiro_ber_izoh ?? null }},  {{ $intellektual->dasturiy_izoh ?? null }}
+                            {{ $intellektual->ixtiro_olingan_izoh ?? null}}, {{ $intellektual->ixtiro_ber_izoh ?? null }},  {{ $intellektual->dasturiy_izoh ?? null }}
                         </td>
                     </tr>
 
@@ -244,16 +244,12 @@
         <h2 class="subtitle">Monitoring xulosasi: {{$tekshirivchilar->status ?? "" }}</h2>
         <p>Monitoring o'tkazilgan sana: {{ $tekshirivchilar->updated_at ?? "" }} y.</p>
         <p>O'rganish o'tkazgan ishchi guruh:</p>
-        <p>{{$tekshirivchilar->fish ?? "" }}</p>
+        <p>{{ $tekshirivchilar->fish ?? "" }}</p>
+        <p>{{ $tekshirivchilar->user->name ?? "" }}</p>
         <!--  QrCode  yozasiz -->
         <div class="footer-qr" style="display: flex;gap:10px;">
             <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;" alt="Qr code"
                 style="width: 100px; height: 100px;">
-            <p style="font-size: 12px;">
-                Hujjat haqiqiyligini mobil qurilma <br>
-                yordamida QR- kodni skaner qilish <br>
-                orqali tekshirish mumkin
-            </p>
         </div>
     </div>
     </div>

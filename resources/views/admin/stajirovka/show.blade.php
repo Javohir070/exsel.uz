@@ -232,13 +232,22 @@
                             @endif
                         </td>
                     </tr>
-                    <tr >
+                    <tr class="bg-gray-200">
                         <td class="border border-b-2 ">9.</td>
                         <td class="border border-b-2 ">
                             Ekspert F.I.Sh
                         </td>
                         <td class="border border-b-2 ">
                             {{ $tekshirivchilar->fish }}
+                        </td>
+                    </tr>
+                    <tr >
+                        <td class="border border-b-2 ">10.</td>
+                        <td class="border border-b-2 ">
+                            Ishchi guruh azosi F.I.Sh
+                        </td>
+                        <td class="border border-b-2 ">
+                            {{ $tekshirivchilar->user->name }}
                         </td>
                     </tr>
                 </tbody>

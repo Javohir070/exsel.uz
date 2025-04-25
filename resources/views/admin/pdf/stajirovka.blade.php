@@ -248,10 +248,10 @@
                         <td style="text-align: center;">{{  $tekshirivchilar->status ?? null }}</td>
                     </tr>
                     <tr class="bg-gray-200">
-                        <td class="text-center title" colspan="2" style="text-align: center;">
-                            Izoh
+                        <td  colspan="3" style="text-align: center;">
+                            <span class="text-center title">Izoh:</span> {{  $tekshirivchilar->comment ?? null }}
                         </td>
-                        <td>{{  $tekshirivchilar->comment ?? null }}</td>
+                        {{-- <td>{{  $tekshirivchilar->comment ?? null }}</td> --}}
                     </tr>
                 </tbody>
             </table>
@@ -260,6 +260,7 @@
             <div class="footer">
                 <div class="footer-info">
                     <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
+                    <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
                     <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at ?? null }}</p>
                 </div>
                 <div class="qr-code">

@@ -113,8 +113,6 @@ class IlmiyLoyihaController extends Controller
         $data = null;
         $errorMessage = null;
 
-
-
         if ($scienceid) {
             $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$scienceid}/";
             $response_main = Http::withBasicAuth(
@@ -304,19 +302,29 @@ class IlmiyLoyihaController extends Controller
 
     public function ilmiyloyihalar()
     {
-        // $asbobuskunas = IlmiyLoyiha::paginate(20);
-        $tashkilotlar = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->paginate(30);
-        $tash_count = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)->count();
         if ((auth()->user()->region_id != null)) {
             $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            foreach ($regions as $region) {
+                $tashkilots = $region->tashkilots()
+                    ->where('ilmiyloyiha_is', 1)
+                    ->count();
+            }
+            $region_id = Region::where('id', auth()->user()->region_id)->first();
+            $id = $region_id->tashkilots()->pluck('id');
+            $loy_count = IlmiyLoyiha::whereIn('tashkilot_id', $id)->where('is_active',1)->count();
+            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('is_active',1)->count();
         } else {
             $regions = Region::orderBy('order')->get();
+            $loy_count = IlmiyLoyiha::where('is_active',1)->count();
+            $loy_expert = Tekshirivchilar::where('is_active',1)->count();
+            $tashkilots =Tashkilot::where('ilmiyloyiha_is', 1)->count();
         }
-        $ilmiyloyiha = IlmiyLoyiha::where('is_active', 1)->count();
-        $loy_count = IlmiyLoyiha::where('is_active',1)->count();
-        $loy_expert = Tekshirivchilar::where('is_active',1)->count();
-        $tashkilots =Tashkilot::where('ilmiyloyiha_is', 1)->count();
-        return view('admin.ilmiyloyiha.viloyat', ['loy_count' => $loy_count, 'loy_expert' => $loy_expert, 'regions' => $regions, 'tash_count'=>$tash_count, 'tashkilots'=>$tashkilots]);
+        return view('admin.ilmiyloyiha.viloyat', [
+                        'loy_count' => $loy_count,
+                        'loy_expert' => $loy_expert,
+                        'regions' => $regions,
+                        'tashkilots'=>$tashkilots
+                    ]);
     }
 
     public function tashkilot_turi($id)
