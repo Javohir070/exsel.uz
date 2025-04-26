@@ -950,7 +950,7 @@
                                                     Ekspert F.I.Sh
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="ekspert_fish"
+                                                    <input type="text" name="ekspert_fish"
                                                         value="{{ $tekshirivchilar->ekspert_fish ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
