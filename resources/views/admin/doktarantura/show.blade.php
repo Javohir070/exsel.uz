@@ -543,14 +543,35 @@
                                         @endif
                                     </td>
                                 </tr>
+
                                 <tr class="bg-gray-200">
+                                    {{-- <td class="border border-b-2 ">9.</td> --}}
                                     <td class="border border-b-2 ">
-                                        Komissiya a'zolari
+                                        Ishchi guruh rahbari F.I.Sh
                                     </td>
                                     <td class="border border-b-2 ">
-                                        {{ $tekshirivchilar->fish }} <br> {{ $tekshirivchilar->user->name }}
+                                        {{ $tekshirivchilar->fish }}
                                     </td>
                                 </tr>
+                                <tr>
+                                    {{-- <td class="border border-b-2 ">10.</td> --}}
+                                    <td class="border border-b-2 ">
+                                        Ishchi guruh azosi F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $tekshirivchilar->user->name }}
+                                    </td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    {{-- <td class="border border-b-2 ">11.</td> --}}
+                                    <td class="border border-b-2 ">
+                                        Ekspert F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $tekshirivchilar->ekspert_fish }}
+                                    </td>
+                                </tr>
+
                             </table>
                         </div>
                     @empty
@@ -703,6 +724,12 @@
 
                                                 </tbody>
                                             </table>
+                                        </div>
+
+                                        <div class="w-full col-span-6 ">
+                                            <label class="flex flex-col sm:flex-row"> <span
+                                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ekspert F.I.Sh</label>
+                                            <input type="text" name="ekspert_fish"  class="input w-full border mt-2" required>
                                         </div>
 
                                         <div class="w-full col-span-6">
@@ -917,8 +944,20 @@
                                                 </td>
                                             </tr>
 
-                                            <tr>
+                                            <tr >
                                                 <td class="border border-b-2 ">13.</td>
+                                                <td class="border border-b-2 ">
+                                                    Ekspert F.I.Sh
+                                                </td>
+                                                <td class="border border-b-2 ">
+                                                    <input type="number" name="ekspert_fish"
+                                                        value="{{ $tekshirivchilar->ekspert_fish ?? null }}"
+                                                        class="input w-full border mt-2">
+                                                </td>
+                                            </tr>
+
+                                            <tr class="bg-gray-200">
+                                                <td class="border border-b-2 ">14.</td>
                                                 <td class="border border-b-2 ">
                                                     Status.
                                                 </td>
@@ -944,8 +983,8 @@
                                                 </td>
                                             </tr>
 
-                                            <tr class="bg-gray-200">
-                                                <td class="border border-b-2 ">14.</td>
+                                            <tr>
+                                                <td class="border border-b-2 ">15.</td>
                                                 <td class="border border-b-2 ">
                                                     Izoh.
                                                 </td>

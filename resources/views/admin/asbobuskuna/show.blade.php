@@ -293,7 +293,7 @@
                     <tr class="bg-gray-200">
                         <td class="border border-b-2 ">12.</td>
                         <td class="border border-b-2 ">
-                            Ekspert F.I.Sh
+                            Ishchi guruh rahbari F.I.Sh
                         </td>
                         <td class="border border-b-2 ">
                             {{ $tekshirivchilar->fish }}
@@ -306,6 +306,15 @@
                         </td>
                         <td class="border border-b-2 ">
                             {{ $tekshirivchilar->user->name }}
+                        </td>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <td class="border border-b-2 ">14.</td>
+                        <td class="border border-b-2 ">
+                            Ekspert F.I.Sh
+                        </td>
+                        <td class="border border-b-2 ">
+                            {{ $tekshirivchilar->ekspert_fish }}
                         </td>
                     </tr>
                 </tbody>
@@ -486,7 +495,11 @@
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>
-
+                        <div class="w-full col-span-6 ">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ekspert F.I.Sh</label>
+                            <input type="text" name="ekspert_fish"  class="input w-full border mt-2" required>
+                        </div>
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
@@ -513,6 +526,8 @@
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
                             <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5" required></textarea>
                         </div>
+
+
                     </div>
 
                 </form><br>

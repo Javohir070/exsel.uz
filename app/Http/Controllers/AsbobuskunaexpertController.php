@@ -18,6 +18,7 @@ class AsbobuskunaexpertController extends Controller
             'user_id' => auth()->id(),
             'tashkilot_id' => $asbobuskuna->tashkilot_id,
             'fish' => $user->name,
+            'ekspert_fish' => $request->ekspert_fish,
             'asbobuskuna_id' => $asbobuskuna->id,
             'status' => $request->status,
             'comment' => $request->comment,
@@ -50,6 +51,7 @@ class AsbobuskunaexpertController extends Controller
         $asbobuskunaexpert->update([
             'user_id' => auth()->id(),
             'fish' => $user->name,
+            'ekspert_fish' => $request->ekspert_fish,
             'status' => $request->status,
             'comment' => $request->comment,
             'lab_uskunalarini_mosligi' => $request->lab_uskunalarini_mosligi,

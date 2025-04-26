@@ -282,12 +282,12 @@
                 <!-- <tr class="bg-gray-200">
                     <td colspan="3">{{  $tekshirivchilar->comment ?? null }}</td>
                 </tr> -->
-                <tr class="bg-gray-200">
+                {{-- <tr class="bg-gray-200">
                     <td class="text-center title" colspan="2">
                         Komissiya a'zolari
                     </td>
                     <td>{{  $tekshirivchilar->fish ?? null }} <br> {{  $tekshirivchilar->user->name ?? null }}</td>
-                </tr>
+                </tr> --}}
             </table>
 
             <table class="table" style="margin-top: 20px;border:none;">
@@ -309,8 +309,11 @@
 
             <div class="footer">
                 <div class="footer-info">
-                    {{-- <p>Ekspert F.I.Sh: {{  $tekshirivchilar->fish ?? null }} </p> --}}
-                    <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at ?? null }}</p>
+                    {{-- <p>Ishchi guruh rahbari F.I.Sh: {{  $tekshirivchilar->fish ?? null }} </p> --}}
+                    <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
+                    <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
+                    <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>
+                    <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
                 </div>
                 <div class="qr-code">
                     <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;"

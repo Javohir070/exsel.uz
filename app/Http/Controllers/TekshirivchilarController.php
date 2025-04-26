@@ -20,6 +20,7 @@ class TekshirivchilarController extends Controller
             'tashkilot_id' => $ilmiyloyiha->tashkilot_id,
             'ilmiy_loyiha_id' => $request->ilmiyloyiha_id,
             'fish' => $user->name,
+            'ekspert_fish' => $request->ekspert_fish,
             "status" => $request->status,
             "comment" => $request->comment,
             'is_active' => 1,
@@ -40,7 +41,19 @@ class TekshirivchilarController extends Controller
 
     public function update(Request $request, Tekshirivchilar $tekshirivchilar)
     {
-        $tekshirivchilar->update($request->all());
+        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
+        $tekshirivchilar->update([
+            'user_id' => auth()->id(),
+            'fish' => $user->name,
+            'ekspert_fish' => $request->ekspert_fish,
+            "status" => $request->status,
+            "comment" => $request->comment,
+            'is_active' => 1,
+            'kalendar' => $request->kalendar,
+            'shart_sharoit_yaratib' => $request->shart_sharoit_yaratib,
+            'yakuniy_natijalar' => $request->yakuniy_natijalar,
+            'loyiha_ijrochilari' => $request->loyiha_ijrochilari,
+        ]);
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 

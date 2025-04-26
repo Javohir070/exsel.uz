@@ -13,6 +13,7 @@ class Doktaranturaexpert extends Model
         'user_id',
         'tashkilot_id',
         'fish',
+        'ekspert_fish',
         'status',
         'comment',
         'file',

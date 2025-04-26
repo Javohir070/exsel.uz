@@ -254,7 +254,7 @@
 
             <div class="footer">
                 <div class="footer-info">
-                    <p>Ekspert F.I.Sh: {{  $tekshirivchilar->fish ?? null }} </p>
+                    <p>Ishchi guruh rahbari F.I.Sh: {{  $tekshirivchilar->fish ?? null }} </p>
                     <p>Sana: {{  $tekshirivchilar->created_at ?? null }}</p>
                 </div>
                 <div class="qr-code">

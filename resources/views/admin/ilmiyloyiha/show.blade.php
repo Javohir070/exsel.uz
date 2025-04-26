@@ -930,7 +930,7 @@
                                     </tr>
                                     <tr>
                                         <td class="border">7.</td>
-                                        <td class="border">Ekspert F.I.Sh</td>
+                                        <td class="border">Ishchi guruh rahbari F.I.Sh</td>
                                         <td class="border">{{ $tekshirivchilar->fish }}</td>
                                     </tr>
                                     <tr >
@@ -944,11 +944,16 @@
                                     </tr>
                                     <tr>
                                         <td class="border">9.</td>
+                                        <td class="border">Ekspert  F.I.Sh</td>
+                                        <td class="border">{{ $tekshirivchilar->ekspert_fish }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border">10.</td>
                                         <td class="border">Monitoring o‘tkazilgan sana</td>
                                         <td class="border">{{ $tekshirivchilar->updated_at }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="border">10.</td>
+                                        <td class="border">11.</td>
                                         <td class="border">Fayl</td>
                                         <td class="border">
                                         @if ($tekshirivchilar->file)
@@ -1053,6 +1058,12 @@
                                                     @error('muddat')
                                                         <div class="error">{{ $message }}</div>
                                                     @enderror
+                                                </div>
+
+                                                <div class="w-full col-span-6 ">
+                                                    <label class="flex flex-col sm:flex-row"> <span
+                                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ekspert F.I.Sh</label>
+                                                    <input type="text" name="ekspert_fish"  class="input w-full border mt-2" required>
                                                 </div>
 
                                                 <div class="w-full col-span-6">
@@ -4063,6 +4074,17 @@
                                             </tr>
                                             <tr>
                                                 <td class="border border-b-2 ">5.</td>
+                                                    <td class="border border-b-2 ">
+                                                        Ekspert F.I.Sh
+                                                    </td>
+                                                    <td class="border border-b-2 ">
+                                                        <input type="text" name="ekspert_fish"
+                                                            value="{{ $tekshirivchilar->ekspert_fish ?? null }}"
+                                                            class="input w-full border mt-2">
+                                                    </td>
+                                            </tr>
+                                            <tr class="bg-gray-200">
+                                                <td class="border border-b-2 ">6.</td>
                                                 <td class="border border-b-2 ">
                                                     Monitoring xulosasi.
                                                 </td>
@@ -4085,8 +4107,8 @@
                                                 </td>
                                             </tr>
 
-                                            <tr class="bg-gray-200">
-                                                <td class="border border-b-2 ">14.</td>
+                                            <tr>
+                                                <td class="border border-b-2 ">7.</td>
                                                 <td class="border border-b-2 ">
                                                     Izoh.
                                                 </td>

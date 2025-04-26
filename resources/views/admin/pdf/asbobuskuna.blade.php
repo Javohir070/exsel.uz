@@ -264,7 +264,7 @@
                         <td style="text-align: center;">{{  $tekshirivchilar->lab_ishga_yaroqliligi ?? null }}</td>
                     </tr>
                     <tr>
-                        <td class="text-center title" colspan="2">Ekspert xulosasi </td>
+                        <td class="text-center title" colspan="2">Monitoring xulosasi </td>
                         <td style="text-align: center;">{{  $tekshirivchilar->status ?? null }}</td>
                     </tr>
                     <tr class="bg-gray-200">
@@ -277,9 +277,10 @@
 
             <div class="footer">
                 <div class="footer-info">
-                    <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
+                    <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
                     <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
-                    <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at ?? null }}</p>
+                    <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>
+                    <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
                 </div>
                 <div class="qr-code">
                     <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;"

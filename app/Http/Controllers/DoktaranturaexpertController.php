@@ -18,6 +18,7 @@ class DoktaranturaexpertController extends Controller
         Doktaranturaexpert::create([
             'user_id' => auth()->id(),
             'fish' => $user->name,
+            'ekspert_fish' => $request->ekspert_fish,
             'tashkilot_id' => $request->tashkilot_id,
             'status' => $request->status,
             'comment' => $request->comment,
@@ -87,6 +88,7 @@ class DoktaranturaexpertController extends Controller
         $doktaranturaexpert->update([
             'user_id' => auth()->id(),
             'fish' => $user->name,
+            'ekspert_fish' => $request->ekspert_fish,
             'status' => $request->status,
             'comment' => $request->comment,
             "umumiy_izlanuvchilar" => $request->umumiy_izlanuvchilar,

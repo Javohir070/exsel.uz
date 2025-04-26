@@ -10,6 +10,13 @@
             font-family: 'DejaVu Sans', sans-serif !important;
             margin: 20px;
         }
+        .title {
+            text-align: center;
+            font-weight: bold !important;
+            font-size: 14px;
+            margin-bottom: 1rem;
+
+        }
 
         .container {
             max-width: 1200px;
@@ -239,17 +246,38 @@
                         <td>Loyiha ijrochilarining o‘zgarishi holati</td>
                         <td colspan="4">{{$tekshirivchilar->loyiha_ijrochilari ?? "" }}</td>
                     </tr>
+                    <tr>
+                        <td class="text-center title" colspan="4" >Monitoring xulosasi </td>
+                        <td style="text-align: center;">{{  $tekshirivchilar->status ?? null }}</td>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <td  colspan="5">
+                            <span class="text-center title">Izoh:</span> {{  $tekshirivchilar->comment ?? null }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
-        <h2 class="subtitle">Monitoring xulosasi: {{$tekshirivchilar->status ?? "" }}</h2>
+        {{-- <h2 class="subtitle">Monitoring xulosasi: {{$tekshirivchilar->status ?? "" }}</h2>
         <p>Monitoring o'tkazilgan sana: {{ $tekshirivchilar->updated_at ?? "" }} y.</p>
         <p>O'rganish o'tkazgan ishchi guruh:</p>
         <p>{{ $tekshirivchilar->fish ?? "" }}</p>
-        <p>{{ $tekshirivchilar->user->name ?? "" }}</p>
+        <p>{{ $tekshirivchilar->user->name ?? "" }}</p> --}}
         <!--  QrCode  yozasiz -->
-        <div class="footer-qr" style="display: flex;gap:10px;">
+        {{-- <div class="footer-qr" style="display: flex;gap:10px;">
             <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;" alt="Qr code"
                 style="width: 100px; height: 100px;">
+        </div> --}}
+        <div class="footer">
+            <div class="footer-info">
+                <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
+                <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
+                <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>
+                <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
+            </div>
+            <div class="qr-code">
+                <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;"
+                alt="Qr code" style="width: 100px; height: 100px;">
+            </div>
         </div>
     </div>
     </div>

@@ -13,6 +13,7 @@ class Asbobuskunaexpert extends Model
         'user_id',
         'asbobuskuna_id',
         'fish',
+        'ekspert_fish',
         'status',
         'comment',
         'file',

@@ -13,6 +13,7 @@ class Stajirovkaexpert extends Model
         'user_id',
         'stajirovka_id',
         'fish',
+        'ekspert_fish',
         'ilmiy_hisobot',
         'egallangan_bilim',
         'ishlar_natijalari',

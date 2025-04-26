@@ -18,6 +18,7 @@ class StajirovkaexpertController extends Controller
             'user_id' => auth()->id(),
             'tashkilot_id' => $stajirovka->tashkilot_id,
             'fish' => $user->name,
+            'ekspert_fish' => $request->ekspert_fish,
             'stajirovka_id' => $request->stajirovka_id,
             'ilmiy_hisobot' => $request->ilmiy_hisobot,
             'egallangan_bilim' => $request->egallangan_bilim,
@@ -44,6 +45,7 @@ class StajirovkaexpertController extends Controller
         $Stajirovkaexpert->update([
             'user_id' => auth()->id(),
             'fish' => $user->name,
+            'ekspert_fish' => $request->ekspert_fish,
             'ilmiy_hisobot' => $request->ilmiy_hisobot,
             'egallangan_bilim' => $request->egallangan_bilim,
             'ishlar_natijalari' => $request->ishlar_natijalari,
