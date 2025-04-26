@@ -393,6 +393,7 @@
                                             Eksport
                                         </a>
                                     @endrole
+                                    @role([['Ishchi guruh azosi']])
                                         <a href="javascript:;" data-target="#doktarantura-paper-create-modal"
                                             data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
                                             Tahrirlash
@@ -405,6 +406,7 @@
                                             <button type="submit"
                                                 class="button w-24 bg-theme-6 text-white">O'chirish</button>
                                         </form>
+                                    @endrole
                                     </div>
 
 

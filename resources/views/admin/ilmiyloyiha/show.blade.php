@@ -870,12 +870,13 @@
                                 @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi'])
                                     <div
                                         style="display: flex;justify-content:center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                                        @role(['Ekspert'])
                                         <div style="text-align: center;display: flex;">
+                                            @role(['Ekspert'])
                                             <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
                                                 Eksport
                                         </a>
                                         @endrole
+                                        @role(['Ishchi guruh azosi'])
                                         <a href="javascript:;" data-target="#doktarantura-paper-create-modal"
                                                 data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white" style="margin-right:20px;">
                                                 Tahrirlash
@@ -886,7 +887,7 @@
                                                 @method('DELETE')
                                                 <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
                                             </form>
-
+                                        @endrole
                                         </div>
 
                                     </div>
@@ -959,7 +960,7 @@
                                 </tbody>
                             </table>
                         @else
-                            @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi'])
+                            @role(['Ishchi guruh azosi'])
                                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
                                     style="background: white; padding: 20px 20px; border-radius: 20px">
                                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">

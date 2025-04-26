@@ -181,6 +181,7 @@
                                 Eksport
                            </a>
                         @endrole
+                        @role(['Ishchi guruh azosi'])
                             <a href="{{ route('asbobuskunaexpert.edit', ['asbobuskunaexpert' => $tekshirivchilar->id]) }}"
                                 class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
@@ -191,7 +192,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
                             </form>
-
+                        @endrole
                         </div>
 
                     </div>
@@ -311,6 +312,7 @@
             </table>
         </div>
         @empty
+        @role(['Ishchi guruh azosi'])
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
             style="background: white; padding: 20px 20px; border-radius: 20px">
             <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
@@ -525,6 +527,7 @@
                 </div>
             </div>
         </div>
+        @endrole
         @endforelse
         @endrole
     </div>
