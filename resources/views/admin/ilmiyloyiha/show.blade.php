@@ -870,10 +870,12 @@
                                 @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi'])
                                     <div
                                         style="display: flex;justify-content:center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
+                                        @role(['Ekspert'])
                                         <div style="text-align: center;display: flex;">
                                             <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
                                                 Eksport
                                         </a>
+                                        @endrole
                                         <a href="javascript:;" data-target="#doktarantura-paper-create-modal"
                                                 data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white" style="margin-right:20px;">
                                                 Tahrirlash

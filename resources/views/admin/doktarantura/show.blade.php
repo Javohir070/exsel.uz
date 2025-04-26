@@ -387,10 +387,12 @@
                                     style="display: flex;justify-content: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
 
                                     <div style="text-align: end;display: flex;gap:10px;">
+                                    @role(['Ekspert'])
                                         <a href="{{ url('generate-pdfdoktarantura/' . $tashkilot->id) }}"
                                             class="button delete-cancel border text-gray-700 mr-1">
-                                             Eksport
+                                            Eksport
                                         </a>
+                                    @endrole
                                         <a href="javascript:;" data-target="#doktarantura-paper-create-modal"
                                             data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
                                             Tahrirlash

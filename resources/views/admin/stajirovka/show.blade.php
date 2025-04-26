@@ -136,9 +136,11 @@
                 <div
                         style="display: flex;justify-content: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="text-align: end;display: flex;">
+                        @role(['Ekspert'])
                             <a href="{{ url('generate-pdfsajiyor/' . $stajirovka->id) }}" class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
                                 Eksport
                             </a>
+                        @endrole
                             <a href="{{ route('stajirovkaexpert.edit', ['stajirovkaexpert' => $tekshirivchilar->id]) }}"
                                 class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
