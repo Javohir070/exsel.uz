@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Asbobuskuna;
 use App\Models\Asbobuskunaexpert;
 use App\Models\User;
+use App\Notifications\AsbobuskunaNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 class AsbobuskunaexpertController extends Controller
@@ -52,6 +54,8 @@ class AsbobuskunaexpertController extends Controller
             $asbobuskunaexpert->update([
                 'holati' => 'rad etildi',
             ]);
+            $admins =User::findOrFail($asbobuskunaexpert->user_id);
+            Notification::send($admins, new AsbobuskunaNotification($asbobuskunaexpert));
             return redirect()->route('asbobuskuna.show', $asbobuskunaexpert->asbobuskuna_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         } else {
             $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();

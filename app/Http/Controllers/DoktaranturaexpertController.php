@@ -6,7 +6,9 @@ use App\Models\Doktaranturaexpert;
 use App\Models\Izlanuvchilar;
 use App\Models\Tashkilot;
 use App\Models\User;
+use App\Notifications\DoktaranturaNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 class DoktaranturaexpertController extends Controller
@@ -89,7 +91,8 @@ class DoktaranturaexpertController extends Controller
             $doktaranturaexpert->update([
                 'holati' => 'rad etildi',
             ]);
-
+            $admins = User::findOrFail($doktaranturaexpert->user_id);
+            Notification::send($admins, new DoktaranturaNotification($doktaranturaexpert));
             return redirect()->route('doktarantura.show', $doktaranturaexpert->tashkilot_id)->with("status", 'Ma\'lumotlar rad etildi.');
         } else {
             $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();

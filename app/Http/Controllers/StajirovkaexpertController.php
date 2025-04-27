@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Stajirovka;
 use App\Models\Stajirovkaexpert;
 use App\Models\User;
+use App\Notifications\StajirovkaNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 
 class StajirovkaexpertController extends Controller
@@ -40,18 +42,19 @@ class StajirovkaexpertController extends Controller
     }
 
 
-    public function update(Request $request, Stajirovkaexpert $Stajirovkaexpert)
+    public function update(Request $request, Stajirovkaexpert $stajirovkaexpert)
     {
         if ($request->holati == 0) {
             $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
-            $Stajirovkaexpert->update([
+            $stajirovkaexpert->update([
                 'holati' => 'rad etildi',
             ]);
-
-            return redirect()->route('stajirovka.show', $Stajirovkaexpert->stajirovka_id)->with("status", 'Ma\'lumotlar rad etildi.');
+            $admins =User::findOrFail($stajirovkaexpert->user_id);
+            Notification::send($admins, new StajirovkaNotification($stajirovkaexpert));
+            return redirect()->route('stajirovka.show', $stajirovkaexpert->stajirovka_id)->with("status", 'Ma\'lumotlar rad etildi.');
         } else {
             $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
-            $Stajirovkaexpert->update([
+            $stajirovkaexpert->update([
                 'user_id' => auth()->id(),
                 'fish' => $user->name,
                 'ekspert_fish' => $request->ekspert_fish,
@@ -66,7 +69,7 @@ class StajirovkaexpertController extends Controller
                 'holati' => 'yuborildi',
             ]);
 
-            return redirect()->route('stajirovka.show', $Stajirovkaexpert->stajirovka_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+            return redirect()->route('stajirovka.show', $stajirovkaexpert->stajirovka_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }
 
     }

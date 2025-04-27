@@ -34,4 +34,9 @@ class Asbobuskunaexpert extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function asbobuskuna()
+    {
+        return $this->belongsTo(Asbobuskuna::class);
+    }
 }

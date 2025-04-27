@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\IlmiyLoyiha;
 use App\Models\Tekshirivchilar;
 use App\Models\User;
+use App\Notifications\IlmiyloyihaNotification;
 use Illuminate\Http\Request;
 use App\Exports\TekshirivchilarExport;
+use Illuminate\Support\Facades\Notification;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TekshirivchilarController extends Controller
@@ -47,6 +49,8 @@ class TekshirivchilarController extends Controller
             $tekshirivchilar->update([
                 'holati' => 'rad etildi',
             ]);
+            $admins =User::findOrFail($tekshirivchilar->user_id);
+            Notification::send($admins, new IlmiyloyihaNotification($tekshirivchilar));
             return redirect()->back()->with('status', 'Ma\'lumotlar rad etildi.');
         } else {
             $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
