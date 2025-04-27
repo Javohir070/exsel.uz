@@ -136,12 +136,22 @@
                     <div style="display: flex;justify-content: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="text-align: end;display: flex;">
                             @role(['Ekspert'])
-                            <a href="{{ url('generate-pdfsajiyor/' . $stajirovka->id) }}"
-                                class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
-                                Eksport
-                            </a>
+                            @if ($tekshirivchilar->holati == 'yuborildi')
+                                <a href="{{ url('generate-pdfsajiyor/' . $stajirovka->id) }}"
+                                    class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
+                                    Eksport
+                                </a>
+                                <form action="{{ route('stajirovkaexpert.update', $tekshirivchilar->id) }}" method="POST"
+                                    onsubmit="return confirm('Haqiqatan ham rad etasizmi?');">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="holati" value="0">
+                                    <button type="submit" class="button w-24 bg-theme-6 text-white">Rad etish</button>
+                                </form>
+                            @endif
                             @endrole
                             @role(['Ishchi guruh azosi'])
+                            @if ($tekshirivchilar->holati == 'Rad etildi')
                             <a href="{{ route('stajirovkaexpert.edit', ['stajirovkaexpert' => $tekshirivchilar->id]) }}"
                                 class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
@@ -152,6 +162,7 @@
                                 @method('DELETE')
                                 <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
                             </form>
+                            @endif
                             @endrole
                         </div>
 
@@ -262,6 +273,15 @@
                             </td>
                             <td class="border border-b-2 ">
                                 {{ $tekshirivchilar->ekspert_fish }}
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="border border-b-2 ">13.</td>
+                            <td class="border border-b-2 ">
+                                Tashkilotning mas'ul rahbarining  F.I.Sh
+                            </td>
+                            <td class="border border-b-2 ">
+                                {{ $tekshirivchilar->t_masul }}
                             </td>
                         </tr>
                     </tbody>
@@ -394,6 +414,12 @@
                                 <label class="flex flex-col sm:flex-row"> <span
                                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ekspert F.I.Sh</label>
                                 <input type="text" name="ekspert_fish"  class="input w-full border mt-2" required>
+                            </div>
+
+                            <div class="w-full col-span-6 ">
+                                <label class="flex flex-col sm:flex-row"> <span
+                                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotning mas'ul rahbarining  F.I.Sh</label>
+                                <input type="text" name="t_masul"  class="input w-full border mt-2" required>
                             </div>
 
                             <div class="w-full col-span-6">

@@ -269,16 +269,21 @@
                         </td>
                         <td style="text-align: center;">{{ $tekshirivchilar->tash_ortiq_rahbarlar ?? null }}</td>
                     </tr>
+                    <tr class="bg-gray-200">
+                        <td  colspan="3">
+                            <span class="text-center title">Izoh</span> : {{  $tekshirivchilar->comment ?? null }}
+                        </td>
+                    </tr>
 
                 </tbody>
             </table>
 
-            <table class="table" style="margin-top: 20px">
+            {{-- <table class="table" style="margin-top: 20px">
                 <tr class="bg-gray-200">
                     <td  colspan="3">
                         <span class="text-center title">Izoh</span> : {{  $tekshirivchilar->comment ?? null }}
                     </td>
-                </tr>
+                </tr> --}}
                 <!-- <tr class="bg-gray-200">
                     <td colspan="3">{{  $tekshirivchilar->comment ?? null }}</td>
                 </tr> -->
@@ -288,7 +293,7 @@
                     </td>
                     <td>{{  $tekshirivchilar->fish ?? null }} <br> {{  $tekshirivchilar->user->name ?? null }}</td>
                 </tr> --}}
-            </table>
+            {{-- </table> --}}
 
             <table class="table" style="margin-top: 20px;border:none;">
                 <tr>
@@ -313,6 +318,7 @@
                     <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
                     <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
                     <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>
+                    <p><span class="title">Tashkilotning mas'ul rahbarining  F.I.Sh:</span> {{  $tekshirivchilar->t_masul ?? null }} </p>
                     <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
                 </div>
                 <div class="qr-code">

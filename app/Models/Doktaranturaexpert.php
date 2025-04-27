@@ -14,6 +14,7 @@ class Doktaranturaexpert extends Model
         'tashkilot_id',
         'fish',
         'ekspert_fish',
+        't_masul',
         'status',
         'comment',
         'file',
@@ -29,6 +30,7 @@ class Doktaranturaexpert extends Model
         "kollegial_rahbarlar",
         "meyoridan_rahbarlar",
         "tash_ortiq_rahbarlar",
+        'holati',
     ];
 
     public function user()

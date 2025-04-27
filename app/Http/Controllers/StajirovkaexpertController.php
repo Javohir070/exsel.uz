@@ -19,6 +19,7 @@ class StajirovkaexpertController extends Controller
             'tashkilot_id' => $stajirovka->tashkilot_id,
             'fish' => $user->name,
             'ekspert_fish' => $request->ekspert_fish,
+            't_masul' => $request->t_masul,
             'stajirovka_id' => $request->stajirovka_id,
             'ilmiy_hisobot' => $request->ilmiy_hisobot,
             'egallangan_bilim' => $request->egallangan_bilim,
@@ -41,21 +42,33 @@ class StajirovkaexpertController extends Controller
 
     public function update(Request $request, Stajirovkaexpert $Stajirovkaexpert)
     {
-        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
-        $Stajirovkaexpert->update([
-            'user_id' => auth()->id(),
-            'fish' => $user->name,
-            'ekspert_fish' => $request->ekspert_fish,
-            'ilmiy_hisobot' => $request->ilmiy_hisobot,
-            'egallangan_bilim' => $request->egallangan_bilim,
-            'ishlar_natijalari' => $request->ishlar_natijalari,
-            'xalqarotan_jur_nashr' => $request->xalqarotan_jur_nashr,
-            'biryil_davomida' => $request->biryil_davomida,
-            'status' => $request->status,
-            'comment' => $request->comment,
-        ]);
+        if ($request->holati == 0) {
+            $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
+            $Stajirovkaexpert->update([
+                'holati' => 'rad etildi',
+            ]);
 
-        return redirect()->route('stajirovka.show', $Stajirovkaexpert->stajirovka_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+            return redirect()->route('stajirovka.show', $Stajirovkaexpert->stajirovka_id)->with("status", 'Ma\'lumotlar rad etildi.');
+        } else {
+            $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
+            $Stajirovkaexpert->update([
+                'user_id' => auth()->id(),
+                'fish' => $user->name,
+                'ekspert_fish' => $request->ekspert_fish,
+                't_masul' => $request->t_masul,
+                'ilmiy_hisobot' => $request->ilmiy_hisobot,
+                'egallangan_bilim' => $request->egallangan_bilim,
+                'ishlar_natijalari' => $request->ishlar_natijalari,
+                'xalqarotan_jur_nashr' => $request->xalqarotan_jur_nashr,
+                'biryil_davomida' => $request->biryil_davomida,
+                'status' => $request->status,
+                'comment' => $request->comment,
+                'holati' => 'yuborildi',
+            ]);
+
+            return redirect()->route('stajirovka.show', $Stajirovkaexpert->stajirovka_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+        }
+
     }
 
     public function destroy(Stajirovkaexpert $stajirovkaexpert)

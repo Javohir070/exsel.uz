@@ -234,6 +234,13 @@
                             <input type="text" name="ekspert_fish" value="{{ $stajirovkaexpert->ekspert_fish }}"  class="input w-full border mt-2" required>
                         </div>
 
+                        <div class="w-full col-span-6 ">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotning mas'ul rahbarining  F.I.Sh</label>
+                                    <input type="hidden" name="holati" value="1">
+                            <input type="text" name="t_masul" value="{{ $stajirovkaexpert->t_masul }}"  class="input w-full border mt-2" required>
+                        </div>
+
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status

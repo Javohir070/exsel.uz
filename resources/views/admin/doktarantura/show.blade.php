@@ -388,12 +388,22 @@
 
                                     <div style="text-align: end;display: flex;gap:10px;">
                                     @role(['Ekspert'])
+                                    @if ($tekshirivchilar->holati == 'yuborildi')
                                         <a href="{{ url('generate-pdfdoktarantura/' . $tashkilot->id) }}"
                                             class="button delete-cancel border text-gray-700 mr-1">
                                             Eksport
                                         </a>
+                                        <form action="{{ route('doktaranturaexpert.update', $tekshirivchilar->id) }}" method="POST"
+                                            onsubmit="return confirm('Haqiqatan ham rad etasizmi?');">
+                                            @csrf
+                                            @method('PUT')
+                                            <input type="hidden" name="holati" value="0">
+                                            <button type="submit" class="button w-24 bg-theme-6 text-white">Rad etish</button>
+                                        </form>
+                                    @endif
                                     @endrole
                                     @role([['Ishchi guruh azosi']])
+                                    @if ($tekshirivchilar->holati == 'Rad etildi')
                                         <a href="javascript:;" data-target="#doktarantura-paper-create-modal"
                                             data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
                                             Tahrirlash
@@ -406,6 +416,7 @@
                                             <button type="submit"
                                                 class="button w-24 bg-theme-6 text-white">O'chirish</button>
                                         </form>
+                                    @endif
                                     @endrole
                                     </div>
 
@@ -572,6 +583,16 @@
                                     </td>
                                 </tr>
 
+                                <tr>
+                                    {{-- <td class="border border-b-2 ">11.</td> --}}
+                                    <td class="border border-b-2 ">
+                                        Tashkilotning mas'ul rahbarining  F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $tekshirivchilar->t_masul }}
+                                    </td>
+                                </tr>
+
                             </table>
                         </div>
                     @empty
@@ -731,7 +752,12 @@
                                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ekspert F.I.Sh</label>
                                             <input type="text" name="ekspert_fish"  class="input w-full border mt-2" required>
                                         </div>
-
+                                        <div class="w-full col-span-6 ">
+                                            <label class="flex flex-col sm:flex-row"> <span
+                                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotning mas'ul rahbarining  F.I.Sh
+                                            </label>
+                                            <input type="text" name="t_masul"  class="input w-full border mt-2" required>
+                                        </div>
                                         <div class="w-full col-span-6">
                                             <label class="flex flex-col sm:flex-row"> <span
                                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
@@ -815,6 +841,7 @@
                                                     Tashkilot buyrug‘i asosida qabul qilingan umumiy izlanuvchilar soni.
                                                 </td>
                                                 <td class="border border-b-2 ">
+                                                    <input type="hidden" name="holati" value="1">
                                                     <input type="number" name="umumiy_izlanuvchilar"
                                                         value="{{ $tekshirivchilar->umumiy_izlanuvchilar ?? null }}"
                                                         class="input w-full border mt-2">
@@ -956,8 +983,20 @@
                                                 </td>
                                             </tr>
 
-                                            <tr class="bg-gray-200">
+                                            <tr >
                                                 <td class="border border-b-2 ">14.</td>
+                                                <td class="border border-b-2 ">
+                                                    Tashkilotning mas'ul rahbarining  F.I.Sh
+                                                </td>
+                                                <td class="border border-b-2 ">
+                                                    <input type="text" name="t_masul"
+                                                        value="{{ $tekshirivchilar->t_masul ?? null }}"
+                                                        class="input w-full border mt-2">
+                                                </td>
+                                            </tr>
+
+                                            <tr class="bg-gray-200">
+                                                <td class="border border-b-2 ">15.</td>
                                                 <td class="border border-b-2 ">
                                                     Status.
                                                 </td>
@@ -984,7 +1023,7 @@
                                             </tr>
 
                                             <tr>
-                                                <td class="border border-b-2 ">15.</td>
+                                                <td class="border border-b-2 ">16.</td>
                                                 <td class="border border-b-2 ">
                                                     Izoh.
                                                 </td>

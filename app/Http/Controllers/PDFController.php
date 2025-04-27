@@ -55,6 +55,7 @@ class PDFController extends Controller
 
         if ($tekshirivchilar) {
             $tekshirivchilar->file = $fileRelativePath;
+            $tekshirivchilar->holati ='Tasdiqlandi';
             $tekshirivchilar->save();
         }
 
@@ -100,6 +101,7 @@ class PDFController extends Controller
         // Store the PDF path in the database (example for one user)
         if ($tekshirivchilar) {
             $tekshirivchilar->file = $fileRelativePath;
+            $tekshirivchilar->holati ='Tasdiqlandi';
             $tekshirivchilar->save();
         }
 
@@ -143,6 +145,7 @@ class PDFController extends Controller
         // Store the PDF path in the database (example for one user)
         if ($tekshirivchilar) {
             $tekshirivchilar->file = $fileRelativePath;
+            $tekshirivchilar->holati ='Tasdiqlandi';
             $tekshirivchilar->save();
         }
 
@@ -187,6 +190,7 @@ class PDFController extends Controller
         // Store the PDF path in the database (example for one user)
         if ($tekshirivchilar) {
             $tekshirivchilar->file = $fileRelativePath;
+            $tekshirivchilar->holati ='Tasdiqlandi';
             $tekshirivchilar->save();
         }
 

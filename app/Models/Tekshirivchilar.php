@@ -14,6 +14,7 @@ class Tekshirivchilar extends Model
         'tashkilot_id',
         'fish',
         'ekspert_fish',
+        't_masul',
         'comment',
         'file',
         'status',
@@ -23,6 +24,7 @@ class Tekshirivchilar extends Model
         'shart_sharoit_yaratib',
         'yakuniy_natijalar',
         'loyiha_ijrochilari',
+        'holati',
 ];
 
     public function user()

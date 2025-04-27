@@ -31,6 +31,9 @@ return new class extends Migration
             $table->string('kollegial_rahbarlar');
             $table->string('meyoridan_rahbarlar');
             $table->string('tash_ortiq_rahbarlar');
+            $table->string('ekspert_fish');
+            $table->string('t_masul');
+            $table->enum('holati',['yuborildi', 'Rad etildi', 'Tasdiqlandi'])->default('yuborildi');
             $table->timestamps();
         });
     }

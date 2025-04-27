@@ -25,6 +25,9 @@ return new class extends Migration
             $table->string('ishlar_natijalari');
             $table->string('xalqarotan_jur_nashr');
             $table->string('biryil_davomida');
+            $table->string('ekspert_fish');
+            $table->string('t_masul');
+            $table->enum('holati',['yuborildi', 'Rad etildi', 'Tasdiqlandi'])->default('yuborildi');
             $table->timestamps();
         });
     }

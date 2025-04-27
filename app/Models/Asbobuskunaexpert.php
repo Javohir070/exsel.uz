@@ -14,6 +14,7 @@ class Asbobuskunaexpert extends Model
         'asbobuskuna_id',
         'fish',
         'ekspert_fish',
+        't_masul',
         'status',
         'comment',
         'file',
@@ -26,6 +27,7 @@ class Asbobuskunaexpert extends Model
         'zarur_ehtiyoji',
         'lab_ishga_yaroqliligi',
         'tashkilot_id',
+        'holati',
     ];
 
     public function user()

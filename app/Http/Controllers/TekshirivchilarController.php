@@ -14,13 +14,14 @@ class TekshirivchilarController extends Controller
     public function store(Request $request)
     {
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiyloyiha_id);
-        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
+        $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
         Tekshirivchilar::create([
             'user_id' => auth()->id(),
             'tashkilot_id' => $ilmiyloyiha->tashkilot_id,
             'ilmiy_loyiha_id' => $request->ilmiyloyiha_id,
             'fish' => $user->name,
             'ekspert_fish' => $request->ekspert_fish,
+            't_masul' => $request->t_masul,
             "status" => $request->status,
             "comment" => $request->comment,
             'is_active' => 1,
@@ -41,20 +42,30 @@ class TekshirivchilarController extends Controller
 
     public function update(Request $request, Tekshirivchilar $tekshirivchilar)
     {
-        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
-        $tekshirivchilar->update([
-            'user_id' => auth()->id(),
-            'fish' => $user->name,
-            'ekspert_fish' => $request->ekspert_fish,
-            "status" => $request->status,
-            "comment" => $request->comment,
-            'is_active' => 1,
-            'kalendar' => $request->kalendar,
-            'shart_sharoit_yaratib' => $request->shart_sharoit_yaratib,
-            'yakuniy_natijalar' => $request->yakuniy_natijalar,
-            'loyiha_ijrochilari' => $request->loyiha_ijrochilari,
-        ]);
-        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+
+        if ($request->holati == 0) {
+            $tekshirivchilar->update([
+                'holati' => 'rad etildi',
+            ]);
+            return redirect()->back()->with('status', 'Ma\'lumotlar rad etildi.');
+        } else {
+            $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
+            $tekshirivchilar->update([
+                'user_id' => auth()->id(),
+                'fish' => $user->name,
+                'ekspert_fish' => $request->ekspert_fish,
+                't_masul' => $request->t_masul,
+                "status" => $request->status,
+                "comment" => $request->comment,
+                'is_active' => 1,
+                'kalendar' => $request->kalendar,
+                'shart_sharoit_yaratib' => $request->shart_sharoit_yaratib,
+                'yakuniy_natijalar' => $request->yakuniy_natijalar,
+                'loyiha_ijrochilari' => $request->loyiha_ijrochilari,
+                'holati' => 'yuborildi',
+            ]);
+            return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+        }
     }
 
     public function destroy(Tekshirivchilar $tekshirivchilar)

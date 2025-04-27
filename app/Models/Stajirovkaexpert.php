@@ -14,6 +14,7 @@ class Stajirovkaexpert extends Model
         'stajirovka_id',
         'fish',
         'ekspert_fish',
+        't_masul',
         'ilmiy_hisobot',
         'egallangan_bilim',
         'ishlar_natijalari',
@@ -23,6 +24,7 @@ class Stajirovkaexpert extends Model
         'comment',
         'file',
         'tashkilot_id',
+        'holati',
     ];
 
     public function user()

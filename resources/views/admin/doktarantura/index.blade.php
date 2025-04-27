@@ -53,32 +53,36 @@
                             <th class="whitespace-no-wrap">Tashkilot STIR raqami</th>
                             <th class="whitespace-no-wrap">Tashkilot turi</th>
                             <th class="whitespace-no-wrap">Ilmiy izlanivchilar</th>
+                            <th class="whitespace-no-wrap">Status</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tashkilotlar as $tashkilots)
+                        @foreach ($tashkilotlar as $t)
 
                             <tr class="intro-x">
                                 <td>{{ ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}.</td>
                                 <td>
-                                    <a href="{{ route('doktarantura.show', ['doktarantura' => $tashkilots->id]) }}"
-                                        class="font-medium">{{ $tashkilots->name }}</a>
+                                    <a href="{{ route('doktarantura.show', ['doktarantura' => $t->id]) }}"
+                                        class="font-medium">{{ $t->name }}</a>
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->stir_raqami  }}
+                                    {{ $t->stir_raqami  }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
+                                    {{ $t->tashkilot_turi == 'itm' ? 'ITM' : ($t->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->doktaranturalar->count() }}
+                                    {{ $t->doktaranturalar->count() }}
+                                </td>
+                                <td style="color:{{ $t->doktaranturaexperts()->first()->holati ?? null == "Tasdiqlandi" ? "green" : ($t->doktaranturaexperts()->first()->holati ?? null == "yuborildi" ? "blue" : "red") }}">
+                                    {{ $t->doktaranturaexperts()->first()->holati ?? "Ko'rilmagan" }}
                                 </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
 
                                         <a class="flex science-update-action items-center mr-3"
-                                            href="{{ route('doktarantura.show', ['doktarantura' => $tashkilots->id]) }}"
+                                            href="{{ route('doktarantura.show', ['doktarantura' => $t->id]) }}"
                                             data-id="2978" data-name="sdfd"
                                             data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
                                             data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66"

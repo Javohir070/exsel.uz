@@ -12,13 +12,14 @@ class AsbobuskunaexpertController extends Controller
 {
     public function store(Request $request)
     {
-        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
+        $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
         $asbobuskuna = Asbobuskuna::findOrFail($request->asbobuskuna_id);
         Asbobuskunaexpert::create([
             'user_id' => auth()->id(),
             'tashkilot_id' => $asbobuskuna->tashkilot_id,
             'fish' => $user->name,
             'ekspert_fish' => $request->ekspert_fish,
+            't_masul' => $request->t_masul,
             'asbobuskuna_id' => $asbobuskuna->id,
             'status' => $request->status,
             'comment' => $request->comment,
@@ -39,32 +40,40 @@ class AsbobuskunaexpertController extends Controller
     {
         $asbobuskuna = Asbobuskuna::findOrFail($asbobuskunaexpert->asbobuskuna_id);
         return view("admin.asbobuskuna.expertedit", [
-                'asbobuskunaexpert' => $asbobuskunaexpert,
-                'asbobuskuna' => $asbobuskuna,
-            ]);
+            'asbobuskunaexpert' => $asbobuskunaexpert,
+            'asbobuskuna' => $asbobuskuna,
+        ]);
     }
 
 
     public function update(Request $request, Asbobuskunaexpert $asbobuskunaexpert)
     {
-        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
-        $asbobuskunaexpert->update([
-            'user_id' => auth()->id(),
-            'fish' => $user->name,
-            'ekspert_fish' => $request->ekspert_fish,
-            'status' => $request->status,
-            'comment' => $request->comment,
-            'lab_uskunalarini_mosligi' => $request->lab_uskunalarini_mosligi,
-            'ilmiy_tadqiqot_ishilari' => $request->ilmiy_tadqiqot_ishilari,
-            'ilmiy_tadqiqot_hajmi' => $request->ilmiy_tadqiqot_hajmi,
-            'lab_zaxirasi' => $request->lab_zaxirasi,
-            'foy_uchun_ariz' => $request->foy_uchun_ariz,
-            'asbob_usk_ehtiyoji' => $request->asbob_usk_ehtiyoji,
-            'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
-            'lab_ishga_yaroqliligi' => $request->lab_ishga_yaroqliligi,
-        ]);
-
-        return redirect()->route('asbobuskuna.show', $asbobuskunaexpert->asbobuskuna_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+        if ($request->holati == 0) {
+            $asbobuskunaexpert->update([
+                'holati' => 'rad etildi',
+            ]);
+            return redirect()->route('asbobuskuna.show', $asbobuskunaexpert->asbobuskuna_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+        } else {
+            $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
+            $asbobuskunaexpert->update([
+                'user_id' => auth()->id(),
+                'fish' => $user->name,
+                'ekspert_fish' => $request->ekspert_fish,
+                't_masul' => $request->t_masul,
+                'status' => $request->status,
+                'comment' => $request->comment,
+                'lab_uskunalarini_mosligi' => $request->lab_uskunalarini_mosligi,
+                'ilmiy_tadqiqot_ishilari' => $request->ilmiy_tadqiqot_ishilari,
+                'ilmiy_tadqiqot_hajmi' => $request->ilmiy_tadqiqot_hajmi,
+                'lab_zaxirasi' => $request->lab_zaxirasi,
+                'foy_uchun_ariz' => $request->foy_uchun_ariz,
+                'asbob_usk_ehtiyoji' => $request->asbob_usk_ehtiyoji,
+                'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
+                'lab_ishga_yaroqliligi' => $request->lab_ishga_yaroqliligi,
+                'holati' => 'yuborildi'
+            ]);
+            return redirect()->route('asbobuskuna.show', $asbobuskunaexpert->asbobuskuna_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+        }
     }
 
     public function destroy(Asbobuskunaexpert $asbobuskunaexpert)

@@ -28,6 +28,9 @@ return new class extends Migration
             $table->string('asbob_usk_ehtiyoji');
             $table->string('zarur_ehtiyoji');
             $table->string('lab_ishga_yaroqliligi');
+            $table->string('ekspert_fish');
+            $table->string('t_masul');
+            $table->enum('holati',['yuborildi', 'Rad etildi', 'Tasdiqlandi'])->default('yuborildi');
             $table->timestamps();
         });
     }

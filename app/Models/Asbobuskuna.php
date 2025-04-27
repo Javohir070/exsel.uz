@@ -64,6 +64,6 @@ class Asbobuskuna extends Model
 
     public function asbobuskunaexperts()
     {
-        return $this->hasMany(AsbobuskunaExpert::class);
+        return $this->hasOne(AsbobuskunaExpert::class);
     }
 }

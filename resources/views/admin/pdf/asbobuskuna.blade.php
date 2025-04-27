@@ -145,7 +145,7 @@
         .footer {
             margin-top: 1rem;
             display: flex !important;
-            justify-content: space-between !important;
+            /* justify-content: space-between !important; */
             align-items: flex-start !important;
             font-size: 14px;
         }
@@ -280,6 +280,7 @@
                     <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
                     <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
                     <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>
+                    <p><span class="title">Tashkilotning mas'ul rahbarining  F.I.Sh:</span> {{  $tekshirivchilar->t_masul ?? null }} </p>
                     <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
                 </div>
                 <div class="qr-code">

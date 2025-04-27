@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Doktarantura extends Model
 {
     use HasFactory;
-    
+
     protected $primaryKey = 'id';
     public $incrementing = false; // API dan keladigan id ishlatyapmiz
 
@@ -44,4 +44,7 @@ class Doktarantura extends Model
     {
         return $this->belongsTo(Tashkilot::class);
     }
+
+    
+
 }

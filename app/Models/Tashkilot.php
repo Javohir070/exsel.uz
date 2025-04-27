@@ -93,4 +93,14 @@ class Tashkilot extends Model
     {
         return $this->hasMany(Stajirovkaexpert::class);
     }
+
+    public function tekshirivchilar()
+    {
+        return $this->hasMany(Tekshirivchilar::class);
+    }
+
+    public function doktaranturaexperts()
+    {
+        return $this->hasOne(Doktaranturaexpert::class);
+    }
 }
