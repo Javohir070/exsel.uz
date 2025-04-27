@@ -85,7 +85,7 @@
                                 {{ $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? "Ko'rilmagan" }}
                             </td> --}}
 
-                            <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? null) == 'tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
+                            <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                 {{ $h ?? "Ko'rilmagan" }}
                             </td>
 

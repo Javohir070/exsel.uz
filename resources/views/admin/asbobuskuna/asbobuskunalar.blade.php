@@ -50,7 +50,7 @@
                                 style="color:{{ $k->asbobuskunaexperts()->first()->holati ?? null == "Tasdiqlandi" ? "green" : ($k->asbobuskunaexperts()->first()->holati ?? null == "yuborildi" ? "blue" : "red") }}">
                                 {{ $k->asbobuskunaexperts()->first()->holati ?? "Ko'rilmagan" }}
                             </td> --}}
-                            <td style="color: {{ ($h = $k->asbobuskunaexperts()->first()->holati ?? null) == 'tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
+                            <td style="color: {{ ($h = $k->asbobuskunaexperts()->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                 {{ $h ?? "Ko'rilmagan" }}
                             </td>
 
