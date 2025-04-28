@@ -51,7 +51,7 @@
                                 {{ $k->asbobuskunaexperts()->first()->holati ?? "Ko'rilmagan" }}
                             </td> --}}
                             <td style="color: {{ ($h = $k->asbobuskunaexperts()->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
-                                {{ $h ?? "Ko'rilmagan" }}
+                                {{ $h == 'yuborildi'? "Tasdiqlash uchun yuborildi":($h == null ? "Ko'rilmagan" : $h) }}
                             </td>
 
                             <td class="table-report__action w-56">

@@ -130,8 +130,8 @@
                             </div>
                         </a>
                     </div> --}}
-
-                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    @role('super-admin')
+                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route("tashkilot.userlar.index",['tashkilot'=>$id]) }}">
                                 <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
@@ -146,8 +146,8 @@
                                 </div>
                             </a>
                         </div>
-                    </div> --}}
-
+                    </div>
+                    @endrole
                     {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <a href="{{ route("tashkilot.userlar.index",['tashkilot'=>$id]) }}">
                             <div class="report-box zoom-in">

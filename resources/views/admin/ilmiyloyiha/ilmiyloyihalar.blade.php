@@ -86,7 +86,7 @@
                             </td> --}}
 
                             <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
-                                {{ $h ?? "Ko'rilmagan" }}
+                                {{ $h == 'yuborildi'? "Tasdiqlash uchun yuborildi":($h == null ? "Ko'rilmagan" : $h) }}
                             </td>
 
 
