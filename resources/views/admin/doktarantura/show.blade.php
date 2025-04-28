@@ -586,7 +586,7 @@
                                 <tr>
                                     {{-- <td class="border border-b-2 ">11.</td> --}}
                                     <td class="border border-b-2 ">
-                                        Tashkilotning mas'ul rahbarining  F.I.Sh
+                                        Tashkilotning mas'ul rahbari  F.I.Sh
                                     </td>
                                     <td class="border border-b-2 ">
                                         {{ $tekshirivchilar->t_masul }}
@@ -755,7 +755,7 @@
                                         </div>
                                         <div class="w-full col-span-6 ">
                                             <label class="flex flex-col sm:flex-row"> <span
-                                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotning mas'ul rahbarining  F.I.Sh
+                                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotning mas'ul rahbari  F.I.Sh
                                             </label>
                                             <input type="text" name="t_masul"  class="input w-full border mt-2" required>
                                         </div>
@@ -988,7 +988,7 @@
                                             <tr >
                                                 <td class="border border-b-2 ">14.</td>
                                                 <td class="border border-b-2 ">
-                                                    Tashkilotning mas'ul rahbarining  F.I.Sh
+                                                    Tashkilotning mas'ul rahbari  F.I.Sh
                                                 </td>
                                                 <td class="border border-b-2 ">
                                                     <input type="text" name="t_masul"

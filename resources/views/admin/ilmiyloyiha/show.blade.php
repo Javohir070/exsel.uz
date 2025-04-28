@@ -966,7 +966,7 @@
                                 </tr>
                                 <tr>
                                     <td class="border">9.</td>
-                                    <td class="border">Tashkilotning mas'ul rahbarining  F.I.Sh</td>
+                                    <td class="border">Tashkilotning mas'ul rahbari  F.I.Sh</td>
                                     <td class="border">{{ $tekshirivchilar->t_masul }}</td>
                                 </tr>
                                 <tr>
@@ -4177,7 +4177,7 @@
                                         <tr>
                                             <td class="border border-b-2 ">5.</td>
                                             <td class="border border-b-2 ">
-                                                Tashkilotning mas'ul rahbarining F.I.Sh
+                                                Tashkilotning mas'ul rahbari F.I.Sh
                                             </td>
                                             <td class="border border-b-2 ">
                                                 <input type="text" name="t_masul"
