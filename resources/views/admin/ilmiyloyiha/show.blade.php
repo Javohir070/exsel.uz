@@ -118,8 +118,11 @@
                             </tr>
                             <tr>
                                 <td class="border">1.4.</td>
-                                <td class="border">Shartnoma raqami va sanasi</td>
-                                <td class="border">{{ $ilmiyloyiha->sh_raqami }}, {{ $ilmiyloyiha->sanasi }} </td>
+                                <td class="border">Shartnoma raqamiva  sanasi</td>
+                                <td class="border">{{ $ilmiyloyiha->sh_raqami }}, {{ $ilmiyloyiha->sanasi }} @if ($ilmiyloyiha->umumiy_mablag)
+                                    <a href="{{ asset('storage/' . $ilmiyloyiha->umumiy_mablag) }}"
+                                        class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
+                                @endif</td>
                             </tr>
                             <tr>
                                 <td class="border">1.5.</td>
@@ -2761,6 +2764,18 @@
                                                 <input type="date" name="sanasi"
                                                     value="{{ $ilmiyloyiha->sanasi ?? '' }}"
                                                     class="input w-full border mt-2" required="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            {{-- <td class="border">1.4.</td> --}}
+                                            <td class="border">Shartnoma Fayl</td>
+                                            <td class="border">
+                                                <input type="file" name="umumiy_mablag"
+                                                    value="{{ $ilmiyloyiha->umumiy_mablag ?? '' }}"
+                                                    class="input w-full border mt-2" required="">
+                                                    @error('umumiy_mablag')
+                                                        <div class="error">{{ $message }}</div>
+                                                    @enderror
                                             </td>
                                         </tr>
                                         <tr>

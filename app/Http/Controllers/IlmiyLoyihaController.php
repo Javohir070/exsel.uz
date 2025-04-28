@@ -177,10 +177,10 @@ class IlmiyLoyihaController extends Controller
         //     $path_savolnoma = $request->file('savolnoma')->storeAs('IlmiyLoyiha-file', $name_savolnoma);
         // }
 
-        // if ($request->hasFile('file')) {
-        //     $name_file = time() . $request->file('file')->getClientOriginalName();
-        //     $path_file = $request->file('')->storeAs('IlmiyLoyiha-file', $name_file);
-        // }
+        if ($request->hasFile('umumiy_mablag')) {
+            $name_file = time() . $request->file('umumiy_mablag')->getClientOriginalName();
+            $path_file = $request->file('umumiy_mablag')->storeAs('IlmiyLoyiha-file', $name_file);
+        }
 
 
         // $umumiyyil = Umumiyyil::findOrFail($ilmiyloyiha->umumiyyil_id);
@@ -226,10 +226,10 @@ class IlmiyLoyihaController extends Controller
             "hamr_ishjoyi" => $request->hamr_ishjoyi,
             "hamr_lavozimi" => $request->hamr_lavozimi,
             "hamr_davlati" => $request->hamr_davlati,
+            "umumiy_mablag" => $path_file,
         ]);
         // "muddat" => $request->muddat,
         // "pan_yunalish" => $request->pan_yunalish,
-        // "umumiy_mablag" => $request->sum,
         // "olingan_natija" => $request->olingan_natija,
         // "joriy_holati" => $request->joriy_holati,
         // "tijoratlashtirish" => $request->tijoratlashtirish,

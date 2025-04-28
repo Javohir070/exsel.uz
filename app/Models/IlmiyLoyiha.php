@@ -95,9 +95,9 @@ class IlmiyLoyiha extends Model
     {
         return $this->belongsTo(Tashkilot::class);
     }
-    protected $casts = [
-        'umumiy_mablag' => 'array', // Cast the json column to an array
-    ];
+    // protected $casts = [
+    //     'umumiy_mablag' => 'array', // Cast the json column to an array
+    // ];
 
     public function umumiyyil()
     {
@@ -124,7 +124,7 @@ class IlmiyLoyiha extends Model
         return $this->belongsTo(Kafedralar::class);
     }
 
-    public function intellektual() 
+    public function intellektual()
     {
         return $this->hasMany(Intellektual::class);
     }
