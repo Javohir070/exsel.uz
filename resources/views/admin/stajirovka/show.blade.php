@@ -135,12 +135,12 @@
                 <table class="table">
                     <div style="display: flex;justify-content: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="text-align: end;display: flex;">
+                            @role(['Ekspert'])
+                            @if ($tekshirivchilar->holati == 'yuborildi')
                             <a href="{{ url('generate-pdfsajiyor/' . $stajirovka->id) }}"
                                 class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
                                 Eksport
                             </a>
-                            <!-- @role(['Ekspert'])
-                            @if ($tekshirivchilar->holati == 'yuborildi') -->
                                 <form action="{{ route('stajirovkaexpert.update', $tekshirivchilar->id) }}" method="POST"
                                     onsubmit="return confirm('Haqiqatan ham rad etasizmi?');">
                                     @csrf
@@ -148,8 +148,8 @@
                                     <input type="hidden" name="holati" value="0">
                                     <button type="submit" class="button w-24 bg-theme-6 text-white">Rad etish</button>
                                 </form>
-                            <!-- @endif
-                            @endrole -->
+                            @endif
+                            @endrole
                             @role(['Ishchi guruh azosi'])
                             @if ($tekshirivchilar->holati == 'Rad etildi')
                             <a href="{{ route('stajirovkaexpert.edit', ['stajirovkaexpert' => $tekshirivchilar->id]) }}"
