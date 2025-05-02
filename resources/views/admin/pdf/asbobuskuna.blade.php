@@ -143,27 +143,31 @@
         }
 
         .footer {
-            margin-top: 1rem;
+            /* margin-top: 1rem; */
             display: flex !important;
-            /* justify-content: space-between !important; */
-            /* align-items: flex-start !important; */
-            font-size: 14px;
-            gap: 20px;
+            /* justify-content: space-between !important;
+            align-items: flex-start !important; */
+            /* font-size: 14px; */
+            gap: 20px !important;
         }
 
         .footer p {
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.25rem !important;
         }
 
         .qr-code {
-            border: none;
-            padding: 0;
+            display: inline-flex;
+            justify-content: center !important;
+            align-items: center;
         }
 
         .italic {
             font-style: italic;
             color: #666;
             font-size: 12px;
+        }
+        .footer-info {
+            display: inline-flex;
         }
     </style>
 
@@ -278,18 +282,29 @@
             </table>
 
             <div class="footer">
-                <div class="qr-code" style="width: 100px; height: 100px;background: #000;">
-                    <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;" alt="Qr code"
-                        style="width: 100px; height: 100px;">
-                </div>
-                <div class="footer-info">
-                    <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{ $tekshirivchilar->fish ?? null }} </p>
-                    <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{ $tekshirivchilar->user->name ?? null }}
+                
+                <div class="footer-info" style="padding-top:50px;">
+                    <p>
+                        <span class="title">Ishchi guruh rahbari F.I.Sh:</span> 
+                        {{ $tekshirivchilar->fish ?? null }} </p>
+                    <p>
+                        <span class="title">Ishchi guruh azosi F.I.Sh:</span>
+                         {{ $tekshirivchilar->user->name ?? null }}
                     </p>
-                    <p><span class="title">Ekspert F.I.Sh:</span> {{ $tekshirivchilar->ekspert_fish ?? null }} </p>
-                    <p><span class="title">Tashkilotning mas'ul rahbari F.I.Sh:</span> {{ $tekshirivchilar->t_masul ??
+                    <p>
+                        <span class="title">Ekspert F.I.Sh:</span> 
+                        {{ $tekshirivchilar->ekspert_fish ?? null }} </p>
+                    <p>
+                        <span class="title">Tashkilotning mas'ul rahbari F.I.Sh:</span> 
+                    {{ $tekshirivchilar->t_masul ??
                         null }} </p>
-                    <p><span class="title">Sana:</span> {{ $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
+                    <p>
+                        <span class="title">Sana:</span> 
+                    {{ $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
+                </div>
+                <div class="qr-code">
+                    <img src="data:image/png;base64,{{ $qrCode }}" alt="Qr code"
+                        style="width: 100px; height: 100px;">
                 </div>
             </div>
         </div>

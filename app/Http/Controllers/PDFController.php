@@ -22,7 +22,7 @@ class PDFController extends Controller
     public function generatePDF($ilmiyId)
     {
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($ilmiyId);
-        $fileName = 'test-lists-' . time() . '.pdf';
+        $fileName = 'Ilmiy-loyiha' . time() . '.pdf';
         $fileRelativePath = 'pdfs/' . $fileName;
         $filePath = storage_path('app/public/' . $fileRelativePath);
 
@@ -68,7 +68,7 @@ class PDFController extends Controller
     {
         $stajirovka = Stajirovka::findOrFail($Id);
         // Define a file name and path for the PDF
-        $fileName = 'sta-lists-' . time() . '.pdf';
+        $fileName = 'Stajirovka-' . time() . '.pdf';
         $fileRelativePath = 'pdfs/' . $fileName;
         $filePath = storage_path('app/public/' . $fileRelativePath);
 
@@ -112,7 +112,7 @@ class PDFController extends Controller
     {
         $asbobuskuna = Asbobuskuna::findOrFail($Id);
         // Define a file name and path for the PDF
-        $fileName = 'sta-lists-' . time() . '.pdf';
+        $fileName = 'Asbobuskuna-' . time() . '.pdf';
         $fileRelativePath = 'pdfs/' . $fileName;
         $filePath = storage_path('app/public/' . $fileRelativePath);
 
@@ -157,7 +157,7 @@ class PDFController extends Controller
     {
         $tashkilot = Tashkilot::findOrFail($Id);
         // Define a file name and path for the PDF
-        $fileName = 'sta-lists-' . time() . '.pdf';
+        $fileName = 'Ilmiy-izlauvchilar-' . time() . '.pdf';
         $fileRelativePath = 'pdfs/' . $fileName;
         $filePath = storage_path('app/public/' . $fileRelativePath);
 

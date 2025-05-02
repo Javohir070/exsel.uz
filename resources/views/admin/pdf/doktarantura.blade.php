@@ -153,10 +153,11 @@
         }
 
         .footer p {
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.25rem !important;
         }
 
         .qr-code {
+            display: inline-flex;
             border: none;
             padding: 0;
         }
@@ -165,6 +166,9 @@
             font-style: italic;
             color: #666;
             font-size: 12px;
+        }
+        .footer-info {
+            display: inline-flex;
         }
     </style>
     <div class="container">
@@ -313,8 +317,7 @@
             </table>
 
             <div class="footer">
-                <div class="footer-info">
-                    {{-- <p>Ishchi guruh rahbari F.I.Sh: {{  $tekshirivchilar->fish ?? null }} </p> --}}
+                <div class="footer-info" style="padding-top:50px;">
                     <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
                     <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
                     <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>

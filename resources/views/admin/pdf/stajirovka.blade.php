@@ -163,11 +163,17 @@
         }
 
         .footer-info p {
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.5rem !important;
         }
 
         .qr-code {
             border: none;
+            display: inline-flex;
+            justify-content: center !important;
+            align-items: center;
+        }
+        .footer-info {
+            display: inline-flex;
         }
     </style>
     <div class="container">
@@ -258,7 +264,7 @@
 
 
             <div class="footer">
-                <div class="footer-info">
+                <div class="footer-info" style="padding-top:50px;">
                     <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
                     <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
                     <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>
@@ -266,7 +272,7 @@
                     <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
                 </div>
                 <div class="qr-code">
-                    <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;"
+                    <img src="data:image/png;base64,{{ $qrCode }}"
                     alt="Qr code" style="width: 100px; height: 100px;">
                 </div>
             </div>

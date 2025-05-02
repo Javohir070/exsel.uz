@@ -86,7 +86,34 @@
                 page-break-after: always;
             }
         }
+        .footer {
+            /* margin-top: 1rem; */
+            display: flex !important;
+            /* justify-content: space-between !important;
+            align-items: flex-start !important; */
+            /* font-size: 14px; */
+            gap: 20px !important;
+        }
 
+        .footer p {
+            margin-bottom: 0.25rem;
+        }
+
+        .qr-code {
+            display: inline-flex;
+            justify-content: center !important;
+            align-items: center;
+        }
+
+        .italic {
+            font-style: italic;
+            color: #666;
+            font-size: 12px;
+        }
+        
+        .footer-info {
+            display: inline-flex;
+        }
 
     </style>
 </head>
@@ -257,18 +284,8 @@
                     </tr>
                 </tbody>
             </table>
-        {{-- <h2 class="subtitle">Monitoring xulosasi: {{$tekshirivchilar->status ?? "" }}</h2>
-        <p>Monitoring o'tkazilgan sana: {{ $tekshirivchilar->updated_at ?? "" }} y.</p>
-        <p>O'rganish o'tkazgan ishchi guruh:</p>
-        <p>{{ $tekshirivchilar->fish ?? "" }}</p>
-        <p>{{ $tekshirivchilar->user->name ?? "" }}</p> --}}
-        <!--  QrCode  yozasiz -->
-        {{-- <div class="footer-qr" style="display: flex;gap:10px;">
-            <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;" alt="Qr code"
-                style="width: 100px; height: 100px;">
-        </div> --}}
         <div class="footer">
-            <div class="footer-info">
+            <div class="footer-info" style="padding-top:50px;">
                 <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
                 <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
                 <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>
