@@ -148,6 +148,7 @@
             /* justify-content: space-between !important; */
             /* align-items: flex-start !important; */
             font-size: 14px;
+            gap: 20px;
         }
 
         .footer p {
@@ -179,20 +180,21 @@
                     <span class="form-input">{{ $asbobuskuna->tashkilot->name }}</span>
                 </div>
                 <div class="form-row">
-                    <span class="form-label title"><b>Foydalanishga mas‘ul tarkibiy bo‘linma (laboratoriya, kafedra, sho‘ba) nomi:</b></span>
+                    <span class="form-label title"><b>Foydalanishga mas‘ul tarkibiy bo‘linma (laboratoriya, kafedra,
+                            sho‘ba) nomi:</b></span>
                     <span class="form-input"></span>
                 </div>
                 <div class="form-row">
                     <span class="form-label title"><b>Asbob-uskuna nomi:</b></span>
-                    <span class="form-input">{{  $asbobuskuna->name }}</span>
+                    <span class="form-input">{{ $asbobuskuna->name }}</span>
                 </div>
                 <div class="form-row">
                     <span class="form-label title"><b>Modeli:</b></span>
-                    <span class="form-input">{{  $asbobuskuna->model }}</span>
+                    <span class="form-input">{{ $asbobuskuna->model }}</span>
                 </div>
                 <div class="form-row">
                     <span class="form-label title"><b>Moliyalashtirish manbai:</b></span>
-                    <span class="form-input">{{  $asbobuskuna->moliya_manbasi }}</span>
+                    <span class="form-input">{{ $asbobuskuna->moliya_manbasi }}</span>
                 </div>
             </div>
 
@@ -210,28 +212,28 @@
                         <td>
                             Laboratoriya uskunalarini o‘rnatilgan ilmiy bo‘linma faoliyatiga mosligi
                         </td>
-                        <td style="text-align: center;">{{  $tekshirivchilar->lab_uskunalarini_mosligi ?? null }}</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->lab_uskunalarini_mosligi ?? null }}</td>
                     </tr>
                     <tr>
                         <td class="title">2.</td>
                         <td>
                             Bajarilavotgan ilmiy-tadqiqot ishlari uchun zarurligi
                         </td>
-                        <td style="text-align: center;">{{  $tekshirivchilar->ilmiy_tadqiqot_ishilari ?? null }}</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->ilmiy_tadqiqot_ishilari ?? null }}</td>
                     </tr>
                     <tr>
                         <td class="title">3.</td>
                         <td>
                             Ilmiy-tadqiqot dasturlaridagi ish hajmi bilan bog‘liqligi
                         </td>
-                        <td style="text-align: center;">{{  $tekshirivchilar->ilmiy_tadqiqot_hajmi ?? null }}</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->ilmiy_tadqiqot_hajmi ?? null }}</td>
                     </tr>
                     <tr>
                         <td class="title">4.</td>
                         <td>
                             Laboratoriya uskunalari uchun zarur reagent va reaktivlar zaxirasining mavjudligi
                         </td>
-                        <td style="text-align: center;">{{  $tekshirivchilar->lab_zaxirasi ?? null }}</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->lab_zaxirasi ?? null }}</td>
                     </tr>
                     <tr>
                         <td class="title">5.</td>
@@ -239,7 +241,7 @@
                             Foydalanish uchun arizalarning ro‘yxatga olinishi va foydalanish jadvalining yuritilishi
                             holatiga baho berish
                         </td>
-                        <td style="text-align: center;">{{  $tekshirivchilar->foy_uchun_ariz ?? null }}</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->foy_uchun_ariz ?? null }}</td>
                     </tr>
                     <tr>
                         <td class="title">6.</td>
@@ -247,45 +249,47 @@
                             Ilmiy tadqiqot va oliy ta‘lim muassasalari laboratoriyalarining qo‘shimcha asbob-uskunalar
                             bo‘yicha ehtiyoji
                         </td>
-                        <td style="text-align: center;">{{  $tekshirivchilar->asbob_usk_ehtiyoji ?? null }}</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->asbob_usk_ehtiyoji ?? null }}</td>
                     </tr>
                     <tr>
                         <td class="title">7.</td>
                         <td>
                             Zarur sarflash materiallari va butlovchi qismlar bo‘yicha ehtiyojar mavjudligi
                         </td>
-                        <td style="text-align: center;">{{  $tekshirivchilar->zarur_ehtiyoji ?? null }}</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->zarur_ehtiyoji ?? null }}</td>
                     </tr>
                     <tr>
                         <td class="title">8.</td>
                         <td>
                             Laboratoriya uskunalarining ishga yaroqliligi
                         </td>
-                        <td style="text-align: center;">{{  $tekshirivchilar->lab_ishga_yaroqliligi ?? null }}</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->lab_ishga_yaroqliligi ?? null }}</td>
                     </tr>
                     <tr>
                         <td class="text-center title" colspan="2">Monitoring xulosasi </td>
-                        <td style="text-align: center;">{{  $tekshirivchilar->status ?? null }}</td>
+                        <td style="text-align: center;">{{ $tekshirivchilar->status ?? null }}</td>
                     </tr>
                     <tr class="bg-gray-200">
-                        <td  colspan="3">
-                            <span class="text-center title">Izoh:</span> {{  $tekshirivchilar->comment ?? null }}
+                        <td colspan="3">
+                            <span class="text-center title">Izoh:</span> {{ $tekshirivchilar->comment ?? null }}
                         </td>
                     </tr>
                 </tbody>
             </table>
 
             <div class="footer">
-                <div class="footer-info">
-                    <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
-                    <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
-                    <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>
-                    <p><span class="title">Tashkilotning mas'ul rahbari  F.I.Sh:</span> {{  $tekshirivchilar->t_masul ?? null }} </p>
-                    <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
+                <div class="qr-code" style="width: 100px; height: 100px;background: #000;">
+                    <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;" alt="Qr code"
+                        style="width: 100px; height: 100px;">
                 </div>
-                <div class="qr-code">
-                    <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;"
-                    alt="Qr code" style="width: 100px; height: 100px;">
+                <div class="footer-info">
+                    <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{ $tekshirivchilar->fish ?? null }} </p>
+                    <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{ $tekshirivchilar->user->name ?? null }}
+                    </p>
+                    <p><span class="title">Ekspert F.I.Sh:</span> {{ $tekshirivchilar->ekspert_fish ?? null }} </p>
+                    <p><span class="title">Tashkilotning mas'ul rahbari F.I.Sh:</span> {{ $tekshirivchilar->t_masul ??
+                        null }} </p>
+                    <p><span class="title">Sana:</span> {{ $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
                 </div>
             </div>
         </div>

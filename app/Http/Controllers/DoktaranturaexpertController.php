@@ -17,7 +17,7 @@ class DoktaranturaexpertController extends Controller
     {
         $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
         // dd($request->all());
-        Doktaranturaexpert::create([
+        $doktaranturaexpert = Doktaranturaexpert::create([
             'user_id' => auth()->id(),
             'fish' => $user->name,
             'ekspert_fish' => $request->ekspert_fish,
@@ -38,6 +38,8 @@ class DoktaranturaexpertController extends Controller
             "meyoridan_rahbarlar" => $request->meyoridan_rahbarlar,
             "tash_ortiq_rahbarlar" => $request->tash_ortiq_rahbarlar,
         ]);
+
+        Notification::send($user, new DoktaranturaNotification($doktaranturaexpert));
 
         return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
@@ -117,6 +119,9 @@ class DoktaranturaexpertController extends Controller
                 "tash_ortiq_rahbarlar" => $request->tash_ortiq_rahbarlar,
                 'holati' => 'yuborildi',
             ]);
+
+            // $admins = User::findOrFail($doktaranturaexpert->user_id);
+            Notification::send($user, new DoktaranturaNotification($doktaranturaexpert));
 
             return redirect()->route('doktarantura.show', $doktaranturaexpert->tashkilot_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }

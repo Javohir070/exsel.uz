@@ -17,7 +17,7 @@ class TekshirivchilarController extends Controller
     {
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiyloyiha_id);
         $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
-        Tekshirivchilar::create([
+        $tekshirivchilar = Tekshirivchilar::create([
             'user_id' => auth()->id(),
             'tashkilot_id' => $ilmiyloyiha->tashkilot_id,
             'ilmiy_loyiha_id' => $request->ilmiyloyiha_id,
@@ -32,6 +32,8 @@ class TekshirivchilarController extends Controller
             'yakuniy_natijalar' => $request->yakuniy_natijalar,
             'loyiha_ijrochilari' => $request->loyiha_ijrochilari,
         ]);
+
+        Notification::send($user, new IlmiyloyihaNotification($tekshirivchilar));
 
         return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
@@ -68,6 +70,8 @@ class TekshirivchilarController extends Controller
                 'loyiha_ijrochilari' => $request->loyiha_ijrochilari,
                 'holati' => 'yuborildi',
             ]);
+
+            Notification::send($user, new IlmiyloyihaNotification($tekshirivchilar));
             return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
         }
     }

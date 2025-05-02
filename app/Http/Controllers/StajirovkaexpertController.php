@@ -16,7 +16,7 @@ class StajirovkaexpertController extends Controller
     {
         $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
         $stajirovka = Stajirovka::findOrFail($request->stajirovka_id);
-        Stajirovkaexpert::create([
+        $stajirovkaexpert = Stajirovkaexpert::create([
             'user_id' => auth()->id(),
             'tashkilot_id' => $stajirovka->tashkilot_id,
             'fish' => $user->name,
@@ -31,6 +31,7 @@ class StajirovkaexpertController extends Controller
             'status' => $request->status,
             'comment' => $request->comment,
         ]);
+        Notification::send($user, new StajirovkaNotification($stajirovkaexpert));
 
         return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
@@ -68,7 +69,7 @@ class StajirovkaexpertController extends Controller
                 'comment' => $request->comment,
                 'holati' => 'yuborildi',
             ]);
-
+            Notification::send($user, new StajirovkaNotification($stajirovkaexpert));
             return redirect()->route('stajirovka.show', $stajirovkaexpert->stajirovka_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }
 

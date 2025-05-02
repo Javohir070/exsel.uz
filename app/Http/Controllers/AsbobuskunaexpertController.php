@@ -15,8 +15,9 @@ class AsbobuskunaexpertController extends Controller
     public function store(Request $request)
     {
         $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
+
         $asbobuskuna = Asbobuskuna::findOrFail($request->asbobuskuna_id);
-        Asbobuskunaexpert::create([
+        $asbobuskunaexpert = Asbobuskunaexpert::create([
             'user_id' => auth()->id(),
             'tashkilot_id' => $asbobuskuna->tashkilot_id,
             'fish' => $user->name,
@@ -34,6 +35,9 @@ class AsbobuskunaexpertController extends Controller
             'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
             'lab_ishga_yaroqliligi' => $request->lab_ishga_yaroqliligi,
         ]);
+
+
+        Notification::send($user, new AsbobuskunaNotification($asbobuskunaexpert));
 
         return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
@@ -54,7 +58,7 @@ class AsbobuskunaexpertController extends Controller
             $asbobuskunaexpert->update([
                 'holati' => 'rad etildi',
             ]);
-            $admins =User::findOrFail($asbobuskunaexpert->user_id);
+            $admins = User::findOrFail($asbobuskunaexpert->user_id);
             Notification::send($admins, new AsbobuskunaNotification($asbobuskunaexpert));
             return redirect()->route('asbobuskuna.show', $asbobuskunaexpert->asbobuskuna_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         } else {
@@ -76,6 +80,9 @@ class AsbobuskunaexpertController extends Controller
                 'lab_ishga_yaroqliligi' => $request->lab_ishga_yaroqliligi,
                 'holati' => 'yuborildi'
             ]);
+
+            // $admins = User::findOrFail($asbobuskunaexpert->user_id);
+            Notification::send($user, new AsbobuskunaNotification($asbobuskunaexpert));
             return redirect()->route('asbobuskuna.show', $asbobuskunaexpert->asbobuskuna_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }
     }
