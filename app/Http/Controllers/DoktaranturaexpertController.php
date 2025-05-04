@@ -15,7 +15,7 @@ class DoktaranturaexpertController extends Controller
 {
     public function store(Request $request)
     {
-        $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
+        $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
         // dd($request->all());
         $doktaranturaexpert = Doktaranturaexpert::create([
             'user_id' => auth()->id(),
@@ -97,7 +97,7 @@ class DoktaranturaexpertController extends Controller
             Notification::send($admins, new DoktaranturaNotification($doktaranturaexpert));
             return redirect()->route('doktarantura.show', $doktaranturaexpert->tashkilot_id)->with("status", 'Ma\'lumotlar rad etildi.');
         } else {
-            $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
+            $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
             $doktaranturaexpert->update([
                 'user_id' => auth()->id(),
                 'fish' => $user->name,

@@ -14,7 +14,7 @@ class AsbobuskunaexpertController extends Controller
 {
     public function store(Request $request)
     {
-        $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
+        $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
 
         $asbobuskuna = Asbobuskuna::findOrFail($request->asbobuskuna_id);
         $asbobuskunaexpert = Asbobuskunaexpert::create([
@@ -62,7 +62,7 @@ class AsbobuskunaexpertController extends Controller
             Notification::send($admins, new AsbobuskunaNotification($asbobuskunaexpert));
             return redirect()->route('asbobuskuna.show', $asbobuskunaexpert->asbobuskuna_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         } else {
-            $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
+            $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
             $asbobuskunaexpert->update([
                 'user_id' => auth()->id(),
                 'fish' => $user->name,

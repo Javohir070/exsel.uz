@@ -16,7 +16,7 @@ class TekshirivchilarController extends Controller
     public function store(Request $request)
     {
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiyloyiha_id);
-        $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
+        $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
         $tekshirivchilar = Tekshirivchilar::create([
             'user_id' => auth()->id(),
             'tashkilot_id' => $ilmiyloyiha->tashkilot_id,
@@ -55,7 +55,7 @@ class TekshirivchilarController extends Controller
             Notification::send($admins, new IlmiyloyihaNotification($tekshirivchilar));
             return redirect()->back()->with('status', 'Ma\'lumotlar rad etildi.');
         } else {
-            $user = User::where('region_id', '=', auth()->user()->region_id)->role('Ekspert')->first();
+            $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
             $tekshirivchilar->update([
                 'user_id' => auth()->id(),
                 'fish' => $user->name,

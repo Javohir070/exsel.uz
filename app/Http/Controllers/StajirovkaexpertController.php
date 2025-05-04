@@ -14,7 +14,7 @@ class StajirovkaexpertController extends Controller
 {
     public function store(Request $request)
     {
-        $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
+        $user = User::where('group_id', '=',auth()->user()->group_id)->role('Ekspert')->first();
         $stajirovka = Stajirovka::findOrFail($request->stajirovka_id);
         $stajirovkaexpert = Stajirovkaexpert::create([
             'user_id' => auth()->id(),
@@ -46,7 +46,7 @@ class StajirovkaexpertController extends Controller
     public function update(Request $request, Stajirovkaexpert $stajirovkaexpert)
     {
         if ($request->holati == 0) {
-            $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
+            $user = User::where('group_id', '=',auth()->user()->group_id)->role('Ekspert')->first();
             $stajirovkaexpert->update([
                 'holati' => 'rad etildi',
             ]);
@@ -54,7 +54,7 @@ class StajirovkaexpertController extends Controller
             Notification::send($admins, new StajirovkaNotification($stajirovkaexpert));
             return redirect()->route('stajirovka.show', $stajirovkaexpert->stajirovka_id)->with("status", 'Ma\'lumotlar rad etildi.');
         } else {
-            $user = User::where('region_id', '=',auth()->user()->region_id)->role('Ekspert')->first();
+            $user = User::where('group_id', '=',auth()->user()->group_id)->role('Ekspert')->first();
             $stajirovkaexpert->update([
                 'user_id' => auth()->id(),
                 'fish' => $user->name,
