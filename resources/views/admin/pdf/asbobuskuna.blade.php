@@ -304,7 +304,7 @@
                 </div>
                 <div class="qr-code">
                     <img src="data:image/png;base64,{{ $qrCode }}" alt="Qr code"
-                        style="width: 100px; height: 100px;">
+                        style="width: 130px; height: 130px;">
                 </div>
             </div>
         </div>
