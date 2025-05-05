@@ -40,6 +40,17 @@
                                     <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
                                         Ilmiy izlanuvchilar
                                     </h2>
+                                    <div class="intro-x relative mr-3 sm:mr-6">
+                                        <div class="search hidden sm:block">
+                                            <form action="{{ route('search_doktarantura') }}" method="GET">
+                                                <input type="hidden" name="id" value="{{ $id }}">
+                                                <input type="text" name="query" class="search__input input placeholder-theme-13"
+                                                    placeholder="Search...">
+                                                <i data-feather="search" class="search__icon"></i>
+                                            </form>
+                                        </div>
+                                        <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
+                                    </div>
                                     <tr style="border-bottom: 1px solid #E6E6E6;">
                                         <td colspan="5" style="text-align: center;">
                                             <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}" class="button  bg-theme-1 text-white mr-4" style="font-size: 16px;">Ma'lumotni yangilash</a>
@@ -52,8 +63,31 @@
                                             <tr>
                                                 <th class="whitespace-no-wrap" style="width: 40px;">T/r</th>
                                                 <th class="whitespace-no-wrap">F.I.Sh</th>
-                                                <th class="whitespace-no-wrap">Turi </th>
-                                                <th class="whitespace-no-wrap">Kurs </th>
+                                                <th class="whitespace-no-wrap">
+                                                    <form method="GET" action="{{ route('search_doktarantura') }}">
+                                                        <input type="hidden" name="id" value="{{ $id }}">
+                                                        <select class="form-select" aria-label="Default select example" name="query"
+                                                            onchange="this.form.submit()">
+                                                            <option value="">Turi</option>
+                                                            <option value="Mustaqil izlanuvchi, PhD">Mustaqil izlanuvchi, PhD</option>
+                                                            <option value="Tayanch doktorantura, PhD">Tayanch doktorantura, PhD</option>
+                                                            <option value="Mustaqil izlanuvchi, DSc">Mustaqil izlanuvchi, DSc</option>
+                                                            <option value="Doktorantura, DSc">Doktorantura, DSc</option>
+                                                        </select>
+                                                    </form>
+                                                </th>
+                                                <th class="whitespace-no-wrap">
+                                                    <form method="GET" action="{{ route('search_doktarantura') }}">
+                                                        <input type="hidden" name="id" value="{{ $id }}">
+                                                        <select class="form-select" aria-label="Default select example" name="query"
+                                                            onchange="this.form.submit()">
+                                                            <option value="">Kurs</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                        </select>
+                                                    </form>
+                                                </th>
                                                 <th style="text-align:center;">Yakka tartibdagi reja tasdiqlanganligi </th>
                                                 <th style="text-align:center;">Yakka tartibdagi rejani bajarganligi </th>
                                                 <th style="text-align:center;">Monitoring natijasi kiritilganligi </th>
@@ -232,7 +266,9 @@
                                                 <th class="whitespace-no-wrap" style="width: 40px;">T/r</th>
                                                 <th class="whitespace-no-wrap">F.I.Sh</th>
                                                 <th class="whitespace-no-wrap">Turi </th>
-                                                <th class="whitespace-no-wrap">Kurs </th>
+                                                <th class="whitespace-no-wrap">
+                                                    Kurs
+                                                </th>
                                                 <th class="whitespace-no-wrap">Status </th>
                                             </tr>
                                         </thead>
@@ -304,7 +340,7 @@
                                                     <td style="color:{{ $m['status'] ?? null == 0 ? 'red' : 'green' }};">
                                                         {{ $m['status'] ?? null == 0 ? 'Monitoring natijasi tasdiqlanmagan' : 'Monitoring natijasi tasdiqlangan' }}
                                                     </td>
-                                                </tr>                                      
+                                                </tr>
                                             @endforeach
 
                                         </tbody>
