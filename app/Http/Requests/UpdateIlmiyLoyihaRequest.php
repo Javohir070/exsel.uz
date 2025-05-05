@@ -38,7 +38,7 @@ class UpdateIlmiyLoyihaRequest extends FormRequest
             'sum' => "nullable|max:255",
             'tijoratlashtirish' => "nullable|max:255",
             'file' => 'nullable|file|max:20480', // 20MB = 20480 KB
-            'umumiy_mablag' => 'nullable|file|mimes:pdf|max:10480', // 20MB = 20480 KB
+            'umumiy_mablag' => 'nullable|file|max:10480', // 20MB = 20480 KB
             'savolnoma' => 'nullable|file|max:20480', // 20MB = 20480 KB
             'malumotnoma' => 'nullable|file|max:20480', // 20MB = 20480 KB
         ];

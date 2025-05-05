@@ -191,7 +191,7 @@
                                 </div>
                             </div> --}}
 
-                            <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
+                            <!-- <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
                                 <div class="intro-y block sm:flex items-center py-4">
                                     <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
                                         Tashkilotlar kesimida
@@ -234,7 +234,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
+                            </div> -->
 
                     </div>
                 </div>
