@@ -204,7 +204,7 @@
                             {{ $intellektual->b_bitiruv_mamalda ?? 0 }}
                         </td>
                         <td>
-                            {{ ($intellektual->b_bitiruv_mreja ?? 0) - ($intellektual->b_bitiruv_mamalda ?? 0) }}
+                            {{ ($intellektual->b_bitiruv_mamalda ?? 0) - ($intellektual->b_bitiruv_mreja ?? 0) }}
                         </td>
                         <td>{{ $intellektual->b_bitiruv_izoh ?? null }}</td>
                     </tr>
@@ -218,7 +218,7 @@
                             {{ $intellektual->m_bitiruv_damalda ?? 0 }}
                         </td>
                         <td>
-                            {{ ($intellektual->m_bitiruv_dreja ?? 0) - ($intellektual->m_bitiruv_damalda ?? 0) }}
+                            {{ ($intellektual->m_bitiruv_damalda  ?? 0) - ($intellektual->m_bitiruv_dreja ?? 0) }}
                         </td>
                         <td>{{ $intellektual->m_bitiruv_izoh ?? null }}</td>
                     </tr>
@@ -232,7 +232,7 @@
                             {{ $intellektual->p_bitiruv_damalda ?? 0 }}
                         </td>
                         <td>
-                            {{ ($intellektual->p_bitiruv_dreja ?? 0) - ($intellektual->p_bitiruv_damalda ?? 0) }}
+                            {{ ($intellektual->p_bitiruv_damalda  ?? 0) - ($intellektual->p_bitiruv_dreja ?? 0) }}
                         </td>
                         <td>{{ $intellektual->p_bitiruv_izoh ?? null }}</td>
                     </tr>
@@ -241,7 +241,7 @@
                         <td><b> Intellektual faoliyat natijalari soni </b>(ixtiro uchun olingan patentlari, ixtiro uchun patentga berilgan buyurtmalar, dasturiy mahsulotga olingan guvohnomalar)</td>
                         <td>{{ ($intellektual->ixtiro_olingan_psreja ?? 0) + ($intellektual->ixtiro_ber_psreja ?? 0) + ($intellektual->dasturiy_gsreja ?? 0)}}</td>
                         <td>{{ ($intellektual->dasturiy_gsamalda ?? 0) + ($intellektual->ixtiro_ber_psamalda ?? 0) + ($intellektual->ixtiro_olingan_psamalda ?? 0)}}</td>
-                        <td>{{ (($intellektual->ixtiro_olingan_psreja ?? 0) + ($intellektual->ixtiro_ber_psreja ?? 0) + ($intellektual->dasturiy_gsreja ?? 0)) - (($intellektual->dasturiy_gsamalda ?? 0) + ($intellektual->ixtiro_ber_psamalda ?? 0) + ($intellektual->ixtiro_olingan_psamalda ?? 0))}}</td>
+                        <td>{{   (($intellektual->dasturiy_gsamalda ?? 0) + ($intellektual->ixtiro_ber_psamalda ?? 0) + ($intellektual->ixtiro_olingan_psamalda ?? 0)) -(($intellektual->ixtiro_olingan_psreja ?? 0) + ($intellektual->ixtiro_ber_psreja ?? 0) + ($intellektual->dasturiy_gsreja ?? 0))}}</td>
                         <td>
                             {{ $intellektual->ixtiro_olingan_izoh ?? null}}, {{ $intellektual->ixtiro_ber_izoh ?? null }},  {{ $intellektual->dasturiy_izoh ?? null }}
                         </td>

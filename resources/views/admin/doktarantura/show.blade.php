@@ -243,7 +243,7 @@
                                                     <td style="color:#1881D3; font-weight: 400;">
                                                         {{ $m['full_name'] ?? 0 }}</td>
                                                     <td>
-                                                        @switch($m['dc_type'])
+                                                        @switch($m['dc_type'] ?? null)
                                                             @case(100)
                                                                 Doktorantura (DSc)
                                                             @break
@@ -301,10 +301,10 @@
                                                         @endswitch
                                                     </td>
                                                     <td>{{ $m['course'] ?? 0 }} </td>
-                                                    <td style="color:{{ $m['status'] == 0 ? 'red' : 'green' }};">
-                                                        {{ $m['status'] == 0 ? 'Monitoring natijasi tasdiqlanmagan' : 'Monitoring natijasi tasdiqlangan' }}
+                                                    <td style="color:{{ $m['status'] ?? null == 0 ? 'red' : 'green' }};">
+                                                        {{ $m['status'] ?? null == 0 ? 'Monitoring natijasi tasdiqlanmagan' : 'Monitoring natijasi tasdiqlangan' }}
                                                     </td>
-                                                </tr>
+                                                </tr>                                      
                                             @endforeach
 
                                         </tbody>

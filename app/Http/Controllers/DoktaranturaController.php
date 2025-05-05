@@ -149,7 +149,7 @@ class DoktaranturaController extends Controller
 
         $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->get();
         $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->first();
-        $doktaranturas = Doktarantura::where('tashkilot_id', '=', $id)->paginate(20);
+        $doktaranturas = Doktarantura::where('tashkilot_id', '=', $id)->paginate(100);
         $doktarantura = Doktarantura::where('tashkilot_id', '=', $id)->get();
         $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->get();
         $biriktirilgan_ir = Doktarantura::where('tashkilot_id', '=', $id)->whereNotNull('advisor')->count();

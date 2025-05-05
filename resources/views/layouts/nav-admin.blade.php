@@ -475,6 +475,13 @@
                 <div class="side-menu__title"> Ilmiy loyihalar </div>
             </a>
         </li>
+        <li>
+            <a href="{{ route('stajirovkalar.index') }}"
+                class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Stajirovkalar</div>
+            </a>
+        </li>
         @endrole
 
         @role(['admin', 'Ilmiy_faoliyat_uchun_masul'])

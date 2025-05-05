@@ -344,7 +344,7 @@
                                             {{ $intellektual->mal_jur_amalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intell  ?? 0) - ($intellektual->mal_jur_reja ?? 0) }}
+                                            {{ ($intellektual->mal_jur_amalda  ?? 0) - ($intellektual->mal_jur_reja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->mal_jur_izoh ?? null }}</td>
                                     </tr>
@@ -690,7 +690,7 @@
                                     {{ $loyihaiqtisodi->mehnat_haq_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_r ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_a ?? 0)) }}
                                 </td>
                                 <td class="border">
                                     {{ $loyihaiqtisodi->mehnat_haq_i ?? null }}
@@ -708,7 +708,7 @@
                                     {{ $loyihaiqtisodi->xizmat_saf_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_r ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_a ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->xizmat_saf_i ?? null }}</td>
                             </tr>
@@ -725,7 +725,7 @@
                                     {{ $loyihaiqtisodi->xarid_xaraja_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_r ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_a ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->xarid_xaraja_i ?? null }}</td>
                             </tr>
@@ -742,7 +742,7 @@
                                     {{ $loyihaiqtisodi->mat_butlovchi_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_r ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_a?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->mat_butlovchi_i ?? null }}</td>
                             </tr>
@@ -760,7 +760,7 @@
                                     {{ $loyihaiqtisodi->jalb_etilgan_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_r ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_a ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->jalb_etilgan_i ?? null }}</td>
                             </tr>
@@ -776,7 +776,7 @@
                                     {{ $loyihaiqtisodi->boshqa_xarajat_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_r ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_a ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->boshqa_xarajat_i ?? null }}</td>
                             </tr>
@@ -794,7 +794,7 @@
                                     {{ $loyihaiqtisodi->tashustama_xarajat_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_r ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_a ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->tashustama_xarajat_i ?? null }}</td>
                             </tr>
