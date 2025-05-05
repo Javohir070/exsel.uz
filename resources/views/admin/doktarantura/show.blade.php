@@ -127,8 +127,9 @@
                                                 </tr>
                                             @empty
                                                 <tr style="border-bottom: 1px solid #E6E6E6;">
-                                                    <td colspan="5" style="text-align: center;">
-                                                        <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}" class="button w-24 bg-theme-1 text-white mr-4" style="font-size: 20px;">daraja.ilmiy.uz import qilish</a>
+                                                    <td colspan="8" style="text-align: center;">
+                                                        <!-- <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}" class="button w-24 bg-theme-1 text-white mr-4" style="font-size: 20px;">daraja.ilmiy.uz import qilish</a> -->
+                                                         Ma'lumot topilmadi 
                                                     </td>
                                                 </tr>
                                             @endforelse
