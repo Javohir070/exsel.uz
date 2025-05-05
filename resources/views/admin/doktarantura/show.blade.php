@@ -44,7 +44,7 @@
                                         <div class="search hidden sm:block">
                                             <form action="{{ route('search_doktarantura') }}" method="GET">
                                                 <input type="hidden" name="id" value="{{ $id }}">
-                                                <input type="text" name="query" class="search__input input placeholder-theme-13"
+                                                <input type="text" name="query" value="{{ request('query') }}"  class="search__input input placeholder-theme-13"
                                                     placeholder="Search...">
                                                 <i data-feather="search" class="search__icon"></i>
                                             </form>
@@ -63,30 +63,30 @@
                                             <tr>
                                                 <th class="whitespace-no-wrap" style="width: 40px;">T/r</th>
                                                 <th class="whitespace-no-wrap">F.I.Sh</th>
-                                                <th class="whitespace-no-wrap">
-                                                    <form method="GET" action="{{ route('search_doktarantura') }}">
+                                                <th class="whitespace-no-wrap" colspan="2">
+                                                    <form method="GET" action="{{ route('search_doktarantura') }}" style="display: flex; gap:20px;">
                                                         <input type="hidden" name="id" value="{{ $id }}">
-                                                        <select class="form-select" aria-label="Default select example" name="query"
-                                                            onchange="this.form.submit()">
+
+
+
+                                                        <select class="form-select" name="dc_type" style="border-radius: 6px;">
                                                             <option value="">Turi</option>
-                                                            <option value="Mustaqil izlanuvchi, PhD">Mustaqil izlanuvchi, PhD</option>
-                                                            <option value="Tayanch doktorantura, PhD">Tayanch doktorantura, PhD</option>
-                                                            <option value="Mustaqil izlanuvchi, DSc">Mustaqil izlanuvchi, DSc</option>
-                                                            <option value="Doktorantura, DSc">Doktorantura, DSc</option>
+                                                            <option value="Mustaqil izlanuvchi, PhD" {{ request('dc_type') == 'Mustaqil izlanuvchi, PhD' ? 'selected' : '' }}>Mustaqil izlanuvchi, PhD</option>
+                                                            <option value="Tayanch doktorantura, PhD" {{ request('dc_type') == 'Tayanch doktorantura, PhD' ? 'selected' : '' }}>Tayanch doktorantura, PhD</option>
+                                                            <option value="Mustaqil izlanuvchi, DSc" {{ request('dc_type') == 'Mustaqil izlanuvchi, DSc' ? 'selected' : '' }}>Mustaqil izlanuvchi, DSc</option>
+                                                            <option value="Doktorantura, DSc" {{ request('dc_type') == 'Doktorantura, DSc' ? 'selected' : '' }}>Doktorantura, DSc</option>
                                                         </select>
-                                                    </form>
-                                                </th>
-                                                <th class="whitespace-no-wrap">
-                                                    <form method="GET" action="{{ route('search_doktarantura') }}">
-                                                        <input type="hidden" name="id" value="{{ $id }}">
-                                                        <select class="form-select" aria-label="Default select example" name="query"
-                                                            onchange="this.form.submit()">
+
+                                                        <select class="form-select" name="course" style="border-radius: 6px;">
                                                             <option value="">Kurs</option>
-                                                            <option value="1">1</option>
-                                                            <option value="2">2</option>
-                                                            <option value="3">3</option>
+                                                            <option value="1" {{ request('course') == '1' ? 'selected' : '' }}>1</option>
+                                                            <option value="2" {{ request('course') == '2' ? 'selected' : '' }}>2</option>
+                                                            <option value="3" {{ request('course') == '3' ? 'selected' : '' }}>3</option>
                                                         </select>
+
+                                                        <button type="submit" class="button bg-theme-1 text-white mr-4" style="font-size: 16px;">Qidirish</button>
                                                     </form>
+
                                                 </th>
                                                 <th style="text-align:center;">Yakka tartibdagi reja tasdiqlanganligi </th>
                                                 <th style="text-align:center;">Yakka tartibdagi rejani bajarganligi </th>
@@ -129,7 +129,7 @@
                                                 <tr style="border-bottom: 1px solid #E6E6E6;">
                                                     <td colspan="8" style="text-align: center;">
                                                         <!-- <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}" class="button w-24 bg-theme-1 text-white mr-4" style="font-size: 20px;">daraja.ilmiy.uz import qilish</a> -->
-                                                         Ma'lumot topilmadi 
+                                                         Ma'lumot topilmadi
                                                     </td>
                                                 </tr>
                                             @endforelse

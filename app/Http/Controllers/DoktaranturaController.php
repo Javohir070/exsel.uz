@@ -153,13 +153,19 @@ class DoktaranturaController extends Controller
         $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->get();
         $biriktirilgan_ir = Doktarantura::where('tashkilot_id', '=', $id)->whereNotNull('advisor')->count();
         $querysearch = $request->input('query');
+        $course = $request->input('course');
+        $dc_type = $request->input('dc_type');
         $doktaranturas = Doktarantura::where('tashkilot_id', $id)
-            ->where(function($query) use ($querysearch) {
-                $query->where('full_name','like','%'.$querysearch.'%')
-                    ->orWhere('dc_type','like','%'.$querysearch.'%')
-                    ->orWhere('course','like','%'.$querysearch.'%');
-            })
-            ->paginate(50);
+                ->when($querysearch, function ($query) use ($querysearch) {
+                    $query->where('full_name', 'like', '%' . $querysearch . '%');
+                })
+                ->when($dc_type, function ($query) use ($dc_type) {
+                    $query->where('dc_type', 'like', '%' . $dc_type . '%');
+                })
+                ->when($course, function ($query) use ($course) {
+                    $query->where('course', 'like', '%' . $course . '%');
+                })
+                ->paginate(50);
         return view('admin.doktarantura.show', [
             'tashkilot' => $tashkilot ?? null,
             'lab_izlanuvchilar' => $lab_izlanuvchilar ?? null,

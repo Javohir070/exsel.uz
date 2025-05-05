@@ -35,12 +35,12 @@ class LoyihaijrochilarController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'science_id' => 'required|unique:loyihaijrochilars,science_id',
-        ], [
-            'science_id.required' => 'Science ID majburiy!',
-            'science_id.unique' => 'Bu Science ID bazada mavjud!',
-        ]);
+        // $validated = $request->validate([
+        //     'science_id' => 'required|unique:loyihaijrochilars,science_id',
+        // ], [
+        //     'science_id.required' => 'Science ID majburiy!',
+        //     'science_id.unique' => 'Bu Science ID bazada mavjud!',
+        // ]);
 
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiy_loyiha_id);
         $scienceid = $request->scienceid ?? null;
