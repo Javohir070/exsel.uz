@@ -344,7 +344,7 @@
                                             {{ $intellektual->mal_jur_amalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->mal_jur_reja ?? 0) - ($intellektual->mal_jur_amalda ?? 0) }}
+                                            {{ ($intell  ?? 0) - ($intellektual->mal_jur_reja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->mal_jur_izoh ?? null }}</td>
                                     </tr>
@@ -360,7 +360,7 @@
                                             {{ $intellektual->xor_jur_amalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->xor_jur_reja ?? 0) - ($intellektual->xor_jur_amalda ?? 0) }}
+                                            {{ ($intellektual->xor_jur_amalda  ?? 0) - ($intellektual->xor_jur_reja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->xor_jur_izoh ?? null }}</td>
                                     </tr>
@@ -376,7 +376,7 @@
                                             {{ $intellektual->web_jur_amalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->web_jur_reja ?? 0) - ($intellektual->web_jur_amalda ?? 0) }}
+                                            {{ ($intellektual->web_jur_amalda  ?? 0) - ($intellektual->web_jur_reja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->web_jur_izoh ?? null }}</td>
                                     </tr>
@@ -392,7 +392,7 @@
                                             {{ $intellektual->tezislar_amalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->tezislar_reja ?? 0) - ($intellektual->tezislar_amalda ?? 0) }}
+                                            {{ ($intellektual->tezislar_amalda  ?? 0) - ($intellektual->tezislar_reja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->tezislar_izoh ?? null }}</td>
                                     </tr>
@@ -408,7 +408,7 @@
                                             {{ $intellektual->ilmiy_mon_amalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->ilmiy_mon_reja ?? 0) - ($intellektual->ilmiy_mon_amalda ?? 0) }}
+                                            {{ ($intellektual->ilmiy_mon_amalda  ?? 0) - ($intellektual->ilmiy_mon_reja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->ilmiy_mon_izoh ?? null }}</td>
                                     </tr>
@@ -424,7 +424,7 @@
                                             {{ $intellektual->nashr_uquv_amalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->nashr_uquv_reja ?? 0) - ($intellektual->nashr_uquv_amalda ?? 0) }}
+                                            {{ ($intellektual->nashr_uquv_amalda  ?? 0) - ($intellektual->nashr_uquv_reja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->nashr_uquv_izoh ?? null }}</td>
                                     </tr>
@@ -440,7 +440,7 @@
                                             {{ $intellektual->darslik_amalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->darslik_reja ?? 0) - ($intellektual->darslik_amalda ?? 0) }}
+                                            {{ ($intellektual->darslik_amalda  ?? 0) - ($intellektual->darslik_reja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->darslik_izoh ?? null }}</td>
                                     </tr>
@@ -456,7 +456,7 @@
                                             {{ $intellektual->b_bitiruv_mamalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->b_bitiruv_mreja ?? 0) - ($intellektual->b_bitiruv_mamalda ?? 0) }}
+                                            {{ ($intellektual->b_bitiruv_mamalda  ?? 0) - ($intellektual->b_bitiruv_mreja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->b_bitiruv_izoh ?? null }}</td>
                                     </tr>
@@ -472,7 +472,7 @@
                                             {{ $intellektual->m_bitiruv_damalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->m_bitiruv_dreja ?? 0) - ($intellektual->m_bitiruv_damalda ?? 0) }}
+                                            {{ ($intellektual->m_bitiruv_damalda ?? 0) - ($intellektual->m_bitiruv_dreja  ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->m_bitiruv_izoh ?? null }}</td>
                                     </tr>
@@ -488,7 +488,7 @@
                                             {{ $intellektual->p_bitiruv_damalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->p_bitiruv_dreja ?? 0) - ($intellektual->p_bitiruv_damalda ?? 0) }}
+                                            {{ ($intellektual->p_bitiruv_damalda  ?? 0) - ($intellektual->p_bitiruv_dreja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->p_bitiruv_izoh ?? null }}</td>
                                     </tr>
@@ -504,7 +504,7 @@
                                             {{ $intellektual->i_mulk_aamalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->i_mulk_areja ?? 0) - ($intellektual->i_mulk_aamalda ?? 0) }}
+                                            {{ ($intellektual->i_mulk_aamalda  ?? 0) - ($intellektual->i_mulk_areja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->i_mulk_izoh ?? null }}</td>
                                     </tr>
@@ -533,7 +533,7 @@
                                             {{ $intellektual->ixtiro_olingan_psamalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->ixtiro_olingan_psreja ?? 0) - ($intellektual->ixtiro_olingan_psamalda ?? 0) }}
+                                            {{ ($intellektual->ixtiro_olingan_psamalda  ?? 0) - ($intellektual->ixtiro_olingan_psreja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->ixtiro_olingan_izoh ?? null }}</td>
                                     </tr>
@@ -549,7 +549,7 @@
                                             {{ $intellektual->ixtiro_ber_psamalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->ixtiro_ber_psreja ?? 0) - ($intellektual->ixtiro_ber_psamalda ?? 0) }}
+                                            {{ ($intellektual->ixtiro_ber_psamalda  ?? 0) - ($intellektual->ixtiro_ber_psreja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->ixtiro_ber_izoh ?? null }}</td>
                                     </tr>
@@ -565,7 +565,7 @@
                                             {{ $intellektual->dasturiy_gsamalda ?? 0 }}
                                         </td>
                                         <td class="border">
-                                            {{ ($intellektual->dasturiy_gsreja ?? 0) - ($intellektual->dasturiy_gsamalda ?? 0) }}
+                                            {{ ($intellektual->dasturiy_gsamalda ?? 0) - ($intellektual->dasturiy_gsreja ?? 0) }}
                                         </td>
                                         <td class="border">{{ $intellektual->dasturiy_izoh ?? null }}</td>
                                     </tr>
@@ -690,7 +690,7 @@
                                     {{ $loyihaiqtisodi->mehnat_haq_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_a ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mehnat_haq_r ?? 0)) }}
                                 </td>
                                 <td class="border">
                                     {{ $loyihaiqtisodi->mehnat_haq_i ?? null }}
@@ -708,7 +708,7 @@
                                     {{ $loyihaiqtisodi->xizmat_saf_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_a ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xizmat_saf_r ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->xizmat_saf_i ?? null }}</td>
                             </tr>
@@ -725,7 +725,7 @@
                                     {{ $loyihaiqtisodi->xarid_xaraja_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_a ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->xarid_xaraja_r ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->xarid_xaraja_i ?? null }}</td>
                             </tr>
@@ -742,7 +742,7 @@
                                     {{ $loyihaiqtisodi->mat_butlovchi_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_a ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->mat_butlovchi_r ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->mat_butlovchi_i ?? null }}</td>
                             </tr>
@@ -760,7 +760,7 @@
                                     {{ $loyihaiqtisodi->jalb_etilgan_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_a ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->jalb_etilgan_r ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->jalb_etilgan_i ?? null }}</td>
                             </tr>
@@ -776,7 +776,7 @@
                                     {{ $loyihaiqtisodi->boshqa_xarajat_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_a ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->boshqa_xarajat_r ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->boshqa_xarajat_i ?? null }}</td>
                             </tr>
@@ -794,7 +794,7 @@
                                     {{ $loyihaiqtisodi->tashustama_xarajat_a ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_r ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_a ?? 0)) }}
+                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_a ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->tashustama_xarajat_r ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->tashustama_xarajat_i ?? null }}</td>
                             </tr>
