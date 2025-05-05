@@ -297,13 +297,13 @@
             </a>
         </li>
 
-        <li>
+        <!-- <li>
             <a href="{{ route('ilmiy_izlanuvchi.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiy-izlanuvchi*') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Ilmiy izlanuvchilar </div>
             </a>
-        </li>
+        </li> -->
 
         <li>
             <a href="{{ route('asbobuskuna.index') }}"
@@ -313,13 +313,13 @@
             </a>
         </li>
 
-        <li>
+        <!-- <li>
             <a href="{{ route('stajirovka.index') }}"
                 class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Stajirovka </div>
             </a>
-        </li>
+        </li> -->
         @endrole
 
         @role('kafedra_mudiri')
@@ -424,13 +424,13 @@
                 <div class="side-menu__title"> Xo'jalik shartnomalari </div>
             </a>
         </li>
-        <li>
+        <!-- <li>
             <a href="{{ route('izlanuvchilar.index') }}"
                 class="side-menu side-menu{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                 <div class="side-menu__title">Ilmiy izlanuvchilar </div>
             </a>
-        </li>
+        </li> -->
         <li>
             <a href="{{ route('asbobuskuna.index') }}"
                 class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
@@ -464,6 +464,20 @@
                 <div class="side-menu__title"> Ilmiy loyihalar </div>
             </a>
         </li>
+        <li>
+            <a href="{{ route('stajirovka.index') }}"
+                class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Stajirovka </div>
+            </a>
+        </li>
+        <!-- <li>
+            <a href="{{ route('stajirovkalar.index') }}"
+                class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Stajirovkalar</div>
+            </a>
+        </li> -->
         @endrole
 
 
