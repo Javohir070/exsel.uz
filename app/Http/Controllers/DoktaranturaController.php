@@ -266,14 +266,22 @@ class DoktaranturaController extends Controller
             $region_id = Region::where('id', auth()->user()->region_id)->first();
             $id = $region_id->tashkilots()->pluck('id');
             $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->count();
+            $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $id)->where('status', 1)->count();
             $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->count();
         } else {
             $regions = Region::orderBy('order')->get();
             $doktarantura = Tashkilot::where('doktarantura_is', 1)->count();
             $doktarantura_count = Doktarantura::count();
+            $doktarantura_count_all = Doktarantura::where('status', 1)->count();
             $doktarantura_expert = Doktaranturaexpert::count();
         }
-        return view('admin.doktarantura.viloyat', ['doktarantura_expert' => $doktarantura_expert, 'regions' => $regions, 'doktarantura' => $doktarantura, 'doktarantura_count'=>$doktarantura_count]);
+        return view('admin.doktarantura.viloyat', [
+                        'doktarantura_count_all' => $doktarantura_count_all,
+                        'doktarantura_expert' => $doktarantura_expert,
+                        'regions' => $regions,
+                        'doktarantura' => $doktarantura,
+                        'doktarantura_count'=>$doktarantura_count
+                    ]);
     }
 
     public function tashkilot_turi_doktarantura($id)
@@ -302,9 +310,17 @@ class DoktaranturaController extends Controller
         $doktarantura = $tashkilotlarQuery->count();
         $id = $tashkilotlarQuery->pluck('id');
         $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->count();
+        $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $id)->where('status', 1)->count();
         $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->count();
 
-        return view('admin.doktarantura.tashkilot_turi', ['results' => $results, 'regions' => $regions, 'doktarantura'=>$doktarantura, 'doktarantura_expert'=>$doktarantura_expert, 'doktarantura_count'=>$doktarantura_count]);
+        return view('admin.doktarantura.tashkilot_turi', [
+                        'results' => $results,
+                        'regions' => $regions,
+                        'doktarantura'=>$doktarantura,
+                        'doktarantura_expert'=>$doktarantura_expert,
+                        'doktarantura_count'=>$doktarantura_count,
+                        'doktarantura_count_all' => $doktarantura_count_all,
+                    ]);
     }
 
     public function search_dok(Request $request)

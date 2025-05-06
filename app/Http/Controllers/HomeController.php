@@ -211,7 +211,7 @@ class HomeController extends Controller
             $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->count();
             $asboblar_count = Asbobuskuna::whereIn('tashkilot_id', $id)->where('is_active',1)->count();
             $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id)->count();
-            $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->count();
+            $doktarantura_expert = Doktarantura::whereIn('tashkilot_id', $id)->where('status',1)->count();
             $loy_count = IlmiyLoyiha::whereIn('tashkilot_id', $id)->where('is_active',1)->count();
             $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('is_active',1)->count();
         }else{
@@ -220,7 +220,7 @@ class HomeController extends Controller
             $stajirovka_expert = Stajirovkaexpert::count();
             $asboblar_count = Asbobuskuna::where('is_active',1)->count();
             $asboblar_expert = Asbobuskunaexpert::count();
-            $doktarantura_expert = Doktaranturaexpert::count();
+            $doktarantura_expert = Doktarantura::where('status',1)->count();
             $loy_count = IlmiyLoyiha::where('is_active',1)->count();
             $loy_expert = Tekshirivchilar::where('is_active',1)->count();
         }
