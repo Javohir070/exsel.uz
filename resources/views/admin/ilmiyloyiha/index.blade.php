@@ -10,9 +10,9 @@
             <a href="{{ route("ilmiy_loyha_edit.index") }}" class="button w-24 bg-theme-1 text-white mr-2">
                 Masul biriktirish
             </a>
-            <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white mr-2">
+            <!-- <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white mr-2">
                 Qo'shish
-            </a>
+            </a> -->
             <a href="{{ route("masul.index") }}" class="button w-24 bg-theme-1 text-white">
                 Masullar
             </a>

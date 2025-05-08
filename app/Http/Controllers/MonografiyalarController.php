@@ -15,7 +15,7 @@ class MonografiyalarController extends Controller
 
     public function index()
     {
-        $monografiyalars = Monografiyalar::paginate(25);
+        $monografiyalars = Monografiyalar::where('tashkilot_id', auth()->user()->tashkilot_id)->paginate(25);
         return view('admin.monografiya.index', ['monografiyalars' => $monografiyalars]);
     }
 

@@ -63,7 +63,7 @@
                             <input type="checkbox" class="input border mr-2" name="remember" id="remember">
                             <label class="cursor-pointer select-none" for="remember-me">Eslab qolish </label>
                         </div>
-                        <a href="">Parolni unutdingizmi?</a>
+                        <!-- <a href="">Parolni unutdingizmi?</a> -->
                     </div>
                     <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
                         <button type="submit"

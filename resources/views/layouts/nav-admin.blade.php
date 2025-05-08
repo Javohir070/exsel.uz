@@ -176,6 +176,13 @@
 
 
         @role('super-admin')
+        <!-- <li>
+            <a href="{{ route('asbobuskunalar.index') }}"
+                class="side-menu side-menu{{ request()->is('asbobus*') ? '--active' : '' }}{{ request()->is('search-asbob*') ? '--active' : '' }}{{ request()->is('tashkilot-turi*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Asbob-uskunalar</div>
+            </a>
+        </li> -->
         <li>
             <a href="javascript:;"
                 class="side-menu side-menu{{ request()->is('users*') ? '--active' : '' }}{{ request()->is('permissions*') ? '--active' : '' }}{{ request()->is('roles*') ? '--active' : '' }}{{ request()->is('tashqoshish*') ? '--active' : '' }}">

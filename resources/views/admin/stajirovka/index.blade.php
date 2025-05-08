@@ -8,9 +8,9 @@
             <h2 class="intro-y text-lg font-medium">Stajirovka</h2>
 
             <div>
-                <a href="{{ route("stajirovka.create") }}" class="button w-24 ml-3 bg-theme-1 text-white">
+                <!-- <a href="{{ route("stajirovka.create") }}" class="button w-24 ml-3 bg-theme-1 text-white">
                     Qo'shish
-                </a>
+                </a> -->
 
                 {{-- <a href="{{ url('users/create') }}" class="button ml-3 w-24 bg-theme-1 text-white">
                     Masul biriktirsh

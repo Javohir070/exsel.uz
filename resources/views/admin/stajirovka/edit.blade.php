@@ -152,7 +152,7 @@
     <script>
         // Boshlang'ich va tugash yillari
         var startYear = 2010;
-        var endYear = 2024;
+        var endYear = 2025;
 
         // Barcha class nomi 'science-sub-category' bo'lgan select elementlarini olish
         var selects = document.getElementsByClassName('science-sub-categoryyil');

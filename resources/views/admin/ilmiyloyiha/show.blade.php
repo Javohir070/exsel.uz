@@ -847,13 +847,13 @@
                                 </td>
 
                                 <td class="border">
-                                    {{ $loyihaiqtisodi->uzlashtirilishi_summasi ?? null }}
-                                </td>
-                                <td class="border">
                                     {{ $ilmiyloyiha->sum ?? null }}
                                 </td>
                                 <td class="border">
-                                    {{ number_format(preg_replace('/\D/', '', $loyihaiqtisodi->uzlashtirilishi_summasi ?? 0) - preg_replace('/\D/', '', $ilmiyloyiha->sum ?? 0)) }}
+                                {{ $loyihaiqtisodi->uzlashtirilishi_summasi ?? null }}
+                                </td>
+                                <td class="border">
+                                    {{ number_format(preg_replace('/\D/', '',$ilmiyloyiha->sum  ?? 0) - preg_replace('/\D/', '', $loyihaiqtisodi->uzlashtirilishi_summasi  ?? 0)) }}
                                 </td>
                                 <td class="border">{{ $loyihaiqtisodi->uzlashtirilishi_sum_i ?? null }}</td>
                             </tr>
@@ -2146,11 +2146,11 @@
                                         </td>
                                         <td class="border">
                                             <input type="hidden" name="ilmiy_loyiha_id" value="{{ $ilmiyloyiha->id }}">
-                                            <input type="number" name="mal_jur_reja" value="{{ old('mal_jur_reja') }}"
+                                            <input type="number" min="0" name="mal_jur_reja" value="{{ old('mal_jur_reja') }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="mal_jur_amalda"
+                                            <input type="number" min="0" name="mal_jur_amalda"
                                                 value="{{ old('mal_jur_amalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2160,11 +2160,11 @@
                                             Xorijiy jurnallardagi ilmiy maqolalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="xor_jur_reja" value="{{ old('xor_jur_reja') }}"
+                                            <input type="number" min="0" name="xor_jur_reja" value="{{ old('xor_jur_reja') }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="xor_jur_amalda"
+                                            <input type="number" min="0" name="xor_jur_amalda"
                                                 value="{{ old('xor_jur_amalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2174,11 +2174,11 @@
                                             Web of intellektual va Scopus bazasidagi xalqaro nashrlardagi maqolalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="web_jur_reja" value="{{ old('web_jur_reja') }}"
+                                            <input type="number" min="0" name="web_jur_reja" value="{{ old('web_jur_reja') }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="web_jur_amalda"
+                                            <input type="number" min="0" name="web_jur_amalda"
                                                 value="{{ old('web_jur_amalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2188,11 +2188,11 @@
                                             Tezislar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="tezislar_reja" value="{{ old('tezislar_reja') }}"
+                                            <input type="number" min="0" name="tezislar_reja" value="{{ old('tezislar_reja') }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="tezislar_amalda"
+                                            <input type="number" min="0" name="tezislar_amalda"
                                                 value="{{ old('tezislar_amalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2202,12 +2202,12 @@
                                             Ilmiy monografiyalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ilmiy_mon_reja"
+                                            <input type="number" min="0" name="ilmiy_mon_reja"
                                                 value="{{ old('ilmiy_mon_reja') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ilmiy_mon_amalda"
+                                            <input type="number" min="0" name="ilmiy_mon_amalda"
                                                 value="{{ old('ilmiy_mon_amalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2217,12 +2217,12 @@
                                             Nashr qilingan oʻquv qoʻllanmalari soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="nashr_uquv_reja"
+                                            <input type="number" min="0" name="nashr_uquv_reja"
                                                 value="{{ old('nashr_uquv_reja') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="nashr_uquv_amalda"
+                                            <input type="number" min="0" name="nashr_uquv_amalda"
                                                 value="{{ old('nashr_uquv_amalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2232,11 +2232,11 @@
                                             Nashr qilingan darsliklar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="darslik_reja" value="{{ old('darslik_reja') }}"
+                                            <input type="number" min="0" name="darslik_reja" value="{{ old('darslik_reja') }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="darslik_amalda"
+                                            <input type="number" min="0" name="darslik_amalda"
                                                 value="{{ old('darslik_amalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2246,12 +2246,12 @@
                                             Bakalavriat bosqichida tayyorlangan bitiruv malakaviy ishlari soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="b_bitiruv_mreja"
+                                            <input type="number" min="0" name="b_bitiruv_mreja"
                                                 value="{{ old('b_bitiruv_mreja') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="b_bitiruv_mamalda"
+                                            <input type="number" min="0" name="b_bitiruv_mamalda"
                                                 value="{{ old('b_bitiruv_mamalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2261,12 +2261,12 @@
                                             Tayyorlangan magistrlik dissertatsiyalari soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="m_bitiruv_dreja"
+                                            <input type="number" min="0" name="m_bitiruv_dreja"
                                                 value="{{ old('m_bitiruv_dreja') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="m_bitiruv_damalda"
+                                            <input type="number" min="0" name="m_bitiruv_damalda"
                                                 value="{{ old('m_bitiruv_damalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2276,12 +2276,12 @@
                                             Tayyorlangan doktorlik dissertatsiyalari soni (PhD, DSc)
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="p_bitiruv_dreja"
+                                            <input type="number" min="0" name="p_bitiruv_dreja"
                                                 value="{{ old('p_bitiruv_dreja') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="p_bitiruv_damalda"
+                                            <input type="number" min="0" name="p_bitiruv_damalda"
                                                 value="{{ old('p_bitiruv_damalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2291,11 +2291,11 @@
                                             Intellektual mulk obyektlari uchun berilgan arizalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="i_mulk_areja" value="{{ old('i_mulk_areja') }}"
+                                            <input type="number" min="0" name="i_mulk_areja" value="{{ old('i_mulk_areja') }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="i_mulk_aamalda"
+                                            <input type="number" min="0" name="i_mulk_aamalda"
                                                 value="{{ old('i_mulk_aamalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2317,12 +2317,12 @@
                                             Ixtiro uchun olingan patentlari soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ixtiro_olingan_psreja"
+                                            <input type="number" min="0" name="ixtiro_olingan_psreja"
                                                 value="{{ old('ixtiro_olingan_psreja') }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ixtiro_olingan_psamalda"
+                                            <input type="number" min="0" name="ixtiro_olingan_psamalda"
                                                 value="{{ old('ixtiro_olingan_psamalda') }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2332,12 +2332,12 @@
                                             Ixtiro uchun patentga berilgan buyurtmalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ixtiro_ber_psreja"
+                                            <input type="number" min="0" name="ixtiro_ber_psreja"
                                                 value="{{ old('ixtiro_ber_psreja') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ixtiro_ber_psamalda"
+                                            <input type="number" min="0" name="ixtiro_ber_psamalda"
                                                 value="{{ old('ixtiro_ber_psamalda') }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2347,12 +2347,12 @@
                                             Dasturiy mahsulotga olingan guvohnomalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="dasturiy_gsreja"
+                                            <input type="number" min="0" name="dasturiy_gsreja"
                                                 value="{{ old('dasturiy_gsreja') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="dasturiy_gsamalda"
+                                            <input type="number" min="0" name="dasturiy_gsamalda"
                                                 value="{{ old('dasturiy_gsamalda') }}" class="input w-full border mt-2"
                                                 required="">
                                         </td>
@@ -2411,12 +2411,12 @@
                                         </td>
                                         <td class="border">
                                             <input type="hidden" name="ilmiy_loyiha_id" value="885">
-                                            <input type="number" name="mal_jur_reja"
+                                            <input type="number" min="0" name="mal_jur_reja"
                                                 value="{{ $intellektual->mal_jur_reja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="mal_jur_amalda"
+                                            <input type="number" min="0" name="mal_jur_amalda"
                                                 value="{{ $intellektual->mal_jur_amalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2426,12 +2426,12 @@
                                             Xorijiy jurnallardagi ilmiy maqolalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="xor_jur_reja"
+                                            <input type="number" min="0" name="xor_jur_reja"
                                                 value="{{ $intellektual->xor_jur_reja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="xor_jur_amalda"
+                                            <input type="number" min="0" name="xor_jur_amalda"
                                                 value="{{ $intellektual->xor_jur_amalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2441,12 +2441,12 @@
                                             Web of Science va Scopus bazasidagi xalqaro nashrlardagi maqolalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="web_jur_reja"
+                                            <input type="number" min="0" name="web_jur_reja"
                                                 value="{{ $intellektual->web_jur_reja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="web_jur_amalda"
+                                            <input type="number" min="0" name="web_jur_amalda"
                                                 value="{{ $intellektual->web_jur_amalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2456,12 +2456,12 @@
                                             Tezislar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="tezislar_reja"
+                                            <input type="number" min="0" name="tezislar_reja"
                                                 value="{{ $intellektual->tezislar_reja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="tezislar_amalda"
+                                            <input type="number" min="0" name="tezislar_amalda"
                                                 value="{{ $intellektual->tezislar_amalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2471,12 +2471,12 @@
                                             Ilmiy monografiyalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ilmiy_mon_reja"
+                                            <input type="number" min="0" name="ilmiy_mon_reja"
                                                 value="{{ $intellektual->ilmiy_mon_reja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ilmiy_mon_amalda"
+                                            <input type="number" min="0" name="ilmiy_mon_amalda"
                                                 value="{{ $intellektual->ilmiy_mon_amalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2486,12 +2486,12 @@
                                             Nashr qilingan oʻquv qoʻllanmalari soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="nashr_uquv_reja"
+                                            <input type="number" min="0" name="nashr_uquv_reja"
                                                 value="{{ $intellektual->nashr_uquv_reja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="nashr_uquv_amalda"
+                                            <input type="number" min="0" name="nashr_uquv_amalda"
                                                 value="{{ $intellektual->nashr_uquv_amalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2501,12 +2501,12 @@
                                             Nashr qilingan darsliklar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="darslik_reja"
+                                            <input type="number" min="0" name="darslik_reja"
                                                 value="{{ $intellektual->darslik_reja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="darslik_amalda"
+                                            <input type="number" min="0" name="darslik_amalda"
                                                 value="{{ $intellektual->darslik_amalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2516,12 +2516,12 @@
                                             Bakalavriat bosqichida tayyorlangan bitiruv malakaviy ishlari soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="b_bitiruv_mreja"
+                                            <input type="number" min="0" name="b_bitiruv_mreja"
                                                 value="{{ $intellektual->b_bitiruv_mreja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="b_bitiruv_mamalda"
+                                            <input type="number" min="0" name="b_bitiruv_mamalda"
                                                 value="{{ $intellektual->b_bitiruv_mamalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2531,12 +2531,12 @@
                                             Tayyorlangan magistrlik dissertatsiyalari soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="m_bitiruv_dreja"
+                                            <input type="number" min="0" name="m_bitiruv_dreja"
                                                 value="{{ $intellektual->m_bitiruv_dreja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="m_bitiruv_damalda"
+                                            <input type="number" min="0" name="m_bitiruv_damalda"
                                                 value="{{ $intellektual->m_bitiruv_damalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2546,12 +2546,12 @@
                                             Tayyorlangan doktorlik dissertatsiyalari soni (PhD, DSc)
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="p_bitiruv_dreja"
+                                            <input type="number" min="0" name="p_bitiruv_dreja"
                                                 value="{{ $intellektual->p_bitiruv_dreja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="p_bitiruv_damalda"
+                                            <input type="number" min="0" name="p_bitiruv_damalda"
                                                 value="{{ $intellektual->p_bitiruv_damalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2561,12 +2561,12 @@
                                             Intellektual mulk obyektlari uchun berilgan arizalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="i_mulk_areja"
+                                            <input type="number" min="0" name="i_mulk_areja"
                                                 value="{{ $intellektual->i_mulk_areja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="i_mulk_aamalda"
+                                            <input type="number" min="0" name="i_mulk_aamalda"
                                                 value="{{ $intellektual->i_mulk_aamalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2588,12 +2588,12 @@
                                             Ixtiro uchun olingan patentlari soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ixtiro_olingan_psreja"
+                                            <input type="number" min="0" name="ixtiro_olingan_psreja"
                                                 value="{{ $intellektual->ixtiro_olingan_psreja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ixtiro_olingan_psamalda"
+                                            <input type="number" min="0" name="ixtiro_olingan_psamalda"
                                                 value="{{ $intellektual->ixtiro_olingan_psamalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2603,12 +2603,12 @@
                                             Ixtiro uchun patentga berilgan buyurtmalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ixtiro_ber_psreja"
+                                            <input type="number" min="0" name="ixtiro_ber_psreja"
                                                 value="{{ $intellektual->ixtiro_ber_psreja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="ixtiro_ber_psamalda"
+                                            <input type="number" min="0" name="ixtiro_ber_psamalda"
                                                 value="{{ $intellektual->ixtiro_ber_psamalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
@@ -2618,12 +2618,12 @@
                                             Dasturiy mahsulotga olingan guvohnomalar soni
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="dasturiy_gsreja"
+                                            <input type="number" min="0" name="dasturiy_gsreja"
                                                 value="{{ $intellektual->dasturiy_gsreja ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>
                                         <td class="border">
-                                            <input type="number" name="dasturiy_gsamalda"
+                                            <input type="number" min="0" name="dasturiy_gsamalda"
                                                 value="{{ $intellektual->dasturiy_gsamalda ?? '' }}"
                                                 class="input w-full border mt-2" required="">
                                         </td>

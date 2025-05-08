@@ -12,7 +12,7 @@ class IlmiytezislarController extends Controller
 {
     public function index()
     {
-        $ilmiytezislars = Ilmiytezislar::paginate(25);
+        $ilmiytezislars = Ilmiytezislar::where('tashkilot_id', auth()->user()->tashkilot_id)->paginate(25);
 
         return view('admin.ilmiytezislar.index', ['ilmiytezislars' => $ilmiytezislars]);
     }

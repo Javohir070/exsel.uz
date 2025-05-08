@@ -13,7 +13,7 @@ class IntellektualmulkController extends Controller
 
     public function index()
     {
-        $intellektualmulks = Intellektualmulk::paginate(25);
+        $intellektualmulks = Intellektualmulk::where('tashkilot_id', auth()->user()->tashkilot_id)->paginate(25);
         return view('admin.intellektualmulk.index', ['intellektualmulks' => $intellektualmulks]);
     }
 

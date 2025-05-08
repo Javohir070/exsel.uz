@@ -123,8 +123,7 @@
         <!-- First Page -->
             <div class="header">
                 <p style="font-weight: 500;font-size: 18px;">{{ $ilmiyloyiha->tashkilot->name }} da amalga
-                    oshirilayotgan "Innovasion texnologiyali radiologiyasi bo‘yuk texnologiyalar fondlanmasi holda
-                    O‘zbekistondagi ruxsatlanishi bo‘yicha qo‘llanilishi belga olish" mavzusidagi loyihaning bajarilishi
+                    oshirilayotgan "{{ $ilmiyloyiha->mavzusi }}" mavzusidagi loyihaning bajarilishi
                     holati bo‘yicha <br>MA'LUMOTNOMA</p>
             </div>
 

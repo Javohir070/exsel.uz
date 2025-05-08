@@ -139,7 +139,7 @@
                                     </table>
                                 </div>
                                 <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap mb-1 items-center mt-4">
-                                    {{ $doktaranturas->links() }}
+                                {{ $doktaranturas->appends(request()->query())->links() }}
                                     {{-- <select class="w-20 input box mt-3 sm:mt-0">
                                         <option>10</option>
                                         <option>25</option>
@@ -362,6 +362,7 @@
                                         style="font-size: 24px;font-weight:500;">
                                         Ilmiy rahbarlar
                                     </h2>
+                                    <a href="{{ route('ilmiy_rahbarlar_import', ['stir' => $tashkilot->stir_raqami]) }}" class="button  bg-theme-1 text-white mr-4 ml-6" style="font-size: 20px;">Ma'lumotni yangilash</a>
                                 </div>
                                 <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
                                     <table class="table">
@@ -369,9 +370,9 @@
                                             <tr>
                                                 <th class="whitespace-no-wrap" style="width: 40px;">T/r</th>
                                                 <th class="whitespace-no-wrap">F.I.Sh</th>
-                                                <th class="">Mazkur tashkilotdan biriktirilgan izlanuvchilar soni</th>
-                                                <th class="">Barcha tashkilotlardan biriktirilgan izlanuvchilar soni</th>
-                                                <th class="whitespace-no-wrap">Harakat</th>
+                                                <th class="" style="text-align:center">Mazkur tashkilotdan biriktirilgan izlanuvchilar soni</th>
+                                                <th class="" style="text-align:center">Barcha tashkilotlardan biriktirilgan izlanuvchilar soni</th>
+                                                <!-- <th class="whitespace-no-wrap">Harakat</th> -->
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -380,9 +381,9 @@
                                                     <td>{{ $loop->iteration }}</td>
                                                     <td style="color:#1881D3; font-weight: 400;">{{ $t->full_name }}
                                                     </td>
-                                                    <td>{{ $t->org }} </td>
-                                                    <td>{{ $t->all }} </td>
-                                                    <td>
+                                                    <td style="text-align:center">{{ $t->org }} </td>
+                                                    <td style="text-align:center">{{ $t->all }} </td>
+                                                    <!-- <td>
                                                         <a onclick="openShowIlmiRahbarModal({{ $t->id }})"
                                                             class="button px-2 mr-1 mb-2 border text-gray-700"
                                                             style="display: inline-block;">
@@ -397,7 +398,7 @@
                                                                 <i data-feather="edit" class="w-4 h-4"></i>
                                                             </span>
                                                         </a>
-                                                    </td>
+                                                    </td> -->
                                                 </tr>
                                                 @empty
                                                 <tr style="border-bottom: 1px solid #E6E6E6;">
@@ -1045,9 +1046,9 @@
 
                                                         <option value=""></option>
 
-                                                        <option value="A’lo">A’lo</option>
+                                                        <!-- <option value="A’lo">A’lo</option>
 
-                                                        <option value="Yaxshi">Yaxshi</option>
+                                                        <option value="Yaxshi">Yaxshi</option> -->
 
                                                         <option value="Qoniqarli">Qoniqarli</option>
 

@@ -13,7 +13,7 @@ class DalolatnomaController extends Controller
 
     public function index()
     {
-        $dalolatnomas = Dalolatnoma::paginate(25);
+        $dalolatnomas = Dalolatnoma::where('tashkilot_id', auth()->user()->tashkilot_id)->paginate(25);
         return view('admin.dalolatnoma.index', ['dalolatnomas' => $dalolatnomas]);
     }
 

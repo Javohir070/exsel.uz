@@ -13,7 +13,7 @@ class IlmiymaqolalarController extends Controller
 
     public function index()
     {
-        $ilmiymaqolalars = Ilmiymaqolalar::paginate(25);
+        $ilmiymaqolalars = Ilmiymaqolalar::where('tashkilot_id', auth()->user()->tashkilot_id)->paginate(25);
 
         return view('admin.ilmiymaqolalar.index', ['ilmiymaqolalars' => $ilmiymaqolalars]);
     }
@@ -140,6 +140,6 @@ class IlmiymaqolalarController extends Controller
     {
         $ilmiymaqolalar->delete();
 
-        return redirect()->route('admin.ilmiymaqolalar.index')->with('status', 'Ilmiymaqolalar deleted successfully');
+        return redirect()->back()->with('status', 'Ilmiymaqolalar deleted successfully');
     }
 }

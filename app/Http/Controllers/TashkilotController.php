@@ -236,7 +236,6 @@ class TashkilotController extends Controller
             $tash_count = $tashkilotlar->total();
            } else {
             $tashkilotlar = Tashkilot::orderBy('name')
-                                    ->where('status', 1)
                                     ->where('name', 'like', '%' . $querysearch . '%')
                                     ->paginate(50);
             $tashkilotlars = Tashkilot::where('status', 1)
