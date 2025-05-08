@@ -843,7 +843,7 @@
                             <tr>
                                 <td class="border">4.9.</td>
                                 <td class="border" style="text-size:14px;">
-                                    <b>Mablag‘ning o‘zlashtirilishi, mln.so‘m</b>
+                                    <b>Mablag‘ning o‘zlashtirilishi, so‘m</b>
                                 </td>
 
                                 <td class="border">
@@ -1659,7 +1659,7 @@
                                     </tr>
                                     <tr>
                                         <td class="border" style="text-size:16px;">
-                                            Mablag‘ning o‘zlashtirilishi, mln.so‘m
+                                            Mablag‘ning o‘zlashtirilishi, so‘m
                                         </td>
                                         <td class="border" colspan="2">
                                             <input type="text" name="uzlashtirilishi_summasi" id="sumInput1"
@@ -2014,7 +2014,7 @@
                                     </tr>
                                     <tr>
                                         <td class="border" style="text-size:16px;">
-                                            Mablag‘ning o‘zlashtirilishi, mln.so‘m
+                                            Mablag‘ning o‘zlashtirilishi, so‘m
                                         </td>
                                         <td class="border" colspan="2">
                                             <input type="text" name="uzlashtirilishi_summasi" id="sumInput1"
@@ -4000,7 +4000,7 @@
                                     <tr>
                                         {{-- <td class="border">4.7.</td> --}}
                                         <td class="border" style="text-size:14px;">
-                                            Mablag‘ning o‘zlashtirilishi, mln.so‘m
+                                            Mablag‘ning o‘zlashtirilishi, so‘m
                                         </td>
                                         <td class="border">
                                             {{ $loyihaiqtisodi->uzlashtirilishi_summasi ?? null }}
