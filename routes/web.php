@@ -254,6 +254,7 @@ Route::middleware('auth')->group(function () {
         'notifications' => NotificationController::class,
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
+    Route::get('/doktarantura/{id}/export', [DoktaranturaController::class, 'exportDoktarantura']);
 });
 Route::group(['middleware' => ['role:super-admin|admin|Ekspert']], function() {
 

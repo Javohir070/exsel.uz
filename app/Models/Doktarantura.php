@@ -17,10 +17,10 @@ class Doktarantura extends Model
         "user_id",
         "tashkilot_id",
         "phd_id",
+        "org_name",
         "full_name",
         "direction_name",
         "direction_code",
-        "org_name",
         "dc_type",
         "admission_year",
         "admission_quarter",
@@ -45,6 +45,6 @@ class Doktarantura extends Model
         return $this->belongsTo(Tashkilot::class);
     }
 
-    
+
 
 }

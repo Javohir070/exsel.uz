@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TashkilotDoktaranturaExport;
 use App\Models\Doktaranturaexpert;
 use App\Models\Ilmiyrahbarlar;
 use App\Models\Izlanuvchilar;
@@ -10,6 +11,7 @@ use App\Models\Region;
 use Illuminate\Http\Request;
 use App\Models\Doktarantura;
 use Illuminate\Support\Facades\Http;
+use Maatwebsite\Excel\Facades\Excel;
 
 class DoktaranturaController extends Controller
 {
@@ -376,5 +378,11 @@ class DoktaranturaController extends Controller
         return redirect()->back()->with('status','Ma\'lumotlar muvaffaqiyatli tahrirlandi.');
     }
 
+
+
+    public function exportDoktarantura($tashkilotId)
+    {
+        return Excel::download(new TashkilotDoktaranturaExport($tashkilotId), 'doktaranturalar.xlsx');
+    }
 
 }
