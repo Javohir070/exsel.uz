@@ -255,6 +255,7 @@ Route::middleware('auth')->group(function () {
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
     Route::get('/doktarantura/{id}/export', [DoktaranturaController::class, 'exportDoktarantura']);
+    Route::get('/ilmiyrahbarlar/{id}/export', [IlmiyrahbarlarController::class, 'exportIlmiyrahbarlar']);
 });
 Route::group(['middleware' => ['role:super-admin|admin|Ekspert']], function() {
 

@@ -21,5 +21,10 @@ class Ilmiyrahbarlar extends Model
         "meyoridan_ortiq",
         "tash_meyoridan_ortiq",
         "status",
-    ] ;
+    ];
+
+    public function tashkilot()
+    {
+        return $this->belongsTo(Tashkilot::class, 'tashkilot_id');
+    }
 }

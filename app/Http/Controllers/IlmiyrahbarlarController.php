@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\TashkilotIlmiyrahbarlarExport;
 use App\Models\Ilmiyrahbarlar;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class IlmiyrahbarlarController extends Controller
 {
@@ -23,5 +25,10 @@ class IlmiyrahbarlarController extends Controller
         $ilmiyrahbarlar->save();
 
         return redirect()->back()->with('status','Ma\'lumotlar muvaffaqiyatli tahrirlandi.');
+    }
+
+    public function exportIlmiyrahbarlar($tashkilotId)
+    {
+        return Excel::download(new TashkilotIlmiyrahbarlarExport($tashkilotId), 'doktaranturalar.xlsx');
     }
 }

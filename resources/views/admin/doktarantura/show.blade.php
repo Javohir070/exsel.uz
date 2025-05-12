@@ -365,7 +365,14 @@
                                         style="font-size: 24px;font-weight:500;">
                                         Ilmiy rahbarlar
                                     </h2>
-                                    <a href="{{ route('ilmiy_rahbarlar_import', ['stir' => $tashkilot->stir_raqami]) }}" class="button  bg-theme-1 text-white mr-4 ml-6" style="font-size: 20px;">Ma'lumotni yangilash</a>
+                                    <tr style="border-bottom: 1px solid #E6E6E6;">
+                                        <td colspan="5" style="text-align: center;">
+                                            <a href="{{ route('ilmiy_rahbarlar_import', ['stir' => $tashkilot->stir_raqami]) }}" class="button  bg-theme-1 text-white mr-4 ml-6">Ma'lumotni yangilash</a>
+                                            <a href="{{ url('ilmiyrahbarlar/'.$id.'/export') }}" class="button ml-3 w-24 bg-theme-1 text-white">
+                                                        Export
+                                                    </a>
+                                        </td>
+                                    </tr>
                                 </div>
                                 <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
                                     <table class="table">
