@@ -666,7 +666,7 @@
                                                             soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="umumiy_izlanuvchilar"
+                                                            <input type="number" min="0" name="umumiy_izlanuvchilar"
                                                                 class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
@@ -676,7 +676,7 @@
                                                             Yagona elektron tizimdagi tahsil olayotgan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="yagonae_tah_soni" value="{{$data[0]['count']}}"
+                                                            <input type="number" min="0" name="yagonae_tah_soni" value="{{$data[0]['count']}}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
@@ -686,7 +686,7 @@
                                                             Chetlashtirilgan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="chetlash_soni" value="{{$data[1]['count']}}"
+                                                            <input type="number" min="0" name="chetlash_soni" value="{{$data[1]['count']}}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
@@ -696,7 +696,7 @@
                                                             Akademik ta’tildagi izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="akademik_soni" value="{{$data[3]['count']}}"
+                                                            <input type="number" min="0" name="akademik_soni" value="{{$data[3]['count']}}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
@@ -706,7 +706,7 @@
                                                             Muddatidan oldin himoya qilgan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="muddatidano_soni" value=""
+                                                            <input type="number" min="0" name="muddatidano_soni" value=""
                                                                 class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
@@ -716,7 +716,7 @@
                                                             Yagona elektron tizimga kiritilmagan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="kiritilmagan_soni"
+                                                            <input type="number" min="0" name="kiritilmagan_soni"
                                                                 class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
@@ -726,7 +726,7 @@
                                                             Yakka tartibdagi rejani bajarmagan izlanuvchilar soni .
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="rejani_bajarmagan" value="{{ $doktarantura->where('reja_b', "Yo'q")->count() ?? "" }}"
+                                                            <input type="number" min="0" name="rejani_bajarmagan" value="{{ $doktarantura->where('reja_b', "Yo'q")->count() ?? "" }}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
@@ -736,7 +736,7 @@
                                                             Monitoring natijasi kiritilmagan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="mon_nat_kiritilmagan" value="{{ $doktarantura->where('monitoring_natijasik', "Yo'q")->count() ?? ""}}"
+                                                            <input type="number" min="0" name="mon_nat_kiritilmagan" value="{{ $doktarantura->where('monitoring_natijasik', "Yo'q")->count() ?? ""}}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
@@ -746,7 +746,7 @@
                                                             Tashkilot izlanuvchilari biriktirilgan ilmiy rahbarlar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="biriktirilgan_rahbarlar" value="{{ $ilmiyrahbarlars->count() ?? "" }}"
+                                                            <input type="number" min="0" name="biriktirilgan_rahbarlar" value="{{ $ilmiyrahbarlars->count() ?? "" }}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
@@ -758,7 +758,7 @@
                                                             mavjud bo'lmagan ilmiy rahbarlar soni .
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="kollegial_rahbarlar"
+                                                            <input type="number" min="0" name="kollegial_rahbarlar"
                                                                 class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
@@ -768,7 +768,7 @@
                                                             Me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni .
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="meyoridan_rahbarlar"
+                                                            <input type="number" min="0" name="meyoridan_rahbarlar"
                                                                 class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
@@ -780,7 +780,7 @@
                                                             rahbarlar soni .
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" name="tash_ortiq_rahbarlar"
+                                                            <input type="number" min="0" name="tash_ortiq_rahbarlar"
                                                                 class="input w-full border mt-2" required="">
                                                         </td>
                                                     </tr>
@@ -885,7 +885,7 @@
                                                 </td>
                                                 <td class="border border-b-2 ">
                                                     <input type="hidden" name="holati" value="1">
-                                                    <input type="number" name="umumiy_izlanuvchilar"
+                                                    <input type="number" min="0" name="umumiy_izlanuvchilar"
                                                         value="{{ $tekshirivchilar->umumiy_izlanuvchilar ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
@@ -896,7 +896,7 @@
                                                     Yagona elektron tizimdagi tahsil olayotgan izlanuvchilar soni.
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="yagonae_tah_soni"
+                                                    <input type="number" min="0" name="yagonae_tah_soni"
                                                         value="{{ $tekshirivchilar->yagonae_tah_soni ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
@@ -907,7 +907,7 @@
                                                     Chetlashtirilgan izlanuvchilar soni.
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="chetlash_soni"
+                                                    <input type="number" min="0" name="chetlash_soni"
                                                         value="{{ $tekshirivchilar->chetlash_soni ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
@@ -918,7 +918,7 @@
                                                     Akademik ta’tildagi izlanuvchilar soni.
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="akademik_soni"
+                                                    <input type="number" min="0" name="akademik_soni"
                                                         value="{{ $tekshirivchilar->akademik_soni ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
@@ -929,7 +929,7 @@
                                                     Muddatidan oldin himoya qilgan izlanuvchilar soni.
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="muddatidano_soni"
+                                                    <input type="number" min="0" name="muddatidano_soni"
                                                         value="{{ $tekshirivchilar->muddatidano_soni ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
@@ -940,7 +940,7 @@
                                                     Yagona elektron tizimga kiritilmagan izlanuvchilar soni.
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="kiritilmagan_soni"
+                                                    <input type="number" min="0" name="kiritilmagan_soni"
                                                         value="{{ $tekshirivchilar->kiritilmagan_soni ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
@@ -951,7 +951,7 @@
                                                     Yakka tartibdagi rejani bajarmagan izlanuvchilar soni .
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="rejani_bajarmagan"
+                                                    <input type="number" min="0" name="rejani_bajarmagan"
                                                         value="{{ $tekshirivchilar->rejani_bajarmagan ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
@@ -962,7 +962,7 @@
                                                     Monitoring natijasi kiritilmagan izlanuvchilar soni .
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="mon_nat_kiritilmagan"
+                                                    <input type="number" min="0" name="mon_nat_kiritilmagan"
                                                         value="{{ $tekshirivchilar->mon_nat_kiritilmagan ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
@@ -973,7 +973,7 @@
                                                     Tashkilot izlanuvchilari biriktirilgan ilmiy rahbarlar soni .
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="biriktirilgan_rahbarlar"
+                                                    <input type="number" min="0" name="biriktirilgan_rahbarlar"
                                                         value="{{ $tekshirivchilar->biriktirilgan_rahbarlar ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
@@ -985,7 +985,7 @@
                                                     mavjud bo'lmagan ilmiy rahbarlar soni .
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="kollegial_rahbarlar"
+                                                    <input type="number" min="0" name="kollegial_rahbarlar"
                                                         value="{{ $tekshirivchilar->kollegial_rahbarlar ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
@@ -996,7 +996,7 @@
                                                     Me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni .
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="meyoridan_rahbarlar"
+                                                    <input type="number" min="0" name="meyoridan_rahbarlar"
                                                         value="{{ $tekshirivchilar->meyoridan_rahbarlar ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
@@ -1008,7 +1008,7 @@
                                                     rahbarlar soni .
                                                 </td>
                                                 <td class="border border-b-2 ">
-                                                    <input type="number" name="tash_ortiq_rahbarlar"
+                                                    <input type="number" min="0" name="tash_ortiq_rahbarlar"
                                                         value="{{ $tekshirivchilar->tash_ortiq_rahbarlar ?? null }}"
                                                         class="input w-full border mt-2">
                                                 </td>
