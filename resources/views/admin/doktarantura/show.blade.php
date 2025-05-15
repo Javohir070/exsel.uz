@@ -341,8 +341,8 @@
                                                         @endswitch
                                                     </td>
                                                     <td>{{ $m['course'] ?? 0 }} </td>
-                                                    <td style="color:{{ $m['status'] ?? null == 0 ? 'red' : 'green' }};">
-                                                        {{ $m['status'] ?? null == 0 ? 'Monitoring natijasi tasdiqlanmagan' : 'Monitoring natijasi tasdiqlangan' }}
+                                                    <td style="color:{{ $m['status'] == 0 ? 'red' : 'green' }};">
+                                                        {{ $m['status'] == 0 ? 'Monitoring natijasi tasdiqlanmagan' : 'Monitoring natijasi tasdiqlangan' }}
                                                     </td>
                                                 </tr>
                                             @endforeach
