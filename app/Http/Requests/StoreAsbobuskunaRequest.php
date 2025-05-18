@@ -39,6 +39,7 @@ class StoreAsbobuskunaRequest extends FormRequest
             'urnatilgan_yili' => 'required|integer|min:1900|max:' . date('Y'),
             'laboratory_id' => 'required',
             'jav_buy_raqami' => 'required|string|max:255',
+            'invertar_r' => 'required|string|max:255',
             'jav_sanasi' => 'required|date|before:9999-12-31',
             'ilmiy_tadqiqot_ishilari'=> 'required|string|max:5000',
             'ilmiy_tadqiqot_hajmi'=> 'required|string|max:5000',

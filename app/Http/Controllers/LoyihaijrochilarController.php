@@ -78,15 +78,15 @@ class LoyihaijrochilarController extends Controller
             }
         }
 
-
         // $data = $response_main->json();
+        
         $create = Loyihaijrochilar::create([
             'user_id' => auth()->id(),
             'tashkilot_id' => auth()->user()->tashkilot_id,
             'ilmiy_loyiha_id' => $request->ilmiy_loyiha_id,
             'fio' => $request->fio,
             'science_id' => $request->science_id,
-            'shtat_birligi' => $request->shtat_birligi,
+            'shtat_birligi' => $request->shtat_birligi == "boshqa" ? $request->boshqa_shtat_birligi : $request->shtat_birligi,
             'jshshir' => $request->jshshir,
         ]);
 

@@ -873,10 +873,10 @@
                                 <div style="text-align: center;display: flex;">
                                     @role(['Ekspert'])
                                     @if ($tekshirivchilar->holati == 'yuborildi')
-                                        <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}"
-                                            class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
-                                            Eksport
-                                        </a>
+                                    <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}"
+                                        class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
+                                        Eksport
+                                    </a>
                                         <form action="{{ route('tekshirivchilar.update', $tekshirivchilar->id) }}" method="POST"
                                             onsubmit="return confirm('Haqiqatan ham rad etasizmi?');">
                                             @csrf
@@ -1108,6 +1108,8 @@
 
                                                 <option value=""></option>
 
+                                                <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish talab etiladi</option>
+
                                                 <option value="Qoniqarli">Qoniqarli</option>
 
                                                 <option value="Qoniqarsiz">Qoniqarsiz</option>
@@ -1242,7 +1244,7 @@
                                                 Shtat birligi.
                                             </td>
                                             <td class="border border-b-2 ">
-                                                <select name="shtat_birligi" value="{{ old('shtat_birligi') }}"
+                                                <select name="shtat_birligi" id="shtat_birligi" value="{{ old('shtat_birligi') }}"
                                                     class="input border w-full mt-2" required>
 
                                                     <option value=""></option>
@@ -1259,7 +1261,21 @@
 
                                                     <option value="1.5">1.5</option>
 
+                                                    <option value="boshqa">Boshqa</option>
+
                                                 </select>
+                                                <div id="boshqa_input_div" style="display: none;" class="mt-2">
+                                                    <input 
+                                                        type="text" 
+                                                        name="boshqa_shtat_birligi" 
+                                                        class="input border w-full" 
+                                                        placeholder="Shtat birligini kiriting" 
+                                                        inputmode="decimal" 
+                                                        pattern="^\d+(\.\d{1,2})?$" 
+                                                        oninput="validateInput(this)"
+                                                    >
+                                                </div>
+
                                             </td>
                                         </tr>
 
@@ -2115,6 +2131,31 @@
         yoqRadio.addEventListener("change", toggleRequired);
     });
 </script>
+
+<script>
+    // "Boshqa" tanlansa inputni ko‘rsatish
+    document.getElementById('shtat_birligi').addEventListener('change', function () {
+        const boshqaInputDiv = document.getElementById('boshqa_input_div');
+        if (this.value === 'boshqa') {
+            boshqaInputDiv.style.display = 'block';
+        } else {
+            boshqaInputDiv.style.display = 'none';
+        }
+    });
+
+    // Faqat raqam va nuqta (desimal) qabul qilish
+    function validateInput(input) {
+        input.value = input.value.replace(/[^0-9.]/g, '');
+
+        // Ikkita nuqtani oldini olish
+        const parts = input.value.split('.');
+        if (parts.length > 2) {
+            input.value = parts[0] + '.' + parts[1];
+        }
+    }
+</script>
+
+
 
 <div class="modal" id="intellektual-paper-create-modal">
     <div class="modal__content modal__content--xl">
@@ -4196,6 +4237,8 @@
 
                                                     <option value="{{ $tekshirivchilar->status ?? null }}">
                                                         {{ $tekshirivchilar->status ?? null }}</option>
+
+                                                    <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish talab etiladi</option>
 
                                                     <option value="Qoniqarli">Qoniqarli</option>
 

@@ -120,12 +120,12 @@
                     </tr>
 
                     <tr class="bg-gray-200">
-                        <th class="border">Asos</th>
-                        <th class="border"></th>
+                        <th class="border">Asosiy</th>
+                        <th class="border">Inventar raqami</th>
                     </tr>
                     <tr>
                         <td class="border">{{ $asbobuskuna->asos  }}</td>
-                        <td class="border"></td>
+                        <td class="border">{{ $asbobuskuna->invertar_r  }}</td>
                     </tr>
 
                     <tr class="bg-gray-200">
@@ -181,10 +181,10 @@
                         <div style="text-align: center;display: flex;">
                             @role(['Ekspert'])
                             @if ($tekshirivchilar->holati == 'yuborildi')
-                                <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}"
-                                    class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
-                                    Eksport
-                                </a>
+                            <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}"
+                                class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
+                                Eksport
+                            </a>
                                 <form action="{{ route('asbobuskunaexpert.update', $tekshirivchilar->id) }}" method="POST"
                                     onsubmit="return confirm('Haqiqatan ham rad etasizmi?');">
                                     @csrf
@@ -546,6 +546,8 @@
                                 <select name="status" class="input border w-full mt-2" required="">
 
                                     <option value=""></option>
+
+                                    <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish talab etiladi</option>
 
                                     <option value="Ijobiy">Ijobiy</option>
 

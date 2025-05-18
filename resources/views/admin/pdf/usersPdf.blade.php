@@ -283,6 +283,7 @@
                     </tr>
                 </tbody>
             </table>
+
         <div class="footer">
             <div class="footer-info" style="padding-top:50px;">
                 <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
@@ -296,6 +297,7 @@
                 alt="Qr code" style="width: 100px; height: 100px;">
             </div>
         </div>
+        
     </div>
     </div>
 </body>

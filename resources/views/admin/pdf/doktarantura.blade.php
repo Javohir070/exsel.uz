@@ -316,19 +316,29 @@
                 </tr>
             </table>
 
-            <div class="footer">
-                <div class="footer-info" style="padding-top:50px;">
-                    <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
-                    <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
-                    <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>
-                    <p><span class="title">Tashkilotning mas'ul rahbari  F.I.Sh:</span> {{  $tekshirivchilar->t_masul ?? null }} </p>
-                    <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
-                </div>
-                <div class="qr-code">
-                    <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;"
-                    alt="Qr code" style="width: 100px; height: 100px;">
-                </div>
-            </div>
+            <table>
+                
+                <tbody>
+                    <tr>
+                        <td colspan="3">
+                            <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
+                            <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
+                            <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>
+                            <p><span class="title">Tashkilotning mas'ul rahbari  F.I.Sh:</span> {{  $tekshirivchilar->t_masul ?? null }} </p>
+                            <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
+                        </td>
+                        <td>
+                            <div style="display: flex;justify-content: end;align-items: end;">
+                                <img src="data:image/png;base64,{{ $qrCode }}"
+                                alt="Qr code" style="width: 100px; height: 100px;">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                
+            </table>
+
+
         </div>
     </div>
 

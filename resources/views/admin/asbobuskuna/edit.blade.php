@@ -41,6 +41,15 @@
                         @enderror
                     </div>
 
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"><span
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Inventar raqami</label>
+                        <input type="text" name="invertar_r" value="{{ $asbobuskuna->invertar_r }}" class="input w-full border mt-2" required>
+                        @error('invertar_r')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <!-- Turi -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row">

@@ -354,7 +354,7 @@
                                 <option value=""></option>
 
                                 <option value="Ijobiy" {{ (old('status', $asbobuskunaexpert->status ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
-                                <option value="Qoniqarli" {{ (old('status', $asbobuskunaexpert->status ?? '') == 'Qoniqarli') ? 'selected' : '' }}>Qoniqarli</option>
+                                <option value="Qo‘shimcha o‘rganish talab etiladi" {{ (old('status', $asbobuskunaexpert->status ?? '') == 'Qo‘shimcha o‘rganish talab etiladi') ? 'selected' : '' }}>Qo‘shimcha o‘rganish talab etiladi</option>
                                 <option value="Salbiy" {{ (old('status', $asbobuskunaexpert->status ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy</option>
 
 

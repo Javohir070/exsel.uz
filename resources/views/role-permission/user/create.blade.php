@@ -133,7 +133,7 @@
                             <option value=""> Rolni tanlang</option>
                             @role('admin')
                             @foreach ($roles as $role)
-                                @if ($role !== 'super-admin' && $role !== 'admin' && $role !== 'Ekspert' && $role !== 'Itm-tashkilotlar' && $role !== 'Xujalik_shartnomalari' && $role !== 'Xujalik_shartnomalari' && $role !== 'Ishchi guruh azosi')
+                                @if ($role !== 'super-admin' && $role !== 'admin' && $role !== 'Ekspert' && $role !== 'Itm-tashkilotlar' && $role !== 'Xujalik_shartnomalari' && $role !== 'Xujalik_shartnomalari' && $role !== 'Ishchi guruh azosi'&& $role !== 'Rahbar')
                                     <option value="{{ $role }}">{{ $role }}</option>
                                 @endif
                             @endforeach

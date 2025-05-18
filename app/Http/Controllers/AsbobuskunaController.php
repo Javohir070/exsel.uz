@@ -199,6 +199,7 @@ class AsbobuskunaController extends Controller
             'foy_uchun_ariz' => $request->foy_uchun_ariz,
             'asbob_usk_ehtiyoji' => $request->asbob_usk_ehtiyoji,
             'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
+            'invertar_r' => $request->invertar_r,
         ]);
         return redirect()->route('asbobuskuna.index')->with('status', 'Asbob uskunasi qo`shildi');
     }
@@ -253,6 +254,7 @@ class AsbobuskunaController extends Controller
             'foy_uchun_ariz' => $request->foy_uchun_ariz,
             'asbob_usk_ehtiyoji' => $request->asbob_usk_ehtiyoji,
             'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
+            'invertar_r' => $request->invertar_r,
         ]);
 
         return redirect()->route('asbobuskuna.index')->with('status', 'Asbob uskunasi tahrirlandi');

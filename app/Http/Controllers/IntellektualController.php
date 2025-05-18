@@ -59,7 +59,7 @@ class IntellektualController extends Controller
             'nashr_uquv_amalda' => $request->nashr_uquv_amalda,
         ]);
 
-        return redirect()->back()->with('status', 'Intellektual ma`lumotlar saqlandi');
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
 
@@ -128,7 +128,7 @@ class IntellektualController extends Controller
         }
         
 
-        return redirect()->back()->with('status', 'Intellektual ma`lumotlar saqlandi');
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
 

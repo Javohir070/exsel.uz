@@ -54,7 +54,7 @@ class LoyihaiqtisodiController extends Controller
             'uzlashtirilishi_summasi' => $request->uzlashtirilishi_summasi,
         ]);
 
-        return redirect()->back()->with('status','Loyiha qisodi yangilandi');
+        return redirect()->back()->with('status','Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
 
@@ -119,7 +119,7 @@ class LoyihaiqtisodiController extends Controller
         }
 
 
-        return redirect()->back()->with('status','Loyiha qisodi yangilandi');
+        return redirect()->back()->with('status','Ma\'lumotlar muvaffaqiyatli  yangilandi');
     }
 
 

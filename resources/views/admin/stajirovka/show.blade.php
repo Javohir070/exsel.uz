@@ -188,7 +188,7 @@
                             <td class="border border-b-2 ">
                                 Stajirovka davrida egallangan bilim va ko'nikmalarni amalga oshirilishi uchun zarur
                                 shart-sharoitlar yaratilganligi. (Asoslantiruvchi hujjatlar, rasm va videolar)
-                                <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
+                                <!-- <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div> -->
                             </td>
                             <td class="border border-b-2 ">{{  $tekshirivchilar->egallangan_bilim ?? null }}</td>
                         </tr>
@@ -197,7 +197,7 @@
                             <td class="border border-b-2 ">
                                 Ilmiy-tadqiqot ishlari natijalari bo'yicha xorijiy ilmiy anjumanlarda ma'ruza bilan ishtirok
                                 etganligi. (Asoslantiruvchi hujjatlar, rasm va videolar hamda havolalar)
-                                <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
+                                <!-- <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div> -->
                             </td>
                             <td class="border border-b-2 ">{{  $tekshirivchilar->ishlar_natijalari ?? null }}</td>
                         </tr>
@@ -206,7 +206,7 @@
                             <td class="border border-b-2 ">
                                 Xalqaro tan olingan ma'lumotlar bazasidagi yetakchi ilmiy jurnallarda nashr qilinganligi.
                                 (Pdf)
-                                <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
+                                <!-- <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div> -->
                             </td>
                             <td class="border border-b-2 ">{{  $tekshirivchilar->xalqarotan_jur_nashr ?? null }}</td>
                         </tr>
@@ -217,7 +217,7 @@
                                 stajirovka davrida to'plangan tajribalar va olgan bilim va ko'nikmalari borasida o'z fikr va
                                 mulohazalarini bayon etilganligi tafsiloti. (Asoslantiruvchi hujjatlar, rasm va videolar
                                 hamda havolalar)
-                                <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div>
+                                <!-- <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div> -->
                             </td>
                             <td class="border border-b-2 ">{{  $tekshirivchilar->biryil_davomida ?? null }}</td>
                         </tr>
@@ -429,6 +429,8 @@
                                 <select name="status" class="input border w-full mt-2" required="">
 
                                     <option value="">Status tanlang</option>
+
+                                    <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish talab etiladi</option>
 
                                     <option value="Ijobiy">Ijobiy</option>
 

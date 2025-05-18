@@ -435,8 +435,8 @@
                                     style="display: flex;justify-content: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
 
                                     <div style="text-align: end;display: flex;gap:10px;">
-                                    @role(['Ekspert'])
-                                    @if ($tekshirivchilar->holati == 'yuborildi')
+                                        @role(['Ekspert'])
+                                        @if ($tekshirivchilar->holati == 'yuborildi')
                                         <a href="{{ url('generate-pdfdoktarantura/' . $tashkilot->id) }}"
                                             class="button delete-cancel border text-gray-700 mr-1">
                                             Eksport
@@ -581,7 +581,7 @@
 
                             <table class="table mt-5">
                                 <tr>
-                                    <td class="border border-b-2 ">Ekspert xulosasi
+                                    <td class="border border-b-2 " style="width:40%;">Ekspert xulosasi
                                     </td>
                                     <td class="border border-b-2 ">{{ $tekshirivchilar->status ?? null }}</td>
                                 </tr>
@@ -817,6 +817,8 @@
                                                 <option value=""></option>
 
                                                 <option value="Qoniqarli">Qoniqarli</option>
+
+                                                <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish talab etiladi</option>
 
                                                 <option value="Qoniqarsiz">Qoniqarsiz</option>
 
@@ -1061,6 +1063,8 @@
                                                         <option value="Yaxshi">Yaxshi</option> -->
 
                                                         <option value="Qoniqarli">Qoniqarli</option>
+
+                                                        <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish talab etiladi</option>
 
                                                         <option value="Qoniqarsiz">Qoniqarsiz</option>
 
