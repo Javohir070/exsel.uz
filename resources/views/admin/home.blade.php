@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    @role(['super-admin', 'Xujalik_shartnomalari', 'Ilmiy_loyiha_rahbari', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
+    @role(['super-admin', 'Xujalik_shartnomalari', 'Ilmiy_loyiha_rahbari', 'Ekspert',  'Rahbar'])
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
             <div class="col-span-12 mt-8">
@@ -13,7 +13,7 @@
                 </div>
 
                 <div class="grid grid-cols-12 gap-6 mt-5">
-                    @role(['super-admin', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
+                    @role(['super-admin', 'Ekspert',  'Rahbar'])
 
                     {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <a href="{{ route('tashkilotlar.index') }}">
