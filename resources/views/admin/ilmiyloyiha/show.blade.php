@@ -2810,11 +2810,13 @@
                                         </tr>
                                         <tr>
                                             {{-- <td class="border">1.4.</td> --}}
-                                            <td class="border">Shartnoma Fayl</td>
+                                            <td class="border">Shartnoma Fayl </td>
                                             <td class="border">
+                                                
                                                 <input type="file" name="umumiy_mablag"
                                                     value="{{ $ilmiyloyiha->umumiy_mablag ?? '' }}"
                                                     class="input w-full border mt-2" required="">
+                                                    <span>Fayl hajmi maksimal: 10 MB</span>
                                                     @error('umumiy_mablag')
                                                         <div class="error">{{ $message }}</div>
                                                     @enderror
@@ -3036,7 +3038,7 @@
                                                 <div class="flex items-center text-gray-700 mr-2">
                                                     <input type="radio" class="input border mr-2"
                                                         id="loyiha_rahbari_uzgargan-evans"
-                                                        name="loyiha_rahbari_uzgargan" @if (old('loyiha_rahbari_uzgargan', $loyihaiqtisodi->loyiha_rahbari_uzgargan ?? 0) == 'ha') checked
+                                                        name="loyiha_rahbari_uzgargan" @if (old('loyiha_rahbari_uzgargan', $ilmiyloyiha->loyiha_rahbari_uzgargan ?? 1) == 'ha') checked
                                                         @endif value="ha">
                                                     <label class="cursor-pointer select-none"
                                                         for="loyiha_rahbari_uzgargan-evans">Ha</label>
@@ -3044,7 +3046,7 @@
                                                 <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
                                                     <input type="radio" class="input border mr-2"
                                                         name="loyiha_rahbari_uzgargan"
-                                                        id="loyiha_rahbari_uzgargan-neeson" @if (old('loyiha_rahbari_uzgargan', $loyihaiqtisodi->loyiha_rahbari_uzgargan ?? 0) == "yo'q") checked
+                                                        id="loyiha_rahbari_uzgargan-neeson" @if (old('loyiha_rahbari_uzgargan', $ilmiyloyiha->loyiha_rahbari_uzgargan ?? 0) == "yo'q") checked
                                                         @endif value="yo'q">
                                                     <label class="cursor-pointer select-none"
                                                         for="loyiha_rahbari_uzgargan-neeson">Yo'q</label>
@@ -3213,13 +3215,13 @@
                                             <td class="border">
                                                 <div class="flex items-center text-gray-700 mr-2">
                                                     <input type="radio" class="input border mr-2"
-                                                        id="loyiha_hamrahbari-evans" name="loyiha_hamrahbari" @if (old('loyiha_hamrahbari', $loyihaiqtisodi->loyiha_hamrahbari ?? 0) == 'ha') checked @endif value="ha">
+                                                        id="loyiha_hamrahbari-evans" name="loyiha_hamrahbari" @if (old('loyiha_hamrahbari', $ilmiyloyiha->loyiha_hamrahbari ?? 1) == 'ha') checked @endif value="ha">
                                                     <label class="cursor-pointer select-none"
                                                         for="loyiha_hamrahbari-evans">Ha</label>
                                                 </div>
                                                 <div class="flex items-center text-gray-700 mr-2 mt-2 sm:mt-0">
                                                     <input type="radio" class="input border mr-2"
-                                                        name="loyiha_hamrahbari" id="loyiha_hamrahbari-neeson" @if (old('loyiha_hamrahbari', $loyihaiqtisodi->loyiha_hamrahbari ?? 0) == "yo'q") checked @endif value="yo'q">
+                                                        name="loyiha_hamrahbari" id="loyiha_hamrahbari-neeson" @if (old('loyiha_hamrahbari', $ilmiyloyiha->loyiha_hamrahbari ?? 0) == "yo'q") checked @endif value="yo'q">
                                                     <label class="cursor-pointer select-none"
                                                         for="loyiha_hamrahbari-neeson">Yo'q</label>
                                                 </div>

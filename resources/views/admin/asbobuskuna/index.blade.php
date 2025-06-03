@@ -92,7 +92,7 @@
                                         Ko'rish
                                     </a>
 
-                                    <form action="{{ route('asbobuskuna.destroy', ['asbobuskuna' => $k->id]) }}" method="post"
+                                    <!-- <form action="{{ route('asbobuskuna.destroy', ['asbobuskuna' => $k->id]) }}" method="post"
                                         onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                         <button type="submit" class="flex delete-action items-center text-theme-6">
                                             @csrf
@@ -109,7 +109,7 @@
                                             </svg>
                                             O'chirish
                                         </button>
-                                    </form>
+                                    </form> -->
 
                                 </div>
                             </td>

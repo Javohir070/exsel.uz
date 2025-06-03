@@ -382,6 +382,8 @@ class DoktaranturaController extends Controller
 
     public function exportDoktarantura($tashkilotId)
     {
+        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
         return Excel::download(new TashkilotDoktaranturaExport($tashkilotId), 'doktaranturalar.xlsx');
     }
 

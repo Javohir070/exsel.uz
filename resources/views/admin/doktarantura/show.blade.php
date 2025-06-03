@@ -51,6 +51,7 @@
                                         </div>
                                         <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
                                     </div>
+                                    @role('super-admin')
                                     <tr style="border-bottom: 1px solid #E6E6E6;">
                                         <td colspan="5" style="text-align: center;">
                                             <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}" class="button  bg-theme-1 text-white mr-4" style="font-size: 16px;">Ma'lumotni yangilash</a>
@@ -59,6 +60,7 @@
                                             </a>
                                         </td>
                                     </tr>
+                                    @endrole
                                 </div>
                                 <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
                                     <table class="table">
@@ -341,9 +343,11 @@
                                                         @endswitch
                                                     </td>
                                                     <td>{{ $m['course'] ?? 0 }} </td>
+                                                    @if(!empty($m['status']))
                                                     <td style="color:{{ $m['status'] == 0 ? 'red' : 'green' }};">
                                                         {{ $m['status'] == 0 ? 'Monitoring natijasi tasdiqlanmagan' : 'Monitoring natijasi tasdiqlangan' }}
                                                     </td>
+                                                    @endif
                                                 </tr>
                                             @endforeach
 
