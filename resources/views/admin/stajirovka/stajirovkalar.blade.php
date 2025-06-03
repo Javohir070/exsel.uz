@@ -63,6 +63,7 @@
                             <th class="whitespace-no-wrap" style="text-align: center;">Tashkilot STIR raqami</th>
                             <th class="whitespace-no-wrap" style="text-align: center;">Tashkilot turi</th>
                             <th class="whitespace-no-wrap" style="text-align: center;">Stajorlar soni</th>
+                            <th style="text-align: center;">Qoniqarli/Qoniqarsiz/Qo‘shimcha o‘rganish talab etiladi</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
@@ -84,7 +85,13 @@
                                 <td style="text-align: center;">
                                     {{ $tashkilots->stajirovkalar()->count() }}/{{ $tashkilots->stajirovkaexperts()->count() }}
                                 </td>
-                                
+
+                                <td style="text-align: center;">
+                                    {{ $tashkilots->stajirovkaexperts()->whereIn('status',[ 'Ijobiy', 'Qoniqarli'])->count() }}/
+                                    {{ $tashkilots->stajirovkaexperts()->where('status', 'Salbiy')->count() }}/
+                                    {{ $tashkilots->stajirovkaexperts()->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
+                                </td>
+
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
 

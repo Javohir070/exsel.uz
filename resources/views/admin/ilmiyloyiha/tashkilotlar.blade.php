@@ -57,9 +57,10 @@
                         <tr>
                             <th class="whitespace-no-wrap" style="width: 40px;">№</th>
                             <th class="whitespace-no-wrap">Tashkilot Nomi</th>
-                            <th class="whitespace-no-wrap">Tashkilot STIR raqami</th>
-                            <th class="whitespace-no-wrap">Tashkilot turi</th>
-                            <th class="whitespace-no-wrap">Ilmiy loyihalar soni</th>
+                            <th style="text-align: center;">Tashkilot STIR raqami</th>
+                            <th style="text-align: center;">Tashkilot turi</th>
+                            <th style="text-align: center;">Ilmiy loyihalar soni</th>
+                            <th style="text-align: center;">Qoniqarli/Qoniqarsiz/Qo‘shimcha o‘rganish talab etiladi</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
@@ -73,15 +74,25 @@
                                         {{ $tashkilots->name }}
                                     </a>
                                 </td>
+
                                 <td style="text-align: center;">
                                     {{ $tashkilots->stir_raqami  }}
                                 </td>
+
                                 <td style="text-align: center;">
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
                                 </td>
+
                                 <td style="text-align: center;">
                                     {{ $tashkilots->ilmiyloyhalar()->where('is_active', 1)->count() }}/{{ $tashkilots->tekshirivchilar()->where('is_active', 1)->count()  }}
                                 </td>
+
+                                <td style="text-align: center;">
+                                    {{ $tashkilots->tekshirivchilar()->where('is_active', 1)->where('status', 'Qoniqarli')->count() }}/
+                                    {{ $tashkilots->tekshirivchilar()->where('is_active', 1)->where('status', 'Qoniqarsiz')->count() }}/
+                                    {{ $tashkilots->tekshirivchilar()->where('is_active', 1)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
+                                </td>
+
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
 

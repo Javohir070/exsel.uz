@@ -66,6 +66,7 @@
                                                 <th style="text-align: center;">Qoniqarli</th>
                                                 <th style="text-align: center;">Qoniqarsiz</th>
                                                 <th style="text-align: center;">Qo‘shimcha o‘rganish talab etiladi</th>
+                                                <th style="text-align: center;">Ko'rilmaganlari</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -116,6 +117,23 @@
                                                 @endphp
 
                                                 <td style="text-align: center;">{{ $qushimcha }}</td>
+                                                 @php
+                                                    $count = 0;
+                                                    foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
+                                                        $count += $tashkilot->tekshirivchilar()->where('is_active', 1)->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">
+                                                    {{
+                                                        $region->tashkilots()->where('ilmiyloyiha_is', 1)
+                                                            ->withCount(['ilmiyloyhalar' => function ($q) {
+                                                                $q->where('is_active', 1);
+                                                            }])
+                                                            ->get()
+                                                            ->sum('ilmiyloyhalar_count') - $count;
+                                                    }}
+                                                </td>
 
                                             </tr>
                                             @endforeach

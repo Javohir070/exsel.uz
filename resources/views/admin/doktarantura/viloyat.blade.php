@@ -67,6 +67,7 @@
                                                 <th style="text-align: center;">Qoniqarli</th>
                                                 <th style="text-align: center;">Qoniqarsiz</th>
                                                 <th style="text-align: center;">Qo‘shimcha o‘rganish talab etiladi</th>
+                                                <th style="text-align: center;">Ko'rilmaganlari</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -109,6 +110,14 @@
                                                 @endphp
 
                                                 <td style="text-align: center;">{{ $qushimcha }}</td>
+                                                @php
+                                                    $count = 0;
+                                                    foreach ($region->tashkilots()->where('doktarantura_is', 1)->get() as $tashkilot) {
+                                                        $count += $tashkilot->doktaranturaexperts()->count();
+                                                    }
+                                                @endphp
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->count()-$count }} </td>
+
                                             </tr>
                                             @endforeach
                                         </tbody>

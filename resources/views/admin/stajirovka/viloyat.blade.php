@@ -70,6 +70,7 @@
                                                 <th style="text-align: center;">Ijobiy</th>
                                                 <th style="text-align: center;">Salbiy</th>
                                                 <th style="text-align: center;">Qo‘shimcha o‘rganish talab etiladi</th>
+                                                <th style="text-align: center;">Ko'rilmaganlari</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -124,6 +125,19 @@
                                                 @endphp
 
                                                 <td style="text-align: center;">{{ $qushimcha }}</td>
+
+                                                @php
+                                                    $count = 0;
+                                                    foreach ($region->tashkilots()->where('stajirovka_is', 1)->get() as $tashkilot) {
+                                                        $count += $tashkilot->stajirovkaexperts()->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">
+                                                    {{
+                                                        $region->tashkilots()->where('stajirovka_is', 1)->withCount('stajirovkalar')->get()->sum('stajirovkalar_count')-$count
+                                                    }}
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>

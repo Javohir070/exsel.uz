@@ -69,6 +69,7 @@
                                                 <th style="text-align: center;">Qoniqarli</th>
                                                 <th style="text-align: center;">Qoniqarsiz</th>
                                                 <th style="text-align: center;">Qo‘shimcha o‘rganish talab etiladi</th>
+                                                <th style="text-align: center;">Ko'rilmaganlari</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -116,6 +117,17 @@
                                                 @endphp
 
                                                 <td style="text-align: center;">{{ $qushimcha }}</td>
+                                                @php
+                                                    $count = 0;
+                                                    foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
+                                                        $count += $tashkilot->asbobuskunaexpert()->count();
+                                                    }
+                                                @endphp
+                                                <td style="text-align: center;">
+                                                    {{ $region->tashkilots()->where('asbobuskuna_is', 1)->withCount(['asbobuskunalar'=> function ($q) {
+                                                        $q->where('is_active', 1);
+                                                    }])->get()->sum('asbobuskunalar_count')-$count }}
+                                                </td>
 
                                                </tr>
                                             @endforeach

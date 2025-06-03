@@ -61,6 +61,7 @@
                             <th class="whitespace-no-wrap">Tashkilot STIR raqami</th>
                             <th class="whitespace-no-wrap">Tashkilot turi</th>
                             <th class="whitespace-no-wrap">Asbob-uskunalar soni</th>
+                            <th style="text-align: center;">Qoniqarli/Qoniqarsiz/Qo‘shimcha o‘rganish talab etiladi</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
@@ -81,6 +82,11 @@
                                 </td>
                                 <td style="text-align: center;">
                                     {{ $tashkilots->asbobuskunalar()->where('is_active', 1)->count()  }}/{{ $tashkilots->asbobuskunaexpert()->count()  }}
+                                </td>
+                                <td style="text-align: center;">
+                                    {{ $tashkilots->asbobuskunaexpert()->where('status', 'Ijobiy')->count() }}/
+                                    {{ $tashkilots->asbobuskunaexpert()->where('status', 'Salbiy')->count() }}/
+                                    {{ $tashkilots->asbobuskunaexpert()->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
                                 </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
