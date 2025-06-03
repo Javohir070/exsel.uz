@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\LoyihalarToMonitoringExport;
 use App\Imports\IlmiyLoyihaImport;
 use App\Models\IlmiyLoyiha;
 use App\Http\Requests\StoreIlmiyLoyihaRequest;
@@ -407,6 +408,12 @@ class IlmiyLoyihaController extends Controller
     {
         $fileName = 'Ilmiyloyihalar' . now()->format('Y_m_d_H_i_s') . '.xlsx';
         return Excel::download(new IlmiyLoyihasExport, $fileName);
+    }
+
+    public function monitoring_exportilmiy()
+    {
+        $fileName = 'monitoring_ilmiyloyihalar' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new LoyihalarToMonitoringExport, $fileName);
     }
 
     public function searchloyiha(Request $request)

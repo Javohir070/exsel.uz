@@ -266,6 +266,7 @@ Route::group(['middleware' => ['role:super-admin|admin|Ekspert']], function () {
     Route::get('/export', [ExportController::class, 'export']);
     Route::get('/export-lab', [LaboratoryController::class, 'export_lab'])->name('export_lab');
     Route::get('/export-ilmiylar', [IlmiyLoyihaController::class, 'exportilmiy'])->name('exportilmiy');
+    Route::get('/monitoring/export-ilmiylar', [IlmiyLoyihaController::class, 'monitoring_exportilmiy'])->name('monitoring_exportilmiy');
     Route::get('/export-ilmiylar2024', [TekshirivchilarController::class, 'exportilmiyloyiha'])->name('exportilmiyloyiha');
     Route::get('/export-iqtisodiyfaoliyat', [IqtisodiyMoliyaviyController::class, 'iqtisodiyfaoliyat'])->name('iqtisodiyfaoliyat');
     Route::get('/export-tashkiotlar', [TashkilotController::class, 'exportashkilot'])->name('exportashkilot');
