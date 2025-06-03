@@ -46,10 +46,11 @@
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">Loyiha mavzusi</th>
-                        <th class="whitespace-no-wrap">Loyiha turi</th>
+                        {{-- <th class="whitespace-no-wrap">Loyiha turi</th> --}}
                         <th class="whitespace-no-wrap">Loyiha rahbari F.I.Sh</th>
                         <th class="whitespace-no-wrap">Raqami</th>
                         <th class="whitespace-no-wrap">Status</th>
+                        <th class="whitespace-no-wrap">Holati</th>
                         {{-- <th class="whitespace-no-wrap" style="width: 150px;">
                             <form method="GET" action="{{ route('searchloyiha') }}">
                                 <select class="form-select" aria-label="Default select example" name="query"
@@ -72,9 +73,9 @@
                             <td>
                                 {{ $xodimlar->mavzusi  }}
                             </td>
-                            <td>
+                            {{-- <td>
                                 {{ $xodimlar->turi }}
-                            </td>
+                            </td> --}}
                             <td>
                                 {{ $xodimlar->rahbar_name }}
                             </td>
@@ -84,6 +85,10 @@
                             {{-- <td style="color:{{ $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? null == "Tasdiqlandi" ? "green" : ($xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? null == "yuborildi" ? "blue" : "red") }}">
                                 {{ $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? "Ko'rilmagan" }}
                             </td> --}}
+
+                            <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
+                                {{ $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->status ?? "Tasdiqlanmagan" }}
+                            </td>
 
                             <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                 {{ $h == 'yuborildi'? "Tasdiqlash uchun yuborildi":($h == null ? "Ko'rilmagan" : $h) }}

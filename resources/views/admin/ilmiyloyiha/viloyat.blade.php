@@ -58,11 +58,14 @@
                                         <thead style="background: #F4F8FC;">
                                             <tr>
                                                 <th class="whitespace-no-wrap">Hudud nomi</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Jami</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">OTM</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy tashkilotlar</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Boshqa tashkilotlar</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
+                                                <th style="text-align: center;">Jami</th>
+                                                <th style="text-align: center;">OTM</th>
+                                                <th style="text-align: center;">Ilmiy tashkilotlar</th>
+                                                <th style="text-align: center;">Boshqa tashkilotlar</th>
+                                                <th style="text-align: center;">Ilmiy loyihalar</th>
+                                                <th style="text-align: center;">Qoniqarli</th>
+                                                <th style="text-align: center;">Qoniqarsiz</th>
+                                                <th style="text-align: center;">Qo‘shimcha o‘rganish talab etiladi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -87,6 +90,33 @@
                                                             ->sum('ilmiyloyhalar_count');
                                                     }}
                                                 </td>
+                                                @php
+                                                    $qoniqarli = 0;
+                                                    foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
+                                                        $qoniqarli += $tashkilot->tekshirivchilar()->where('is_active', 1)->where('status', 'Qoniqarli')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $qoniqarli }}</td>
+
+                                                @php
+                                                    $qoniqarsiz = 0;
+                                                    foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
+                                                        $qoniqarsiz += $tashkilot->tekshirivchilar()->where('is_active', 1)->where('status', 'Qoniqarsiz')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $qoniqarsiz }}</td>
+
+                                                 @php
+                                                    $qushimcha = 0;
+                                                    foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
+                                                        $qushimcha += $tashkilot->tekshirivchilar()->where('is_active', 1)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $qushimcha }}</td>
+
                                             </tr>
                                             @endforeach
                                         </tbody>

@@ -23,8 +23,8 @@
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">Asbob-uskuna nomi</th>
                         <th class="whitespace-no-wrap">Asos</th>
-                        {{-- <th class="whitespace-no-wrap" style="text-align: center;">Ishlab chiqarilgan yili</th> --}}
                         <th class="whitespace-no-wrap" style="text-align: center;">Status</th>
+                        <th class="whitespace-no-wrap" style="text-align: center;">Holati</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -42,15 +42,15 @@
                             </td>
                             {{-- <td style="text-align: center;">
                                 {{ $k->ishlabchiq_yil }}
+                            </td>--}}
+                            <td style="text-align: center;color: {{ ($h = $k->asbobuskunaexperts()->first()->status ?? null) == 'Ijobiy' ? 'green' : ($h == 'Salbiy' ? 'blue' : 'red') }}">
+                                {{ $k->asbobuskunaexperts->status ?? "Tasdiqlanmagan" }}
                             </td>
-                            <td style="text-align: center;">
-                                {{ $k->holati }}
-                            </td> --}}
                             {{-- <td
                                 style="color:{{ $k->asbobuskunaexperts()->first()->holati ?? null == "Tasdiqlandi" ? "green" : ($k->asbobuskunaexperts()->first()->holati ?? null == "yuborildi" ? "blue" : "red") }}">
                                 {{ $k->asbobuskunaexperts()->first()->holati ?? "Ko'rilmagan" }}
                             </td> --}}
-                            <td style="color: {{ ($h = $k->asbobuskunaexperts()->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
+                            <td style="text-align: center;color: {{ ($h = $k->asbobuskunaexperts()->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                 {{ $h == 'yuborildi'? "Tasdiqlash uchun yuborildi":($h == null ? "Ko'rilmagan" : $h) }}
                             </td>
 
@@ -104,7 +104,7 @@
                                             </svg>
                                             O'chirish
                                         </button>
-                                    </form> 
+                                    </form>
                                     @endrole
 
                                 </div>

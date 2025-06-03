@@ -64,7 +64,7 @@ use App\Http\Controllers\TashkilotXujalikController;
 
 
 
-Route::get('/', [HomeController::class,'index'])->middleware('auth')->name('home.index');
+Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('home.index');
 Route::middleware('auth')->group(function () {
     Route::post('password/change', [UserController::class, 'changePassword'])->name('password.change');
     Route::get('generate-pdf/{ilmiyId}', [App\Http\Controllers\PDFController::class, 'generatePDF']);
@@ -88,30 +88,30 @@ Route::middleware('auth')->group(function () {
     Route::get('/reformat-phones', [XodimlarController::class, 'reformatPhones']);
 });
 Route::middleware('auth')->group(function () {
-    Route::get('/tashkilotlar',[TashkilotController::class,'tashkilotlar'])->name('tashkilotlar.index');
-    Route::get('/tashqoshish',[TashkilotController::class,'tashkilot_create'])->name('tashqoshish.create');
-    Route::get('/xodim',[XodimlarController::class,'barcha_xodimlar'])->name('xodim.barchaXodimlar');
-    Route::get('/iqtisodiylar',[IqtisodiyMoliyaviyController::class,'iqtisodiylar'])->name('iqtisodiylar.index');
-    Route::get('/tashkilotrahbarilar',[TashkilotRahbariController::class,'tashkilotrahbarilar'])->name('tashkilotrahbarilar.index');
-    Route::get('/ilmiyloyihalar',[IlmiyLoyihaController::class, 'ilmiyloyihalar'])->name('ilmiyloyihalar.index');
-    Route::get('/xujaliklar',[xujalikController::class, 'xujaliklar'])->name('xujaliklar.index');
-    Route::get('/ilmiydarajalar',[IlmiybnTaminlangaController::class, 'ilmiydarajalar'])->name('ilmiydarajalar.index');
+    Route::get('/tashkilotlar', [TashkilotController::class, 'tashkilotlar'])->name('tashkilotlar.index');
+    Route::get('/tashqoshish', [TashkilotController::class, 'tashkilot_create'])->name('tashqoshish.create');
+    Route::get('/xodim', [XodimlarController::class, 'barcha_xodimlar'])->name('xodim.barchaXodimlar');
+    Route::get('/iqtisodiylar', [IqtisodiyMoliyaviyController::class, 'iqtisodiylar'])->name('iqtisodiylar.index');
+    Route::get('/tashkilotrahbarilar', [TashkilotRahbariController::class, 'tashkilotrahbarilar'])->name('tashkilotrahbarilar.index');
+    Route::get('/ilmiyloyihalar', [IlmiyLoyihaController::class, 'ilmiyloyihalar'])->name('ilmiyloyihalar.index');
+    Route::get('/xujaliklar', [xujalikController::class, 'xujaliklar'])->name('xujaliklar.index');
+    Route::get('/ilmiydarajalar', [IlmiybnTaminlangaController::class, 'ilmiydarajalar'])->name('ilmiydarajalar.index');
     Route::get('/searchloyiha', [IlmiyLoyihaController::class, 'searchloyiha'])->name('searchloyiha');
     Route::get('/searchxujalik', [XujalikController::class, 'searchxujalik'])->name('searchxujalik');
     Route::get('/searchxodimlar', [XodimlarController::class, 'searchxodimlar'])->name('searchxodimlar');
     Route::get('/searchuser', [UserController::class, 'searchuser'])->name('searchuser');
     Route::get('/search-doktarantura', [DoktaranturaController::class, 'search_doktarantura'])->name('search_doktarantura');
     Route::get('/searchxodim', [XodimlarController::class, 'searchEmployees'])->name('searchxodim');
-    Route::get('/adminlar',[TashkilotMalumotlarController::class, 'adminlar'])->name('tashkilotmalumotlar.adminlar');
+    Route::get('/adminlar', [TashkilotMalumotlarController::class, 'adminlar'])->name('tashkilotmalumotlar.adminlar');
     //itm
-    Route::get('/itmtashkilot',[ItmController::class, 'tashkilot'])->name('itm.tashkilot');
-    Route::get('/itmiqtisodiy',[ItmController::class, 'iqtisodiy'])->name('itm.iqtisodiy');
-    Route::get('/itmtashkilotrahbari',[ItmController::class, 'tashkilotrahbari'])->name('itm.tashkilotrahbari');
-    Route::get('/itmxodimlar',[ItmController::class, 'xodimlar'])->name('itm.xodimlar');
-    Route::get('/itmilmiyloyiha',[ItmController::class, 'ilmiyloyiha'])->name('itm.ilmiyloyiha');
-    Route::get('/itmxujalik',[ItmController::class, 'xujalik'])->name('itm.xujalik');
-    Route::get('/itmilmiydaraja',[ItmController::class, 'ilmiydaraja'])->name('itm.ilmiydaraja');
-    Route::get('/itmadminlar',[ItmController::class, 'ItmAdminlar'])->name('itm.adminlar');
+    Route::get('/itmtashkilot', [ItmController::class, 'tashkilot'])->name('itm.tashkilot');
+    Route::get('/itmiqtisodiy', [ItmController::class, 'iqtisodiy'])->name('itm.iqtisodiy');
+    Route::get('/itmtashkilotrahbari', [ItmController::class, 'tashkilotrahbari'])->name('itm.tashkilotrahbari');
+    Route::get('/itmxodimlar', [ItmController::class, 'xodimlar'])->name('itm.xodimlar');
+    Route::get('/itmilmiyloyiha', [ItmController::class, 'ilmiyloyiha'])->name('itm.ilmiyloyiha');
+    Route::get('/itmxujalik', [ItmController::class, 'xujalik'])->name('itm.xujalik');
+    Route::get('/itmilmiydaraja', [ItmController::class, 'ilmiydaraja'])->name('itm.ilmiydaraja');
+    Route::get('/itmadminlar', [ItmController::class, 'ItmAdminlar'])->name('itm.adminlar');
     Route::get('roles/{roleId}/delete', [RoleController::class, 'destroy']);
     Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
     Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
@@ -120,9 +120,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/ilmiy-loyhagamasul', [UserController::class, 'ilmiy_loyha_rahbari'])->name('ilmiyLoyha_rahbari.index');
     Route::get('/masullar-rahbarlar', [UserController::class, 'ilmiy_loyha_masullar'])->name('ilmiy_loyha_edit.index');
     Route::get('scientific-project', [IlmiyLoyihaController::class, 'scientific_project'])->name('scientific_project.index');
-    Route::get('/itm-xodimlar',[ItmController::class, 'itm_export'])->name('itm.export');
-    Route::get('/itm-xujalik',[ItmController::class, 'itm_xujalik_export'])->name('itm.xujalikloyhalar');
-    Route::get('/itm-ilmiy',[ItmController::class, 'itm_loyhalar_export'])->name('itm.ilmiyloyhalar');
+    Route::get('/itm-xodimlar', [ItmController::class, 'itm_export'])->name('itm.export');
+    Route::get('/itm-xujalik', [ItmController::class, 'itm_xujalik_export'])->name('itm.xujalikloyhalar');
+    Route::get('/itm-ilmiy', [ItmController::class, 'itm_loyhalar_export'])->name('itm.ilmiyloyhalar');
 
     //end itm
 
@@ -135,25 +135,25 @@ Route::middleware('auth')->group(function () {
 
     // labaratoriya uchun
 
-    Route::get('lab-user', [LaboratoryController::class,'lab_biriktirilgan_xodimlar'])->name('lab_xodimlar.index');
-    Route::get('lab-xujalik', [LaboratoryController::class,'lab_biriktirilgan_xujalik'])->name('lab_xujalik.index');
-    Route::get('lab-ilmiyloyhi', [LaboratoryController::class,'lab_biriktirilgan_ilmiyloyha'])->name('lab_ilmiyloyiha.index');
+    Route::get('lab-user', [LaboratoryController::class, 'lab_biriktirilgan_xodimlar'])->name('lab_xodimlar.index');
+    Route::get('lab-xujalik', [LaboratoryController::class, 'lab_biriktirilgan_xujalik'])->name('lab_xujalik.index');
+    Route::get('lab-ilmiyloyhi', [LaboratoryController::class, 'lab_biriktirilgan_ilmiyloyha'])->name('lab_ilmiyloyiha.index');
     Route::put('lab/{labId}/give-xodims', [LaboratoryController::class, 'giveXodimToLab']);
     Route::put('lab/{labId}/give-xujaliks', [LaboratoryController::class, 'giveXujalikToLab']);
     Route::put('lab/{labId}/give-ilmiyloyhas', [LaboratoryController::class, 'giveIlmiyLoyhaToLab']);
-    Route::get('laboratoriya', [LaboratoryController::class,'laboratoriya'])->name('laboratoriya.index');
-    Route::get('laboratoriyalari', [LaboratoryController::class,'laboratoriyalari'])->name('laboratoriyalari.index');
+    Route::get('laboratoriya', [LaboratoryController::class, 'laboratoriya'])->name('laboratoriya.index');
+    Route::get('laboratoriyalari', [LaboratoryController::class, 'laboratoriyalari'])->name('laboratoriyalari.index');
     Route::get('masullar', [LaboratoryController::class, "masullar"])->name("masullar.index");
     Route::get('asbobuskuna-masullar', [AsbobuskunaController::class, "asbobuskuna_masullar"])->name("asbobuskuna_masullar.index");
     Route::get('masul', [IlmiyLoyihaController::class, "masul"])->name("masul.index");
     Route::get('monitoring', [HomeController::class, "monitoring"])->name("monitoring.index");
     Route::post("emport-izlanuvchi", [IzlanuvchilarController::class, "emport_izlanuvchi"])->name("emport_izlanuvchi.index");
-    Route::get("/ilmiy-izlanuvchilar", [IzlanuvchilarController::class,"ilmiy_izlanuvchilar"])->name("ilmiy_izlanuvchilar.index");
+    Route::get("/ilmiy-izlanuvchilar", [IzlanuvchilarController::class, "ilmiy_izlanuvchilar"])->name("ilmiy_izlanuvchilar.index");
     Route::put('lab/{labId}/give-izlanuvchilar', [IzlanuvchilarController::class, 'giveIzlanuvchilarToLab']);
-    Route::get('/ilmiy-izlanuvchi',[IzlanuvchilarController::class, 'ilmiy_izlanuvchi'])->name('ilmiy_izlanuvchi.index');
-    Route::get('/ilmiy/{labId}/{type}', [IzlanuvchilarController::class,'izlanuvchi_php'])->name('ilmiy');
-    Route::get('/lab-xujaliklar/{labId}', [IzlanuvchilarController::class,'lab_xujalik'])->name('lab_xujaliklar.index');
-    Route::get('/lab-ilmiy/{labId}', [IzlanuvchilarController::class,'lab_ilmiy'])->name('lab_ilmiy.index');
+    Route::get('/ilmiy-izlanuvchi', [IzlanuvchilarController::class, 'ilmiy_izlanuvchi'])->name('ilmiy_izlanuvchi.index');
+    Route::get('/ilmiy/{labId}/{type}', [IzlanuvchilarController::class, 'izlanuvchi_php'])->name('ilmiy');
+    Route::get('/lab-xujaliklar/{labId}', [IzlanuvchilarController::class, 'lab_xujalik'])->name('lab_xujaliklar.index');
+    Route::get('/lab-ilmiy/{labId}', [IzlanuvchilarController::class, 'lab_ilmiy'])->name('lab_ilmiy.index');
 
     Route::get('/searchizlanuvchilar', [IzlanuvchilarController::class, 'searchIzlanuvchilar'])->name('searchizlanuvchilar');
     Route::get('/searchizlanu-admin', [IzlanuvchilarController::class, 'searchIzlanuvchilar_admin'])->name('searchizlanuvchilar_admin');
@@ -164,10 +164,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/kafedrarol', [UserController::class, 'kafedrarol_store'])->name('kafedrarol.store');
 
-//kapedir mudurlali
-    Route::get('kafedralar-user', [KafedralarController::class,'Kafedralar_biriktirilgan_xodimlar'])->name('kafedralar_xodimlar.index');
-    Route::get('kafedralar-xujalik', [KafedralarController::class,'Kafedralar_biriktirilgan_xujalik'])->name('kafedralar_xujalik.index');
-    Route::get('kafedralar-ilmiyloyhi', [KafedralarController::class,'Kafedralar_biriktirilgan_ilmiyloyha'])->name('kafedralar_ilmiyloyiha.index');
+    //kapedir mudurlali
+    Route::get('kafedralar-user', [KafedralarController::class, 'Kafedralar_biriktirilgan_xodimlar'])->name('kafedralar_xodimlar.index');
+    Route::get('kafedralar-xujalik', [KafedralarController::class, 'Kafedralar_biriktirilgan_xujalik'])->name('kafedralar_xujalik.index');
+    Route::get('kafedralar-ilmiyloyhi', [KafedralarController::class, 'Kafedralar_biriktirilgan_ilmiyloyha'])->name('kafedralar_ilmiyloyiha.index');
 
     Route::put('kaf/{kafId}/give-xodims', [KafedralarController::class, 'giveXodimToKaf']);
     Route::put('kaf/{kafId}/give-xujaliks', [KafedralarController::class, 'giveXujalikToKaf']);
@@ -203,11 +203,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/export-kafedralar', [KafedralarController::class, 'kafedralar_export'])->name('export.kafedralar');
     Route::get('/export-fakultetlar', [FakultetlarController::class, 'fakultetlar_export'])->name('export.fakultetlar');
 
-    Route::get('turi/{id}', [IlmiyLoyihaController::class,'tashkilot_turi'])->name('tashkilot_turi');
-    Route::get('tashkilot-turi/{id}', [AsbobuskunaController::class,'tashkilot_turi_asbobuskuna'])->name('tashkilot_turi_asbobuskuna');
-    Route::get('stajiroka-turi/{id}', [StajirovkaController::class,'tashkilot_turi_stajiroka'])->name('tashkilot_turi_stajiroka');
-    Route::get('doktarantura-turi/{id}', [DoktaranturaController::class,'tashkilot_turi_doktarantura'])->name('tashkilot_turi_doktarantura');
-    Route::get('region/{id}', [TashkilotController::class,'tashkilot_region'])->name('tashkilot_region');
+    Route::get('turi/{id}', [IlmiyLoyihaController::class, 'tashkilot_turi'])->name('tashkilot_turi');
+    Route::get('tashkilot-turi/{id}', [AsbobuskunaController::class, 'tashkilot_turi_asbobuskuna'])->name('tashkilot_turi_asbobuskuna');
+    Route::get('stajiroka-turi/{id}', [StajirovkaController::class, 'tashkilot_turi_stajiroka'])->name('tashkilot_turi_stajiroka');
+    Route::get('doktarantura-turi/{id}', [DoktaranturaController::class, 'tashkilot_turi_doktarantura'])->name('tashkilot_turi_doktarantura');
+    Route::get('region/{id}', [TashkilotController::class, 'tashkilot_region'])->name('tashkilot_region');
 
     Route::get('php-import/{stir}', [DoktaranturaController::class, 'importDoktaranturaData'])->name('php_import');
     Route::get('ilmiy-rahbarlar-import/{stir}', [DoktaranturaController::class, 'importIlmiyRahbarlarData'])->name('ilmiy_rahbarlar_import');
@@ -257,7 +257,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/doktarantura/{id}/export', [DoktaranturaController::class, 'exportDoktarantura']);
     Route::get('/ilmiyrahbarlar/{id}/export', [IlmiyrahbarlarController::class, 'exportIlmiyrahbarlar']);
 });
-Route::group(['middleware' => ['role:super-admin|admin|Ekspert']], function() {
+Route::group(['middleware' => ['role:super-admin|admin|Ekspert']], function () {
 
     // web.php
     Route::delete('/tashkilot/{tashkilot}/xodimlar', [XodimlarController::class, 'deleteAll'])->name('xodimlar.deleteAll');
@@ -278,4 +278,4 @@ Route::group(['middleware' => ['role:super-admin|admin|Ekspert']], function() {
 
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

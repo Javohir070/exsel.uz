@@ -19,8 +19,8 @@
                         <th class="whitespace-no-wrap">Stajorning F.I.Sh </th>
                         <th class="whitespace-no-wrap">Stajorning lavozimi</th>
                         <th class="whitespace-no-wrap">Stajirovka yo'nalishi</th>
-                        <th class="whitespace-no-wrap">Stajirovka holati</th>
                         <th class="whitespace-no-wrap">Status</th>
+                        <th class="whitespace-no-wrap">Holati</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -39,8 +39,8 @@
                             <td>
                                 {{ $xodimlar->yunalishi ?? 'Mavjud emas' }}
                             </td>
-                            <td>
-                                {{ $xodimlar->holati ?? 'Aniqlanmagan' }}
+                            <td style="color: {{ ($h = $xodimlar->stajirovkaexpert()->first()->status ?? null) == 'Ijobiy' ? 'green' : ($h == 'Salbiy' ? 'blue' : 'red') }}">
+                                {{ $xodimlar->stajirovkaexpert()->first()->status ?? "Tasdiqlanmagan" }}
                             </td>
                             <td style="color: {{ ($h = $xodimlar->stajirovkaexpert()->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                 {{ $h == 'yuborildi'? "Tasdiqlash uchun yuborildi":($h == null ? "Ko'rilmagan" : $h) }}

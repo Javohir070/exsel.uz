@@ -36,4 +36,9 @@ class Tekshirivchilar extends Model
     {
         return $this->belongsTo(IlmiyLoyiha::class, 'ilmiy_loyiha_id');
     }
+
+    public function tashkilot()
+    {
+        return $this->belongsTo(Tashkilot::class, 'tashkilot_id');
+    }
 }

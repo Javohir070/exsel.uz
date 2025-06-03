@@ -59,11 +59,14 @@
                                         <thead style="background: #F4F8FC;">
                                             <tr>
                                                 <th class="whitespace-no-wrap">Hudud nomi</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Jami</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">OTM</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">ITM</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Boshqalari</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy izlanuvchilar</th>
+                                                <th style="text-align: center;">Jami</th>
+                                                <th style="text-align: center;">OTM</th>
+                                                <th style="text-align: center;">ITM</th>
+                                                <th style="text-align: center;">Boshqalari</th>
+                                                <th style="text-align: center;">Ilmiy izlanuvchilar</th>
+                                                <th style="text-align: center;">Qoniqarli</th>
+                                                <th style="text-align: center;">Qoniqarsiz</th>
+                                                <th style="text-align: center;">Qo‘shimcha o‘rganish talab etiladi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -78,8 +81,34 @@
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->where('tashkilot_turi', 'otm')->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->where('tashkilot_turi', 'itm')->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->where('tashkilot_turi', 'boshqa')->count() }} </td>
-
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('status', 1)->withCount('doktaranturalar')->get()->sum('doktaranturalar_count') }} </td>
+
+                                                @php
+                                                    $qoniqarli = 0;
+                                                    foreach ($region->tashkilots()->where('doktarantura_is', 1)->get() as $tashkilot) {
+                                                        $qoniqarli += $tashkilot->doktaranturaexperts()->where('status', 'Qoniqarli')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $qoniqarli }}</td>
+
+                                                @php
+                                                    $qoniqarsiz = 0;
+                                                    foreach ($region->tashkilots()->where('doktarantura_is', 1)->get() as $tashkilot) {
+                                                        $qoniqarsiz += $tashkilot->doktaranturaexperts()->where('status', 'Qoniqarsiz')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $qoniqarsiz }}</td>
+
+                                                 @php
+                                                    $qushimcha = 0;
+                                                    foreach ($region->tashkilots()->where('doktarantura_is', 1)->get() as $tashkilot) {
+                                                        $qushimcha += $tashkilot->doktaranturaexperts()->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $qushimcha }}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>

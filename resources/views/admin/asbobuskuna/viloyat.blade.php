@@ -61,11 +61,14 @@
                                         <thead style="background: #F4F8FC;">
                                             <tr>
                                                 <th class="whitespace-no-wrap">Hudud nomi</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Jami</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">OTM</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">ITM</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Boshqalari</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
+                                                <th style="text-align: center;">Jami</th>
+                                                <th style="text-align: center;">OTM</th>
+                                                <th style="text-align: center;">ITM</th>
+                                                <th style="text-align: center;">Boshqalari</th>
+                                                <th style="text-align: center;">Asbob-uskunalar</th>
+                                                <th style="text-align: center;">Qoniqarli</th>
+                                                <th style="text-align: center;">Qoniqarsiz</th>
+                                                <th style="text-align: center;">Qo‘shimcha o‘rganish talab etiladi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -86,6 +89,34 @@
                                                         $q->where('is_active', 1);
                                                     }])->get()->sum('asbobuskunalar_count') }}
                                                 </td>
+
+                                                @php
+                                                    $qoniqarli = 0;
+                                                    foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
+                                                        $qoniqarli += $tashkilot->asbobuskunaexpert()->where('status', 'Ijobiy')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $qoniqarli }}</td>
+
+                                                @php
+                                                    $qoniqarsiz = 0;
+                                                    foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
+                                                        $qoniqarsiz += $tashkilot->asbobuskunaexpert()->where('status', 'Salbiy')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $qoniqarsiz }}</td>
+
+                                                 @php
+                                                    $qushimcha = 0;
+                                                    foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
+                                                        $qushimcha += $tashkilot->asbobuskunaexpert()->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $qushimcha }}</td>
+
                                                </tr>
                                             @endforeach
                                         </tbody>

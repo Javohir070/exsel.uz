@@ -62,11 +62,14 @@
                                         <thead style="background: #F4F8FC;">
                                             <tr>
                                                 <th class="whitespace-no-wrap">Hudud nomi</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Jami</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">OTM</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">ITM</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Boshqalari</th>
-                                                <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
+                                                <th style="text-align: center;">Jami</th>
+                                                <th style="text-align: center;">OTM</th>
+                                                <th style="text-align: center;">ITM</th>
+                                                <th style="text-align: center;">Boshqalari</th>
+                                                <th style="text-align: center;">Ilmiy stajirovka</th>
+                                                <th style="text-align: center;">Ijobiy</th>
+                                                <th style="text-align: center;">Salbiy</th>
+                                                <th style="text-align: center;">Qo‘shimcha o‘rganish talab etiladi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -81,12 +84,46 @@
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('stajirovka_is', 1)->where('tashkilot_turi', 'otm')->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('stajirovka_is', 1)->where('tashkilot_turi', 'itm')->count() }} </td>
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('stajirovka_is', 1)->where('tashkilot_turi', null)->count() }} </td>
-                                               
+
                                                 <td style="text-align: center;">
                                                     {{
                                                         $region->tashkilots()->where('stajirovka_is', 1)->withCount('stajirovkalar')->get()->sum('stajirovkalar_count')
                                                     }}
                                                 </td>
+
+                                                @php
+                                                    $ijobiy = 0;
+                                                    foreach ($region->tashkilots()->where('stajirovka_is', 1)->get() as $tashkilot) {
+                                                        $ijobiy += $tashkilot->stajirovkaexperts()->where('status', 'Ijobiy')->count();
+                                                    }
+                                                @endphp
+
+                                                @php
+                                                    $qoniqarli = 0;
+                                                    foreach ($region->tashkilots()->where('stajirovka_is', 1)->get() as $tashkilot) {
+                                                        $qoniqarli += $tashkilot->stajirovkaexperts()->where('status', 'Qoniqarli')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $ijobiy + $qoniqarli }}</td>
+
+                                                @php
+                                                    $qoniqarsiz = 0;
+                                                    foreach ($region->tashkilots()->where('stajirovka_is', 1)->get() as $tashkilot) {
+                                                        $qoniqarsiz += $tashkilot->stajirovkaexperts()->where('status', 'Salbiy')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $qoniqarsiz }}</td>
+
+                                                 @php
+                                                    $qushimcha = 0;
+                                                    foreach ($region->tashkilots()->where('stajirovka_is', 1)->get() as $tashkilot) {
+                                                        $qushimcha += $tashkilot->stajirovkaexperts()->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
+                                                    }
+                                                @endphp
+
+                                                <td style="text-align: center;">{{ $qushimcha }}</td>
                                             </tr>
                                             @endforeach
                                         </tbody>

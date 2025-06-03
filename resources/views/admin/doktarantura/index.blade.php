@@ -51,9 +51,10 @@
                             <th class="whitespace-no-wrap" style="width: 40px;">№</th>
                             <th class="whitespace-no-wrap">Tashkilot Nomi</th>
                             <th class="whitespace-no-wrap">Tashkilot STIR raqami</th>
-                            <th class="whitespace-no-wrap">Tashkilot turi</th>
+                            {{-- <th class="whitespace-no-wrap">Tashkilot turi</th> --}}
                             <th class="whitespace-no-wrap">Ilmiy izlanivchilar</th>
                             <th class="whitespace-no-wrap">Status</th>
+                            <th class="whitespace-no-wrap">Holati</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
@@ -69,15 +70,18 @@
                                 <td style="text-align: center;">
                                     {{ $t->stir_raqami  }}
                                 </td>
-                                <td style="text-align: center;">
+                                {{-- <td style="text-align: center;">
                                     {{ $t->tashkilot_turi == 'itm' ? 'ITM' : ($t->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
-                                </td>
+                                </td> --}}
                                 <td style="text-align: center;">
                                     {{ $t->doktaranturalar->count() }}
                                 </td>
                                 {{-- <td style="color:{{ $t->doktaranturaexperts()->first()->holati ?? null == "Tasdiqlandi" ? "green" : ($t->doktaranturaexperts()->first()->holati ?? null == "yuborildi" ? "blue" : "red") }}">
                                     {{ $t->doktaranturaexperts()->first()->holati ?? "Ko'rilmagan" }}
                                 </td> --}}
+                                <td style="color: {{ ($h = $t->doktaranturaexperts()->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
+                                    {{ $t->doktaranturaexperts()->first()->status ?? "Tasdiqlanmagan" }}
+                                </td>
                                 <td style="color: {{ ($h = $t->doktaranturaexperts()->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                     {{ $h == 'yuborildi'? "Tasdiqlash uchun yuborildi":($h == null ? "Ko'rilmagan" : $h) }}
                                 </td>

@@ -32,11 +32,9 @@ class AsbobuskunaController extends Controller
     public function asbobuskuna_masullar()
     {
         $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
-
         $masullar = $users->filter(function($user) {
             return $user->roles->contains('name', 'Asbob_uskunalarga_masul');
         });
-
 
         return view("admin.asbobuskuna.masullar", ['masullar'=> $masullar]);
     }
