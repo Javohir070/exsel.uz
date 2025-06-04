@@ -37,4 +37,9 @@ class Stajirovkaexpert extends Model
         return $this->belongsTo(Stajirovka::class, 'stajirovka_id');
     }
 
+    public function tashkilot()
+    {
+        return $this->belongsTo(Tashkilot::class, 'tashkilot_id');
+    }
+
 }

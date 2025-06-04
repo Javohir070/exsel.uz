@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\StajirovkalarToMonitoringExport;
 use App\Imports\StajirovkaImport;
 use App\Models\Region;
 use App\Models\Stajirovka;
@@ -259,6 +260,12 @@ class StajirovkaController extends Controller
         Excel::import(new StajirovkaImport, $request->file('file'));
 
         return back()->with('status', 'Fayl muvaffaqiyatli yuklandi!');
+    }
+
+    public function monitoring_exportstajirovka()
+    {
+        $fileName = 'monitoring_stajirovka_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new StajirovkalarToMonitoringExport, $fileName);
     }
 
 }
