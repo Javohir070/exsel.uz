@@ -687,7 +687,7 @@
                                                             Yagona elektron tizimdagi tahsil olayotgan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" min="0" name="yagonae_tah_soni" value="{{$data[0]['count']}}"
+                                                            <input type="number"  name="yagonae_tah_soni" value="{{$data[0]['count'] ?? 0}}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
@@ -697,7 +697,7 @@
                                                             Chetlashtirilgan izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" min="0" name="chetlash_soni" value="{{$data[1]['count']}}"
+                                                            <input type="number" min="0" name="chetlash_soni" value="{{$data[1]['count'] ?? 0}}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
@@ -707,7 +707,7 @@
                                                             Akademik ta’tildagi izlanuvchilar soni.
                                                         </td>
                                                         <td class="border border-b-2 ">
-                                                            <input type="number" min="0" name="akademik_soni" value="{{$data[3]['count']}}"
+                                                            <input type="number" min="0" name="akademik_soni" value="{{$data[3]['count'] ?? 0}}"
                                                                 class="input w-full border mt-2" required="" readonly>
                                                         </td>
                                                     </tr>
