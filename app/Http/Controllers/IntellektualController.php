@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\IntellektualToMonitoringExport;
 use App\Models\Intellektual;
 use App\Http\Requests\StoreIntellektualRequest;
 use App\Http\Requests\UpdateIntellektualRequest;
+use Maatwebsite\Excel\Facades\Excel;
 
 class IntellektualController extends Controller
 {
@@ -79,20 +81,20 @@ class IntellektualController extends Controller
     {
         if ($request->izohlar == 1) {
             $intellektual->update([
-                "mal_jur_izoh" => $request->mal_jur_izoh, 
-                "xor_jur_izoh" => $request->xor_jur_izoh,  
-                "web_jur_izoh" => $request->web_jur_izoh,  
-                "tezislar_izoh" => $request->tezislar_izoh,  
-                "ilmiy_mon_izoh" => $request->ilmiy_mon_izoh,  
-                "nashr_uquv_izoh" => $request->nashr_uquv_izoh,  
-                "darslik_izoh" => $request->darslik_izoh,  
-                "b_bitiruv_izoh" => $request->b_bitiruv_izoh, 
-                "m_bitiruv_izoh" => $request->m_bitiruv_izoh, 
+                "mal_jur_izoh" => $request->mal_jur_izoh,
+                "xor_jur_izoh" => $request->xor_jur_izoh,
+                "web_jur_izoh" => $request->web_jur_izoh,
+                "tezislar_izoh" => $request->tezislar_izoh,
+                "ilmiy_mon_izoh" => $request->ilmiy_mon_izoh,
+                "nashr_uquv_izoh" => $request->nashr_uquv_izoh,
+                "darslik_izoh" => $request->darslik_izoh,
+                "b_bitiruv_izoh" => $request->b_bitiruv_izoh,
+                "m_bitiruv_izoh" => $request->m_bitiruv_izoh,
                 "p_bitiruv_izoh" => $request->p_bitiruv_izoh,
                 "i_mulk_izoh" => $request->i_mulk_izoh,
-                "ixtiro_olingan_izoh" => $request->ixtiro_olingan_izoh, 
-                "ixtiro_ber_izoh" => $request->ixtiro_ber_izoh, 
-                "dasturiy_izoh" => $request->dasturiy_izoh, 
+                "ixtiro_olingan_izoh" => $request->ixtiro_olingan_izoh,
+                "ixtiro_ber_izoh" => $request->ixtiro_ber_izoh,
+                "dasturiy_izoh" => $request->dasturiy_izoh,
             ]);
         } else {
             $intellektual->update([
@@ -126,7 +128,7 @@ class IntellektualController extends Controller
                 'nashr_uquv_amalda' => $request->nashr_uquv_amalda,
             ]);
         }
-        
+
 
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
@@ -137,5 +139,12 @@ class IntellektualController extends Controller
         $intellektual->delete();
 
         return redirect()->route('intellektual.index')->with('status', 'Intellektual ma`lumotlar o`chirildi');
+    }
+
+
+    public function monitoring_exportintellektual()
+    {
+        $fileName = 'monitoring_intellektual_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        return Excel::download(new IntellektualToMonitoringExport, $fileName);
     }
 }

@@ -61,7 +61,7 @@ class Intellektual extends Model
 
     public function ilmiyloyiha()
     {
-        return $this->belongsTo(IlmiyLoyiha::class);
+        return $this->belongsTo(IlmiyLoyiha::class, 'ilmiy_loyiha_id');
     }
 
     public function tashkilot()
