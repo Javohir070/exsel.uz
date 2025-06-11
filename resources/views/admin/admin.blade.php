@@ -7,13 +7,13 @@
         <div class="col-span-12 mt-8">
             <div class="intro-y flex items-center h-10">
                 <h2 class="text-lg font-medium truncate mr-5">
-                    Tashkilot haqida qisqacha ma'lumotlar 
+                    Tashkilot haqida qisqacha ma'lumotlar
                 </h2>
                 <a href="" class="ml-auto flex text-theme-1"> <i data-feather="refresh-ccw" class="w-4 h-4 mr-3"></i>
                     Yangilang </a>
             </div>
             <div class="grid grid-cols-12 gap-6 mt-5">
-				
+
                 <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                     <div class="report-box zoom-in">
                         <div class="box p-5">
@@ -59,9 +59,9 @@
                         </div>
                     </div>
                 </div>
-				
+
                 <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-					
+
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">{{ $loyiha_count }}</div>
-                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Ilmiy loyihalar biriktirilgan mas'ul xodim 
+                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Ilmiy loyihalar biriktirilgan mas'ul xodim
                                 @role('admin')
 								  <a href="{{ url('users/create') }}"
                                     class="button  bg-theme-1 text-white"
@@ -105,7 +105,7 @@
                                 </div>
                         </div>
                     </div>
-					
+
                 </div>
                 <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                     <div class="report-box zoom-in">
@@ -119,7 +119,7 @@
                                 </div>
                             </div>
                             <div class="text-3xl font-bold leading-8 mt-6">{{ $tashkiot_haqida->tash_xodimlar ?? 0 }}/{{ $xodimlar}}</div>
-                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Xodimlar biriktirilgan mas'ul xodim 
+                            <div class="text-base text-gray-600 mt-1 " style="margin-top: 10px;">Xodimlar biriktirilgan mas'ul xodim
                                 @role('admin')
 								  <a href="{{ url('users/create') }}"
                                     class="button  bg-theme-1 text-white"
@@ -134,7 +134,7 @@
                                     <a href="{{ url('users/'.$ilmiy->id.'/edit') }}" class="button  bg-theme-1  text-white"><i data-feather="edit"></i></a>
                                     <a href="{{ url('users/'.$ilmiy->id.'/delete') }}" class="button  bg-theme-6  text-white"><i data-feather="trash-2"></i></a>
                                 </div>
-                                    
+
                                 @endrole
                                 @role(['Xodimlar_uchun_masul','Tashkilot_pasporti_uchun_masul','Ilmiy_faoliyat_uchun_masul'])
                                 <a href="#" class="button  bg-theme-1 text-white"
@@ -155,7 +155,7 @@
                 </div>
                 @role(['admin'])
                 <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                    <a href="{{ route('ilmiy_izlanuvchi.index') }}">
+                    <a href="{{ route('doktaranturalar') }}">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
                                 <div class="flex">
@@ -265,7 +265,7 @@
                 <th class="border-b  border">Mulkchilik turi</th>
                 <th class="border-b  border"> Tashkilotni saqlash harajatlarining moliyalashtirish manbasi</th>
             </tr>
-            
+
             <tr>
                 <!-- <th class="border-b  border">12</th> -->
                 <td class="border-b  border">{{ $tashkiot_haqida->turi }}</td>
@@ -305,7 +305,7 @@
             <tr>
                 <th class="border" style="text-align: center;font-size:20px; color: #1C3FAA;"  colspan="3">Tashkilot rahbari xaqida ma’lumot </th>
             </tr>
-           
+
             <tr class="bg-gray-200">
                 <!-- <th class=" border">1</th> -->
                 <th class=" border" style="width:50%;">Tashkilot rahbari F.I.Sh</th>

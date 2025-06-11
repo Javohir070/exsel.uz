@@ -11,9 +11,7 @@ use Illuminate\Http\Request;
 
 class IlmiybnTaminlangaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $tashRId = auth()->user()->tashkilot_id;
@@ -21,17 +19,13 @@ class IlmiybnTaminlangaController extends Controller
         return view('admin.ilmiydaraja.index',['loyihdaraja'=>$loyihdaraja]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('admin.ilmiydaraja.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreIlmiybnTaminlangaRequest $request)
     {
         $yillar = Yillar::create([
@@ -72,25 +66,19 @@ class IlmiybnTaminlangaController extends Controller
         return redirect('/ilmiydaraja')->with('status', 'Ma\'lumotlar muvaffaqiyatli qoshildi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(IlmiybnTaminlanga $ilmiydaraja)
     {
         return view('admin.ilmiydaraja.show',['ilmiydaraja'=>$ilmiydaraja]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(IlmiybnTaminlanga $ilmiydaraja)
     {
         return view('admin.ilmiydaraja.edit',['ilmiydaraja'=>$ilmiydaraja]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(StoreIlmiybnTaminlangaRequest $request, IlmiybnTaminlanga $ilmiydaraja)
     {
         $ilmiybnTaminlanga = $ilmiydaraja;
@@ -131,14 +119,12 @@ class IlmiybnTaminlangaController extends Controller
         return redirect()->route('ilmiydaraja.index')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(IlmiybnTaminlanga $ilmiydaraja)
     {
         $ilmiydaraja->delete();
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
-        
+
     }
 
     public function ilmiydarajalar()

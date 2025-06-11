@@ -32,6 +32,13 @@ class KafedralarController extends Controller
         return view("admin.kafedralar.kafedra", ["kafedra"=> $kafedra]);
     }
 
+    public function kafedras()
+    {
+        $kafedras = Kafedralar::paginate(25);
+
+        return view("admin.kafedralar.kafedras", ["kafedras"=> $kafedras]);
+    }
+
 
     public function create()
     {
@@ -152,26 +159,20 @@ class KafedralarController extends Controller
         return redirect('/kafedralar')->with("status",'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Kafedralar $kafedralar)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Kafedralar $kafedralar)
     {
         $fakultetlar = Fakultetlar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         return view("admin.kafedralar.edit", ["kafedralar" => $kafedralar, "fakultetlar" => $fakultetlar]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(UpdateKafedralarRequest $request, Kafedralar $kafedralar)
     {
         $kafedralar->update([
@@ -183,9 +184,7 @@ class KafedralarController extends Controller
         return redirect('/kafedralar')->with("status",'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Kafedralar $kafedralar)
     {
         $kafedralar->xodimlar()->update(['kafedralar_id' => null]);

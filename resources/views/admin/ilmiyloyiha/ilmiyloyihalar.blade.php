@@ -7,7 +7,7 @@
 
             <h2 class="intro-y text-lg font-medium"> {{ $tashkilot->name }}</h2>
 
-            {{-- <div class="intro-x relative mr-3 sm:mr-6">
+            <div class="intro-x relative mr-3 sm:mr-6">
                 <div class="search hidden sm:block">
                     <form action="{{ route('searchloyiha') }}" method="GET">
                         <input type="text" name="query" class="search__input input placeholder-theme-13"
@@ -16,14 +16,14 @@
                     </form>
                 </div>
                 <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
-            </div> --}}
+            </div>
             <!-- <div>
                 <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                     class="button w-24 ml-3 bg-theme-1 text-white">
                     Ilmiy loyiha biriktirish
                 </a>
             </div> -->
-            {{-- @role(['super-admin', 'Ekspert'])
+            @role(['super-admin'])
             <div>
                 <div>
                     <a href="{{ route('exportilmiy') }}"
@@ -33,7 +33,7 @@
                 </div>
 
             </div>
-            @endrole --}}
+            @endrole
 
         </div>
         @if (session('status'))

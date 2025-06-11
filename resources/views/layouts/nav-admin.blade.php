@@ -7,12 +7,12 @@
     <div class="side-nav__devider my-6"></div>
 
     @role([
-    'admin',
-    'Xodimlar_uchun_masul',
-    'Tashkilot_pasporti_uchun_masul',
-    'Ilmiy_faoliyat_uchun_masul',
-    'labaratoriyaga_masul'
-])
+        'admin',
+        'Xodimlar_uchun_masul',
+        'Tashkilot_pasporti_uchun_masul',
+        'Ilmiy_faoliyat_uchun_masul',
+        'labaratoriyaga_masul'
+    ])
     <a href="/" class=" items-center ">
         <img width="" style="text-align: center;margin: 10px auto;width: 70%;" alt=""
             src="{{ asset('storage/' . auth()->user()->tashkilot->logo) }}">
@@ -83,6 +83,21 @@
                 <div class="side-menu__title"> Xodimlar </div>
             </a>
         </li>
+
+        <li>
+            <a href="{{ route('fakultets.index') }}"
+                class="side-menu side-menu{{ request()->is('fakultets*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="list"></i> </div>
+                <div class="side-menu__title"> Fakultetlar </div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ route('kafedras.index') }}"
+                class="side-menu side-menu{{ request()->is('kafedras*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="list"></i> </div>
+                <div class="side-menu__title"> Kafedralar </div>
+            </a>
+        </li>
         <li>
             <a href="{{ route('asbobuskunafile.index') }}"
                 class="side-menu side-menu{{ request()->is('asbobuskunafile*') ? '--active' : '' }}">
@@ -97,7 +112,6 @@
                 <div class="side-menu__title"> Labaratoriya </div>
             </a>
         </li>
-
         <li>
             <a href="{{ route('ilmiy_izlanuvchilar.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiy-izlanuvchilar*') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
@@ -107,7 +121,7 @@
         </li>
         @endrole
 
-        @role([ 'Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
+        @role(['Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
         <li>
             <a href="{{ route('monitoring.index') }}"
                 class="side-menu side-menu{{ request()->is('monitoring*') ? '--active' : '' }}">
@@ -121,7 +135,7 @@
             <a href="{{ route('ilmiyloyihalar.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiy*') ? '--active' : '' }}{{ request()->is('search-ilmiy*') ? '--active' : '' }}{{ request()->is('turi*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="side-menu__title"> Ilmiy loyihalar  </div>
+                <div class="side-menu__title"> Ilmiy loyihalar </div>
             </a>
         </li>
         @endrole
@@ -272,22 +286,6 @@
             </a>
         </li>
 
-        {{-- <li>
-            <a href="{{ route('intellektual.index') }}"
-                class="side-menu side-menu{{ request()->is('intellektual*') ? '--active' : '' }}">
-                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="side-menu__title"> Intellektual </div>
-            </a>
-        </li> --}}
-
-        {{-- <li>
-            <a href="{{ route('loyihaiqtisodi.index') }}"
-                class="side-menu side-menu{{ request()->is('loyihaiqtisodi*') ? '--active' : '' }}">
-                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="side-menu__title"> Loyihaiqtisodi </div>
-            </a>
-        </li> --}}
-
         <li>
             <a href="{{ route('fakultetlar.index') }}"
                 class="side-menu side-menu{{ request()->is('fakultetlar*') ? '--active' : '' }}">
@@ -304,13 +302,21 @@
             </a>
         </li>
 
-        <!-- <li>
+        {{-- <li>
             <a href="{{ route('ilmiy_izlanuvchi.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiy-izlanuvchi*') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Ilmiy izlanuvchilar </div>
             </a>
-        </li> -->
+        </li> --}}
+
+        <li>
+            <a href="{{ route('doktaranturalar') }}"
+                class="side-menu side-menu{{ request()->is('doktaranturalar*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Ilmiy izlanuvchilar </div>
+            </a>
+        </li>
 
         <li>
             <a href="{{ route('asbobuskuna.index') }}"
@@ -392,11 +398,6 @@
                 <div class="side-menu__title"> Monografiyalar </div>
             </a>
         </li>
-
-
-
-
-
         <!-- <li>
             <a href="{{ route('kafedra.index') }}"
                 class="side-menu side-menu{{ request()->is('kafedra') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
@@ -404,8 +405,6 @@
                 <div class="side-menu__title"> Kafedra </div>
             </a>
         </li> -->
-
-
 
         @endrole
 
@@ -431,13 +430,13 @@
                 <div class="side-menu__title"> Xo'jalik shartnomalari </div>
             </a>
         </li>
-        <!-- <li>
+        <li>
             <a href="{{ route('izlanuvchilar.index') }}"
                 class="side-menu side-menu{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                 <div class="side-menu__title">Ilmiy izlanuvchilar </div>
             </a>
-        </li> -->
+        </li>
         <li>
             <a href="{{ route('asbobuskuna.index') }}"
                 class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
@@ -595,6 +594,7 @@
         <!-- tugadi Itm lar uchun -->
 
         @role(['super-admin', 'test-uchun'])
+
         <li>
             <a href="{{ route('ilmiymaqolalars.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiymaqolalar*') ? '--active' : '' }}">
@@ -677,38 +677,3 @@
         </li>
     </ul>
 </nav>
-
-
-
-
-
-
-
-
-
-
-<!-- @role('super-admin')
-    <li>
-                <a href="{{ route('tashkilotlar.index') }}" class="side-menu side-menu{{ request()->is('tashkilotlar*') ? '--active' : '' }}">
-                    <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                    <div class="side-menu__title"> Tashkilotlar </div>
-                </a>
-            </li>
-@endrole  -->
-
-<!-- @role('super-admin')
-    <li>
-                <a href="{{ route('tashkilotrahbarilar.index') }}" class="side-menu side-menu{{ request()->is('tashkilotrahbarilar*') ? '--active' : '' }}">
-                    <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                    <div class="side-menu__title"> Tashkilotlar raxbarlar </div>
-                </a>
-            </li>
-@endrole  -->
-<!-- @role('super-admin')
-    <li>
-                <a href="{{ route('iqtisodiylar.index') }}" class="side-menu side-menu{{ request()->is('iqtisodiylar*') ? '--active' : '' }}">
-                    <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                    <div class="side-menu__title">Iqtisodiy Moliyaviy faoliyat </div>
-                </a>
-            </li>
-@endrole  -->

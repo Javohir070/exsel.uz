@@ -28,17 +28,13 @@ class IntellektualmulkController extends Controller
         return Excel::download(new IntellektualmulkExport, 'Intellektualmulk.xlsx');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('admin.intellektualmulk.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreIntellektualmulkRequest $request)
     {
 
@@ -69,25 +65,19 @@ class IntellektualmulkController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Intellektualmulk $intellektualmulk)
     {
         return view('admin.intellektualmulk.show', ['intellektualmulk' => $intellektualmulk]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Intellektualmulk $intellektualmulk)
     {
         return view('admin.intellektualmulk.edit', ['intellektualmulk' => $intellektualmulk]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(UpdateIntellektualmulkRequest $request, Intellektualmulk $intellektualmulk)
     {
         $request->validate([
@@ -116,9 +106,7 @@ class IntellektualmulkController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Intellektualmulk $intellektualmulk)
     {
         $intellektualmulk->delete();

@@ -29,9 +29,7 @@ class TashkilotController extends Controller
     //     $this->middleware('permission:update tashkilotlar', ['only' => ['update','edit']]);
     //     $this->middleware('permission:delete tashkilotlar', ['only' => ['destroy']]);
     // }
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $tashkilot = auth()->user()->tashkilot;
@@ -39,9 +37,7 @@ class TashkilotController extends Controller
         return view('admin.tashkilot.index', ['tashkilot' => $tashkilot]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('admin.tashkilot.create');
@@ -50,9 +46,7 @@ class TashkilotController extends Controller
     {
         return view('admin.tashkilot.qoshish');
     }
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreTashkilotRequest $request)
     {
         // $request->validate([
@@ -92,25 +86,19 @@ class TashkilotController extends Controller
         return redirect('/tashkilotlar')->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Tashkilot $tashkilot)
     {
         return view('admin.tashkilot.show', ['tashkilot' => $tashkilot]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Tashkilot $tashkilot)
     {
         return view('admin.tashkilot.edit', ['tashkilot' => $tashkilot]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, Tashkilot $tashkilot)
     {
         if ($request->hasFile('logo')) {
@@ -143,9 +131,7 @@ class TashkilotController extends Controller
         return redirect('/tashkilot');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Tashkilot $tashkilot)
     {
         $tashkilot->delete();

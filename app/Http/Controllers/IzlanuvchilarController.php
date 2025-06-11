@@ -14,9 +14,7 @@ use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 class IzlanuvchilarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $izlanuvchilar = Izlanuvchilar::where('laboratory_id', auth()->user()->laboratory_id)->where('is_active', 1)->paginate(20);
@@ -71,9 +69,7 @@ class IzlanuvchilarController extends Controller
         return redirect()->back()->with('status', 'Xujaliklar muvaffaqiyatli yangilandi!');
 
     }
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
@@ -129,12 +125,10 @@ class IzlanuvchilarController extends Controller
         return view("admin.izlanuvchilar.xujalik", ['lab_xujalik' => $lab_xujalik, 'labId' => $labId]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreIzlanuvchilarRequest $request)
     {
-  
+
 
         Izlanuvchilar::create([
             "user_id" => auth()->user()->id,
@@ -156,17 +150,13 @@ class IzlanuvchilarController extends Controller
         return redirect()->route("izlanuvchilar.index")->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Izlanuvchilar $izlanuvchilar)
     {
         return view("admin.izlanuvchilar.show", ["izlanuvchilar" => $izlanuvchilar]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Izlanuvchilar $izlanuvchilar)
     {
         $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
@@ -174,9 +164,7 @@ class IzlanuvchilarController extends Controller
         return view("admin.izlanuvchilar.edit", ["izlanuvchilar" => $izlanuvchilar, 'laboratorylar' => $laboratorylar, 'ilmiy_loyhalar' => $ilmiy_loyhalar]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(UpdateIzlanuvchilarRequest $request, Izlanuvchilar $izlanuvchilar)
     {
         $izlanuvchilar->update($request->toArray());
@@ -185,9 +173,7 @@ class IzlanuvchilarController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Izlanuvchilar $izlanuvchilar)
     {
         $izlanuvchilar->delete();
@@ -256,9 +242,9 @@ class IzlanuvchilarController extends Controller
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli qo\'shildi.');
     }
 
-    public function labId_biriktirish(Request $request, $id) 
+    public function labId_biriktirish(Request $request, $id)
     {
-        
+
         $izlanuvchilar = Izlanuvchilar::findOrFail($id);
         $izlanuvchilar -> laboratory_id = auth()->user()->laboratory_id;
         $izlanuvchilar -> status = $request->status;

@@ -15,9 +15,7 @@ use App\Imports\XodimlarImport;
 
 class XodimlarController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
 
 
 
@@ -28,9 +26,7 @@ class XodimlarController extends Controller
         return view('admin.xodimlar.index',['xodimlars'=>$xodimlar]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
@@ -38,9 +34,7 @@ class XodimlarController extends Controller
         return view('admin.xodimlar.create', ['laboratorylar'=> $laboratorylar]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StorelXodimlarRequest $request)
     {
         if($request->ish_tartibi == 'Soatbay'){
@@ -89,17 +83,13 @@ class XodimlarController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Xodimlar $xodimlar)
     {
         return view("admin.xodimlar.show",['xodimlar'=>$xodimlar]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Xodimlar $xodimlar)
     {
         $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
@@ -107,9 +97,7 @@ class XodimlarController extends Controller
         return view('admin.xodimlar.edit', ['xodimlar'=>$xodimlar, 'laboratorylar'=> $laboratorylar]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(UpdateXodimlarRequest $request, Xodimlar $xodimlar)
     {
         if($request->ish_tartibi == 'Soatbay'){
@@ -156,9 +144,7 @@ class XodimlarController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Xodimlar $xodimlar)
     {
         $xodimlar->delete();

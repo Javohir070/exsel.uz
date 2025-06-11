@@ -17,9 +17,7 @@ class IlmiyUnvonController extends Controller
         $this->middleware('permission:update role', ['only' => ['update','edit']]);
         $this->middleware('permission:delete role', ['only' => ['destroy']]);
     }
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $i_daraja = IlmiyUnvon::all();
@@ -27,17 +25,13 @@ class IlmiyUnvonController extends Controller
         return view('admin.ilmiyunvon.index', ['i_daraja'=>$i_daraja]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(Request $request)
     {
 
@@ -49,36 +43,28 @@ class IlmiyUnvonController extends Controller
             "kim_tom_berilgan" => $request->kim_tom_berilgan
         ]);
 
-        return redirect('ilmiyunvon')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.'); 
+        return redirect('ilmiyunvon')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(IlmiyUnvon $ilmiyUnvon)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(IlmiyUnvon $ilmiyUnvon)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, IlmiyUnvon $ilmiyUnvon)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(IlmiyUnvon $ilmiyunvon)
     {
         $ilmiyunvon->delete();

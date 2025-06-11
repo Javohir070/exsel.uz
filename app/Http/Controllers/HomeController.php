@@ -7,6 +7,7 @@ use App\Models\Asbobuskunaexpert;
 use App\Models\Dalolatnoma;
 use App\Models\Doktarantura;
 use App\Models\Doktaranturaexpert;
+use App\Models\Fakultetlar;
 use App\Models\IlmiybnTaminlanga;
 use App\Models\IlmiyLoyiha;
 use App\Models\Ilmiymaqolalar;
@@ -107,9 +108,9 @@ class HomeController extends Controller
         $ilmiy_loyhalar_rahbariga = IlmiyLoyiha::where('user_id', auth()->id())->count();
         $labaratoriyalar = Laboratory::count();
         $laboratory = auth()->user()->laboratory_id;
-        $izlanuvchilar = Izlanuvchilar::where('is_active', 1)->count();
+        $izlanuvchilar = Doktarantura::count();
         $labaratoriyalar_admin = Laboratory::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
-        $izlanuvchilar_admin = Izlanuvchilar::where("tashkilot_id",auth()->user()->tashkilot_id)->where("is_active",1)->count();
+        $izlanuvchilar_admin = Doktarantura::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
         $phd = [
             "Tayanch doktorantura, PhD",
             "Mustaqil tadqiqotchi, PhD",
@@ -141,8 +142,12 @@ class HomeController extends Controller
 
         $itm_count = Tashkilot::where('tashkilot_turi', 'itm')->count();
 
+        $fakultets = Fakultetlar::count();
+        $kafedras = Kafedralar::count();
 
         return view('admin.home', [
+            'fakultets' => $fakultets,
+            'kafedras' => $kafedras,
             'tekshirivchilar' => $tekshirivchilar,
             'tashkiot_haqida' => $tashkilot,
             'tashkilot_raxbaris' => $tashkilot_raxbari,

@@ -18,14 +18,14 @@ class DoktaranturaController extends Controller
 
     function importDoktaranturaData($stir)
     {
-        $tashkilot = Tashkilot::where('stir_raqami','=',$stir)->first();
+        $tashkilot = Tashkilot::where('stir_raqami', '=', $stir)->first();
         $url = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-list/{$stir}/";
         $sms_username = env('API_USERNAME', 'single_database_user2024@gmail.com');
         $sms_password = env('API_PASSWORD', '6qZFYRMI$ZRQ1lY@CUQcmJ5');
         do {
             $response = Http::withBasicAuth($sms_username, $sms_password)
-                        ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
-                        ->get($url);
+                ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
+                ->get($url);
 
             if ($response->failed()) {
                 throw new \Exception("API so'rovida xatolik: " . $response->status());
@@ -47,7 +47,7 @@ class DoktaranturaController extends Controller
                             'dc_type' => $item['dc_type'],
                             'admission_year' => $item['admission_year'],
                             'admission_quarter' => $item['admission_quarter'],
-                            'advisor' => $item['advisor']?? null,
+                            'advisor' => $item['advisor'] ?? null,
                             'course' => $item['course'],
                             'monitoring_1' => $item['monitoring_1'],
                             'monitoring_2' => $item['monitoring_2'],
@@ -66,14 +66,14 @@ class DoktaranturaController extends Controller
 
     function importIlmiyRahbarlarData($stir)
     {
-        $tashkilot = Tashkilot::where('stir_raqami','=',$stir)->first();
+        $tashkilot = Tashkilot::where('stir_raqami', '=', $stir)->first();
         $url = "https://api-phd.mininnovation.uz/api-monitoring/advisor-list-monitoring-statistics/{$stir}/";
         $sms_username = env('API_USERNAME', 'single_database_user2024@gmail.com');
         $sms_password = env('API_PASSWORD', '6qZFYRMI$ZRQ1lY@CUQcmJ5');
         do {
             $response = Http::withBasicAuth($sms_username, $sms_password)
-                        ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
-                        ->get($url);
+                ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
+                ->get($url);
 
             if ($response->failed()) {
                 throw new \Exception("API so'rovida xatolik: " . $response->status());
@@ -158,16 +158,16 @@ class DoktaranturaController extends Controller
         $course = $request->input('course');
         $dc_type = $request->input('dc_type');
         $doktaranturas = Doktarantura::where('tashkilot_id', $id)
-                ->when($querysearch, function ($query) use ($querysearch) {
-                    $query->where('full_name', 'like', '%' . $querysearch . '%');
-                })
-                ->when($dc_type, function ($query) use ($dc_type) {
-                    $query->where('dc_type', 'like', '%' . $dc_type . '%');
-                })
-                ->when($course, function ($query) use ($course) {
-                    $query->where('course', 'like', '%' . $course . '%');
-                })
-                ->paginate(50);
+            ->when($querysearch, function ($query) use ($querysearch) {
+                $query->where('full_name', 'like', '%' . $querysearch . '%');
+            })
+            ->when($dc_type, function ($query) use ($dc_type) {
+                $query->where('dc_type', 'like', '%' . $dc_type . '%');
+            })
+            ->when($course, function ($query) use ($course) {
+                $query->where('course', 'like', '%' . $course . '%');
+            })
+            ->paginate(50);
         return view('admin.doktarantura.show', [
             'tashkilot' => $tashkilot ?? null,
             'lab_izlanuvchilar' => $lab_izlanuvchilar ?? null,
@@ -259,7 +259,7 @@ class DoktaranturaController extends Controller
     {
         $tashkilotlar = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->paginate(30);
         if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
             foreach ($regions as $region) {
                 $doktarantura = $region->tashkilots()
                     ->where('doktarantura_is', 1)
@@ -278,12 +278,12 @@ class DoktaranturaController extends Controller
             $doktarantura_expert = Doktaranturaexpert::count();
         }
         return view('admin.doktarantura.viloyat', [
-                        'doktarantura_count_all' => $doktarantura_count_all,
-                        'doktarantura_expert' => $doktarantura_expert,
-                        'regions' => $regions,
-                        'doktarantura' => $doktarantura,
-                        'doktarantura_count'=>$doktarantura_count
-                    ]);
+            'doktarantura_count_all' => $doktarantura_count_all,
+            'doktarantura_expert' => $doktarantura_expert,
+            'regions' => $regions,
+            'doktarantura' => $doktarantura,
+            'doktarantura_count' => $doktarantura_count
+        ]);
     }
 
     public function tashkilot_turi_doktarantura($id)
@@ -316,13 +316,13 @@ class DoktaranturaController extends Controller
         $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->count();
 
         return view('admin.doktarantura.tashkilot_turi', [
-                        'results' => $results,
-                        'regions' => $regions,
-                        'doktarantura'=>$doktarantura,
-                        'doktarantura_expert'=>$doktarantura_expert,
-                        'doktarantura_count'=>$doktarantura_count,
-                        'doktarantura_count_all' => $doktarantura_count_all,
-                    ]);
+            'results' => $results,
+            'regions' => $regions,
+            'doktarantura' => $doktarantura,
+            'doktarantura_expert' => $doktarantura_expert,
+            'doktarantura_count' => $doktarantura_count,
+            'doktarantura_count_all' => $doktarantura_count_all,
+        ]);
     }
 
     public function search_dok(Request $request)
@@ -356,7 +356,7 @@ class DoktaranturaController extends Controller
 
         $doktarantura = Tashkilot::whereIn('id', $id)->count();
         if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
         } else {
             $regions = Region::orderBy('order')->get();
         }
@@ -375,7 +375,7 @@ class DoktaranturaController extends Controller
 
         $doktarantura->save();
 
-        return redirect()->back()->with('status','Ma\'lumotlar muvaffaqiyatli tahrirlandi.');
+        return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli tahrirlandi.');
     }
 
 
@@ -386,5 +386,34 @@ class DoktaranturaController extends Controller
         ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
         return Excel::download(new TashkilotDoktaranturaExport($tashkilotId), 'doktaranturalar.xlsx');
     }
+
+
+    public function doktaranturalar(Request $request)
+    {
+        $tashkilotId = auth()->user()->tashkilot_id;
+        $querysearch = $request->input('query');
+        $course = $request->input('course');
+        $dc_type = $request->input('dc_type');
+
+        $doktaranturas = Doktarantura::where('tashkilot_id', $tashkilotId)
+            ->when($querysearch, function ($query) use ($querysearch) {
+                $query->where('full_name', 'like', '%' . $querysearch . '%');
+            })
+            ->when($dc_type, function ($query) use ($dc_type) {
+                $query->where('dc_type', 'like', '%' . $dc_type . '%');
+            })
+            ->when($course, function ($query) use ($course) {
+                $query->where('course', 'like', '%' . $course . '%');
+            })
+            ->paginate(20);
+
+        $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', $tashkilotId)->get();
+
+        return view('admin.doktarantura.doktarantura', [
+            'doktaranturas' => $doktaranturas,
+            'ilmiyrahbarlars' => $ilmiyrahbarlars
+        ]);
+    }
+
 
 }

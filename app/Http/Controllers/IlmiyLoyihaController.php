@@ -23,9 +23,7 @@ use Illuminate\Support\Facades\Http;
 
 class IlmiyLoyihaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $tashRId = auth()->user()->tashkilot_id;
@@ -34,9 +32,7 @@ class IlmiyLoyihaController extends Controller
         return view('admin.ilmiyloyiha.index', ['ilmiyloyiha' => $ilmiyloyiha]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
@@ -53,9 +49,7 @@ class IlmiyLoyihaController extends Controller
         return view('admin.ilmiyloyiha.loyha_rahbari', ['ilmiy_loyhalar' => $ilmiy_loyhalar]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreIlmiyLoyihaRequest $request)
     {
         $umumiyyil = Umumiyyil::create([
@@ -101,9 +95,7 @@ class IlmiyLoyihaController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(IlmiyLoyiha $ilmiyloyiha, Request $request)
     {
         $scienceid = $request->scienceid ?? null;
@@ -153,9 +145,7 @@ class IlmiyLoyihaController extends Controller
     }
 
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(IlmiyLoyiha $ilmiyloyiha)
     {
         $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
@@ -164,9 +154,7 @@ class IlmiyLoyihaController extends Controller
         return view('admin.ilmiyloyiha.edit', ['ilmiyloyiha' => $ilmiyloyiha, 'tashkilots' => $tashkilots, 'laboratorylar' => $laboratorylar]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(UpdateIlmiyLoyihaRequest $request, IlmiyLoyiha $ilmiyloyiha)
     {
         // if ($request->hasFile('malumotnoma')) {
@@ -291,9 +279,7 @@ class IlmiyLoyihaController extends Controller
         return view("admin.ilmiyloyiha.masul", ['masullar' => $masullar]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(IlmiyLoyiha $ilmiyloyiha)
     {
         $ilmiyloyiha->delete();

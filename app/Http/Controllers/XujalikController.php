@@ -13,9 +13,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class XujalikController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $tashRId = auth()->user()->tashkilot_id;
@@ -23,18 +21,14 @@ class XujalikController extends Controller
         return view('admin.xujalik.index' ,['xujalik' => $xujalik]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
         return view('admin.xujalik.create',['laboratorylar'=> $laboratorylar]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreXujalikRequest $request)
     {
         if($request->hasFile('shartnoma_file')){
@@ -82,17 +76,13 @@ class XujalikController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(Xujalik $xujalik)
     {
         return view('admin.xujalik.show',['xujalik'=>$xujalik]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit(Xujalik $xujalik)
     {
         $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
@@ -100,9 +90,7 @@ class XujalikController extends Controller
         return view('admin.xujalik.edit',['xujalik'=>$xujalik, 'laboratorylar'=> $laboratorylar]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(StoreXujalikRequest $request, Xujalik $xujalik)
     {
         if($request->hasFile('shartnoma_file')){
@@ -147,9 +135,7 @@ class XujalikController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Xujalik $xujalik)
     {
         $xujalik->delete();

@@ -10,9 +10,7 @@ use Illuminate\Support\Facades\Cache;
 
 class TashkilotRahbariController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
     public function index()
     {
         $tashRId = auth()->user()->tashkilot_id;
@@ -20,17 +18,13 @@ class TashkilotRahbariController extends Controller
         return view('admin.tashkilotrahbari.index', ['tash_rahbar'=>$tash_rahbar]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+
     public function create()
     {
         return view('admin.tashkilotrahbari.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
+
     public function store(StoreTashkilotRahbariRequest $request)
     {
         TashkilotRahbari::create([
@@ -47,26 +41,20 @@ class TashkilotRahbariController extends Controller
         return redirect('/tashkilotrahbari')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
-    /**
-     * Display the specified resource.
-     */
+
     public function show(TashkilotRahbari $tashkilotrahbari)
     {
         return view('admin.tashkilotrahbari.show',['tashkilotrahbari'=>$tashkilotrahbari]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
+
     public function edit($tashkilotrahbari)
     {
         $tashkilot = TashkilotRahbari::find($tashkilotrahbari);
         return view('admin.tashkilotrahbari.edit',['tashkilot'=>$tashkilot]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
+
     public function update(Request $request, TashkilotRahbari $tashkilotrahbari)
     {
         $tashkilotrahbari->update([
@@ -84,13 +72,11 @@ class TashkilotRahbariController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(TashkilotRahbari $tashkilotrahbari)
     {
         $tashkilotrahbari->delete();
-        
+
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
 
     }

@@ -1,6 +1,7 @@
 <?php
 
 
+use App\Exports\TashkilotDoktaranturaExport;
 use App\Http\Controllers\AsbobuskunaController;
 use App\Http\Controllers\AsbobuskunaexpertController;
 use App\Http\Controllers\AsbobuskunafileController;
@@ -175,6 +176,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('responsible', [KafedralarController::class, "responsible_masullar"])->name("responsible.index");
     Route::get('kafedra', [KafedralarController::class, "kafedra"])->name("kafedra.index");
+    Route::get('kafedras', [KafedralarController::class, "kafedras"])->name("kafedras.index");
+    Route::get('fakultets', [FakultetlarController::class, "fakultets"])->name("fakultets.index");
     //labaratoriya uchun
     //super admin uchun
     Route::get('dalolatnomas', [DalolatnomaController::class, "dalolatnomas"])->name("dalolatnomas.index");
@@ -215,6 +218,8 @@ Route::middleware('auth')->group(function () {
     Route::get('ilmiy-izlanuvchi/{id}', [DoktaranturaController::class, 'ilmiyIzlanuvchi_show'])->name('ilmiyIzlanuvchi_show');
     Route::put('ilmiy-izlanuvchi/{id}/edit', [DoktaranturaController::class, 'update'])->name('ilmiyIzlanuvchi_edit');
     Route::put('ilmiy-rahbar/{id}/edit', [IlmiyrahbarlarController::class, 'update'])->name('ilmiyrahbar_edit');
+
+    Route::get('doktaranturalar', [DoktaranturaController::class, 'doktaranturalar'])->name('doktaranturalar');
 
     Route::resources([
         'tashkilot' => TashkilotController::class,
