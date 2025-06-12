@@ -14,7 +14,7 @@ class IntellektualmulkExport implements FromCollection, WithHeadings
     public function collection()
     {
         return Intellektualmulk::with('tashkilot')->get()->map(function ($intellektualmulk){
-            $url = asset('storage/' . $intellektualmulk->asoslovchi_hujjat);
+            // $url = asset('storage/' . $intellektualmulk->asoslovchi_hujjat);
             // JSON ma'lumotni massivga aylantirish
             // $mualaliflar = collect(json_decode($intellektualmulk->mualliflar_json))->map(function ($mualif) {
             //     return $mualif->name; // Har bir muallifning faqat ismini olish
@@ -27,7 +27,7 @@ class IntellektualmulkExport implements FromCollection, WithHeadings
                 'Chop qilingan yili' => $intellektualmulk->nashr_sana,
                 'Seriyasi/ soni' => $intellektualmulk->soni,
                 'Annotatsiya' => $intellektualmulk->annotatsiya,
-                'Fan yo‘nalishi' => $url,
+                'Fan yo‘nalishi' => $intellektualmulk->fan_yunalishi,
                 'Tashkilot turi' => $intellektualmulk->tashkilot->tashkilot_turi ?? "otm",
             ];
         });
