@@ -20,7 +20,7 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings
 
     public function collection()
         {
-            return Doktarantura::where('tashkilot_id', $this->tashkilotId)->get()->map(function($doktarantura) {
+            return Doktarantura::get()->map(function($doktarantura) {
                 return [
                     "id" => $doktarantura->id,
                     "Tashkilot" => $doktarantura->org_name,
@@ -35,6 +35,9 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings
                     "Monitoring 1" => $doktarantura->monitoring_1,
                     "Monitoring 2" => $doktarantura->monitoring_2,
                     "Monitoring 3" => $doktarantura->monitoring_3,
+                    "Yakka tartibdagi reja tasdiqlanganligi" => $doktarantura->reja_t,
+                    "Yakka tartibdagi rejani bajarganligi" => $doktarantura->reja_b,
+                    "Monitoring natijasi kiritilganligi" => $doktarantura->monitoring_natijasik,
                 ];
             });
         }
@@ -55,6 +58,9 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings
                 "Monitoring 1",
                 "Monitoring 2",
                 "Monitoring 3",
+                "Yakka tartibdagi reja tasdiqlanganligi",
+                "Yakka tartibdagi rejani bajarganligi",
+                "Monitoring natijasi kiritilganligi",
             ];
         }
 }
