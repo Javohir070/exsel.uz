@@ -58,6 +58,9 @@
                                             <a href="{{ url('doktarantura/'.$id.'/export') }}" class="button ml-3 w-24 bg-theme-1 text-white">
                                                 Export
                                             </a>
+                                            <a href="{{ route('exportDoktaranturaexpert') }}" class="button ml-3 w-24 bg-theme-1 text-white">
+                                                Export xulosa
+                                            </a>
                                         </td>
                                     </tr>
                                     @endrole

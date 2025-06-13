@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\DoktaranturaexpertExport;
 use App\Exports\TashkilotDoktaranturaExport;
 use App\Models\Doktaranturaexpert;
 use App\Models\Ilmiyrahbarlar;
@@ -384,7 +385,17 @@ class DoktaranturaController extends Controller
     {
         ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
         ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+
         return Excel::download(new TashkilotDoktaranturaExport($tashkilotId), 'doktaranturalar.xlsx');
+    }
+
+
+    public function exportDoktaranturaexpert()
+    {
+        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+
+        return Excel::download(new DoktaranturaexpertExport(), 'monitoring_doktarantura.xlsx');
     }
 
 

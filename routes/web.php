@@ -220,7 +220,7 @@ Route::middleware('auth')->group(function () {
     Route::put('ilmiy-rahbar/{id}/edit', [IlmiyrahbarlarController::class, 'update'])->name('ilmiyrahbar_edit');
 
     Route::get('doktaranturalar', [DoktaranturaController::class, 'doktaranturalar'])->name('doktaranturalar');
-
+    Route::get('/doktarantura/export', [DoktaranturaController::class, 'exportDoktaranturaexpert']);
     Route::resources([
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,
@@ -260,6 +260,7 @@ Route::middleware('auth')->group(function () {
     ]);
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
     Route::get('/doktarantura/{id}/export', [DoktaranturaController::class, 'exportDoktarantura']);
+
     Route::get('/ilmiyrahbarlar/{id}/export', [IlmiyrahbarlarController::class, 'exportIlmiyrahbarlar']);
 });
 Route::group(['middleware' => ['role:super-admin|admin|Ekspert']], function () {

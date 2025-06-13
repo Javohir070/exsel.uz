@@ -4,8 +4,9 @@ namespace App\Exports;
 
 use App\Models\Doktaranturaexpert;
 use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class DoktaranturaexpertExport implements FromCollection
+class DoktaranturaexpertExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
@@ -37,4 +38,31 @@ class DoktaranturaexpertExport implements FromCollection
             ];
         });
     }
+
+
+    public function headings(): array
+      {
+          return [
+                'id',
+                "Tashkilot nomi",
+                "Tashkilot buyrug‘i asosida qabul qilingan umumiy izlanuvchilar soni.",
+                "Yagona elektron tizimdagi tahsil olayotgan izlanuvchilar soni.",
+                "Chetlashtirilgan izlanuvchilar soni.",
+                "Akademik ta’tildagi izlanuvchilar soni.",
+                "Muddatidan oldin himoya qilgan izlanuvchilar soni.",
+                "Yagona elektron tizimga kiritilmagan izlanuvchilar soni",
+                "Yakka tartibdagi rejani bajarmagan izlanuvchilar soni ",
+                "Monitoring natijasi kiritilmagan izlanuvchilar soni ",
+                "Tashkilot izlanuvchilari biriktirilgan ilmiy rahbarlar soni ",
+                "Qo‘shimcha izlanuvchi biriktirish bo‘yicha kollegial organ qarori mavjud bo'lmagan ilmiy rahbarlar soni ",
+                "Me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni ",
+                "Tashkilot miqyosida me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni ",
+                "Ekspert xulosasi",
+                "Izoh",
+                "Ishchi guruh rahbari F.I.Sh",
+                "Ishchi guruh azosi F.I.Sh" ,
+                "Ekspert F.I.Sh",
+                "Tashkilotning mas'ul rahbari  F.I.Sh",
+          ];
+      }
 }
