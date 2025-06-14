@@ -306,10 +306,12 @@ class IlmiyLoyihaController extends Controller
             $loy_expert = Tekshirivchilar::where('is_active',1)->count();
             $tashkilots =Tashkilot::where('ilmiyloyiha_is', 1)->count();
         }
+        $loyha_count = IlmiyLoyiha::count();
         return view('admin.ilmiyloyiha.viloyat', [
                         'loy_count' => $loy_count,
                         'loy_expert' => $loy_expert,
                         'regions' => $regions,
+                        'loyha_count'=>$loyha_count,
                         'tashkilots'=>$tashkilots
                     ]);
     }
@@ -342,7 +344,14 @@ class IlmiyLoyihaController extends Controller
         $loy_count = IlmiyLoyiha::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
         $loy_expert = Tekshirivchilar::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
 
-        return view('admin.ilmiyloyiha.tashkilot_turi',['results' => $results, 'regions'=>$regions, 'tashkilots'=>$tashkilots, 'loy_count'=>$loy_count, 'loy_expert'=>$loy_expert]);
+
+        return view('admin.ilmiyloyiha.tashkilot_turi',[
+            'results' => $results,
+            'regions'=>$regions,
+            'tashkilots'=>$tashkilots,
+            'loy_count'=>$loy_count,
+            'loy_expert'=>$loy_expert,
+        ]);
     }
 
     public function search_ilmiy_loyhalar(Request $request)
@@ -386,9 +395,14 @@ class IlmiyLoyihaController extends Controller
 
     public function ilmiy_loyihalar($id)
     {
-        $tashkilot = Tashkilot::findOrFail($id);
+        $tashkilot = Tashkilot::findOrFail($id = null);
         $ilmiyloyihalar = IlmiyLoyiha::where('is_active', 1)->where('tashkilot_id', '=',$id)->paginate(20);
         return view('admin.ilmiyloyiha.ilmiyloyihalar', ['ilmiyloyihalar' => $ilmiyloyihalar, 'tashkilot' => $tashkilot]);
+    }
+
+    public function ilmiy_loyihalar_all(){
+        $ilmiyloyihalar = IlmiyLoyiha::paginate(20);
+        return view('admin.ilmiyloyiha.ilmiyloyihalar', ['ilmiyloyihalar' => $ilmiyloyihalar]);
     }
     public function exportilmiy()
     {

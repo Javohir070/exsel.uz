@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-10">
 
-            <h2 class="intro-y text-lg font-medium"> {{ $tashkilot->name }}</h2>
+            <h2 class="intro-y text-lg font-medium"> {{ $tashkilot->name ?? "Ilmiy loyihalar" }}</h2>
 
             <div class="intro-x relative mr-3 sm:mr-6">
                 <div class="search hidden sm:block">

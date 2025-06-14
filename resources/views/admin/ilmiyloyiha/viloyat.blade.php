@@ -46,6 +46,22 @@
                                 </div>
                             </div>
 
+                            <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                                <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                                    <a href="{{ route('ilmiy_loyihalar_all.index') }}">
+                                        <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                            <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
+                                                <i data-feather="list" class="report-box__icon text-theme-3" ></i>
+                                            </div>
+                                            <div class="w-2/4 flex-none">
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $loyha_count }}</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
 
                             <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
                                 <div class="intro-y block sm:flex items-center py-4">
