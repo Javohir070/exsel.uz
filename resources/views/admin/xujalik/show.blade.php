@@ -1,31 +1,34 @@
 @extends('layouts.admin')
 
 @section('content')
+
     <div class="content">
-        <div class="flex justify-between align-center mt-10">
+        <div class="flex justify-between align-center mt-6 mb-6">
 
             <h2 class="intro-y text-lg font-medium">{{ $xujalik->tashkilot->name_qisqachasi }} Xujalik loyhila ma’lumot</h2>
 
             @role(['super-admin', 'Xujalik_shartnomalari'])
-                <a href="{{ route('xujaliklar.index') }}" class="button w-24 bg-theme-1 text-white">
-                    Orqaga
-                </a>
+            <a href="{{ route('xujaliklar.index') }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
             @endrole
             @role('admin')
-                <a href="{{ route('xujalik.index') }}" class="button w-24 bg-theme-1 text-white">
-                    Orqaga
-                </a>
+            <a href="{{ route('xujalik.index') }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
             @endrole
             @role('Itm-tashkilotlar')
-                <a href="{{ route('itm.xujalik') }}" class="button w-24 bg-theme-1 text-white">
-                    Orqaga
-                </a>
+            <a href="{{ route('itm.xujalik') }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
             @endrole
 
         </div>
+
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
+
         <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
             <table class="table">
                 <tbody>
@@ -173,16 +176,6 @@
             </table>
         </div>
 
-
-
-
-
     </div>
 
-
-
-
-
-
-    </div>
 @endsection

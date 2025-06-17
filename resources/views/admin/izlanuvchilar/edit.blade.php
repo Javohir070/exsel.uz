@@ -3,16 +3,16 @@
 @section('content')
 
 
-<div class="flex justify-between align-center mt-10">
+<div class="flex justify-between align-center mt-6 mb-6">
 
     <h2 class="intro-y text-lg font-medium">Izlanuvchini tahrirlash</h2>
 
 
 
-</div><br>
+</div>
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
     padding: 20px 20px;
-    border-radius: 20px">
+    border-radius: 4px">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
         <form id="science-paper-create-form" method="POST" action="{{ route("izlanuvchilar.update",['izlanuvchilar'=>$izlanuvchilar->id]) }}" class="validate-form"
             enctype="multipart/form-data" novalidate="novalidate">
@@ -37,7 +37,7 @@
                     @error('jshshir')
                         <div class="error">{{ $message }}</div>
                     @enderror
-                </div> 
+                </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -114,7 +114,7 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
-        
+
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row">  Dissertatsiya mavzusi
                     </label>
@@ -123,7 +123,7 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
-               
+
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telefon raqami
@@ -137,7 +137,7 @@
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihada ishtiroki
-                        
+
                     </label>
                     <select name="loyihada_ishtiroki" value="{{ $izlanuvchilar->loyihada_ishtiroki }}" id="ish_tartibi"  id="science-sub-category" class="input border w-full mt-2" required="">
 
@@ -163,7 +163,7 @@
                                 <option value="{{ $ilmiy_loyha->raqami }}">{{ $ilmiy_loyha->mavzusi }}</option>
                             @endforeach
                                 <option value="">yo'q</option>
-    
+
                         </select><br>
                     @error('stir')
                         <div class="error">{{ $message }}</div>
@@ -186,8 +186,8 @@
                 </div>
             </div>
 
-        </form><br>
-        <div class="px-5 pb-5 text-center">
+        </form>
+        <div class="px-5 pb-5 text-center mt-4">
             <a href="{{ route('izlanuvchilar.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </a>
@@ -197,13 +197,13 @@
             </button>
         </div>
     </div>
-</div><br>
+</div>
 
 <script type="text/javascript">
     document.getElementById('ish_tartibi').addEventListener('change', function() {
         var selectedOption = this.value;
         var orindoshlikInput = document.getElementById('orindoshlik-input');
-        
+
         if (selectedOption === 'ha') {
             orindoshlikInput.style.display = 'block'; // Inputni ko'rsatish
         } else {
@@ -218,17 +218,17 @@
         var selectedOption = this.value;
         var ilmiyUnvonInput = document.getElementById('ilmiy-unvon-input');
         var validOptions = [
-            "Professor", 
-            "Dotsent", 
-            "Katta ilmiy xodim", 
+            "Professor",
+            "Dotsent",
+            "Katta ilmiy xodim",
             "Akademik"
         ];
-        
+
         if (validOptions.includes(selectedOption)) {
             ilmiyUnvonInput.style.display = 'block'; // Inputni ko'rsatish
         } else {
             ilmiyUnvonInput.style.display = 'none';  // Inputni yashirish
-            
+
         }
     });
 </script>
@@ -238,7 +238,7 @@
     var startYear = 2010;
     var endYear = 2024;
 
-    
+
 
     // Barcha class nomi 'science-sub-category' bo'lgan select elementlarini olish
     var selects = document.getElementsByClassName('science-sub-categoryyil');

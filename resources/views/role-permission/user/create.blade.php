@@ -1,6 +1,6 @@
 @extends("layouts.admin")
 @section("content")
-    <div class="flex justify-between align-center mt-10">
+    <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">Kafedra mudirini biriktirish</h2>
 
@@ -19,7 +19,7 @@
 
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
         padding: 20px 20px;
-        border-radius: 20px">
+            border-radius: 4px">
         @if ($errors->any())
             <ul class="alert alert-warning">
                 @foreach ($errors->all() as $error)
@@ -183,9 +183,8 @@
                     @role('admin')
                     <input type="hidden" name="tashkilot_id" value="{{ auth()->user()->tashkilot->id }}">
                     @endrole
-                </div><br>
-            </form><br>
-            <div class="px-5 pb-5 text-center">
+                </div>
+            </form><div class="px-5 pb-5 text-center mt-4">
                 <a href="#" class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
                 </a>

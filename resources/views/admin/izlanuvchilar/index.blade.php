@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content">
-        <div class="flex justify-between align-center mt-10">
+        <div class="flex justify-between align-center mt-6 mb-6">
 
             <h2 class="intro-y text-lg font-medium">Ilmiy izlanuvchilar </h2>
 
@@ -251,7 +251,7 @@
 
 
             </div>
-            <div class="px-5 pb-5 text-center">
+            <div class="px-5 pb-5 text-center mt-4">
 
 
                 <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">

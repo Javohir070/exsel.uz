@@ -97,19 +97,8 @@
                                     <div class="flex justify-center items-center">
 
                                         <a class="flex science-update-action items-center mr-3"
-                                            href="{{ route('ilmiy_loyihalar.index', ['id' => $tashkilots->id]) }}"
-                                            data-id="2978" data-name="sdfd"
-                                            data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
-                                            data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66"
-                                            data-date="None" data-doi="" data-publisher="" data-description="None"
-                                            data-authors-count="None" data-toggle="modal"
-                                            data-target="#science-paper-update-modal">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" class="feather feather-check-square w-4 h-4 mr-1">
-                                                <polyline points="9 11 12 14 22 4"></polyline>
-                                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                                            </svg>
+                                            href="{{ route('ilmiy_loyihalar.index', ['id' => $tashkilots->id]) }}">
+                                            <i data-feather="eye"  class="feather feather-check-square w-4 h-4 mr-1"></i>
                                             Ko'rish
                                         </a>
                                     </div>
@@ -155,7 +144,7 @@
 
 
             </div>
-            <div class="px-5 pb-5 text-center">
+            <div class="px-5 pb-5 text-center mt-4">
 
 
                 <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">

@@ -145,6 +145,12 @@ class HomeController extends Controller
         $fakultets = Fakultetlar::count();
         $kafedras = Kafedralar::count();
 
+        $ilmiymaqolalars = Ilmiymaqolalar::count();
+        $ilmiytezislars = Ilmiytezislar::count();
+        $intellektualmulks = Intellektualmulk::count();
+        $dalolatnomas = Dalolatnoma::count();
+        $monografiyalars = Monografiyalar::count();
+
         return view('admin.home', [
             'fakultets' => $fakultets,
             'kafedras' => $kafedras,
@@ -196,6 +202,11 @@ class HomeController extends Controller
             'stajirovka_count' => $stajirovka_count,
             'asboblar_count' => $asboblar_count,
             'itm_count' => $itm_count,
+            "ilmiymaqolalars" => $ilmiymaqolalars,
+            "ilmiytezislars" => $ilmiytezislars,
+            "intellektualmulks" => $intellektualmulks,
+            "dalolatnomas" => $dalolatnomas,
+            "monografiyalars" => $monografiyalars,
 
         ]);
     }

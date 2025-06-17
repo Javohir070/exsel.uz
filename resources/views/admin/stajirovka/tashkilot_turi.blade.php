@@ -22,14 +22,14 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $tashkilots }}</div>
+                                            {{ $tashkilots }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar</div>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -42,7 +42,8 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $stajirovka_count }}/{{ $stajirovka_expert }}</div>
+                                            {{ $stajirovka_count }}/{{ $stajirovka_expert }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy stajirovka</div>
                                     </div>
                                 </div>

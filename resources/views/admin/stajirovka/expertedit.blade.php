@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="content">
-        <div class="flex justify-between align-center mt-10">
+        <div class="flex justify-between align-center mt-6 mb-6">
 
             <h2 class="intro-y text-lg font-medium">{{ $stajirovka->fish }}</h2>
             @role('super-admin')
@@ -17,6 +17,7 @@
             </a>
             @endrole
         </div>
+
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
@@ -42,7 +43,7 @@
                     </div>
                     <tr>
                         <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>
-                                        <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
+                                                <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
                         <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">Ma’lumot</th>
                     </tr>
                     <tr class="bg-gray-200">
@@ -122,19 +123,22 @@
 
 
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-            style="background: white; padding: 20px 20px; border-radius: 20px">
+            style="background: white; padding: 20px 20px; border-radius: 4px">
             <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                <form id="science-paper-create-form" method="POST" action="{{ route('stajirovkaexpert.update', $stajirovkaexpert->id) }}"
-                    class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                <form id="science-paper-create-form" method="POST"
+                    action="{{ route('stajirovkaexpert.update', $stajirovkaexpert->id) }}" class="validate-form"
+                    enctype="multipart/form-data" novalidate="novalidate">
                     @csrf
                     @method('PUT')
                     <div class="grid grid-cols-12 gap-2">
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy hisobot taqdim etilganligi (Pdf)
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy hisobot taqdim etilganligi
+                                (Pdf)
                             </label>
-                            <select name="ilmiy_hisobot" id="science-sub-category" class="input border w-full mt-2" required>
+                            <select name="ilmiy_hisobot" id="science-sub-category" class="input border w-full mt-2"
+                                required>
                                 <option value="">Status tanlang</option>
                                 <option value="Taqdim etilgan" {{ (old('ilmiy_hisobot', $stajirovkaexpert->ilmiy_hisobot ?? '') == 'Taqdim etilgan') ? 'selected' : '' }}>Taqdim etilgan</option>
                                 <option value="Taqdim etilmagan" {{ (old('ilmiy_hisobot', $stajirovkaexpert->ilmiy_hisobot ?? '') == 'Taqdim etilmagan') ? 'selected' : '' }}>Taqdim etilmagan</option>
@@ -149,10 +153,12 @@
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Stajirovka davrida egallangan bilim va ko'nikmalarni amalga oshirilishi uchun
-                                    zarur shart-sharoitlar yaratilganligi. (Asoslantiruvchi hujjatlar, rasm va videolar, zip)
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Stajirovka davrida egallangan
+                                bilim va ko'nikmalarni amalga oshirilishi uchun
+                                zarur shart-sharoitlar yaratilganligi. (Asoslantiruvchi hujjatlar, rasm va videolar, zip)
                             </label>
-                            <select name="egallangan_bilim" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="egallangan_bilim" id="science-sub-category" class="input border w-full mt-2"
+                                required="">
 
                                 <option value=""></option>
 
@@ -169,16 +175,19 @@
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy-tadqiqot ishlari natijalari bo'yicha xorijiy ilmiy anjumanlarda ma'ruza
-                                    bilan ishtirok etganligi. (Asoslantiruvchi hujjatlar, rasm va videolar hamda havolalar, zip)
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy-tadqiqot ishlari
+                                natijalari bo'yicha xorijiy ilmiy anjumanlarda ma'ruza
+                                bilan ishtirok etganligi. (Asoslantiruvchi hujjatlar, rasm va videolar hamda havolalar, zip)
                             </label>
-                            <select name="ishlar_natijalari" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="ishlar_natijalari" id="science-sub-category" class="input border w-full mt-2"
+                                required="">
 
                                 <option value=""></option>
 
                                 <option value="Ijobiy" {{ (old('ishlar_natijalari', $stajirovkaexpert->ishlar_natijalari ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
                                 <option value="Yetarli" {{ (old('ishlar_natijalari', $stajirovkaexpert->ishlar_natijalari ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
-                                <option value="Mavjud emas" {{ (old('ishlar_natijalari', $stajirovkaexpert->ishlar_natijalari ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
+                                <option value="Mavjud emas" {{ (old('ishlar_natijalari', $stajirovkaexpert->ishlar_natijalari ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud
+                                    emas</option>
 
 
                             </select><br>
@@ -190,16 +199,21 @@
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xalqaro tan olingan ma'lumotlar bazasidagi yetakchi ilmiy jurnallarda nashr
-                                    qilinganligi. (Pdf)
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xalqaro tan olingan ma'lumotlar
+                                bazasidagi yetakchi ilmiy jurnallarda nashr
+                                qilinganligi. (Pdf)
                             </label>
-                            <select name="xalqarotan_jur_nashr" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="xalqarotan_jur_nashr" id="science-sub-category" class="input border w-full mt-2"
+                                required="">
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy" {{ (old('xalqarotan_jur_nashr', $stajirovkaexpert->xalqarotan_jur_nashr ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
-                                <option value="Yetarli" {{ (old('xalqarotan_jur_nashr', $stajirovkaexpert->xalqarotan_jur_nashr ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
-                                <option value="Mavjud emas" {{ (old('xalqarotan_jur_nashr', $stajirovkaexpert->xalqarotan_jur_nashr ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
+                                <option value="Ijobiy" {{ (old('xalqarotan_jur_nashr', $stajirovkaexpert->xalqarotan_jur_nashr ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy
+                                </option>
+                                <option value="Yetarli" {{ (old('xalqarotan_jur_nashr', $stajirovkaexpert->xalqarotan_jur_nashr ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli
+                                </option>
+                                <option value="Mavjud emas" {{ (old('xalqarotan_jur_nashr', $stajirovkaexpert->xalqarotan_jur_nashr ?? '') == 'Mavjud emas') ? 'selected' : '' }}>
+                                    Mavjud emas</option>
 
 
                             </select><br>
@@ -211,12 +225,16 @@
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Kamida bir yil davomida Agentlik tomonidan tashkil etiladigan va boshqa
-                                    tadbirlarda stajirovka davrida to'plangan tajribalar va olgan bilim va ko'nikmalari borasida o'z
-                                    fikr va mulohazalarini bayon etilganligi tafsiloti. (Asoslantiruvchi hujjatlar, rasm va videolar
-                                    hamda havolalar, zip)
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Kamida bir yil davomida Agentlik
+                                tomonidan tashkil etiladigan va boshqa
+                                tadbirlarda stajirovka davrida to'plangan tajribalar va olgan bilim va ko'nikmalari borasida
+                                o'z
+                                fikr va mulohazalarini bayon etilganligi tafsiloti. (Asoslantiruvchi hujjatlar, rasm va
+                                videolar
+                                hamda havolalar, zip)
                             </label>
-                            <select name="biryil_davomida" id="science-sub-category" class="input border w-full mt-2" required>
+                            <select name="biryil_davomida" id="science-sub-category" class="input border w-full mt-2"
+                                required>
                                 <option value=""></option>
                                 <option value="Ijobiy" {{ (old('biryil_davomida', $stajirovkaexpert->biryil_davomida ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
                                 <option value="Yetarli" {{ (old('biryil_davomida', $stajirovkaexpert->biryil_davomida ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
@@ -231,14 +249,17 @@
                         <div class="w-full col-span-6 ">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ekspert F.I.Sh</label>
-                            <input type="text" name="ekspert_fish" value="{{ $stajirovkaexpert->ekspert_fish }}"  class="input w-full border mt-2" required>
+                            <input type="text" name="ekspert_fish" value="{{ $stajirovkaexpert->ekspert_fish }}"
+                                class="input w-full border mt-2" required>
                         </div>
 
                         <div class="w-full col-span-6 ">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotning mas'ul rahbari  F.I.Sh</label>
-                                    <input type="hidden" name="holati" value="1">
-                            <input type="text" name="t_masul" value="{{ $stajirovkaexpert->t_masul }}"  class="input w-full border mt-2" required>
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotning mas'ul rahbari
+                                F.I.Sh</label>
+                            <input type="hidden" name="holati" value="1">
+                            <input type="text" name="t_masul" value="{{ $stajirovkaexpert->t_masul }}"
+                                class="input w-full border mt-2" required>
                         </div>
 
                         <div class="w-full col-span-6">
@@ -261,13 +282,16 @@
                         <div class="w-full col-span-6 ">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
-                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5">{{ $stajirovkaexpert->comment }}</textarea>
+                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5"
+                                rows="5">{{ $stajirovkaexpert->comment }}</textarea>
                         </div>
                     </div>
 
-                </form><br>
-                <div class="px-5 pb-5 text-center">
-                    <a href="{{ route('stajirovka.show', ['stajirovka'=>$stajirovkaexpert->stajirovka_id]) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                </form>
+
+                <div class="px-5 pb-5 text-center mt-4">
+                    <a href="{{ route('stajirovka.show', ['stajirovka' => $stajirovkaexpert->stajirovka_id]) }}"
+                        class="button delete-cancel w-32 border text-gray-700 mr-1">
                         Bekor qilish
                     </a>
                     <button type="submit" form="science-paper-create-form"
@@ -275,11 +299,10 @@
                         Tasdiqlash
                     </button>
                 </div>
+
             </div>
         </div>
 
-
     </div>
-
 
 @endsection

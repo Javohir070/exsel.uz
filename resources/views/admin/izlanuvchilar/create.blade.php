@@ -1,17 +1,17 @@
 @extends('layouts.admin')
 
 @section('content')
-    <div class="flex justify-between align-center mt-10">
+    <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">Ilmiy izlanuvchi qo'shish</h2>
 
 
 
-    </div><br>
+    </div>
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
         style="background: white;
     padding: 20px 20px;
-    border-radius: 20px">
+    border-radius: 4px">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <form id="science-paper-create-form" id="phone-form" method="POST" action="{{ route('izlanuvchilar.store') }}"
                 class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
@@ -171,13 +171,13 @@
                         {{-- <input type="number" name="stir" value="{{ old('stir') }}"
                             class="input w-full border mt-2" > --}}
                             <select name="stir" value="{{old('stir')}}"  class="input border w-full mt-2" >
-    
+
                                 <option value="">laboratoriyani  tanlang</option>
                                 @foreach ($ilmiy_loyhalar as $ilmiy_loyha)
                                     <option value="{{ $ilmiy_loyha->raqami }}">{{ $ilmiy_loyha->mavzusi }}</option>
                                 @endforeach
                                     <option value="">yo'q</option>
-        
+
                             </select><br>
                         @error('stir')
                             <div class="error">{{ $message }}</div>
@@ -186,21 +186,20 @@
                     <div class="w-full col-span-6 " >
                         <label class="flex flex-col sm:flex-row">   Laboratoriyani tanlang</label>
                         <select name="laboratory_id" value="{{old('laboratory_id')}}"  class="input border w-full mt-2" >
-    
+
                             <option value="">laboratoriyani  tanlang</option>
                             @foreach ($laboratorylar as $laboratory)
                                 <option value="{{ $laboratory->id }}">{{ $laboratory->name }}</option>
                             @endforeach
                                 <option value="">yo'q</option>
-    
+
                         </select><br>
                         @error('laboratory_id')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
-            </form><br>
-            <div class="px-5 pb-5 text-center">
+            </form><div class="px-5 pb-5 text-center mt-4">
                 <a href="{{ route('izlanuvchilar.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
                 </a>
@@ -210,7 +209,7 @@
                 </button>
             </div>
         </div>
-    </div><br>
+    </div>
 
     <script type="text/javascript">
         document.getElementById('ish_tartibi').addEventListener('change', function() {

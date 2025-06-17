@@ -16,7 +16,9 @@
                 Orqaga
             </a>
             @endrole
+            
         </div>
+
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
@@ -42,7 +44,7 @@
                     </div>
                     <tr>
                         <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>
-                                        <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
+                                                <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
                         <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">Asbob-uskuna
                             haqida ma’lumot</th>
                     </tr>
@@ -115,7 +117,8 @@
                         <th class="border">F.I.Sh</th>
                     </tr>
                     <tr>
-                        <td class="border">{{  $asbobuskuna->laboratory->name ?? null }} {{$asbobuskuna->kafedralar->name ?? null }}
+                        <td class="border">{{  $asbobuskuna->laboratory->name ?? null }}
+                            {{$asbobuskuna->kafedralar->name ?? null }}
 
                         </td>
                         <td class="border">{{ $asbobuskuna->fish  }}</td>
@@ -183,10 +186,10 @@
                         <div style="text-align: center;display: flex;">
                             @role(['Ekspert'])
                             @if ($tekshirivchilar->holati == 'yuborildi')
-                            <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}"
-                                class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
-                                Eksport
-                            </a>
+                                <a href="{{ url('generate-pdfasbobuskuna/' . $asbobuskuna->id) }}"
+                                    class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
+                                    Eksport
+                                </a>
                                 <form action="{{ route('asbobuskunaexpert.update', $tekshirivchilar->id) }}" method="POST"
                                     onsubmit="return confirm('Haqiqatan ham rad etasizmi?');">
                                     @csrf
@@ -350,7 +353,7 @@
         @empty
             @role(['Ishchi guruh azosi'])
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-                style="background: white; padding: 20px 20px; border-radius: 20px">
+                style="background: white; padding: 20px 20px; border-radius: 4px">
                 <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                     <form id="science-paper-create-form" method="POST" action="{{ route('asbobuskunaexpert.store') }}"
                         class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
@@ -549,7 +552,8 @@
 
                                     <option value=""></option>
 
-                                    <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish talab etiladi</option>
+                                    <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish talab etiladi
+                                    </option>
 
                                     <option value="Ijobiy">Ijobiy</option>
 
@@ -572,8 +576,8 @@
 
                         </div>
 
-                    </form><br>
-                    <div class="px-5 pb-5 text-center">
+                    </form>
+                    <div class="px-5 pb-5 text-center mt-4">
                         <a href="#" class="button delete-cancel w-32 border text-gray-700 mr-1">
                             Bekor qilish
                         </a>

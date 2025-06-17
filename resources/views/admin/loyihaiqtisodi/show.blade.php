@@ -2,14 +2,14 @@
 
 @section('content')
 
-    <div class="flex justify-between align-center mt-10">
+    <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">intellektual qo'shish</h2>
 
-    </div><br>
+    </div>
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
             padding: 20px 20px;
-            border-radius: 20px">
+            border-radius: 4px">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <div class="grid grid-cols-12 gap-2">
 

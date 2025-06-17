@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content">
-        <div class="flex justify-between align-center mt-10">
+        <div class="flex justify-between align-center mt-6 mb-6">
 
             <h2 class="intro-y text-lg font-medium">Ilmiy izlanuvchilar </h2>
 
@@ -112,7 +112,7 @@
                             </td>
                             <td class="table-report__action w-56">
                                 @if ($xodimlar->is_active == 0)
-                                    
+
                                 <div class="flex justify-center items-center">
                                     <button type="submit" form="science-paper-edit-form{{$xodimlar->id}}"
                                         class="update-confirm button w-24 bg-theme-1 text-white">
@@ -138,5 +138,5 @@
 
     </div>
     </div>
-  
+
 @endsection

@@ -3,16 +3,18 @@
 @section('content')
 
 
-    <div class="flex justify-between align-center mt-10">
+    <div class="flex justify-between align-center mt-6 mb-6">
 
-        <h2 class="intro-y text-lg font-medium">Labaratoriya tahrirlash</h2>
+        <h2 class="intro-y text-lg font-medium">Kafedralar tahrirlash</h2>
 
+        <a href="{{ route('kafedralar.index') }}" class="button w-24 bg-theme-1 text-white">
+            Orqaga
+        </a>
 
-
-    </div><br>
+    </div>
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
-        padding: 20px 20px;
-        border-radius: 20px">
+            padding: 20px 20px;
+                border-radius: 4px">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <form id="science-paper-create-form" method="POST"
                 action="{{ route("kafedralar.update", ['kafedralar' => $kafedralar->id]) }}" class="validate-form"
@@ -55,9 +57,9 @@
                     </div>
 
 
-                </div><br>
-            </form><br>
-            <div class="px-5 pb-5 text-center">
+                </div>
+            </form>
+            <div class="px-5 pb-5 text-center mt-4">
                 @if (auth()->user()->hasRole('labaratoriyaga_masul'))
                     <a href="{{ route('laboratoriya.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
                         Bekor qilish

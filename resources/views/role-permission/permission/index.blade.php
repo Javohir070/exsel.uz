@@ -1,6 +1,6 @@
 @extends("layouts.admin")
 @section("content")
-<div class="flex justify-between align-center mt-10">
+<div class="flex justify-between align-center mt-6 mb-6">
 
 <h2 class="intro-y text-lg font-medium">Permissions </h2>
 

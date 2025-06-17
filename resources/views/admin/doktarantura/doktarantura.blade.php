@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content">
-        <div class="flex justify-between align-center mt-10 mb-3">
+        <div class="flex justify-between align-center mt-6 mb-6 mb-3">
 
             <h2 class="intro-y text-lg font-medium">{{ auth()->user()->tashkilot->name }}</h2>
 

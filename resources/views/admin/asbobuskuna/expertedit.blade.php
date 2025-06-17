@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="content">
-        <div class="flex justify-between align-center mt-10">
+        <div class="flex justify-between align-center mt-6 mb-6">
 
             <h2 class="intro-y text-lg font-medium">{{ $asbobuskuna->name }}</h2>
             @role('super-admin')
@@ -17,6 +17,7 @@
             </a>
             @endrole
         </div>
+
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
@@ -41,8 +42,6 @@
                         @endcan
                     </div>
                     <tr>
-                        <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>
-                                    <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
                         <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">Ma’lumot</th>
                     </tr>
                     <tr class="bg-gray-200">
@@ -141,7 +140,8 @@
 
                     <tr class="bg-gray-200">
                         <th class="border">Laboratoriya uskunalari uchun zarur reagent va reaktivlar zaxirasi</th>
-                        <th class="border">Foydalanish uchun arizalarning ro‘yxatga olinishi va foydalanish jadvalining yuritilishi</th>
+                        <th class="border">Foydalanish uchun arizalarning ro‘yxatga olinishi va foydalanish jadvalining
+                            yuritilishi</th>
                     </tr>
                     <tr>
                         <td class="border">{{ $asbobuskuna->lab_zaxirasi  }}</td>
@@ -149,7 +149,8 @@
                     </tr>
 
                     <tr class="bg-gray-200">
-                        <th class="border">Ilmiy tadqiqot va oliy ta’lim muassasalari laboratoriyalarining qo‘shimcha asbob-uskunalarga ehtiyoji</th>
+                        <th class="border">Ilmiy tadqiqot va oliy ta’lim muassasalari laboratoriyalarining qo‘shimcha
+                            asbob-uskunalarga ehtiyoji</th>
                         <th class="border">Zarur sarflash materiallari va butlovchi qismlar bo‘yicha ehtiyoji</th>
                     </tr>
                     <tr>
@@ -163,29 +164,33 @@
 
 
         <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-            style="background: white; padding: 20px 20px; border-radius: 20px">
+            style="background: white; padding: 20px 20px; border-radius: 4px">
             <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                <form id="science-paper-create-form" method="POST" action="{{ route('asbobuskunaexpert.update', $asbobuskunaexpert->id) }}"
-                    class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                <form id="science-paper-create-form" method="POST"
+                    action="{{ route('asbobuskunaexpert.update', $asbobuskunaexpert->id) }}" class="validate-form"
+                    enctype="multipart/form-data" novalidate="novalidate">
                     @csrf
                     @method('PUT')
                     <div class="grid grid-cols-12 gap-2">
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalarini o'rnatilgan ilmiy bo'linma faoliyatiga mosligi
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalarini
+                                o'rnatilgan ilmiy bo'linma faoliyatiga mosligi
                             </label>
-                            <select name="lab_uskunalarini_mosligi" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="lab_uskunalarini_mosligi" id="science-sub-category"
+                                class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy" {{ (old('lab_uskunalarini_mosligi', $asbobuskunaexpert->lab_uskunalarini_mosligi ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
-                                <option value="Qoniqarli" {{ (old('lab_uskunalarini_mosligi', $asbobuskunaexpert->lab_uskunalarini_mosligi ?? '') == 'Qoniqarli') ? 'selected' : '' }}>Qoniqarli</option>
-                                <option value="Salbiy" {{ (old('lab_uskunalarini_mosligi', $asbobuskunaexpert->lab_uskunalarini_mosligi ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy</option>
+                                <option value="Ijobiy" {{ (old('lab_uskunalarini_mosligi', $asbobuskunaexpert->lab_uskunalarini_mosligi ?? '') == 'Ijobiy') ? 'selected' : '' }}>
+                                    Ijobiy</option>
+                                <option value="Qoniqarli" {{ (old('lab_uskunalarini_mosligi', $asbobuskunaexpert->lab_uskunalarini_mosligi ?? '') == 'Qoniqarli') ? 'selected' : '' }}>
+                                    Qoniqarli</option>
+                                <option value="Salbiy" {{ (old('lab_uskunalarini_mosligi', $asbobuskunaexpert->lab_uskunalarini_mosligi ?? '') == 'Salbiy') ? 'selected' : '' }}>
+                                    Salbiy</option>
 
-
-
-                            </select><br>
+                            </select>
 
                             @error('ilmiy_hisobot')
                                 <div class="error">{{ $message }}</div>
@@ -194,15 +199,20 @@
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Bajarilavotgan ilmiy-tadqiqot ishlari uchun zarurligi
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Bajarilavotgan ilmiy-tadqiqot
+                                ishlari uchun zarurligi
                             </label>
-                            <select name="ilmiy_tadqiqot_ishilari" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="ilmiy_tadqiqot_ishilari" id="science-sub-category"
+                                class="input border w-full mt-2" required="">
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy" {{ (old('ilmiy_tadqiqot_ishilari', $asbobuskunaexpert->ilmiy_tadqiqot_ishilari ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
-                                <option value="Qoniqarli" {{ (old('ilmiy_tadqiqot_ishilari', $asbobuskunaexpert->ilmiy_tadqiqot_ishilari ?? '') == 'Qoniqarli') ? 'selected' : '' }}>Qoniqarli</option>
-                                <option value="Salbiy" {{ (old('ilmiy_tadqiqot_ishilari', $asbobuskunaexpert->ilmiy_tadqiqot_ishilari ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy</option>
+                                <option value="Ijobiy" {{ (old('ilmiy_tadqiqot_ishilari', $asbobuskunaexpert->ilmiy_tadqiqot_ishilari ?? '') == 'Ijobiy') ? 'selected' : '' }}>
+                                    Ijobiy</option>
+                                <option value="Qoniqarli" {{ (old('ilmiy_tadqiqot_ishilari', $asbobuskunaexpert->ilmiy_tadqiqot_ishilari ?? '') == 'Qoniqarli') ? 'selected' : '' }}>
+                                    Qoniqarli</option>
+                                <option value="Salbiy" {{ (old('ilmiy_tadqiqot_ishilari', $asbobuskunaexpert->ilmiy_tadqiqot_ishilari ?? '') == 'Salbiy') ? 'selected' : '' }}>
+                                    Salbiy</option>
 
                             </select><br>
 
@@ -213,18 +223,22 @@
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy-tadqiqot dasturlaridagi ish hajmi bilan bog'liqligi
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy-tadqiqot dasturlaridagi
+                                ish hajmi bilan bog'liqligi
                             </label>
-                            <select name="ilmiy_tadqiqot_hajmi" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="ilmiy_tadqiqot_hajmi" id="science-sub-category" class="input border w-full mt-2"
+                                required="">
 
                                 <option value=""></option>
 
-                                <option value="Ijobiy" {{ (old('ilmiy_tadqiqot_hajmi', $asbobuskunaexpert->ilmiy_tadqiqot_hajmi ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
-                                <option value="Qoniqarli" {{ (old('ilmiy_tadqiqot_hajmi', $asbobuskunaexpert->ilmiy_tadqiqot_hajmi ?? '') == 'Qoniqarli') ? 'selected' : '' }}>Qoniqarli</option>
-                                <option value="Salbiy" {{ (old('ilmiy_tadqiqot_hajmi', $asbobuskunaexpert->ilmiy_tadqiqot_hajmi ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy</option>
+                                <option value="Ijobiy" {{ (old('ilmiy_tadqiqot_hajmi', $asbobuskunaexpert->ilmiy_tadqiqot_hajmi ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy
+                                </option>
+                                <option value="Qoniqarli" {{ (old('ilmiy_tadqiqot_hajmi', $asbobuskunaexpert->ilmiy_tadqiqot_hajmi ?? '') == 'Qoniqarli') ? 'selected' : '' }}>
+                                    Qoniqarli</option>
+                                <option value="Salbiy" {{ (old('ilmiy_tadqiqot_hajmi', $asbobuskunaexpert->ilmiy_tadqiqot_hajmi ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy
+                                </option>
 
-
-                            </select><br>
+                            </select>
 
                             @error('muddat')
                                 <div class="error">{{ $message }}</div>
@@ -233,18 +247,18 @@
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalari uchun zarur reagent va reaktivlar zaxirasining mavjudligi
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalari uchun
+                                zarur reagent va reaktivlar zaxirasining mavjudligi
                             </label>
-                            <select name="lab_zaxirasi" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="lab_zaxirasi" id="science-sub-category" class="input border w-full mt-2"
+                                required="">
 
                                 <option value=""></option>
 
                                 <option value="Ijobiy" {{ (old('lab_zaxirasi', $asbobuskunaexpert->lab_zaxirasi ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
                                 <option value="Yetarli" {{ (old('lab_zaxirasi', $asbobuskunaexpert->lab_zaxirasi ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
                                 <option value="Mavjud emas" {{ (old('lab_zaxirasi', $asbobuskunaexpert->lab_zaxirasi ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
-
-
-                            </select><br>
+                            </select>
 
                             @error('muddat')
                                 <div class="error">{{ $message }}</div>
@@ -253,10 +267,12 @@
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Foydalanish uchun arizalarning ro'yxatga olinishi va foydalanish jadvalining yuritilishi
-                                    holatiga baho berish
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Foydalanish uchun arizalarning
+                                ro'yxatga olinishi va foydalanish jadvalining yuritilishi
+                                holatiga baho berish
                             </label>
-                            <select name="foy_uchun_ariz" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="foy_uchun_ariz" id="science-sub-category" class="input border w-full mt-2"
+                                required="">
 
                                 <option value=""></option>
 
@@ -273,19 +289,20 @@
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy tadqiqot va oliy ta'lim muassasalari laboratoriyalarining qo'shimcha asbob-uskunalar
-                                    bo'yicha ehtiyoji
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy tadqiqot va oliy ta'lim
+                                muassasalari laboratoriyalarining qo'shimcha asbob-uskunalar
+                                bo'yicha ehtiyoji
                             </label>
-                            <select name="asbob_usk_ehtiyoji" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="asbob_usk_ehtiyoji" id="science-sub-category" class="input border w-full mt-2"
+                                required="">
 
                                 <option value=""></option>
 
                                 <option value="Mavjud" {{ (old('asbob_usk_ehtiyoji', $asbobuskunaexpert->asbob_usk_ehtiyoji ?? '') == 'Mavjud') ? 'selected' : '' }}>Mavjud</option>
                                 <option value="Yetarli" {{ (old('asbob_usk_ehtiyoji', $asbobuskunaexpert->asbob_usk_ehtiyoji ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
-                                <option value="Mavjud emas" {{ (old('asbob_usk_ehtiyoji', $asbobuskunaexpert->asbob_usk_ehtiyoji ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
-
-
-                            </select><br>
+                                <option value="Mavjud emas" {{ (old('asbob_usk_ehtiyoji', $asbobuskunaexpert->asbob_usk_ehtiyoji ?? '') == 'Mavjud emas') ? 'selected' : '' }}>
+                                    Mavjud emas</option>
+                            </select>
 
                             @error('muddat')
                                 <div class="error">{{ $message }}</div>
@@ -295,18 +312,18 @@
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Zarur sarflash materiallari va butlovchi qismlar bo'yicha ehtiyojar mavjudligi
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Zarur sarflash materiallari va
+                                butlovchi qismlar bo'yicha ehtiyojar mavjudligi
                             </label>
-                            <select name="zarur_ehtiyoji" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="zarur_ehtiyoji" id="science-sub-category" class="input border w-full mt-2"
+                                required="">
 
                                 <option value=""></option>
 
                                 <option value="Mavjud" {{ (old('zarur_ehtiyoji', $asbobuskunaexpert->zarur_ehtiyoji ?? '') == 'Mavjud') ? 'selected' : '' }}>Mavjud</option>
                                 <option value="Yetarli" {{ (old('zarur_ehtiyoji', $asbobuskunaexpert->zarur_ehtiyoji ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
                                 <option value="Mavjud emas" {{ (old('zarur_ehtiyoji', $asbobuskunaexpert->zarur_ehtiyoji ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
-
-
-                            </select><br>
+                            </select>
 
                             @error('muddat')
                                 <div class="error">{{ $message }}</div>
@@ -316,14 +333,19 @@
 
                         <div class="w-full col-span-6">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalarining ishga yaroqliligi
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Laboratoriya uskunalarining
+                                ishga yaroqliligi
                             </label>
-                            <select name="lab_ishga_yaroqliligi" id="science-sub-category" class="input border w-full mt-2" required="">
+                            <select name="lab_ishga_yaroqliligi" id="science-sub-category" class="input border w-full mt-2"
+                                required="">
 
                                 <option value=""></option>
-                                <option value="Mavjud" {{ (old('lab_ishga_yaroqliligi', $asbobuskunaexpert->lab_ishga_yaroqliligi ?? '') == 'Mavjud') ? 'selected' : '' }}>Mavjud</option>
-                                <option value="Yetarli" {{ (old('lab_ishga_yaroqliligi', $asbobuskunaexpert->lab_ishga_yaroqliligi ?? '') == 'Yetarli') ? 'selected' : '' }}>Yetarli</option>
-                                <option value="Mavjud emas" {{ (old('lab_ishga_yaroqliligi', $asbobuskunaexpert->lab_ishga_yaroqliligi ?? '') == 'Mavjud emas') ? 'selected' : '' }}>Mavjud emas</option>
+                                <option value="Mavjud" {{ (old('lab_ishga_yaroqliligi', $asbobuskunaexpert->lab_ishga_yaroqliligi ?? '') == 'Mavjud') ? 'selected' : '' }}>Mavjud
+                                </option>
+                                <option value="Yetarli" {{ (old('lab_ishga_yaroqliligi', $asbobuskunaexpert->lab_ishga_yaroqliligi ?? '') == 'Yetarli') ? 'selected' : '' }}>
+                                    Yetarli</option>
+                                <option value="Mavjud emas" {{ (old('lab_ishga_yaroqliligi', $asbobuskunaexpert->lab_ishga_yaroqliligi ?? '') == 'Mavjud emas') ? 'selected' : '' }}>
+                                    Mavjud emas</option>
 
                             </select><br>
 
@@ -335,14 +357,17 @@
                         <div class="w-full col-span-6 ">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ekspert F.I.Sh</label>
-                                    <input type="hidden" name="holati" value="1">
-                            <input type="text" name="ekspert_fish" value="{{ $asbobuskunaexpert->ekspert_fish }}"  class="input w-full border mt-2" required>
+                            <input type="hidden" name="holati" value="1">
+                            <input type="text" name="ekspert_fish" value="{{ $asbobuskunaexpert->ekspert_fish }}"
+                                class="input w-full border mt-2" required>
                         </div>
 
                         <div class="w-full col-span-6 ">
                             <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotning mas'ul rahbari F.I.Sh</label>
-                            <input type="text" name="t_masul" value="{{ $asbobuskunaexpert->t_masul }}"   class="input w-full border mt-2" required>
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotning mas'ul rahbari
+                                F.I.Sh</label>
+                            <input type="text" name="t_masul" value="{{ $asbobuskunaexpert->t_masul }}"
+                                class="input w-full border mt-2" required>
                         </div>
 
                         <div class="w-full col-span-6">
@@ -368,13 +393,16 @@
                         <div class="w-full col-span-6 ">
                             <label class="flex flex-col sm:flex-row"> <span
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
-                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5">{{ $asbobuskunaexpert->comment }}</textarea>
+                            <textarea name="comment" id="" class="input w-full border mt-2" cols="5"
+                                rows="5">{{ $asbobuskunaexpert->comment }}</textarea>
                         </div>
                     </div>
 
-                </form><br>
-                <div class="px-5 pb-5 text-center">
-                    <a href="{{ route('asbobuskuna.show', ['asbobuskuna' => $asbobuskunaexpert->asbobuskuna_id]) }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                </form>
+
+                <div class="px-5 pb-5 text-center mt-4">
+                    <a href="{{ route('asbobuskuna.show', ['asbobuskuna' => $asbobuskunaexpert->asbobuskuna_id]) }}"
+                        class="button delete-cancel w-32 border text-gray-700 mr-1">
                         Bekor qilish
                     </a>
                     <button type="submit" form="science-paper-create-form"
@@ -382,9 +410,9 @@
                         Tasdiqlash
                     </button>
                 </div>
+
             </div>
         </div>
     </div>
-
 
 @endsection

@@ -2,11 +2,12 @@
 
 @section('content')
     <div class="content">
-        <div class="flex justify-between align-center mt-10">
+        <div class="flex justify-between align-center mt-6 mb-6">
 
             <h2 class="intro-y text-lg font-medium">Labaratoriya</h2>
 
         </div>
+        
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
@@ -108,13 +109,13 @@
                                     Tahrirlash
                                 </a>
                                 {{-- <a href="" class="button w-24 bg-theme-6 text-white">
-                                O'chirish
-                            </a> --}}
+                                    O'chirish
+                                </a> --}}
                             </div>
                         </div>
                         <tr>
                             <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>
-                                <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
+                                        <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
                             <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">
                                 Ma’lumot</th>
                         </tr>
@@ -138,25 +139,25 @@
                             <td class="border">{{ $tash->tavsif }} </td>
                             <td class="border"></td>
                         </tr>
-                        @endforeach
-                        <tr class="bg-gray-200">
-                            <!-- <th class=" border">3</th> -->
-                            <th class=" border">DSc</th>
-                            <th class=" border">PhD</th>
-                        </tr>
-                        <tr>
-                            <!-- <th class="whitespace-no-wrap border">6</th> -->
-                            <td class="border">{{ $dsc_soni }}</td>
-                            <td class="border">{{ $phd_soni }}</td>
-                        </tr>
-                        <tr class="bg-gray-200">
-                            <th class="border">Stajyor-tadqiqotchi</th>
-                            <th></th>
-                        </tr>
-                        <tr>
-                            <td class="border">{{ $stajyor_soni }}</td>
-                            <td class="border"></td>
-                        </tr>
+                    @endforeach
+                    <tr class="bg-gray-200">
+                        <!-- <th class=" border">3</th> -->
+                        <th class=" border">DSc</th>
+                        <th class=" border">PhD</th>
+                    </tr>
+                    <tr>
+                        <!-- <th class="whitespace-no-wrap border">6</th> -->
+                        <td class="border">{{ $dsc_soni }}</td>
+                        <td class="border">{{ $phd_soni }}</td>
+                    </tr>
+                    <tr class="bg-gray-200">
+                        <th class="border">Stajyor-tadqiqotchi</th>
+                        <th></th>
+                    </tr>
+                    <tr>
+                        <td class="border">{{ $stajyor_soni }}</td>
+                        <td class="border"></td>
+                    </tr>
                 </tbody>
             </table>
         </div>

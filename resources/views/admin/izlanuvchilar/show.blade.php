@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="content">
-    <div class="flex justify-between align-center mt-10">
+    <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">{{ $izlanuvchilar->tashkilot->name_qisqachasi }} xodim xaqida ma’lumot</h2>
 
@@ -40,7 +40,7 @@
                                 <a href="" class="button w-24 bg-theme-6 text-white">
                                     O'chirish
                                 </a>
-                            </div>     
+                            </div>
                         @endcan
                     </div>
 
@@ -150,15 +150,15 @@
                             <td class="border border-2">{{ $izlanuvchilar->ilmiy_unvoni  }} </td>
                             <td class="border border-2">{{ $izlanuvchilar->ilmiy_unvoni_y  }} </td>
                         </tr> --}}
-                        
-                        
+
+
                 </tbody>
             </table>
         </div>
 
 
 
-        
+
 
     </div>
 
@@ -166,6 +166,6 @@
 
 
 
-   
+
 </div>
 @endsection

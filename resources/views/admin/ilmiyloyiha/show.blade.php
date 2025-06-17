@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content">
-    <div class="flex justify-between align-center mt-10">
+    <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">{{ $ilmiyloyiha->tashkilot->name }} </h2>
         {{-- @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
@@ -989,7 +989,7 @@
                     @else
                         @role(['Ishchi guruh azosi'])
                         <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-                            style="background: white; padding: 20px 20px; border-radius: 20px">
+                            style="background: white; padding: 20px 20px; border-radius: 4px">
                             <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                                 <form id="science-paper-edit-form" method="POST"
                                     action="{{ route('tekshirivchilar.store') }}" class="validate-form"
@@ -1131,8 +1131,8 @@
                                         </div>
                                     </div>
 
-                                </form><br>
-                                <div class="px-5 pb-5 text-center">
+                                </form>
+                                <div class="px-5 pb-5 text-center mt-4">
                                     <a href="{{ route('ilmiyloyiha.index') }}"
                                         class="button delete-cancel w-32 border text-gray-700 mr-1">
                                         Bekor qilish
@@ -1173,7 +1173,7 @@
 
 
                                     <div class="grid grid-cols-6 gap-2 mt-8">
-                                        <div class="px-5 pb-5 text-center">
+                                        <div class="px-5 pb-5 text-center mt-4">
                                             <button type="submit" form="science-qidirish-edit-form"
                                                 class="update-confirm button w-24 bg-theme-1 text-white">
                                                 Qidirish
@@ -1265,13 +1265,13 @@
 
                                                 </select>
                                                 <div id="boshqa_input_div" style="display: none;" class="mt-2">
-                                                    <input 
-                                                        type="text" 
-                                                        name="boshqa_shtat_birligi" 
-                                                        class="input border w-full" 
-                                                        placeholder="Shtat birligini kiriting" 
-                                                        inputmode="decimal" 
-                                                        pattern="^\d+(\.\d{1,2})?$" 
+                                                    <input
+                                                        type="text"
+                                                        name="boshqa_shtat_birligi"
+                                                        class="input border w-full"
+                                                        placeholder="Shtat birligini kiriting"
+                                                        inputmode="decimal"
+                                                        pattern="^\d+(\.\d{1,2})?$"
                                                         oninput="validateInput(this)"
                                                     >
                                                 </div>
@@ -1281,8 +1281,8 @@
 
                                     </tbody>
                                 </table>
-                            </form><br>
-                            <div class="px-5 pb-5 text-center">
+                            </form>
+                            <div class="px-5 pb-5 text-center mt-4">
                                 <button type="button" data-dismiss="modal"
                                     class="button delete-cancel w-32 border text-gray-700 mr-1">
                                     Bekor qilish
@@ -1697,7 +1697,7 @@
             </div>
 
         </div>
-        <div class="px-5 pb-5 text-center">
+        <div class="px-5 pb-5 text-center mt-4">
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </button>
@@ -2053,7 +2053,7 @@
 
 
         </div>
-        <div class="px-5 pb-5 text-center">
+        <div class="px-5 pb-5 text-center mt-4">
 
 
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
@@ -2408,7 +2408,7 @@
             </div>
 
         </div>
-        <div class="px-5 pb-5 text-center">
+        <div class="px-5 pb-5 text-center mt-4">
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </button>
@@ -2679,7 +2679,7 @@
             </div>
 
         </div>
-        <div class="px-5 pb-5 text-center">
+        <div class="px-5 pb-5 text-center mt-4">
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </button>
@@ -2812,7 +2812,7 @@
                                             {{-- <td class="border">1.4.</td> --}}
                                             <td class="border">Shartnoma Fayl </td>
                                             <td class="border">
-                                                
+
                                                 <input type="file" name="umumiy_mablag"
                                                     value="{{ $ilmiyloyiha->umumiy_mablag ?? '' }}"
                                                     class="input w-full border mt-2" required="">
@@ -3330,7 +3330,7 @@
             </div>
 
         </div>
-        <div class="px-5 pb-5 text-center">
+        <div class="px-5 pb-5 text-center mt-4">
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </button>
@@ -3738,7 +3738,7 @@
             </div>
 
         </div>
-        <div class="px-5 pb-5 text-center">
+        <div class="px-5 pb-5 text-center mt-4">
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </button>
@@ -4072,7 +4072,7 @@
             </div>
 
         </div>
-        <div class="px-5 pb-5 text-center">
+        <div class="px-5 pb-5 text-center mt-4">
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </button>
@@ -4276,7 +4276,7 @@
             </div>
 
         </div>
-        <div class="px-5 pb-5 text-center">
+        <div class="px-5 pb-5 text-center mt-4">
             <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </button>

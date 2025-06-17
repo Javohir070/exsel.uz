@@ -58,7 +58,7 @@ class IlmiytezislarController extends Controller
         // Jurnalni saqlash
         Ilmiytezislar::create([
             'tashkilot_id' => auth()->user()->tashkilot_id, // Foydalanuvchining tashkilot_id sini olish
-            'kafedralar_id' => auth()->user()->kafedralar_id, // Foydalanuvchining kafedralar_id sini olish
+            'kafedralar_id' => auth()->user()->kafedralar_id ?? null, // Foydalanuvchining kafedralar_id sini olish
             'type' => $request->type,
             'mavzu' => $request->mavzu,
             'mualliflar_json' => $mualliflar, // Mualliflarni JSON formatida saqlash
@@ -87,7 +87,7 @@ class IlmiytezislarController extends Controller
 
     public function edit(Ilmiytezislar $ilmiytezislar)
     {
-        return view('admin.ilmiytezislar.edit', ['Ilmiytezislar' => $ilmiytezislar]);
+        return view('admin.ilmiytezislar.edit', ['ilmiytezislar' => $ilmiytezislar]);
     }
 
 

@@ -3,16 +3,16 @@
 @section('content')
 
 
-<div class="flex justify-between align-center mt-10">
+<div class="flex justify-between align-center mt-6 mb-6">
 
     <h2 class="intro-y text-lg font-medium"> Ilmiy bilan taminlangami  tahrirlash</h2>
 
 
 
-</div><br>
+</div>
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
     padding: 20px 20px;
-    border-radius: 20px">
+    border-radius: 4px">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
         <form id="science-paper-create-form" method="POST" action="{{ route("ilmiydaraja.update",['ilmiydaraja'=>$ilmiydaraja->id]) }}" class="validate-form"
             enctype="multipart/form-data" novalidate="novalidate">
@@ -94,7 +94,7 @@
                 <div class="w-full col-span-12 ">
                     <h2 style="text-align: center;font-size: 20px;font-weight: 500;">  Moliyalashtirish hajmi </h2>
                 </div>
-                
+
                 <div class="w-full col-span-1 ">
                     <label class="flex flex-col sm:flex-row">   2017-yil
                     </label>
@@ -140,8 +140,8 @@
                     <h2 style="text-align: center;font-size: 20px;font-weight: 500;">  Bir nafar ilmiy xodimga moliyalashtirish nisbati </h2>
                 </div>
 
-                
-                
+
+
                 <div class="w-full col-span-1 ">
                     <label class="flex flex-col sm:flex-row">   2017-yil
                     </label>
@@ -183,8 +183,8 @@
                     <input type="text" name="yil2024" value="{{ $ilmiydaraja->yillar->y2024 }}" class="input w-full border mt-2" >
                 </div>
             </div>
-        </form><br>
-        <div class="px-5 pb-5 text-center">
+        </form>
+        <div class="px-5 pb-5 text-center mt-4">
             <a href="{{ route('ilmiydaraja.index') }}"   class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </a>
@@ -194,7 +194,7 @@
             </button>
         </div>
     </div>
-</div><br>
+</div>
 
 
 
@@ -213,7 +213,7 @@
 @section('content')
 
 
-<div class="flex justify-between align-center mt-10">
+<div class="flex justify-between align-center mt-6 mb-6">
 
     <h2 class="intro-y text-lg font-medium">Ilmiy Loyiha Tahrirlash</h2>
     <style>
@@ -239,10 +239,10 @@
     @endrole
 
 
-</div><br>
+</div>
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
     padding: 20px 20px;
-    border-radius: 20px">
+    border-radius: 4px">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
         <form id="science-paper-create-form" method="POST" action="{{ route("ilmiyloyiha.update",['ilmiyloyiha'=>$ilmiyloyiha->id]) }}" class="validate-form"
             enctype="multipart/form-data" novalidate="novalidate">
@@ -296,7 +296,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     @endrole
-                    
+
 
                     <!-- <select name="turi"  id="science-sub-category" readonly class="input border w-full mt-2" required="">
 
@@ -313,7 +313,7 @@
                     </select> -->
                 </div>
 
-                
+
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha dasturi
@@ -333,7 +333,7 @@
                         <option value="Xalqaro-qo‘shma" {{ $ilmiyloyiha->dastyri == 'Xalqaro-qo‘shma' ? 'selected' : '' }}>Xalqaro-qo‘shma</option>
 
                         <option value="Tematik" {{ $ilmiyloyiha->dastyri == 'Tematik' ? 'selected' : '' }}>Tematik</option>
-                        
+
 
 
                     </select>
@@ -362,7 +362,7 @@
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihani amalga oshirish muddati (yil) 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihani amalga oshirish muddati (yil)
                     </label>
                     <select name="muddat"  id="science-sub-category" class="input border w-full mt-2" required="">
 
@@ -396,9 +396,9 @@
                     @enderror
 
                     @if ()
-                        
+
                     @else
-                        
+
                     @endif
                 </div>
 
@@ -418,7 +418,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     @endrole
-                    
+
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -437,7 +437,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     @endrole
-                    
+
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -456,7 +456,7 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     @endrole
-                    
+
                     <!-- <select name="pan_yunalish"  id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option>Fan yo‘nalish tanlang</option>
@@ -508,7 +508,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Raqami 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Raqami
                     </label>
                     @role('super-admin')
                     <input type="text" name="raqami" value="{{ $ilmiyloyiha->raqami }}"  class="input w-full border mt-2" required="">
@@ -526,7 +526,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Sanasi 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Sanasi
                     </label>
                     <input type="text"  name="sanasi" value="{{ $ilmiyloyiha->sanasi }}" class=" input w-full border mt-2" required="">
                     @error('sanasi')
@@ -537,7 +537,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma summasi (so‘m) 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma summasi (so‘m)
                     </label>
                     @role('super-admin')
                         <input type="text" name="sum" value="{{ $ilmiyloyiha->sum }}"  class="input w-full border mt-2" required="">
@@ -555,7 +555,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tijoratlashtirish holati 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tijoratlashtirish holati
                     </label>
                     <select name="tijoratlashtirish"  id="science-sub-category" class="input border w-full mt-2" required="">
 
@@ -589,7 +589,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Olingan asosiy natija 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Olingan asosiy natija
                     </label>
                     <!-- <input type="text" name="olingan_natija" value="{{ $ilmiyloyiha->olingan_natija }}" class="input w-full border mt-2" required=""> -->
                     <textarea name="olingan_natija" class="input w-full border mt-2" cols="20" rows="5">{{ $ilmiyloyiha->olingan_natija }}</textarea>
@@ -601,7 +601,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Joriy etish (Tatbiq etish) holati 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Joriy etish (Tatbiq etish) holati
                     </label>
                     <!-- <input type="text" name="joriy_holati" value="{{ $ilmiyloyiha->joriy_holati }}" class="input w-full border mt-2" required=""> -->
                     <textarea name="joriy_holati" class="input w-full border mt-2" cols="20" rows="5">{{ $ilmiyloyiha->joriy_holati }}</textarea>
@@ -611,7 +611,7 @@
                 </div>
 
 
-                
+
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row"> 2017 yilda
                     </label>
@@ -856,8 +856,8 @@
 
             </div>
 
-        </form><br>
-        <div class="px-5 pb-5 text-center">
+        </form>
+        <div class="px-5 pb-5 text-center mt-4">
             @if (auth()->user()->hasRole('labaratoriyaga_masul'))
                 <a href="{{ route('lab_ilmiyloyiha.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
@@ -873,13 +873,13 @@
             </button>
         </div>
     </div>
-</div><br>
+</div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         var searchInput = document.getElementById('search');
         var select = document.getElementById('science-search-category');
-        
+
         searchInput.addEventListener('keyup', function() {
             var filter = searchInput.value.toLowerCase();
             for (var i = 0; i < select.options.length; i++) {

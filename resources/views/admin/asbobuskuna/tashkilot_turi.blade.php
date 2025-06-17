@@ -30,7 +30,6 @@
                         </div>
                     </div>
 
-
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route('asbobuskunalar.index') }}">
@@ -49,7 +48,6 @@
                             </a>
                         </div>
                     </div>
-
 
                     <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
                         <div class="intro-y block sm:flex items-center py-4" style="justify-content: space-between;">

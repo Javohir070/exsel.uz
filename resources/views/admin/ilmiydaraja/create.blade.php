@@ -3,14 +3,14 @@
 @section('content')
 
 
-<div class="flex justify-between align-center mt-10">
+<div class="flex justify-between align-center mt-6 mb-6">
 
     <h2 class="intro-y text-lg font-medium"> Ilmiy loyiha bilan taminlanganmi  qo'shish</h2>
 
 </div>
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
     padding: 20px 20px;
-    border-radius: 20px">
+    border-radius: 4px">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
         <form id="science-paper-create-form" method="POST" action="{{ route("ilmiydaraja.store") }}" class="validate-form"
             enctype="multipart/form-data" novalidate="novalidate">
@@ -142,11 +142,11 @@
                     </div>
                 </div>
 
-              
+
                 <div class="w-full col-span-12 ">
                     <h2 style="text-align: center;font-size: 20px;font-weight: 500;">  Bir nafar ilmiy xodimga moliyalashtirish nisbati </h2>
                 </div>
-                
+
                 <div class="w-full col-span-1 ">
                     <label class="flex flex-col sm:flex-row">  2017-yil
                     </label>
@@ -190,7 +190,7 @@
 
             </div>
         </form>
-        <div class="px-5 pb-5 text-center">
+        <div class="px-5 pb-5 text-center mt-4">
             <a href="{{ route('ilmiydaraja.index') }}"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </a>
@@ -200,7 +200,7 @@
             </button>
         </div>
     </div>
-</div><br>
+</div>
 
 
 

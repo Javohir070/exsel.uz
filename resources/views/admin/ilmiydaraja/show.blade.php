@@ -3,11 +3,11 @@
 @section('content')
 
 <div class="content">
-    <div class="flex justify-between align-center mt-10">
+    <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">{{ $ilmiydaraja->tashkilot->name_qisqachasi }}  Ilmiy loyiha bilan taminlangami  ma’lumot</h2>
 
-        
+
         @role('super-admin')
             <a href="{{ route("ilmiydarajalar.index") }}" class="button w-24 bg-theme-1 text-white">
                 Orqaga
@@ -34,7 +34,7 @@
                     <div style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="font-size:18px;font-weight: 400;">{{ $ilmiydaraja->tashkilot->name ." Ilmiy loyiha bilan taminlangalig ". $ilmiydaraja->fish }}  xaqida ma’lumot</div>
                         @can("ilmiydaraja delete edit")
-                            
+
                         <div style="text-align: end;">
                             <a href="{{ route('ilmiydaraja.edit',['ilmiydaraja'=>$ilmiydaraja->id])}}" class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
@@ -70,9 +70,9 @@
                         <td class="border ">{{ $ilmiydaraja->xodimlar_jami  }} </td>
                         <td class="border ">{{ $ilmiydaraja->ilmiy_xodimlar  }} </td>
                     </tr>
-                    
-                        
-                        
+
+
+
                 </tbody>
                 <table class="table">
                 <tbody>
@@ -133,7 +133,7 @@
 
 
 
-        
+
 
     </div>
 
@@ -141,6 +141,6 @@
 
 
 
-   
+
 </div>
 @endsection

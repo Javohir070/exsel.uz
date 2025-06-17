@@ -4,9 +4,7 @@
             <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
                 <div class="col-span-12 mt-8">
 
-
                     <div class="grid grid-cols-12 gap-6 mt-5">
-
 
                             <style>
                                 .report-box__icon{
@@ -30,7 +28,6 @@
                                 </div>
                             </div>
 
-
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                                     <a href="{{ route('asbobuskunalar.index') }}">
@@ -46,9 +43,6 @@
                                     </a>
                                 </div>
                             </div>
-
-
-
 
                             <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
                                 <div class="intro-y block sm:flex items-center py-4">
@@ -129,14 +123,12 @@
                                                     }])->get()->sum('asbobuskunalar_count')-$count }}
                                                 </td>
 
-                                               </tr>
+                                            </tr>
                                             @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
-
                     </div>
                 </div>
             </div>

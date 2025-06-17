@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="content">
-    <div class="flex justify-between align-center mt-10">
+    <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">{{ $dalolatnoma->name }} dalolatnoma </h2>
 
@@ -25,7 +25,7 @@
                             class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                             Tahrirlash
                         </a>
-                        
+
                     </div>
                 </div>
                 <tr>

@@ -3,16 +3,16 @@
 @section('content')
 
 
-<div class="flex justify-between align-center mt-10">
+<div class="flex justify-between align-center mt-6 mb-6">
 
     <h2 class="intro-y text-lg font-medium">Ilmiy Loyiha Tahrirlash</h2>
 
 
 
-</div><br>
+</div>
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
     padding: 20px 20px;
-    border-radius: 20px">
+    border-radius: 4px">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
         <form id="science-paper-create-form" method="POST" action="{{ route("ilmiyloyiha.update",['ilmiyloyiha'=>$ilmiyloyiha->id]) }}" class="validate-form"
             enctype="multipart/form-data" novalidate="novalidate">
@@ -47,7 +47,7 @@
                     </select> -->
                 </div>
 
-                
+
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha dasturi
@@ -83,7 +83,7 @@
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihani amalga oshirish muddati (yil) 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihani amalga oshirish muddati (yil)
                     </label>
                     <select name="muddat"  id="science-sub-category" class="input border w-full mt-2" required="">
 
@@ -134,7 +134,7 @@
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fan yo‘nalish
                     </label>
                     <input type="text"  name="pan_yunalish" value="{{ $ilmiyloyiha->pan_yunalish}}" readonly class=" input w-full border mt-2" required="">
-                    
+
                     <!-- <select name="pan_yunalish"  id="science-sub-category" class="input border w-full mt-2" required="">
 
                         <option>Fan yo‘nalish tanlang</option>
@@ -155,21 +155,21 @@
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha rahbarining F.I.Sh.
                     </label>
-                    
+
                     <input type="text" name="rahbar_name" value="{{ $ilmiyloyiha->rahbar_name }}" readonly class="input w-full border mt-2" required="">
 
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Raqami 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Raqami
                     </label>
                     <input type="text" name="raqami" value="{{ $ilmiyloyiha->raqami }}" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Sanasi 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma Sanasi
                     </label>
                     <input type="text" id="datepicker" name="sanasi" value="{{ $ilmiyloyiha->sanasi }}" class="datepicker input w-full border mt-2" required="">
 
@@ -177,7 +177,7 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma summasi (ming so‘mda) 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuzilgan shartnoma summasi (ming so‘mda)
                     </label>
                     <input type="text" name="sum" value="{{ $ilmiyloyiha->sum }}" readonly class="input w-full border mt-2" required="">
                 </div>
@@ -185,21 +185,21 @@
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Olingan asosiy natija 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Olingan asosiy natija
                     </label>
                     <input type="text" name="olingan_natija" value="{{ $ilmiyloyiha->olingan_natija }}" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Joriy etish (Tatbiq etish) holati 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Joriy etish (Tatbiq etish) holati
                     </label>
                     <input type="text" name="joriy_holati" value="{{ $ilmiyloyiha->joriy_holati }}" class="input w-full border mt-2" required="">
                 </div>
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
-                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tijoratlashtirish holati 
+                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tijoratlashtirish holati
                     </label>
                     <select name="tijoratlashtirish"  id="science-sub-category" class="input border w-full mt-2" required="">
 
@@ -212,7 +212,7 @@
                     </select><br>
                 </div>
 
-                
+
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row"> 2017 yilda
                     </label>
@@ -255,8 +255,8 @@
                 </div>
             </div>
 
-        </form><br>
-        <div class="px-5 pb-5 text-center">
+        </form>
+        <div class="px-5 pb-5 text-center mt-4">
             <a href="{{ route('ilmiyloyiha.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </a>
@@ -266,7 +266,7 @@
             </button>
         </div>
     </div>
-</div><br>
+</div>
 
 
 

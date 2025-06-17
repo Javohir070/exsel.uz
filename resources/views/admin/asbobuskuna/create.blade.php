@@ -2,17 +2,19 @@
 
 @section('content')
 
-
-    <div class="flex justify-between align-center mt-10">
+    <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">Xarid qilingan asbob-uskunani qo'shish</h2>
 
+        <a href="{{ route('asbobuskuna.index') }}" class="button w-24 bg-theme-1 text-white">
+            Orqaga
+        </a>
 
+    </div>
 
-    </div><br>
     <div class="intro-y col-span-6 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
-                                padding: 20px 20px;
-                                border-radius: 20px">
+                                            padding: 20px 20px;
+                                            border-radius: 20px">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <form id="science-paper-create-form" method="POST" action="{{ route("asbobuskuna.store") }}"
                 class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
@@ -44,8 +46,8 @@
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Inventar raqami</label>
-                        <input type="text" name="invertar_r" value="{{ old('invertar_r') }}" class="input w-full border mt-2"
-                            required>
+                        <input type="text" name="invertar_r" value="{{ old('invertar_r') }}"
+                            class="input w-full border mt-2" required>
                         @error('invertar_r')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -77,8 +79,6 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
-
-
 
                     <!-- Ishlab chiqaruvchi davlat -->
                     <div class="w-full col-span-6">
@@ -277,7 +277,7 @@
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Harid qilingan summasi (buxgalteriya
-                            balans summasi 
+                            balans summasi
                             so'mda)</label>
                         <input type="text" name="harid_summa" id="sumInput1" oninput="formatNumber(this, 'writtenWords')"
                             value="{{ old('harid_summa') }}" class="input w-full border mt-2" required>
@@ -292,7 +292,8 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Buxgalteriya bo'yicha qoldiq summasi
                             (so'mda)</label>
-                        <input type="text" name="buxgalteriya_summa" id="sumInput2" oninput="formatNumber(this, 'buxgalteriya_summa_writtenWords')"
+                        <input type="text" name="buxgalteriya_summa" id="sumInput2"
+                            oninput="formatNumber(this, 'buxgalteriya_summa_writtenWords')"
                             value="{{ old('buxgalteriya_summa') }}" class="input w-full border mt-2" required>
                         <span id="buxgalteriya_summa_writtenWords" class="mt-2 text-gray-600"></span> so'm
                         @error('buxgalteriya_summa')
@@ -485,8 +486,8 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Bajarilayotgan ilmiy-tadqiqot
                             ishlari</label>
-                        <textarea name="ilmiy_tadqiqot_ishilari" value=""
-                            class="input w-full border mt-2" cols="10" rows="5">{{ old('ilmiy_tadqiqot_ishilari') }}</textarea>
+                        <textarea name="ilmiy_tadqiqot_ishilari" value="" class="input w-full border mt-2" cols="10"
+                            rows="5">{{ old('ilmiy_tadqiqot_ishilari') }}</textarea>
                         @error('ilmiy_tadqiqot_ishilari')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -496,8 +497,8 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Ilmiy-tadqiqot dasturlaridagi ish
                             hajmi </label>
-                        <textarea name="ilmiy_tadqiqot_hajmi" value=""
-                            class="input w-full border mt-2" cols="10" rows="5">{{ old('ilmiy_tadqiqot_hajmi') }}</textarea>
+                        <textarea name="ilmiy_tadqiqot_hajmi" value="" class="input w-full border mt-2" cols="10"
+                            rows="5">{{ old('ilmiy_tadqiqot_hajmi') }}</textarea>
                         @error('ilmiy_tadqiqot_hajmi')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -518,8 +519,8 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Foydalanish uchun arizalarning
                             ro‘yxatga olinishi va foydalanish jadvalining yuritilishi</label>
-                        <textarea name="foy_uchun_ariz" value="" class="input w-full border mt-2"
-                            cols="10" rows="5">{{ old('foy_uchun_ariz') }}</textarea>
+                        <textarea name="foy_uchun_ariz" value="" class="input w-full border mt-2" cols="10"
+                            rows="5">{{ old('foy_uchun_ariz') }}</textarea>
                         @error('foy_uchun_ariz')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -529,32 +530,29 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Ilmiy tadqiqot va oliy ta’lim
                             muassasalari laboratoriyalarining qo‘shimcha asbob-uskunalarga ehtiyoji</label>
-                        <textarea name="asbob_usk_ehtiyoji" value=""
-                            class="input w-full border mt-2" cols="10" rows="5">{{ old('asbob_usk_ehtiyoji') }}</textarea>
+                        <textarea name="asbob_usk_ehtiyoji" value="" class="input w-full border mt-2" cols="10"
+                            rows="5">{{ old('asbob_usk_ehtiyoji') }}</textarea>
                         @error('asbob_usk_ehtiyoji')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
 
-
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Zarur sarflash materiallari va
                             butlovchi qismlar bo‘yicha ehtiyoji</label>
-                        <textarea name="zarur_ehtiyoji" value="" class="input w-full border mt-2"
-                            cols="10" rows="5">{{ old('zarur_ehtiyoji') }}</textarea>
+                        <textarea name="zarur_ehtiyoji" value="" class="input w-full border mt-2" cols="10"
+                            rows="5">{{ old('zarur_ehtiyoji') }}</textarea>
                         @error('zarur_ehtiyoji')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
 
+                </div>
+            </form>
 
-
-
-                </div><br>
-            </form><br>
-            <div class="px-5 pb-5 text-center">
-                <a href="{{ route('tashkilotrahbari.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+            <div class="px-5 pb-5 text-center mt-4">
+                <a href="{{ route('asbobuskuna.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
                 </a>
                 <button type="submit" form="science-paper-create-form"
@@ -562,6 +560,7 @@
                     Saqlash
                 </button>
             </div>
+
         </div>
     </div>
 
@@ -618,7 +617,6 @@
         };
     </script>
 
-
     {{--
     <script>
         function formatNumber(input) {
@@ -630,53 +628,53 @@
         }
     </script> --}}
 
-<script>
-    const ones = ["", "bir", "ikki", "uch", "to‘rt", "besh", "olti", "yetti", "sakkiz", "to‘qqiz"];
-    const tens = ["", "o‘n", "yigirma", "o‘ttiz", "qirq", "ellik", "oltmish", "yetmish", "sakson", "to‘qson"];
-    const thousands = ["", " ming", " million", " milliard"];
+    <script>
+        const ones = ["", "bir", "ikki", "uch", "to‘rt", "besh", "olti", "yetti", "sakkiz", "to‘qqiz"];
+        const tens = ["", "o‘n", "yigirma", "o‘ttiz", "qirq", "ellik", "oltmish", "yetmish", "sakson", "to‘qson"];
+        const thousands = ["", " ming", " million", " milliard"];
 
-    function formatNumber(input, outputId) {
-        // Faqat raqamlar
-        let value = input.value.replace(/\D/g, "");
+        function formatNumber(input, outputId) {
+            // Faqat raqamlar
+            let value = input.value.replace(/\D/g, "");
 
-        // 3 xonadan bo‘sh joy bilan formatlash (masalan: 100 000)
-        input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+            // 3 xonadan bo‘sh joy bilan formatlash (masalan: 100 000)
+            input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
-        // So‘z ko‘rinishiga o‘girish
-        document.getElementById(outputId).textContent = numberToWords(Number(value));
-    }
+            // So‘z ko‘rinishiga o‘girish
+            document.getElementById(outputId).textContent = numberToWords(Number(value));
+        }
 
-    function numberToWords(num) {
-        if (num === 0) return "nol";
-        let words = '';
-        let groupIndex = 0;
+        function numberToWords(num) {
+            if (num === 0) return "nol";
+            let words = '';
+            let groupIndex = 0;
 
-        while (num > 0) {
-            let chunk = num % 1000;
-            if (chunk > 0) {
-                words = chunkToWords(chunk) + thousands[groupIndex] + ' ' + words;
+            while (num > 0) {
+                let chunk = num % 1000;
+                if (chunk > 0) {
+                    words = chunkToWords(chunk) + thousands[groupIndex] + ' ' + words;
+                }
+                num = Math.floor(num / 1000);
+                groupIndex++;
             }
-            num = Math.floor(num / 1000);
-            groupIndex++;
+
+            return words.trim();
         }
 
-        return words.trim();
-    }
-
-    function chunkToWords(n) {
-        let result = '';
-        if (n >= 100) {
-            result += ones[Math.floor(n / 100)] + ' yuz ';
-            n %= 100;
+        function chunkToWords(n) {
+            let result = '';
+            if (n >= 100) {
+                result += ones[Math.floor(n / 100)] + ' yuz ';
+                n %= 100;
+            }
+            if (n >= 10) {
+                result += tens[Math.floor(n / 10)] + ' ';
+                n %= 10;
+            }
+            if (n > 0) {
+                result += ones[n] + ' ';
+            }
+            return result;
         }
-        if (n >= 10) {
-            result += tens[Math.floor(n / 10)] + ' ';
-            n %= 10;
-        }
-        if (n > 0) {
-            result += ones[n] + ' ';
-        }
-        return result;
-    }
-</script>
+    </script>
 @endsection

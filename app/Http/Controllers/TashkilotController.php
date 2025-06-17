@@ -207,6 +207,7 @@ class TashkilotController extends Controller
 
     public function search(Request $request)
     {
+        
         $querysearch = $request->input('query');
         $id = $request->input('id');
         $type = $request->input('type');

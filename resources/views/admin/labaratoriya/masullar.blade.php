@@ -1,16 +1,17 @@
 @extends('layouts.admin')
 @section('content')
-    <div class="flex justify-between align-center mt-10">
+    <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">Mas'ullar </h2>
 
 
         {{-- <div class="intro-x relative mr-3 sm:mr-6">
             <div class="search hidden sm:block">
-            <form action="{{ route('searchuser') }}" method="GET">
-                <input type="text" name="query" class="search__input input placeholder-theme-13" placeholder="Search...">
-                <i data-feather="search" class="search__icon"></i> 
-            </form>
+                <form action="{{ route('searchuser') }}" method="GET">
+                    <input type="text" name="query" class="search__input input placeholder-theme-13"
+                        placeholder="Search...">
+                    <i data-feather="search" class="search__icon"></i>
+                </form>
             </div>
             <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
         </div> --}}
@@ -23,9 +24,8 @@
                 @endcan
             </div>
         </div>
+
     </div>
-
-
 
     <div class="container mt-2">
         <div class="row">
@@ -79,15 +79,7 @@
                         </table>
 
                     </div>
-                    {{-- <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-                        
-                        <select class="w-20 input box mt-3 sm:mt-0">
-                            <option>10</option>
-                            <option>25</option>
-                            <option>35</option>
-                            <option>50</option>
-                        </select>
-                    </div> --}}
+                    
                 </div>
             </div>
         </div>

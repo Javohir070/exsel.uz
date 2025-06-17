@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="content">
-        <div class="flex justify-between align-center mt-10">
+        <div class="flex justify-between align-center mt-6 mb-6">
 
-            <h2 class="intro-y text-lg font-medium">Kafedra</h2>
+            <h2 class="intro-y text-lg font-medium">Kafedralar</h2>
 
         </div>
 
@@ -25,13 +25,13 @@
                                     Tahrirlash
                                 </a> --}}
                                 {{-- <a href="" class="button w-24 bg-theme-6 text-white">
-                                O'chirish
-                            </a> --}}
+                                    O'chirish
+                                </a> --}}
                             </div>
                         </div>
                         <tr>
                             <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>
-                                <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
+                                        <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
                             <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">
                                 Ma’lumot</th>
                         </tr>
@@ -45,7 +45,7 @@
                             <td class="border">{{ $tash->name }}</td>
                             <td class="border">{{ $tash->tash_yil }}</td>
                         </tr>
-                        @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>

@@ -1,6 +1,6 @@
 @extends("layouts.admin")
 @section("content")
-<div class="flex justify-between align-center mt-10">
+<div class="flex justify-between align-center mt-6 mb-6">
 
     <h2 class="intro-y text-lg font-medium">Permission qo'shish </h2>
 
@@ -12,7 +12,7 @@
 </div>
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
     padding: 20px 20px;
-    border-radius: 20px">
+    border-radius: 4px">
     @if ($errors->any())
         <ul class="alert alert-warning">
             @foreach ($errors->all() as $error)
@@ -30,10 +30,10 @@
                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Name
                         </label>
                         <input type="text" name="name" class="input w-full border mt-2" required="">
-                    </div> 
-            </div><br>
-        </form><br>
-        <div class="px-5 pb-5 text-center">
+                    </div>
+            </div>
+        </form>
+        <div class="px-5 pb-5 text-center mt-4">
             <a href="#"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </a>
@@ -42,6 +42,6 @@
             </button>
         </div>
     </div>
-</div><br>
+</div>
 @endsection
 

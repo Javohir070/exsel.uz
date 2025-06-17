@@ -3,13 +3,13 @@
 @section('content')
 
     <div class="content">
-        <div class="flex justify-between align-center mt-10" style="align-items: center;">
+        <div class="flex justify-between align-center mt-6 mb-6" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">{{ $tash_count ?? 404 }}  ta tashkilot topildi.</h2>
+            <h2 class="intro-y text-lg font-medium">{{ $tash_count ?? 404 }} ta tashkilot topildi.</h2>
 
             <!-- <a href="{{ route('tashkilot.create') }}"  class="button w-24 bg-theme-1 text-white">
-                    Qo'shish
-                </a> -->
+                        Qo'shish
+                    </a> -->
             {{-- <div class="intro-x relative mr-3 sm:mr-6">
                 <div class="search hidden sm:block">
                     <form action="{{ route('search') }}" method="GET">
@@ -26,7 +26,7 @@
                         onchange="this.form.submit()">
                         <option value="">Status</option>
                         <option value="Jarayonda">Jarayonda</option>
-                    <option value="Yakunlangan">Yakunlangan</option>
+                        <option value="Yakunlangan">Yakunlangan</option>
                     </select>
                 </form>
             </div> --}}
@@ -45,38 +45,39 @@
                     </form>
                 </div>
                 <form method="GET" action="{{ route('search') }}">
-                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
+                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="type"
+                        onchange="this.form.submit()">
                         <option value="">Barchasi OTM & ITM</option>
                         <option value="otm">OTM</option>
                         <option value="itm">ITM</option>
                     </select>
                 </form>
                 <form method="GET" action="{{ route('search') }}">
-                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query" onchange="this.form.submit()">
+                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="id"
+                        onchange="this.form.submit()">
                         <option value="">Viloyatlari</option>
                         @foreach ($regions as $v)
-                        <option value="{{ $v->id }}">{{ $v->oz }}</option>
+                            <option value="{{ $v->id }}">{{ $v->oz }}</option>
                         @endforeach
                     </select>
                 </form>
             </div>
 
-            {{-- <div>
+            <div>
                 @role('super-admin')
                 <div>
                     <!-- <a href="{{ route("tashqoshish.create") }}" class="button w-24 bg-theme-1 text-white">
-                            Qo'shish
-                        </a> -->
+                                Qo'shish
+                            </a> -->
                     <a href="{{ route('exportashkilot') }}" class="button box flex items-center text-gray-700"> <i
                             data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </a>
                 </div>
-                <!-- <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
-                                class="button w-24 ml-3 bg-theme-1 text-white">
-                                Excel yuklash
-                            </a> -->
+                {{-- <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
+                    class="button w-24 ml-3 bg-theme-1 text-white">
+                    Excel yuklash
+                </a> --}}
                 @endrole
-
-            </div> --}}
+            </div>
 
         </div>
         <div class="grid grid-cols-12 gap-6 mt-5">
@@ -89,6 +90,7 @@
                             <th class="whitespace-no-wrap" style="width: 40px;">№</th>
                             <th class="whitespace-no-wrap">Tashkilot Nomi</th>
                             <th class="whitespace-no-wrap">Turi</th>
+                            <th class="whitespace-no-wrap">Stir raqami</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
@@ -98,67 +100,39 @@
                             <tr class="intro-x">
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <a href="#"
+                                    <a href="{{ route('tashkilotmalumotlar.show', $tashkilots->id) }}"
                                         class="font-medium">{{ $tashkilots->name }}</a>
                                 </td>
                                 <td>
-                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
+                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' : 'Boshqa') }}
+                                </td>
+                                <td>
+                                    {{ $tashkilots->stir_raqami }}
                                 </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
 
                                         <a class="flex science-update-action items-center mr-3"
-                                            href="{{ route('tashkilot.show', ['tashkilot' => $tashkilots->id]) }}"
-                                            data-id="2978" data-name="sdfd"
-                                            data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
-                                            data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66"
-                                            data-date="None" data-doi="" data-publisher="" data-description="None"
-                                            data-authors-count="None" data-toggle="modal"
-                                            data-target="#science-paper-update-modal">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                stroke-linejoin="round" class="feather feather-check-square w-4 h-4 mr-1">
-                                                <polyline points="9 11 12 14 22 4"></polyline>
-                                                <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-                                            </svg>
+                                            href="{{ route('tashkilot.show', ['tashkilot' => $tashkilots->id]) }}">
+                                            <i data-feather="eye" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                             Ko'rish
                                         </a>
 
-                                        {{-- <form action="{{ route('tashkilot.destroy', ['tashkilot' => $tashkilots->id]) }}"
+                                        <form action="{{ route('tashkilot.destroy', ['tashkilot' => $tashkilots->id]) }}"
                                             method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                             <button type="submit" class="flex delete-action items-center text-theme-6">
                                                 @csrf
                                                 @method('DELETE')
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-trash-2 w-4 h-4 mr-1">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path
-                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                    </path>
-                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                </svg>
+                                                <i data-feather="trash-2" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                                 O'chirish
                                             </button>
-                                        </form> --}}
+                                        </form>
                                         {{-- <form action="{{ route('xodimlar.deleteAll', ['tashkilot' => $tashkilots->id]) }}"
                                             method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                             <button type="submit" class="flex delete-action items-center text-theme-6">
                                                 @csrf
                                                 @method('DELETE')
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
-                                                    stroke-linecap="round" stroke-linejoin="round"
-                                                    class="feather feather-trash-2 w-4 h-4 mr-1">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path
-                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                    </path>
-                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                </svg>
+                                                <i data-feather="trash-2" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                                 Xodimlar o'chirish
                                             </button>
                                         </form> --}}
@@ -205,7 +179,7 @@
                                         Shablon yuklab olish
                                     </a>
 
-                                </div><br>
+                                </div>
                                 <div class="w-full col-span-12">
 
 
@@ -224,7 +198,7 @@
 
 
             </div>
-            <div class="px-5 pb-5 text-center">
+            <div class="px-5 pb-5 text-center mt-4">
 
 
                 <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">

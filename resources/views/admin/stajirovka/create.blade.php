@@ -3,16 +3,16 @@
 @section('content')
 
 
-<div class="flex justify-between align-center mt-10">
+<div class="flex justify-between align-center mt-6 mb-6">
 
     <h2 class="intro-y text-lg font-medium">Yosh olim qo'shish</h2>
 
 
 
-</div><br>
+</div>
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
     padding: 20px 20px;
-    border-radius: 20px">
+    border-radius: 4px">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
         <form id="science-paper-create-form" method="POST" action="{{ route("stajirovka.store") }}"
             class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
@@ -110,9 +110,9 @@
                         @enderror
                     </div>
 
-            </div><br>
-        </form><br>
-        <div class="px-5 pb-5 text-center">
+            </div>
+        </form>
+        <div class="px-5 pb-5 text-center mt-4">
             <a href="#"  class="button delete-cancel w-32 border text-gray-700 mr-1">
                 Bekor qilish
             </a>
