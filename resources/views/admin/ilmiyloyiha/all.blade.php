@@ -12,6 +12,10 @@
                     <a href="{{ route('exportilmiy') }}" class="button box flex items-center text-gray-700">
                         <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
                     </a>
+                    <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
+                        class="button w-24 ml-3 bg-theme-1 text-white">
+                        Import
+                    </a>
                 </div>
             </div>
 
@@ -165,9 +169,9 @@
                 </select>
             </form>
         </div>
-        
+
         {{-- ilmiy loyiha emport qilish excel --}}
-        {{-- <div class="modal" id="science-paper-create-modal">
+        <div class="modal" id="science-paper-create-modal">
             <div class="modal__content modal__content--xl">
 
                 <div class="p-5">
@@ -214,6 +218,6 @@
                 </div>
 
             </div>
-        </div> --}}
+        </div>
 
 @endsection

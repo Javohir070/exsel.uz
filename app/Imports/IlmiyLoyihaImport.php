@@ -10,27 +10,24 @@ use Carbon\Carbon;
 class IlmiyLoyihaImport implements ToModel, WithStartRow
 {
     /**
-    * @param array $row
-    *
-    * @return \Illuminate\Database\Eloquent\Model|null
-    */
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function model(array $row)
     {
-        $tashkilot = Tashkilot::where('stir_raqami', '=' ,$row[3])->first();
-        return new IlmiyLoyiha([
-            'user_id' => auth()->id(),
-            'tashkilot_id' => $tashkilot->id,
-            'turi' => $row[0],
-            'raqami' => $row[4],
-            'mavzusi' => $row[1],
-            'rahbar_name' => $row[2],
-            // 'dastyri' => $row[3],
-            // 'bosh_sana' =>$this->transformDate($row[4]),
-            // 'tug_sana' =>$this->transformDate($row[5]),
-            // 'sum' => $row[9],
-            // 'pan_yunalish' => $row[10],
-            'is_active' => 1,
-        ]);
+        $ilmiyloyiha = IlmiyLoyiha::find($row[0]);
+
+        if ($ilmiyloyiha) {
+            $ilmiyloyiha->rahbar_name = $row[1];
+            $ilmiyloyiha->raqami = $row[2];
+            $ilmiyloyiha->bosh_sana = $row[3];
+            $ilmiyloyiha->tug_sana = $row[4];
+            $ilmiyloyiha->save(); // modelni o'zi saqlanadi
+            return $ilmiyloyiha;
+        }
+
+        return null; // agar id topilmasa
     }
 
     private function transformDate($value)
