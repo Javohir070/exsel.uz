@@ -91,6 +91,11 @@ class IlmiyLoyiha extends Model
 
     ];
 
+    protected $casts = [
+    'bosh_sana' => 'date',
+    'tug_sana' => 'date',
+];
+
     public function tashkilot()
     {
         return $this->belongsTo(Tashkilot::class);

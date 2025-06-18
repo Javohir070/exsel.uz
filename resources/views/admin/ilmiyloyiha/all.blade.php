@@ -177,7 +177,7 @@
                 <div class="p-5">
                     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                            <form id="science-paper-create-form" method="POST" action="{{ route('IlmiyLoyiha_import') }}"
+                            <form id="science-paper-excel-form" method="POST" action="{{ route('IlmiyLoyiha_import') }}"
                                 class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                                 @csrf
                                 <div class="grid grid-cols-12 gap-2">
@@ -188,7 +188,7 @@
                                             shu
                                             shablonday bo'lishi shart yoki xato berdi.
                                         </label><br>
-                                        <a href="#" form="science-paper-create-form"
+                                        <a href="#" 
                                             class="input w-full mt-2 button w-24 bg-theme-1 text-white">
                                             Shablon yuklab olish
                                         </a>
@@ -211,7 +211,7 @@
                     <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
                         Bekor qilish
                     </button>
-                    <button type="submit" form="science-paper-create-form"
+                    <button type="submit" form="science-paper-excel-form"
                         class="update-confirm button w-24 bg-theme-1 text-white">
                         Qo'shish
                     </button>
