@@ -4,10 +4,7 @@
             <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
                 <div class="col-span-12 mt-8">
 
-
                     <div class="grid grid-cols-12 gap-6 mt-5">
-
-
                             <style>
                                 .report-box__icon{
                                     width: 32px;
@@ -39,7 +36,7 @@
                                             </div>
                                             <div class="w-2/4 flex-none">
                                                 <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $loy_count }}/{{ $loy_expert }}</div>
-                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar monitoring</div>
                                             </div>
                                         </div>
                                     </a>
@@ -156,11 +153,7 @@
                                         </tbody>
                                     </table>
                                 </div>
-
                             </div>
-
-
-
                     </div>
                 </div>
             </div>

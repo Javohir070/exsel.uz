@@ -74,7 +74,7 @@
 
                             <option value="ORG texnika">ORG texnika</option>
 
-                        </select><br>
+                        </select>
                         @error('turi')
                             <div class="error">{{ $message }}</div>
                         @enderror

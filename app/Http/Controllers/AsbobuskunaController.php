@@ -60,12 +60,16 @@ class AsbobuskunaController extends Controller
             $asboblar_expert = Asbobuskunaexpert::count();
         }
 
+        $asboblar_all = Asbobuskuna::count();
+
         return view('admin.asbobuskuna.viloyat', [
             'asboblar_count' => $asboblar_count,
             'regions' => $regions,
             'asboblar_expert' => $asboblar_expert,
-            'tashkilots' => $tashkilots
+            'tashkilots' => $tashkilots,
+            'asboblar_all' => $asboblar_all
         ]);
+
     }
 
     public function tashkilot_turi_asbobuskuna($id)
@@ -149,6 +153,51 @@ class AsbobuskunaController extends Controller
         $tashkilot = Tashkilot::findOrFail($id);
         $asbobuskunas = Asbobuskuna::where('is_active', 1)->where('tashkilot_id', '=', $id)->paginate(20);
         return view('admin.asbobuskuna.asbobuskunalar', ['asbobuskunas' => $asbobuskunas, 'tashkilot' => $tashkilot]);
+    }
+
+    public function asbobuskunas_all(Request $request)
+    {
+
+        $query = Asbobuskuna::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('model', 'like', '%' . $search . '%')
+                    ->orWhere('raqami', 'like', '%' . $search . '%')
+                    ->orWhere('fish', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($request->filled('rahbar_name') && empty($request->search)) {
+            $rahbar_name = $request->rahbar_name;
+            $query->where('rahbar_name', 'like', '%' . $rahbar_name . '%');
+        }
+
+        if ($request->filled('type') && $request->type !== 'all') {
+            $turi = $request->type;
+            $query->where('turi', 'like', '%' . $turi . '%');
+        }
+
+        if ($request->filled('status') && $request->status !== 'all') {
+            $query->where('status', '=', $request->status);
+        }
+
+        if ($request->filled('region_id') && $request->region_id !== 'all') {
+            $region_id = $request->region_id;
+            $query->whereHas('tashkilot.region', function ($q) use ($region_id) {
+                $q->where('region_id', $region_id);
+            });
+        }
+
+        $page = $request->input('page_size', 20);
+
+        $asbobuskunas = $query->paginate($page);
+
+        $regions = Region::orderBy('order')->get();
+
+        return view('admin.asbobuskuna.all', ['asbobuskunas' => $asbobuskunas, 'regions' => $regions]);
     }
 
 

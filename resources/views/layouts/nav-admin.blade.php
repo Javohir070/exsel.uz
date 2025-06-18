@@ -86,7 +86,7 @@
         @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
         <li>
             <a href="{{ route('ilmiyloyihalar.index') }}"
-                class="side-menu side-menu{{ request()->is('ilmiyloyihalar*') ? '--active' : '' }}{{ request()->is('search-ilmiy*') ? '--active' : '' }}{{ request()->is('turi*') ? '--active' : '' }}">
+                class="side-menu side-menu{{ request()->is('ilmiyloyihalar*') ? '--active' : '' }}{{ request()->is('ilmiy-loyihalar*') ? '--active' : '' }}{{ request()->is('search-ilmiy*') ? '--active' : '' }}{{ request()->is('turi*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Ilmiy loyihalar </div>
             </a>

@@ -199,6 +199,7 @@ Route::middleware('auth')->group(function () {
     Route::get('stajirovkalar', [StajirovkaController::class, "stajirovkalar"])->name("stajirovkalar.index");
     // Route::get('stajirovka/{id}', [StajirovkaController::class, "stajirovka_tashkilot"])->name("stajirovka_tashkilot.index");
 
+    Route::get('asbobuskunas', [AsbobuskunaController::class, "asbobuskunas_all"])->name("asbobuskunas_all.index");
     Route::get('asbobuskunas/{id}', [AsbobuskunaController::class, "asbobu"])->name("asbobu.index");
     Route::get('ilmiy-loyihalar', [IlmiyLoyihaController::class, "ilmiy_loyihalar_all"])->name("ilmiy_loyihalar_all.index");
     Route::get('ilmiy/{id}', [IlmiyLoyihaController::class, "ilmiy_loyihalar"])->name("ilmiy_loyihalar.index");

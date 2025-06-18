@@ -27,6 +27,7 @@ class IlmiyLoyihaController extends Controller
     public function index()
     {
         $tashRId = auth()->user()->tashkilot_id;
+
         $ilmiyloyiha = IlmiyLoyiha::where('is_active', 1)->where('tashkilot_id', $tashRId)->latest()->paginate(20);
 
         return view('admin.ilmiyloyiha.index', ['ilmiyloyiha' => $ilmiyloyiha]);
@@ -101,7 +102,7 @@ class IlmiyLoyihaController extends Controller
         $scienceid = $request->scienceid ?? null;
         $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
         $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
-        $tekshirivchilar = Tekshirivchilar::where('is_active',1)->where('ilmiy_loyiha_id', '=',$ilmiyloyiha->id)->first();
+        $tekshirivchilar = Tekshirivchilar::where('is_active', 1)->where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
 
         $data = null;
         $errorMessage = null;
@@ -109,11 +110,11 @@ class IlmiyLoyihaController extends Controller
         if ($scienceid) {
             $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$scienceid}/";
             $response_main = Http::withBasicAuth(
-                                    "PxNhTIvMGoVdUSFOsmfaVrc3fwb5HABmZ9Y4WLYb",
-                                    "4JnUEYZ3rWBntf3Rxatl2bwQ8tepv06gmh5WkKCl0YNHc4C8I0wHms5oG4EkTvWz2wMAhqVliOTnZHwPXjKbv5jZufjEeS3WftD9hRPef7OclBUuesIixWKOSpus8zZm"
-                                )
-                                ->withOptions(["verify" => false])
-                                ->get($url_main);
+                "PxNhTIvMGoVdUSFOsmfaVrc3fwb5HABmZ9Y4WLYb",
+                "4JnUEYZ3rWBntf3Rxatl2bwQ8tepv06gmh5WkKCl0YNHc4C8I0wHms5oG4EkTvWz2wMAhqVliOTnZHwPXjKbv5jZufjEeS3WftD9hRPef7OclBUuesIixWKOSpus8zZm"
+            )
+                ->withOptions(["verify" => false])
+                ->get($url_main);
 
             $data = $response_main->json();
 
@@ -143,7 +144,6 @@ class IlmiyLoyihaController extends Controller
             'shtat_sum' => $shtat_sum,
         ]);
     }
-
 
 
     public function edit(IlmiyLoyiha $ilmiyloyiha)
@@ -205,16 +205,16 @@ class IlmiyLoyihaController extends Controller
             "rsh_sanasi" => $request->rsh_sanasi,
             "loyiha_rahbari_uzgargan" => $request->loyiha_rahbari_uzgargan,
             "avvr_fish" => $request->loyiha_rahbari_uzgargan != "yo'q" ? $request->avvr_fish : null,
-            "avvr_ilmiy_daraja" =>$request->loyiha_rahbari_uzgargan != "yo'q" ? $request->avvr_ilmiy_daraja : null,
-            "avvr_ilmiy_unvon" =>$request->loyiha_rahbari_uzgargan != "yo'q" ? $request->avvr_ilmiy_unvon : null,
-            "avvr_lavozimi" =>$request->loyiha_rahbari_uzgargan != "yo'q" ? $request->avvr_lavozimi : null,
-            "avvr_kelishuv_raqami" =>$request->loyiha_rahbari_uzgargan != "yo'q" ? $request->avvr_kelishuv_raqami : null,
-            "avvr_kelishuv_sanasi" =>$request->loyiha_rahbari_uzgargan != "yo'q" ? $request->avvr_kelishuv_sanasi : null,
+            "avvr_ilmiy_daraja" => $request->loyiha_rahbari_uzgargan != "yo'q" ? $request->avvr_ilmiy_daraja : null,
+            "avvr_ilmiy_unvon" => $request->loyiha_rahbari_uzgargan != "yo'q" ? $request->avvr_ilmiy_unvon : null,
+            "avvr_lavozimi" => $request->loyiha_rahbari_uzgargan != "yo'q" ? $request->avvr_lavozimi : null,
+            "avvr_kelishuv_raqami" => $request->loyiha_rahbari_uzgargan != "yo'q" ? $request->avvr_kelishuv_raqami : null,
+            "avvr_kelishuv_sanasi" => $request->loyiha_rahbari_uzgargan != "yo'q" ? $request->avvr_kelishuv_sanasi : null,
             "loyiha_hamrahbari" => $request->loyiha_hamrahbari,
-            "hamrahbar_fish" =>$request->loyiha_hamrahbari != "yo'q" ? $request->hamrahbar_fish : null,
-            "hamr_ishjoyi" =>$request->loyiha_hamrahbari != "yo'q" ? $request->hamr_ishjoyi : null,
-            "hamr_lavozimi" =>$request->loyiha_hamrahbari != "yo'q" ? $request->hamr_lavozimi : null,
-            "hamr_davlati" =>$request->loyiha_hamrahbari != "yo'q" ? $request->hamr_davlati : null,
+            "hamrahbar_fish" => $request->loyiha_hamrahbari != "yo'q" ? $request->hamrahbar_fish : null,
+            "hamr_ishjoyi" => $request->loyiha_hamrahbari != "yo'q" ? $request->hamr_ishjoyi : null,
+            "hamr_lavozimi" => $request->loyiha_hamrahbari != "yo'q" ? $request->hamr_lavozimi : null,
+            "hamr_davlati" => $request->loyiha_hamrahbari != "yo'q" ? $request->hamr_davlati : null,
             "umumiy_mablag" => $path_file,
         ]);
         // "muddat" => $request->muddat,
@@ -283,6 +283,7 @@ class IlmiyLoyihaController extends Controller
     public function destroy(IlmiyLoyiha $ilmiyloyiha)
     {
         $ilmiyloyiha->delete();
+
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
 
     }
@@ -290,7 +291,7 @@ class IlmiyLoyihaController extends Controller
     public function ilmiyloyihalar()
     {
         if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
             foreach ($regions as $region) {
                 $tashkilots = $region->tashkilots()
                     ->where('ilmiyloyiha_is', 1)
@@ -298,36 +299,36 @@ class IlmiyLoyihaController extends Controller
             }
             $region_id = Region::where('id', auth()->user()->region_id)->first();
             $id = $region_id->tashkilots()->pluck('id');
-            $loy_count = IlmiyLoyiha::whereIn('tashkilot_id', $id)->where('is_active',1)->count();
-            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('is_active',1)->count();
+            $loy_count = IlmiyLoyiha::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
+            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
         } else {
             $regions = Region::orderBy('order')->get();
-            $loy_count = IlmiyLoyiha::where('is_active',1)->count();
-            $loy_expert = Tekshirivchilar::where('is_active',1)->count();
-            $tashkilots =Tashkilot::where('ilmiyloyiha_is', 1)->count();
+            $loy_count = IlmiyLoyiha::where('is_active', 1)->count();
+            $loy_expert = Tekshirivchilar::where('is_active', 1)->count();
+            $tashkilots = Tashkilot::where('ilmiyloyiha_is', 1)->count();
         }
         $loyha_count = IlmiyLoyiha::count();
         return view('admin.ilmiyloyiha.viloyat', [
-                        'loy_count' => $loy_count,
-                        'loy_expert' => $loy_expert,
-                        'regions' => $regions,
-                        'loyha_count'=>$loyha_count,
-                        'tashkilots'=>$tashkilots
-                    ]);
+            'loy_count' => $loy_count,
+            'loy_expert' => $loy_expert,
+            'regions' => $regions,
+            'loyha_count' => $loyha_count,
+            'tashkilots' => $tashkilots
+        ]);
     }
 
     public function tashkilot_turi($id)
     {
         // dd($id);
 
-        $tashkilotlarQuery = Tashkilot::where('ilmiyloyiha_is',1)->where('region_id', '=', $id)->with(['ilmiyloyhalar'])
+        $tashkilotlarQuery = Tashkilot::where('ilmiyloyiha_is', 1)->where('region_id', '=', $id)->with(['ilmiyloyhalar'])
             ->get();
 
         // Turga qarab guruhlash
         $groups = [
             'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
             'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
-            'other' => $tashkilotlarQuery->where('tashkilot_turi','boshqa'),
+            'other' => $tashkilotlarQuery->where('tashkilot_turi', 'boshqa'),
         ];
 
         $results = [];
@@ -337,7 +338,7 @@ class IlmiyLoyihaController extends Controller
                 'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->where('is_active', 1)->count(),
             ];
         }
-        $regions = Region::findOrFail( $id );
+        $regions = Region::findOrFail($id);
 
         $id = $tashkilotlarQuery->pluck('id');
         $tashkilots = $tashkilotlarQuery->count();
@@ -345,12 +346,12 @@ class IlmiyLoyihaController extends Controller
         $loy_expert = Tekshirivchilar::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
 
 
-        return view('admin.ilmiyloyiha.tashkilot_turi',[
+        return view('admin.ilmiyloyiha.tashkilot_turi', [
             'results' => $results,
-            'regions'=>$regions,
-            'tashkilots'=>$tashkilots,
-            'loy_count'=>$loy_count,
-            'loy_expert'=>$loy_expert,
+            'regions' => $regions,
+            'tashkilots' => $tashkilots,
+            'loy_count' => $loy_count,
+            'loy_expert' => $loy_expert,
         ]);
     }
 
@@ -362,72 +363,124 @@ class IlmiyLoyihaController extends Controller
         $type = $request->input('type');
         if (ctype_digit($id)) {
             $tashkilotlar = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)
-                                ->where('region_id', '=', $id)
-                                ->where('tashkilot_turi', '=', $type)
-                                ->paginate(50);
+                ->where('region_id', '=', $id)
+                ->where('tashkilot_turi', '=', $type)
+                ->paginate(50);
             $tashkilotlars = Tashkilot::orderBy('name')->where('ilmiyloyiha_is', 1)
-                                ->where('region_id', '=', $id)
-                                ->where('tashkilot_turi', '=', $type)
-                                ->get();
+                ->where('region_id', '=', $id)
+                ->where('tashkilot_turi', '=', $type)
+                ->get();
             $tash_count = $tashkilotlar->total();
-           } else {
+        } else {
             $tashkilotlar = Tashkilot::orderBy('name')
-                                    ->where('ilmiyloyiha_is', 1)
-                                    ->where('name', 'like', '%' . $querysearch . '%')
-                                    ->paginate(50);
+                ->where('ilmiyloyiha_is', 1)
+                ->where('name', 'like', '%' . $querysearch . '%')
+                ->paginate(50);
             $tashkilotlars = Tashkilot::where('status', 1)
-                                    ->where('name', 'like', '%' . $querysearch . '%')
-                                    ->get();
+                ->where('name', 'like', '%' . $querysearch . '%')
+                ->get();
             $tash_count = $tashkilotlar->total();
         }
 
         $id = $tashkilotlars->pluck('id');
 
         $ilmiyloyiha = IlmiyLoyiha::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
+
         if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
         } else {
             $regions = Region::orderBy('order')->get();
         }
 
-        return view('admin.ilmiyloyiha.tashkilotlar', ['ilmiyloyiha' => $ilmiyloyiha, 'tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count]);
+        return view('admin.ilmiyloyiha.tashkilotlar', ['ilmiyloyiha' => $ilmiyloyiha, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'tash_count' => $tash_count]);
     }
 
     public function ilmiy_loyihalar($id)
     {
-        $tashkilot = Tashkilot::findOrFail($id = null);
-        $ilmiyloyihalar = IlmiyLoyiha::where('is_active', 1)->where('tashkilot_id', '=',$id)->paginate(20);
+        $tashkilot = Tashkilot::findOrFail($id);
+
+        $ilmiyloyihalar = IlmiyLoyiha::where('is_active', 1)->where('tashkilot_id', '=', $id)->paginate(20);
+
         return view('admin.ilmiyloyiha.ilmiyloyihalar', ['ilmiyloyihalar' => $ilmiyloyihalar, 'tashkilot' => $tashkilot]);
     }
 
-    public function ilmiy_loyihalar_all(){
-        $ilmiyloyihalar = IlmiyLoyiha::paginate(20);
-        return view('admin.ilmiyloyiha.ilmiyloyihalar', ['ilmiyloyihalar' => $ilmiyloyihalar]);
+    public function ilmiy_loyihalar_all(Request $request)
+    {
+
+        $query = IlmiyLoyiha::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('mavzusi', 'like', '%' . $search . '%')
+                    ->orWhere('rahbar_name', 'like', '%' . $search . '%')
+                    ->orWhere('raqami', 'like', '%' . $search . '%')
+                    ->orWhere('dastyri', 'like', '%' . $search . '%')
+                    ->orWhere('pan_yunalish', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($request->filled('rahbar_name') && empty($request->search)) {
+            $rahbar_name = $request->rahbar_name;
+            $query->where('rahbar_name', 'like', '%' . $rahbar_name . '%');
+        }
+
+        if ($request->filled('type') && $request->type !== 'all') {
+            $turi = $request->type;
+            $query->where('turi', 'like', '%' . $turi . '%');
+        }
+
+        if ($request->filled('status') && $request->status !== 'all') {
+            $query->where('status', '=', $request->status);
+        }
+
+        if ($request->filled('region_id') && $request->region_id !== 'all') {
+            $region_id = $request->region_id;
+            $query->whereHas('tashkilot.region', function ($q) use ($region_id) {
+                $q->where('region_id', $region_id);
+            });
+        }
+
+        $page = $request->input('page_size', 20);
+
+        $ilmiyloyihalar = $query->paginate($page);
+
+        $regions = Region::orderBy('order')->get();
+
+        return view('admin.ilmiyloyiha.all', [
+            'ilmiyloyihalar' => $ilmiyloyihalar,
+            'regions' => $regions
+        ]);
+
     }
+
     public function exportilmiy()
     {
         $fileName = 'Ilmiyloyihalar' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+
         return Excel::download(new IlmiyLoyihasExport, $fileName);
     }
 
     public function monitoring_exportilmiy()
     {
         $fileName = 'monitoring_ilmiyloyihalar' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+
         return Excel::download(new LoyihalarToMonitoringExport, $fileName);
     }
 
     public function searchloyiha(Request $request)
     {
         $querysearch = $request->input('query');
+
         $ilmiyloyiha = IlmiyLoyiha::where('mavzusi', 'like', '%' . $querysearch . '%')
             ->orWhere('turi', 'like', '%' . $querysearch . '%')
             ->orWhere('rahbar_name', 'like', '%' . $querysearch . '%')
             ->orWhere('raqami', 'like', '%' . $querysearch . '%')
             ->orWhere('status', 'like', '%' . $querysearch . '%')
             ->paginate(10);
+
         return view('admin.ilmiyloyiha.search_results', compact('ilmiyloyiha'));
     }
-
 
 
     public function IlmiyLoyiha_import(Request $request)

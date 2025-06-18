@@ -17,25 +17,9 @@
                 </div>
                 <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
             </div>
-            <!-- <div>
-                <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
-                    class="button w-24 ml-3 bg-theme-1 text-white">
-                    Ilmiy loyiha biriktirish
-                </a>
-            </div> -->
-            @role(['super-admin'])
-            <div>
-                <div>
-                    <a href="{{ route('exportilmiy') }}"
-                        class="button box flex items-center text-gray-700">
-                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
-                    </a>
-                </div>
-
-            </div>
-            @endrole
 
         </div>
+
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif

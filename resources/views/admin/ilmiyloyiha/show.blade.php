@@ -5,11 +5,7 @@
     <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">{{ $ilmiyloyiha->tashkilot->name }} </h2>
-        {{-- @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
-        <a href="{{ url('generate-pdf/' . $ilmiyloyiha->id) }}" class="button delete-cancel  border text-gray-700 mr-1">
-            Eksport
-        </a>
-        @endrole --}}
+
         @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
         <a href="{{ route('ilmiyloyihalar.index') }}" class="button w-24 bg-theme-1 text-white">
             Orqaga
@@ -30,6 +26,7 @@
             Orqaga
         </a>
         @endrole
+
     </div>
 
     <div class="intro-y box px-4   mt-5">
