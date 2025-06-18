@@ -3,17 +3,21 @@
 namespace App\Imports;
 
 use Maatwebsite\Excel\Concerns\ToModel;
-use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\WithBatchInserts;
-use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Carbon\Carbon;
 use App\Models\IlmiyLoyiha;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class IlmiyLoyihaImport implements ToModel, WithHeadingRow, WithBatchInserts, WithChunkReading
+class IlmiyLoyihaImport implements ToModel
 {
+
+    /**
+     * @param array $row
+     *
+     * @return \Illuminate\Database\Eloquent\Model|null
+     */
     public function model(array $row)
     {
-        $ilmiyloyiha = IlmiyLoyiha::find($row[0]);
+        $ilmiyloyiha = IlmiyLoyiha::findOrFail($row[0]);
 
         if ($ilmiyloyiha) {
             $ilmiyloyiha->rahbar_name = $row[1];
@@ -26,29 +30,28 @@ class IlmiyLoyihaImport implements ToModel, WithHeadingRow, WithBatchInserts, Wi
         return null;
     }
 
+
     private function parseDate($value)
     {
-        if (empty($value)) return null;
+        if (empty($value))
+            return null;
 
         try {
+            if (is_numeric($value)) {
+                // Exceldagi raqam sifatidagi sanani aniqlash
+                return Date::excelToDateTimeObject($value)->format('Y-m-d');
+            }
+
             if (preg_match('/^\d{2}\.\d{2}\.\d{4}$/', $value)) {
                 return Carbon::createFromFormat('d.m.Y', $value)->format('Y-m-d');
             }
+
             return Carbon::parse($value)->format('Y-m-d');
         } catch (\Exception $e) {
-            \Log::warning("Sanani parse qilishda xatolik: $value");
+            \Log::warning("Sanani parse qilishda xatolik: $value. Xato: " . $e->getMessage());
             return null;
         }
     }
 
-    public function batchSize(): int
-    {
-        return 1000;
-    }
-
-    public function chunkSize(): int
-    {
-        return 1000;
-    }
 }
 

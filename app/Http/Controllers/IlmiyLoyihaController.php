@@ -485,13 +485,13 @@ class IlmiyLoyihaController extends Controller
 
     public function IlmiyLoyiha_import(Request $request)
     {
-        
+
         $request->validate([
             'file' => 'required|mimes:xlsx,csv',
         ]);
 
         Excel::import(new IlmiyLoyihaImport, $request->file('file'));
 
-        return back()->with('success', 'Fayl muvaffaqiyatli yuklandi!');
+        return back()->with('status', 'Fayl muvaffaqiyatli yuklandi!');
     }
 }
