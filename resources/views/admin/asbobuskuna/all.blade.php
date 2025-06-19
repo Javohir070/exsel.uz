@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="content">
-        <div class="flex justify-between align-center mt-6 mb-6">
+        <div class="flex justify-between align-center mt-6 ">
 
             <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name ?? "Asbob-uskunalar" }}</h2>
 
@@ -12,6 +12,148 @@
                     <a href="{{ route('export.asbobuskunalar') }}" class="button box flex items-center text-gray-700">
                         <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
                     </a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6 mb-4 mt-2 pt-2">
+
+            <div class="col-span-3 mt-2">
+                <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                        <div class="flex items-center pl-5"
+                            style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                            <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E64242;"></i>
+                            </div>
+                            <div class="w-2/4 flex-none">
+                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                    {{ $asbobuskuna_count }}
+                                </div>
+                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Jami</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-3 mt-2">
+                <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                        <div class="flex items-center pl-5"
+                            style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                            <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E64242;"></i>
+                            </div>
+                            <div class="w-2/4 flex-none">
+                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                    {{ $moliya_institut }}
+                                </div>
+                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Moliya institutlari</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-3 mt-2">
+                <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                        <div class="flex items-center pl-5"
+                            style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                            <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E64242;"></i>
+                            </div>
+                            <div class="w-2/4 flex-none">
+                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                    {{ $homiylik }}
+                                </div>
+                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Homiylik mablag‘lari</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-span-3 mt-2">
+                <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                        <div class="flex items-center pl-5"
+                            style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                            <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E64242;"></i>
+                            </div>
+                            <div class="w-2/4 flex-none">
+                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                    {{ $loyiha_doirasida }}
+                                </div>
+                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyiha doirasida</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-4 mt-2">
+                <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                        <div class="flex items-center pl-5"
+                            style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                            <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E64242;"></i>
+                            </div>
+                            <div class="w-2/4 flex-none">
+                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                    {{ $tash_byudjetdan }}
+                                </div>
+                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilot byudjet mablag‘lari
+                                    hisobidan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-4 mt-2">
+                <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                        <div class="flex items-center pl-5"
+                            style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                            <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E64242;"></i>
+                            </div>
+                            <div class="w-2/4 flex-none">
+                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                    {{ $ilm_fan }}
+                                </div>
+                                <div class="text-gray-600 mt-1" style="font-size: 16px;">IIlm-fanni moliyalashtirish va
+                                    innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-span-4 mt-2">
+                <div class="col-span-12 sm:col-span-4 xxl:col-span-3 intro-y">
+                    <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                        <div class="flex items-center pl-5"
+                            style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                            <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E64242;"></i>
+                            </div>
+                            <div class="w-2/4 flex-none">
+                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                    {{ $tash_byudjetdan_tashqari }}
+                                </div>
+                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotning byudjetdan tashqari
+                                    mablag‘lari hisobidan</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -29,61 +171,60 @@
                 </div>
 
                 <div class="relative text-gray-700">
-                    <input type="text" name="rahbar_name" value="{{ request('rahbar_name') }}"
-                        class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13"
-                        placeholder="Loyiha rahbari...">
-                    <i data-feather="search"
-                        class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"></i>
-                </div>
+                    <select name="moliya_manbasi" value="{{old('moliya_manbasi')}}" class="input border w-full mt-2">
 
-                <div class="relative text-gray-700">
-                    <select name="status" class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto">
-                        <option value="">Status</option>
-                        <option value="all" @selected(request('status') === 'all')>Barchasi</option>
-                        <option value="Jarayonda" @selected(request('status') === 'Jarayonda')>Jarayonda</option>
-                        <option value="Yakunlangan" @selected(request('status') === 'Yakunlangan')>Yakunlangan</option>
-                    </select>
-                </div>
+                        <option value="">Moliyalashtirish manbasi</option>
 
-                <div class="relative text-gray-700">
-                    <select name="region_id" class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto">
-                        <option value="">Viloyatlari</option>
-                        <option value="all" @selected(request('region_id') === 'all')>Barchasi</option>
-                        @foreach ($regions as $v)
-                            <option value="{{ $v->id }}" @selected(request('region_id') == $v->id)>
-                                {{ $v->oz }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
+                        <option value="all" @selected(request("moliya_manbasi") === 'all')>Barchasi</option>
 
-                <div class="relative text-gray-700">
-                    <select name="type" class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto">
-                        <option value="">Loyiha turi</option>
-                        <option value="all" @selected(request('type') === 'all')>Barchasi</option>
-                        <option value="Amaliy" @selected(request('type') === 'Amaliy')>Amaliy</option>
-                        <option value="Fundamental" @selected(request('type') === 'Fundamental')>Fundamental</option>
-                        <option value="Innovatsion" @selected(request('type') === 'Innovatsion')>Innovatsion</option>
-                        <option value="Tajriba-konstruktorlik" @selected(request('type') === 'Tajriba-konstruktorlik')>
-                            Tajriba-konstruktorlik
+                        <option value="Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi"
+                            @selected(request("moliya_manbasi") === 'Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi')>
+                            Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi</option>
+
+                        <option value="Ilmiy loyiha doirasida" @selected(request("moliya_manbasi") === 'Ilmiy loyiha doirasida')>Ilmiy loyiha doirasida</option>
+
+                        <option value="Tashkilot byudjet mablag‘lari hisobidan"
+                            @selected(request("moliya_manbasi") === 'Tashkilot byudjet mablag‘lari hisobidan')>Tashkilot
+                            byudjet mablag‘lari hisobidan
                         </option>
-                    </select>
 
+                        <option value="Tashkilotning byudjetdan tashqari mablag‘lari hisobidan" @selected(
+                            request("moliya_manbasi") === 'Tashkilotning byudjetdan
+                                                                                                                                tashqari mablag‘lari hisobidan'
+                        )>Tashkilotning byudjetdan
+                            tashqari mablag‘lari hisobidan</option>
+
+                        <option value="Moliya institutlari" @selected(request("moliya_manbasi") === 'Moliya institutlari')>
+                            Moliya institutlari</option>
+
+                        <option value="Homiylik mablag‘lari" @selected(request("moliya_manbasi") === 'Homiylik mablag‘lari')>
+                            Homiylik mablag‘lari</option>
+
+                    </select>
+                </div>
+
+                <div class="relative text-gray-700">
                     <select name="turi" value="{{old('turi')}}" class="input border w-full mt-2">
 
-                        <option value=""></option>
+                        <option value="">Turi</option>
 
-                        <option value="Umumiy laboratoriya">Umumiy laboratoriya</option>
+                        <option value="all" @selected(request("turi") === 'all')>Barchasi</option>
 
-                        <option value="O'lchash asbob-uskunasi">O'lchash asbob-uskunasi</option>
+                        <option value="Umumiy laboratoriya" @selected(request("turi") === 'Umumiy laboratoriya')>Umumiy
+                            laboratoriya</option>
 
-                        <option value="Ixtisoslashtirilgan asbob-uskunasi">Ixtisoslashtirilgan asbob-uskunasi</option>
+                        <option value="O'lchash asbob-uskunasi" @selected(request("turi") === 'O\'lchash asbob-uskunasi')>
+                            O'lchash asbob-uskunasi</option>
 
-                        <option value="Sinov asbob-uskunasi">Sinov asbob-uskunasi</option>
+                        <option value="Ixtisoslashtirilgan asbob-uskunasi" @selected(request("turi") === 'Ixtisoslashtirilgan asbob-uskunasi')>Ixtisoslashtirilgan asbob-uskunasi</option>
 
-                        <option value="Analitik asbob-uskunasi">Analitik asbob-uskunasi</option>
+                        <option value="Sinov asbob-uskunasi" @selected(request("turi") === 'Sinov asbob-uskunasi')>Sinov
+                            asbob-uskunasi</option>
 
-                        <option value="ORG texnika">ORG texnika</option>
+                        <option value="Analitik asbob-uskunasi" @selected(request("turi") === 'Analitik asbob-uskunasi')>
+                            Analitik asbob-uskunasi</option>
+
+                        <option value="ORG texnika" @selected(request("turi") === 'ORG texnika')>ORG texnika</option>
 
                     </select>
                 </div>
@@ -107,7 +248,7 @@
                         <th class="whitespace-no-wrap">Asbob-uskuna nomi</th>
                         <th class="whitespace-no-wrap">Moliyalashtirish manbasi</th>
                         <th class="whitespace-no-wrap">Summasi </th>
-                        <th class="whitespace-no-wrap">Ishlab chiqarilgan yil </th>
+                        <th class="whitespace-no-wrap">Turi </th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -126,8 +267,8 @@
                             <td>
                                 {{ $k->harid_summa }}
                             </td>
-                            <td style="text-align: center;">
-                                {{ $k->ishlabchiq_yil }}
+                            <td>
+                                {{ $k->turi }}
                             </td>
 
                             <td class="table-report__action w-56">
@@ -163,6 +304,7 @@
 
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
             {{$asbobuskunas->appends(request()->query())->links()}}
+
             <form id="science-paper-create-form" method="GET" action="{{ route('asbobuskunas_all.index') }}"
                 class="validate-form">
                 <select class="w-20 input box mt-3 sm:mt-0" name="page_size" onchange="this.form.submit()">
@@ -172,6 +314,7 @@
                     <option @selected(request("page_size") === '50')>50</option>
                 </select>
             </form>
+
         </div>
 
     </div>

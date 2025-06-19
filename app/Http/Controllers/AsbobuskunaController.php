@@ -165,30 +165,17 @@ class AsbobuskunaController extends Controller
             $query->where(function ($q) use ($search) {
                 $q->where('name', 'like', '%' . $search . '%')
                     ->orWhere('model', 'like', '%' . $search . '%')
-                    ->orWhere('raqami', 'like', '%' . $search . '%')
                     ->orWhere('fish', 'like', '%' . $search . '%');
             });
         }
 
-        if ($request->filled('rahbar_name') && empty($request->search)) {
-            $rahbar_name = $request->rahbar_name;
-            $query->where('rahbar_name', 'like', '%' . $rahbar_name . '%');
-        }
-
-        if ($request->filled('type') && $request->type !== 'all') {
-            $turi = $request->type;
+        if ($request->filled('turi') && $request->turi !== 'all') {
+            $turi = $request->turi;
             $query->where('turi', 'like', '%' . $turi . '%');
         }
 
-        if ($request->filled('status') && $request->status !== 'all') {
-            $query->where('status', '=', $request->status);
-        }
-
-        if ($request->filled('region_id') && $request->region_id !== 'all') {
-            $region_id = $request->region_id;
-            $query->whereHas('tashkilot.region', function ($q) use ($region_id) {
-                $q->where('region_id', $region_id);
-            });
+        if ($request->filled('moliya_manbasi') && $request->moliya_manbasi !== 'all') {
+            $query->where('moliya_manbasi', '=', $request->moliya_manbasi);
         }
 
         $page = $request->input('page_size', 20);
@@ -197,7 +184,32 @@ class AsbobuskunaController extends Controller
 
         $regions = Region::orderBy('order')->get();
 
-        return view('admin.asbobuskuna.all', ['asbobuskunas' => $asbobuskunas, 'regions' => $regions]);
+        //moliyalash manbasini statestikasi
+        $asbobuskuna_count = Asbobuskuna::count();
+
+        $moliya_institut = Asbobuskuna::where('moliya_manbasi', 'Moliya institutlari')->count();
+
+        $homiylik = Asbobuskuna::where('moliya_manbasi', 'Homiylik mablag‘lari')->count();
+
+        $tash_byudjetdan = Asbobuskuna::where('moliya_manbasi', 'Tashkilot byudjet mablag‘lari hisobidan')->count();
+
+        $loyiha_doirasida = Asbobuskuna::where('moliya_manbasi', 'Ilmiy loyiha doirasida')->count();
+
+        $ilm_fan = Asbobuskuna::where('moliya_manbasi', 'Ilm-fanni moliyalashtirish va innovatsiyalarni qo‘llab-quvvatlash jamg‘armasi')->count();
+
+        $tash_byudjetdan_tashqari = Asbobuskuna::where('moliya_manbasi', 'Tashkilotning byudjetdan tashqari mablag‘lari hisobidan')->count();
+
+        return view('admin.asbobuskuna.all', [
+            'asbobuskunas' => $asbobuskunas,
+            'regions' => $regions,
+            'moliya_institut' => $moliya_institut,
+            'homiylik' => $homiylik,
+            'loyiha_doirasida' => $loyiha_doirasida,
+            'tash_byudjetdan' => $tash_byudjetdan,
+            'ilm_fan' => $ilm_fan,
+            'tash_byudjetdan_tashqari' => $tash_byudjetdan_tashqari,
+            'asbobuskuna_count' => $asbobuskuna_count
+        ]);
     }
 
 
