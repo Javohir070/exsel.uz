@@ -24,6 +24,7 @@ class IlmiyLoyihaImport implements ToModel
             $ilmiyloyiha->raqami = $row[2];
             $ilmiyloyiha->bosh_sana = $this->parseDate($row[3]);
             $ilmiyloyiha->tug_sana = $this->parseDate($row[4]);
+            $ilmiyloyiha->sum = $row[5];
             $ilmiyloyiha->save();
         }
 
