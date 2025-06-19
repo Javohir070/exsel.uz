@@ -80,7 +80,7 @@
                 </div>
 
                 {{-- Izlash tugmasi --}}
-                <button type="submit" class="update-confirm button w-24 bg-theme-1 text-white">
+                <button type="submit" id="science-paper-create-form" class="update-confirm button w-24 bg-theme-1 text-white">
                     Izlash
                 </button>
 
@@ -120,14 +120,13 @@
                             <td>
                                 {{ $xodimlar->raqami }}
                             </td>
-                            <td
-                                style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
-                                {{ $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->status ?? "Tasdiqlanmagan" }}
+                            <td>
+                                {{ $xodimlar->status }}
                             </td>
-                            <td
-                                style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
-                                {{ $h == 'yuborildi' ? "Tasdiqlash uchun yuborildi" : ($h == null ? "Ko'rilmagan" : $h) }}
+                            <td>
+                                {{ $xodimlar->turi }}
                             </td>
+
                             <td class="table-report__action w-56">
 
                                 <div class="flex justify-center items-center">
@@ -188,7 +187,7 @@
                                             shu
                                             shablonday bo'lishi shart yoki xato berdi.
                                         </label><br>
-                                        <a href="#" 
+                                        <a href="#"
                                             class="input w-full mt-2 button w-24 bg-theme-1 text-white">
                                             Shablon yuklab olish
                                         </a>

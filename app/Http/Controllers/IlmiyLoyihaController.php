@@ -307,13 +307,17 @@ class IlmiyLoyihaController extends Controller
             $loy_expert = Tekshirivchilar::where('is_active', 1)->count();
             $tashkilots = Tashkilot::where('ilmiyloyiha_is', 1)->count();
         }
+        
         $loyha_count = IlmiyLoyiha::count();
+        $jarayonda_count = IlmiyLoyiha::where('status', "Jarayonda")->count();
+
         return view('admin.ilmiyloyiha.viloyat', [
             'loy_count' => $loy_count,
             'loy_expert' => $loy_expert,
             'regions' => $regions,
             'loyha_count' => $loyha_count,
-            'tashkilots' => $tashkilots
+            'tashkilots' => $tashkilots,
+            'jarayonda_count' => $jarayonda_count
         ]);
     }
 
