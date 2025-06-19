@@ -48,6 +48,22 @@
                                 </div>
                             </div>
 
+                            <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                                <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                                    <a href="{{ route('stajirovkas_all.index') }}">
+                                        <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                            <div class="flex" style="background: #EBFBEB; padding: 15px; border-radius: 100%;">
+                                                <i data-feather="git-pull-request" class="report-box__icon text-theme-3" style="color: #00A705;" ></i>
+                                            </div>
+                                            <div class="w-2/4 flex-none">
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $stajirovkas_count }}</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Jami ilmiy stajirovka</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
 
 
 

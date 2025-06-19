@@ -28,7 +28,7 @@ class StajirovkaController extends Controller
     {
         $querysearch = null;
         if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
             foreach ($regions as $region) {
                 $tashkilots = $region->tashkilots()
                     ->where('stajirovka_is', 1)
@@ -40,29 +40,33 @@ class StajirovkaController extends Controller
             $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->count();
         } else {
             $regions = Region::orderBy('order')->get();
-            $tashkilots = Tashkilot::orderBy('name')->where('stajirovka_is',1)->count();
+            $tashkilots = Tashkilot::orderBy('name')->where('stajirovka_is', 1)->count();
             $stajirovka_count = Stajirovka::count();
             $stajirovka_expert = Stajirovkaexpert::count();
         }
+
+        $stajirovkas_count = Stajirovka::count();
+
         return view('admin.stajirovka.viloyat', [
-                        'tashkilots' => $tashkilots,
-                        'stajirovka_count' => $stajirovka_count,
-                        'stajirovka_expert' => $stajirovka_expert,
-                        'regions' => $regions,
-                        'querysearch' => $querysearch
-                    ]);
+            'tashkilots' => $tashkilots,
+            'stajirovka_count' => $stajirovka_count,
+            'stajirovka_expert' => $stajirovka_expert,
+            'regions' => $regions,
+            'querysearch' => $querysearch,
+            'stajirovkas_count' => $stajirovkas_count
+        ]);
     }
 
     public function tashkilot_turi_stajiroka($id)
     {
-        $tashkilotlarQuery = Tashkilot::where('stajirovka_is',1)->where('region_id', '=', $id)->with(['stajirovkalar'])
-        ->get();
+        $tashkilotlarQuery = Tashkilot::where('stajirovka_is', 1)->where('region_id', '=', $id)->with(['stajirovkalar'])
+            ->get();
 
         // Turga qarab guruhlash
         $groups = [
             'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
             'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
-            'other' => $tashkilotlarQuery->where('tashkilot_turi','boshqa'),
+            'other' => $tashkilotlarQuery->where('tashkilot_turi', 'boshqa'),
         ];
 
         $results = [];
@@ -72,14 +76,14 @@ class StajirovkaController extends Controller
                 'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->count(),
             ];
         }
-        $regions = Region::findOrFail( $id );
+        $regions = Region::findOrFail($id);
 
         $id = $tashkilotlarQuery->pluck('id');
         $tashkilots = $tashkilotlarQuery->count();
         $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->count();
         $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->count();
 
-        return view('admin.stajirovka.tashkilot_turi',['results' => $results, 'regions'=>$regions, 'tashkilots'=>$tashkilots, 'stajirovka_count'=>$stajirovka_count, 'stajirovka_expert'=>$stajirovka_expert]);
+        return view('admin.stajirovka.tashkilot_turi', ['results' => $results, 'regions' => $regions, 'tashkilots' => $tashkilots, 'stajirovka_count' => $stajirovka_count, 'stajirovka_expert' => $stajirovka_expert]);
     }
 
     public function search_stajirovka(Request $request)
@@ -90,22 +94,22 @@ class StajirovkaController extends Controller
         $type = $request->input('type');
         if (ctype_digit($id)) {
             $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is', 1)
-                                ->where('region_id', '=', $id)
-                                ->where('tashkilot_turi', '=', $type)
-                                ->paginate(50);
+                ->where('region_id', '=', $id)
+                ->where('tashkilot_turi', '=', $type)
+                ->paginate(50);
             $tashkilotlars = Tashkilot::orderBy('name')->where('stajirovka_is', 1)
-                                ->where('region_id', '=', $id)
-                                ->where('tashkilot_turi', '=', $type)
-                                ->get();
+                ->where('region_id', '=', $id)
+                ->where('tashkilot_turi', '=', $type)
+                ->get();
             $tash_count = $tashkilotlar->total();
-           } else {
+        } else {
             $tashkilotlar = Tashkilot::orderBy('name')
-                                    ->where('stajirovka_is', 1)
-                                    ->where('name', 'like', '%' . $querysearch . '%')
-                                    ->paginate(50);
+                ->where('stajirovka_is', 1)
+                ->where('name', 'like', '%' . $querysearch . '%')
+                ->paginate(50);
             $tashkilotlars = Tashkilot::where('status', 1)
-                                    ->where('name', 'like', '%' . $querysearch . '%')
-                                    ->get();
+                ->where('name', 'like', '%' . $querysearch . '%')
+                ->get();
             $tash_count = $tashkilotlar->total();
         }
 
@@ -113,22 +117,56 @@ class StajirovkaController extends Controller
 
         $stajirovkas = Stajirovka::whereIn('tashkilot_id', $id)->count();
         if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
         } else {
             $regions = Region::orderBy('order')->get();
         }
 
-        return view('admin.stajirovka.stajirovkalar', ['stajirovkas' => $stajirovkas, 'tashkilotlar' => $tashkilotlar, 'regions'=>$regions, 'tash_count'=>$tash_count, 'querysearch' => $querysearch]);
+        return view('admin.stajirovka.stajirovkalar', ['stajirovkas' => $stajirovkas, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'tash_count' => $tash_count, 'querysearch' => $querysearch]);
     }
 
     public function stajirov($id)
     {
 
-        $stajirovkas = Stajirovka::where('tashkilot_id', '=',$id)->paginate(20);
+        $stajirovkas = Stajirovka::where('tashkilot_id', '=', $id)->paginate(20);
+
         $tashkilot = Tashkilot::findOrFail($id);
-        return view('admin.stajirovka.stajirovka', ['stajirovkas' => $stajirovkas, 'tashkilot'=>$tashkilot]);
+
+        return view('admin.stajirovka.stajirovka', ['stajirovkas' => $stajirovkas, 'tashkilot' => $tashkilot]);
     }
 
+
+    public function stajirovkas_all(Request $request)
+    {
+        $query = Stajirovka::query();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('fish', 'like', '%' . $search . '%')
+                    ->orWhere('lavozim', 'like', '%' . $search . '%')
+                    ->orWhere('yil', 'like', '%' . $search . '%')
+                    ->orWhere('yunalishi', 'like', '%' . $search . '%');
+            });
+        }
+
+        if ($request->filled('yil') && $request->yil !== 'all') {
+            $yil = $request->yil;
+            $query->where('yil', '=', value:  $yil );
+        }
+
+
+        $page = $request->input('page_size', 20);
+
+        $stajirovkas = $query->paginate($page);
+
+        $regions = Region::orderBy('order')->get();
+
+        return view('admin.stajirovka.all', [
+            'stajirovkas' => $stajirovkas,
+            'regions' => $regions,
+        ]);
+    }
 
 
     public function create()
@@ -199,7 +237,7 @@ class StajirovkaController extends Controller
 
     public function update(UpdateStajirovkaRequest $request, Stajirovka $stajirovka)
     {
-        $data = $request->only(['fish', 'lavozim', 'yunalishi','holati', 'yil',]); // Faqat oddiy ma'lumotlarni olish
+        $data = $request->only(['fish', 'lavozim', 'yunalishi', 'holati', 'yil',]); // Faqat oddiy ma'lumotlarni olish
 
         // Fayllar saqlanadigan papka
         $folder = 'Stajirovka-file';

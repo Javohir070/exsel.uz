@@ -8,9 +8,11 @@
             <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }} </h2>
 
         </div>
+
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
+
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
             <table class="table table-report -mt-2">
                 <thead>
@@ -67,7 +69,7 @@
                 </tbody>
             </table>
         </div>
-        
+
         {{ $stajirovkas->links() }}
 
     </div>
