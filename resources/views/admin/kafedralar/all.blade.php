@@ -7,7 +7,39 @@
 
             <h2 class="intro-y text-lg font-medium">Kafedralar</h2>
 
+            <div class="flex justify-between align-center ">
+                <div>
+                    <a href="{{ route('export.kafedralar') }}" class="button box flex items-center text-gray-700">
+                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
+                    </a>
+                </div>
+            </div>
+
         </div>
+
+        <form id="science-paper-create-form" method="GET" action="{{ route('kafedras.index') }}" class="validate-form">
+            <div class="flex justify-between align-center gap-6 flex-wrap">
+
+                <div class="relative text-gray-700">
+                    <input type="text" name="search" value="{{ request('search') }}"
+                        class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13" placeholder="Qidiruv...">
+                    <i data-feather="search"
+                        class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"></i>
+                </div>
+
+                <div class="relative text-gray-700">
+                    <select name="yil" value="{{ old('yil') }}" class="science-sub-categoryyil input border w-full mt-2 ">
+                        <option value="">Yilni tanlang</option>
+                        <option value="all">Barchasi</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="update-confirm button w-24 bg-theme-1 text-white">
+                    Izlash
+                </button>
+
+            </div>
+        </form>
 
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>

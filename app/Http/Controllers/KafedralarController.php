@@ -19,31 +19,41 @@ class KafedralarController extends Controller
 
     public function index()
     {
-        $laboratorys = Kafedralar::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
+        $laboratorys = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
 
-        return view("admin.kafedralar.index", ["laboratorys"=> $laboratorys]);
+        return view("admin.kafedralar.index", ["laboratorys" => $laboratorys]);
     }
 
 
     public function kafedra()
     {
-        $kafedra = Kafedralar::where("id",auth()->user()->kafedralar_id)->get();
+        $kafedra = Kafedralar::where("id", auth()->user()->kafedralar_id)->get();
 
-        return view("admin.kafedralar.kafedra", ["kafedra"=> $kafedra]);
+        return view("admin.kafedralar.kafedra", ["kafedra" => $kafedra]);
     }
 
-    public function kafedras()
+    public function kafedras(Request $request)
     {
-        $kafedras = Kafedralar::paginate(25);
+        $query = Kafedralar::query();
 
-        return view("admin.kafedralar.kafedras", ["kafedras"=> $kafedras]);
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('yil')) {
+            $query->where('tash_yil', $request->yil);
+        }
+
+        $kafedras = $query->paginate(20);
+
+        return view("admin.kafedralar.all", ["kafedras" => $kafedras]);
     }
 
 
     public function create()
     {
         $fakultetlar = Fakultetlar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
-        return view("admin.kafedralar.create", ["fakultetlar"=>$fakultetlar]);
+        return view("admin.kafedralar.create", ["fakultetlar" => $fakultetlar]);
     }
 
 
@@ -51,41 +61,41 @@ class KafedralarController extends Controller
     {
         $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
 
-        $masullar = $users->filter(function($user) {
+        $masullar = $users->filter(function ($user) {
             return $user->roles->contains('name', 'kafedra_mudiri');
         });
 
 
-        return view("admin.kafedralar.masullar", ['masullar'=> $masullar]);
+        return view("admin.kafedralar.masullar", ['masullar' => $masullar]);
     }
 
     public function Kafedralar_biriktirilgan_xodimlar()
     {
-        $lab_xodimlar = Xodimlar::where("kafedralar_id",auth()->user()->kafedralar_id)->paginate(20);
-        $tashkilot_xodimlar = Xodimlar::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
+        $lab_xodimlar = Xodimlar::where("kafedralar_id", auth()->user()->kafedralar_id)->paginate(20);
+        $tashkilot_xodimlar = Xodimlar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
 
-        return view("admin.kafedralar.labxodimlar", ["lab_xodimlar"=> $lab_xodimlar, 'tashkilot_xodimlar'=>$tashkilot_xodimlar]);
+        return view("admin.kafedralar.labxodimlar", ["lab_xodimlar" => $lab_xodimlar, 'tashkilot_xodimlar' => $tashkilot_xodimlar]);
     }
 
     public function Kafedralar_biriktirilgan_ilmiyloyha()
     {
-        $ilmiyloyiha = IlmiyLoyiha::where("kafedralar_id",auth()->user()->kafedralar_id)->paginate(20);
-        $tashkilot_ilmiyloyiha = IlmiyLoyiha::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
+        $ilmiyloyiha = IlmiyLoyiha::where("kafedralar_id", auth()->user()->kafedralar_id)->paginate(20);
+        $tashkilot_ilmiyloyiha = IlmiyLoyiha::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
 
-        return view("admin.kafedralar.labilmiyloyhi", ["ilmiyloyiha"=> $ilmiyloyiha, "tashkilot_ilmiyloyiha"=>$tashkilot_ilmiyloyiha]);
+        return view("admin.kafedralar.labilmiyloyhi", ["ilmiyloyiha" => $ilmiyloyiha, "tashkilot_ilmiyloyiha" => $tashkilot_ilmiyloyiha]);
     }
 
     public function Kafedralar_biriktirilgan_xujalik()
     {
-        $xujalik = Xujalik::where("kafedralar_id",auth()->user()->kafedralar_id)->paginate(20);
-        $tashkilot_xujalik = Xujalik::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
+        $xujalik = Xujalik::where("kafedralar_id", auth()->user()->kafedralar_id)->paginate(20);
+        $tashkilot_xujalik = Xujalik::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
 
-        return view("admin.kafedralar.labxujalik", ["xujalik"=> $xujalik, "tashkilot_xujalik"=> $tashkilot_xujalik]);
+        return view("admin.kafedralar.labxujalik", ["xujalik" => $xujalik, "tashkilot_xujalik" => $tashkilot_xujalik]);
     }
 
     public function giveXodimToKaf(Request $request)
     {
-            // Formdan kelgan xodimlar ID larini olish
+        // Formdan kelgan xodimlar ID larini olish
         $xodimlarId = $request->input('xodimlarId', []);
 
         // Foydalanuvchining kafedralar_id sini oling
@@ -105,7 +115,7 @@ class KafedralarController extends Controller
 
     public function giveXujalikToKaf(Request $request)
     {
-            // Formdan kelgan xodimlar ID larini olish
+        // Formdan kelgan xodimlar ID larini olish
         $xujaliklarId = $request->input('xujaliklarId', []);
 
         // Foydalanuvchining kafedralar_id sini oling
@@ -128,7 +138,7 @@ class KafedralarController extends Controller
 
     public function giveIlmiyLoyhaToKaf(Request $request)
     {
-            // Formdan kelgan xodimlar ID larini olish
+        // Formdan kelgan xodimlar ID larini olish
         $ilmiyloyhalarId = $request->input('ilmiyloyhalarId', []);
 
         // Foydalanuvchining kafedralar_id sini oling
@@ -156,7 +166,7 @@ class KafedralarController extends Controller
             "tash_yil" => $request->tash_yil
         ]);
 
-        return redirect('/kafedralar')->with("status",'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+        return redirect('/kafedralar')->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
 
@@ -181,7 +191,7 @@ class KafedralarController extends Controller
             "tash_yil" => $request->tash_yil
         ]);
 
-        return redirect('/kafedralar')->with("status",'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+        return redirect('/kafedralar')->with("status", 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
 
@@ -192,7 +202,7 @@ class KafedralarController extends Controller
         $kafedralar->xujaliklar()->update(['kafedralar_id' => null]);
         $kafedralar->delete();
 
-        return redirect()->back()->with("status",'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+        return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
     }
 
     public function kafedralar_export()

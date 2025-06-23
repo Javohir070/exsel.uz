@@ -7,6 +7,7 @@ use App\Models\Fakultetlar;
 use App\Http\Requests\StoreFakultetlarRequest;
 use App\Http\Requests\UpdateFakultetlarRequest;
 use App\Models\Kafedralar;
+use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
 class FakultetlarController extends Controller
@@ -19,10 +20,21 @@ class FakultetlarController extends Controller
         return view("admin.fakultetlar.index", ["laboratorys"=> $laboratorys]);
     }
 
-    public function fakultets()
+    public function fakultets(Request $request)
     {
-        $fakultets = Fakultetlar::paginate(25);
-        return view("admin.fakultetlar.fakultets", ["fakultets"=> $fakultets]);
+        $query = Fakultetlar::query();
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        if($request->filled('yil')){
+            $query->where('tash_yil', $request->yil);
+        }
+
+        $fakultets = $query->paginate(20);
+
+        return view("admin.fakultetlar.all", ["fakultets"=> $fakultets]);
     }
 
 
@@ -66,12 +78,11 @@ class FakultetlarController extends Controller
 
     public function destroy(Fakultetlar $fakultetlar)
     {
+
         $kafedralar = Kafedralar::where('fakultetlar_id', $fakultetlar->id)->first();
         $kafedralar->xodimlar()->update(['kafedralar_id' => null]);
         $kafedralar->ilmiyLoyihalar()->update(['kafedralar_id' => null]);
         $kafedralar->xujaliklar()->update(['kafedralar_id' => null]);
-
-
 
         $fakultetlar->delete();
 

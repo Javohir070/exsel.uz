@@ -16,13 +16,11 @@ use App\Imports\XodimlarImport;
 class XodimlarController extends Controller
 {
 
-
-
-
     public function index()
     {
         $user_id = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where("tashkilot_id", $user_id)->latest()->paginate(15);
+        
         return view('admin.xodimlar.index',['xodimlars'=>$xodimlar]);
     }
 

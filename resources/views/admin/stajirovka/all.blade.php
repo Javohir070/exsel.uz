@@ -27,9 +27,9 @@
                     <i data-feather="search"
                         class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"></i>
                 </div>
-                
+
                 <div class="relative text-gray-700">
-                    <select name="yil" value="{{ old('yil') }}" class="science-sub-categoryyil input border w-full mt-2 " >
+                    <select name="yil" value="{{ old('yil') }}" class="science-sub-categoryyil input border w-full mt-2 ">
                         <option value="">Yilni tanlang</option>
                         <option value="all">Barchasi</option>
                     </select>
@@ -101,27 +101,4 @@
 
     </div>
 
-
-    <script>
-        // Boshlang'ich va tugash yillari
-        var startYear = 2010;
-        var endYear = 2025;
-
-        // Barcha class nomi 'science-sub-category' bo'lgan select elementlarini olish
-        var selects = document.getElementsByClassName('science-sub-categoryyil');
-
-        // Har bir select elementi uchun sikl
-        for (var i = 0; i < selects.length; i++) {
-            var select = selects[i];
-
-            // Har bir select elementi uchun yillarni qo'shish
-            for (var year = endYear; year >= startYear; year--) {
-                var option = document.createElement('option');
-                option.value = year;
-                option.text = year;
-                option.className = 'year-option'; // Class qo'shish
-                select.appendChild(option);
-            }
-        }
-    </script>
 @endsection

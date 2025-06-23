@@ -14,6 +14,7 @@ class FakultetlarExport implements FromCollection, WithHeadings
     {
         return Fakultetlar::with('tashkilot')->get()->map(function ($kafedralar) {
             return [
+              'id' => $kafedralar->id,
               'Tashkilot turi' => $kafedralar->tashkilot->tashkilot_turi,
               'Tashkilot nomi' => $kafedralar->tashkilot->name,
               'Kafedra nomi' => $kafedralar->name,
@@ -25,6 +26,7 @@ class FakultetlarExport implements FromCollection, WithHeadings
       public function headings(): array
       {
           return [
+              'id',
               'Tashkilot turi',
               'Tashkilot nomi',
               'Fakultet nomi',
