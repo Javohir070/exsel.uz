@@ -10,6 +10,8 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 class IlmiyLoyihaImport implements ToModel
 {
 
+
+
     /**
      * @param array $row
      *
@@ -17,18 +19,18 @@ class IlmiyLoyihaImport implements ToModel
      */
     public function model(array $row)
     {
-        $ilmiyloyiha = IlmiyLoyiha::findOrFail($row[0]);
 
-        if ($ilmiyloyiha) {
-            $ilmiyloyiha->rahbar_name = $row[1];
-            $ilmiyloyiha->raqami = $row[2];
-            $ilmiyloyiha->bosh_sana = $this->parseDate($row[3]);
-            $ilmiyloyiha->tug_sana = $this->parseDate($row[4]);
-            $ilmiyloyiha->sum = $row[5];
-            $ilmiyloyiha->save();
-        }
-
-        return null;
+        return new IlmiyLoyiha([
+            'user_id' => auth()->user()->id,
+            'tashkilot_id' => $row[0],
+            'turi' => $row[1],
+            'bosh_sana' => $this->parseDate($row[2]),
+            'tug_sana' => $this->parseDate($row[3]),
+            'raqami' => $row[4],
+            'mavzusi' => $row[5],
+            'rahbar_name' => $row[6],
+            'sum' => $row[7],
+        ]);
     }
 
 
