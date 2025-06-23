@@ -4,9 +4,7 @@
             <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
                 <div class="col-span-12 mt-8">
 
-
                     <div class="grid grid-cols-12 gap-6 mt-5">
-
 
                             <style>
                                 .report-box__icon{
@@ -41,6 +39,70 @@
                                             <div class="w-2/4 flex-none">
                                                 <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $doktarantura_count }}/{{ $doktarantura_count_all }}</div>
                                                 <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy izlanuvchilar</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                                <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                                    <a href="{{ route('doktarantura.index') }}">
+                                        <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                            <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                                <i data-feather="users" class="report-box__icon text-theme-3" style="color: #E64242;" ></i>
+                                            </div>
+                                            <div class="w-2/4 flex-none">
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $m_phd }}</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Mustaqil izlanuvchi, PhD</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                                <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                                    <a href="{{ route('doktarantura.index') }}">
+                                        <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                            <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                                <i data-feather="users" class="report-box__icon text-theme-3" style="color: #E64242;" ></i>
+                                            </div>
+                                            <div class="w-2/4 flex-none">
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $t_phd }}</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Tayanch doktorantura, PhD</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                                <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                                    <a href="{{ route('doktarantura.index') }}">
+                                        <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                            <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                                <i data-feather="users" class="report-box__icon text-theme-3" style="color: #E64242;" ></i>
+                                            </div>
+                                            <div class="w-2/4 flex-none">
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $m_dsc }}</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Mustaqil izlanuvchi, DSc</div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                                <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                                    <a href="{{ route('doktarantura.index') }}">
+                                        <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                            <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                                <i data-feather="users" class="report-box__icon text-theme-3" style="color: #E64242;" ></i>
+                                            </div>
+                                            <div class="w-2/4 flex-none">
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $dsc }}</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Doktorantura, DSc</div>
                                             </div>
                                         </div>
                                     </a>

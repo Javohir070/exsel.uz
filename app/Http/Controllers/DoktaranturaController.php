@@ -278,12 +278,22 @@ class DoktaranturaController extends Controller
             $doktarantura_count_all = Doktarantura::where('status', 1)->count();
             $doktarantura_expert = Doktaranturaexpert::count();
         }
+
+        $m_phd = Doktarantura::where('dc_type', "=", 'Mustaqil izlanuvchi, PhD')->count();
+        $t_phd = Doktarantura::where('dc_type',"=", 'Tayanch doktorantura, PhD')->count();
+        $m_dsc = Doktarantura::where('dc_type',"=", 'Mustaqil izlanuvchi, DSc')->count();
+        $dsc = Doktarantura::where('dc_type',"=", 'Doktorantura, DSc')->count();
+
         return view('admin.doktarantura.viloyat', [
             'doktarantura_count_all' => $doktarantura_count_all,
             'doktarantura_expert' => $doktarantura_expert,
             'regions' => $regions,
             'doktarantura' => $doktarantura,
-            'doktarantura_count' => $doktarantura_count
+            'doktarantura_count' => $doktarantura_count,
+            'm_phd' => $m_phd,
+            't_phd' => $t_phd,
+            'm_dsc' => $m_dsc,
+            'dsc' => $dsc,
         ]);
     }
 

@@ -133,14 +133,14 @@
         <li>
             <a href="{{ route('fakultets.index') }}"
                 class="side-menu side-menu{{ request()->is('fakultets*') ? '--active' : '' }}">
-                <div class="side-menu__icon"> <i data-feather="list"></i> </div>
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Fakultetlar </div>
             </a>
         </li>
         <li>
             <a href="{{ route('kafedras.index') }}"
                 class="side-menu side-menu{{ request()->is('kafedras*') ? '--active' : '' }}">
-                <div class="side-menu__icon"> <i data-feather="list"></i> </div>
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Kafedralar </div>
             </a>
         </li>
@@ -158,13 +158,13 @@
                 <div class="side-menu__title"> Labaratoriya </div>
             </a>
         </li>
-        <li>
+        {{-- <li>
             <a href="{{ route('ilmiy_izlanuvchilar.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiy-izlanuvchilar*') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title">Ilmiy izlanuvchilar </div>
             </a>
-        </li>
+        </li> --}}
         @endrole
 
 

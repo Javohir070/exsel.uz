@@ -98,7 +98,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/xujaliklar', [xujalikController::class, 'xujaliklar'])->name('xujaliklar.index');
     Route::get('/ilmiydarajalar', [IlmiybnTaminlangaController::class, 'ilmiydarajalar'])->name('ilmiydarajalar.index');
     Route::get('/searchloyiha', [IlmiyLoyihaController::class, 'searchloyiha'])->name('searchloyiha');
-    Route::get('/searchxujalik', [XujalikController::class, 'searchxujalik'])->name('searchxujalik');
     Route::get('/searchxodimlar', [XodimlarController::class, 'searchxodimlar'])->name('searchxodimlar');
     Route::get('/searchuser', [UserController::class, 'searchuser'])->name('searchuser');
     Route::get('/search-doktarantura', [DoktaranturaController::class, 'search_doktarantura'])->name('search_doktarantura');

@@ -16,7 +16,7 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class LaboratoryController extends Controller
 {
-    
+
     public function index()
     {
         $laboratorys =Laboratory::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
@@ -32,16 +32,27 @@ class LaboratoryController extends Controller
             return $user->roles->contains('name', 'labaratoriyaga_masul');
         });
 
-        
+
         return view("admin.labaratoriya.masullar", ['masullar'=> $masullar]);
     }
 
 
-    public function laboratoriyalari()
+    public function laboratoriyalari(Request $request)
     {
-        $laboratoriyalari =laboratory::paginate(25);
 
-        return view('admin.labaratoriya.laboratoriyalari', ['laboratoriyalari'=> $laboratoriyalari]);
+        $query = Laboratory::query();
+
+        if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+        if ($request->filled('yil') && $request->yil !== 'all') {
+            $query->where('tash_yil', $request->yil);
+        }
+
+        $laboratoriyalari = $query->paginate(20);
+
+        return view('admin.labaratoriya.all', ['laboratoriyalari'=> $laboratoriyalari]);
     }
 
     public function laboratoriya()
@@ -106,7 +117,7 @@ class LaboratoryController extends Controller
         return view("admin.labaratoriya.labxujalik", ["xujalik"=> $xujalik, "tashkilot_xujalik"=> $tashkilot_xujalik]);
     }
 
-    
+
     public function giveXodimToLab(Request $request)
     {
             // Formdan kelgan xodimlar ID larini olish
@@ -147,7 +158,7 @@ class LaboratoryController extends Controller
 
     }
 
-    
+
 
 
     public function giveIlmiyLoyhaToLab(Request $request)
@@ -177,7 +188,7 @@ class LaboratoryController extends Controller
         return view("admin.labaratoriya.create");
     }
 
-    
+
     public function store(StoreLaboratoryRequest $request)
     {
 
@@ -191,7 +202,7 @@ class LaboratoryController extends Controller
         return redirect('/laboratory')->with("status",'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
-    
+
     public function show(Laboratory $laboratory)
     {
         $phd = [
@@ -226,13 +237,13 @@ class LaboratoryController extends Controller
                 ]);
     }
 
-   
+
     public function edit(Laboratory $laboratory)
     {
         return view("admin.labaratoriya.edit", ["laboratory"=> $laboratory]);
     }
 
-    
+
     public function update(UpdateLaboratoryRequest $request, Laboratory $laboratory)
     {
         $laboratory->update($request->toArray());
@@ -241,17 +252,17 @@ class LaboratoryController extends Controller
 
     }
 
-    
+
     public function destroy(Laboratory $laboratory)
     {
-        
+
         $laboratory->xodimlar()->update(['laboratory_id' => null]);
         $laboratory->ilmiyLoyihalar()->update(['laboratory_id' => null]);
         $laboratory->xujaliklar()->update(['laboratory_id' => null]);
         $laboratory->izlanuvchilar()->update(['laboratory_id' => null]);
-        
+
         $laboratory->delete();
-        
+
         return redirect()->back()->with("status",'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
     }
 
@@ -263,5 +274,5 @@ class LaboratoryController extends Controller
         return Excel::download(new LaboratoryExport, $fileName);
     }
 
-    
+
 }

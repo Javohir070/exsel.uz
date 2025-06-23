@@ -7,25 +7,53 @@
 
             <h2 class="intro-y text-lg font-medium"> Xo'jalik shartnomalar </h2>
 
-            <div class="intro-x relative mr-3 sm:mr-6">
-                <div class="search hidden sm:block">
-                    <form action="{{ route('searchxujalik') }}" method="GET">
-                        <input type="text" name="query" class="search__input input placeholder-theme-13"
-                            placeholder="Search...">
-                        <i data-feather="search" class="search__icon"></i>
-                    </form>
-                </div>
-                <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
-            </div>
-
             <div>
-                <div>
-                    <a href="/admin/Xujaliklar2024_10_21_07_09_35.xlsx" class="button box flex items-center text-gray-700">
-                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </a>
+                <div class="flex justify-between align-center ">
+                    <div>
+                        <a href="{{ route("exporxujaliklar") }}" class="button box flex items-center text-gray-700">
+                            <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
+                        </a>
+                    </div>
                 </div>
             </div>
 
         </div>
+
+        <form id="science-paper-create-form" method="GET" action="{{ route('xujaliklar.index') }}" class="validate-form">
+            <div class="flex justify-between align-center gap-6 flex-wrap">
+
+                <div class="relative text-gray-700">
+                    <input type="text" name="search" value="{{ request('search') }}"
+                        class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13" placeholder="Qidiruv...">
+                    <i data-feather="search"
+                        class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"></i>
+                </div>
+
+                <div class="relative text-gray-700">
+                    <select name="ishlanma_turi" value="{{ old('ishlanma_turi') }}" id="science-sub-category"
+                        class="input border w-full mt-2">
+
+                        <option value="">Turini tanlang</option>
+
+                        <option value="all">Barchasi</option>
+
+                        <option value="Amaliy">Amaliy</option>
+
+                        <option value="Innovatsion">Innovatsion</option>
+                        <option value="Fundamental">Fundamental</option>
+
+                        <option value="Xizmat ko'rsatishni">Xizmat ko'rsatishni</option>
+
+                    </select>
+                </div>
+
+
+                <button type="submit" class="update-confirm button w-24 bg-theme-1 text-white">
+                    Izlash
+                </button>
+
+            </div>
+        </form>
 
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
@@ -40,16 +68,7 @@
                         <th class="whitespace-no-wrap">Ishlanma nomi</th>
                         <th class="whitespace-no-wrap">Shartnoma turi</th>
                         <th class="whitespace-no-wrap">Ishlanma yaratilgan tadqiqot mavzusi</th>
-                        <th class="whitespace-no-wrap" style="width: 150px;">
-                            <form method="GET" action="{{ route('searchxujalik') }}">
-                                <select class="form-select" aria-label="Default select example" name="query"
-                                    onchange="this.form.submit()">
-                                    <option value="">Status</option>
-                                    <option value="Jarayonda">Jarayonda</option>
-                                    <option value="Yakunlangan">Yakunlangan</option>
-                                </select>
-                            </form>
-                        </th>
+                        <th class="whitespace-no-wrap">Status</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -106,7 +125,7 @@
         </div>
 
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-            {{$xujaliklar->links()}}
+            {{ $xujaliklar->appends(request()->query())->links() }}
         </div>
 
     </div>

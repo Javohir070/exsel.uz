@@ -28,7 +28,7 @@ class FakultetlarController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        if($request->filled('yil')){
+        if($request->filled('yil') && $request->yil !== 'all'){
             $query->where('tash_yil', $request->yil);
         }
 
