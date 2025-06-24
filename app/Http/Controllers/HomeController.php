@@ -63,13 +63,13 @@ class HomeController extends Controller
 
         $users = User::where('tashkilot_id', $tashRId)->with('roles')->get();
 
-        $Ilmiy_faoliyat = $users->filter(function($user) {
+        $Ilmiy_faoliyat = $users->filter(function ($user) {
             return $user->roles->contains('name', 'Ilmiy_faoliyat_uchun_masul');
         });
-        $Tashkilot_pasporti = $users->filter(function($user) {
+        $Tashkilot_pasporti = $users->filter(function ($user) {
             return $user->roles->contains('name', 'Tashkilot_pasporti_uchun_masul');
         });
-        $Xodimlar_uchun = $users->filter(function($user) {
+        $Xodimlar_uchun = $users->filter(function ($user) {
             return $user->roles->contains('name', 'Xodimlar_uchun_masul');
         });
 
@@ -102,15 +102,15 @@ class HomeController extends Controller
         });
         $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
 
-        $masullar = $users->filter(function($user) {
+        $masullar = $users->filter(function ($user) {
             return $user->roles->contains('name', 'labaratoriyaga_masul');
         })->count();
         $ilmiy_loyhalar_rahbariga = IlmiyLoyiha::where('user_id', auth()->id())->count();
         $labaratoriyalar = Laboratory::count();
         $laboratory = auth()->user()->laboratory_id;
         $izlanuvchilar = Doktarantura::count();
-        $labaratoriyalar_admin = Laboratory::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
-        $izlanuvchilar_admin = Doktarantura::where("tashkilot_id",auth()->user()->tashkilot_id)->count();
+        $labaratoriyalar_admin = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->count();
+        $izlanuvchilar_admin = Doktarantura::where("tashkilot_id", auth()->user()->tashkilot_id)->count();
         $phd = [
             "Tayanch doktorantura, PhD",
             "Mustaqil tadqiqotchi, PhD",
@@ -121,10 +121,10 @@ class HomeController extends Controller
             "Mustaqil tadqiqotchi, DSc",
             "Maqsadli doktorantura, DSc"
         ];
-        $phd_soni = Izlanuvchilar::where("laboratory_id",auth()->user()->laboratory_id)->whereIn('talim_turi', $phd)->count();
-        $dsc_soni = Izlanuvchilar::where("laboratory_id",auth()->user()->laboratory_id)->whereIn('talim_turi', $dsc)->count();
+        $phd_soni = Izlanuvchilar::where("laboratory_id", auth()->user()->laboratory_id)->whereIn('talim_turi', $phd)->count();
+        $dsc_soni = Izlanuvchilar::where("laboratory_id", auth()->user()->laboratory_id)->whereIn('talim_turi', $dsc)->count();
 
-        $stajyor_soni = Izlanuvchilar::where("laboratory_id",auth()->user()->laboratory_id)->where('talim_turi', "Stajyor-tadqiqotchi")->count();
+        $stajyor_soni = Izlanuvchilar::where("laboratory_id", auth()->user()->laboratory_id)->where('talim_turi', "Stajyor-tadqiqotchi")->count();
 
         $kaf_IlmiyLoyiha = IlmiyLoyiha::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
         $kaf_Xujalik = Xujalik::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
@@ -135,7 +135,7 @@ class HomeController extends Controller
         $kaf_Monografiyalar = Monografiyalar::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
         $kaf_Intellektualmulk = Intellektualmulk::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
         $tekshirivchilar = Tekshirivchilar::count();
-        
+
         $IlAu_chart = [];
         $stajirovka_count = Stajirovka::count();
         $asboblar_count = Asbobuskuna::count();
@@ -145,7 +145,7 @@ class HomeController extends Controller
         $IlAu_chart[] = $xujalik_count;
 
         $itm_count = Tashkilot::where('tashkilot_turi', 'itm')->count();
-        $FKL_chart  = [];
+        $FKL_chart = [];
         $fakultets = Fakultetlar::count();
         $kafedras = Kafedralar::count();
 
@@ -153,14 +153,14 @@ class HomeController extends Controller
         $FKL_chart[] = $kafedras;
         $FKL_chart[] = $labaratoriyalar;
         // ["Ilmiy maqolalar", "Ilmiy tezislar", " Intellektual mulk ", "Dalolatnomalar ", "Monografiyalar "]
-        
+
         $ilmiy_maqol_chart = [];
         $ilmiymaqolalars = Ilmiymaqolalar::count();
         $ilmiytezislars = Ilmiytezislar::count();
         $intellektualmulks = Intellektualmulk::count();
         $dalolatnomas = Dalolatnoma::count();
         $monografiyalars = Monografiyalar::count();
-       
+
         $ilmiy_maqol_chart[] = $ilmiymaqolalars;
         $ilmiy_maqol_chart[] = $ilmiytezislars;
         $ilmiy_maqol_chart[] = $intellektualmulks;
@@ -173,6 +173,41 @@ class HomeController extends Controller
 
         $ilmiy_loyihalar[] = $yak_ilmiyloyiha;
         $ilmiy_loyihalar[] = $jar_ilmiyloyiha;
+
+        $labels = [];
+        $values = [];
+
+        $regions = Region::get();
+
+        foreach ($regions as $region) {
+            $count = $region->tashkilots()
+                ->withCount(['ilmiyloyhalar' => function ($q) {
+                    // $q->where('is_active', 1);
+                }])
+                ->get()
+                ->sum('ilmiyloyhalar_count');
+
+            $labels[] = $region->name;
+            $values[] = $count;
+        }
+        // $hududlar = [
+        //     "Qoraqalpogʻiston Respublikasi",
+        //     "Andijon viloyati",
+        //     "Buxoro viloyati",
+        //     "Jizzax viloyati",
+        //     "Navoiy viloyati",
+        //     "Namangan viloyati",
+        //     "Surxondaryo viloyati",
+        //     "Samarqand viloyati",
+        //     "Qashqadaryo viloyati",
+        //     "Sirdaryo viloyati",
+        //     "Toshkent viloyati",
+        //     "Fargʻona viloyati",
+        //     "Toshkent shahri",
+        //     "Xorazm viloyati"
+        // ];
+
+        // $viloytalar = array_map(fn() => rand(5, 30), $hududlar);
 
         return view('admin.home', [
             'fakultets' => $fakultets,
@@ -234,6 +269,8 @@ class HomeController extends Controller
             'FKL_chart' => $FKL_chart,
             'ilmiy_maqol_chart' => $ilmiy_maqol_chart,
             'IlAu_chart' => $IlAu_chart,
+            'hududlar' => $labels,
+            'viloy_ilmiyconut' => $values
 
         ]);
     }
@@ -241,7 +278,7 @@ class HomeController extends Controller
     public function monitoring()
     {
         if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
             foreach ($regions as $region) {
                 $doktarantura = $region->tashkilots()
                     ->where('status', 1)
@@ -252,24 +289,24 @@ class HomeController extends Controller
             $doktarantura = Doktarantura::whereIn('tashkilot_id', $id)->count();
             $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->count();
             $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->count();
-            $asboblar_count = Asbobuskuna::whereIn('tashkilot_id', $id)->where('is_active',1)->count();
+            $asboblar_count = Asbobuskuna::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
             $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id)->count();
-            $doktarantura_expert = Doktarantura::whereIn('tashkilot_id', $id)->where('status',1)->count();
-            $loy_count = IlmiyLoyiha::whereIn('tashkilot_id', $id)->where('is_active',1)->count();
-            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('is_active',1)->count();
-        }else{
+            $doktarantura_expert = Doktarantura::whereIn('tashkilot_id', $id)->where('status', 1)->count();
+            $loy_count = IlmiyLoyiha::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
+            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
+        } else {
             $doktarantura = Doktarantura::count();
             $stajirovka_count = Stajirovka::count();
             $stajirovka_expert = Stajirovkaexpert::count();
-            $asboblar_count = Asbobuskuna::where('is_active',1)->count();
+            $asboblar_count = Asbobuskuna::where('is_active', 1)->count();
             $asboblar_expert = Asbobuskunaexpert::count();
-            $doktarantura_expert = Doktarantura::where('status',1)->count();
-            $loy_count = IlmiyLoyiha::where('is_active',1)->count();
-            $loy_expert = Tekshirivchilar::where('is_active',1)->count();
+            $doktarantura_expert = Doktarantura::where('status', 1)->count();
+            $loy_count = IlmiyLoyiha::where('is_active', 1)->count();
+            $loy_expert = Tekshirivchilar::where('is_active', 1)->count();
         }
 
         if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
+            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
         } else {
             $regions = Region::orderBy('order')->get();
         }
@@ -296,7 +333,7 @@ class HomeController extends Controller
             ];
         }
 
-        return view("admin.monitoring",[
+        return view("admin.monitoring", [
             'loy_count' => $loy_count,
             'stajirovka_count' => $stajirovka_count,
             'asboblar_count' => $asboblar_count,
