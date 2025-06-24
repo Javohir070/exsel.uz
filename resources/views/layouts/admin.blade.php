@@ -11,6 +11,9 @@
         <title>Ilmiy-innovatsion faoliyat monitoringi tizimi </title>
         <!-- BEGIN: CSS Assets-->
         <link rel="stylesheet" href="/admin/dist/css/app.css" />
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <!-- END: CSS Assets-->
     </head>

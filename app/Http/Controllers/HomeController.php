@@ -135,21 +135,44 @@ class HomeController extends Controller
         $kaf_Monografiyalar = Monografiyalar::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
         $kaf_Intellektualmulk = Intellektualmulk::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
         $tekshirivchilar = Tekshirivchilar::count();
-
+        
+        $IlAu_chart = [];
         $stajirovka_count = Stajirovka::count();
         $asboblar_count = Asbobuskuna::count();
-
+        $IlAu_chart[] = $loy_count;
+        $IlAu_chart[] = $stajirovka_count;
+        $IlAu_chart[] = $asboblar_count;
+        $IlAu_chart[] = $xujalik_count;
 
         $itm_count = Tashkilot::where('tashkilot_turi', 'itm')->count();
-
+        $FKL_chart  = [];
         $fakultets = Fakultetlar::count();
         $kafedras = Kafedralar::count();
 
+        $FKL_chart[] = $fakultets;
+        $FKL_chart[] = $kafedras;
+        $FKL_chart[] = $labaratoriyalar;
+        // ["Ilmiy maqolalar", "Ilmiy tezislar", " Intellektual mulk ", "Dalolatnomalar ", "Monografiyalar "]
+        
+        $ilmiy_maqol_chart = [];
         $ilmiymaqolalars = Ilmiymaqolalar::count();
         $ilmiytezislars = Ilmiytezislar::count();
         $intellektualmulks = Intellektualmulk::count();
         $dalolatnomas = Dalolatnoma::count();
         $monografiyalars = Monografiyalar::count();
+       
+        $ilmiy_maqol_chart[] = $ilmiymaqolalars;
+        $ilmiy_maqol_chart[] = $ilmiytezislars;
+        $ilmiy_maqol_chart[] = $intellektualmulks;
+        $ilmiy_maqol_chart[] = $dalolatnomas;
+        $ilmiy_maqol_chart[] = $monografiyalars;
+
+        $ilmiy_loyihalar = [];
+        $yak_ilmiyloyiha = IlmiyLoyiha::where('status', 'Yakunlangan')->count();
+        $jar_ilmiyloyiha = IlmiyLoyiha::where('status', 'Jarayonda')->count();
+
+        $ilmiy_loyihalar[] = $yak_ilmiyloyiha;
+        $ilmiy_loyihalar[] = $jar_ilmiyloyiha;
 
         return view('admin.home', [
             'fakultets' => $fakultets,
@@ -207,6 +230,10 @@ class HomeController extends Controller
             "intellektualmulks" => $intellektualmulks,
             "dalolatnomas" => $dalolatnomas,
             "monografiyalars" => $monografiyalars,
+            'ilmiy_loyihalar' => $ilmiy_loyihalar,
+            'FKL_chart' => $FKL_chart,
+            'ilmiy_maqol_chart' => $ilmiy_maqol_chart,
+            'IlAu_chart' => $IlAu_chart,
 
         ]);
     }

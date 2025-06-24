@@ -1,9 +1,9 @@
 import helper from './helper'
 import chart, { helpers } from 'chart.js'
 
-(function($) { 
+(function($) {
     "use strict";
-        
+
     // Chart
     if ($('#report-line-chart').length) {
         let ctx = $('#report-line-chart')[0].getContext('2d')
@@ -473,25 +473,25 @@ import chart, { helpers } from 'chart.js'
         })
     }
 
-    if ($('#donut-chart-widget').length) {
-        let ctx = $('#donut-chart-widget')[0].getContext('2d')
-        let myDoughnutChart = new chart(ctx, {
-            type: 'doughnut',
-            data: {
-                labels: ["Html", "Vuejs", "Laravel"],
-                datasets: [{
-                    data: [15, 10, 65],
-                    backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                    hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                    borderWidth: 5,
-                    borderColor: "#fff"
-                }]
-            },
-            options: {
-                cutoutPercentage: 80
-            }
-        })
-    }
+    // if ($('#donut-chart-widget').length) {
+    //     let ctx = $('#donut-chart-widget')[0].getContext('2d')
+    //     let myDoughnutChart = new chart(ctx, {
+    //         type: 'doughnut',
+    //         data: {
+    //             labels: ["Reactjs", "Yakunlangan", "Jarayonda"],
+    //             datasets: [{
+    //                 data: [15, 10, 65],
+    //                 backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+    //                 hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+    //                 borderWidth: 5,
+    //                 borderColor: "#fff"
+    //             }]
+    //         },
+    //         options: {
+    //             cutoutPercentage: 80
+    //         }
+    //     })
+    // }
 
     if ($('#pie-chart-widget').length) {
         let ctx = $('#pie-chart-widget')[0].getContext('2d')
