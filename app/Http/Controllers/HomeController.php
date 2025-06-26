@@ -203,12 +203,14 @@ class HomeController extends Controller
 
 
         $statistika_s = DB::table('stajirovkas')
-                    ->selectRaw('YEAR(yil) as yil, COUNT(*) as stajiovka_soni')
-                    ->groupBy(DB::raw('YEAR(yil)'))
+                    ->selectRaw('yil as sana, COUNT(*) as stajiovka_soni')
+                    ->groupBy('yil')
                     ->orderBy('yil', 'asc')
                     ->get();
-        $stajiovka_labels_yil = $statistika_s->pluck('yil');
+
+        $stajiovka_labels_yil = $statistika_s->pluck('sana');
         $stajiovka_data_yil = $statistika_s->pluck('stajiovka_soni');
+        
         // $hududlar = [
         //     "Qoraqalpogʻiston Respublikasi",
         //     "Andijon viloyati",
