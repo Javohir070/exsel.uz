@@ -520,6 +520,44 @@
                         <!-- END: Pie Chart -->
                     </div>
 
+                    <div class="col-span-12 lg:col-span-6">
+                        <!-- END: Line Chart -->
+                        <!-- BEGIN: Pie Chart -->
+                        <div class="intro-y box mt-5">
+                            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-gray-200">
+                                <h2 class="font-medium text-base mr-auto">
+                                     Ilmiy loyihalar yillar kesimida
+                                </h2>
+                            </div>
+                            <div class="p-5" id="pie-chart_vil">
+                                <div class="preview">
+                                    {{-- <canvas id="pie-chart-widget-fakuletlar" height="200"></canvas> --}}
+                                    <canvas id="barChart_yillar" width="600" height="400"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: Pie Chart -->
+                    </div>
+
+                    <div class="col-span-12 lg:col-span-6">
+                        <!-- END: Line Chart -->
+                        <!-- BEGIN: Pie Chart -->
+                        <div class="intro-y box mt-5">
+                            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-gray-200">
+                                <h2 class="font-medium text-base mr-auto">
+                                    Stajirovka yillar kesimida
+                                </h2>
+                            </div>
+                            <div class="p-5" id="pie-chart_vil">
+                                <div class="preview">
+                                    {{-- <canvas id="pie-chart-widget-fakuletlar" height="200"></canvas> --}}
+                                    <canvas id="barChart_stajiovka" width="600" height="400"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: Pie Chart -->
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -740,6 +778,76 @@
                         title: {
                             display: true,
                             text: 'Loyihalar soni'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script>
+        const ctx_yil = document.getElementById('barChart_yillar').getContext('2d');
+        const barChart_yil = new Chart(ctx_yil, {
+            type: 'bar',
+            data: {
+                labels: @json($labels_yil), // yillar
+                datasets: [{
+                    label: 'Loyihalar soni',
+                    data: @json($data_yil),   // loyiha sonlari
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    barThickness: 50
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Loyihalar soni'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Yil'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+
+    <script>
+        const ctx_yil_sta = document.getElementById('barChart_stajiovka').getContext('2d');
+        const barChart_yil_sta = new Chart(ctx_yil_sta, {
+            type: 'bar',
+            data: {
+                labels: @json($stajiovka_labels_yil), // yillar
+                datasets: [{
+                    label: 'Stajirovka soni',
+                    data: @json($stajiovka_data_yil),   // loyiha sonlari
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1,
+                    barThickness: 50
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Stajirovka soni'
+                        }
+                    },
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Yil'
                         }
                     }
                 }

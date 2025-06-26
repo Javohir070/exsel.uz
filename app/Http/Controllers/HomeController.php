@@ -27,6 +27,7 @@ use App\Models\Tekshirivchilar;
 use App\Models\User;
 use App\Models\Xodimlar;
 use App\Models\Xujalik;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
@@ -190,6 +191,24 @@ class HomeController extends Controller
             $labels[] = $region->name;
             $values[] = $count;
         }
+
+        $statistika = DB::table('ilmiy_loyihas')
+                    ->selectRaw('YEAR(bosh_sana) as yil, COUNT(*) as loyiha_soni')
+                    ->groupBy(DB::raw('YEAR(bosh_sana)'))
+                    ->orderBy('yil', 'asc')
+                    ->get();
+
+        $labels_yil = $statistika->pluck('yil');
+        $data_yil = $statistika->pluck('loyiha_soni');
+
+
+        $statistika_s = DB::table('stajirovkas')
+                    ->selectRaw('YEAR(yil) as yil, COUNT(*) as stajiovka_soni')
+                    ->groupBy(DB::raw('YEAR(yil)'))
+                    ->orderBy('yil', 'asc')
+                    ->get();
+        $stajiovka_labels_yil = $statistika_s->pluck('yil');
+        $stajiovka_data_yil = $statistika_s->pluck('stajiovka_soni');
         // $hududlar = [
         //     "Qoraqalpogʻiston Respublikasi",
         //     "Andijon viloyati",
@@ -270,7 +289,11 @@ class HomeController extends Controller
             'ilmiy_maqol_chart' => $ilmiy_maqol_chart,
             'IlAu_chart' => $IlAu_chart,
             'hududlar' => $labels,
-            'viloy_ilmiyconut' => $values
+            'viloy_ilmiyconut' => $values,
+            'labels_yil' => $labels_yil,
+            'data_yil' => $data_yil,
+            "stajiovka_labels_yil" => $stajiovka_labels_yil,
+            "stajiovka_data_yil" => $stajiovka_data_yil
 
         ]);
     }
