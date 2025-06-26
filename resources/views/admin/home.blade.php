@@ -453,7 +453,7 @@
                         <div class="intro-y box mt-5">
                             <div class="flex flex-col sm:flex-row items-center p-5 border-b border-gray-200">
                                 <h2 class="font-medium text-base mr-auto">
-                                    Ilmiy loyihalar
+                                    OTM va ITMlar tomonidan amalga oshirilayotgan hamda yakunlangan loyihalar
                                 </h2>
                             </div>
                             <div class="p-5" id="ilmiy-chart">
@@ -470,7 +470,7 @@
                         <div class="intro-y box mt-5">
                             <div class="flex flex-col sm:flex-row items-center p-5 border-b border-gray-200">
                                 <h2 class="font-medium text-base mr-auto">
-                                    Fakultetlar
+                                    OTM va ITMlar mavjud ilmiy bo'linmalar 
                                 </h2>
                             </div>
                             <div class="p-5" id="pie-chart">
