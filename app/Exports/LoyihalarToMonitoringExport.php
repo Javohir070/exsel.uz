@@ -17,6 +17,9 @@ class LoyihalarToMonitoringExport implements FromCollection, WithHeadings
        return Tekshirivchilar::with('tashkilot', 'ilmiyLoyihalar')->where('is_active', 1)->get()->map(function ($tekshirivchilar){
             return [
                 'id' => $tekshirivchilar->ilmiyLoyihalar->id,
+                "Tashkilot nomi" => $tekshirivchilar->tashkilot->name,
+                "Turi" => $tekshirivchilar->tashkilot->tashkilot_turi,
+                "region_id" => $tekshirivchilar->tashkilot->region_id,
                 'Loyiha mavzusi' => $tekshirivchilar->ilmiyLoyihalar->mavzusi,
                 'Loyiha turi' => $tekshirivchilar->ilmiyLoyihalar->turi,
                 'Loyiha shifri' => $tekshirivchilar->ilmiyLoyihalar->raqami,
@@ -36,6 +39,9 @@ class LoyihalarToMonitoringExport implements FromCollection, WithHeadings
     {
         return [
             'id',
+            "Tashkilot nomi",
+            "Turi",
+            "region_id",
             'Loyiha mavzusi',
             'Loyiha turi',
             'Loyiha shifri',

@@ -17,6 +17,8 @@ class DoktaranturaexpertExport implements FromCollection, WithHeadings
             return [
                 'id' => $doktaranturaexpert->id,
                 "Tashkilot nomi" => $doktaranturaexpert->tashkilot->name,
+                "Turi" => $doktaranturaexpert->tashkilot->tashkilot_turi,
+                "region_id" => $doktaranturaexpert->tashkilot->region_id,
                 "Tashkilot buyrug‘i asosida qabul qilingan umumiy izlanuvchilar soni." => $doktaranturaexpert->umumiy_izlanuvchilar,
                 "Yagona elektron tizimdagi tahsil olayotgan izlanuvchilar soni." => $doktaranturaexpert->yagonae_tah_soni,
                 "Chetlashtirilgan izlanuvchilar soni." => $doktaranturaexpert->chetlash_soni,
@@ -45,6 +47,8 @@ class DoktaranturaexpertExport implements FromCollection, WithHeadings
           return [
                 'id',
                 "Tashkilot nomi",
+                "Turi",
+                "region_id",
                 "Tashkilot buyrug‘i asosida qabul qilingan umumiy izlanuvchilar soni.",
                 "Yagona elektron tizimdagi tahsil olayotgan izlanuvchilar soni.",
                 "Chetlashtirilgan izlanuvchilar soni.",

@@ -13,6 +13,9 @@ class StajirovkalarToMonitoringExport implements FromCollection, WithHeadings
        return Stajirovkaexpert::with('tashkilot', 'stajirovkalar')->get()->map(function ($stajirovkaexpert){
             return [
                 'id' => $stajirovkaexpert->id,
+                "Tashkilot nomi" => $stajirovkaexpert->tashkilot->name,
+                "Turi" => $stajirovkaexpert->tashkilot->tashkilot_turi,
+                "region_id" => $stajirovkaexpert->tashkilot->region_id,
                 'Stajorning F.I.Sh' => $stajirovkaexpert->stajirovkalar->fish,
                 'Stajorning lavozimi' => $stajirovkaexpert->stajirovkalar->lavozim,
                 'Stajirovkaga yuborilgan yili' => $stajirovkaexpert->stajirovkalar->yil,
@@ -38,6 +41,9 @@ class StajirovkalarToMonitoringExport implements FromCollection, WithHeadings
     {
         return [
             'id',
+            "Tashkilot nomi",
+            "Turi",
+            "region_id",
             'Stajorning F.I.Sh',
             'Stajorning lavozimi',
             'Stajirovkaga yuborilgan yili',

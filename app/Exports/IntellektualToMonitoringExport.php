@@ -16,6 +16,9 @@ class IntellektualToMonitoringExport implements FromCollection, WithHeadings
         return Intellektual::with('tashkilot', 'ilmiyloyiha')->get()->map(function ($intellektual) {
             return [
                 'id' => $intellektual->id,
+                "Tashkilot nomi" => $intellektual->tashkilot->name,
+                "Turi" => $intellektual->tashkilot->tashkilot_turi,
+                "region_id" => $intellektual->tashkilot->region_id,
                 'Loyiha mavzusi' => $intellektual->ilmiyloyiha->mavzusi,
                 'Loyiha turi' => $intellektual->ilmiyloyiha->turi,
                 'Loyiha shifri' => $intellektual->ilmiyloyiha->raqami,
@@ -59,6 +62,9 @@ class IntellektualToMonitoringExport implements FromCollection, WithHeadings
     {
         return [
             'id',
+            "Tashkilot nomi",
+            "Turi",
+            "region_id",
             'Loyiha mavzusi',
             'Loyiha turi',
             'Loyiha shifri',
