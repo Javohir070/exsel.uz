@@ -35,103 +35,6 @@
                         </div>
                     </div>
 
-                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('tashkilotlar.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #f1e6e6; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="file-text" class="report-box__icon text-theme-3"
-                                            style="color: #81105c;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $tash_count - $itm_count }}</div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">OTM</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('tashkilotlar.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #f1bdbd; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="file-text" class="report-box__icon text-theme-3"
-                                            style="color: #3f7752;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $itm_count }}</div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">ITM</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('ilmiyloyihalar.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="list" class="report-box__icon text-theme-3"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $loy_count }}
-                                        </div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('stajirovkalar.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #EBFBEB; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="git-pull-request" class="report-box__icon text-theme-3"
-                                            style="color: #00A705;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $stajirovka_count }}
-                                        </div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy Stajirovka</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div> --}}
-                    {{--
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('asbobuskunalar.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="printer" class="report-box__icon text-theme-3"
-                                            style="color: #E64242;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $asboblar_count }}
-                                        </div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Asbob-uskunalar</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div> --}}
-
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route('xodim.barchaXodimlar') }}">
@@ -152,26 +55,6 @@
                             </a>
                         </div>
                     </div>
-                    {{--
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('laboratoriyalari.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="thermometer" class="report-box__icon text-theme-3"
-                                            style="color: #E64242;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $labaratoriyalar }}
-                                        </div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Laboratoriyalar</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div> --}}
 
                     @endrole
                     @role(['Xujalik_shartnomalari', 'super-admin', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
@@ -214,60 +97,6 @@
                     @endrole
                     @role(['super-admin'])
 
-                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ url('users') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="users" class="report-box__icon text-theme-3"
-                                            style="color: #E0B973;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $adminlar }}</div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Adminlar</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div> --}}
-
-                    {{-- xodimlar qancha kiritgani --}}
-                    {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <a href="{{ route('tashkilotmalumotlar.index') }}">
-                            <div class="report-box zoom-in">
-                                <div class="box p-5">
-                                    <div class="flex">
-                                        <i data-feather="bar-chart-2" class="report-box__icon text-theme-9"></i>
-                                    </div>
-                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $tash_count }}</div>
-                                    <div class="text-base text-gray-600 mt-1">Tashkilotlar kiritgan xodimlar </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div> --}}
-
-                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('tashkilotmalumotlar.adminlar') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="users" class="report-box__icon text-theme-3"
-                                            style="color: #E0B973;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $admins }}</div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar kiritgan
-                                            adminlar</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div> --}}
-
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route('doktarantura.index') }}">
@@ -287,146 +116,6 @@
                             </a>
                         </div>
                     </div>
-
-                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('fakultets.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="list" class="report-box__icon text-theme-3"
-                                            style="color: #E0B973;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $fakultets }}
-                                        </div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Fakultetlar</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('kafedras.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="list" class="report-box__icon text-theme-3"
-                                            style="color: #E0B973;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $kafedras }}
-                                        </div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Kafedralar</div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div> --}}
-
-                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('ilmiymaqolalars.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="list" class="report-box__icon text-theme-3"
-                                            style="color: #E0B973;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $ilmiymaqolalars }}
-                                        </div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;"> Ilmiy maqolalar </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('ilmiytezislars.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="list" class="report-box__icon text-theme-3"
-                                            style="color: #E0B973;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $ilmiytezislars }}
-                                        </div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;"> Ilmiy tezislar </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('intellektualmulks.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="list" class="report-box__icon text-theme-3"
-                                            style="color: #E0B973;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $intellektualmulks }}
-                                        </div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;"> Intellektual mulk </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('dalolatnomas.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="list" class="report-box__icon text-theme-3"
-                                            style="color: #E0B973;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $dalolatnomas }}
-                                        </div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Dalolatnomalar </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-
-                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
-                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('monografiyalars.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="list" class="report-box__icon text-theme-3"
-                                            style="color: #E0B973;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $monografiyalars }}
-                                        </div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Monografiyalar </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    </div> --}}
 
                     @endrole
                 </div>
@@ -470,7 +159,7 @@
                         <div class="intro-y box mt-5">
                             <div class="flex flex-col sm:flex-row items-center p-5 border-b border-gray-200">
                                 <h2 class="font-medium text-base mr-auto">
-                                    OTM va ITMlar mavjud ilmiy bo'linmalar 
+                                    OTM va ITMlar mavjud ilmiy bo'linmalar
                                 </h2>
                             </div>
                             <div class="p-5" id="pie-chart">
@@ -526,7 +215,7 @@
                         <div class="intro-y box mt-5">
                             <div class="flex flex-col sm:flex-row items-center p-5 border-b border-gray-200">
                                 <h2 class="font-medium text-base mr-auto">
-                                     Ilmiy loyihalar yillar kesimida
+                                    Ilmiy loyihalar yillar kesimida
                                 </h2>
                             </div>
                             <div class="p-5" id="pie-chart_vil">
@@ -703,7 +392,6 @@
             }
         });
     </script>
-
 
     <script>
         const ctx_vilt = document.getElementById('viloyatChart').getContext('2d');

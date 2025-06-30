@@ -20,6 +20,7 @@
             {{ auth()->user()->tashkilot->name }}</span>
     </a>
     @endrole
+
     @role('labaratoriyaga_masul')
     <div class="side-nav__devider my-3"></div>
     <a href="/" class=" items-center ">
@@ -28,6 +29,7 @@
     </a>
     <div class="side-nav__devider my-3"></div>
     @endrole
+    
     <ul>
         <li>
             <a href="{{ route('home.index') }}" class="side-menu side-menu{{ request()->is('/*') ? '--active' : '' }}">
@@ -74,6 +76,7 @@
             </ul>
         </li>
         @endrole
+
         @role(['Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
         <li>
             <a href="{{ route('monitoring.index') }}"
@@ -83,6 +86,7 @@
             </a>
         </li>
         @endrole
+
         @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
         <li>
             <a href="{{ route('ilmiyloyihalar.index') }}"
@@ -92,6 +96,7 @@
             </a>
         </li>
         @endrole
+
         @role(['Asbob-uskunalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
         <li>
             <a href="{{ route('asbobuskunalar.index') }}"
@@ -101,6 +106,7 @@
             </a>
         </li>
         @endrole
+
         @role(['Stajirovka boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
         <li>
             <a href="{{ route('stajirovkalar.index') }}"
@@ -110,6 +116,7 @@
             </a>
         </li>
         @endrole
+
         @role(['Izlanuvchilar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
         <li>
             <a href="{{ route('doktarantura.index') }}"
@@ -119,7 +126,6 @@
             </a>
         </li>
         @endrole
-
 
         @role('super-admin')
         <li>
@@ -189,10 +195,6 @@
         </li>
         @endrole
 
-
-
-
-
         <!-- start admin userlar -->
         @role(['admin', 'Tashkilot_pasporti_uchun_masul'])
         <li>
@@ -235,7 +237,6 @@
                 <div class="side-menu__title"> Labaratoriya </div>
             </a>
         </li>
-
         <li>
             <a href="{{ route('fakultetlar.index') }}"
                 class="side-menu side-menu{{ request()->is('fakultetlar*') ? '--active' : '' }}">
@@ -243,7 +244,6 @@
                 <div class="side-menu__title"> Fakultetlar </div>
             </a>
         </li>
-
         <li>
             <a href="{{ route('kafedralar.index') }}"
                 class="side-menu side-menu{{ request()->is('kafedralar*') ? '--active' : '' }}">
@@ -251,7 +251,6 @@
                 <div class="side-menu__title"> Kafedralar </div>
             </a>
         </li>
-
         {{-- <li>
             <a href="{{ route('ilmiy_izlanuvchi.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiy-izlanuvchi*') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
@@ -259,7 +258,6 @@
                 <div class="side-menu__title"> Ilmiy izlanuvchilar </div>
             </a>
         </li> --}}
-
         <li>
             <a href="{{ route('doktaranturalar') }}"
                 class="side-menu side-menu{{ request()->is('doktaranturalar*') ? '--active' : '' }}">
@@ -267,7 +265,6 @@
                 <div class="side-menu__title"> Ilmiy izlanuvchilar </div>
             </a>
         </li>
-
         <li>
             <a href="{{ route('asbobuskuna.index') }}"
                 class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
@@ -275,7 +272,6 @@
                 <div class="side-menu__title"> Asbob-uskunalar</div>
             </a>
         </li>
-
         <!-- <li>
             <a href="{{ route('stajirovka.index') }}"
                 class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
@@ -286,7 +282,6 @@
         @endrole
 
         @role(['kafedra_mudiri'])
-
         <li>
             <a href="{{ route('kafedralar_xodimlar.index') }}"
                 class="side-menu side-menu{{ request()->is('kafedralar-user*') ? '--active' : '' }}{{ request()->is('xodimlar*') ? '--active' : '' }}">
@@ -355,6 +350,7 @@
             </a>
         </li>
         @endrole
+
         @role(['admin', 'Xodimlar_uchun_masul'])
         <li>
             <a href="{{ route('xodimlar.index') }}"
@@ -388,7 +384,6 @@
             </a>
         </li> -->
         @endrole
-
 
         @role(['Ilmiy_loyiha_rahbari'])
         <li>
@@ -478,6 +473,7 @@
                 <div class="side-menu__title"> Xo'jalik loyihalar </div>
             </a>
         </li>
+
         <li>
             <a href="{{ route('itm.adminlar') }}"
                 class="side-menu side-menu{{ request()->is('itmadminlar*') ? '--active' : '' }}">
@@ -556,7 +552,7 @@
 
         @endrole
 
-         @role(['kafedra_mudiri', 'admin'])
+        @role(['kafedra_mudiri', 'admin'])
         <li>
             <a href="{{ route('ilmiymaqolalar.index') }}"
                 class="side-menu side-menu{{ request()->is('ilmiymaqolalar*') ? '--active' : '' }}">
@@ -617,13 +613,6 @@
         @endrole
 
         @role('super-admin')
-        <!-- <li>
-            <a href="{{ route('asbobuskunalar.index') }}"
-                class="side-menu side-menu{{ request()->is('asbobus*') ? '--active' : '' }}{{ request()->is('search-asbob*') ? '--active' : '' }}{{ request()->is('tashkilot-turi*') ? '--active' : '' }}">
-                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                <div class="side-menu__title"> Asbob-uskunalar</div>
-            </a>
-        </li> -->
         <li>
             <a href="javascript:;"
                 class="side-menu side-menu{{ request()->is('users*') ? '--active' : '' }}{{ request()->is('permissions*') ? '--active' : '' }}{{ request()->is('roles*') ? '--active' : '' }}{{ request()->is('tashqoshish*') ? '--active' : '' }}">
@@ -683,5 +672,6 @@
                 </x-dropdown-link>
             </form>
         </li>
+
     </ul>
 </nav>
