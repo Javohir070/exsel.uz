@@ -25,10 +25,6 @@
 
         </div>
 
-        @if (session('status'))
-            <div class="alert alert-success">{{ session('status') }}</div>
-        @endif
-
         <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
             <table class="table">
                 <tbody>
@@ -51,8 +47,8 @@
                     </div>
 
                     <!-- <tr style="margin-top:20px;">
-                                <th clab border" style="text-align: center;font-size:20px;"  colspan="3"> Tashkilot pasporti </th>
-                            </tr> -->
+                                    <th clab border" style="text-align: center;font-size:20px;"  colspan="3"> Tashkilot pasporti </th>
+                                </tr> -->
                     <tr>
                         <th class="border border-b">#</th>
                         <th class="border border-b">Ma’lumot nomlanishi</th>

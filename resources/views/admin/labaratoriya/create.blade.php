@@ -35,7 +35,6 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkil etilgan yil
                         </label>
-                        <!-- <input type="number" name="tash_yil" value="{{ old('tash_yil') }}" class="input w-full border mt-2" required=""> -->
                         <select name="tash_yil" value="{{ old('tash_yil') }}"
                             class="science-sub-categoryyil input border w-full mt-2 " required="">
                             <option value=""></option>
@@ -57,8 +56,9 @@
 
                 </div>
             </form>
+
             <div class="px-5 pb-5 text-center mt-4">
-                <a href="{{ route('tashkilotrahbari.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                <a href="{{ route('laboratory.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
                 </a>
                 <button type="submit" form="science-paper-create-form"
@@ -66,30 +66,8 @@
                     Qo'shish
                 </button>
             </div>
+
         </div>
     </div>
-
-    <script>
-        // Boshlang'ich va tugash yillari
-        var startYear = 1960;
-        var endYear = 2024;
-
-        // Barcha class nomi 'science-sub-category' bo'lgan select elementlarini olish
-        var selects = document.getElementsByClassName('science-sub-categoryyil');
-
-        // Har bir select elementi uchun sikl
-        for (var i = 0; i < selects.length; i++) {
-            var select = selects[i];
-
-            // Har bir select elementi uchun yillarni qo'shish
-            for (var year = endYear; year >= startYear; year--) {
-                var option = document.createElement('option');
-                option.value = year;
-                option.text = year;
-                option.className = 'year-option'; // Class qo'shish
-                select.appendChild(option);
-            }
-        }
-    </script>
 
 @endsection

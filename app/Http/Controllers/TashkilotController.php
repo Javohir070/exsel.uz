@@ -16,7 +16,6 @@ use Illuminate\Http\Request;
 use App\Exports\TashkilotExport;
 use App\Exports\TashkilotXodimlarExport;
 use App\Http\Requests\StoreTashkilotRequest;
-use Illuminate\Support\Facades\Cache;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TashkilotController extends Controller
@@ -42,17 +41,21 @@ class TashkilotController extends Controller
     {
         return view('admin.tashkilot.create');
     }
+
+
     public function tashkilot_create()
     {
-        return view('admin.tashkilot.qoshish');
+        $regions = Region::all();
+
+        return view('admin.tashkilot.qoshish', ['regions' => $regions]);
     }
+
 
     public function store(StoreTashkilotRequest $request)
     {
-        // $request->validate([
-        //     'name' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
-        //     'id_raqam' => 'required|unique:tashkilots',
-        // ]);
+        $request->validate([
+            'stir_raqami' => 'required|unique:tashkilots,stir_raqami',
+        ]);
 
         if ($request->hasFile('logo')) {
             $name = $request->file('logo')->getClientOriginalName();
@@ -62,6 +65,7 @@ class TashkilotController extends Controller
         Tashkilot::create([
             "name" => $request->name,
             "id_raqam" => $request->id_raqam,
+            "region_id" => $request->region_id ?? null,
             "name_qisqachasi" => $request->name_qisqachasi ?? null,
             "tash_yil" => $request->tash_yil ?? null,
             "yur_manzil" => $request->yur_manzil ?? null,
@@ -83,7 +87,7 @@ class TashkilotController extends Controller
             'hisob_raqam' => $request->hisob_raqam ?? null
         ]);
 
-        return redirect('/tashkilotlar')->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
+        return redirect('/tashkilotlar')->with('status', 'Ma\'lumotlar muvaffaqiyatli qo\'shildi.');
     }
 
 
@@ -105,6 +109,7 @@ class TashkilotController extends Controller
             $name = $request->file('logo')->getClientOriginalName();
             $path = $request->file('logo')->storeAs('post-photos', $name);
         }
+        
         $tashkilot->update([
             "name" => $request->name,
             "name_qisqachasi" => $request->name_qisqachasi,
@@ -128,26 +133,49 @@ class TashkilotController extends Controller
             'hisob_raqam' => $request->hisob_raqam ?? null
         ]);
 
-        return redirect('/tashkilot');
+        return redirect('/tashkilot')->with('status', 'Ma\'lumotlar muvaffaqiyatli saqlandi.');
     }
 
 
     public function destroy(Tashkilot $tashkilot)
     {
         $tashkilot->delete();
+
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
 
     }
 
-    public function tashkilotlar()
+    public function tashkilotlar(Request $request)
     {
-        $tashkilotlar = Tashkilot::orderBy('id_raqam', 'asc')->paginate(20);
-        if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
-        } else {
-            $regions = Region::orderBy('order')->get();
+        $query = Tashkilot::query();
+
+        $regions = Region::orderBy('order')->get();
+
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('stir_raqami', 'like', '%' . $search . '%');
+            });
         }
-        return view('admin.tashkilot.tashkilotlar', ['tashkilotlar' => $tashkilotlar, 'regions' => $regions]);
+
+        if ($request->filled('region_id') && $request->region_id !== 'all') {
+            $query->where('region_id', $request->region_id);
+        }
+
+        if ($request->filled('turi') && $request->turi !== 'all') {
+            $query->where('tashkilot_turi', 'like', '%' . $request->turi . '%');
+        }
+
+        $tash_count = $query->count();
+
+        $tashkilotlar = $query->paginate(20);
+
+        return view('admin.tashkilot.all', [
+            'tashkilotlar' => $tashkilotlar,
+            'regions' => $regions,
+            'tash_count' => $tash_count
+        ]);
 
     }
 
@@ -161,7 +189,7 @@ class TashkilotController extends Controller
         $groups = [
             'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
             'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
-            'other' => $tashkilotlarQuery->where('tashkilot_turi','boshqa'),
+            'other' => $tashkilotlarQuery->where('tashkilot_turi', 'boshqa'),
         ];
 
         $results = [];
@@ -175,7 +203,7 @@ class TashkilotController extends Controller
             ];
 
         }
-        $regions = Region::findOrFail( $id );
+        $regions = Region::findOrFail($id);
 
         $id_tash = $tashkilotlarQuery->pluck('id');
         $tashkilotlar = $tashkilotlarQuery->count();
@@ -183,97 +211,28 @@ class TashkilotController extends Controller
         $doktarantura = Doktarantura::whereIn('tashkilot_id', $id_tash)->count();
         $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id_tash)->count();
         $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id_tash)->count();
-        $asboblar_count = Asbobuskuna::where('is_active',1)->whereIn('tashkilot_id', $id_tash)->count();
+        $asboblar_count = Asbobuskuna::where('is_active', 1)->whereIn('tashkilot_id', $id_tash)->count();
         $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id_tash)->count();
         $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id_tash)->count();
-        $loy_count = IlmiyLoyiha::where('is_active',1)->whereIn('tashkilot_id', $id_tash)->count();
-        $loy_expert = Tekshirivchilar::where('is_active',1)->whereIn('tashkilot_id', $id_tash)->count();
+        $loy_count = IlmiyLoyiha::where('is_active', 1)->whereIn('tashkilot_id', $id_tash)->count();
+        $loy_expert = Tekshirivchilar::where('is_active', 1)->whereIn('tashkilot_id', $id_tash)->count();
 
-        return view('admin.tashkilot.tashkilot_turi',[
-                        'results' => $results,
-                        'regions' => $regions,
-                        'tashkilotlar' => $tashkilotlar,
-                        'loy_count' => $loy_count,
-                        'stajirovka_count' => $stajirovka_count,
-                        'asboblar_count' => $asboblar_count,
-                        'doktarantura' => $doktarantura,
-                        'stajirovka_expert' => $stajirovka_expert,
-                        'asboblar_expert' => $asboblar_expert,
-                        'loy_expert' => $loy_expert,
-                        'doktarantura_expert' => $doktarantura_expert,
-                        'tashkilotlarQuery' => $tashkilotlarQuery,
-        ]);
-    }
-
-    public function search(Request $request)
-    {
-        
-        $querysearch = $request->input('query');
-        $id = $request->input('id');
-        $type = $request->input('type');
-        if (ctype_digit($id)) {
-            $tashkilotlar = Tashkilot::orderBy('name')->where('status', 1)
-                                ->where('region_id', '=', $id)
-                                ->where('tashkilot_turi', '=', $type)
-                                ->paginate(50);
-            $tashkilotlars = Tashkilot::where('status', 1)
-                                ->where('region_id', '=', $id)
-                                ->where('tashkilot_turi', '=', $type)
-                                ->get();
-            $tash_count = $tashkilotlar->total();
-           } else {
-            $tashkilotlar = Tashkilot::orderBy('name')
-                                    ->where('name', 'like', '%' . $querysearch . '%')
-                                    ->paginate(50);
-            $tashkilotlars = Tashkilot::where('status', 1)
-                                    ->where('name', 'like', '%' . $querysearch . '%')
-                                    ->get();
-            $tash_count = $tashkilotlar->total();
-        }
-
-        // $id = $tashkilotlars->pluck('id');
-
-        // `tashkilot_ids` olish
-        $tashkilot_ids = $tashkilotlars->pluck('id');
-
-        // Qo'shimcha hisoblashlar
-        $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $tashkilot_ids)->count();
-        $loy_count = IlmiyLoyiha::where('is_active', 1)->whereIn('tashkilot_id', $tashkilot_ids)->count();
-        $asboblar_count = Asbobuskuna::where('is_active', 1)->whereIn('tashkilot_id', $tashkilot_ids)->count();
-
-        // Tashkilotlar bo'yicha maxsus hisoblashlar
-        $tash_countest = Tashkilot::where('doktarantura_is', 1)->where('region_id', '=', 13)->count();
-        $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $tashkilot_ids)->count();
-
-        // Endi to'liq hisobotlarni olish
-        $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $tashkilot_ids)->count();
-        $stajirovka_expert = Stajirovkaexpert::count();
-        $asboblar_expert = Asbobuskunaexpert::count();
-        $loy_expert = 0; // Bu qiymatni saqlab turishingiz kerak bo'lsa, kerakli ma'lumotni qo'shing
-
-        // Regionlar
-        if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=",auth()->user()->region_id)->get();
-        } else {
-            $regions = Region::orderBy('order')->get();
-        } // Agar juda ko'p regionlar bo'lsa, faqat kerakli maydonlarni olishni o'ylab ko'ring
-
-        // Yaratilgan view ga natijalarni yuborish
-        return view('admin.tashkilot.search_results', [
-            'tashkilotlar' => $tashkilotlar,
+        return view('admin.tashkilot.tashkilot_turi', [
+            'results' => $results,
             'regions' => $regions,
-            'tash_count' => $tash_count,
+            'tashkilotlar' => $tashkilotlar,
             'loy_count' => $loy_count,
             'stajirovka_count' => $stajirovka_count,
             'asboblar_count' => $asboblar_count,
-            'doktarantura_expert' => $doktarantura_expert,
+            'doktarantura' => $doktarantura,
             'stajirovka_expert' => $stajirovka_expert,
             'asboblar_expert' => $asboblar_expert,
             'loy_expert' => $loy_expert,
-            'doktarantura_count' => $doktarantura_count,
-            'tash_countest' => $tash_countest,
+            'doktarantura_expert' => $doktarantura_expert,
+            'tashkilotlarQuery' => $tashkilotlarQuery,
         ]);
     }
+
 
     public function exportashkilot()
     {
@@ -286,6 +245,5 @@ class TashkilotController extends Controller
     {
         return Excel::download(new TashkilotXodimlarExport($tashkilotId), 'xodimlar.xlsx');
     }
-
 
 }

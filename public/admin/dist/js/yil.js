@@ -1,6 +1,6 @@
 
 // Boshlang'ich va tugash yillari
-var startYear = 2010;
+var startYear = 1960;
 var endYear = 2025;
 
 // Barcha class nomi 'science-sub-category' bo'lgan select elementlarini olish

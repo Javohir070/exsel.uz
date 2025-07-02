@@ -19,7 +19,6 @@ use App\Http\Controllers\IntellektualController;
 use App\Http\Controllers\IntellektualmulkController;
 use App\Http\Controllers\IqtisodiyMoliyaviyController;
 use App\Http\Controllers\ItmController;
-use App\Http\Controllers\IzlanuvchilarController;
 use App\Http\Controllers\KafedralarController;
 use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\LoyihaijrochilarController;
@@ -91,7 +90,6 @@ Route::middleware('auth')->group(function () {
 
     //tashkilot
     Route::get('/tashkilotlar', [TashkilotController::class, 'tashkilotlar'])->name('tashkilotlar.index');
-    Route::get('/search', [TashkilotController::class, 'search'])->name('search');
     Route::get('region/{id}', [TashkilotController::class, 'tashkilot_region'])->name('tashkilot_region');
     Route::get('/tashqoshish', [TashkilotController::class, 'tashkilot_create'])->name('tashqoshish.create');
     Route::get('/adminlar', [TashkilotMalumotlarController::class, 'adminlar'])->name('tashkilotmalumotlar.adminlar');
@@ -208,20 +206,6 @@ Route::middleware('auth')->group(function () {
     Route::get('monitoring', [HomeController::class, "monitoring"])->name("monitoring.index");
     // end home
 
-    // start izlanuvchilar
-    Route::post("emport-izlanuvchi", [IzlanuvchilarController::class, "emport_izlanuvchi"])->name("emport_izlanuvchi.index");
-    Route::get("/ilmiy-izlanuvchilar", [IzlanuvchilarController::class, "ilmiy_izlanuvchilar"])->name("ilmiy_izlanuvchilar.index");
-    Route::put('lab/{labId}/give-izlanuvchilar', [IzlanuvchilarController::class, 'giveIzlanuvchilarToLab']);
-    Route::get('/ilmiy-izlanuvchi', [IzlanuvchilarController::class, 'ilmiy_izlanuvchi'])->name('ilmiy_izlanuvchi.index');
-    Route::get('/ilmiy/{labId}/{type}', [IzlanuvchilarController::class, 'izlanuvchi_php'])->name('ilmiy');
-    Route::get('/lab-xujaliklar/{labId}', [IzlanuvchilarController::class, 'lab_xujalik'])->name('lab_xujaliklar.index');
-    Route::get('/lab-ilmiy/{labId}', [IzlanuvchilarController::class, 'lab_ilmiy'])->name('lab_ilmiy.index');
-    Route::get('/searchizlanuvchilar', [IzlanuvchilarController::class, 'searchIzlanuvchilar'])->name('searchizlanuvchilar');
-    Route::get('/searchizlanu-admin', [IzlanuvchilarController::class, 'searchIzlanuvchilar_admin'])->name('searchizlanuvchilar_admin');
-    Route::post('/labbiriktirish/{id}/edit', [IzlanuvchilarController::class, 'labId_biriktirish']);
-    Route::post('/isactive/{id}/edit', [IzlanuvchilarController::class, 'is_active'])->name('is_active');
-    // end izlanuvchilar
-
     //start kafedra mudiri uchun
     Route::get('kafedralar-user', [KafedralarController::class, 'Kafedralar_biriktirilgan_xodimlar'])->name('kafedralar_xodimlar.index');
     Route::get('kafedralar-xujalik', [KafedralarController::class, 'Kafedralar_biriktirilgan_xujalik'])->name('kafedralar_xujalik.index');
@@ -284,7 +268,6 @@ Route::middleware('auth')->group(function () {
         'tashkilot.ilmiydaraja' => TashkilotIlmiydarajaController::class,
         'tashkilot.userlar' => TashkilotUserlarController::class,
         'laboratory' => LaboratoryController::class,
-        'izlanuvchilar' => IzlanuvchilarController::class,
         'tekshirivchilar' => TekshirivchilarController::class,
         'fakultetlar' => FakultetlarController::class,
         'kafedralar' => KafedralarController::class,

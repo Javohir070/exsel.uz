@@ -11,7 +11,6 @@
                 Orqaga
             </a>
 
-
         </div>
 
         @if (session('status'))

@@ -13,7 +13,6 @@
                 </div>
 
                 <div class="grid grid-cols-12 gap-6 mt-5">
-                    @role(['super-admin', 'Ekspert', "Ishchi guruh azosi", 'Rahbar'])
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -56,9 +55,6 @@
                         </div>
                     </div>
 
-                    @endrole
-                    @role(['Xujalik_shartnomalari', 'super-admin', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar'])
-
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route('xujaliklar.index') }}">
@@ -79,7 +75,7 @@
                             </a>
                         </div>
                     </div>
-                    @endrole
+
                     @role(['Ilmiy_loyiha_rahbari'])
                     <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
                         <a href="{{ route('scientific_project.index') }}">
@@ -95,7 +91,6 @@
                         </a>
                     </div>
                     @endrole
-                    @role(['super-admin'])
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -117,7 +112,6 @@
                         </div>
                     </div>
 
-                    @endrole
                 </div>
 
                 <div class="intro-y grid grid-cols-12 gap-6 mt-5">
@@ -126,23 +120,24 @@
                         <div class="intro-y box mt-5">
                             <div class="flex flex-col sm:flex-row items-center p-5 border-b border-gray-200">
                                 <h2 class="font-medium text-base mr-auto">
-                                    Ilmiy maqolalar
+                                    Tashkilotlar
                                 </h2>
                             </div>
-                            <div class="p-5" id="donut-chart">
+                            <div class="p-5" id="ilmiy-chart">
                                 <div class="preview">
-                                    {{-- <canvas id="donut-chart-widget" height="200"></canvas> --}}
-                                    <canvas id="barChart" width="600" height="400"></canvas>
+                                    <canvas id="tashkilot-chart-widget" height="200"></canvas>
                                 </div>
                             </div>
                         </div>
                     </div>
 
+
+
                     <div class="col-span-12 lg:col-span-4">
                         <div class="intro-y box mt-5">
                             <div class="flex flex-col sm:flex-row items-center p-5 border-b border-gray-200">
                                 <h2 class="font-medium text-base mr-auto">
-                                    OTM va ITMlar tomonidan amalga oshirilayotgan hamda yakunlangan loyihalar
+                                    Ilmiy loyihalar
                                 </h2>
                             </div>
                             <div class="p-5" id="ilmiy-chart">
@@ -247,11 +242,28 @@
                         <!-- END: Pie Chart -->
                     </div>
 
+                    <div class="col-span-12 lg:col-span-4">
+                        <div class="intro-y box mt-5">
+                            <div class="flex flex-col sm:flex-row items-center p-5 border-b border-gray-200">
+                                <h2 class="font-medium text-base mr-auto">
+                                    Ilmiy maqolalar
+                                </h2>
+                            </div>
+                            <div class="p-5" id="donut-chart">
+                                <div class="preview">
+                                    <canvas id="barChart" height="300"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </div>
     @endrole
+
     @role(['admin', 'Xodimlar_uchun_masul', 'Asbob_uskunalarga_masul', 'Tashkilot_pasporti_uchun_masul', 'Ilmiy_faoliyat_uchun_masul'])
     @include('admin.admin')
     @endrole
@@ -266,49 +278,110 @@
     @endrole
 
     <script>
-        $(document).ready(function () {
-            if ($('#ilmiy-chart-widget').length) {
-                var _ctx9 = $('#ilmiy-chart-widget')[0].getContext('2d');
+        Chart.register(ChartDataLabels);
 
-                var _myDoughnutChart3 = new Chart(_ctx9, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ["Yakunlangan", "Jarayonda"],
-                        datasets: [{
-                            data: @json($ilmiy_loyihalar),
-                            backgroundColor: ["#FFC533", "#285FD3"],
-                            hoverBackgroundColor: ["#FFC533", "#285FD3"],
-                            borderWidth: 2,
-                            borderColor: "#fff"
-                        }]
+        const ctx1 = document.getElementById('ilmiy-chart-widget').getContext('2d');
+        const ilmiyData = @json($ilmiy_loyihalar ?? [1, 1]); // fallback values
+
+        new Chart(ctx1, {
+            type: 'pie',
+            data: {
+                labels: ["Yakunlangan", "Jarayonda"],
+                datasets: [{
+                    data: ilmiyData,
+                    backgroundColor: ["#FFC533", "#285FD3"],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
                     },
-                    options: {
-                        cutoutPercentage: 80 // eski 'cutoutPercentage' o‘rniga Chart.js v3+
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                return `${label}: ${value}`;
+                            }
+                        }
                     }
-                });
-            }
-
-        });
-
-        $(document).ready(function () {
-            if ($('#pie-chart-widget-fakuletlar').length) {
-                var _ctx10 = $('#pie-chart-widget-fakuletlar')[0].getContext('2d');
-
-                var _myPieChart = new Chart(_ctx10, {
-                    type: 'pie',
-                    data: {
-                        labels: ["Fakultetlar", "Kafedralar", "Laboratoriyalar"],
-                        datasets: [{
-                            data: @json($FKL_chart),
-                            backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                            hoverBackgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
-                            borderWidth: 5,
-                            borderColor: "#fff"
-                        }]
-                    }
-                });
+                }
             }
         });
+
+        const ctx_tashkilot = document.getElementById('tashkilot-chart-widget').getContext('2d');
+        const tashkilotData = @json($tashkilot_turilar ?? [1, 1, 1]); // fallback values
+
+        new Chart(ctx_tashkilot, {
+            type: 'pie',
+            data: {
+                labels: ["OTM", "ITM", 'BOSHQA'],
+                datasets: [{
+                    data: tashkilotData,
+                    backgroundColor: ["#FFC533", "#285FD3", "#FF8B26"],
+                    borderColor: '#fff',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                return `${label}: ${value}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+
+        const ctx2 = document.getElementById('pie-chart-widget-fakuletlar').getContext('2d');
+        const fklData = @json($FKL_chart ?? [1, 1, 1]); // fallback values
+
+        new Chart(ctx2, {
+            type: 'pie',
+            data: {
+                labels: ["Fakultetlar", "Kafedralar", "Laboratoriyalar"],
+                datasets: [{
+                    data: fklData,
+                    backgroundColor: ["#FF8B26", "#FFC533", "#285FD3"],
+                    borderColor: "#ffffff",
+                    borderWidth: 3
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function (context) {
+                                const label = context.label || '';
+                                const value = context.parsed || 0;
+                                return `${label}: ${value}`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+
+
     </script>
 
     <script>
@@ -360,7 +433,7 @@
         const chart = new Chart(ctx_pie, {
             type: 'pie',
             data: {
-                labels: ["Ilmiy loyihalar", "Ilmiy Stajirovka", "Asbob-uskunalar", "Xo'jalik shartnomalari"],
+                labels: [ "Asbob-uskunalar", "Xo'jalik shartnomalari"],
                 datasets: [{
                     data: @json($IlAu_chart),
                     backgroundColor: [
@@ -542,4 +615,5 @@
             }
         });
     </script>
+
 @endsection

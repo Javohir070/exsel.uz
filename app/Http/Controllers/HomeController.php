@@ -6,7 +6,6 @@ use App\Models\Asbobuskuna;
 use App\Models\Asbobuskunaexpert;
 use App\Models\Dalolatnoma;
 use App\Models\Doktarantura;
-use App\Models\Doktaranturaexpert;
 use App\Models\Fakultetlar;
 use App\Models\IlmiybnTaminlanga;
 use App\Models\IlmiyLoyiha;
@@ -14,7 +13,6 @@ use App\Models\Ilmiymaqolalar;
 use App\Models\Ilmiytezislar;
 use App\Models\Intellektualmulk;
 use App\Models\IqtisodiyMoliyaviy;
-use App\Models\Izlanuvchilar;
 use App\Models\Kafedralar;
 use App\Models\Laboratory;
 use App\Models\Monografiyalar;
@@ -51,13 +49,14 @@ class HomeController extends Controller
             'xujaliklar',
             'ilmiydarajalar'
         ])->find($tashRId);
+
         $tash_count = Tashkilot::count();
         $loy_count = IlmiyLoyiha::count();
         $xodim_count = Xodimlar::count();
         $xujalik_count = Xujalik::count();
         $loyiha_bilan_t = IlmiybnTaminlanga::count();
-        $admins = User::count();
-        $adminlar = User::role('admin')->count();
+
+
 
         $xodimlar = $tashkilot->xodimlar->count();
         $loyiha_count = $tashkilot->ilmiyloyhalar->count();
@@ -77,17 +76,17 @@ class HomeController extends Controller
         $lab_xodimlar = Xodimlar::where('laboratory_id', auth()->user()->laboratory_id)->count();
         $lab_xujalik = Xujalik::where('laboratory_id', auth()->user()->laboratory_id)->count();
         $lab_ilmiyLoyiha = IlmiyLoyiha::where('laboratory_id', auth()->user()->laboratory_id)->count();
-        $lab_izlanuvchilar = Izlanuvchilar::where('laboratory_id', auth()->user()->laboratory_id)->count();
-
-        $iqtisodiy_moliyaviy = IqtisodiyMoliyaviy::where('tashkilot_id', $tashRId)->get();
-        $tashkilot_raxbari = TashkilotRahbari::where('tashkilot_id', $tashRId)->get();
-
         // ITM uchun
         $tashkilots = Tashkilot::where('tashkilot_turi', 'itm')->with(['xodimlar', 'ilmiyloyhalar', 'xujaliklar', 'ilmiydarajalar'])->get();
         $itm_tash_itm = $tashkilots->count();
 
         $itm_adminlar = Tashkilot::where('tashkilot_turi', 'itm')->with('roles')->count();
 
+        $tashkilot_turilar = [];
+
+        $tashkilot_turilar[] = $tashkilot->where('tashkilot_turi', 'otm')->count();
+        $tashkilot_turilar[] = $tashkilot->where('tashkilot_turi', 'itm')->count();
+        $tashkilot_turilar[] = $tashkilot->where('tashkilot_turi', 'boshqa')->count();
 
         $xodim_count_itm = $tashkilots->sum(function ($tashkilot) {
             return $tashkilot->xodimlar->count();
@@ -106,26 +105,15 @@ class HomeController extends Controller
         $masullar = $users->filter(function ($user) {
             return $user->roles->contains('name', 'labaratoriyaga_masul');
         })->count();
+
         $ilmiy_loyhalar_rahbariga = IlmiyLoyiha::where('user_id', auth()->id())->count();
         $labaratoriyalar = Laboratory::count();
         $laboratory = auth()->user()->laboratory_id;
+
         $izlanuvchilar = Doktarantura::count();
         $labaratoriyalar_admin = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->count();
         $izlanuvchilar_admin = Doktarantura::where("tashkilot_id", auth()->user()->tashkilot_id)->count();
-        $phd = [
-            "Tayanch doktorantura, PhD",
-            "Mustaqil tadqiqotchi, PhD",
-            "Maqsadli tayanch doktorantura, PhD"
-        ];
-        $dsc = [
-            "Doktorantura, DSc",
-            "Mustaqil tadqiqotchi, DSc",
-            "Maqsadli doktorantura, DSc"
-        ];
-        $phd_soni = Izlanuvchilar::where("laboratory_id", auth()->user()->laboratory_id)->whereIn('talim_turi', $phd)->count();
-        $dsc_soni = Izlanuvchilar::where("laboratory_id", auth()->user()->laboratory_id)->whereIn('talim_turi', $dsc)->count();
 
-        $stajyor_soni = Izlanuvchilar::where("laboratory_id", auth()->user()->laboratory_id)->where('talim_turi', "Stajyor-tadqiqotchi")->count();
 
         $kaf_IlmiyLoyiha = IlmiyLoyiha::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
         $kaf_Xujalik = Xujalik::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
@@ -135,17 +123,13 @@ class HomeController extends Controller
         $kaf_Dalolatnoma = Dalolatnoma::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
         $kaf_Monografiyalar = Monografiyalar::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
         $kaf_Intellektualmulk = Intellektualmulk::where('kafedralar_id', auth()->user()->kafedralar_id)->count();
-        $tekshirivchilar = Tekshirivchilar::count();
+
 
         $IlAu_chart = [];
-        $stajirovka_count = Stajirovka::count();
         $asboblar_count = Asbobuskuna::count();
-        $IlAu_chart[] = $loy_count;
-        $IlAu_chart[] = $stajirovka_count;
         $IlAu_chart[] = $asboblar_count;
         $IlAu_chart[] = $xujalik_count;
 
-        $itm_count = Tashkilot::where('tashkilot_turi', 'itm')->count();
         $FKL_chart = [];
         $fakultets = Fakultetlar::count();
         $kafedras = Kafedralar::count();
@@ -210,65 +194,35 @@ class HomeController extends Controller
 
         $stajiovka_labels_yil = $statistika_s->pluck('sana');
         $stajiovka_data_yil = $statistika_s->pluck('stajiovka_soni');
-        
-        // $hududlar = [
-        //     "Qoraqalpogʻiston Respublikasi",
-        //     "Andijon viloyati",
-        //     "Buxoro viloyati",
-        //     "Jizzax viloyati",
-        //     "Navoiy viloyati",
-        //     "Namangan viloyati",
-        //     "Surxondaryo viloyati",
-        //     "Samarqand viloyati",
-        //     "Qashqadaryo viloyati",
-        //     "Sirdaryo viloyati",
-        //     "Toshkent viloyati",
-        //     "Fargʻona viloyati",
-        //     "Toshkent shahri",
-        //     "Xorazm viloyati"
-        // ];
-
-        // $viloytalar = array_map(fn() => rand(5, 30), $hududlar);
 
         return view('admin.home', [
-            'fakultets' => $fakultets,
-            'kafedras' => $kafedras,
-            'tekshirivchilar' => $tekshirivchilar,
+            'tash_count' => $tash_count,
+            'xodim_count' => $xodim_count,
+            'xujalik_count' => $xujalik_count,
+            'ilmiy_loyhalar_rahbariga' => $ilmiy_loyhalar_rahbariga,
+            'izlanuvchilar' => $izlanuvchilar,
             'tashkiot_haqida' => $tashkilot,
-            'tashkilot_raxbaris' => $tashkilot_raxbari,
-            'iqtisodiy_moliyaviy' => $iqtisodiy_moliyaviy,
+
             'Ilmiy_faoliyat' => $Ilmiy_faoliyat,
             'Tashkilot_pasporti' => $Tashkilot_pasporti,
             'Xodimlar_uchun' => $Xodimlar_uchun,
             'xodimlar' => $xodimlar,
-            'tash_count' => $tash_count,
-            'loy_count' => $loy_count,
-            'admins' => $admins,
             'loyiha_count' => $loyiha_count,
-            'xodim_count' => $xodim_count,
-            'xujalik_count' => $xujalik_count,
             'loyiha_bilan_t' => $loyiha_bilan_t,
-            'adminlar' => $adminlar,
             'itm_tash_itm' => $itm_tash_itm,
             'ilmiyloyihas_count_itm' => $ilmiyloyihas_count_itm,
             'xujalik_count_itm' => $xujalik_count_itm,
             'loyiha_bilan__itm' => $loyiha_bilan__itm,
             'xodim_count_itm' => $xodim_count_itm,
             'itm_adminlar' => $itm_adminlar,
-            'lab_izlanuvchilar' => $lab_izlanuvchilar,
             'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
             'lab_xujalik' => $lab_xujalik,
             'lab_xodimlar' => $lab_xodimlar,
             'labaratoriyalar' => $labaratoriyalar,
-            'izlanuvchilar' => $izlanuvchilar,
             'labaratoriyalar_admin' => $labaratoriyalar_admin,
             'izlanuvchilar_admin' => $izlanuvchilar_admin,
             'masullar' => $masullar,
             "laboratory" => $laboratory,
-            'phd_soni' => $phd_soni,
-            'dsc_soni' => $dsc_soni,
-            'stajyor_soni' => $stajyor_soni,
-            'ilmiy_loyhalar_rahbariga' => $ilmiy_loyhalar_rahbariga,
 
             'kaf_IlmiyLoyiha' => $kaf_IlmiyLoyiha,
             'kaf_Xujalik' => $kaf_Xujalik,
@@ -278,14 +232,7 @@ class HomeController extends Controller
             'kaf_Dalolatnoma' => $kaf_Dalolatnoma,
             'kaf_Monografiyalar' => $kaf_Monografiyalar,
             'kaf_Intellektualmulk' => $kaf_Intellektualmulk,
-            'stajirovka_count' => $stajirovka_count,
-            'asboblar_count' => $asboblar_count,
-            'itm_count' => $itm_count,
-            "ilmiymaqolalars" => $ilmiymaqolalars,
-            "ilmiytezislars" => $ilmiytezislars,
-            "intellektualmulks" => $intellektualmulks,
-            "dalolatnomas" => $dalolatnomas,
-            "monografiyalars" => $monografiyalars,
+
             'ilmiy_loyihalar' => $ilmiy_loyihalar,
             'FKL_chart' => $FKL_chart,
             'ilmiy_maqol_chart' => $ilmiy_maqol_chart,
@@ -295,7 +242,8 @@ class HomeController extends Controller
             'labels_yil' => $labels_yil,
             'data_yil' => $data_yil,
             "stajiovka_labels_yil" => $stajiovka_labels_yil,
-            "stajiovka_data_yil" => $stajiovka_data_yil
+            "stajiovka_data_yil" => $stajiovka_data_yil,
+            'tashkilot_turilar' => $tashkilot_turilar
 
         ]);
     }
