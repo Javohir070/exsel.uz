@@ -17,7 +17,7 @@ class LaboratorySeeder extends Seeder
             'tashkilot_id' => '1',
             'name' => "test uchun superadmin",
             'tash_yil' => "2000",
-            'address' => "test",
+            "tavsif" => "test",
         ]);
     }
 }

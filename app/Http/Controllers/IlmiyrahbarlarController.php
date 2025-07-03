@@ -27,6 +27,8 @@ class IlmiyrahbarlarController extends Controller
         return redirect()->back()->with('status','Ma\'lumotlar muvaffaqiyatli tahrirlandi.');
     }
 
+
+
     public function exportIlmiyrahbarlar($tashkilotId)
     {
         return Excel::download(new TashkilotIlmiyrahbarlarExport($tashkilotId), 'doktaranturalar.xlsx');
