@@ -65,7 +65,7 @@
                         Bekor qilish
                     </a>
                 @else
-                    <a href="{{ route('laboratory.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    <a href="{{ route('kafedralar.index') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
                         Bekor qilish
                     </a>
                 @endif

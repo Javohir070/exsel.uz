@@ -62,33 +62,13 @@ class LaboratoryController extends Controller
         $lab_xodimlar = Xodimlar::where('laboratory_id', auth()->user()->laboratory_id)->count();
         $lab_xujalik = Xujalik::where('laboratory_id', auth()->user()->laboratory_id)->count();
         $lab_ilmiyLoyiha = IlmiyLoyiha::where('laboratory_id', auth()->user()->laboratory_id)->count();
-        $lab_izlanuvchilar = Izlanuvchilar::where('laboratory_id', auth()->user()->laboratory_id)->count();
-        $phd = [
-            "Tayanch doktorantura, PhD",
-            "Mustaqil tadqiqotchi, PhD",
-            "Maqsadli tayanch doktorantura, PhD"
-        ];
-        $dsc = [
-            "Doktorantura, DSc",
-            "Mustaqil tadqiqotchi, DSc",
-            "Maqsadli doktorantura, DSc"
-        ];
-        $phd_soni = Izlanuvchilar::where('laboratory_id', $laboratory)
-                     ->whereIn('talim_turi', $phd)->count();
-        $dsc_soni = Izlanuvchilar::where('laboratory_id', $laboratory)
-                     ->whereIn('talim_turi', $dsc)->count();
-        $stajyor_soni = Izlanuvchilar::where('laboratory_id', $laboratory)
-                     ->where('talim_turi', "Stajyor-tadqiqotchi")->count();
+
         return view("admin.labaratoriya.labaratoriya", [
                 "laboratorys"=> $laboratorys,
-                'lab_izlanuvchilar' => $lab_izlanuvchilar,
                 'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
                 'lab_xujalik' => $lab_xujalik,
                 'lab_xodimlar' => $lab_xodimlar,
                 "laboratory" => $laboratory,
-                'phd_soni' => $phd_soni,
-                'dsc_soni' => $dsc_soni,
-                'stajyor_soni' => $stajyor_soni,
             ]);
     }
 
@@ -205,35 +185,16 @@ class LaboratoryController extends Controller
 
     public function show(Laboratory $laboratory)
     {
-        $phd = [
-            "Tayanch doktorantura, PhD",
-            "Mustaqil tadqiqotchi, PhD",
-            "Maqsadli tayanch doktorantura, PhD"
-        ];
-        $dsc = [
-            "Doktorantura, DSc",
-            "Mustaqil tadqiqotchi, DSc",
-            "Maqsadli doktorantura, DSc"
-        ];
         $lab_xodimlar = Xodimlar::where('laboratory_id', $laboratory->id)->count();
         $lab_xujalik = Xujalik::where('laboratory_id', $laboratory->id)->count();
         $lab_ilmiyLoyiha = IlmiyLoyiha::where('laboratory_id', $laboratory->id)->count();
-        $lab_izlanuvchilar = Izlanuvchilar::where('laboratory_id', $laboratory->id)->count();
-        $phd_soni = Izlanuvchilar::where('laboratory_id', $laboratory->id)
-                     ->whereIn('talim_turi', $phd)->count();
-        $dsc_soni = Izlanuvchilar::where('laboratory_id', $laboratory->id)
-                     ->whereIn('talim_turi', $dsc)->count();
-        $stajyor_soni = Izlanuvchilar::where('laboratory_id', $laboratory->id)
-                     ->where('talim_turi', "Stajyor-tadqiqotchi")->count();
+
+
         return view('admin.labaratoriya.show', [
                     "laboratory" => $laboratory,
-                    'lab_izlanuvchilar' => $lab_izlanuvchilar,
                     'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
                     'lab_xujalik' => $lab_xujalik,
                     'lab_xodimlar' => $lab_xodimlar,
-                    'phd_soni' => $phd_soni,
-                    'dsc_soni' => $dsc_soni,
-                    'stajyor_soni' => $stajyor_soni,
                 ]);
     }
 
