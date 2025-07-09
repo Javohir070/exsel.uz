@@ -53,7 +53,7 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
             'Fakultetlar',
             'Kafedralar',
             'Laboratoriyalar',
-            // 'Xodimlar soni',
+            'Xodimlar soni',
         ];
     }
 
@@ -94,7 +94,7 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
             $tashkilot->fakultetlar->count() ?? 0,
             $tashkilot->kafedralar->count() ?? 0,
             $tashkilot->laboratorys->count() ?? 0,
-            // $tashkilot->xodimlars->count() ?? 0,
+            $tashkilot->xodimlar()->count(),
         ];
     }
 }
