@@ -35,13 +35,13 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
             // 'Tashkilotni saqlash harajatlarini moliyalashtirish manbaasi (davlat budjeti, xususiy investitsiyalar va boshqalar)',
             // 'Shtat birligi soni',
             // 'Xodimlar soni',
-            // 'Ilmiy xodimlar soni',
             // 'Boshqaruv tuzilmas',
             'STIR raqami',
             // 'Tashkilot hisob raqami',
             // 'Xizmat ko‘rsatuvchi bank',
             'turi',
             'status',
+            // 'Ilmiy xodimlar soni',
             // 'asbobuskuna_is',
             // 'stajirovka_is',
             // 'ilmiyloyiha_is',
@@ -49,7 +49,11 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
             // 'Asbob-uskunalar soni',
             // 'Ilmiy stajirovka nafar',
             // 'Ilmiy loyihalar soni',
-            // 'Ilmiy izlanuvchilar nafar',
+            'Ilmiy izlanuvchilar nafar',
+            'Fakultetlar',
+            'Kafedralar',
+            'Laboratoriyalar',
+            // 'Xodimlar soni',
         ];
     }
 
@@ -78,6 +82,7 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
             // $tashkilot->bank,
             $tashkilot->tashkilot_turi ?? "otm",
             $tashkilot->status ?? 0,
+            // $tashkilot->xodimlar->count() ?? 0,
             // $tashkilot->asbobuskuna_is ?? 0,
             // $tashkilot->stajirovka_is ?? 0,
             // $tashkilot->ilmiyloyiha_is ?? 0,
@@ -85,7 +90,11 @@ class TashkilotExport implements FromCollection, WithHeadings, WithMapping
             // $tashkilot->asbobuskunalar->where('is_active',1)->count() ?? 0,
             // $tashkilot->stajirovkalar->count() ?? 0,
             // $tashkilot->ilmiyloyhalar->where('is_active',1)->count() ?? 0,
-            // $tashkilot->doktaranturalar->count() ?? 0,
+            $tashkilot->doktaranturalar->count() ?? 0,
+            $tashkilot->fakultetlar->count() ?? 0,
+            $tashkilot->kafedralar->count() ?? 0,
+            $tashkilot->laboratorys->count() ?? 0,
+            // $tashkilot->xodimlars->count() ?? 0,
         ];
     }
 }

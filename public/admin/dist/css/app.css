@@ -6978,12 +6978,13 @@ body {
 .content {
   border-radius: 30px;
   padding: 0px 22px;
-  min-height: 100vh;
+  max-height: 100vh;
   --bg-opacity: 1;
   background-color: #F1F5F8;
   background-color: rgba(241, 245, 248, var(--bg-opacity));
   flex: 1 1 0%;
   padding-bottom: 2.5rem;
+  overflow-y: auto;
 }
 
 @media (max-width: 767px) {
@@ -8150,6 +8151,8 @@ body {
   padding-right: 1.25rem;
   padding-bottom: 4rem;
   overflow-x: hidden;
+  max-height: 100vh;
+  overflow-y: auto;
 }
 
 @media (max-width: 1279px) {
