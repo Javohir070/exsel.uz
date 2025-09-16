@@ -139,7 +139,7 @@
                                 <tbody>
                                     <tr>
                                         <td style="color:#1881D3; font-weight: 400;">
-                                            <a href="{{ route('search', ['id' => $regions->id, 'type' => 'otm']) }}">OTM</a>
+                                            <a href="">OTM</a>
                                         </td>
                                         <td style="text-align: center;">
                                             {{ $regions->tashkilots()->where('status', 1)->where('tashkilot_turi', 'otm')->count() }}
@@ -151,7 +151,7 @@
                                     </tr>
                                     <tr>
                                         <td style="color:#1881D3; font-weight: 400;">
-                                            <a href="{{ route('search', ['id' => $regions->id, 'type' => 'itm']) }}"> Ilmiy
+                                            <a href=""> Ilmiy
                                                 tashkilotlar</a>
                                         </td>
                                         <td style="text-align: center;">
@@ -164,7 +164,7 @@
                                     </tr>
                                     <tr>
                                         <td style="color:#1881D3; font-weight: 400;">
-                                            <a href="{{ route('search', ['id' => $regions->id, 'type' => 'boshqa']) }}">Boshqa
+                                            <a href="">Boshqa
                                                 tashkilotlar</a>
                                         </td>
                                         <td style="text-align: center;">

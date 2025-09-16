@@ -9,7 +9,7 @@ class Loyihaijrochilar extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['user_id', 'tashkilot_id','ilmiy_loyiha_id','fio','science_id','shtat_birligi','jshshir'];
+    protected $fillable = ['user_id', 'tashkilot_id','ilmiy_loyiha_id','fio','science_id','shtat_birligi','jshshir', 'birth_date'];
 
     public function tashkilot()
     {

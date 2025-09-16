@@ -71,9 +71,9 @@
                         <td>
                             {{ $xodimlar->raqami }}
                         </td>
-                        <td>
-                            {{ $xodimlar->status }}
-                        </td>
+                        <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
+                                {{ $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->status ?? "Tasdiqlanmagan" }}
+                            </td>
                         <td class="table-report__action w-56">
                             <div class="flex justify-center items-center">
                                 @role('super-admin')

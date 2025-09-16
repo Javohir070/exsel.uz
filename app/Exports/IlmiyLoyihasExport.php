@@ -47,6 +47,7 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
                 'Joriy etish (Tatbiq etish) holati' => $ilmiyloyhalar->joriy_holati,
                 'Tijoratlashtirish holati' => $ilmiyloyhalar->tijoratlashtirish,
                 'is_active' => $ilmiyloyhalar->is_active ?? 0,
+                'Status' => $ilmiyloyhalar->status ?? 0,
                 // 'laboratory' => $ilmiyloyhalar->laboratory->id ?? 0,
                 // 'laboratory nomi' => $ilmiyloyhalar->laboratory->name ?? 0,
 
@@ -89,6 +90,7 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
             'Joriy etish (Tatbiq etish) holati',
             'Tijoratlashtirish holati',
             'Active',
+            'Status',
         //     'laboratory',
         //    'laboratory nomi',
         ];

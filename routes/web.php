@@ -253,6 +253,8 @@ Route::middleware('auth')->group(function () {
     Route::put('ilmiy-rahbar/{id}/edit', [IlmiyrahbarlarController::class, 'update'])->name('ilmiyrahbar_edit');
     //end Ilmiyrahbarlar
 
+    Route::get('ilmiyrahbarlar/birth-date', [LoyihaijrochilarController::class, 'updateBYBirth_date'])->name('ilmiyrahbarlar.updateBYBirth_date');
+
     Route::resources([
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,

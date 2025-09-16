@@ -99,11 +99,12 @@
                 <thead>
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
+                        <th class="whitespace-no-wrap">Tashkilot nomi</th>
                         <th class="whitespace-no-wrap">Loyiha mavzusi</th>
                         <th class="whitespace-no-wrap">Loyiha rahbari F.I.Sh</th>
                         <th class="whitespace-no-wrap">Raqami</th>
                         <th class="whitespace-no-wrap">Status</th>
-                        <th class="whitespace-no-wrap">Holati</th>
+                        <th class="whitespace-no-wrap">Loyiha turi</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
@@ -113,6 +114,9 @@
 
                         <tr class="intro-x">
                             <td>{{ ($ilmiyloyihalar->currentPage() - 1) * $ilmiyloyihalar->perPage() + $loop->iteration }}</td>
+                            <td>
+                                {{ $xodimlar->tashkilot->name  }}
+                            </td>
                             <td>
                                 {{ $xodimlar->mavzusi  }}
                             </td>

@@ -107,4 +107,39 @@ class LoyihaijrochilarController extends Controller
         return redirect()->back()->with('status', 'Loyiha ijrochisi o‘chirildi');
     }
 
+
+
+    public function updateBYBirth_date()
+    {
+        $batchSize = 100;
+
+        Loyihaijrochilar::where('birth_date', null)->chunk($batchSize, function ($loyihaijrochilars) {
+            foreach ($loyihaijrochilars as $loyihaijrochi) {
+                $url_main = "https://api-id.ilmiy.uz/api/users/by-science-id/{$loyihaijrochi->science_id}/";
+                $response_main = Http::withBasicAuth(
+                    "PxNhTIvMGoVdUSFOsmfaVrc3fwb5HABmZ9Y4WLYb",
+                    "4JnUEYZ3rWBntf3Rxatl2bwQ8tepvYNHc4C8I0wHms5oG4EkTvWz2wMAhqVliOTnZHwPXjKbv5jZufjEeS3WftD9hRPef7OclB"
+                )
+                    ->withOptions(["verify" => false])
+                    ->get($url_main);
+
+                $data = $response_main->json();
+
+                if (isset($data['detail'])) {
+                    $data = null;
+                }
+
+                $loyihaijrochi->update([
+                    'birth_date' => $data['birth_date'] ?? null,
+                ]);
+
+                // 100ms kutish (ixtiyoriy, API overload bo‘lmasin)
+                usleep(100 * 1000);
+            }
+        });
+
+        return redirect()->back()->with('status', 'Loyiha ijrochilari yangilandi.');
+    }
+
+
 }

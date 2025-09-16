@@ -340,6 +340,8 @@ class AsbobuskunaController extends Controller
 
     public function export_asbobuskunalar()
     {
+        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('max_execution_time', '300');
         return Excel::download(new AsbobuskunaExport, 'asbobuskunalar.xlsx');
     }
 }
