@@ -1,8 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
-
     <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">Tashkilot yaratish</h2>
@@ -12,11 +10,12 @@
         </a>
 
     </div>
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
+    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
+        style="background: white;
         padding: 20px 20px;
         border-radius: 4px">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <form id="science-paper-create-form" method="POST" action="{{ route("tashkilot.store") }}" class="validate-form"
+            <form id="science-paper-create-form" method="POST" action="{{ route('tashkilot.store') }}" class="validate-form"
                 enctype="multipart/form-data" novalidate="novalidate">
                 @csrf
                 <div class="grid grid-cols-12 gap-2">
@@ -198,5 +197,4 @@
 
         </div>
     </div>
-
 @endsection

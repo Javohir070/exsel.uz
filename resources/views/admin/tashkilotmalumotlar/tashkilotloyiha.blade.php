@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6">
 
@@ -15,11 +14,12 @@
                         <i data-feather="search" class="search__icon"></i>
                     </form>
                 </div>
-                <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
+                <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i>
+                </a>
             </div>
             <div>
                 <div>
-                    <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white">
+                    <a href="{{ route('ilmiyloyiha.create') }}" class="button w-24 bg-theme-1 text-white">
                         Qo'shish
                     </a>
                 </div>
@@ -45,14 +45,13 @@
                 <tbody>
 
                     @foreach ($ilmiyloyihas as $xodimlar)
-
                         <tr class="intro-x">
                             <td>{{ $xodimlar->tashkilot->id_raqam }}</td>
                             <td>
                                 <a href="#" class="font-medium">{{ $xodimlar->tashkilot->name }}</a>
                             </td>
                             <td>
-                                <a href="" class="font-medium ">{{ $xodimlar->mavzusi  }} </a>
+                                <a href="" class="font-medium ">{{ $xodimlar->mavzusi }} </a>
                             </td>
                             <td>
                                 <a href="" class="font-medium ">{{ $xodimlar->turi }}</a>
@@ -72,7 +71,7 @@
                                         method="post" onsubmit="return confirm('Rostan Ochirishni hohlaysizmi?');">
                                         <button type="submit" class="flex delete-action items-center text-theme-6">
                                             @csrf
-                                            @method("DELETE")
+                                            @method('DELETE')
                                             <i data-feather="trash-2" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                             O'chirish
                                         </button>
@@ -88,9 +87,8 @@
         </div>
 
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-            {{$ilmiyloyihas->links()}}
+            {{ $ilmiyloyihas->links() }}
         </div>
 
     </div>
-
 @endsection

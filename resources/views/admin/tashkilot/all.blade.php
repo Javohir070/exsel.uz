@@ -1,30 +1,30 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">{{ $tash_count ?? "Tashkilotlar" }} ta tashkilot topildi.</h2>
+            <h2 class="intro-y text-lg font-medium">{{ $tash_count ?? 'Tashkilotlar' }} ta tashkilot topildi.</h2>
 
             <div class="flex justify-between align-center mt-6 mb-6" style="align-items: center;gap:10px;">
                 @role('super-admin')
-                <div>
-                    <a href="{{ route("tashqoshish.create") }}" class="button w-24 bg-theme-1 text-white">
-                        Qo'shish
-                    </a>
-                </div>
-                <div>
-                    <a href="{{ route('exportashkilot') }}" class="button box flex items-center text-gray-700">
-                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
-                    </a>
-                </div>
+                    <div>
+                        <a href="{{ route('tashqoshish.create') }}" class="button w-24 bg-theme-1 text-white">
+                            Qo'shish
+                        </a>
+                    </div>
+                    <div>
+                        <a href="{{ route('exportashkilot') }}" class="button box flex items-center text-gray-700">
+                            <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
+                        </a>
+                    </div>
                 @endrole
             </div>
 
         </div>
 
-        <form id="science-paper-create-form" method="GET" action="{{ route('tashkilotlar.index') }}" class="validate-form">
+        <form id="science-paper-create-form" method="GET" action="{{ route('tashkilotlar.index') }}"
+            class="validate-form">
             <div class="flex justify-between align-center gap-6 flex-wrap">
 
                 <div class="relative text-gray-700">
@@ -38,23 +38,23 @@
                     <select class="input border w-full mt-2" name="region_id" id="region_id">
                         <option value="">Viloyatlari</option>
                         @foreach ($regions as $v)
-                            <option value="{{ $v->id }}" @selected(request("region_id") === $v->id)>{{ $v->oz }}</option>
+                            <option value="{{ $v->id }}" @selected(request('region_id') === $v->id)>{{ $v->oz }}</option>
                         @endforeach
                     </select>
                 </div>
 
                 <div class="relative text-gray-700">
-                    <select name="turi" value="{{old('turi')}}" class="input border w-full mt-2">
+                    <select name="turi" value="{{ old('turi') }}" class="input border w-full mt-2">
 
                         <option value="">Turi</option>
 
-                        <option value="all" @selected(request("turi") === 'all')>Barchasi</option>
+                        <option value="all" @selected(request('turi') === 'all')>Barchasi</option>
 
-                        <option value="otm" @selected(request("turi") === 'otm')>OTM</option>
+                        <option value="otm" @selected(request('turi') === 'otm')>OTM</option>
 
-                        <option value="itm" @selected(request("turi") === 'itm')>ITM</option>
+                        <option value="itm" @selected(request('turi') === 'itm')>ITM</option>
 
-                        <option value="boshqa" @selected(request("turi") === 'boshqa')>Boshqa</option>
+                        <option value="boshqa" @selected(request('turi') === 'boshqa')>Boshqa</option>
 
                     </select>
                 </div>
@@ -107,7 +107,8 @@
                                             <button type="submit" class="flex delete-action items-center text-theme-6">
                                                 @csrf
                                                 @method('DELETE')
-                                                <i data-feather="trash-2" class="feather feather-check-square w-4 h-4 mr-1"></i>
+                                                <i data-feather="trash-2"
+                                                    class="feather feather-check-square w-4 h-4 mr-1"></i>
                                                 O'chirish
                                             </button>
                                         </form>
@@ -140,5 +141,4 @@
         </div>
 
     </div>
-
 @endsection

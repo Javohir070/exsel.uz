@@ -32,7 +32,8 @@ class Tashkilot extends Model
         "stir_raqami",
         "bank",
         "logo",
-        'hisob_raqam'
+        'hisob_raqam',
+        'holati',
     ];
 
     public function user()
@@ -71,11 +72,6 @@ class Tashkilot extends Model
     public function iqtisodiylar()
     {
         return $this->hasMany(IqtisodiyMoliyaviy::class);
-    }
-
-    public function izlanuvchilar()
-    {
-        return $this->hasMany(Izlanuvchilar::class);
     }
 
     public function stajirovkalar()

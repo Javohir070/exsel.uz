@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">Xarid qilingan asbob-uskunani qo'shish</h2>
@@ -12,12 +11,13 @@
 
     </div>
 
-    <div class="intro-y col-span-6 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
+    <div class="intro-y col-span-6 flex flex-wrap sm:flex-no-wrap items-center mt-2"
+        style="background: white;
                                             padding: 20px 20px;
                                             border-radius: 20px">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <form id="science-paper-create-form" method="POST" action="{{ route("asbobuskuna.store") }}"
-                class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+            <form id="science-paper-create-form" method="POST" action="{{ route('asbobuskuna.store') }}" class="validate-form"
+                enctype="multipart/form-data" novalidate="novalidate">
                 @csrf
                 <div class="grid grid-cols-12 gap-2">
 
@@ -58,7 +58,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Turi
                         </label>
-                        <select name="turi" value="{{old('turi')}}" class="input border w-full mt-2" required="">
+                        <select name="turi" value="{{ old('turi') }}" class="input border w-full mt-2" required="">
 
                             <option value=""></option>
 
@@ -176,7 +176,8 @@
                             <option value="Keniya">Keniya</option>
                             <option value="Kiribati">Kiribati</option>
                             <option value="Koreya Respublikasi">Koreya Respublikasi</option>
-                            <option value="Koreya Xalq Demokratik Respublikasi">Koreya Xalq Demokratik Respublikasi</option>
+                            <option value="Koreya Xalq Demokratik Respublikasi">Koreya Xalq Demokratik Respublikasi
+                            </option>
                             <option value="Quvayt">Quvayt</option>
                             <option value="Qirgʻiziston">Qirgʻiziston</option>
                             <option value="Laos">Laos</option>
@@ -279,8 +280,9 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Harid qilingan summasi (buxgalteriya
                             balans summasi
                             so'mda)</label>
-                        <input type="text" name="harid_summa" id="sumInput1" oninput="formatNumber(this, 'writtenWords')"
-                            value="{{ old('harid_summa') }}" class="input w-full border mt-2" required>
+                        <input type="text" name="harid_summa" id="sumInput1"
+                            oninput="formatNumber(this, 'writtenWords')" value="{{ old('harid_summa') }}"
+                            class="input w-full border mt-2" required>
                         <span id="writtenWords" class="mt-2 text-gray-600"></span> so'm
                         @error('harid_summa')
                             <div class="error">{{ $message }}</div>
@@ -304,7 +306,7 @@
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Moliyalashtirish manbasi</label>
-                        <select name="moliya_manbasi" id="moliya_manbasi" value="{{old('moliya_manbasi')}}"
+                        <select name="moliya_manbasi" id="moliya_manbasi" value="{{ old('moliya_manbasi') }}"
                             class="input border w-full mt-2" required onchange="toggleLoyihaShifri()">
 
                             <option value=""></option>
@@ -317,7 +319,8 @@
                             <option value="Tashkilot byudjet mablag‘lari hisobidan">Tashkilot byudjet mablag‘lari hisobidan
                             </option>
 
-                            <option value="Tashkilotning byudjetdan tashqari mablag‘lari hisobidan">Tashkilotning byudjetdan
+                            <option value="Tashkilotning byudjetdan tashqari mablag‘lari hisobidan">Tashkilotning
+                                byudjetdan
                                 tashqari mablag‘lari hisobidan</option>
 
                             <option value="Moliya institutlari">Moliya institutlari</option>
@@ -353,8 +356,8 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Shartnoma raqami (uskuna
                             bo'yicha)</label>
-                        <input type="text" name="sh_raqami" value="{{ old('sh_raqami') }}" class="input w-full border mt-2"
-                            required>
+                        <input type="text" name="sh_raqami" value="{{ old('sh_raqami') }}"
+                            class="input w-full border mt-2" required>
                         @error('sh_raqami')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -364,8 +367,8 @@
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Shartnoma sanasi</label>
-                        <input type="date" name="sh_sanasi" value="{{ old('sh_sanasi') }}" class="input w-full border mt-2"
-                            required>
+                        <input type="date" name="sh_sanasi" value="{{ old('sh_sanasi') }}"
+                            class="input w-full border mt-2" required>
                         @error('sh_sanasi')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -419,7 +422,8 @@
                             bo‘linma (laboratoriya,
                             kafedra, sho‘ba) nomi</label>
                         <select name="laboratory_id" id="laboratory_id" value="{{ old('laboratory_id') }}"
-                            class="input border w-full mt-2 " required="" required onchange="toggleLoyShifriLabaratoriya()">
+                            class="input border w-full mt-2 " required="" required
+                            onchange="toggleLoyShifriLabaratoriya()">
                             <option value=""></option>
                             @foreach ($laboratorys as $l)
                                 <option value="{{ $l->id }}">{{ $l->name }}</option>
@@ -435,7 +439,8 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Foydalanishga mas'ul tarkibiy
                             bo‘linma (Kafedra) nomi</label>
-                        <select name="kafedralar_id" value="{{ old('kafedralar_id') }}" class="input border w-full mt-2 ">
+                        <select name="kafedralar_id" value="{{ old('kafedralar_id') }}"
+                            class="input border w-full mt-2 ">
                             <option value=""></option>
                             @foreach ($kafedralar as $l)
                                 <option value="{{ $l->id }}">{{ $l->name }}</option>
@@ -450,7 +455,8 @@
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>F.I.SH</label>
-                        <input type="text" name="fish" value="{{ old('fish') }}" class="input w-full border mt-2" required>
+                        <input type="text" name="fish" value="{{ old('fish') }}"
+                            class="input w-full border mt-2" required>
                         @error('fish')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -508,8 +514,8 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Laboratoriya uskunalari uchun zarur
                             reagent va reaktivlar zaxirasi</label>
-                        <textarea name="lab_zaxirasi" value="{{ old('lab_zaxirasi') }}" class="input w-full border mt-2"
-                            cols="10" rows="5"></textarea>
+                        <textarea name="lab_zaxirasi" value="{{ old('lab_zaxirasi') }}" class="input w-full border mt-2" cols="10"
+                            rows="5"></textarea>
                         @error('lab_zaxirasi')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -519,8 +525,7 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Foydalanish uchun arizalarning
                             ro‘yxatga olinishi va foydalanish jadvalining yuritilishi</label>
-                        <textarea name="foy_uchun_ariz" value="" class="input w-full border mt-2" cols="10"
-                            rows="5">{{ old('foy_uchun_ariz') }}</textarea>
+                        <textarea name="foy_uchun_ariz" value="" class="input w-full border mt-2" cols="10" rows="5">{{ old('foy_uchun_ariz') }}</textarea>
                         @error('foy_uchun_ariz')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -530,8 +535,7 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Ilmiy tadqiqot va oliy ta’lim
                             muassasalari laboratoriyalarining qo‘shimcha asbob-uskunalarga ehtiyoji</label>
-                        <textarea name="asbob_usk_ehtiyoji" value="" class="input w-full border mt-2" cols="10"
-                            rows="5">{{ old('asbob_usk_ehtiyoji') }}</textarea>
+                        <textarea name="asbob_usk_ehtiyoji" value="" class="input w-full border mt-2" cols="10" rows="5">{{ old('asbob_usk_ehtiyoji') }}</textarea>
                         @error('asbob_usk_ehtiyoji')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -541,8 +545,7 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Zarur sarflash materiallari va
                             butlovchi qismlar bo‘yicha ehtiyoji</label>
-                        <textarea name="zarur_ehtiyoji" value="" class="input w-full border mt-2" cols="10"
-                            rows="5">{{ old('zarur_ehtiyoji') }}</textarea>
+                        <textarea name="zarur_ehtiyoji" value="" class="input w-full border mt-2" cols="10" rows="5">{{ old('zarur_ehtiyoji') }}</textarea>
                         @error('zarur_ehtiyoji')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -590,7 +593,7 @@
         }
 
         // Ikkala funksiyani bitta window.onload ichida chaqirish
-        window.onload = function () {
+        window.onload = function() {
             toggleLoyihaShifri();
             toggleLoyShifriLabaratoriya();
         };

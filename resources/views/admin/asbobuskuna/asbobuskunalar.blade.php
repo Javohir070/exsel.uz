@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6">
 
@@ -31,22 +30,21 @@
                 </thead>
                 <tbody>
                     @forelse ($asbobuskunas as $k)
-
                         <tr class="intro-x">
                             <td>{{ ($asbobuskunas->currentPage() - 1) * $asbobuskunas->perPage() + $loop->iteration }}.</td>
                             <td>
                                 <a href="{{ route('asbobuskuna.show', ['asbobuskuna' => $k->id]) }}"
-                                    class="font-medium ">{{ $k->name  }} </a>
+                                    class="font-medium ">{{ $k->name }} </a>
                             </td>
                             <td>
                                 {{ $k->asos }}
                             </td>
                             {{-- <td style="text-align: center;">
                                 {{ $k->ishlabchiq_yil }}
-                            </td>--}}
+                            </td> --}}
                             <td
                                 style="text-align: center;color: {{ ($h = $k->asbobuskunaexperts()->first()->status ?? null) == 'Ijobiy' ? 'green' : ($h == 'Salbiy' ? 'blue' : 'red') }}">
-                                {{ $k->asbobuskunaexperts->status ?? "Tasdiqlanmagan" }}
+                                {{ $k->asbobuskunaexperts->status ?? 'Tasdiqlanmagan' }}
                             </td>
                             {{-- <td style="color:{{ $k->asbobuskunaexperts()->first()->holati ?? null == " Tasdiqlandi"
                                 ? "green" : ($k->asbobuskunaexperts()->first()->holati ?? null == "yuborildi" ? "blue" : "red")
@@ -55,7 +53,7 @@
                             </td> --}}
                             <td
                                 style="text-align: center;color: {{ ($h = $k->asbobuskunaexperts()->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
-                                {{ $h == 'yuborildi' ? "Tasdiqlash uchun yuborildi" : ($h == null ? "Ko'rilmagan" : $h) }}
+                                {{ $h == 'yuborildi' ? 'Tasdiqlash uchun yuborildi' : ($h == null ? "Ko'rilmagan" : $h) }}
                             </td>
 
                             <td class="table-report__action w-56">
@@ -72,15 +70,15 @@
                                         Ko'rish
                                     </a>
                                     @role('super-admin')
-                                    <form action="{{ route('asbobuskuna.destroy', ['asbobuskuna' => $k->id]) }}" method="post"
-                                        onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
-                                        <button type="submit" class="flex delete-action items-center text-theme-6">
-                                            @csrf
-                                            @method("DELETE")
-                                            <i data-feather="trash-2" class="feather feather-check-square w-4 h-4 mr-1"></i>
-                                            O'chirish
-                                        </button>
-                                    </form>
+                                        <form action="{{ route('asbobuskuna.destroy', ['asbobuskuna' => $k->id]) }}"
+                                            method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                            <button type="submit" class="flex delete-action items-center text-theme-6">
+                                                @csrf
+                                                @method('DELETE')
+                                                <i data-feather="trash-2" class="feather feather-check-square w-4 h-4 mr-1"></i>
+                                                O'chirish
+                                            </button>
+                                        </form>
                                     @endrole
 
                                 </div>
@@ -97,9 +95,8 @@
         </div>
 
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-            {{$asbobuskunas->links()}}
+            {{ $asbobuskunas->links() }}
         </div>
 
     </div>
-
 @endsection

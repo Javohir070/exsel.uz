@@ -1,26 +1,25 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6">
 
             <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }} xaqida ma’lumot</h2>
 
             @role('super-admin')
-            <a href="{{ route("tashkilotlar.index") }}" class="button w-24 bg-theme-1 text-white">
-                Orqaga
-            </a>
+                <a href="{{ route('tashkilotlar.index') }}" class="button w-24 bg-theme-1 text-white">
+                    Orqaga
+                </a>
             @endrole
             @role('admin')
-            <a href="{{ route("tashkilot.index") }}" class="button w-24 bg-theme-1 text-white">
-                Orqaga
-            </a>
+                <a href="{{ route('tashkilot.index') }}" class="button w-24 bg-theme-1 text-white">
+                    Orqaga
+                </a>
             @endrole
             @role('Itm-tashkilotlar')
-            <a href="{{ route("itm.tashkilot") }}" class="button w-24 bg-theme-1 text-white">
-                Orqaga
-            </a>
+                <a href="{{ route('itm.tashkilot') }}" class="button w-24 bg-theme-1 text-white">
+                    Orqaga
+                </a>
             @endrole
 
         </div>
@@ -30,11 +29,11 @@
                 <tbody>
                     <div
                         style="display: flex;justify-content: space-between; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="font-size:18px;font-weight: 400;">{{ $tashkilot->name . "  " . $tashkilot->fish }}
+                        <div style="font-size:18px;font-weight: 400;">{{ $tashkilot->name . '  ' . $tashkilot->fish }}
                             Tashkilot pasporti</div>
-                        @can("tashkilot delete edit")
+                        @can('tashkilot delete edit')
                             <div style="text-align: end;">
-                                <a href="{{ route('tashkilot.edit', ['tashkilot' => $tashkilot->id])}}"
+                                <a href="{{ route('tashkilot.edit', ['tashkilot' => $tashkilot->id]) }}"
                                     class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                     Tahrirlash
                                 </a>
@@ -43,12 +42,8 @@
                                 </a>
                             </div>
                         @endcan
-
                     </div>
 
-                    <!-- <tr style="margin-top:20px;">
-                                    <th clab border" style="text-align: center;font-size:20px;"  colspan="3"> Tashkilot pasporti </th>
-                                </tr> -->
                     <tr>
                         <th class="border border-b">#</th>
                         <th class="border border-b">Ma’lumot nomlanishi</th>
@@ -128,33 +123,73 @@
                     <tr class="bg-gray-200">
                         <th class="border border-b">15</th>
                         <th class="border border-b">Ilmiy xodimlar soni</th>
-                        <td class="border border-b">{{ $tashkilot->ilmiy_xodimlar  }} </td>
+                        <td class="border border-b">{{ $tashkilot->ilmiy_xodimlar }} </td>
                     </tr>
                     <tr>
                         <th class="border border-b">16</th>
                         <th class="border border-b">Boshqariv tuzilmasi</th>
-                        <td class="border border-b">{{ $tashkilot->boshqariv  }} </td>
+                        <td class="border border-b">{{ $tashkilot->boshqariv }} </td>
                     </tr>
                     <tr class="bg-gray-200">
                         <th class="border border-b">17</th>
                         <th class="border border-b">STIR raqami </th>
-                        <td class="border border-b">{{ $tashkilot->stir_raqami  }} </td>
+                        <td class="border border-b">{{ $tashkilot->stir_raqami }} </td>
                     </tr>
                     <tr>
                         <th class="border border-b">18</th>
                         <th class="border border-b">Xizmat ko'rsatuvch bank</th>
-                        <td class="border border-b">{{ $tashkilot->bank  }} </td>
+                        <td class="border border-b">{{ $tashkilot->bank }} </td>
                     </tr>
                     <tr class="bg-gray-200">
                         <th class="border-b  border">19</th>
                         <th class="border-b  border">Tashkilot hisob raqami </th>
-                        <td class="border-b  border">{{ $tashkilot->hisob_raqam  }} </td>
+                        <td class="border-b  border">{{ $tashkilot->hisob_raqam }} </td>
                     </tr>
+
+                    @role('super-admin')
+                        <tr>
+                            <th class="border-b  border">20</th>
+                            <th class="border-b  border">Status</th>
+                            <td class="border-b  border">
+                                <button
+                                    class="button flex items-center text-white {{ $tashkilot->holati == 'accepted' ? 'bg-theme-1' : ($tashkilot->holati == 'rejected' ? 'bg-theme-6' : 'bg-theme-9') }}">
+                                    {{ $tashkilot->holati == 'accepted' ? 'Qabul qilingan' : ($tashkilot->holati == 'rejected' ? 'Rad etilgan' : 'Kutilmoqda') }}
+                                </button>
+                            </td>
+                        </tr>
+                    @endrole
 
                 </tbody>
             </table>
         </div>
 
-    </div>
+        @role('super-admin')
+            @if ($tashkilot->holati == 'pending' || $tashkilot->holati == 'rejected')
+                <div style="display: flex; justify-content: center;align-items: center; gap:20px; margin-top:30px;">
+                    <form action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" method="post"
+                        onsubmit="return confirm(' Rostan rad etasizmi hohlaysizmi?');">
+                        <input type="hidden" name="holati" value="rejected">
+                        <button type="submit" class="button flex items-center bg-theme-6 text-white">
+                            @csrf
+                            @method('PUT')
+                            <i data-feather="x" class="btn feather feather-check-square w-4 h-4 mr-1"></i>
+                            Rad etish
+                        </button>
+                    </form>
 
+                    <form action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" method="post"
+                        onsubmit="return confirm(' Rostan tasdiqlashni hohlaysizmi?');">
+                        <input type="hidden" name="holati" value="accepted">
+                        <button type="submit" class="button flex items-center bg-theme-1 text-white">
+                            @csrf
+                            @method('PUT')
+                            <i data-feather="check" class="feather feather-check-square w-4 h-4 mr-1"></i>
+                            Tasdiqlash
+                        </button>
+                    </form>
+                </div>
+            @endif
+        @endrole
+
+    </div>
 @endsection

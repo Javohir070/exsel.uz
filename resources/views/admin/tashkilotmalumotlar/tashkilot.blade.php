@@ -2,7 +2,7 @@
 @section("content")
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
-            <!-- BEGIN: General Report -->
+
             <div class="col-span-12 mt-8">
                 <div class="intro-y flex items-center h-10">
                     <h2 class="text-lg font-medium truncate mr-5">
@@ -10,9 +10,6 @@
                             {{ $tash->name }} haqida qisqacha malumot
                         @endforeach
                     </h2>
-                    {{-- <a href="" class="ml-auto flex text-theme-1"> <i data-feather="refresh-ccw"
-                            class="w-4 h-4 mr-3"></i>
-                        Ma'lumotlarni qayta yuklash </a> --}}
                 </div>
                 <div class="grid grid-cols-12 gap-6 mt-5">
 
@@ -41,7 +38,7 @@
                         </div>
                     </div>
 
-                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route('tashkilot.xujalik.index',['tashkilot'=>$id]) }}">
                                 <div class="flex items-center pl-5"
@@ -59,7 +56,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div> --}}
+                    </div>
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -167,23 +164,10 @@
                         </div>
                     </div>
                     @endrole
-                    {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <a href="{{ route(" tashkilot.userlar.index",['tashkilot'=>$id]) }}">
-                            <div class="report-box zoom-in">
-                                <div class="box p-5">
-                                    <div class="flex">
-                                        <i data-feather="users" class="report-box__icon text-theme-9"></i>
-                                    </div>
-                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $admins }}</div>
-                                    <div class="text-base text-gray-600 mt-1">Adminlar</div>
-                                </div>
-                            </div>
-                        </a>
-                    </div> --}}
 
-                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route(" tashkilot.xodimlar.index",['tashkilot'=>$id]) }}">
+                            <a href="{{ route("tashkilot.xodimlar.index",['tashkilot'=>$id]) }}">
                                 <div class="flex items-center pl-5"
                                     style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
                                     <div class="flex" style="background: #c8ecec; padding: 15px; border-radius: 100%;">
@@ -199,7 +183,7 @@
                                 </div>
                             </a>
                         </div>
-                    </div> --}}
+                    </div>
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -220,7 +204,6 @@
                             </a>
                         </div>
                     </div>
-
 
                 </div>
             </div>

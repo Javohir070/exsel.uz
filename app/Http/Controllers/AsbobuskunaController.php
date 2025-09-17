@@ -228,8 +228,6 @@ class AsbobuskunaController extends Controller
 
     public function store(StoreAsbobuskunaRequest $request)
     {
-
-
         Asbobuskuna::create([
             'tashkilot_id' => auth()->user()->tashkilot_id,
             'user_id' => auth()->user()->id,
@@ -260,6 +258,7 @@ class AsbobuskunaController extends Controller
             'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
             'invertar_r' => $request->invertar_r,
         ]);
+
         return redirect()->route('asbobuskuna.index')->with('status', 'Asbob uskunasi qo`shildi');
     }
 
@@ -267,6 +266,7 @@ class AsbobuskunaController extends Controller
     public function show(Asbobuskuna $asbobuskuna)
     {
         $asbobuskunaexpert = Asbobuskunaexpert::where('asbobuskuna_id', $asbobuskuna->id)->get();
+        
         return view('admin.asbobuskuna.show', ['asbobuskuna' => $asbobuskuna, 'asbobuskunaexpert' => $asbobuskunaexpert]);
     }
 
@@ -276,6 +276,7 @@ class AsbobuskunaController extends Controller
         $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
         $laboratorys = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
         $kafedralar = Kafedralar::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+
         return view('admin.asbobuskuna.edit', [
             'asbobuskuna' => $asbobuskuna,
             'laboratorys' => $laboratorys,
@@ -323,6 +324,7 @@ class AsbobuskunaController extends Controller
     public function destroy(Asbobuskuna $asbobuskuna)
     {
         $asbobuskuna->delete();
+
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
     }
 
@@ -342,6 +344,7 @@ class AsbobuskunaController extends Controller
     {
         ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
         ini_set('max_execution_time', '300');
+
         return Excel::download(new AsbobuskunaExport, 'asbobuskunalar.xlsx');
     }
 }

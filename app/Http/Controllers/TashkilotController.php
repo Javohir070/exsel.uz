@@ -105,35 +105,43 @@ class TashkilotController extends Controller
 
     public function update(Request $request, Tashkilot $tashkilot)
     {
-        if ($request->hasFile('logo')) {
-            $name = $request->file('logo')->getClientOriginalName();
-            $path = $request->file('logo')->storeAs('post-photos', $name);
-        }
-        
-        $tashkilot->update([
-            "name" => $request->name,
-            "name_qisqachasi" => $request->name_qisqachasi,
-            "tash_yil" => $request->tash_yil,
-            "yur_manzil" => $request->yur_manzil,
-            "viloyat" => $request->viloyat,
-            "logo" => $path ?? null,
-            "tuman" => $request->tuman,
-            "paoliyat_manzil" => $request->paoliyat_manzil,
-            "phone" => $request->phone,
-            "email" => $request->email,
-            "web_sayti" => $request->web_sayti,
-            "turi" => $request->turi,
-            "xarajatlar" => $request->xarajatlar,
-            "shtat_bir" => $request->shtat_bir,
-            "tash_xodimlar" => $request->tash_xodimlar,
-            "ilmiy_xodimlar" => $request->ilmiy_xodimlar,
-            "boshqariv" => $request->boshqariv,
-            "stir_raqami" => $request->stir_raqami,
-            "bank" => $request->bank,
-            'hisob_raqam' => $request->hisob_raqam ?? null
-        ]);
+        if($request->holati == 'rejected' || $request->holati == 'accepted'){
+            $tashkilot->update([
+                'holati' => $request->holati
+            ]);
+            return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli saqlandi.');
+        }else{
+            
+            if ($request->hasFile('logo')) {
+                $name = $request->file('logo')->getClientOriginalName();
+                $path = $request->file('logo')->storeAs('post-photos', $name);
+            }
 
-        return redirect('/tashkilot')->with('status', 'Ma\'lumotlar muvaffaqiyatli saqlandi.');
+            $tashkilot->update([
+                "name" => $request->name,
+                "name_qisqachasi" => $request->name_qisqachasi,
+                "tash_yil" => $request->tash_yil,
+                "yur_manzil" => $request->yur_manzil,
+                "viloyat" => $request->viloyat,
+                "logo" => $path ?? null,
+                "tuman" => $request->tuman,
+                "paoliyat_manzil" => $request->paoliyat_manzil,
+                "phone" => $request->phone,
+                "email" => $request->email,
+                "web_sayti" => $request->web_sayti,
+                "turi" => $request->turi,
+                "xarajatlar" => $request->xarajatlar,
+                "shtat_bir" => $request->shtat_bir,
+                "tash_xodimlar" => $request->tash_xodimlar,
+                "ilmiy_xodimlar" => $request->ilmiy_xodimlar,
+                "boshqariv" => $request->boshqariv,
+                "stir_raqami" => $request->stir_raqami,
+                "bank" => $request->bank,
+                'hisob_raqam' => $request->hisob_raqam ?? null
+            ]);
+
+            return redirect('/tashkilot')->with('status', 'Ma\'lumotlar muvaffaqiyatli saqlandi.');
+        }
     }
 
 

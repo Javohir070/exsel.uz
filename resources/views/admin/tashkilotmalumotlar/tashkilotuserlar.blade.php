@@ -1,5 +1,5 @@
-@extends("layouts.admin")
-@section("content")
+@extends('layouts.admin')
+@section('content')
     <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">Users </h2>
@@ -22,7 +22,6 @@
                     </a>
                 @endcan
             </div>
-
         </div>
 
     </div>
@@ -65,7 +64,8 @@
                                         </td>
                                         <td>
                                             @can('update user')
-                                                <a href="{{ url('users/' . $user->id . '/edit') }}" class="btn btn-success">Edit</a>
+                                                <a href="{{ url('users/' . $user->id . '/edit') }}"
+                                                    class="btn btn-success">Edit</a>
                                             @endcan
 
                                             @can('delete user')
@@ -81,7 +81,7 @@
                     </div>
                     <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
 
-                        {{$users->links()}}
+                        {{ $users->links() }}
 
                     </div>
                 </div>

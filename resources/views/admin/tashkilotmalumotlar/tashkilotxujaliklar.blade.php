@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6">
 
@@ -28,14 +27,14 @@
                 <tbody>
 
                     @foreach ($xujaliklar as $xodimlar)
-
                         <tr class="intro-x">
-                            <td>{{$loop->index + 1}}</td>
+                            <td>{{ $loop->index + 1 }}</td>
                             <td>
-                                <a href="#" target="_blank" class="font-medium">{{ $xodimlar->tashkilot->name_qisqachasi }}</a>
+                                <a href="#" target="_blank"
+                                    class="font-medium">{{ $xodimlar->tashkilot->name_qisqachasi }}</a>
                             </td>
                             <td>
-                                <a href="" class="font-medium ">{{ $xodimlar->ishlanma_nomi  }} </a>
+                                <a href="" class="font-medium ">{{ $xodimlar->ishlanma_nomi }} </a>
                             </td>
                             <td>
                                 <a href="" class="font-medium ">{{ $xodimlar->ishlanma_turi }}</a>
@@ -52,11 +51,11 @@
                                         Ko'rish
                                     </a>
 
-                                    <form action="{{ route('xujalik.destroy', ['xujalik' => $xodimlar->id]) }}" method="post"
-                                        onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                    <form action="{{ route('xujalik.destroy', ['xujalik' => $xodimlar->id]) }}"
+                                        method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                         <button type="submit" class="flex delete-action items-center text-theme-6">
                                             @csrf
-                                            @method("DELETE")
+                                            @method('DELETE')
                                             <i data-feather="trash-2" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                             O'chirish
                                         </button>
@@ -67,17 +66,12 @@
                         </tr>
                     @endforeach
 
-
                 </tbody>
             </table>
         </div>
 
-
-
-        <!-- END: Data List -->
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-            {{$xujaliklar->links()}}
+            {{ $xujaliklar->links() }}
         </div>
     </div>
-
 @endsection

@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">Tashkilot tahrirlash</h2>
@@ -11,12 +10,13 @@
         </a>
 
     </div>
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
+    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
+        style="background: white;
         padding: 20px 20px;
         border-radius: 4px">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <form id="science-paper-create-form" method="POST"
-                action="{{ route("tashkilot.update", ['tashkilot' => $tashkilot->id]) }}" class="validate-form"
+                action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" class="validate-form"
                 enctype="multipart/form-data" novalidate="novalidate">
                 @csrf
                 @method('PUT')
@@ -57,16 +57,16 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Viloyat manzili
                         </label>
-                        <input type="text" name="viloyat" value="{{ $tashkilot->viloyat }}" class="input w-full border mt-2"
-                            required="">
+                        <input type="text" name="viloyat" value="{{ $tashkilot->viloyat }}"
+                            class="input w-full border mt-2" required="">
                     </div>
 
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tuman manzili
                         </label>
-                        <input type="text" name="tuman" value="{{ $tashkilot->tuman }}" class="input w-full border mt-2"
-                            required="">
+                        <input type="text" name="tuman" value="{{ $tashkilot->tuman }}"
+                            class="input w-full border mt-2" required="">
                     </div>
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> <span
@@ -79,15 +79,15 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Telefon raqami
                         </label>
-                        <input type="text" name="phone" value="{{ $tashkilot->phone }}" class="input w-full border mt-2"
-                            required="">
+                        <input type="text" name="phone" value="{{ $tashkilot->phone }}"
+                            class="input w-full border mt-2" required="">
                     </div>
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Email
                         </label>
-                        <input type="email" name="email" value="{{ $tashkilot->email }}" class="input w-full border mt-2"
-                            required="">
+                        <input type="email" name="email" value="{{ $tashkilot->email }}"
+                            class="input w-full border mt-2" required="">
                     </div>
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> <span
@@ -116,17 +116,25 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotni saqlash harajatlarining
                             moliyalashtirish manbasi
                         </label>
-                        <select name="xarajatlar" id="science-sub-category" class="input border w-full mt-2" required="">
+                        <select name="xarajatlar" id="science-sub-category" class="input border w-full mt-2"
+                            required="">
 
                             <option>Tashkilotni saqlash harajatlarining moliyalashtirish tanlang</option>
 
-                            <option value="Davlat byudjeti" {{ $tashkilot->xarajatlar == 'Davlat byudjeti' ? 'selected' : '' }}>Davlat byudjeti</option>
+                            <option value="Davlat byudjeti"
+                                {{ $tashkilot->xarajatlar == 'Davlat byudjeti' ? 'selected' : '' }}>Davlat byudjeti
+                            </option>
 
-                            <option value="Xususiy investisiyalar" {{ $tashkilot->xarajatlar == 'Xususiy investisiyalar' ? 'selected' : '' }}>Xususiy investisiyalar</option>
+                            <option value="Xususiy investisiyalar"
+                                {{ $tashkilot->xarajatlar == 'Xususiy investisiyalar' ? 'selected' : '' }}>Xususiy
+                                investisiyalar</option>
 
-                            <option value="Xorijiy investisiyalar" {{ $tashkilot->xarajatlar == 'Xorijiy investisiyalar' ? 'selected' : '' }}>Xorijiy investisiyalar</option>
+                            <option value="Xorijiy investisiyalar"
+                                {{ $tashkilot->xarajatlar == 'Xorijiy investisiyalar' ? 'selected' : '' }}>Xorijiy
+                                investisiyalar</option>
 
-                            <option value="Boshqalar" {{ $tashkilot->xarajatlar == 'Boshqalar' ? 'selected' : '' }}>boshqalar
+                            <option value="Boshqalar" {{ $tashkilot->xarajatlar == 'Boshqalar' ? 'selected' : '' }}>
+                                boshqalar
                             </option>
 
                         </select><br>
@@ -166,9 +174,12 @@
                             <option value="Kengash" {{ $tashkilot->boshqariv == 'Kengash' ? 'selected' : '' }}>Kengash
                             </option>
 
-                            <option value="Rektor" {{ $tashkilot->boshqariv == 'Rektor' ? 'selected' : '' }}>Rektor</option>
+                            <option value="Rektor" {{ $tashkilot->boshqariv == 'Rektor' ? 'selected' : '' }}>Rektor
+                            </option>
 
-                            <option value="Boshqaruv kengash" {{ $tashkilot->boshqariv == 'Boshqaruv kengash' ? 'selected' : '' }}>Boshqaruv kengash</option>
+                            <option value="Boshqaruv kengash"
+                                {{ $tashkilot->boshqariv == 'Boshqaruv kengash' ? 'selected' : '' }}>Boshqaruv kengash
+                            </option>
                         </select>
                     </div>
 
@@ -189,8 +200,8 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Xizmat ko'rsatuvch bank
                         </label>
-                        <input type="text" name="bank" value="{{ $tashkilot->bank }}" class="input w-full border mt-2"
-                            required="">
+                        <input type="text" name="bank" value="{{ $tashkilot->bank }}"
+                            class="input w-full border mt-2" required="">
                     </div>
                     <div class="w-full col-span-6">
 
@@ -216,5 +227,4 @@
 
         </div>
     </div>
-
 @endsection
