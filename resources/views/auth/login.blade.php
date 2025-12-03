@@ -86,4 +86,6 @@
             this.textContent = type === 'password' ? '👁️' : '👁️‍🗨️';
         });
     </script>
+     <script src="https://chatbots.ilmiy1.uz/widget.js" data-token="api_JqhHAN310YIej502Rp8PGVxjnqaPkHIU4nfEuhUA" defer>
+
 </x-guest-layout>

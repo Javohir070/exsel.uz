@@ -45,6 +45,7 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
                  "Foydalanish uchun arizalarning ro‘yxatga olinishi va foydalanish jadvalining yuritilishi" => $asbobuskuna->foy_uchun_ariz,
                  "Ilmiy tadqiqot va oliy ta’lim muassasalari laboratoriyalarining qo‘shimcha asbob-uskunalarga ehtiyoji" => $asbobuskuna->asbob_usk_ehtiyoji,
                  "Zarur sarflash materiallari va butlovchi qismlar bo‘yicha ehtiyoji" => $asbobuskuna->zarur_ehtiyoji,
+                 "is_active" => $asbobuskuna->is_active,
             ];
         });
     }
@@ -82,6 +83,7 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
             "Foydalanish uchun arizalarning ro‘yxatga olinishi va foydalanish jadvalining yuritilishi",
             "Ilmiy tadqiqot va oliy ta’lim muassasalari laboratoriyalarining qo‘shimcha asbob-uskunalarga ehtiyoji",
             "Zarur sarflash materiallari va butlovchi qismlar bo‘yicha ehtiyoji",
+            "is_active",
         ];
     }
 }

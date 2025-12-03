@@ -14,7 +14,7 @@
 
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.2.0/dist/chartjs-plugin-datalabels.min.js"></script>
-
+        
 
 
         <!-- END: CSS Assets-->
@@ -406,9 +406,11 @@
             <!-- END: Content -->
         </div>
         <!-- BEGIN: JS Assets-->
+        <script src="https://chatbots.ilmiy1.uz/widget.js" data-token="api_JqhHAN310YIej502Rp8PGVxjnqaPkHIU4nfEuhUA" defer>
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
         <script src="/admin/dist/js/app.js"></script>
         <script src="/admin/dist/js/yil.js"></script>
+
     </body>
 </html>
