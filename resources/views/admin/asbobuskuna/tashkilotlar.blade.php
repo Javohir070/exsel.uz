@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="content">
         <div class="flex justify-between align-center mt-6" style="align-items: center;">
 
@@ -14,8 +13,9 @@
                     <form action="{{ route('search_asbobuskunalar') }}" method="GET">
                         <input type="text" name="query"
                             class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13" placeholder="Search...">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                            fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                            stroke-linejoin="round"
                             class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0">
                             <circle cx="11" cy="11" r="8"></circle>
                             <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -43,10 +43,12 @@
             </div>
 
             <div>
-                {{-- <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
-                    class="button w-24 ml-3 bg-theme-1 text-white">
-                    Import
-                </a> --}}
+                @can('super-admin')
+                    <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
+                        class="button w-24 ml-3 bg-theme-1 text-white">
+                        Import
+                    </a>
+                @endcan
                 <a href="{{ route('export.asbobuskunalar') }}" class="button w-24 ml-3 bg-theme-1 text-white">
                     Export
                 </a>
@@ -73,21 +75,21 @@
 
                     <tbody>
                         @foreach ($tashkilotlar as $tashkilots)
-
                             <tr class="intro-x">
-                                <td>{{ ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}.</td>
+                                <td>{{ ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}.
+                                </td>
                                 <td>
                                     <a href="{{ route('asbobu.index', ['id' => $tashkilots->id]) }}"
                                         class="font-medium">{{ $tashkilots->name }}</a>
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->stir_raqami  }}
+                                    {{ $tashkilots->stir_raqami }}
                                 </td>
                                 <td style="text-align: center;">
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' : 'Boshqa') }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->asbobuskunalar()->where('is_active', 1)->count()  }}/{{ $tashkilots->asbobuskunaexpert()->where('quarter', 2)->count()  }}
+                                    {{ $tashkilots->asbobuskunalar()->where('is_active', 1)->count() }}/{{ $tashkilots->asbobuskunaexpert()->where('quarter', 2)->count() }}
                                 </td>
                                 <td style="text-align: center;">
                                     {{ $tashkilots->asbobuskunaexpert()->where('quarter', 2)->where('status', 'Ijobiy')->count() }}/
@@ -105,7 +107,6 @@
                                     </div>
                                 </td>
                             </tr>
-
                         @endforeach
 
                     </tbody>
@@ -115,7 +116,7 @@
             <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
                 {{ $tashkilotlar->appends(request()->query())->links() }}
             </div>
-            
+
         </div>
 
     </div>
