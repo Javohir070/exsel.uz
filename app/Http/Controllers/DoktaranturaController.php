@@ -37,8 +37,12 @@ class DoktaranturaController extends Controller
             if (isset($data['results'])) {
                 foreach ($data['results'] as $item) {
                     Doktarantura::updateOrCreate(
-                        ['id' => $item['id']], // unique key
                         [
+                            'dok_id' => $item['id'],
+                            'quarter' => 2
+                        ], // unique key
+                        [
+                            "dok_id" => $item['id'],
                             "user_id" => auth()->id(),
                             "tashkilot_id" => $tashkilot->id,
                             'full_name' => $item['full_name'],
@@ -53,6 +57,7 @@ class DoktaranturaController extends Controller
                             'monitoring_1' => $item['monitoring_1'],
                             'monitoring_2' => $item['monitoring_2'],
                             'monitoring_3' => $item['monitoring_3'],
+                            'quarter' => 2,
                         ]
                     );
                 }
@@ -156,14 +161,14 @@ class DoktaranturaController extends Controller
 
         $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->get();
         $quarter_1 = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 1)->first();
-        $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->first();
-        $doktarantura = Doktarantura::where('tashkilot_id', '=', $id)->get();
-        $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->get();
+        $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->first();
+        $doktarantura = Doktarantura::where('tashkilot_id', '=', $id)->where('quarter', 2)->get();
+        $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->where('quarter', 2)->get();
         $biriktirilgan_ir = Doktarantura::where('tashkilot_id', '=', $id)->whereNotNull('advisor')->count();
         $querysearch = $request->input('query');
         $course = $request->input('course');
         $dc_type = $request->input('dc_type');
-        $doktaranturas = Doktarantura::where('tashkilot_id', $id)
+        $doktaranturas = Doktarantura::where('tashkilot_id', $id)->where('quarter', 2)
             ->when($querysearch, function ($query) use ($querysearch) {
                 $query->where('full_name', 'like', '%' . $querysearch . '%');
             })
@@ -237,10 +242,10 @@ class DoktaranturaController extends Controller
 
         $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->get();
         $quarter_1 = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 1)->first();
-        $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->first();
-        $doktaranturas = Doktarantura::where('tashkilot_id', '=', $id)->paginate(100);
-        $doktarantura = Doktarantura::where('tashkilot_id', '=', $id)->get();
-        $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->get();
+        $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->first();
+        $doktaranturas = Doktarantura::where('tashkilot_id', '=', $id)->where('quarter', 2)->paginate(100);
+        $doktarantura = Doktarantura::where('tashkilot_id', '=', $id)->where('quarter', 2)->get();
+        $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->where('quarter', 2)->get();
         $biriktirilgan_ir = Doktarantura::where('tashkilot_id', '=', $id)->whereNotNull('advisor')->count();
         // dd($data);
         // $ishreja_b = Doktarantura::where('tashkilot_id', '=', $id)->where('rija_b', null)->count();
@@ -276,21 +281,21 @@ class DoktaranturaController extends Controller
             }
             $region_id = Region::where('id', auth()->user()->region_id)->first();
             $id = $region_id->tashkilots()->pluck('id');
-            $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->count();
-            $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $id)->where('status', 1)->whereMonth('updated_at', date('m'))->count();
+            $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
+            $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $id)->where('status', 1)->where('quarter', 2)->count();
             $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
         } else {
             $regions = Region::orderBy('order')->get();
             $doktarantura = Tashkilot::where('doktarantura_is', 1)->count();
-            $doktarantura_count = Doktarantura::count();
-            $doktarantura_count_all = Doktarantura::where('status', 1)->whereMonth('updated_at', date('m'))->count();
+            $doktarantura_count = Doktarantura::where('quarter', 2)->count();
+            $doktarantura_count_all = Doktarantura::where('status', 1)->where('quarter', 2)->count();
             $doktarantura_expert = Doktaranturaexpert::where('quarter', 2)->count();
         }
 
-        $m_phd = Doktarantura::where('dc_type', "=", 'Mustaqil izlanuvchi, PhD')->count();
-        $t_phd = Doktarantura::where('dc_type', "=", 'Tayanch doktorantura, PhD')->count();
-        $m_dsc = Doktarantura::where('dc_type', "=", 'Mustaqil izlanuvchi, DSc')->count();
-        $dsc = Doktarantura::where('dc_type', "=", 'Doktorantura, DSc')->count();
+        $m_phd = Doktarantura::where('dc_type', "=", 'Mustaqil izlanuvchi, PhD')->where('quarter', 2)->count();
+        $t_phd = Doktarantura::where('dc_type', "=", 'Tayanch doktorantura, PhD')->where('quarter', 2)->count();
+        $m_dsc = Doktarantura::where('dc_type', "=", 'Mustaqil izlanuvchi, DSc')->where('quarter', 2)->count();
+        $dsc = Doktarantura::where('dc_type', "=", 'Doktorantura, DSc')->where('quarter', 2)->count();
 
         return view('admin.doktarantura.viloyat', [
             'doktarantura_count_all' => $doktarantura_count_all,
@@ -309,10 +314,16 @@ class DoktaranturaController extends Controller
     {
         // dd($id);
 
-        $tashkilotlarQuery = Tashkilot::where('doktarantura_is', 1)->where('region_id', '=', $id)
+        $tashkilotlarQuery = Tashkilot::where('doktarantura_is', 1)
+            ->where('region_id', $id)
+            ->with([
+                'doktaranturalar' => function ($q) {
+                    $q->where('quarter', 2);   // <-- faqat quarter = 2 doktoranturalar
+                }
+            ])
             ->get();
 
-        // Turga qarab guruhlash
+        // Guruhlash
         $groups = [
             'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
             'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
@@ -323,16 +334,16 @@ class DoktaranturaController extends Controller
 
         foreach ($groups as $key => $group) {
             $results[$key] = [
-                'doktaranturalar' => $group->pluck('doktaranturalar')->flatten()->count(),
+                'doktaranturalar' => $group->flatMap->doktaranturalar->count(),
             ];
         }
         $regions = Region::findOrFail($id);
         // dd($results);
         $doktarantura = $tashkilotlarQuery->count();
         $id = $tashkilotlarQuery->pluck('id');
-        $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->count();
-        $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $id)->where('status', 1)->count();
-        $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->count();
+        $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
+        $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', 2)->where('status', 1)->count();
+        $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
 
         return view('admin.doktarantura.tashkilot_turi', [
             'results' => $results,

@@ -74,7 +74,7 @@
                                     {{ $t->tashkilot_turi == 'itm' ? 'ITM' : ($t->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
                                 </td> --}}
                                 <td style="text-align: center;">
-                                    {{ $t->doktaranturalar->count() }}
+                                    {{ $t->doktaranturalar->where('quarter', 2)->count() }}
                                 </td>
                                 {{-- <td style="color:{{ $t->doktaranturaexperts()->first()->holati ?? null == "Tasdiqlandi" ? "green" : ($t->doktaranturaexperts()->first()->holati ?? null == "yuborildi" ? "blue" : "red") }}">
                                     {{ $t->doktaranturaexperts()->first()->holati ?? "Ko'rilmagan" }}
