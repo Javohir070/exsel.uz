@@ -21,6 +21,8 @@ class Ilmiyrahbarlar extends Model
         "meyoridan_ortiq",
         "tash_meyoridan_ortiq",
         "status",
+        "quarter",
+        "ilmiy_rah_id"
     ];
 
     public function tashkilot()

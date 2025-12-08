@@ -70,11 +70,11 @@
                                 {{ $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? "Ko'rilmagan" }}
                             </td> --}}
 
-                            <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
-                                {{ $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->status ?? "Tasdiqlanmagan" }}
+                            <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('quarter', 2)->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
+                                {{ $xodimlar->tekshirivchilars()->where('quarter', 2)->first()->status ?? "Tasdiqlanmagan" }}
                             </td>
 
-                            <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
+                            <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('quarter', 2)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                 {{ $h == 'yuborildi'? "Tasdiqlash uchun yuborildi":($h == null ? "Ko'rilmagan" : $h) }}
                             </td>
 

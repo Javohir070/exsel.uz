@@ -54,7 +54,7 @@
                                             </div>
                                             <div class="w-2/4 flex-none">
                                                 <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $m_phd }}</div>
-                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Mustaqil izlanuvchi, PhD</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Mustaqil izlanuvchi, PhD </div>
                                             </div>
                                         </div>
                                     </a>
@@ -149,7 +149,7 @@
                                                 @php
                                                     $qoniqarli = 0;
                                                     foreach ($region->tashkilots()->where('doktarantura_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarli += $tashkilot->doktaranturaexperts()->where('status', 'Qoniqarli')->count();
+                                                        $qoniqarli += $tashkilot->doktaranturaexperts()->where('quarter', 2)->where('status', 'Qoniqarli')->count();
                                                     }
                                                 @endphp
 
@@ -158,7 +158,7 @@
                                                 @php
                                                     $qoniqarsiz = 0;
                                                     foreach ($region->tashkilots()->where('doktarantura_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarsiz += $tashkilot->doktaranturaexperts()->where('status', 'Qoniqarsiz')->count();
+                                                        $qoniqarsiz += $tashkilot->doktaranturaexperts()->where('quarter', 2)->where('status', 'Qoniqarsiz')->count();
                                                     }
                                                 @endphp
 
@@ -167,7 +167,7 @@
                                                  @php
                                                     $qushimcha = 0;
                                                     foreach ($region->tashkilots()->where('doktarantura_is', 1)->get() as $tashkilot) {
-                                                        $qushimcha += $tashkilot->doktaranturaexperts()->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
+                                                        $qushimcha += $tashkilot->doktaranturaexperts()->where('quarter', 2)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
                                                     }
                                                 @endphp
 
@@ -175,7 +175,7 @@
                                                 @php
                                                     $count = 0;
                                                     foreach ($region->tashkilots()->where('doktarantura_is', 1)->get() as $tashkilot) {
-                                                        $count += $tashkilot->doktaranturaexperts()->count();
+                                                        $count += $tashkilot->doktaranturaexperts()->where('quarter', 2)->count();
                                                     }
                                                 @endphp
                                                 <td style="text-align: center;">{{ $region->tashkilots()->where('doktarantura_is', 1)->count()-$count }} </td>

@@ -34,6 +34,8 @@ class AsbobuskunaexpertController extends Controller
             'asbob_usk_ehtiyoji' => $request->asbob_usk_ehtiyoji,
             'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
             'lab_ishga_yaroqliligi' => $request->lab_ishga_yaroqliligi,
+            'quarter' => 2,
+            'year' => date('Y'),
         ]);
 
 

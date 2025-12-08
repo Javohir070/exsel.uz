@@ -25,6 +25,8 @@ class Tekshirivchilar extends Model
         'yakuniy_natijalar',
         'loyiha_ijrochilari',
         'holati',
+        'quarter',
+        'year',
 ];
 
     public function user()

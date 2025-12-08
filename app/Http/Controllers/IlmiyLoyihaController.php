@@ -102,7 +102,8 @@ class IlmiyLoyihaController extends Controller
         $scienceid = $request->scienceid ?? null;
         $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
         $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
-        $tekshirivchilar = Tekshirivchilar::where('is_active', 1)->where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
+        $tekshirivchilar = Tekshirivchilar::where('quarter', 2)->where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
+        $quarter_1 = Tekshirivchilar::where('quarter', 1)->where('is_active', 1)->where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
 
         $data = null;
         $errorMessage = null;
@@ -142,6 +143,7 @@ class IlmiyLoyihaController extends Controller
             'errorMessage' => $errorMessage,
             'scienceid' => $scienceid ?? '',
             'shtat_sum' => $shtat_sum,
+            'quarter_1' => $quarter_1,
         ]);
     }
 
@@ -300,11 +302,11 @@ class IlmiyLoyihaController extends Controller
             $region_id = Region::where('id', auth()->user()->region_id)->first();
             $id = $region_id->tashkilots()->pluck('id');
             $loy_count = IlmiyLoyiha::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
-            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
+            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
         } else {
             $regions = Region::orderBy('order')->get();
             $loy_count = IlmiyLoyiha::where('is_active', 1)->count();
-            $loy_expert = Tekshirivchilar::where('is_active', 1)->count();
+            $loy_expert = Tekshirivchilar::where('quarter', 2)->count();
             $tashkilots = Tashkilot::where('ilmiyloyiha_is', 1)->count();
         }
 

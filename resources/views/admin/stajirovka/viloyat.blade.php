@@ -111,14 +111,14 @@
                                                 @php
                                                     $ijobiy = 0;
                                                     foreach ($region->tashkilots()->where('stajirovka_is', 1)->get() as $tashkilot) {
-                                                        $ijobiy += $tashkilot->stajirovkaexperts()->where('status', 'Ijobiy')->count();
+                                                        $ijobiy += $tashkilot->stajirovkaexperts()->where('quarter', 2)->where('status', 'Ijobiy')->count();
                                                     }
                                                 @endphp
 
                                                 @php
                                                     $qoniqarli = 0;
                                                     foreach ($region->tashkilots()->where('stajirovka_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarli += $tashkilot->stajirovkaexperts()->where('status', 'Qoniqarli')->count();
+                                                        $qoniqarli += $tashkilot->stajirovkaexperts()->where('quarter', 2)->where('status', 'Qoniqarli')->count();
                                                     }
                                                 @endphp
 
@@ -127,7 +127,7 @@
                                                 @php
                                                     $qoniqarsiz = 0;
                                                     foreach ($region->tashkilots()->where('stajirovka_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarsiz += $tashkilot->stajirovkaexperts()->where('status', 'Salbiy')->count();
+                                                        $qoniqarsiz += $tashkilot->stajirovkaexperts()->where('quarter', 2)->where('status', 'Salbiy')->count();
                                                     }
                                                 @endphp
 
@@ -136,7 +136,7 @@
                                                  @php
                                                     $qushimcha = 0;
                                                     foreach ($region->tashkilots()->where('stajirovka_is', 1)->get() as $tashkilot) {
-                                                        $qushimcha += $tashkilot->stajirovkaexperts()->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
+                                                        $qushimcha += $tashkilot->stajirovkaexperts()->where('quarter', 2)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
                                                     }
                                                 @endphp
 
@@ -145,7 +145,7 @@
                                                 @php
                                                     $count = 0;
                                                     foreach ($region->tashkilots()->where('stajirovka_is', 1)->get() as $tashkilot) {
-                                                        $count += $tashkilot->stajirovkaexperts()->count();
+                                                        $count += $tashkilot->stajirovkaexperts()->where('quarter', 2)->count();
                                                     }
                                                 @endphp
 

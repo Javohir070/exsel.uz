@@ -42,7 +42,7 @@ class StajirovkaController extends Controller
             $regions = Region::orderBy('order')->get();
             $tashkilots = Tashkilot::orderBy('name')->where('stajirovka_is', 1)->count();
             $stajirovka_count = Stajirovka::count();
-            $stajirovka_expert = Stajirovkaexpert::count();
+            $stajirovka_expert = Stajirovkaexpert::where('quarter', 2)->count();
         }
 
         $stajirovkas_count = Stajirovka::count();
@@ -81,7 +81,7 @@ class StajirovkaController extends Controller
         $id = $tashkilotlarQuery->pluck('id');
         $tashkilots = $tashkilotlarQuery->count();
         $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->count();
-        $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->count();
+        $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
 
         return view('admin.stajirovka.tashkilot_turi', ['results' => $results, 'regions' => $regions, 'tashkilots' => $tashkilots, 'stajirovka_count' => $stajirovka_count, 'stajirovka_expert' => $stajirovka_expert]);
     }
@@ -224,8 +224,9 @@ class StajirovkaController extends Controller
 
     public function show(Stajirovka $stajirovka)
     {
-        $stajirovkaexpert = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->get();
-        return view('admin.stajirovka.show', ['stajirovka' => $stajirovka, 'stajirovkaexpert' => $stajirovkaexpert]);
+        $stajirovkaexpert = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 2)->get();
+        $quarter_1 = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 1)->first();
+        return view('admin.stajirovka.show', ['stajirovka' => $stajirovka, 'stajirovkaexpert' => $stajirovkaexpert, 'quarter_1' => $quarter_1]);
     }
 
 

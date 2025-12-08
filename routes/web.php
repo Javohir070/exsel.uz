@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AkademController;
+use App\Http\Controllers\AkademExpertController;
 use App\Http\Controllers\AsbobuskunaController;
 use App\Http\Controllers\AsbobuskunaexpertController;
 use App\Http\Controllers\AsbobuskunafileController;
@@ -27,10 +29,15 @@ use App\Http\Controllers\MonografiyalarController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\StajirovkaController;
 use App\Http\Controllers\StajirovkaexpertController;
+use App\Http\Controllers\StartupController;
+use App\Http\Controllers\StartupExpertController;
 use App\Http\Controllers\TashkilotController;
 use App\Http\Controllers\TashkilotUserlarController;
 use App\Http\Controllers\TekshirivchilarController;
+use App\Http\Controllers\TijoratController;
+use App\Http\Controllers\TijoratExpertController;
 use App\Http\Controllers\XujalikController;
+use App\Models\Tijorat;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
@@ -167,10 +174,15 @@ Route::middleware('auth')->group(function () {
     Route::get('roles/{roleId}/give-permissions', [RoleController::class, 'addPermissionToRole']);
     Route::put('roles/{roleId}/give-permissions', [RoleController::class, 'givePermissionToRole']);
     // end role
+    //tijorat
+    Route::post('/tijorat-import', [TijoratController::class, 'tijorat_import'])->name('tijorat_import');
+    Route::post('/startup-import', [StartupController::class, 'startup_import'])->name('startup_import');
+    //end tijorat
 
     // start stajirovka
     Route::get('/search-sta', [StajirovkaController::class, 'search_stajirovka'])->name('search_stajirovka');
     Route::post('/stajirovka-import', [StajirovkaController::class, 'stajirovka_import'])->name('stajirovka_import');
+    
     Route::get('stajirovkalar', [StajirovkaController::class, "stajirovkalar"])->name("stajirovkalar.index");
     // Route::get('stajirovka/{id}', [StajirovkaController::class, "stajirovka_tashkilot"])->name("stajirovka_tashkilot.index");
     Route::get('stajirovkas', [StajirovkaController::class, "stajirovkas_all"])->name("stajirovkas_all.index");
@@ -290,6 +302,12 @@ Route::middleware('auth')->group(function () {
         'loyihaijrochilar' => LoyihaijrochilarController::class,
         'ilmiyrahbarlar' => IlmiyrahbarlarController::class,
         'notifications' => NotificationController::class,
+        'tijorat' => TijoratController::class,
+        'tijoratexpert' => TijoratExpertController::class,
+        'startup' => StartupController::class,
+        'startupexpert' => StartupExpertController::class,
+        'akadem' => AkademController::class,
+        'akademexpert' => AkademExpertController::class,
     ]);
 
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);

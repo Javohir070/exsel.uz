@@ -21,14 +21,14 @@ class ImportDoktaranturaData extends Command
 
         foreach ($tashkilotlar as $tashkilot) {
             $stir = $tashkilot->stir_raqami;
-            $url = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-list/{$stir}/";
+            $url = "https://api-daraja.ilmiy.uz/api-monitoring/org-doctorate-list/{$stir}/";
 
             $this->info("🔄 {$tashkilot->nomi} ({$stir}) tashkilot uchun ma'lumotlar yuklanmoqda...");
 
             do {
                 $response = Http::retry(3, 5000)
-                ->timeout(120)
-                ->withBasicAuth($sms_username, $sms_password)
+                    ->timeout(120)
+                    ->withBasicAuth($sms_username, $sms_password)
                     ->withOptions(["verify" => false])
                     ->get($url);
 
@@ -43,8 +43,12 @@ class ImportDoktaranturaData extends Command
                 if (isset($data['results'])) {
                     foreach ($data['results'] as $item) {
                         Doktarantura::updateOrCreate(
-                            ['id' => $item['id']],
                             [
+                                'dok_id' => $item['id'],
+                                'quarter' => 2
+                            ],
+                            [
+                                "dok_id" => $item['id'],
                                 "user_id" => 1, // auth() ishlamaydi artisan komandada
                                 "tashkilot_id" => $tashkilot->id,
                                 'full_name' => $item['full_name'],
@@ -59,6 +63,7 @@ class ImportDoktaranturaData extends Command
                                 'monitoring_1' => $item['monitoring_1'],
                                 'monitoring_2' => $item['monitoring_2'],
                                 'monitoring_3' => $item['monitoring_3'],
+                                'quarter' => 2,
                             ]
                         );
                     }

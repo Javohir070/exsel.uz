@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 0 }} ta</h2>
+            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 0 }} ta </h2>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
@@ -79,10 +79,10 @@
                                 {{-- <td style="color:{{ $t->doktaranturaexperts()->first()->holati ?? null == "Tasdiqlandi" ? "green" : ($t->doktaranturaexperts()->first()->holati ?? null == "yuborildi" ? "blue" : "red") }}">
                                     {{ $t->doktaranturaexperts()->first()->holati ?? "Ko'rilmagan" }}
                                 </td> --}}
-                                <td style="color: {{ ($h = $t->doktaranturaexperts()->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
-                                    {{ $t->doktaranturaexperts()->first()->status ?? "Tasdiqlanmagan" }}
+                                <td style="color: {{ ($h = $t->doktaranturaexperts()->where('quarter', 2)->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
+                                    {{ $t->doktaranturaexperts()->where('quarter', 2)->first()->status ?? "Tasdiqlanmagan" }}
                                 </td>
-                                <td style="color: {{ ($h = $t->doktaranturaexperts()->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
+                                <td style="color: {{ ($h = $t->doktaranturaexperts()->where('quarter', 2)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                     {{ $h == 'yuborildi'? "Tasdiqlash uchun yuborildi":($h == null ? "Ko'rilmagan" : $h) }}
                                 </td>
                                 <td class="table-report__action w-56">

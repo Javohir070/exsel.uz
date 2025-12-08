@@ -31,6 +31,8 @@ class Doktaranturaexpert extends Model
         "meyoridan_rahbarlar",
         "tash_ortiq_rahbarlar",
         'holati',
+        'quarter',
+        'year',
     ];
 
     public function user()

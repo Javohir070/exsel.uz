@@ -20,7 +20,7 @@ class DoktaranturaController extends Controller
     function importDoktaranturaData($stir)
     {
         $tashkilot = Tashkilot::where('stir_raqami', '=', $stir)->first();
-        $url = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-list/{$stir}/";
+        $url = "https://api-daraja.ilmiy.uz/api-monitoring/org-doctorate-list/{$stir}/";
         $sms_username = env('API_USERNAME', 'single_database_user2024@gmail.com');
         $sms_password = env('API_PASSWORD', '6qZFYRMI$ZRQ1lY@CUQcmJ5');
         do {
@@ -68,7 +68,7 @@ class DoktaranturaController extends Controller
     function importIlmiyRahbarlarData($stir)
     {
         $tashkilot = Tashkilot::where('stir_raqami', '=', $stir)->first();
-        $url = "https://api-phd.mininnovation.uz/api-monitoring/advisor-list-monitoring-statistics/{$stir}/";
+        $url = "https://api-daraja.ilmiy.uz/api-monitoring/advisor-list-monitoring-statistics/{$stir}/";
         $sms_username = env('API_USERNAME', 'single_database_user2024@gmail.com');
         $sms_password = env('API_PASSWORD', '6qZFYRMI$ZRQ1lY@CUQcmJ5');
         do {
@@ -84,8 +84,12 @@ class DoktaranturaController extends Controller
             if (isset($data)) {
                 foreach ($data as $item) {
                     Ilmiyrahbarlar::updateOrCreate(
-                        ['full_name' => $item['full_name']], // unique key
                         [
+                            'full_name' => $item['full_name'],
+                            'quarter' => 2
+                        ], // unique key
+                        [
+                            'quarter' => 2,
                             "user_id" => auth()->id(),
                             "tashkilot_id" => $tashkilot->id,
                             'org' => $item['org'],
@@ -126,12 +130,12 @@ class DoktaranturaController extends Controller
         $tashkilot = Tashkilot::findOrFail($id);
         $sms_username = env('API_USERNAME', 'single_database_user2024@gmail.com');
         $sms_password = env('API_PASSWORD', '6qZFYRMI$ZRQ1lY@CUQcmJ5');
-        $url = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-status-statistics/{$tashkilot->stir_raqami}/";
+        $url = "https://api-daraja.ilmiy.uz/api-monitoring/org-doctorate-status-statistics/{$tashkilot->stir_raqami}/";
         $response = Http::withBasicAuth($sms_username, $sms_password)
             ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
             ->get($url);
 
-        $url_main = "https://api-phd.mininnovation.uz/api-monitoring/doctorate-list-monitoring-statistics/{$tashkilot->stir_raqami}/";
+        $url_main = "https://api-daraja.ilmiy.uz/api-monitoring/doctorate-list-monitoring-statistics/{$tashkilot->stir_raqami}/";
         $response_main = Http::withBasicAuth($sms_username, $sms_password)
             ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
             ->get($url_main, [
@@ -150,7 +154,8 @@ class DoktaranturaController extends Controller
         }
 
 
-        $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->get();
+        $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->get();
+        $quarter_1 = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 1)->first();
         $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->first();
         $doktarantura = Doktarantura::where('tashkilot_id', '=', $id)->get();
         $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->get();
@@ -186,6 +191,7 @@ class DoktaranturaController extends Controller
             'ilmiyrahbarlars' => $ilmiyrahbarlars ?? null,
             'biriktirilgan_ir' => $biriktirilgan_ir ?? null,
             'ishreja_b' => $ishreja_b ?? null,
+            'quarter_1' => $quarter_1 ?? null,
         ]);
     }
 
@@ -205,12 +211,12 @@ class DoktaranturaController extends Controller
         $tashkilot = Tashkilot::findOrFail($id);
         $sms_username = env('API_USERNAME', 'single_database_user2024@gmail.com');
         $sms_password = env('API_PASSWORD', '6qZFYRMI$ZRQ1lY@CUQcmJ5');
-        $url = "https://api-phd.mininnovation.uz/api-monitoring/org-doctorate-status-statistics/{$tashkilot->stir_raqami}/";
+        $url = "https://api-daraja.ilmiy.uz/api-monitoring/org-doctorate-status-statistics/{$tashkilot->stir_raqami}/";
         $response = Http::withBasicAuth($sms_username, $sms_password)
             ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
             ->get($url);
 
-        $url_main = "https://api-phd.mininnovation.uz/api-monitoring/doctorate-list-monitoring-statistics/{$tashkilot->stir_raqami}/";
+        $url_main = "https://api-daraja.ilmiy.uz/api-monitoring/doctorate-list-monitoring-statistics/{$tashkilot->stir_raqami}/";
         $response_main = Http::withBasicAuth($sms_username, $sms_password)
             ->withOptions(["verify" => false]) // SSL sertifikatni tekshirishni o‘chirib qo‘yish
             ->get($url_main, [
@@ -229,7 +235,8 @@ class DoktaranturaController extends Controller
         }
 
 
-        $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->get();
+        $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->get();
+        $quarter_1 = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 1)->first();
         $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->first();
         $doktaranturas = Doktarantura::where('tashkilot_id', '=', $id)->paginate(100);
         $doktarantura = Doktarantura::where('tashkilot_id', '=', $id)->get();
@@ -254,6 +261,7 @@ class DoktaranturaController extends Controller
             'ilmiyrahbarlars' => $ilmiyrahbarlars ?? null,
             'biriktirilgan_ir' => $biriktirilgan_ir ?? null,
             'ishreja_b' => $ishreja_b ?? null,
+            'quarter_1' => $quarter_1,
         ]);
     }
     public function index()
@@ -269,20 +277,20 @@ class DoktaranturaController extends Controller
             $region_id = Region::where('id', auth()->user()->region_id)->first();
             $id = $region_id->tashkilots()->pluck('id');
             $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->count();
-            $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $id)->where('status', 1)->count();
-            $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->count();
+            $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $id)->where('status', 1)->whereMonth('updated_at', date('m'))->count();
+            $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
         } else {
             $regions = Region::orderBy('order')->get();
             $doktarantura = Tashkilot::where('doktarantura_is', 1)->count();
             $doktarantura_count = Doktarantura::count();
-            $doktarantura_count_all = Doktarantura::where('status', 1)->count();
-            $doktarantura_expert = Doktaranturaexpert::count();
+            $doktarantura_count_all = Doktarantura::where('status', 1)->whereMonth('updated_at', date('m'))->count();
+            $doktarantura_expert = Doktaranturaexpert::where('quarter', 2)->count();
         }
 
         $m_phd = Doktarantura::where('dc_type', "=", 'Mustaqil izlanuvchi, PhD')->count();
-        $t_phd = Doktarantura::where('dc_type',"=", 'Tayanch doktorantura, PhD')->count();
-        $m_dsc = Doktarantura::where('dc_type',"=", 'Mustaqil izlanuvchi, DSc')->count();
-        $dsc = Doktarantura::where('dc_type',"=", 'Doktorantura, DSc')->count();
+        $t_phd = Doktarantura::where('dc_type', "=", 'Tayanch doktorantura, PhD')->count();
+        $m_dsc = Doktarantura::where('dc_type', "=", 'Mustaqil izlanuvchi, DSc')->count();
+        $dsc = Doktarantura::where('dc_type', "=", 'Doktorantura, DSc')->count();
 
         return view('admin.doktarantura.viloyat', [
             'doktarantura_count_all' => $doktarantura_count_all,
@@ -382,6 +390,7 @@ class DoktaranturaController extends Controller
         $doktarantura->reja_t = $request->reja_t;
         $doktarantura->status = 1;
         $doktarantura->reja_b = $request->reja_b;
+        $doktarantura->himoya_holati = $request->himoya_holati;
         $doktarantura->monitoring_natijasik = $request->monitoring_natijasik;
 
         $doktarantura->save();

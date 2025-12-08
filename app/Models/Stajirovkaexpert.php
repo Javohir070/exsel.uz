@@ -25,6 +25,8 @@ class Stajirovkaexpert extends Model
         'file',
         'tashkilot_id',
         'holati',
+        'quarter',
+        'year',
     ];
 
     public function user()

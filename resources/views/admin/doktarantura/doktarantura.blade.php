@@ -39,7 +39,8 @@
                                     <div class="intro-x relative mr-3 sm:mr-6">
                                         <div class="search hidden sm:block">
                                             <form action="{{ route('doktaranturalar') }}" method="GET">
-                                                <input type="hidden" name="id" value="{{ auth()->user()->tashkilot_id }}">
+                                                <input type="hidden" name="id"
+                                                    value="{{ auth()->user()->tashkilot_id }}">
                                                 <input type="text" name="query" value="{{ request('query') }}"
                                                     class="search__input input placeholder-theme-13"
                                                     placeholder="Search...">
@@ -76,19 +77,30 @@
                                                             style="border-radius: 6px;">
                                                             <option value="">Turi</option>
                                                             <option value="">All</option>
-                                                            <option value="Mustaqil izlanuvchi, PhD" {{ request('dc_type') == 'Mustaqil izlanuvchi, PhD' ? 'selected' : '' }}>Mustaqil izlanuvchi, PhD</option>
-                                                            <option value="Tayanch doktorantura, PhD" {{ request('dc_type') == 'Tayanch doktorantura, PhD' ? 'selected' : '' }}>Tayanch doktorantura, PhD</option>
-                                                            <option value="Mustaqil izlanuvchi, DSc" {{ request('dc_type') == 'Mustaqil izlanuvchi, DSc' ? 'selected' : '' }}>Mustaqil izlanuvchi, DSc</option>
-                                                            <option value="Doktorantura, DSc" {{ request('dc_type') == 'Doktorantura, DSc' ? 'selected' : '' }}>Doktorantura, DSc</option>
+                                                            <option value="Mustaqil izlanuvchi, PhD"
+                                                                {{ request('dc_type') == 'Mustaqil izlanuvchi, PhD' ? 'selected' : '' }}>
+                                                                Mustaqil izlanuvchi, PhD</option>
+                                                            <option value="Tayanch doktorantura, PhD"
+                                                                {{ request('dc_type') == 'Tayanch doktorantura, PhD' ? 'selected' : '' }}>
+                                                                Tayanch doktorantura, PhD</option>
+                                                            <option value="Mustaqil izlanuvchi, DSc"
+                                                                {{ request('dc_type') == 'Mustaqil izlanuvchi, DSc' ? 'selected' : '' }}>
+                                                                Mustaqil izlanuvchi, DSc</option>
+                                                            <option value="Doktorantura, DSc"
+                                                                {{ request('dc_type') == 'Doktorantura, DSc' ? 'selected' : '' }}>
+                                                                Doktorantura, DSc</option>
                                                         </select>
 
                                                         <select class="form-select" name="course"
                                                             style="border-radius: 6px;">
                                                             <option value="">Kurs</option>
                                                             <option value="">All</option>
-                                                            <option value="1" {{ request('course') == '1' ? 'selected' : '' }}>1</option>
-                                                            <option value="2" {{ request('course') == '2' ? 'selected' : '' }}>2</option>
-                                                            <option value="3" {{ request('course') == '3' ? 'selected' : '' }}>3</option>
+                                                            <option value="1"
+                                                                {{ request('course') == '1' ? 'selected' : '' }}>1</option>
+                                                            <option value="2"
+                                                                {{ request('course') == '2' ? 'selected' : '' }}>2</option>
+                                                            <option value="3"
+                                                                {{ request('course') == '3' ? 'selected' : '' }}>3</option>
                                                         </select>
 
                                                         <button type="submit" class="button bg-theme-1 text-white mr-4"
@@ -150,7 +162,8 @@
 
                                 <div class="intro-y block sm:flex items-center py-4"
                                     style="justify-content: space-between;">
-                                    <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
+                                    <h2 class="text-lg font-medium truncate ml-4"
+                                        style="font-size: 24px;font-weight:500;">
                                         Ilmiy rahbarlar
                                     </h2>
                                     <tr style="border-bottom: 1px solid #E6E6E6;">
@@ -171,9 +184,11 @@
                                             <tr>
                                                 <th class="whitespace-no-wrap" style="width: 40px;">T/r</th>
                                                 <th class="whitespace-no-wrap">F.I.Sh</th>
-                                                <th class="" style="text-align:center">Mazkur tashkilotdan biriktirilgan
+                                                <th class="" style="text-align:center">Mazkur tashkilotdan
+                                                    biriktirilgan
                                                     izlanuvchilar soni</th>
-                                                <th class="" style="text-align:center">Barcha tashkilotlardan biriktirilgan
+                                                <th class="" style="text-align:center">Barcha tashkilotlardan
+                                                    biriktirilgan
                                                     izlanuvchilar soni</th>
                                             </tr>
                                         </thead>
@@ -220,7 +235,8 @@
         <div class="modal__content modal__content--xl" style="margin-top:revert-layer;">
             <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">
                 <h2 class="font-medium text-base mr-auto" style="font-size:24px;color:black;">Ma'lumotlarni ko'rish</h2>
-                <button type="button" class="button border items-center text-gray-700 hidden sm:flex" data-dismiss="modal">
+                <button type="button" class="button border items-center text-gray-700 hidden sm:flex"
+                    data-dismiss="modal">
                     <i data-feather="x" class="w-4 h-4 "></i></button>
             </div>
             <div class="p-5 grid grid-cols-12 gap-4 row-gap-3">
@@ -305,7 +321,7 @@
             $.ajax({
                 url: `/ilmiy-izlanuvchi/${id}`,
                 type: 'GET',
-                success: function (data) {
+                success: function(data) {
                     // Ma'lumotlarni modal shaklida aks ettiramiz
                     $('#full_name').text(data.full_name);
                     $('#direction_name').text(data.direction_name);
@@ -325,7 +341,7 @@
 
                     $('#science-ilmiy-izlanuvchi-show-modal').modal('show');
                 },
-                error: function (error) {
+                error: function(error) {
                     console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
                 }
             });
@@ -339,7 +355,7 @@
             $.ajax({
                 url: `/ilmiy-izlanuvchi/${id}`,
                 type: 'GET',
-                success: function (data) {
+                success: function(data) {
                     // Ma'lumotlarni modal shaklida aks ettiramiz
                     $('#edit_full_name').text(data.full_name);
                     $('#edit_direction_name').text(data.direction_name);
@@ -361,7 +377,7 @@
 
                     $('#science-ilmiy-izlanuvchi-edit-modal').modal('show');
                 },
-                error: function (error) {
+                error: function(error) {
                     console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
                 }
             });
@@ -375,7 +391,7 @@
             $.ajax({
                 url: `/ilmiyrahbarlar/${id}`,
                 type: 'GET',
-                success: function (data) {
+                success: function(data) {
                     // Ma'lumotlarni modal shaklida aks ettiramiz
                     $('#ir_full_name').text(data.full_name);
                     $('#org').text(data.org);
@@ -386,7 +402,7 @@
 
                     $('#science-ilmiy-rahbar-show-modal').modal('show');
                 },
-                error: function (error) {
+                error: function(error) {
                     console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
                 }
             });
@@ -400,7 +416,7 @@
             $.ajax({
                 url: `/ilmiyrahbarlar/${id}`,
                 type: 'GET',
-                success: function (data) {
+                success: function(data) {
                     // Ma'lumotlarni modal shaklida aks ettiramiz
                     $('#edit_ir_full_name').text(data.full_name);
                     $('#edit_org').text(data.org);
@@ -414,7 +430,7 @@
 
                     $('#science-ilmiy-rahbar-edit-modal').modal('show');
                 },
-                error: function (error) {
+                error: function(error) {
                     console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
                 }
             });

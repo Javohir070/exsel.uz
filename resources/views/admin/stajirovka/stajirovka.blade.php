@@ -42,11 +42,11 @@
                                 {{ $xodimlar->yunalishi ?? 'Mavjud emas' }}
                             </td>
                             <td
-                                style="color: {{ ($h = $xodimlar->stajirovkaexpert()->first()->status ?? null) == 'Ijobiy' ? 'green' : ($h == 'Salbiy' ? 'blue' : 'red') }}">
-                                {{ $xodimlar->stajirovkaexpert()->first()->status ?? "Tasdiqlanmagan" }}
+                                style="color: {{ ($h = $xodimlar->stajirovkaexpert()->where('quarter', 2)->first()->status ?? null) == 'Ijobiy' ? 'green' : ($h == 'Salbiy' ? 'blue' : 'red') }}">
+                                {{ $xodimlar->stajirovkaexpert()->where('quarter', 2)->first()->status ?? "Tasdiqlanmagan" }}
                             </td>
                             <td
-                                style="color: {{ ($h = $xodimlar->stajirovkaexpert()->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
+                                style="color: {{ ($h = $xodimlar->stajirovkaexpert()->where('quarter', 2)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                 {{ $h == 'yuborildi' ? "Tasdiqlash uchun yuborildi" : ($h == null ? "Ko'rilmagan" : $h) }}
                             </td>
                             <td class="table-report__action w-56">

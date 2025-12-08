@@ -52,12 +52,12 @@ class AsbobuskunaController extends Controller
             $region_id = Region::where('id', auth()->user()->region_id)->first();
             $id = $region_id->tashkilots()->pluck('id');
             $asboblar_count = Asbobuskuna::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
-            $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id)->count();
+            $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
         } else {
             $regions = Region::orderBy('order')->get();
             $tashkilots = Tashkilot::where('asbobuskuna_is', 1)->count();
             $asboblar_count = Asbobuskuna::where('is_active', 1)->count();
-            $asboblar_expert = Asbobuskunaexpert::count();
+            $asboblar_expert = Asbobuskunaexpert::where('quarter', 2)->count();
         }
 
         $asboblar_all = Asbobuskuna::count();
@@ -265,9 +265,14 @@ class AsbobuskunaController extends Controller
 
     public function show(Asbobuskuna $asbobuskuna)
     {
-        $asbobuskunaexpert = Asbobuskunaexpert::where('asbobuskuna_id', $asbobuskuna->id)->get();
+        $asbobuskunaexpert = Asbobuskunaexpert::where('quarter', 2)->where('asbobuskuna_id', $asbobuskuna->id)->get();
+        $quarter_1 = Asbobuskunaexpert::where('quarter', 1)->where('asbobuskuna_id', $asbobuskuna->id)->first();
         
-        return view('admin.asbobuskuna.show', ['asbobuskuna' => $asbobuskuna, 'asbobuskunaexpert' => $asbobuskunaexpert]);
+        return view('admin.asbobuskuna.show', [
+            'asbobuskuna' => $asbobuskuna, 
+            'asbobuskunaexpert' => $asbobuskunaexpert, 
+            'quarter_1' => $quarter_1
+        ]);
     }
 
 

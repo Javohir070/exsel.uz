@@ -28,7 +28,7 @@ class PDFController extends Controller
 
         $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyId)->first();
         $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyId)->first();
-        $tekshirivchilar = Tekshirivchilar::where('is_active', 1)->where('ilmiy_loyiha_id', $ilmiyId)->first();
+        $tekshirivchilar = Tekshirivchilar::where('quarter', 2)->where('ilmiy_loyiha_id', $ilmiyId)->first();
         $pdfUrl = asset('storage/' . $fileRelativePath);
 
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
@@ -43,7 +43,7 @@ class PDFController extends Controller
             'qrCode' => $qrCode,
         ];
 
-        $tekshirivchilar = Tekshirivchilar::where('is_active',1)->where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
+        $tekshirivchilar = Tekshirivchilar::where('quarter', 2)->where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
 
         $pdf = PDF::loadView('admin.pdf.usersPdf', $data);
 
@@ -77,7 +77,7 @@ class PDFController extends Controller
 
         // Generate the QR Code as a base64 image
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
-        $tekshirivchilar = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->first();
+        $tekshirivchilar = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 2)->first();
         // Prepare data for the PDF
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
@@ -121,7 +121,7 @@ class PDFController extends Controller
 
         // Generate the QR Code as a base64 image
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
-        $tekshirivchilar = Asbobuskunaexpert::where('asbobuskuna_id', $asbobuskuna->id)->first();
+        $tekshirivchilar = Asbobuskunaexpert::where('asbobuskuna_id', $asbobuskuna->id)->where('quarter', 2)->first();
         // Prepare data for the PDF
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
@@ -166,7 +166,7 @@ class PDFController extends Controller
 
         // Generate the QR Code as a base64 image
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
-        $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $tashkilot->id)->first();
+        $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $tashkilot->id)->where('quarter', 2)->first();
         // Prepare data for the PDF
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',

@@ -33,6 +33,9 @@ class Doktarantura extends Model
         "reja_b",
         "monitoring_natijasik",
         "status",
+        "himoya_holati",
+        "quarter",
+        "dok_id"
     ] ;
 
     public function user()

@@ -83,13 +83,13 @@
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->stajirovkalar()->count() }}/{{ $tashkilots->stajirovkaexperts()->count() }}
+                                    {{ $tashkilots->stajirovkalar()->count() }}/{{ $tashkilots->stajirovkaexperts()->where('quarter', 2)->count() }}
                                 </td>
 
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->stajirovkaexperts()->whereIn('status',[ 'Ijobiy', 'Qoniqarli'])->count() }}/
-                                    {{ $tashkilots->stajirovkaexperts()->where('status', 'Salbiy')->count() }}/
-                                    {{ $tashkilots->stajirovkaexperts()->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
+                                    {{ $tashkilots->stajirovkaexperts()->where('quarter', 2)->whereIn('status',[ 'Ijobiy', 'Qoniqarli'])->count() }}/
+                                    {{ $tashkilots->stajirovkaexperts()->where('quarter', 2)->where('status', 'Salbiy')->count() }}/
+                                    {{ $tashkilots->stajirovkaexperts()->where('quarter', 2)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
                                 </td>
 
                                 <td class="table-report__action w-56">

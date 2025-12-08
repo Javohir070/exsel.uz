@@ -28,6 +28,8 @@ class Asbobuskunaexpert extends Model
         'lab_ishga_yaroqliligi',
         'tashkilot_id',
         'holati',
+        'quarter',
+        'year',
     ];
 
     public function user()
