@@ -115,7 +115,7 @@
                             <div style="text-align: end;display: flex;">
                                 @role(['Ekspert'])
                                     @if ($tekshirivchilar->holati == 'yuborildi')
-                                        <a href="{{ url('generate-pdfsajiyor/' . $startup->id) }}"
+                                        <a href="{{ url('generate-pdfstartup/' . $startup->id) }}"
                                             class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
                                             Eksport
                                         </a>
@@ -128,20 +128,20 @@
                                         </form>
                                     @endif
                                 @endrole
-                                {{-- @role(['Ishchi guruh azosi']) --}}
-                                    @if ($tekshirivchilar->holati == 'Rad etildi')
-                                        <a href="{{ route('startupexpert.edit', ['startupexpert' => $tekshirivchilar->id]) }}"
-                                            class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
-                                            Tahrirlash
-                                        </a>
-                                        <form action="{{ route('startupexpert.destroy', $tekshirivchilar->id) }}" method="POST"
-                                            onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
-                                        </form>
-                                    @endif
-                                {{-- @endrole --}}
+                                @role(['Ishchi guruh azosi'])
+                                @if ($tekshirivchilar->holati == 'Rad etildi')
+                                    <a href="{{ route('startupexpert.edit', ['startupexpert' => $tekshirivchilar->id]) }}"
+                                        class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
+                                        Tahrirlash
+                                    </a>
+                                    <form action="{{ route('startupexpert.destroy', $tekshirivchilar->id) }}" method="POST"
+                                        onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
+                                    </form>
+                                @endif
+                                @endrole
                             </div>
 
                         </div>
@@ -158,7 +158,8 @@
                                 <td class="border border-b-2 ">
                                     Loyixa doirasida (ishlab chiqarish, xizmat ko‘rsatish) yo‘lga qo‘yilgani
                                 </td>
-                                <td class="border border-b-2 ">{{ $tekshirivchilar->loyiha_yolga_qoyilgan  ? 'Ha': "Yo'q, Izoh: " }} 
+                                <td class="border border-b-2 ">
+                                    {{ $tekshirivchilar->loyiha_yolga_qoyilgan ? 'Ha' : "Yo'q, Izoh: " }}
                                     {{ $tekshirivchilar->loyiha_yolga_qoyilgan_izox ?? null }}
                                 </td>
                             </tr>
@@ -167,7 +168,8 @@
                                 <td class="border border-b-2 ">
                                     Loyixa doirasida daromadga erishilganligi
                                 </td>
-                                <td class="border border-b-2 ">{{ $tekshirivchilar->daromadga_erishilgan  ? 'Ha': "Yo'q, Izoh: " }}
+                                <td class="border border-b-2 ">
+                                    {{ $tekshirivchilar->daromadga_erishilgan ? 'Ha' : "Yo'q, Izoh: " }}
                                     {{ $tekshirivchilar->daromadga_erishilgan_izox ?? null }}
                                 </td>
                             </tr>
@@ -176,7 +178,8 @@
                                 <td class="border border-b-2 ">
                                     Loixa doirasida olingan Inventar texnikalar kirim qilingani
                                 </td>
-                                <td class="border border-b-2 ">{{ $tekshirivchilar->inventar_kirim_qilingan  ? 'Ha': "Yo'q, Izoh: " }}
+                                <td class="border border-b-2 ">
+                                    {{ $tekshirivchilar->inventar_kirim_qilingan ? 'Ha' : "Yo'q, Izoh: " }}
                                     {{ $tekshirivchilar->inventar_kirim_qilingan_izox ?? null }}
                                 </td>
                             </tr>
@@ -185,7 +188,8 @@
                                 <td class="border border-b-2 ">
                                     Loixa doirasida olingan Inventar texnikalar joida mavjudligi
                                 </td>
-                                <td class="border border-b-2 ">{{ $tekshirivchilar->inventar_joyida_mavjud  ? 'Ha': "Yo'q, Izoh: " }}
+                                <td class="border border-b-2 ">
+                                    {{ $tekshirivchilar->inventar_joyida_mavjud ? 'Ha' : "Yo'q, Izoh: " }}
                                     {{ $tekshirivchilar->inventar_joyida_mavjud_izox ?? null }}
                                 </td>
                             </tr>
@@ -193,35 +197,43 @@
                             <tr class="bg-gray-200">
                                 <td class="border border-b-2 ">5</td>
                                 <td class="border border-b-2 ">
-                                   Loixa doirasida olingan Inventar texnikalar Shartnoma va xisob fakturasidagi texnik parametrlari amaldagi bilan to‘g‘ri kelishi
+                                    Loixa doirasida olingan Inventar texnikalar Shartnoma va xisob fakturasidagi texnik
+                                    parametrlari amaldagi bilan to‘g‘ri kelishi
                                 </td>
-                                <td class="border border-b-2 ">{{ $tekshirivchilar->inventar_parametr_mosligi  ? 'Ha': "Yo'q, Izoh: " }}
+                                <td class="border border-b-2 ">
+                                    {{ $tekshirivchilar->inventar_parametr_mosligi ? 'Ha' : "Yo'q, Izoh: " }}
                                     {{ $tekshirivchilar->inventar_parametr_mosligi_izox ?? null }}
                                 </td>
                             </tr>
 
-                            <tr >
+                            <tr>
                                 <td class="border border-b-2 ">6</td>
                                 <td class="border border-b-2 ">
-                                   Loyixa doirasida ish bilan ta’minlangan xodimlar soni
+                                    Loyixa doirasida ish bilan ta’minlangan xodimlar soni
                                 </td>
-                                <td class="border border-b-2 ">{{ $tekshirivchilar->xodimlar_soni ?? null }}</td>
+                                <td class="border border-b-2 ">
+                                    {{ $tekshirivchilar->xodimlar_soni ?? null }}
+                                </td>
                             </tr>
 
                             <tr class="bg-gray-200">
                                 <td class="border border-b-2 ">7</td>
                                 <td class="border border-b-2 ">
-                                   Amalda nechta xodim faoliyat yurityapti
+                                    Amalda nechta xodim faoliyat yurityapti
                                 </td>
-                                <td class="border border-b-2 ">{{ $tekshirivchilar->amalda_xodim_soni ?? null }}</td>
+                                <td class="border border-b-2 ">
+                                    {{ $tekshirivchilar->amalda_xodim_soni ?? null }}
+                                </td>
                             </tr>
 
-                            <tr >
+                            <tr>
                                 <td class="border border-b-2 ">8</td>
                                 <td class="border border-b-2 ">
-                                   Daromadga erishish uchun Xizmat ko‘rsatish yoki Maxsulot sotish uchun tuzilgan shartnoma kelishuv mavjudligi
+                                    Daromadga erishish uchun Xizmat ko‘rsatish yoki Maxsulot sotish uchun tuzilgan shartnoma
+                                    kelishuv mavjudligi
                                 </td>
-                                <td class="border border-b-2 ">{{ $tekshirivchilar->shartnoma_mavjudligi  ? 'Ha': "Yo'q, Izoh: " }}
+                                <td class="border border-b-2 ">
+                                    {{ $tekshirivchilar->shartnoma_mavjudligi ? 'Ha' : "Yo'q, Izoh: " }}
                                     {{ $tekshirivchilar->shartnoma_mavjudligi_izox ?? null }}
                                 </td>
                             </tr>
@@ -234,7 +246,7 @@
                                 </td>
                                 <td class="border border-b-2 ">{{ $tekshirivchilar->status ?? null }}</td>
                             </tr>
-                            <tr >
+                            <tr>
                                 <td class="border border-b-2 ">10.</td>
                                 <td class="border border-b-2 ">
                                     Izoh
@@ -293,12 +305,12 @@
                     </table>
                 </div>
             @empty
-                {{-- @role(['Ishchi guruh azosi']) --}}
+                @role(['Ishchi guruh azosi'])
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
                     style="background: white; padding: 20px 20px; border-radius: 4px">
                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                        <form id="science-paper-create-form" method="POST" action="{{ route('startupexpert.store') }}" class="validate-form"
-                            enctype="multipart/form-data" novalidate="novalidate">
+                        <form id="science-paper-create-form" method="POST" action="{{ route('startupexpert.store') }}"
+                            class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                             @csrf
                             <div class="grid grid-cols-12 gap-2">
                                 <input type="hidden" name="startup_id" value="{{ $startup->id }}">
@@ -306,7 +318,7 @@
                                 <div class="w-full col-span-6 field-group">
                                     <label class="flex flex-col sm:flex-row">
                                         <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>
-                                         Loyixa doirasida (ishlab chiqarish, xizmat ko‘rsatish) yo‘lga qo‘yilgani
+                                        Loyixa doirasida (ishlab chiqarish, xizmat ko‘rsatish) yo‘lga qo‘yilgani
                                     </label>
 
                                     <select name="loyiha_yolga_qoyilgan" class="input border w-full mt-2 show-comment-select"
@@ -316,7 +328,8 @@
                                         <option value="0">Yo'q</option>
                                     </select>
 
-                                    <textarea name="loyiha_yolga_qoyilgan_izox" class="input w-full border mt-2 hidden comment-area" placeholder="Izoh" cols="2" rows="2"></textarea>
+                                    <textarea name="loyiha_yolga_qoyilgan_izox" class="input w-full border mt-2 hidden comment-area" placeholder="Izoh"
+                                        cols="2" rows="2"></textarea>
 
                                     @error('loyiha_yolga_qoyilgan')
                                         <div class="error">{{ $message }}</div>
@@ -336,7 +349,8 @@
                                         <option value="0">Yo'q</option>
                                     </select>
 
-                                    <textarea name="daromadga_erishilgan_izox" class="input w-full border mt-2 hidden comment-area" placeholder="Izoh" cols="2" rows="2"></textarea>
+                                    <textarea name="daromadga_erishilgan_izox" class="input w-full border mt-2 hidden comment-area" placeholder="Izoh"
+                                        cols="2" rows="2"></textarea>
 
                                     @error('daromadga_erishilgan')
                                         <div class="error">{{ $message }}</div>
@@ -349,14 +363,15 @@
                                         Loixa doirasida olingan Inventar texnikalar kirim qilingani
                                     </label>
 
-                                    <select name="inventar_kirim_qilingan" class="input border w-full mt-2 show-comment-select"
-                                        required>
+                                    <select name="inventar_kirim_qilingan"
+                                        class="input border w-full mt-2 show-comment-select" required>
                                         <option value=""></option>
                                         <option value="1">Ha </option>
                                         <option value="0">Yo'q</option>
                                     </select>
 
-                                    <textarea name="inventar_kirim_qilingan_izox" class="input w-full border mt-2 hidden comment-area" placeholder="Izoh" cols="2" rows="2"></textarea>
+                                    <textarea name="inventar_kirim_qilingan_izox" class="input w-full border mt-2 hidden comment-area" placeholder="Izoh"
+                                        cols="2" rows="2"></textarea>
 
                                     @error('inventar_kirim_qilingan')
                                         <div class="error">{{ $message }}</div>
@@ -366,7 +381,7 @@
                                 <div class="w-full col-span-6 field-group">
                                     <label class="flex flex-col sm:flex-row">
                                         <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>
-                                        Loixa doirasida olingan Inventar texnikalar joida mavjudligi 
+                                        Loixa doirasida olingan Inventar texnikalar joida mavjudligi
                                     </label>
 
                                     <select name="inventar_joyida_mavjud" class="input border w-full mt-2 show-comment-select"
@@ -376,7 +391,8 @@
                                         <option value="0">Yo'q</option>
                                     </select>
 
-                                    <textarea name="inventar_joyida_mavjud_izox" class="input w-full border mt-2 hidden comment-area" placeholder="Izoh" cols="2" rows="2"></textarea>
+                                    <textarea name="inventar_joyida_mavjud_izox" class="input w-full border mt-2 hidden comment-area" placeholder="Izoh"
+                                        cols="2" rows="2"></textarea>
 
                                     @error('inventar_joyida_mavjud')
                                         <div class="error">{{ $message }}</div>
@@ -386,17 +402,19 @@
                                 <div class="w-full col-span-6 field-group">
                                     <label class="flex flex-col sm:flex-row">
                                         <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>
-                                        Loixa doirasida olingan Inventar texnikalar Shartnoma va xisob fakturasidagi texnik parametrlari amaldagi bilan to‘g‘ri kelishi
+                                        Loixa doirasida olingan Inventar texnikalar Shartnoma va xisob fakturasidagi texnik
+                                        parametrlari amaldagi bilan to‘g‘ri kelishi
                                     </label>
 
-                                    <select name="inventar_parametr_mosligi" class="input border w-full mt-2 show-comment-select"
-                                        required>
+                                    <select name="inventar_parametr_mosligi"
+                                        class="input border w-full mt-2 show-comment-select" required>
                                         <option value=""></option>
                                         <option value="1">Ha </option>
                                         <option value="0">Yo'q</option>
                                     </select>
 
-                                    <textarea name="inventar_parametr_mosligi_izox" class="input w-full border mt-2 hidden comment-area" placeholder="Izoh" cols="2" rows="2"></textarea>
+                                    <textarea name="inventar_parametr_mosligi_izox" class="input w-full border mt-2 hidden comment-area"
+                                        placeholder="Izoh" cols="2" rows="2"></textarea>
 
                                     @error('inventar_parametr_mosligi')
                                         <div class="error">{{ $message }}</div>
@@ -405,20 +423,25 @@
 
                                 <div class="w-full col-span-6 ">
                                     <label class="flex flex-col sm:flex-row"> <span
-                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyixa doirasida ish bilan ta’minlangan xodimlar soni</label>
-                                    <input type="number" min="0" name="xodimlar_soni" class="input w-full border mt-2" required>
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyixa doirasida ish bilan
+                                        ta’minlangan xodimlar soni</label>
+                                    <input type="number" min="0" name="xodimlar_soni"
+                                        class="input w-full border mt-2" required>
                                 </div>
 
                                 <div class="w-full col-span-6 ">
                                     <label class="flex flex-col sm:flex-row"> <span
-                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Amalda nechta xodim faoliyat yurityapti</label>
-                                    <input type="number" min="0" name="amalda_xodim_soni" class="input w-full border mt-2" required>
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Amalda nechta xodim
+                                        faoliyat yurityapti</label>
+                                    <input type="number" min="0" name="amalda_xodim_soni"
+                                        class="input w-full border mt-2" required>
                                 </div>
 
                                 <div class="w-full col-span-6 field-group">
                                     <label class="flex flex-col sm:flex-row">
                                         <span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>
-                                        Daromadga erishish uchun Xizmat ko‘rsatish yoki Maxsulot sotish uchun tuzilgan shartnoma kelishuv mavjudligi
+                                        Daromadga erishish uchun Xizmat ko‘rsatish yoki Maxsulot sotish uchun tuzilgan shartnoma
+                                        kelishuv mavjudligi
                                     </label>
 
                                     <select name="shartnoma_mavjudligi" class="input border w-full mt-2 show-comment-select"
@@ -428,7 +451,8 @@
                                         <option value="0">Yo'q</option>
                                     </select>
 
-                                    <textarea name="shartnoma_mavjudligi_izox" class="input w-full border mt-2 hidden comment-area" placeholder="Izoh" cols="2" rows="2"></textarea>
+                                    <textarea name="shartnoma_mavjudligi_izox" class="input w-full border mt-2 hidden comment-area" placeholder="Izoh"
+                                        cols="2" rows="2"></textarea>
 
                                     @error('shartnoma_mavjudligi')
                                         <div class="error">{{ $message }}</div>
@@ -491,7 +515,7 @@
                         </div>
                     </div>
                 </div>
-                {{-- @endrole --}}
+                @endrole
             @endforelse
         @endrole
 

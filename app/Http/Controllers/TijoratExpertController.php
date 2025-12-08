@@ -60,7 +60,7 @@ class TijoratExpertController extends Controller
         $data['media_zip'] = $request->file('media_zip')->store('tijorat_media');
 
         $data['user_id'] = auth()->id();
-        $data['fish'] = auth()->user()->name;
+        $data['fish'] = $user->name ?? auth()->user()->name;
         $data['tashkilot_id'] = auth()->user()->tashkilot_id;
 
         TijoratExpert::create($data);

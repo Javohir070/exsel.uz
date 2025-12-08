@@ -73,6 +73,9 @@ Route::middleware('auth')->group(function () {
     //start generate pdf
     Route::get('generate-pdf/{ilmiyId}', [App\Http\Controllers\PDFController::class, 'generatePDF']);
     Route::get('generate-pdfsajiyor/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFsajiyor']);
+    Route::get('generate-pdfakadem/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFakadem']);
+    Route::get('generate-pdfstartup/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFstartup']);
+    Route::get('generate-pdftijorat/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFtijorat']);
     Route::get('generate-pdfasbobuskuna/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFAsbobuskuna']);
     Route::get('generate-pdfdoktarantura/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFDoktarantura']);
     // end generate pdf

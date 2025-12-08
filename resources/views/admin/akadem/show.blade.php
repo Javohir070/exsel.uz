@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6">
 
-            <h2 class="intro-y text-lg font-medium">{{ $akadem->name }}</h2>
+            <h2 class="intro-y text-lg font-medium">{{ $akadem->full_name }}</h2>
             @role('super-admin')
                 <a href="{{ route('akadem.index') }}" class="button w-24 bg-theme-1 text-white">
                     Orqaga
@@ -59,7 +59,7 @@
             </table>
         </div>
 
-        {{-- @role(['Ekspert', 'akadem boyicha masul', 'Ishchi guruh azosi', 'Rahbar']) --}}
+        @role(['Ekspert', 'akadem boyicha masul', 'Ishchi guruh azosi', 'Rahbar'])
         @forelse ($akademexpert as $tekshirivchilar)
             <div class="overflow-x-auto"
                 style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
@@ -69,7 +69,7 @@
                         <div style="text-align: end;display: flex;">
                             @role(['Ekspert'])
                                 @if ($tekshirivchilar->holati == 'yuborildi')
-                                    <a href="{{ url('generate-pdfsajiyor/' . $akadem->id) }}"
+                                    <a href="{{ url('generate-pdfakadem/' . $akadem->id) }}"
                                         class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
                                         Eksport
                                     </a>
@@ -82,7 +82,7 @@
                                     </form>
                                 @endif
                             @endrole
-                            {{-- @role(['Ishchi guruh azosi']) --}}
+                            @role(['Ishchi guruh azosi'])
                             @if ($tekshirivchilar->holati == 'Rad etildi')
                                 <a href="{{ route('akademexpert.edit', ['akademexpert' => $tekshirivchilar->id]) }}"
                                     class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
@@ -95,7 +95,7 @@
                                     <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
                                 </form>
                             @endif
-                            {{-- @endrole --}}
+                            @endrole
                         </div>
 
                     </div>
@@ -216,7 +216,7 @@
                 </table>
             </div>
         @empty
-            {{-- @role(['Ishchi guruh azosi']) --}}
+            @role(['Ishchi guruh azosi'])
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
                 style="background: white; padding: 20px 20px; border-radius: 4px">
                 <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
@@ -397,9 +397,9 @@
                     </div>
                 </div>
             </div>
-            {{-- @endrole --}}
+            @endrole
         @endforelse
-        {{-- @endrole --}}
+        @endrole
 
 
     </div>

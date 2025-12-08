@@ -32,7 +32,8 @@ class StartupExpert extends Model
         'comment',
         'holati',
         't_masul',
-        'ekspert_fish'
+        'ekspert_fish',
+        'file',
     ];
 
     protected $casts = [

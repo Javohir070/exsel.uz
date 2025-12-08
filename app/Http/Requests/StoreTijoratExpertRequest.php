@@ -22,7 +22,7 @@ class StoreTijoratExpertRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'media_zip' => 'required|file|mimes:zip|max:10480',
         ];
     }
 }

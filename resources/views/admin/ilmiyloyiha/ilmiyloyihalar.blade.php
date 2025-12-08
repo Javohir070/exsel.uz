@@ -18,6 +18,13 @@
                 <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
             </div>
 
+            @role('super-admin')
+                    <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
+                        class="button w-24 ml-3 bg-theme-1 text-white">
+                        Import
+                    </a>
+            @endrole
+
         </div>
 
         @if (session('status'))

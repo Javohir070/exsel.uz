@@ -46,7 +46,7 @@ class AkademExpertController extends Controller
         ]);
 
         $data['user_id'] = auth()->id();
-        $data['fish'] = auth()->user()->name;
+        $data['fish'] = $user->name ?? auth()->user()->name;
         $data['tashkilot_id'] = auth()->user()->tashkilot_id;
 
         AkademExpert::create($data);

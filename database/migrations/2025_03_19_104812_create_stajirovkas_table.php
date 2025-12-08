@@ -17,11 +17,14 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->string('fish');
             $table->string('lavozim');
+
             $table->string('ilmiy_hisobot');
             $table->string('egallangan_bilim');
             $table->string('ishlar_natijalari');
             $table->string('xalqarotan_jur_nashr');
             $table->string('biryil_davomida');
+            $table->string('quarter');
+
             $table->timestamps();
         });
     }

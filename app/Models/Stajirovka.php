@@ -14,11 +14,19 @@ class Stajirovka extends Model
         'user_id',
         'fish',
         'lavozim',
+
         'ilmiy_hisobot',
         'egallangan_bilim',
         'ishlar_natijalari',
         'xalqarotan_jur_nashr',
         'biryil_davomida',
+
+        'ilmiy_hisobot_2',
+        'egallangan_bilim_2',
+        'ishlar_natijalari_2',
+        'xalqarotan_jur_nashr_2',
+        'biryil_davomida_2',
+        
         'yunalishi',
         'holati',
         'yil',

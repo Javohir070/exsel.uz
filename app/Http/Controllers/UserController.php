@@ -97,6 +97,7 @@ class UserController extends Controller
                         'kafedralar_id' => $request->kafedralar_id,
                         'email' => $request->email,
                         'tashkilot_id' => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
+                        'group_id' => $request->group_id,
                         'password' => Hash::make($request->password),
                     ]);
 
@@ -108,7 +109,7 @@ class UserController extends Controller
         }else if($roluchun[0] == "laboratoriya"){
             return redirect('/laboratory')->with('status','User Updated Successfully with roles');
         }else{
-            return redirect('/laboratory')->with('status','User Updated Successfully with roles');
+            return redirect('/users')->with('status','User Updated Successfully with roles');
         }
     }
 
@@ -204,6 +205,7 @@ class UserController extends Controller
         $user->update($data);
         $user->syncRoles($request->roles);
         $roluchun = $request->roles;
+
         if(!empty($user->kafedralar_id)){
             return redirect('/kafedralar')->with('status','User Updated Successfully with roles');
         }else if($roluchun[0] == "admin"){

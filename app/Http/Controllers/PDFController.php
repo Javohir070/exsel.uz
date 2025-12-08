@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Akadem;
+use App\Models\AkademExpert;
 use App\Models\Asbobuskuna;
 use App\Models\Asbobuskunaexpert;
 use App\Models\Doktaranturaexpert;
@@ -9,9 +11,13 @@ use App\Models\IlmiyLoyiha;
 use App\Models\Loyihaiqtisodi;
 use App\Models\Stajirovka;
 use App\Models\Stajirovkaexpert;
+use App\Models\Startup;
+use App\Models\StartupExpert;
 use App\Models\Tashkilot;
 use App\Models\Intellektual;
 use App\Models\Tekshirivchilar;
+use App\Models\Tijorat;
+use App\Models\TijoratExpert;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Barryvdh\DomPDF\Facade\Pdf;
@@ -91,6 +97,138 @@ class PDFController extends Controller
 
         // Generate the PDF
         $pdf = PDF::loadView('admin.pdf.stajirovka', $data);
+
+        // Save the PDF to the specified path
+        if (!file_exists(storage_path('app/public/pdfs'))) {
+            mkdir(storage_path('app/public/pdfs'), 0755, true);
+        }
+        $pdf->save($filePath);
+
+        // Store the PDF path in the database (example for one user)
+        if ($tekshirivchilar) {
+            $tekshirivchilar->file = $fileRelativePath;
+            $tekshirivchilar->holati ='Tasdiqlandi';
+            $tekshirivchilar->save();
+        }
+
+       return back()->with('status', 'PDF muvaffaqiyatli yaratildi va saqlandi.');
+    }
+
+    public function generatePDFakadem($Id)
+    {
+        $akadem = Akadem::findOrFail($Id);
+        // Define a file name and path for the PDF
+        $fileName = 'Akadem-' . time() . '.pdf';
+        $fileRelativePath = 'pdfs/' . $fileName;
+        $filePath = storage_path('app/public/' . $fileRelativePath);
+
+        // Generate a URL for the PDF
+        $pdfUrl = asset('storage/' . $fileRelativePath);
+
+        // Generate the QR Code as a base64 image
+        $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
+        $tekshirivchilar = AkademExpert::where('akadem_id', $akadem->id)->first();
+        // Prepare data for the PDF
+        $data = [
+            'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
+            'date' => date('m/d/Y'),
+            'akadem' => $akadem,
+            'qrCode' => $qrCode, // Pass QR Code image as base64
+            'tekshirivchilar' => $tekshirivchilar
+        ];
+
+
+
+        // Generate the PDF
+        $pdf = PDF::loadView('admin.pdf.akadem', $data);
+
+        // Save the PDF to the specified path
+        if (!file_exists(storage_path('app/public/pdfs'))) {
+            mkdir(storage_path('app/public/pdfs'), 0755, true);
+        }
+        $pdf->save($filePath);
+
+        // Store the PDF path in the database (example for one user)
+        if ($tekshirivchilar) {
+            $tekshirivchilar->file = $fileRelativePath;
+            $tekshirivchilar->holati ='Tasdiqlandi';
+            $tekshirivchilar->save();
+        }
+
+       return back()->with('status', 'PDF muvaffaqiyatli yaratildi va saqlandi.');
+    }
+
+    public function generatePDFstartup($Id)
+    {
+        $startup = Startup::findOrFail($Id);
+        // Define a file name and path for the PDF
+        $fileName = 'Startup-' . time() . '.pdf';
+        $fileRelativePath = 'pdfs/' . $fileName;
+        $filePath = storage_path('app/public/' . $fileRelativePath);
+
+        // Generate a URL for the PDF
+        $pdfUrl = asset('storage/' . $fileRelativePath);
+
+        // Generate the QR Code as a base64 image
+        $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
+        $tekshirivchilar = StartupExpert::where('startup_id', $startup->id)->first();
+        // Prepare data for the PDF
+        $data = [
+            'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
+            'date' => date('m/d/Y'),
+            'startup' => $startup,
+            'qrCode' => $qrCode, // Pass QR Code image as base64
+            'tekshirivchilar' => $tekshirivchilar
+        ];
+
+
+
+        // Generate the PDF
+        $pdf = PDF::loadView('admin.pdf.startup', $data);
+
+        // Save the PDF to the specified path
+        if (!file_exists(storage_path('app/public/pdfs'))) {
+            mkdir(storage_path('app/public/pdfs'), 0755, true);
+        }
+        $pdf->save($filePath);
+
+        // Store the PDF path in the database (example for one user)
+        if ($tekshirivchilar) {
+            $tekshirivchilar->file = $fileRelativePath;
+            $tekshirivchilar->holati ='Tasdiqlandi';
+            $tekshirivchilar->save();
+        }
+
+       return back()->with('status', 'PDF muvaffaqiyatli yaratildi va saqlandi.');
+    }
+
+    public function generatePDFtijorat($Id)
+    {
+        $tijorat = Tijorat::findOrFail($Id);
+        // Define a file name and path for the PDF
+        $fileName = 'Tijorat-' . time() . '.pdf';
+        $fileRelativePath = 'pdfs/' . $fileName;
+        $filePath = storage_path('app/public/' . $fileRelativePath);
+
+        // Generate a URL for the PDF
+        $pdfUrl = asset('storage/' . $fileRelativePath);
+
+        // Generate the QR Code as a base64 image
+        $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
+        $tekshirivchilar = TijoratExpert::where('tijorat_id', $tijorat->id)->first();
+        // Prepare data for the PDF
+        $data = [
+            'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
+            'date' => date('m/d/Y'),
+            'tijorat' => $tijorat,
+            'qrCode' => $qrCode, // Pass QR Code image as base64
+            'tekshirivchilar' => $tekshirivchilar
+        ];
+
+
+
+        // Generate the PDF
+        $pdf = PDF::loadView('admin.pdf.tijorat', $data);
 
         // Save the PDF to the specified path
         if (!file_exists(storage_path('app/public/pdfs'))) {

@@ -22,7 +22,7 @@ class UpdateTijoratExpertRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'media_zip' => 'nullable|file|mimes:zip|max:10480',
         ];
     }
 }

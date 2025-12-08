@@ -92,7 +92,7 @@
             </table>
         </div>
 
-        {{-- @role(['Ekspert', 'tijorat boyicha masul', 'Ishchi guruh azosi', 'Rahbar']) --}}
+        @role(['Ekspert', 'tijorat boyicha masul', 'Ishchi guruh azosi', 'Rahbar'])
         @forelse ($tijoratexpert as $tekshirivchilar)
             <div class="overflow-x-auto"
                 style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
@@ -102,7 +102,7 @@
                         <div style="text-align: end;display: flex;">
                             @role(['Ekspert'])
                                 @if ($tekshirivchilar->holati == 'yuborildi')
-                                    <a href="{{ url('generate-pdfsajiyor/' . $tijorat->id) }}"
+                                    <a href="{{ url('generate-pdftijorat/' . $tijorat->id) }}"
                                         class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
                                         Eksport
                                     </a>
@@ -115,7 +115,7 @@
                                     </form>
                                 @endif
                             @endrole
-                            {{-- @role(['Ishchi guruh azosi']) --}}
+                            @role(['Ishchi guruh azosi'])
                                 @if ($tekshirivchilar->holati == 'Rad etildi')
                                     <a href="{{ route('tijoratexpert.edit', ['tijoratexpert' => $tekshirivchilar->id]) }}"
                                         class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
@@ -128,7 +128,7 @@
                                         <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
                                     </form>
                                 @endif
-                            {{-- @endrole --}}
+                            @endrole
                         </div>
 
                     </div>
@@ -143,73 +143,99 @@
                         <tr class="bg-gray-200">
                             <td class="border border-b-2 ">1</td>
                             <td class="border border-b-2 ">Loyiha Kalendar rejasiga ko‘ra ajratilgan grant mablag‘larni maqsadli sarflanganligi? </td>
-                            <td class="border border-b-2 ">{{ $tekshirivchilar->grant_sarf_maqsadli ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->grant_sarf_maqsadli_izox }}</td>
+                            <td class="border border-b-2 ">
+                                {{ $tekshirivchilar->grant_sarf_maqsadli ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->grant_sarf_maqsadli_izox }}
+                            </td>
                         </tr>
 
                         <tr>
                             <td class="border border-b-2 ">2</td>
                             <td class="border border-b-2 ">Sotib olingan asbob va uskunalarni balansga olinganligi? </td>
-                            <td class="border border-b-2 ">{{ $tekshirivchilar->asbob_balans_olingan ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->asbob_balans_olingan_izox }}</td>
+                            <td class="border border-b-2 ">
+                                {{ $tekshirivchilar->asbob_balans_olingan ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->asbob_balans_olingan_izox }}
+                            </td>
                         </tr>
 
                         <tr class="bg-gray-200">
                             <td class="border border-b-2 ">3</td>
-                            <td class="border border-b-2 ">Loyiha doirasida olinishi lozim bo‘lgan xodimlar soni, xaqiqatda ishga olingan xodimlar soni? </td>
-                            <td class="border border-b-2 ">{{ $tekshirivchilar->xodimlar_lozim . " soni. "}}{{  $tekshirivchilar->xodimlar_haqiqiy ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->xodimlar_haqiqiy_izox }}</td>
+                            <td class="border border-b-2 ">Loyiha doirasida olinishi lozim 
+                                bo‘lgan xodimlar soni, xaqiqatda ishga olingan xodimlar soni? </td>
+                            <td class="border border-b-2 ">
+                                {{ $tekshirivchilar->xodimlar_lozim . " soni. "}}{{  $tekshirivchilar->xodimlar_haqiqiy ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->xodimlar_haqiqiy_izox }}
+                            </td>
                         </tr>
 
                         <tr>
                             <td class="border border-b-2 ">4</td>
-                            <td class="border border-b-2 ">Loyiha doirasida ishlab chiqilgan mahsulot miqdori? O‘lchov birligiga ko‘ra (dona, kg, metr...) </td>
-                            <td class="border border-b-2 ">{{ $tekshirivchilar->mahsulot_miqdori  . " " . $tekshirivchilar->mahsulot_olchov }}</td>
+                            <td class="border border-b-2 ">Loyiha doirasida ishlab chiqilgan mahsulot miqdori? 
+                                O‘lchov birligiga ko‘ra (dona, kg, metr...) </td>
+                            <td class="border border-b-2 ">
+                                {{ $tekshirivchilar->mahsulot_miqdori  . " " . $tekshirivchilar->mahsulot_olchov }}
+                            </td>
                         </tr>
 
                         <tr class="bg-gray-200">
                             <td class="border border-b-2 ">5</td>
                             <td class="border border-b-2 ">Loyiha doirasida amalga oshirilgan sotuv xajmi? Million so‘mda </td>
-                            <td class="border border-b-2 ">{{ number_format($tekshirivchilar->sotuv_hajmi , 0, ',', ' ') }}</td>
+                            <td class="border border-b-2 ">
+                                {{ number_format($tekshirivchilar->sotuv_hajmi , 0, ',', ' ') }}
+                            </td>
                         </tr>
 
                         <tr>
                             <td class="border border-b-2 ">6</td>
                             <td class="border border-b-2 ">Loyiha doirasida amalga oshirilgan eksport xajmi? Ming dollarda </td>
-                            <td class="border border-b-2 ">{{ number_format($tekshirivchilar->eksport_hajmi , 0, ',', ' ') }}</td>
+                            <td class="border border-b-2 ">
+                                {{ number_format($tekshirivchilar->eksport_hajmi , 0, ',', ' ') }}
+                            </td>
                         </tr>
 
                         <tr class="bg-gray-200">
                             <td class="border border-b-2 ">7</td>
                             <td class="border border-b-2 ">Budjetga to‘langan soliqlar? Million so‘mda </td>
-                            <td class="border border-b-2 ">{{ number_format($tekshirivchilar->soliq_tolov , 0, ',', ' ') }}</td>
+                            <td class="border border-b-2 ">
+                                {{ number_format($tekshirivchilar->soliq_tolov , 0, ',', ' ') }}
+                            </td>
                         </tr>
 
                         <tr>
                             <td class="border border-b-2 ">8</td>
                             <td class="border border-b-2 ">Loyihani amalga oshirish bo‘yicha hisobot topshirib kelinganligi? </td>
-                            <td class="border border-b-2 ">{{ $tekshirivchilar->hisobot_topshirildi_izox ?? null }}</td>
+                            <td class="border border-b-2 ">
+                                {{ $tekshirivchilar->hisobot_topshirildi_izox ?? null }}
+                            </td>
                         </tr>
 
                         <tr class="bg-gray-200">
                             <td class="border border-b-2 ">9</td>
                             <td class="border border-b-2 ">Mahsulot bo‘yicha sertifikat olinganligi? </td>
-                            <td class="border border-b-2 ">{{ $tekshirivchilar->sertifikat_olingan ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->sertifikat_olingan_izox }}</td>
+                            <td class="border border-b-2 ">
+                                {{ $tekshirivchilar->sertifikat_olingan ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->sertifikat_olingan_izox }}
+                            </td>
                         </tr>
 
                         <tr>
                             <td class="border border-b-2 ">10</td>
                             <td class="border border-b-2 ">Loyihani ishga tushirish bilan bog‘liq muammolar? </td>
-                            <td class="border border-b-2 ">{{ $tekshirivchilar->loyiha_muammo ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->loyiha_muammo_izox }}</td>
+                            <td class="border border-b-2 ">
+                                {{ $tekshirivchilar->loyiha_muammo ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->loyiha_muammo_izox }}
+                            </td>
                         </tr>
 
                         <tr class="bg-gray-200">
                             <td class="border border-b-2 ">11</td>
                             <td class="border border-b-2 ">Muammoni bartaraf etish bo‘yicha takliflari? </td>
-                            <td class="border border-b-2 ">{{ $tekshirivchilar->loyiha_taklif ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->loyiha_taklif_izox }}</td>
+                            <td class="border border-b-2 ">
+                                {{ $tekshirivchilar->loyiha_taklif ? 'Ha': "Yo'q, Izoh: " . $tekshirivchilar->loyiha_taklif_izox }}
+                            </td>
                         </tr>
 
                         <tr>
                             <td class="border border-b-2 ">12</td>
                             <td class="border border-b-2 ">Kalendar rejaga muvofiq ishlarni bajarilganligi </td>
-                            <td class="border border-b-2 ">{{ $tekshirivchilar->kalendar_bajarilgan ?? null }}</td>
+                            <td class="border border-b-2 ">
+                                {{ $tekshirivchilar->kalendar_bajarilgan ?? null }}
+                            </td>
                         </tr>
 
                         <tr class="bg-gray-200">
@@ -288,7 +314,7 @@
                 </table>
             </div>
         @empty
-            {{-- @role(['Ishchi guruh azosi']) --}}
+            @role(['Ishchi guruh azosi'])
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
                 style="background: white; padding: 20px 20px; border-radius: 4px">
                 <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
@@ -610,9 +636,9 @@
                     </div>
                 </div>
             </div>
-            {{-- @endrole --}}
+            @endrole
         @endforelse
-        {{-- @endrole --}}
+        @endrole
 
 
     </div>

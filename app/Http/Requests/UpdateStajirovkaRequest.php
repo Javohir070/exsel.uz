@@ -22,11 +22,11 @@ class UpdateStajirovkaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'ilmiy_hisobot' => 'required|file|mimes:zip,rar,pdf|max:10480',
-            'egallangan_bilim' => 'required|file|mimes:zip,rar|max:10480',
-            'ishlar_natijalari' => 'required|file|mimes:zip,rar|max:10480',
-            'xalqarotan_jur_nashr' => 'required|file|mimes:zip,rar,pdf|max:10480',
-            'biryil_davomida' => 'required|file|mimes:zip,rar|max:10480',
+            'ilmiy_hisobot_2' => 'required|file|mimes:zip,rar,pdf|max:10480',
+            'egallangan_bilim_2' => 'required|file|mimes:zip,rar|max:10480',
+            'ishlar_natijalari_2' => 'required|file|mimes:zip,rar|max:10480',
+            'xalqarotan_jur_nashr_2' => 'required|file|mimes:zip,rar,pdf|max:10480',
+            'biryil_davomida_2' => 'required|file|mimes:zip,rar|max:10480',
         ];
     }
 

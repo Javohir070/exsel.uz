@@ -74,8 +74,8 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Ilmiy hisobot taqdim etilganligi
                             (Pdf)
                         </label>
-                        <input type="file" name="ilmiy_hisobot" value="" class="input w-full border mt-2" required="">
-                        @error('ilmiy_hisobot')
+                        <input type="file" name="ilmiy_hisobot_2" value="" class="input w-full border mt-2" required="">
+                        @error('ilmiy_hisobot_2')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
@@ -86,8 +86,8 @@
                             va ko'nikmalarni amalga oshirilishi uchun zarur shart-sharoitlar yaratilganligi.
                             (Asoslantiruvchi hujjatlar, rasm va videolar, zip)
                         </label>
-                        <input type="file" name="egallangan_bilim" value="" class="input w-full border mt-2" required="">
-                        @error('egallangan_bilim')
+                        <input type="file" name="egallangan_bilim_2" value="" class="input w-full border mt-2" required="">
+                        @error('egallangan_bilim_2')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
@@ -98,8 +98,8 @@
                             bo'yicha xorijiy ilmiy anjumanlarda ma'ruza bilan ishtirok etganligi. (Asoslantiruvchi
                             hujjatlar, rasm va videolar hamda havolalar, zip)
                         </label>
-                        <input type="file" name="ishlar_natijalari" value="" class="input w-full border mt-2" required="">
-                        @error('ishlar_natijalari')
+                        <input type="file" name="ishlar_natijalari_2" value="" class="input w-full border mt-2" required="">
+                        @error('ishlar_natijalari_2')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
@@ -109,9 +109,9 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Xalqaro tan olingan ma'lumotlar
                             bazasidagi yetakchi ilmiy jurnallarda nashr qilinganligi. (Pdf)
                         </label>
-                        <input type="file" name="xalqarotan_jur_nashr" value="" class="input w-full border mt-2"
+                        <input type="file" name="xalqarotan_jur_nashr_2" value="" class="input w-full border mt-2"
                             required="">
-                        @error('xalqarotan_jur_nashr')
+                        @error('xalqarotan_jur_nashr_2')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
@@ -123,8 +123,8 @@
                             olgan bilim va ko'nikmalari borasida o'z fikr va mulohazalarini bayon etilganligi tafsiloti.
                             (Asoslantiruvchi hujjatlar, rasm va videolar hamda havolalar, zip)
                         </label>
-                        <input type="file" name="biryil_davomida" value="" class="input w-full border mt-2" required="">
-                        @error('biryil_davomida')
+                        <input type="file" name="biryil_davomida_2" value="" class="input w-full border mt-2" required="">
+                        @error('biryil_davomida_2')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>

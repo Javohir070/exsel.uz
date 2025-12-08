@@ -177,29 +177,29 @@ class StajirovkaController extends Controller
 
     public function store(StoreStajirovkaRequest $request)
     {
-        if ($request->hasFile('ilmiy_hisobot')) {
-            $name_ilmiy_hisobot = time() . $request->file('ilmiy_hisobot')->getClientOriginalName();
-            $path_ilmiy_hisobot = $request->file('ilmiy_hisobot')->storeAs('Stajirovka-file', $name_ilmiy_hisobot);
+        if ($request->hasFile('ilmiy_hisobot_2')) {
+            $name_ilmiy_hisobot = time() . $request->file('ilmiy_hisobot_2')->getClientOriginalName();
+            $path_ilmiy_hisobot = $request->file('ilmiy_hisobot_2')->storeAs('Stajirovka-file', $name_ilmiy_hisobot);
         }
 
-        if ($request->hasFile('egallangan_bilim')) {
-            $name_egallangan_bilim = time() . $request->file('egallangan_bilim')->getClientOriginalName();
-            $path_egallangan_bilim = $request->file('egallangan_bilim')->storeAs('Stajirovka-file', $name_egallangan_bilim);
+        if ($request->hasFile('egallangan_bilim_2')) {
+            $name_egallangan_bilim = time() . $request->file('egallangan_bilim_2')->getClientOriginalName();
+            $path_egallangan_bilim = $request->file('egallangan_bilim_2')->storeAs('Stajirovka-file', $name_egallangan_bilim);
         }
 
-        if ($request->hasFile('ishlar_natijalari')) {
-            $name_ishlar_natijalari = time() . $request->file('ishlar_natijalari')->getClientOriginalName();
-            $path_ishlar_natijalari = $request->file('ishlar_natijalari')->storeAs('Stajirovka-file', $name_ishlar_natijalari);
+        if ($request->hasFile('ishlar_natijalari_2')) {
+            $name_ishlar_natijalari = time() . $request->file('ishlar_natijalari_2')->getClientOriginalName();
+            $path_ishlar_natijalari = $request->file('ishlar_natijalari_2')->storeAs('Stajirovka-file', $name_ishlar_natijalari);
         }
 
-        if ($request->hasFile('xalqarotan_jur_nashr')) {
-            $name_xalqarotan_jur_nashr = time() . $request->file('xalqarotan_jur_nashr')->getClientOriginalName();
-            $path_xalqarotan_jur_nashr = $request->file('xalqarotan_jur_nashr')->storeAs('Stajirovka-file', $name_xalqarotan_jur_nashr);
+        if ($request->hasFile('xalqarotan_jur_nashr_2')) {
+            $name_xalqarotan_jur_nashr = time() . $request->file('xalqarotan_jur_nashr_2')->getClientOriginalName();
+            $path_xalqarotan_jur_nashr = $request->file('xalqarotan_jur_nashr_2')->storeAs('Stajirovka-file', $name_xalqarotan_jur_nashr);
         }
 
-        if ($request->hasFile('biryil_davomida')) {
-            $name_biryil_davomida = time() . $request->file('biryil_davomida')->getClientOriginalName();
-            $path_biryil_davomida = $request->file('biryil_davomida')->storeAs('Stajirovka-file', $name_biryil_davomida);
+        if ($request->hasFile('biryil_davomida_2')) {
+            $name_biryil_davomida = time() . $request->file('biryil_davomida_2')->getClientOriginalName();
+            $path_biryil_davomida = $request->file('biryil_davomida_2')->storeAs('Stajirovka-file', $name_biryil_davomida);
         }
 
 
@@ -208,11 +208,11 @@ class StajirovkaController extends Controller
             'user_id' => auth()->user()->id,
             'fish' => $request->fish,
             'lavozim' => $request->lavozim,
-            'ilmiy_hisobot' => $path_ilmiy_hisobot,
-            'egallangan_bilim' => $path_egallangan_bilim,
-            'ishlar_natijalari' => $path_ishlar_natijalari,
-            'xalqarotan_jur_nashr' => $path_xalqarotan_jur_nashr,
-            'biryil_davomida' => $path_biryil_davomida,
+            'ilmiy_hisobot_2' => $path_ilmiy_hisobot,
+            'egallangan_bilim_2' => $path_egallangan_bilim,
+            'ishlar_natijalari_2' => $path_ishlar_natijalari,
+            'xalqarotan_jur_nashr_2' => $path_xalqarotan_jur_nashr,
+            'biryil_davomida_2' => $path_biryil_davomida,
             'yunalishi' => $request->yunalishi,
             'holati' => $request->holati,
             'yil' => $request->yil,
@@ -244,7 +244,7 @@ class StajirovkaController extends Controller
         $folder = 'Stajirovka-file';
 
         // Fayllarni yangilash va eskilarni o‘chirish
-        $fileFields = ['ilmiy_hisobot', 'egallangan_bilim', 'ishlar_natijalari', 'xalqarotan_jur_nashr', 'biryil_davomida'];
+        $fileFields = ['ilmiy_hisobot_2', 'egallangan_bilim_2', 'ishlar_natijalari_2', 'xalqarotan_jur_nashr_2', 'biryil_davomida_2'];
 
         foreach ($fileFields as $field) {
             if ($request->hasFile($field)) {

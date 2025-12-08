@@ -43,7 +43,8 @@ class TijoratExpert extends Model
         'comment',
         'holati',
         't_masul',
-        'ekspert_fish'
+        'ekspert_fish',
+        'file',
     ];
 
     public function tashkilot()

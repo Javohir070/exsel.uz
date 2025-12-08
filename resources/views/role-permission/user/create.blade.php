@@ -124,6 +124,16 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
 
+                     @role('super-admin')
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>guruh
+                        </label>
+                        <input type="number" name="group_id" min="0" class="input w-full border mt-2" required="">
+                    </div>
+                    @endrole
+
+
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Rol (foydalanuvchining tizimdagi

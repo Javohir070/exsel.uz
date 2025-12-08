@@ -28,6 +28,7 @@ class AkademExpert extends Model
         't_masul',
         'ekspert_fish',
         'holati',
+        'file',
     ];
 
     public function user()

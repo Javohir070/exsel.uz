@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6">
 
-            <h2 class="intro-y text-lg font-medium">{{ $stajirovka->fish }}</h2>
+            <h2 class="intro-y text-lg font-medium">{{ $stajirovka->fish }} </h2>
             @role('super-admin')
                 <a href="{{ route('stajirovkalar.index') }}" class="button w-24 bg-theme-1 text-white">
                     Orqaga
@@ -96,12 +96,20 @@
                                             <a href="{{ asset('storage/' . $stajirovka->ilmiy_hisobot) }}"
                                                 class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
                                         @endif
+                                        @if ($stajirovka->ilmiy_hisobot_2)
+                                            <a href="{{ asset('storage/' . $stajirovka->ilmiy_hisobot_2) }}"
+                                                class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish 2</a>
+                                        @endif
                                     </td>
                                     <td class="border">
-                                        @if ($stajirovka->egallangan_bilim)
-                                            <a href="{{ asset('storage/' . $stajirovka->egallangan_bilim) }}"
-                                                class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
-                                        @endif
+                                            @if ($stajirovka->egallangan_bilim)
+                                                <a href="{{ asset('storage/' . $stajirovka->egallangan_bilim) }}"
+                                                    class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
+                                            @endif
+                                            @if ($stajirovka->egallangan_bilim_2)
+                                                <a href="{{ asset('storage/' . $stajirovka->egallangan_bilim_2) }}"
+                                                    class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
+                                            @endif
                                     </td>
                                 </tr>
 
@@ -117,15 +125,23 @@
                                 </tr>
                                 <tr>
                                     <td class="border">
-                                        @if ($stajirovka->ishlar_natijalari)
-                                            <a href="{{ asset('storage/' . $stajirovka->ishlar_natijalari) }}"
-                                                class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
-                                        @endif
+                                            @if ($stajirovka->ishlar_natijalari)
+                                                <a href="{{ asset('storage/' . $stajirovka->ishlar_natijalari) }}"
+                                                    class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
+                                            @endif
+                                            @if ($stajirovka->ishlar_natijalari_2)
+                                                <a href="{{ asset('storage/' . $stajirovka->ishlar_natijalari_2) }}"
+                                                    class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish 2</a>
+                                            @endif
                                     </td>
                                     <td class="border">
                                         @if ($stajirovka->xalqarotan_jur_nashr)
                                             <a href="{{ asset('storage/' . $stajirovka->xalqarotan_jur_nashr) }}"
                                                 class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
+                                        @endif
+                                        @if ($stajirovka->xalqarotan_jur_nashr_2)
+                                            <a href="{{ asset('storage/' . $stajirovka->xalqarotan_jur_nashr_2) }}"
+                                                class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish 2</a>
                                         @endif
                                     </td>
                                 </tr>
@@ -146,6 +162,10 @@
                                         @if ($stajirovka->biryil_davomida)
                                             <a href="{{ asset('storage/' . $stajirovka->biryil_davomida) }}"
                                                 class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
+                                        @endif
+                                        @if ($stajirovka->biryil_davomida_2)
+                                            <a href="{{ asset('storage/' . $stajirovka->biryil_davomida_2) }}"
+                                                class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish 2</a>
                                         @endif
                                     </td>
                                     <td class="border"></td>

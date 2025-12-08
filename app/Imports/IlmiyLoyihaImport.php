@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\Tashkilot;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Carbon\Carbon;
 use App\Models\IlmiyLoyiha;
@@ -19,17 +20,18 @@ class IlmiyLoyihaImport implements ToModel
      */
     public function model(array $row)
     {
-
+        $tashkilot = Tashkilot::where('stir_raqami', '=', $row[1])->first();
         return new IlmiyLoyiha([
             'user_id' => auth()->user()->id,
-            'tashkilot_id' => $row[0],
-            'turi' => $row[1],
-            'bosh_sana' => $this->parseDate($row[2]),
+            'tashkilot_id' => $tashkilot->id,
+            'turi' => $row[2],
             'tug_sana' => $this->parseDate($row[3]),
             'raqami' => $row[4],
             'mavzusi' => $row[5],
             'rahbar_name' => $row[6],
-            'sum' => $row[7],
+            'is_active' => 1,
+            // 'bosh_sana' => $this->parseDate($row[2]),
+            // 'sum' => $row[7],
         ]);
     }
 
