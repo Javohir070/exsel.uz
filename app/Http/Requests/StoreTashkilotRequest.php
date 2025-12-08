@@ -23,7 +23,7 @@ class StoreTashkilotRequest extends FormRequest
     {
         return [
             'name' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
-            'id_raqam' => 'required|unique:tashkilots',
+            'id_raqam' => 'required',
         ];
     }
 
