@@ -22,9 +22,10 @@
                     Ilmiy rahbarlar
                 </a>
                 @if ($quarter_1 != null)
-                <a data-toggle="tab" data-target="#old-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center">
-                    EKSPERT XULOSASI (2025-1)
-                </a>
+                    <a data-toggle="tab" data-target="#old-expert" href="javascript:;"
+                        class="py-4 sm:mr-8 flex items-center">
+                        EKSPERT XULOSASI (2025-1)
+                    </a>
                 @endif
                 <a data-toggle="tab" data-target="#add-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center">
                     Ekspert xulosasi
@@ -435,21 +436,21 @@
                                                     <td style="text-align:center">{{ $t->org }} </td>
                                                     <td style="text-align:center">{{ $t->all }} </td>
                                                     <!-- <td>
-                                                                <a onclick="openShowIlmiRahbarModal({{ $t->id }})"
-                                                                    class="button px-2 mr-1 mb-2 border text-gray-700"
-                                                                    style="display: inline-block;">
-                                                                    <span class="w-5 h-5 flex items-center justify-center">
-                                                                        <i data-feather="eye" class="w-4 h-4"></i>
-                                                                    </span>
-                                                                </a>
-                                                                <a onclick="openEditIlmiRahbarModal({{ $t->id }})"
-                                                                    class="button px-2 mr-1 mb-2 bg-theme-1 text-white"
-                                                                    style="display: inline-block;">
-                                                                    <span class="w-5 h-5 flex items-center justify-center">
-                                                                        <i data-feather="edit" class="w-4 h-4"></i>
-                                                                    </span>
-                                                                </a>
-                                                            </td> -->
+                                                                    <a onclick="openShowIlmiRahbarModal({{ $t->id }})"
+                                                                        class="button px-2 mr-1 mb-2 border text-gray-700"
+                                                                        style="display: inline-block;">
+                                                                        <span class="w-5 h-5 flex items-center justify-center">
+                                                                            <i data-feather="eye" class="w-4 h-4"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                    <a onclick="openEditIlmiRahbarModal({{ $t->id }})"
+                                                                        class="button px-2 mr-1 mb-2 bg-theme-1 text-white"
+                                                                        style="display: inline-block;">
+                                                                        <span class="w-5 h-5 flex items-center justify-center">
+                                                                            <i data-feather="edit" class="w-4 h-4"></i>
+                                                                        </span>
+                                                                    </a>
+                                                                </td> -->
                                                 </tr>
                                             @empty
                                                 <tr style="border-bottom: 1px solid #E6E6E6;">
@@ -468,178 +469,178 @@
                     </div>
                 </div>
                 @if ($quarter_1 != null)
-                <div class="tab-content__pane" id="old-expert">
-                    <div class="overflow-x-auto" style="background-color: white;border-radius:8px;padding:30px 20px;">
-                        <table class="table">
-                            <thead>
-                                <tr class="bg-gray-200">
-                                    <th class="border border-b-2 " style="width: 40px;">№</th>
-                                    <th class="border border-b-2 " style="width: 60%;">Ko‘rsatkichlar</th>
-                                    <th class="border border-b-2 ">Miqdori</th>
-                                </tr>
-                            </thead>
-                            <tbody>
+                    <div class="tab-content__pane" id="old-expert">
+                        <div class="overflow-x-auto" style="background-color: white;border-radius:8px;padding:30px 20px;">
+                            <table class="table">
+                                <thead>
+                                    <tr class="bg-gray-200">
+                                        <th class="border border-b-2 " style="width: 40px;">№</th>
+                                        <th class="border border-b-2 " style="width: 60%;">Ko‘rsatkichlar</th>
+                                        <th class="border border-b-2 ">Miqdori</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="border border-b-2 ">1.</td>
+                                        <td class="border border-b-2 ">
+                                            Tashkilot buyrug‘i asosida qabul qilingan umumiy izlanuvchilar soni.
+                                        </td>
+                                        <td class="border border-b-2 ">
+                                            {{ $quarter_1->umumiy_izlanuvchilar ?? null }}</td>
+                                    </tr>
+                                    <tr class="bg-gray-200">
+                                        <td class="border border-b-2 ">2.</td>
+                                        <td class="border border-b-2 ">
+                                            Yagona elektron tizimdagi tahsil olayotgan izlanuvchilar soni.
+                                        </td>
+                                        <td class="border border-b-2 ">{{ $quarter_1->yagonae_tah_soni ?? null }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-b-2 ">3.</td>
+                                        <td class="border border-b-2 ">
+                                            Chetlashtirilgan izlanuvchilar soni.
+                                        </td>
+                                        <td class="border border-b-2 ">{{ $quarter_1->chetlash_soni ?? null }}</td>
+                                    </tr>
+                                    <tr class="bg-gray-200">
+                                        <td class="border border-b-2 ">4.</td>
+                                        <td class="border border-b-2 ">
+                                            Akademik ta’tildagi izlanuvchilar soni.
+                                        </td>
+                                        <td class="border border-b-2 ">{{ $quarter_1->akademik_soni ?? null }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-b-2 ">5.</td>
+                                        <td class="border border-b-2 ">
+                                            Muddatidan oldin himoya qilgan izlanuvchilar soni.
+                                        </td>
+                                        <td class="border border-b-2 ">{{ $quarter_1->muddatidano_soni ?? null }}
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-gray-200">
+                                        <td class="border border-b-2 ">6.</td>
+                                        <td class="border border-b-2 ">
+                                            Yagona elektron tizimga kiritilmagan izlanuvchilar soni.
+                                        </td>
+                                        <td class="border border-b-2 ">{{ $quarter_1->kiritilmagan_soni ?? null }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-b-2 ">7.</td>
+                                        <td class="border border-b-2 ">
+                                            Yakka tartibdagi rejani bajarmagan izlanuvchilar soni .
+                                        </td>
+                                        <td class="border border-b-2 ">{{ $quarter_1->rejani_bajarmagan ?? null }}
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-gray-200">
+                                        <td class="border border-b-2 ">8.</td>
+                                        <td class="border border-b-2 ">
+                                            Monitoring natijasi kiritilmagan izlanuvchilar soni .
+                                        </td>
+                                        <td class="border border-b-2 ">
+                                            {{ $quarter_1->mon_nat_kiritilmagan ?? null }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-b-2 ">9.</td>
+                                        <td class="border border-b-2 ">
+                                            Tashkilot izlanuvchilari biriktirilgan ilmiy rahbarlar soni .
+                                        </td>
+                                        <td class="border border-b-2 ">
+                                            {{ $quarter_1->biriktirilgan_rahbarlar ?? null }}</td>
+                                    </tr>
+                                    <tr class="bg-gray-200">
+                                        <td class="border border-b-2 ">10.</td>
+                                        <td class="border border-b-2 ">
+                                            Qo‘shimcha izlanuvchi biriktirish bo‘yicha kollegial organ qarori mavjud
+                                            bo'lmagan ilmiy rahbarlar soni .
+                                        </td>
+                                        <td class="border border-b-2 ">{{ $quarter_1->kollegial_rahbarlar ?? null }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="border border-b-2 ">11.</td>
+                                        <td class="border border-b-2 ">
+                                            Me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni .
+                                        </td>
+                                        <td class="border border-b-2 ">{{ $quarter_1->meyoridan_rahbarlar ?? null }}
+                                        </td>
+                                    </tr>
+                                    <tr class="bg-gray-200">
+                                        <td class="border border-b-2 ">12.</td>
+                                        <td class="border border-b-2 ">
+                                            Tashkilot miqyosida me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar
+                                            soni .
+                                        </td>
+                                        <td class="border border-b-2 ">
+                                            {{ $quarter_1->tash_ortiq_rahbarlar ?? null }}</td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+
+                            <table class="table mt-5">
                                 <tr>
-                                    <td class="border border-b-2 ">1.</td>
-                                    <td class="border border-b-2 ">
-                                        Tashkilot buyrug‘i asosida qabul qilingan umumiy izlanuvchilar soni.
+                                    <td class="border border-b-2 " style="width:40%;">Ekspert xulosasi
                                     </td>
-                                    <td class="border border-b-2 ">
-                                        {{ $quarter_1->umumiy_izlanuvchilar ?? null }}</td>
+                                    <td class="border border-b-2 ">{{ $quarter_1->status ?? null }}</td>
                                 </tr>
                                 <tr class="bg-gray-200">
-                                    <td class="border border-b-2 ">2.</td>
                                     <td class="border border-b-2 ">
-                                        Yagona elektron tizimdagi tahsil olayotgan izlanuvchilar soni.
+                                        Izoh
                                     </td>
-                                    <td class="border border-b-2 ">{{ $quarter_1->yagonae_tah_soni ?? null }}
-                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_1->comment ?? null }}</td>
                                 </tr>
                                 <tr>
-                                    <td class="border border-b-2 ">3.</td>
                                     <td class="border border-b-2 ">
-                                        Chetlashtirilgan izlanuvchilar soni.
-                                    </td>
-                                    <td class="border border-b-2 ">{{ $quarter_1->chetlash_soni ?? null }}</td>
-                                </tr>
-                                <tr class="bg-gray-200">
-                                    <td class="border border-b-2 ">4.</td>
-                                    <td class="border border-b-2 ">
-                                        Akademik ta’tildagi izlanuvchilar soni.
-                                    </td>
-                                    <td class="border border-b-2 ">{{ $quarter_1->akademik_soni ?? null }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-b-2 ">5.</td>
-                                    <td class="border border-b-2 ">
-                                        Muddatidan oldin himoya qilgan izlanuvchilar soni.
-                                    </td>
-                                    <td class="border border-b-2 ">{{ $quarter_1->muddatidano_soni ?? null }}
-                                    </td>
-                                </tr>
-                                <tr class="bg-gray-200">
-                                    <td class="border border-b-2 ">6.</td>
-                                    <td class="border border-b-2 ">
-                                        Yagona elektron tizimga kiritilmagan izlanuvchilar soni.
-                                    </td>
-                                    <td class="border border-b-2 ">{{ $quarter_1->kiritilmagan_soni ?? null }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-b-2 ">7.</td>
-                                    <td class="border border-b-2 ">
-                                        Yakka tartibdagi rejani bajarmagan izlanuvchilar soni .
-                                    </td>
-                                    <td class="border border-b-2 ">{{ $quarter_1->rejani_bajarmagan ?? null }}
-                                    </td>
-                                </tr>
-                                <tr class="bg-gray-200">
-                                    <td class="border border-b-2 ">8.</td>
-                                    <td class="border border-b-2 ">
-                                        Monitoring natijasi kiritilmagan izlanuvchilar soni .
+                                        Fayl
                                     </td>
                                     <td class="border border-b-2 ">
-                                        {{ $quarter_1->mon_nat_kiritilmagan ?? null }}</td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-b-2 ">9.</td>
-                                    <td class="border border-b-2 ">
-                                        Tashkilot izlanuvchilari biriktirilgan ilmiy rahbarlar soni .
+                                        @if ($quarter_1->file)
+                                            <a href="{{ asset('storage/' . $quarter_1->file) }}"
+                                                class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
+                                        @endif
                                     </td>
-                                    <td class="border border-b-2 ">
-                                        {{ $quarter_1->biriktirilgan_rahbarlar ?? null }}</td>
-                                </tr>
-                                <tr class="bg-gray-200">
-                                    <td class="border border-b-2 ">10.</td>
-                                    <td class="border border-b-2 ">
-                                        Qo‘shimcha izlanuvchi biriktirish bo‘yicha kollegial organ qarori mavjud
-                                        bo'lmagan ilmiy rahbarlar soni .
-                                    </td>
-                                    <td class="border border-b-2 ">{{ $quarter_1->kollegial_rahbarlar ?? null }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="border border-b-2 ">11.</td>
-                                    <td class="border border-b-2 ">
-                                        Me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni .
-                                    </td>
-                                    <td class="border border-b-2 ">{{ $quarter_1->meyoridan_rahbarlar ?? null }}
-                                    </td>
-                                </tr>
-                                <tr class="bg-gray-200">
-                                    <td class="border border-b-2 ">12.</td>
-                                    <td class="border border-b-2 ">
-                                        Tashkilot miqyosida me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar
-                                        soni .
-                                    </td>
-                                    <td class="border border-b-2 ">
-                                        {{ $quarter_1->tash_ortiq_rahbarlar ?? null }}</td>
                                 </tr>
 
-                            </tbody>
-                        </table>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">
+                                        Ishchi guruh rahbari F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_1->fish }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">
+                                        Ishchi guruh azosi F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_1->user->name }}
+                                    </td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">
+                                        Ekspert F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_1->ekspert_fish }}
+                                    </td>
+                                </tr>
 
-                        <table class="table mt-5">
-                            <tr>
-                                <td class="border border-b-2 " style="width:40%;">Ekspert xulosasi
-                                </td>
-                                <td class="border border-b-2 ">{{ $quarter_1->status ?? null }}</td>
-                            </tr>
-                            <tr class="bg-gray-200">
-                                <td class="border border-b-2 ">
-                                    Izoh
-                                </td>
-                                <td class="border border-b-2 ">{{ $quarter_1->comment ?? null }}</td>
-                            </tr>
-                            <tr>
-                                <td class="border border-b-2 ">
-                                    Fayl
-                                </td>
-                                <td class="border border-b-2 ">
-                                    @if ($quarter_1->file)
-                                        <a href="{{ asset('storage/' . $quarter_1->file) }}"
-                                            class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
-                                    @endif
-                                </td>
-                            </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">
+                                        Tashkilotning mas'ul rahbari F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_1->t_masul }}
+                                    </td>
+                                </tr>
 
-                            <tr class="bg-gray-200">
-                                <td class="border border-b-2 ">
-                                    Ishchi guruh rahbari F.I.Sh
-                                </td>
-                                <td class="border border-b-2 ">
-                                    {{ $quarter_1->fish }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="border border-b-2 ">
-                                    Ishchi guruh azosi F.I.Sh
-                                </td>
-                                <td class="border border-b-2 ">
-                                    {{ $quarter_1->user->name }}
-                                </td>
-                            </tr>
-                            <tr class="bg-gray-200">
-                                <td class="border border-b-2 ">
-                                    Ekspert F.I.Sh
-                                </td>
-                                <td class="border border-b-2 ">
-                                    {{ $quarter_1->ekspert_fish }}
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="border border-b-2 ">
-                                    Tashkilotning mas'ul rahbari F.I.Sh
-                                </td>
-                                <td class="border border-b-2 ">
-                                    {{ $quarter_1->t_masul }}
-                                </td>
-                            </tr>
-
-                        </table>
+                            </table>
+                        </div>
                     </div>
-                </div>
                 @endif
 
                 <div class="tab-content__pane" id="add-expert">
@@ -1298,7 +1299,7 @@
 
                                                         <!-- <option value="A’lo">A’lo</option>
 
-                                                                <option value="Yaxshi">Yaxshi</option> -->
+                                                                    <option value="Yaxshi">Yaxshi</option> -->
 
                                                         <option value="Qoniqarli">Qoniqarli</option>
 
@@ -1566,7 +1567,8 @@
                                             <div class="error">{{ $message }}</div>
                                         @enderror
                                     </div>
-                                    <div class="w-full col-span-6">
+
+                                    <div class="w-full col-span-6" id="himoya_holati_wrapper" style="display:none;">
                                         <label class="flex flex-col sm:flex-row"> <span
                                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> 3-kurslar himoya
                                             holati:
@@ -1584,6 +1586,7 @@
                                             <div class="error">{{ $message }}</div>
                                         @enderror
                                     </div>
+
                                 </div>
                             </form>
                             <div class="px-5 pb-5 text-center mt-4">
@@ -1799,7 +1802,7 @@
                     $('#reja_t').text(data.reja_t);
                     $('#reja_b').text(data.reja_b);
                     $('#monitoring_natijasik').text(data.monitoring_natijasik);
-                    $('#himoya_holati').text(holatMatnlari[data.himoya_holati]);
+                    $('#himoya_holati').text(holatMatnlari[data.himoya_holati]);                    
 
                     $('#science-ilmiy-izlanuvchi-show-modal').modal('show');
                 },
@@ -1813,7 +1816,7 @@
     <script>
         // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
         function openEditIlmiIzlanuvchiModal(id) {
-             const holatMatnlari = {
+            const holatMatnlari = {
                 himoya_qilgan: "Himoya qilgan",
                 himoyaga_qabul_qilingan: "Himoyaga qabul qilingan",
                 seminardan_otgan: "Ilmiy seminar muhokamasidan o'tgan",
@@ -1843,6 +1846,12 @@
                     $('#edit_monitoring_natijasik').text(data.monitoring_natijasik);
                     $('#edit_himoya_holati').text(holatMatnlari[data.himoya_holati]);
 
+                    if (data.course == 3) {
+                        $('#himoya_holati_wrapper').show();
+                    } else {
+                        $('#himoya_holati_wrapper').hide();
+                    }
+
 
                     $('#science-paper-edit-form').attr('action', `/ilmiy-izlanuvchi/${id}/edit`);
 
@@ -1858,7 +1867,7 @@
     <script>
         // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
         function openShowIlmiRahbarModal(id) {
-           
+
 
             // AJAX so'rovni yuboramiz
             $.ajax({
