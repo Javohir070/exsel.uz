@@ -73,13 +73,13 @@
         @endrole
 
         @role(['Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
-            <li>
+            {{-- <li>
                 <a href="{{ route('monitoring.index') }}"
                     class="side-menu side-menu{{ request()->is('monitoring*') ? '--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                     <div class="side-menu__title">Monitoring</div>
                 </a>
-            </li>
+            </li> --}}
         @endrole
 
         @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
