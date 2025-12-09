@@ -50,6 +50,7 @@ class Loyihaiqtisodi extends Model
         'yetkb_yuridik_nomi',
         'uzlashtirilishi_summasi',
         'uzlashtirilishi_sum_i',
+        'quarter',
     ];
 
     public function tashkilot()

@@ -55,8 +55,7 @@ class Intellektual extends Model
         'dasturiy_gsreja',
         'dasturiy_izoh',
         'dasturiy_gsamalda',
-
-
+        'quarter',
     ];
 
     public function ilmiyloyiha()

@@ -52,6 +52,7 @@ class LoyihaiqtisodiController extends Controller
             'xarid_s'=> $request->xarid_s,
             'yetkb_yuridik_nomi'=> $request->yetkb_yuridik_nomi,
             'uzlashtirilishi_summasi' => $request->uzlashtirilishi_summasi,
+            'quarter' => 2,
         ]);
 
         return redirect()->back()->with('status','Ma\'lumotlar muvaffaqiyatli qo"shildi.');
@@ -87,6 +88,7 @@ class LoyihaiqtisodiController extends Controller
             "tashustama_xarajat_i" =>$request->tashustama_xarajat_i,
             "xarid_qilingan_i" =>$request->xarid_qilingan_i,
             'uzlashtirilishi_sum_i' => $request->uzlashtirilishi_sum_i,
+            "quarter" => 2,
             ]);
         } else {
             $loyihaiqtisodi->update([
@@ -115,6 +117,7 @@ class LoyihaiqtisodiController extends Controller
                 'xarid_s'=> $request->xarid_qilingan_xarid == "yo'q" ? null : $request->xarid_s,
                 'yetkb_yuridik_nomi'=> $request->xarid_qilingan_xarid == "yo'q" ? null : $request->yetkb_yuridik_nomi,
                 'uzlashtirilishi_summasi' => $request->uzlashtirilishi_summasi,
+                "quarter" => 2,
             ]);
         }
 

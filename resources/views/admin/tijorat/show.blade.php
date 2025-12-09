@@ -92,7 +92,7 @@
             </table>
         </div>
 
-        @role(['Ekspert', 'tijorat boyicha masul', 'Ishchi guruh azosi', 'Rahbar'])
+        {{-- @role(['Ekspert', 'tijorat boyicha masul', 'Ishchi guruh azosi', 'Rahbar']) --}}
         @forelse ($tijoratexpert as $tekshirivchilar)
             <div class="overflow-x-auto"
                 style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
@@ -100,7 +100,7 @@
                     <div
                         style="display: flex;justify-content: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="text-align: end;display: flex;">
-                            @role(['Ekspert'])
+                            {{-- @role(['Ekspert']) --}}
                                 @if ($tekshirivchilar->holati == 'yuborildi')
                                     <a href="{{ url('generate-pdftijorat/' . $tijorat->id) }}"
                                         class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
@@ -114,8 +114,8 @@
                                         <button type="submit" class="button w-24 bg-theme-6 text-white">Rad etish</button>
                                     </form>
                                 @endif
-                            @endrole
-                            @role(['Ishchi guruh azosi'])
+                            {{-- @endrole --}}
+                            {{-- @role(['Ishchi guruh azosi']) --}}
                                 @if ($tekshirivchilar->holati == 'Rad etildi')
                                     <a href="{{ route('tijoratexpert.edit', ['tijoratexpert' => $tekshirivchilar->id]) }}"
                                         class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
@@ -128,7 +128,7 @@
                                         <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
                                     </form>
                                 @endif
-                            @endrole
+                            {{-- @endrole --}}
                         </div>
 
                     </div>
@@ -314,7 +314,7 @@
                 </table>
             </div>
         @empty
-            @role(['Ishchi guruh azosi'])
+            {{-- @role(['Ishchi guruh azosi']) --}}
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
                 style="background: white; padding: 20px 20px; border-radius: 4px">
                 <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
@@ -636,9 +636,9 @@
                     </div>
                 </div>
             </div>
-            @endrole
+            {{-- @endrole --}}
         @endforelse
-        @endrole
+        {{-- @endrole --}}
 
 
     </div>

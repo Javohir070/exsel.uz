@@ -48,7 +48,7 @@
             </a>
             @if ($quarter_1 != null)
             <a data-toggle="tab" data-target="#old-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center w-24 ">
-               2025-1
+               EKSPERT XULOSASI (2025-1)
             </a>
             @endif
             <a data-toggle="tab" data-target="#add-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center ">
