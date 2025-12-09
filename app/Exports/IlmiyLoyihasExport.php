@@ -21,7 +21,7 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
                 'Tashkilot' => $ilmiyloyhalar->tashkilot->name,
                 'Tashkilot turi' => $ilmiyloyhalar->tashkilot->tashkilot_turi == 'otm' ? 'OTM' : ($ilmiyloyhalar->tashkilot->tashkilot_turi == 'itm'? 'ITM':'boshqa'),
                 'Tashkilot stir' => $ilmiyloyhalar->tashkilot->stir_raqami,
-                'Viloyat' => $ilmiyloyhalar->tashkilot->region->oz,
+                'Viloyat' => $ilmiyloyhalar->tashkilot->region->oz ?? null,
                 'Loyiha mavzusi' => $ilmiyloyhalar->mavzusi,
                 'Loyiha turi' => $ilmiyloyhalar->turi,
                 'Loyiha rahbarining F.I.Sh' => $ilmiyloyhalar->rahbar_name,
