@@ -98,7 +98,7 @@ class AsbobuskunaController extends Controller
         $id_tash = $tashkilotlarQuery->pluck('id');
         $tashkilots = $tashkilotlarQuery->count();
         $asboblar_count = Asbobuskuna::where('is_active', 1)->whereIn('tashkilot_id', $id_tash)->count();
-        $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id_tash)->count();
+        $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id_tash)->where('quarter', 2)->count();
 
 
         return view('admin.asbobuskuna.tashkilot_turi', [
