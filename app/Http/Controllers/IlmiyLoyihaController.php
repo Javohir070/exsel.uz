@@ -28,7 +28,7 @@ class IlmiyLoyihaController extends Controller
     {
         $tashRId = auth()->user()->tashkilot_id;
 
-        $ilmiyloyiha = IlmiyLoyiha::where('tashkilot_id', $tashRId)->latest()->paginate(20);
+        $ilmiyloyiha = IlmiyLoyiha::where('tashkilot_id', $tashRId)->where('is_active', 1)->latest()->paginate(20);
 
         return view('admin.ilmiyloyiha.index', ['ilmiyloyiha' => $ilmiyloyiha]);
     }
