@@ -20,9 +20,20 @@ class AkademController extends Controller
 
     public function index(Request $request)
     {
-       $akadem = Akadem::query();
-        if ($request->filled('viloyat') && $request->input('viloyat') !== 'all') {
-            $akadem->where('region_id', $request->input('viloyat'));
+        $akadem = Akadem::query();
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+
+            $akadem->where(function ($query) use ($search) {
+                $query->where('full_name', 'like', "%{$search}%")
+                    ->orWhere('receiver_organization_name', 'like', "%{$search}%")
+                    ->orWhere('receiver_organization_inn', 'like', "%{$search}%")
+                    ->orWhere('receiver_organization_district', 'like', "%{$search}%")
+                    ->orWhere('receiver_organization_region', 'like', "%{$search}%")
+                    ->orWhere('sender_organization_name', 'like', "%{$search}%")
+                    ->orWhere('sender_organization_district', 'like', "%{$search}%")
+                    ->orWhere('sender_organization_region', 'like', "%{$search}%");
+            });
         }
 
         $akadem = $akadem->paginate(20);

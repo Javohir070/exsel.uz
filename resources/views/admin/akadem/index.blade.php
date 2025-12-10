@@ -5,15 +5,16 @@
         <div class="flex justify-between align-center mt-6 mb-6" style="align-items: center;">
 
             <h2 class="intro-y text-lg font-medium"> Tijoratlashtirish</h2>
-            <div class="relative text-gray-700">
-                <select name="viloyat" value="{{ old('viloyat') }}"
-                    class="science-sub-categoryviloyat input border w-full mt-2 ">
-                    <option value="">Viloyatni tanlang</option>
-                    <option value="all">Barchasi</option>
-                    @foreach ($regions as $region)
-                        <option value="{{ $region->id }}">{{ $region->oz }}</option>
-                    @endforeach
-                </select>
+
+            <div class="intro-x relative mr-3 sm:mr-6">
+                <div class="search hidden sm:block">
+                    <form action="{{ route('akadem.index') }}" method="GET">
+                        <input type="text" name="search" class="search__input input placeholder-theme-13"
+                            placeholder="Search...">
+                        <i data-feather="search" class="search__icon"></i>
+                    </form>
+                </div>
+                <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
             </div>
 
             @can('super-admin')
@@ -141,15 +142,4 @@
         </div>
     </div>
 
-    <script>
-        document.querySelector('.science-sub-categoryviloyat').addEventListener('change', function() {
-            let viloyat = this.value;
-
-            // Sahifani GET so‘rov bilan qayta yuklash
-            let url = new URL(window.location.href);
-            url.searchParams.set('viloyat', viloyat);
-
-            window.location.href = url.toString();
-        });
-    </script>
 @endsection
