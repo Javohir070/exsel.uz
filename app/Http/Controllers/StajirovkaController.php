@@ -58,7 +58,13 @@ class StajirovkaController extends Controller
 
     public function tashkilot_turi_stajiroka($id)
     {
-        $tashkilotlarQuery = Tashkilot::where('stajirovka_is', 1)->where('region_id', '=', $id)->with(['stajirovkalar'])
+        $tashkilotlarQuery = Tashkilot::where('stajirovka_is', 1)
+            ->where('region_id', $id)
+            ->with([
+                'stajirovkalar' => function ($q) {
+                    $q->where('quarter', 2);   // faqat 2-chorakdagilarni olish
+                }
+            ])
             ->get();
 
         // Turga qarab guruhlash
@@ -151,7 +157,7 @@ class StajirovkaController extends Controller
 
         if ($request->filled('yil') && $request->yil !== 'all') {
             $yil = $request->yil;
-            $query->where('yil', '=', value:  $yil );
+            $query->where('yil', '=', value: $yil);
         }
 
 
