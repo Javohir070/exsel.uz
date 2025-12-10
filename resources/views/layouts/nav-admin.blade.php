@@ -112,7 +112,7 @@
             </li>
         @endrole
 
-        @role(['Izlanuvchilar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin', 'StartUP'])
+        @role(['Izlanuvchilar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
             <li>
                 <a href="{{ route('doktarantura.index') }}"
                     class="side-menu side-menu{{ request()->is('doktarantura*') ? '--active' : '' }}{{ request()->is('search-dok*') ? '--active' : '' }}">
@@ -139,7 +139,7 @@
                 </a>
             </li>
         @endrole
-        @role(['Rahbar', 'super-admin', 'StartUP'])
+        @role(['startUP rahbar', 'super-admin', 'StartUP'])
             <li>
                 <a href="{{ route('startup.index') }}"
                     class="side-menu side-menu{{ request()->is('startup*') ? '--active' : '' }}{{ request()->is('search-startup*') ? '--active' : '' }}">

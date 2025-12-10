@@ -31,7 +31,7 @@ class StartupExpertController extends Controller
      */
     public function store(StoreStartupExpertRequest $request)
     {
-        $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
+        $user = User::where('group_id', '=', auth()->user()->group_id)->role('startUP rahbar')->first();
 
         $data = $request->only([
             'startup_id',
