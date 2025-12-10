@@ -133,7 +133,7 @@ class StajirovkaController extends Controller
     public function stajirov($id)
     {
 
-        $stajirovkas = Stajirovka::where('tashkilot_id', '=', $id)->paginate(20);
+        $stajirovkas = Stajirovka::where('tashkilot_id', '=', $id)->where('quarter', 2)->paginate(20);
 
         $tashkilot = Tashkilot::findOrFail($id);
 
