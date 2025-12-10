@@ -61,23 +61,24 @@
                                         <a class="notification sm:hidden" href=""> <i data-feather="search"
                                                 class="notification__icon"></i> </a>
                                     </div>
-                                    @role('super-admin')
-                                        <tr style="border-bottom: 1px solid #E6E6E6;">
-                                            <td colspan="5" style="text-align: center;">
+                                    <tr style="border-bottom: 1px solid #E6E6E6;">
+                                        <td colspan="5" style="text-align: center;">
+
+                                            <a href="{{ url('doktarantura/' . $id . '/export') }}"
+                                                class="button ml-3 w-24 bg-theme-1 text-white">
+                                                Export
+                                            </a>
+                                            @role('super-admin')
                                                 <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}"
                                                     class="button  bg-theme-1 text-white mr-4"
                                                     style="font-size: 16px;">Ma'lumotni yangilash</a>
-                                                <a href="{{ url('doktarantura/' . $id . '/export') }}"
-                                                    class="button ml-3 w-24 bg-theme-1 text-white">
-                                                    Export
-                                                </a>
                                                 <a href="{{ route('exportDoktaranturaexpert') }}"
                                                     class="button ml-3 w-24 bg-theme-1 text-white">
                                                     Export xulosa
                                                 </a>
-                                            </td>
-                                        </tr>
-                                    @endrole
+                                            @endrole
+                                        </td>
+                                    </tr>
                                 </div>
                                 <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
                                     <table class="table">
@@ -456,21 +457,21 @@
                                                     <td style="text-align:center">{{ $t->org }} </td>
                                                     <td style="text-align:center">{{ $t->all }} </td>
                                                     <!-- <td>
-                                                                        <a onclick="openShowIlmiRahbarModal({{ $t->id }})"
-                                                                            class="button px-2 mr-1 mb-2 border text-gray-700"
-                                                                            style="display: inline-block;">
-                                                                            <span class="w-5 h-5 flex items-center justify-center">
-                                                                                <i data-feather="eye" class="w-4 h-4"></i>
-                                                                            </span>
-                                                                        </a>
-                                                                        <a onclick="openEditIlmiRahbarModal({{ $t->id }})"
-                                                                            class="button px-2 mr-1 mb-2 bg-theme-1 text-white"
-                                                                            style="display: inline-block;">
-                                                                            <span class="w-5 h-5 flex items-center justify-center">
-                                                                                <i data-feather="edit" class="w-4 h-4"></i>
-                                                                            </span>
-                                                                        </a>
-                                                                    </td> -->
+                                                                                <a onclick="openShowIlmiRahbarModal({{ $t->id }})"
+                                                                                    class="button px-2 mr-1 mb-2 border text-gray-700"
+                                                                                    style="display: inline-block;">
+                                                                                    <span class="w-5 h-5 flex items-center justify-center">
+                                                                                        <i data-feather="eye" class="w-4 h-4"></i>
+                                                                                    </span>
+                                                                                </a>
+                                                                                <a onclick="openEditIlmiRahbarModal({{ $t->id }})"
+                                                                                    class="button px-2 mr-1 mb-2 bg-theme-1 text-white"
+                                                                                    style="display: inline-block;">
+                                                                                    <span class="w-5 h-5 flex items-center justify-center">
+                                                                                        <i data-feather="edit" class="w-4 h-4"></i>
+                                                                                    </span>
+                                                                                </a>
+                                                                            </td> -->
                                                 </tr>
                                             @empty
                                                 <tr style="border-bottom: 1px solid #E6E6E6;">
@@ -1321,7 +1322,7 @@
 
                                                         <!-- <option value="A’lo">A’lo</option>
 
-                                                                        <option value="Yaxshi">Yaxshi</option> -->
+                                                                                <option value="Yaxshi">Yaxshi</option> -->
 
                                                         <option value="Qoniqarli">Qoniqarli</option>
 
