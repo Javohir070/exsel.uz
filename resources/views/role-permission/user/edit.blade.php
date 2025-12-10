@@ -89,6 +89,19 @@
                             @endforeach
                         </select>
                     </div>
+
+                    @role('super-admin')
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row">  Viloyat
+                        </label>
+                        <select name="region_id" class="input border w-full mt-2">
+                            <option value=""> Viloyat tanlash</option>
+                            @foreach ($regions as $region)
+                                <option value="{{ $region->id }}" {{ $region->id == $user->region_id ? 'selected' : '' }}>{{ $region->oz }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    @endrole
                     <!-- @role('admin')
                         <input type="hidden" name="tashkilot_id" value="{{ auth()->user()->tashkilot->id }}">
                     @endrole     -->

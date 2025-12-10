@@ -174,12 +174,14 @@ class UserController extends Controller
         $roles = Role::where('is_active', 1)->pluck('name','name')->all();
         $userRoles = $user->roles->pluck('name','name')->all();
         $tashkilot_id = auth()->user()->tashkilot_id;
+        $regions = Region::all();
         $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
         return view('role-permission.user.edit', [
             'user' => $user,
             'roles' => $roles,
             'userRoles' => $userRoles,
-            'xodimlar' => $xodimlar
+            'xodimlar' => $xodimlar,
+            'regions' => $regions
         ]);
     }
 
@@ -194,6 +196,7 @@ class UserController extends Controller
         $data = [
             'name' => $request->name,
             'email' => $request->email,
+            'region_id' => $request->region_id,
         ];
 
         if(!empty($request->password)){
@@ -213,7 +216,7 @@ class UserController extends Controller
         }else if($roluchun[0] == "laboratoriya"){
             return redirect('/laboratory')->with('status','User Updated Successfully with roles');
         }else{
-            return redirect('/laboratory')->with('status','User Updated Successfully with roles');
+            return redirect('/users')->with('status','User Updated Successfully with roles');
         }
     }
 
