@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 
 @section('content')
-
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6">
 
@@ -11,6 +10,7 @@
                     Orqaga
                 </a>
             @endrole
+
         </div>
 
         @if (session('status'))
@@ -20,14 +20,17 @@
         <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
             <table class="table">
                 <tbody>
+
                     <tr>
                         <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">Ma’lumot
                         </th>
                     </tr>
+
                     <tr class="bg-gray-200">
                         <th class=" border" style="width:50%;">F.I.Sh</th>
                         <th class=" border" style="width:50%;">Summa (ming soʻmda)</th>
                     </tr>
+
                     <tr>
                         <td class="border">{{ $akadem->full_name }}</td>
                         <td class="border">{{ number_format($akadem->total_amount, 0, ',', ' ') }}</td>
@@ -37,9 +40,10 @@
                         <th class=" border" style="width:50%;">Yuboruvchi tashkilot</th>
                         <th class=" border" style="width:50%;">Yuboruvchi tashkilot manzili</th>
                     </tr>
+
                     <tr>
                         <td class="border">{{ $akadem->receiver_organization_name }}</td>
-                        <td class="border">{{$akadem->receiver_organization_region }}</td>
+                        <td class="border">{{ $akadem->receiver_organization_region }}</td>
                     </tr>
 
                     <tr class="bg-gray-200">
@@ -52,14 +56,11 @@
                         <td class="border">{{ $akadem->sender_organization_region }}</td>
                     </tr>
 
-                    
-
-
                 </tbody>
             </table>
         </div>
 
-        {{-- @role(['Ekspert', 'akadem boyicha masul', 'Ishchi guruh azosi', 'Rahbar']) --}}
+        @role(['Ekspert', 'akadem boyicha masul', 'Ishchi guruh azosi', 'Rahbar'])
         @forelse ($akademexpert as $tekshirivchilar)
             <div class="overflow-x-auto"
                 style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
@@ -67,22 +68,22 @@
                     <div
                         style="display: flex;justify-content: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                         <div style="text-align: end;display: flex;">
-                            {{-- @role(['Ekspert']) --}}
-                                @if ($tekshirivchilar->holati == 'yuborildi')
-                                    <a href="{{ url('generate-pdfakadem/' . $akadem->id) }}"
-                                        class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
-                                        Eksport
-                                    </a>
-                                    <form action="{{ route('akademexpert.update', $tekshirivchilar->id) }}" method="POST"
-                                        onsubmit="return confirm('Haqiqatan ham rad etasizmi?');">
-                                        @csrf
-                                        @method('PUT')
-                                        <input type="hidden" name="holati" value="1">
-                                        <button type="submit" class="button w-24 bg-theme-6 text-white">Rad etish</button>
-                                    </form>
-                                @endif
-                            {{-- @endrole --}}
-                            {{-- @role(['Ishchi guruh azosi']) --}}
+                            @role(['Ekspert'])
+                            @if ($tekshirivchilar->holati == 'yuborildi')
+                                <a href="{{ url('generate-pdfakadem/' . $akadem->id) }}"
+                                    class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
+                                    Eksport
+                                </a>
+                                <form action="{{ route('akademexpert.update', $tekshirivchilar->id) }}" method="POST"
+                                    onsubmit="return confirm('Haqiqatan ham rad etasizmi?');">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="holati" value="1">
+                                    <button type="submit" class="button w-24 bg-theme-6 text-white">Rad etish</button>
+                                </form>
+                            @endif
+                            @endrole
+                            @role(['Ishchi guruh azosi'])
                             @if ($tekshirivchilar->holati == 'Rad etildi')
                                 <a href="{{ route('akademexpert.edit', ['akademexpert' => $tekshirivchilar->id]) }}"
                                     class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
@@ -95,7 +96,7 @@
                                     <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
                                 </form>
                             @endif
-                            {{-- @endrole --}}
+                            @endrole
                         </div>
 
                     </div>
@@ -113,7 +114,7 @@
                                 va innovatsiyaga masʼul boʻlgan rahbar oʻrinbosari tomonidan kalendar ish rejasining
                                 bajarilishini monitoring qilib borilganligi </td>
                             <td class="border border-b-2 ">
-                                {{ $tekshirivchilar->kalendar_reja_monitoring == 'bajarilgan' ? 'Bajarilgan' : ($tekshirivchilar->kalendar_reja_monitoring == 'bajarilmagan' ? 'Bajarilmagan' : 'Loyiha davom etmoqda')  }}
+                                {{ $tekshirivchilar->kalendar_reja_monitoring == 'bajarilgan' ? 'Bajarilgan' : ($tekshirivchilar->kalendar_reja_monitoring == 'bajarilmagan' ? 'Bajarilmagan' : 'Loyiha davom etmoqda') }}
                                 <br> <b>Izoh:</b> {{ $tekshirivchilar->kalendar_reja_monitoring_izox }}
                             </td>
                         </tr>
@@ -124,7 +125,7 @@
                                 va gʻolib yosh olim oʻrtasida loyihani amalga oshirish xarajatlari koʻrsatilgan holda
                                 bajarilgan ishlar boʻyicha dalolatnoma tuzilganligi </td>
                             <td class="border border-b-2 ">
-                                {{ $tekshirivchilar->dalolatnoma_tuzilgan == 'bajarilgan' ? 'Bajarilgan' : ($tekshirivchilar->dalolatnoma_tuzilgan == 'bajarilmagan' ? 'Bajarilmagan' : 'Loyiha davom etmoqda')  }}
+                                {{ $tekshirivchilar->dalolatnoma_tuzilgan == 'bajarilgan' ? 'Bajarilgan' : ($tekshirivchilar->dalolatnoma_tuzilgan == 'bajarilmagan' ? 'Bajarilmagan' : 'Loyiha davom etmoqda') }}
                                 <br> <b>Izoh:</b> {{ $tekshirivchilar->dalolatnoma_tuzilgan_izox }}
                             </td>
                         </tr>
@@ -136,7 +137,7 @@
                                 ilmiy, ilmiy-texnik kengashda muhokama qilingani
                             </td>
                             <td class="border border-b-2 ">
-                                {{ $tekshirivchilar->hisobot_muhokama_qilingan == 'bajarilgan' ? 'Bajarilgan' : ($tekshirivchilar->hisobot_muhokama_qilingan == 'bajarilmagan' ? 'Bajarilmagan' : 'Loyiha davom etmoqda')  }}
+                                {{ $tekshirivchilar->hisobot_muhokama_qilingan == 'bajarilgan' ? 'Bajarilgan' : ($tekshirivchilar->hisobot_muhokama_qilingan == 'bajarilmagan' ? 'Bajarilmagan' : 'Loyiha davom etmoqda') }}
                                 <br> <b>Izoh:</b> {{ $tekshirivchilar->hisobot_muhokama_qilingan_izox }}
                             </td>
                         </tr>
@@ -146,7 +147,7 @@
                             <td class="border border-b-2 ">Gʻolib yosh olim yigʻilish bayonnoma koʻchirmasi, ajratilgan
                                 mablagʻlarning sarflanganligi boʻyicha hisobotni Agentlikka taqdim etganligi </td>
                             <td class="border border-b-2 ">
-                                {{ $tekshirivchilar->hisobot_agentlikka_taqdim == 'bajarilgan' ? 'Bajarilgan' : ($tekshirivchilar->hisobot_agentlikka_taqdim == 'bajarilmagan' ? 'Bajarilmagan' : 'Loyiha davom etmoqda')  }}
+                                {{ $tekshirivchilar->hisobot_agentlikka_taqdim == 'bajarilgan' ? 'Bajarilgan' : ($tekshirivchilar->hisobot_agentlikka_taqdim == 'bajarilmagan' ? 'Bajarilmagan' : 'Loyiha davom etmoqda') }}
                                 <br> <b>Izoh:</b> {{ $tekshirivchilar->hisobot_agentlikka_taqdim_izox }}
                             </td>
                         </tr>
@@ -216,7 +217,7 @@
                 </table>
             </div>
         @empty
-            {{-- @role(['Ishchi guruh azosi']) --}}
+            @role(['Ishchi guruh azosi'])
             <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
                 style="background: white; padding: 20px 20px; border-radius: 4px">
                 <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
@@ -337,7 +338,6 @@
                                 @enderror
                             </div>
 
-
                             <div class="w-full col-span-6 ">
                                 <label class="flex flex-col sm:flex-row"> <span
                                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ekspert F.I.Sh</label>
@@ -369,7 +369,6 @@
 
                                     <option value="Qoniqarsiz">Qoniqarsiz</option>
 
-
                                 </select><br>
 
                                 @error('muddat')
@@ -397,10 +396,9 @@
                     </div>
                 </div>
             </div>
-            {{-- @endrole --}}
+            @endrole
         @endforelse
-        {{-- @endrole --}}
-
+        @endrole
 
     </div>
 @endsection

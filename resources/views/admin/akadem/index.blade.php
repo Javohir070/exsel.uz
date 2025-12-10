@@ -17,12 +17,12 @@
             </div>
 
             @can('super-admin')
-            <div>
-                <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
-                    class="button w-24 ml-3 bg-theme-1 text-white">
-                    Import
-                </a>
-            </div>
+                <div>
+                    <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
+                        class="button w-24 ml-3 bg-theme-1 text-white">
+                        Import
+                    </a>
+                </div>
             @endcan
 
         </div>
@@ -71,8 +71,8 @@
                                     <div class="flex justify-center items-center">
 
                                         <a class="flex science-update-action items-center mr-3"
-                                            href="{{ route('akadem.show', ['akadem' => $tashkilots->id]) }}"
-                                            data-id="2978" data-name="sdfd"
+                                            href="{{ route('akadem.show', ['akadem' => $tashkilots->id]) }}" data-id="2978"
+                                            data-name="sdfd"
                                             data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
                                             data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66"
                                             data-date="None" data-doi="" data-publisher="" data-description="None"
@@ -88,7 +88,7 @@
                             <tr>
                                 <td colspan='8' style="text-align: center;">Ma'lumot yo'q</td>
                             </tr>
-                        @endforelse 
+                        @endforelse
 
                     </tbody>
                 </table>
