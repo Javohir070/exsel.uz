@@ -64,10 +64,9 @@
                     </div>
 
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row"> <span
-                        class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Parolni kiriting
+                        <label class="flex flex-col sm:flex-row"> Parolni kiriting
                         </label>
-                        <input type="text" name="password" class="input w-full border mt-2" required="">
+                        <input type="text" name="password" class="input w-full border mt-2">
                         @error('password') <span class="text-danger">{{ $message }}</span> @enderror
                     </div>
 

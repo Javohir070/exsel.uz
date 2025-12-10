@@ -168,6 +168,7 @@ class DoktaranturaController extends Controller
         $querysearch = $request->input('query');
         $course = $request->input('course');
         $dc_type = $request->input('dc_type');
+        $status = $request->input('status');
         $doktaranturas = Doktarantura::where('tashkilot_id', $id)->where('quarter', 2)
             ->when($querysearch, function ($query) use ($querysearch) {
                 $query->where('full_name', 'like', '%' . $querysearch . '%');
@@ -177,6 +178,9 @@ class DoktaranturaController extends Controller
             })
             ->when($course, function ($query) use ($course) {
                 $query->where('course', 'like', '%' . $course . '%');
+            })
+            ->when($status !== null && $status !== '' && $status !== 'all', function ($query) use ($status) {
+                $query->where('status', $status);
             })
             ->paginate(50);
         return view('admin.doktarantura.show', [

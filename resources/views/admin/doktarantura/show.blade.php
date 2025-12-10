@@ -109,6 +109,26 @@
                                                                 Doktorantura, DSc</option>
                                                         </select>
 
+                                                        <select class="form-select" name="status"
+                                                            style="border-radius: 6px;">
+                                                            <option value="">Status</option>
+
+                                                            <option value="all"
+                                                                {{ request('status') == 'all' ? 'selected' : '' }}>
+                                                                Barchasi
+                                                            </option>
+
+                                                            <option value="1"
+                                                                {{ request('status') == '1' ? 'selected' : '' }}>
+                                                                Ko'rilgan
+                                                            </option>
+
+                                                            <option value="0"
+                                                                {{ request('status') == '0' ? 'selected' : '' }}>
+                                                                Ko'rilmagan
+                                                            </option>
+                                                        </select>
+
                                                         <select class="form-select" name="course"
                                                             style="border-radius: 6px;">
                                                             <option value="">Kurs</option>
@@ -436,21 +456,21 @@
                                                     <td style="text-align:center">{{ $t->org }} </td>
                                                     <td style="text-align:center">{{ $t->all }} </td>
                                                     <!-- <td>
-                                                                    <a onclick="openShowIlmiRahbarModal({{ $t->id }})"
-                                                                        class="button px-2 mr-1 mb-2 border text-gray-700"
-                                                                        style="display: inline-block;">
-                                                                        <span class="w-5 h-5 flex items-center justify-center">
-                                                                            <i data-feather="eye" class="w-4 h-4"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                    <a onclick="openEditIlmiRahbarModal({{ $t->id }})"
-                                                                        class="button px-2 mr-1 mb-2 bg-theme-1 text-white"
-                                                                        style="display: inline-block;">
-                                                                        <span class="w-5 h-5 flex items-center justify-center">
-                                                                            <i data-feather="edit" class="w-4 h-4"></i>
-                                                                        </span>
-                                                                    </a>
-                                                                </td> -->
+                                                                        <a onclick="openShowIlmiRahbarModal({{ $t->id }})"
+                                                                            class="button px-2 mr-1 mb-2 border text-gray-700"
+                                                                            style="display: inline-block;">
+                                                                            <span class="w-5 h-5 flex items-center justify-center">
+                                                                                <i data-feather="eye" class="w-4 h-4"></i>
+                                                                            </span>
+                                                                        </a>
+                                                                        <a onclick="openEditIlmiRahbarModal({{ $t->id }})"
+                                                                            class="button px-2 mr-1 mb-2 bg-theme-1 text-white"
+                                                                            style="display: inline-block;">
+                                                                            <span class="w-5 h-5 flex items-center justify-center">
+                                                                                <i data-feather="edit" class="w-4 h-4"></i>
+                                                                            </span>
+                                                                        </a>
+                                                                    </td> -->
                                                 </tr>
                                             @empty
                                                 <tr style="border-bottom: 1px solid #E6E6E6;">
@@ -776,7 +796,8 @@
                                             Qo‘shimcha izlanuvchi biriktirish bo‘yicha kollegial organ qarori mavjud
                                             bo'lmagan ilmiy rahbarlar soni .
                                         </td>
-                                        <td class="border border-b-2 ">{{ $tekshirivchilar->kollegial_rahbarlar ?? null }}
+                                        <td class="border border-b-2 ">
+                                            {{ $tekshirivchilar->kollegial_rahbarlar ?? null }}
                                         </td>
                                     </tr>
                                     <tr>
@@ -784,7 +805,8 @@
                                         <td class="border border-b-2 ">
                                             Me’yoridan ortiq izlanuvchi biriktirilgan ilmiy rahbarlar soni .
                                         </td>
-                                        <td class="border border-b-2 ">{{ $tekshirivchilar->meyoridan_rahbarlar ?? null }}
+                                        <td class="border border-b-2 ">
+                                            {{ $tekshirivchilar->meyoridan_rahbarlar ?? null }}
                                         </td>
                                     </tr>
                                     <tr class="bg-gray-200">
@@ -1299,7 +1321,7 @@
 
                                                         <!-- <option value="A’lo">A’lo</option>
 
-                                                                    <option value="Yaxshi">Yaxshi</option> -->
+                                                                        <option value="Yaxshi">Yaxshi</option> -->
 
                                                         <option value="Qoniqarli">Qoniqarli</option>
 
@@ -1802,7 +1824,7 @@
                     $('#reja_t').text(data.reja_t);
                     $('#reja_b').text(data.reja_b);
                     $('#monitoring_natijasik').text(data.monitoring_natijasik);
-                    $('#himoya_holati').text(holatMatnlari[data.himoya_holati]);                    
+                    $('#himoya_holati').text(holatMatnlari[data.himoya_holati]);
 
                     $('#science-ilmiy-izlanuvchi-show-modal').modal('show');
                 },
