@@ -139,7 +139,7 @@
                 </a>
             </li>
         @endrole
-        @role(['Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin', 'StartUP'])
+        @role(['Rahbar', 'super-admin', 'StartUP'])
             <li>
                 <a href="{{ route('startup.index') }}"
                     class="side-menu side-menu{{ request()->is('startup*') ? '--active' : '' }}{{ request()->is('search-startup*') ? '--active' : '' }}">

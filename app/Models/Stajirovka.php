@@ -30,6 +30,7 @@ class Stajirovka extends Model
         'yunalishi',
         'holati',
         'yil',
+        'quarter',
     ];
 
     public function tashkilot()
