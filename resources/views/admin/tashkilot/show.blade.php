@@ -191,5 +191,39 @@
             @endif
         @endrole
 
+        @role('super-admin')
+            <div class="w-full mt-8 sm:mt-0 sm:ml-auto md:ml-6 ">
+                <form id="science-paper-create-form" method="POST"
+                    action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" class="validate-form"
+                    enctype="multipart/form-data" novalidate="novalidate">
+                    @csrf
+                    @method('PUT')
+                    <div class="grid grid-cols-12 gap-2">
+
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Viloyat
+                            </label>
+                            <select name="region_id" id="science-sub-category" class="input border w-full mt-2" required>
+                                <option>Viloyatni tanlang</option>
+                                @foreach ($regions as $region)
+                                    <option value="{{ $region->id }}"
+                                        {{ $tashkilot->region_id == $region->id ? 'selected' : '' }}>{{ $region->oz }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="px-5 pb-5 text-center mt-8">
+                            <button type="submit" form="science-paper-create-form"
+                                class="update-confirm button w-24 bg-theme-1 text-white">
+                                Saqlash
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        @endrole
+
     </div>
 @endsection

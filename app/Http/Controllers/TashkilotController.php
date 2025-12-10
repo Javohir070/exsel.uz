@@ -93,7 +93,8 @@ class TashkilotController extends Controller
 
     public function show(Tashkilot $tashkilot)
     {
-        return view('admin.tashkilot.show', ['tashkilot' => $tashkilot]);
+        $regions = Region::all();
+        return view('admin.tashkilot.show', ['tashkilot' => $tashkilot, 'regions' => $regions]);
     }
 
 
@@ -105,9 +106,10 @@ class TashkilotController extends Controller
 
     public function update(Request $request, Tashkilot $tashkilot)
     {
-        if($request->holati == 'rejected' || $request->holati == 'accepted'){
+        if($request->holati == 'rejected' || $request->holati == 'accepted' || $request->filled('region_id') ){
             $tashkilot->update([
-                'holati' => $request->holati
+                'holati' => $request->holati ?? $tashkilot->holati,
+                'region_id' => $request->region_id ?? $tashkilot->region_id
             ]);
             return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli saqlandi.');
         }else{

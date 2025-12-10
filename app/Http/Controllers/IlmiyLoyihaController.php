@@ -159,6 +159,7 @@ class IlmiyLoyihaController extends Controller
 
     public function update(UpdateIlmiyLoyihaRequest $request, IlmiyLoyiha $ilmiyloyiha)
     {
+        // dd($request->all());
         // if ($request->hasFile('malumotnoma')) {
         //     $name_malumotnoma = time() . $request->file('malumotnoma')->getClientOriginalName();
         //     $path_malumotnoma = $request->file('malumotnoma')->storeAs('IlmiyLoyiha-file', $name_malumotnoma);

@@ -128,7 +128,7 @@
                             <tr>
                                 <td class="border">1.5.</td>
                                 <td class="border">Bajarilish muddati</td>
-                                <td class="border">{{ $ilmiyloyiha->bosh_sana . ' - ' . $ilmiyloyiha->tug_sana }}
+                                <td class="border">{{ $ilmiyloyiha->bosh_sana->format('Y-m-d') . ' - ' . date('Y-m-d', strtotime($ilmiyloyiha->tug_sana)) }}
                                     yillar
                                 </td>
                             </tr>
@@ -2918,7 +2918,7 @@
                                             <td class="border">Bajarilish muddati boshlanish</td>
                                             <td class="border">
                                                 <input type="date" name="bosh_sana"
-                                                    value="{{ $ilmiyloyiha->bosh_sana ?? '' }}"
+                                                    value="{{ $ilmiyloyiha->bosh_sana->format('Y-m-d') ?? '' }}"
                                                     class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
@@ -2927,7 +2927,7 @@
                                             <td class="border">Bajarilish muddati tugash</td>
                                             <td class="border">
                                                 <input type="date" name="tug_sana"
-                                                    value="{{ $ilmiyloyiha->tug_sana ?? '' }}"
+                                                    value="{{ $ilmiyloyiha->tug_sana->format('Y-m-d') ?? '' }}"
                                                     class="input w-full border mt-2" required="">
                                             </td>
                                         </tr>
