@@ -193,6 +193,15 @@
                                     <td class="border">{{ $asbobuskuna->asbob_usk_ehtiyoji }}</td>
                                     <td class="border">{{ $asbobuskuna->zarur_ehtiyoji }}</td>
                                 </tr>
+
+                                <tr class="bg-gray-200">
+                                    <th class="border">Soni</th>
+                                    <th class="border"> </th>
+                                </tr>
+                                <tr>
+                                    <td class="border">{{ $asbobuskuna->soni }}</td>
+                                    <td class="border"></td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

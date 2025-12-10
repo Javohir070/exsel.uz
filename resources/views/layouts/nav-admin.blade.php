@@ -112,7 +112,7 @@
             </li>
         @endrole
 
-        @role(['Izlanuvchilar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
+        @role(['Izlanuvchilar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin', 'StartUP'])
             <li>
                 <a href="{{ route('doktarantura.index') }}"
                     class="side-menu side-menu{{ request()->is('doktarantura*') ? '--active' : '' }}{{ request()->is('search-dok*') ? '--active' : '' }}">
@@ -129,19 +129,22 @@
                 </a>
             </li>
 
-            <li>
-                <a href="{{ route('startup.index') }}"
-                    class="side-menu side-menu{{ request()->is('startup*') ? '--active' : '' }}{{ request()->is('search-startup*') ? '--active' : '' }}">
-                    <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                    <div class="side-menu__title"> Startup</div>
-                </a>
-            </li>
+            
 
             <li>
                 <a href="{{ route('akadem.index') }}"
                     class="side-menu side-menu{{ request()->is('akadem*') ? '--active' : '' }}{{ request()->is('search-akadem*') ? '--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                     <div class="side-menu__title"> Akademik harakatchanlik</div>
+                </a>
+            </li>
+        @endrole
+        @role(['Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin', 'StartUP'])
+            <li>
+                <a href="{{ route('startup.index') }}"
+                    class="side-menu side-menu{{ request()->is('startup*') ? '--active' : '' }}{{ request()->is('search-startup*') ? '--active' : '' }}">
+                    <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                    <div class="side-menu__title"> Startup</div>
                 </a>
             </li>
         @endrole
