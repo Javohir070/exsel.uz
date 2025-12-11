@@ -139,7 +139,7 @@
                 </a>
             </li>
         @endrole
-        @role(['startUP rahbar', 'super-admin', 'startUP'])
+        @role(['startUP rahbar', 'super-admin', 'startUP', 'Rahbar'])
             <li>
                 <a href="{{ route('startup.index') }}"
                     class="side-menu side-menu{{ request()->is('startup*') ? '--active' : '' }}{{ request()->is('search-startup*') ? '--active' : '' }}">
@@ -295,12 +295,12 @@
                 </a>
             </li>
             <!-- <li>
-                                <a href="{{ route('stajirovka.index') }}"
-                                    class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
-                                    <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                                    <div class="side-menu__title"> Stajirovka </div>
-                                </a>
-                            </li> -->
+                        <a href="{{ route('stajirovka.index') }}"
+                            class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
+                            <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                            <div class="side-menu__title"> Stajirovka </div>
+                        </a>
+                    </li> -->
         @endrole
 
         @role(['kafedra_mudiri'])
@@ -399,12 +399,12 @@
                 </a>
             </li>
             <!-- <li>
-                                <a href="{{ route('stajirovkalar.index') }}"
-                                    class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
-                                    <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                                    <div class="side-menu__title"> Stajirovkalar</div>
-                                </a>
-                            </li> -->
+                        <a href="{{ route('stajirovkalar.index') }}"
+                            class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
+                            <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                            <div class="side-menu__title"> Stajirovkalar</div>
+                        </a>
+                    </li> -->
         @endrole
 
         @role(['Ilmiy_loyiha_rahbari'])
@@ -416,12 +416,12 @@
                 </a>
             </li>
             <!-- <li>
-                                <a href="{{ route('stajirovkalar.index') }}"
-                                    class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
-                                    <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                                    <div class="side-menu__title"> Stajirovkalar</div>
-                                </a>
-                            </li> -->
+                        <a href="{{ route('stajirovkalar.index') }}"
+                            class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
+                            <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                            <div class="side-menu__title"> Stajirovkalar</div>
+                        </a>
+                    </li> -->
         @endrole
 
         @role(['admin', 'Ilmiy_faoliyat_uchun_masul'])
@@ -613,12 +613,12 @@
                 </a>
             </li>
             <!-- <li>
-                                <a href="{{ route('kafedra.index') }}"
-                                    class="side-menu side-menu{{ request()->is('kafedra') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
-                                    <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
-                                    <div class="side-menu__title"> Kafedra </div>
-                                </a>
-                            </li> -->
+                        <a href="{{ route('kafedra.index') }}"
+                            class="side-menu side-menu{{ request()->is('kafedra') ? '--active' : '' }}{{ request()->is('izlanuvchilar*') ? '--active' : '' }}">
+                            <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                            <div class="side-menu__title"> Kafedra </div>
+                        </a>
+                    </li> -->
         @endrole
 
         @role('Asbob_uskunalarga_masul')
