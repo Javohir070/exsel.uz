@@ -285,14 +285,13 @@ class HomeController extends Controller
         } else {
             $regions = Region::orderBy('order')->get();
         }
-        $tashkilotlar = Tashkilot::withCount([
+        $tashkilotlar = Tashkilot::where('status', 1)->withCount([
             'ilmiyloyhalar as ilmiyloyha_count' => fn($q) => $q->where('is_active', 1),
             'stajirovkalar as stajirovka_count' => fn($q) => $q->where('quarter', 2),
             'asbobuskunalar as asbob_count' => fn($q) => $q->where('is_active', 1),
             'doktaranturalar as dok_count' => fn($q) => $q->where('quarter', 2),
         ])
-            ->where('status', 1)
-            ->paginate(20);
+         ->paginate(20);
 
         // $tashkilotlarQuery = Tashkilot::with([
         //     'ilmiyloyhalar' => fn($q) => $q->where('is_active', 1),

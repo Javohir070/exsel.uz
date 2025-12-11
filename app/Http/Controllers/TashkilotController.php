@@ -207,9 +207,9 @@ class TashkilotController extends Controller
         foreach ($groups as $key => $group) {
             $results[$key] = [
                 'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->where('is_active', 1)->count(),
-                'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->count(),
+                'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->where('quarter', 2)->count(),
                 'asbobuskunalar' => $group->pluck('asbobuskunalar')->flatten()->where('is_active', 1)->count(),
-                'doktarantura' => $group->pluck('doktaranturalar')->flatten()->count(),
+                'doktarantura' => $group->pluck('doktaranturalar')->flatten()->where('quarter', 2)->count(),
             ];
 
         }
@@ -218,14 +218,14 @@ class TashkilotController extends Controller
         $id_tash = $tashkilotlarQuery->pluck('id');
         $tashkilotlar = $tashkilotlarQuery->count();
 
-        $doktarantura = Doktarantura::whereIn('tashkilot_id', $id_tash)->count();
+        $doktarantura = Doktarantura::whereIn('tashkilot_id', $id_tash)->where('quarter', 2)->count();
         $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id_tash)->count();
-        $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id_tash)->count();
+        $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id_tash)->where('quarter', 2)->count();
         $asboblar_count = Asbobuskuna::where('is_active', 1)->whereIn('tashkilot_id', $id_tash)->count();
-        $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id_tash)->count();
-        $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id_tash)->count();
+        $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id_tash)->where('quarter', 2)->count();
+        $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id_tash)->where('quarter', 2)->count();
         $loy_count = IlmiyLoyiha::where('is_active', 1)->whereIn('tashkilot_id', $id_tash)->count();
-        $loy_expert = Tekshirivchilar::where('is_active', 1)->whereIn('tashkilot_id', $id_tash)->count();
+        $loy_expert = Tekshirivchilar::where('is_active', 1)->where('quarter', 2)->whereIn('tashkilot_id', $id_tash)->count();
 
         return view('admin.tashkilot.tashkilot_turi', [
             'results' => $results,
