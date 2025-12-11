@@ -440,7 +440,7 @@ class DoktaranturaController extends Controller
         $course = $request->input('course');
         $dc_type = $request->input('dc_type');
 
-        $doktaranturas = Doktarantura::where('tashkilot_id', $tashkilotId)
+        $doktaranturas = Doktarantura::where('tashkilot_id', $tashkilotId)->where('quarter', 2)
             ->when($querysearch, function ($query) use ($querysearch) {
                 $query->where('full_name', 'like', '%' . $querysearch . '%');
             })
