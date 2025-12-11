@@ -166,9 +166,11 @@ class HomeController extends Controller
 
         foreach ($regions as $region) {
             $count = $region->tashkilots()
-                ->withCount(['ilmiyloyhalar' => function ($q) {
-                    // $q->where('is_active', 1);
-                }])
+                ->withCount([
+                    'ilmiyloyhalar' => function ($q) {
+                        // $q->where('is_active', 1);
+                    }
+                ])
                 ->get()
                 ->sum('ilmiyloyhalar_count');
 
@@ -177,20 +179,20 @@ class HomeController extends Controller
         }
 
         $statistika = DB::table('ilmiy_loyihas')
-                    ->selectRaw('YEAR(bosh_sana) as yil, COUNT(*) as loyiha_soni')
-                    ->groupBy(DB::raw('YEAR(bosh_sana)'))
-                    ->orderBy('yil', 'asc')
-                    ->get();
+            ->selectRaw('YEAR(bosh_sana) as yil, COUNT(*) as loyiha_soni')
+            ->groupBy(DB::raw('YEAR(bosh_sana)'))
+            ->orderBy('yil', 'asc')
+            ->get();
 
         $labels_yil = $statistika->pluck('yil');
         $data_yil = $statistika->pluck('loyiha_soni');
 
 
         $statistika_s = DB::table('stajirovkas')
-                    ->selectRaw('yil as sana, COUNT(*) as stajiovka_soni')
-                    ->groupBy('yil')
-                    ->orderBy('yil', 'asc')
-                    ->get();
+            ->selectRaw('yil as sana, COUNT(*) as stajiovka_soni')
+            ->groupBy('yil')
+            ->orderBy('yil', 'asc')
+            ->get();
 
         $stajiovka_labels_yil = $statistika_s->pluck('sana');
         $stajiovka_data_yil = $statistika_s->pluck('stajiovka_soni');
@@ -283,12 +285,23 @@ class HomeController extends Controller
         } else {
             $regions = Region::orderBy('order')->get();
         }
-        $tashkilotlar = Tashkilot::where('status', 1)->paginate(25);
+        $tashkilotlar = Tashkilot::withCount([
+            'ilmiyloyhalar as ilmiyloyha_count' => fn($q) => $q->where('is_active', 1),
+            'stajirovkalar as stajirovka_count' => fn($q) => $q->where('quarter', 2),
+            'asbobuskunalar as asbob_count' => fn($q) => $q->where('is_active', 1),
+            'doktaranturalar as dok_count' => fn($q) => $q->where('quarter', 2),
+        ])
+            ->where('status', 1)
+            ->paginate(20);
 
-        $tashkilotlarQuery = Tashkilot::with(['ilmiyloyhalar', 'asbobuskunalar', 'stajirovkalar'])
-            ->get();
+        $tashkilotlarQuery = Tashkilot::with([
+            'ilmiyloyhalar' => fn($q) => $q->where('is_active', 1),
+            'asbobuskunalar' => fn($q) => $q->where('is_active', 1),
+            'stajirovkalar',
+            'doktaranturalar'
+        ])->get();
 
-        // Turga qarab guruhlash
+        // Guruhlash
         $groups = [
             'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
             'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
@@ -297,16 +310,16 @@ class HomeController extends Controller
 
         $results = [];
 
-        // foreach ($groups as $key => $group) {
-        //     $results[$key] = [
-        //         'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->where('is_active', 1)->count(),
-        //         'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->count(),
-        //         'asbobuskunalar' => $group->pluck('asbobuskunalar')->flatten()->where('is_active', 1)->count(),
-        //         'doktarantura' => $group->pluck('doktaranturalar')->flatten()->count(),
-        //     ];
-        // }
+        foreach ($groups as $key => $group) {
+            $results[$key] = [
+                'ilmiyloyhalar' => $group->sum(fn($t) => $t->ilmiyloyhalar->count()),
+                'stajirovkalar' => $group->sum(fn($t) => $t->stajirovkalar->count()),
+                'asbobuskunalar' => $group->sum(fn($t) => $t->asbobuskunalar->count()),
+                'doktarantura' => $group->sum(fn($t) => $t->doktaranturalar->count()),
+            ];
+        }
 
-        // dd('dfs');
+
 
         return view("admin.monitoring", [
             'loy_count' => $loy_count,

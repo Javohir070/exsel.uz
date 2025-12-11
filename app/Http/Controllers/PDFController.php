@@ -32,8 +32,8 @@ class PDFController extends Controller
         $fileRelativePath = 'pdfs/' . $fileName;
         $filePath = storage_path('app/public/' . $fileRelativePath);
 
-        $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyId)->first();
-        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyId)->first();
+        $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyId)->where('quarter', 2)->first();
+        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyId)->where('quarter', 2)->first();
         $tekshirivchilar = Tekshirivchilar::where('quarter', 2)->where('ilmiy_loyiha_id', $ilmiyId)->first();
         $pdfUrl = asset('storage/' . $fileRelativePath);
 
