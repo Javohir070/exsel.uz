@@ -29,7 +29,6 @@
     </a>
     @endrole
 
-
 </div>
 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
     padding: 20px 20px;
@@ -94,7 +93,6 @@
                     @enderror
                     @endrole
 
-
                     <!-- <select name="turi"  id="science-sub-category" readonly class="input border w-full mt-2" required="">
 
                         <option>Loyiha turi tanlang</option>
@@ -134,8 +132,6 @@
 
                         <option value="Tematik" {{ $ilmiyloyiha->dastyri == 'Tematik' ? 'selected' : '' }}>Tematik
                         </option>
-
-
 
                     </select>
                     @error('dastyri')
@@ -192,7 +188,6 @@
 
                         <option value="10" {{ $ilmiyloyiha->muddat == '10' ? 'selected' : '' }}>10</option>
 
-
                     </select><br>
 
                     @error('muddat')
@@ -218,7 +213,6 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                     @endrole
-
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -239,7 +233,6 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                     @endrole
-
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -272,7 +265,6 @@
                         <option value="Filologiya va ijtimoiy fanlar" {{ $ilmiyloyiha->pan_yunalish == "Filologiya va ijtimoiy fanlar" ? "selected" : ""}}>Filologiya va ijtimoiy fanlar</option>
 
                         <option value="Iqtisodiyot fanlari" {{ $ilmiyloyiha->pan_yunalish == "Iqtisodiyot fanlari" ? "selected" : ""}}>Iqtisodiyot fanlari</option>
-
 
                     </select><br> -->
                 </div>
@@ -307,14 +299,11 @@
 
                         <option value="Fan nomzodi" {{ $ilmiyloyiha->rahbariilmiy_darajasi == 'Fan nomzodi' ? 'selected' : '' }}>Fan nomzodi</option>
 
-                        <option value="PhD" {{ $ilmiyloyiha->rahbariilmiy_darajasi == 'PhD' ? 'selected' : '' }}>PhD
-                        </option>
+                        <option value="PhD" {{ $ilmiyloyiha->rahbariilmiy_darajasi == 'PhD' ? 'selected' : '' }}>PhD</option>
 
                         <option value="Fan doktori" {{ $ilmiyloyiha->rahbariilmiy_darajasi == 'Fan doktori' ? 'selected' : '' }}>Fan doktori</option>
 
-                        <option value="DSc" {{ $ilmiyloyiha->rahbariilmiy_darajasi == 'DSc' ? 'selected' : '' }}>DSc
-                        </option>
-
+                        <option value="DSc" {{ $ilmiyloyiha->rahbariilmiy_darajasi == 'DSc' ? 'selected' : '' }}>DSc</option>
 
                     </select><br>
                 </div>
@@ -330,14 +319,11 @@
 
                         <option value="Katta ilmiy xodim" {{ $ilmiyloyiha->rahbariilmiy_unvoni == 'Katta ilmiy xodim' ? 'selected' : '' }}>Katta ilmiy xodim</option>
 
-                        <option value="Dotsent" {{ $ilmiyloyiha->rahbariilmiy_unvoni == 'Dotsent' ? 'selected' : '' }}>
-                            Dotsent</option>
+                        <option value="Dotsent" {{ $ilmiyloyiha->rahbariilmiy_unvoni == 'Dotsent' ? 'selected' : '' }}>Dotsent</option>
 
                         <option value="Professor" {{ $ilmiyloyiha->rahbariilmiy_unvoni == 'Professor' ? 'selected' : '' }}>Professor</option>
 
-                        <option value="Akademik" {{ $ilmiyloyiha->rahbariilmiy_unvoni == 'Akademik' ? 'selected' : '' }}>
-                            Akademik</option>
-
+                        <option value="Akademik" {{ $ilmiyloyiha->rahbariilmiy_unvoni == 'Akademik' ? 'selected' : '' }}>Akademik</option>
 
                     </select><br>
                 </div>
@@ -377,7 +363,6 @@
                     @error('sanasi')
                         <div class="error">{{ $message }}</div>
                     @enderror
-
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -511,8 +496,6 @@
                     <input type="number" name="y2024" value="{{ $ilmiyloyiha->umumiyyil->y2024 ?? 0 }}"
                         class="input w-full border mt-2" required="">
                 </div>
-
-
 
                 {{-- //yangi qo'shilganlar --}}
 
@@ -865,7 +848,6 @@
                     @enderror
                 </div>
 
-
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkilotingiz tomonidan davlat
@@ -892,13 +874,11 @@
 
                         <option value="Yo'q moliyalashtirilmagan">Yo'q moliyalashtirilmagan</option>
 
-
                     </select><br>
                     @error('moliyalashtirilganmi')
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
-
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -919,7 +899,6 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
-
 
             </div>
 

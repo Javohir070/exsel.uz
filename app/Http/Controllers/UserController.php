@@ -19,21 +19,21 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('permission:view user', ['only' => ['index']]);
-        $this->middleware('permission:create user', ['only' => ['create','store']]);
-        $this->middleware('permission:update user', ['only' => ['update','edit']]);
+        $this->middleware('permission:create user', ['only' => ['create', 'store']]);
+        $this->middleware('permission:update user', ['only' => ['update', 'edit']]);
         $this->middleware('permission:delete user', ['only' => ['destroy']]);
     }
 
     public function index()
     {
-        $users =  User::paginate(15);
+        $users = User::paginate(15);
 
         return view('role-permission.user.index', ['users' => $users]);
     }
 
     public function create()
     {
-        $roles = Role::where('is_active', 1)->pluck('name','name')->all();
+        $roles = Role::where('is_active', 1)->pluck('name', 'name')->all();
         $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $tashkilot_id = auth()->user()->tashkilot_id;
@@ -43,7 +43,7 @@ class UserController extends Controller
         return view('role-permission.user.create', [
             'roles' => $roles,
             'tashkilots' => $tashkilots,
-            'xodimlar'=>$xodimlar,
+            'xodimlar' => $xodimlar,
             'lab' => $lab,
             'kafedralar' => $kafedralar,
             'regions' => $regions
@@ -52,25 +52,25 @@ class UserController extends Controller
 
     public function kafedra_rol()
     {
-        $roles = Role::where('is_active', 1)->pluck('name','name')->all();
+        $roles = Role::where('is_active', 1)->pluck('name', 'name')->all();
         $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $tashkilot_id = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
         $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
-        return view('role-permission.user.kafedra', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar, 'lab' => $lab, 'kafedralar' => $kafedralar]);
+        return view('role-permission.user.kafedra', ['roles' => $roles, 'tashkilots' => $tashkilots, 'xodimlar' => $xodimlar, 'lab' => $lab, 'kafedralar' => $kafedralar]);
 
     }
 
     public function asbobuskuna_rol()
     {
-        $roles = Role::where('is_active', 1)->pluck('name','name')->all();
+        $roles = Role::where('is_active', 1)->pluck('name', 'name')->all();
         $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
         $tashkilot_id = auth()->user()->tashkilot_id;
         $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
         $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
-        return view('role-permission.user.asbobuskuna', ['roles' => $roles, 'tashkilots' => $tashkilots,'xodimlar'=>$xodimlar, 'lab' => $lab, 'kafedralar' => $kafedralar]);
+        return view('role-permission.user.asbobuskuna', ['roles' => $roles, 'tashkilots' => $tashkilots, 'xodimlar' => $xodimlar, 'lab' => $lab, 'kafedralar' => $kafedralar]);
 
     }
 
@@ -91,25 +91,25 @@ class UserController extends Controller
 
         $roluchun = $request->roles;
         $user = User::create([
-                        'name' => $request->name,
-                        'region_id' => $request->region_id,
-                        'laboratory_id' => $request->laboratory_id,
-                        'kafedralar_id' => $request->kafedralar_id,
-                        'email' => $request->email,
-                        'tashkilot_id' => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
-                        'group_id' => $request->group_id,
-                        'password' => Hash::make($request->password),
-                    ]);
+            'name' => $request->name,
+            'region_id' => $request->region_id,
+            'laboratory_id' => $request->laboratory_id,
+            'kafedralar_id' => $request->kafedralar_id,
+            'email' => $request->email,
+            'tashkilot_id' => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
+            'group_id' => $request->group_id,
+            'password' => Hash::make($request->password),
+        ]);
 
         $user->syncRoles($request->roles);
-        if(!empty($user->kafedralar_id)){
-            return redirect('/kafedralar')->with('status','User Updated Successfully with roles');
-        }else if($roluchun[0] == "admin"){
-            return redirect('/users')->with('status','User Updated Successfully with roles');
-        }else if($roluchun[0] == "laboratoriya"){
-            return redirect('/laboratory')->with('status','User Updated Successfully with roles');
-        }else{
-            return redirect('/users')->with('status','User Updated Successfully with roles');
+        if (!empty($user->kafedralar_id)) {
+            return redirect('/kafedralar')->with('status', 'User Updated Successfully with roles');
+        } else if ($roluchun[0] == "admin") {
+            return redirect('/users')->with('status', 'User Updated Successfully with roles');
+        } else if ($roluchun[0] == "laboratoriya") {
+            return redirect('/laboratory')->with('status', 'User Updated Successfully with roles');
+        } else {
+            return redirect('/users')->with('status', 'User Updated Successfully with roles');
         }
     }
 
@@ -124,20 +124,20 @@ class UserController extends Controller
 
 
         $user = User::create([
-                        'name' => $request->name,
-                        'laboratory_id' => $request->laboratory_id,
-                        'kafedralar_id' => $request->kafedralar_id,
-                        'email' => $request->email,
-                        'tashkilot_id' => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
-                        'password' => Hash::make($request->password),
-                    ]);
+            'name' => $request->name,
+            'laboratory_id' => $request->laboratory_id,
+            'kafedralar_id' => $request->kafedralar_id,
+            'email' => $request->email,
+            'tashkilot_id' => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
+            'password' => Hash::make($request->password),
+        ]);
 
         $user->syncRoles($request->roles);
 
-        if(!empty($user->kafedralar_id)){
-            return redirect('/kafedralar')->with('status','User Updated Successfully with roles');
-        }else{
-            return redirect('/asbobuskuna')->with('status','User Updated Successfully with roles');
+        if (!empty($user->kafedralar_id)) {
+            return redirect('/kafedralar')->with('status', 'User Updated Successfully with roles');
+        } else {
+            return redirect('/asbobuskuna')->with('status', 'User Updated Successfully with roles');
         }
 
 
@@ -156,23 +156,24 @@ class UserController extends Controller
         ]);
 
         $user = User::create([
-                        'name' => $request->name,
-                        'email' => $request->email,
-                        'tashkilot_id' => auth()->user()->tashkilot_id,
-                        'password' => Hash::make($request->password),
-                    ]);
+            'name' => $request->name,
+            'email' => $request->email,
+            'tashkilot_id' => auth()->user()->tashkilot_id,
+            'password' => Hash::make($request->password),
+        ]);
 
         $user->syncRoles($request->role);
         IlmiyLoyiha::whereIn('id', $request->ilmiyloyha)
             ->update(['user_id' => $user->id]);
 
-        return redirect('/ilmiyloyiha')->with('status','User Updated Successfully with roles');
+        return redirect('/ilmiyloyiha')->with('status', 'User Updated Successfully with roles');
     }
 
     public function edit(User $user)
     {
-        $roles = Role::where('is_active', 1)->pluck('name','name')->all();
-        $userRoles = $user->roles->pluck('name','name')->all();
+        $roles = Role::where('is_active', 1)->pluck('name', 'name')->all();
+        $roles_superadmin = Role::where('is_active', 1)->pluck('name', 'name')->all();
+        $userRoles = $user->roles->pluck('name', 'name')->all();
         $tashkilot_id = auth()->user()->tashkilot_id;
         $regions = Region::all();
         $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
@@ -181,7 +182,8 @@ class UserController extends Controller
             'roles' => $roles,
             'userRoles' => $userRoles,
             'xodimlar' => $xodimlar,
-            'regions' => $regions
+            'regions' => $regions,
+            'roles_superadmin' => $roles_superadmin
         ]);
     }
 
@@ -189,6 +191,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'password' => 'nullable|string|min:8|max:20',
             'roles' => 'required'
         ]);
@@ -199,7 +202,7 @@ class UserController extends Controller
             'region_id' => $request->region_id,
         ];
 
-        if(!empty($request->password)){
+        if (!empty($request->password)) {
             $data += [
                 'password' => Hash::make($request->password),
             ];
@@ -209,14 +212,14 @@ class UserController extends Controller
         $user->syncRoles($request->roles);
         $roluchun = $request->roles;
 
-        if(!empty($user->kafedralar_id)){
-            return redirect('/kafedralar')->with('status','User Updated Successfully with roles');
-        }else if($roluchun[0] == "admin"){
-            return redirect('/users')->with('status','User Updated Successfully with roles');
-        }else if($roluchun[0] == "laboratoriya"){
-            return redirect('/laboratory')->with('status','User Updated Successfully with roles');
-        }else{
-            return redirect('/users')->with('status','User Updated Successfully with roles');
+        if (!empty($user->kafedralar_id)) {
+            return redirect('/kafedralar')->with('status', 'User Updated Successfully with roles');
+        } else if ($roluchun[0] == "admin") {
+            return redirect('/users')->with('status', 'User Updated Successfully with roles');
+        } else if ($roluchun[0] == "laboratoriya") {
+            return redirect('/laboratory')->with('status', 'User Updated Successfully with roles');
+        } else {
+            return redirect('/users')->with('status', 'User Updated Successfully with roles');
         }
     }
 
@@ -225,7 +228,7 @@ class UserController extends Controller
         $user = User::findOrFail($userId);
         $user->delete();
 
-        return redirect()->back()->with('status','User Delete Successfully');
+        return redirect()->back()->with('status', 'User Delete Successfully');
     }
 
     public function profileview()
@@ -253,9 +256,9 @@ class UserController extends Controller
     public function searchuser(Request $request)
     {
         $querysearch = $request->input('query');
-        $user_search = User::where('name','like','%'.$querysearch.'%')
-                ->orWhere('email','like','%'.$querysearch.'%')
-                ->paginate(10);
+        $user_search = User::where('name', 'like', '%' . $querysearch . '%')
+            ->orWhere('email', 'like', '%' . $querysearch . '%')
+            ->paginate(10);
         return view('role-permission.user.search_results', compact('user_search'));
     }
 }

@@ -2,7 +2,6 @@
 
 @section('content')
 
-
 <div class="flex justify-between align-center mt-6 mb-6">
 
     <h2 class="intro-y text-lg font-medium">Ilmiy loyiha qo'shish</h2>
@@ -78,15 +77,11 @@
 
                         <option value="Tajriba-konstruktorlik">Tajriba-konstruktorlik</option>
 
-
-
-
                     </select>
                     @error('turi')
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
-
 
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -104,7 +99,6 @@
                         <option value="Yosh olimlar">Yosh olimlar</option>
 
                         <option value="Olima ayollar">Olima ayollar</option>
-
 
                         <option value="Xalqaro-qo‘shma">Xalqaro-qo‘shma</option>
 
@@ -136,7 +130,6 @@
                     @enderror
                 </div>
 
-
                 <div class="w-full col-span-6">
                     <label class="flex flex-col sm:flex-row"><span
                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihani amalga oshirish muddati
@@ -167,7 +160,6 @@
 
                         <option value="10">10</option>
 
-
                     </select><br>
                     @error('muddat')
                         <div class="error">{{ $message }}</div>
@@ -184,7 +176,6 @@
                     @error('bosh_sana')
                         <div class="error">{{ $message }}</div>
                     @enderror
-
                 </div>
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -196,7 +187,6 @@
                     @error('tug_sana')
                         <div class="error">{{ $message }}</div>
                     @enderror
-
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -208,7 +198,6 @@
                     @error('pan_yunalish')
                         <div class="error">{{ $message }}</div>
                     @enderror
-
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -242,7 +231,6 @@
                     @error('sanasi')
                         <div class="error">{{ $message }}</div>
                     @enderror
-
                 </div>
 
                 <div class="w-full col-span-6 ">
@@ -254,8 +242,6 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div>
-
-
 
                 <div class="w-full col-span-6 ">
                     <label class="flex flex-col sm:flex-row"> <span
@@ -314,7 +300,6 @@
 
                         <option value="Yo'q moliyalashtirilmagan">Yo'q moliyalashtirilmagan</option>
 
-
                     </select><br>
                     @error('moliyalashtirilganmi')
                         <div class="error">{{ $message }}</div>
@@ -336,7 +321,6 @@
                         <div class="error">{{ $message }}</div>
                     @enderror
                 </div> -->
-
 
                 <div class="w-full col-span-2 ">
                     <label class="flex flex-col sm:flex-row"> 2017-yil
@@ -404,8 +388,6 @@
         </div>
     </div>
 </div>
-
-
 
 <script>
     document.addEventListener('DOMContentLoaded', function () {
