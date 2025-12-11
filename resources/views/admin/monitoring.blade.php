@@ -195,9 +195,7 @@
                                     @foreach ($tashkilotlar as $region)
                                         <tr style="border-bottom: 1px solid #E6E6E6;">
                                             <td style="color:#1881D3; font-weight: 400;">
-                                                <a href="{{ route('tashkilot_region', ['id' => $region->id]) }}">
-                                                    {{ $region->name }}
-                                                </a>
+                                                {{ $region->name }}
                                             </td>
 
                                             <td style="text-align:center;">

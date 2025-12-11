@@ -219,11 +219,11 @@ class TashkilotController extends Controller
         $tashkilotlar = $tashkilotlarQuery->count();
 
         $doktarantura = Doktarantura::whereIn('tashkilot_id', $id_tash)->where('quarter', 2)->count();
-        $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id_tash)->count();
+        $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id_tash)->where('quarter', 2)->count();
         $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id_tash)->where('quarter', 2)->count();
         $asboblar_count = Asbobuskuna::where('is_active', 1)->whereIn('tashkilot_id', $id_tash)->count();
         $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id_tash)->where('quarter', 2)->count();
-        $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id_tash)->where('quarter', 2)->count();
+        $doktarantura_expert = Doktarantura::whereIn('tashkilot_id', $id_tash)->where('quarter', 2)->where('status', 1)->count();
         $loy_count = IlmiyLoyiha::where('is_active', 1)->whereIn('tashkilot_id', $id_tash)->count();
         $loy_expert = Tekshirivchilar::where('is_active', 1)->where('quarter', 2)->whereIn('tashkilot_id', $id_tash)->count();
 
