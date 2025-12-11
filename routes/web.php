@@ -123,6 +123,7 @@ Route::middleware('auth')->group(function () {
     Route::get('ilmiy-loyihalar', [IlmiyLoyihaController::class, "ilmiy_loyihalar_all"])->name("ilmiy_loyihalar_all.index");
     Route::get('ilmiy/{id}', [IlmiyLoyihaController::class, "ilmiy_loyihalar"])->name("ilmiy_loyihalar.index");
     Route::get('turi/{id}', [IlmiyLoyihaController::class, 'tashkilot_turi'])->name('tashkilot_turi');
+    Route::put('tashkilot/{id}/ilmiy-loyiha', [IlmiyLoyihaController::class, 'tashkilot_ilmiyloyiha'])->name('tashkilot_ilmiyloyiha');
     //end ilmiyloyiha
 
     //xujalik

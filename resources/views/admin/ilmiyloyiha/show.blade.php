@@ -88,10 +88,12 @@
                                         class="button w-24 ml-3 bg-theme-1 text-white">
                                         Tahrirlash
                                     </a>
-                                    {{-- <a href="javascript:;" data-target="#ilmiyloyiha-tashkilot-edit-modal"
+                                    @role('super-admin')
+                                    <a href="javascript:;" data-target="#ilmiyloyiha-tashkilot-edit-modal"
                                         data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
                                         Tashkilotni tahrirlash
-                                    </a> --}}
+                                    </a>
+                                    @endrole
                                 </div>
                             </div>
                             <tbody>
@@ -3507,7 +3509,7 @@
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                         <form id="ilmiyloyiha-tashkilot-edit-form-edit" method="POST"
-                            action="{{ route('ilmiyloyiha.update', $ilmiyloyiha->id) }}" class="validate-form"
+                            action="{{ route('tashkilot_ilmiyloyiha', $ilmiyloyiha->id) }}" class="validate-form"
                             enctype="multipart/form-data" novalidate="novalidate">
                             @csrf
                             @method('PUT')
@@ -3520,6 +3522,10 @@
                                     </select> 
                                 </div>
                             </div>
+                            <label>Status</label>
+                            <input type="text" name="is_active"
+                                                        value="{{ $ilmiyloyiha->is_active ?? '' }}"
+                                                        class="input w-full border mt-2" required="">
                         </form>
                     </div>
                 </div>

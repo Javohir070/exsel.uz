@@ -104,10 +104,10 @@ class IlmiyLoyihaController extends Controller
         $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->where('quarter', 2)->first();
         $tekshirivchilar = Tekshirivchilar::where('quarter', 2)->where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
         $quarter_1 = Tekshirivchilar::where('quarter', 1)->where('is_active', 1)->where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
-        
+
         $loyihaiqtisodi_1 = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->where('quarter', 1)->first();
         $intellektual_1 = Intellektual::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->where('quarter', 1)->first();
-        
+
         $data = null;
         $errorMessage = null;
 
@@ -507,6 +507,18 @@ class IlmiyLoyihaController extends Controller
         ]);
 
         Excel::import(new IlmiyLoyihaImport, $request->file('file'));
+
+        return back()->with('status', 'Fayl muvaffaqiyatli yuklandi!');
+    }
+
+    public function tashkilot_ilmiyloyiha(Request $request, $id)
+    {
+        $ilmi = IlmiyLoyiha::findOrFail($id);
+
+        $ilmi->update([
+            'tashkilot_id' => $request->tashkilot_id,
+            'is_active' => $request->is_active,
+        ]);
 
         return back()->with('status', 'Fayl muvaffaqiyatli yuklandi!');
     }
