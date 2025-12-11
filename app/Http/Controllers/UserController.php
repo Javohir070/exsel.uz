@@ -172,7 +172,7 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::where('is_active', 1)->pluck('name', 'name')->all();
-        $roles_superadmin = Role::where('is_active', 1)->pluck('name', 'name')->all();
+        $roles_superadmin = Role::pluck('name', 'name')->all();
         $userRoles = $user->roles->pluck('name', 'name')->all();
         $tashkilot_id = auth()->user()->tashkilot_id;
         $regions = Region::all();
