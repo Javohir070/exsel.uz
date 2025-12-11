@@ -102,7 +102,7 @@
                                             Ko'rish
                                         </a>
 
-                                        <form action="{{ route('tashkilot.destroy', ['tashkilot' => $tashkilots->id]) }}"
+                                        {{-- <form action="{{ route('tashkilot.destroy', ['tashkilot' => $tashkilots->id]) }}"
                                             method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                             <button type="submit" class="flex delete-action items-center text-theme-6">
                                                 @csrf
@@ -111,7 +111,7 @@
                                                     class="feather feather-check-square w-4 h-4 mr-1"></i>
                                                 O'chirish
                                             </button>
-                                        </form>
+                                        </form> --}}
                                         {{-- <form action="{{ route('xodimlar.deleteAll', ['tashkilot' => $tashkilots->id]) }}"
                                             method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                             <button type="submit" class="flex delete-action items-center text-theme-6">
