@@ -294,30 +294,30 @@ class HomeController extends Controller
             ->where('status', 1)
             ->paginate(20);
 
-        $tashkilotlarQuery = Tashkilot::with([
-            'ilmiyloyhalar' => fn($q) => $q->where('is_active', 1),
-            'asbobuskunalar' => fn($q) => $q->where('is_active', 1),
-            'stajirovkalar',
-            'doktaranturalar'
-        ])->get();
+        // $tashkilotlarQuery = Tashkilot::with([
+        //     'ilmiyloyhalar' => fn($q) => $q->where('is_active', 1),
+        //     'asbobuskunalar' => fn($q) => $q->where('is_active', 1),
+        //     'stajirovkalar',
+        //     'doktaranturalar'
+        // ])->get();
 
         // Guruhlash
-        $groups = [
-            'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
-            'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
-            'other' => $tashkilotlarQuery->where('tashkilot_turi', 'boshqa'),
-        ];
+        // $groups = [
+        //     'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
+        //     'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
+        //     'other' => $tashkilotlarQuery->where('tashkilot_turi', 'boshqa'),
+        // ];
 
-        $results = [];
+        // $results = [];
 
-        foreach ($groups as $key => $group) {
-            $results[$key] = [
-                'ilmiyloyhalar' => $group->sum(fn($t) => $t->ilmiyloyhalar->count()),
-                'stajirovkalar' => $group->sum(fn($t) => $t->stajirovkalar->count()),
-                'asbobuskunalar' => $group->sum(fn($t) => $t->asbobuskunalar->count()),
-                'doktarantura' => $group->sum(fn($t) => $t->doktaranturalar->count()),
-            ];
-        }
+        // foreach ($groups as $key => $group) {
+        //     $results[$key] = [
+        //         'ilmiyloyhalar' => $group->sum(fn($t) => $t->ilmiyloyhalar->count()),
+        //         'stajirovkalar' => $group->sum(fn($t) => $t->stajirovkalar->count()),
+        //         'asbobuskunalar' => $group->sum(fn($t) => $t->asbobuskunalar->count()),
+        //         'doktarantura' => $group->sum(fn($t) => $t->doktaranturalar->count()),
+        //     ];
+        // }
 
 
 
@@ -332,8 +332,8 @@ class HomeController extends Controller
             'doktarantura_expert' => $doktarantura_expert,
             'regions' => $regions,
             'tashkilotlar' => $tashkilotlar,
-            'tashkilotlarQuery' => $tashkilotlarQuery,
-            'results' => $results,
+            // 'tashkilotlarQuery' => $tashkilotlarQuery,
+            // 'results' => $results,
         ]);
 
 

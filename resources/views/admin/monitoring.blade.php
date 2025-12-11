@@ -224,51 +224,7 @@
                         {{ $tashkilotlar->links() }}
                     </div>
 
-                    <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
-                        <div class="intro-y block sm:flex items-center py-4">
-                            <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
-                                Tashkilotlar kesimida
-                            </h2>
-                        </div>
-                        <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
-                            <table class="table">
-                                <thead style="background: #F4F8FC;">
-                                    <tr>
-                                        <th class="whitespace-no-wrap">Tashkilot turi</th>
-                                        <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
-                                        <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
-                                        <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
-                                        <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy izlanuvchilar
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td style="color:#1881D3; font-weight: 400;">OTM</td>
-                                        <td style="text-align: center;">{{ $results['otm']['ilmiyloyhalar'] }}</td>
-                                        <td style="text-align: center;">{{ $results['otm']['stajirovkalar'] }}</td>
-                                        <td style="text-align: center;">{{ $results['otm']['asbobuskunalar'] }}</td>
-                                        <td style="text-align: center;">{{ $results['otm']['doktarantura'] }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="color:#1881D3; font-weight: 400;"> Ilmiy tashkilotlar</td>
-                                        <td style="text-align: center;">{{ $results['itm']['ilmiyloyhalar'] }}</td>
-                                        <td style="text-align: center;">{{ $results['itm']['stajirovkalar'] }}</td>
-                                        <td style="text-align: center;">{{ $results['itm']['asbobuskunalar'] }}</td>
-                                        <td style="text-align: center;">{{ $results['itm']['doktarantura'] }}</td>
-                                    </tr>
-                                    <tr>
-                                        <td style="color:#1881D3; font-weight: 400;">Boshqa tashkilotlar</td>
-                                        <td style="text-align: center;">{{ $results['other']['ilmiyloyhalar'] }}</td>
-                                        <td style="text-align: center;">{{ $results['other']['stajirovkalar'] }}</td>
-                                        <td style="text-align: center;">{{ $results['other']['asbobuskunalar'] }}</td>
-                                        <td style="text-align: center;">{{ $results['other']['doktarantura'] }}</td>
-                                    </tr>
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
 
 
                 </div>
