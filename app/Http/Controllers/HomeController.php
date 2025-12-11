@@ -259,23 +259,23 @@ class HomeController extends Controller
             }
             $region_id = Region::where('id', auth()->user()->region_id)->first();
             $id = $region_id->tashkilots()->pluck('id');
-            $doktarantura = Doktarantura::whereIn('tashkilot_id', $id)->count();
-            $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->count();
-            $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->count();
+            $doktarantura = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
+            $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
+            $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
             $asboblar_count = Asbobuskuna::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
-            $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id)->count();
-            $doktarantura_expert = Doktarantura::whereIn('tashkilot_id', $id)->where('status', 1)->count();
+            $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
+            $doktarantura_expert = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', 2)->where('status', 1)->count();
             $loy_count = IlmiyLoyiha::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
-            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
+            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('is_active', 1)->where('quarter', 2)->count();
         } else {
-            $doktarantura = Doktarantura::count();
-            $stajirovka_count = Stajirovka::count();
-            $stajirovka_expert = Stajirovkaexpert::count();
+            $doktarantura = Doktarantura::where('quarter', 2)->count();
+            $stajirovka_count = Stajirovka::where('quarter', 2)->count();
+            $stajirovka_expert = Stajirovkaexpert::where('quarter', 2)->count();
             $asboblar_count = Asbobuskuna::where('is_active', 1)->count();
-            $asboblar_expert = Asbobuskunaexpert::count();
-            $doktarantura_expert = Doktarantura::where('status', 1)->count();
+            $asboblar_expert = Asbobuskunaexpert::where('quarter', 2)->count();
+            $doktarantura_expert = Doktarantura::where('quarter', 2)->where('status', 1)->count();
             $loy_count = IlmiyLoyiha::where('is_active', 1)->count();
-            $loy_expert = Tekshirivchilar::where('is_active', 1)->count();
+            $loy_expert = Tekshirivchilar::where('quarter', 2)->where('is_active', 1)->count();
         }
 
         if ((auth()->user()->region_id != null)) {
@@ -297,14 +297,16 @@ class HomeController extends Controller
 
         $results = [];
 
-        foreach ($groups as $key => $group) {
-            $results[$key] = [
-                'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->where('is_active', 1)->count(),
-                'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->count(),
-                'asbobuskunalar' => $group->pluck('asbobuskunalar')->flatten()->where('is_active', 1)->count(),
-                'doktarantura' => $group->pluck('doktaranturalar')->flatten()->count(),
-            ];
-        }
+        // foreach ($groups as $key => $group) {
+        //     $results[$key] = [
+        //         'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->where('is_active', 1)->count(),
+        //         'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->count(),
+        //         'asbobuskunalar' => $group->pluck('asbobuskunalar')->flatten()->where('is_active', 1)->count(),
+        //         'doktarantura' => $group->pluck('doktaranturalar')->flatten()->count(),
+        //     ];
+        // }
+
+        // dd('dfs');
 
         return view("admin.monitoring", [
             'loy_count' => $loy_count,
