@@ -929,8 +929,7 @@
                                                             </td>
                                                             <td class="border border-b-2 ">
                                                                 <input type="number" name="yagonae_tah_soni"
-                                                                    value="{{ $data[0]['count'] ?? 0 }}"
-                                                                    class="input w-full border mt-2" required="" readonly>
+                                                                    class="input w-full border mt-2" required="">
                                                             </td>
                                                         </tr>
                                                         <tr>
