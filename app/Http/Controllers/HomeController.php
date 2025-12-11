@@ -250,7 +250,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function monitoring()
+    public function monitoring(Request $request)
     {
         if ((auth()->user()->region_id != null)) {
             $regions = Region::where('id', "=", auth()->user()->region_id)->get();
@@ -285,13 +285,25 @@ class HomeController extends Controller
         } else {
             $regions = Region::orderBy('order')->get();
         }
-        $tashkilotlar = Tashkilot::where('status', 1)->withCount([
-            'ilmiyloyhalar as ilmiyloyha_count' => fn($q) => $q->where('is_active', 1),
-            'stajirovkalar as stajirovka_count' => fn($q) => $q->where('quarter', 2),
-            'asbobuskunalar as asbob_count' => fn($q) => $q->where('is_active', 1),
-            'doktaranturalar as dok_count' => fn($q) => $q->where('quarter', 2),
-        ])
-         ->paginate(20);
+        $query = Tashkilot::where('status', 1)
+            ->withCount([
+                'ilmiyloyhalar as ilmiyloyha_count' => fn($q) => $q->where('is_active', 1),
+                'asbobuskunalar as asbob_count' => fn($q) => $q->where('is_active', 1),
+                'stajirovkalar as stajirovka_count' => fn($q) => $q->where('quarter', 2),
+                'doktaranturalar as dok_count_q2' => fn($q) => $q->where('quarter', 2),
+                'doktaranturalar as dok_count_status' => fn($q) => $q->where('status', 1),
+                'asbobuskunaexpert as asbobuskunaexpert_count' => fn($q) => $q->where('quarter', 2),
+                'tekshirivchilar as tekshirivchilar_count' => fn($q) => $q->where('quarter', 2),
+                'stajirovkaexperts as stajirovkaexperts_count' => fn($q) => $q->where('quarter', 2),
+            ]);
+
+        // ⭐ VILOYAT BO‘YICHA FILTR
+        if ($request->viloyat && $request->viloyat !== "all") {
+            $query->where('region_id', $request->viloyat);
+        }
+
+        $tashkilotlar = $query->paginate(20);
+
 
         // $tashkilotlarQuery = Tashkilot::with([
         //     'ilmiyloyhalar' => fn($q) => $q->where('is_active', 1),

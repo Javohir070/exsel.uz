@@ -174,10 +174,23 @@
 
 
                     <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
-                        <div class="intro-y block sm:flex items-center py-4">
+                        <div class="intro-y block sm:flex items-center py-4" style="display: flex;justify-content: space-between;">
                             <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
                                 Tashkilotlar kesimida
                             </h2>
+                            <div class="relative text-gray-700" >
+                                <select name="viloyat" value="{{ old('viloyat') }}"
+                                    class="science-sub-categoryviloyat input border w-full mt-2 ">
+                                    <option value="">Viloyatni tanlang</option>
+                                    <option value="all">Barchasi</option>
+                                    @foreach ($regions as $region)
+                                        <option value="{{ $region->id }}"
+                                            {{ request('viloyat') == $region->id ? 'selected' : '' }}>
+                                            {{ $region->oz }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
                             <table class="table">
@@ -199,19 +212,19 @@
                                             </td>
 
                                             <td style="text-align:center;">
-                                                {{ $region->ilmiyloyha_count }}
+                                                {{ $region->ilmiyloyha_count }}/{{ $region->tekshirivchilar_count }}
                                             </td>
 
                                             <td style="text-align:center;">
-                                                {{ $region->stajirovka_count }}
+                                                {{ $region->stajirovka_count }}/{{ $region->stajirovkaexperts_count }}
                                             </td>
 
                                             <td style="text-align:center;">
-                                                {{ $region->asbob_count }}
+                                                {{ $region->asbob_count }}/{{ $region->asbobuskunaexpert_count }}
                                             </td>
 
                                             <td style="text-align:center;">
-                                                {{ $region->dok_count }}
+                                                {{ $region->dok_count_q2 }}/{{ $region->dok_count_status }}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -219,7 +232,9 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ $tashkilotlar->links() }}
+                        <div style="padding: 20px;">
+                            {{ $tashkilotlar->appends(request()->all())->links() }}
+                        </div>
                     </div>
 
 
@@ -229,4 +244,16 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.querySelector('.science-sub-categoryviloyat').addEventListener('change', function() {
+            let viloyat = this.value;
+
+            // Sahifani GET so‘rov bilan qayta yuklash
+            let url = new URL(window.location.href);
+            url.searchParams.set('viloyat', viloyat);
+
+            window.location.href = url.toString();
+        });
+    </script>
 @endsection
