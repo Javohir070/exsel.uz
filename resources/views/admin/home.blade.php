@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    @role(['super-admin', 'Xujalik_shartnomalari', "Ishchi guruh azosi", 'Ekspert', 'Rahbar'])
+    @role(['super-admin', 'Xujalik_shartnomalari', 'Rahbar'])
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
             <div class="col-span-12 mt-8">
