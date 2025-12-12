@@ -58,7 +58,7 @@
                                             Masul biriktirish
                                         </a>
                                     @else
-                                        {{ $xodimlar->user->name }}
+                                        {{ $xodimlar->user->name ?? null }}
                                     @endif
                                 </a>
                             </td>

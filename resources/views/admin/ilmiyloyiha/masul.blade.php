@@ -2,7 +2,7 @@
 @section('content')
     <div class="flex justify-between align-center mt-6 mb-6">
 
-        <h2 class="intro-y text-lg font-medium">Mas'ullar </h2>
+        <h2 class="intro-y text-lg font-medium">Mas'ullar</h2>
 
 
         {{-- <div class="intro-x relative mr-3 sm:mr-6">
@@ -51,7 +51,7 @@
                                         <td>{{ $loop->index + 1 }}</td>
                                         <td>
                                             @foreach($user->ilmiyloyhalar as $k)
-                                                {{ $k->mavzusi ?? "bunga loyiha biriktirilmagan"}},
+                                                {{ $k->mavzusi}},
                                             @endforeach
                                         </td>
                                         <td>{{ $user->name }}</td>
@@ -63,16 +63,11 @@
                                                 @endforeach
                                             @endif
                                         </td>
-                                        <!-- <td>
+                                        <td>
                                             @can('update user')
-                                                <a href="{{ url('users/' . $user->id . '/edit') }}" class="btn btn-success">Edit</a>
+                                                <a href="{{ route('ilmiy_loyha_user_edit.index', ['id' => $user->id]) }}" class="btn btn-success">Edit</a>
                                             @endcan
-
-                                            @can('delete user')
-                                                <a href="{{ url('users/' . $user->id . '/delete') }}"
-                                                    class="btn btn-danger mx-2">Delete</a>
-                                            @endcan
-                                        </td> -->
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

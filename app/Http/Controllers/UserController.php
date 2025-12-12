@@ -80,6 +80,13 @@ class UserController extends Controller
         return view('role-permission.user.loyiha_rahbariroli', ['ilmiy_loyha' => $ilmiy_loyha]);
     }
 
+    public function ilmiy_loyha_masullar_edit($id)
+    {
+        $user = User::findOrFail($id);
+        $ilmiy_loyha = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->where('is_active', 1)->get();
+        return view('role-permission.user.loyiha_rahbariroli_edit', ['ilmiy_loyha' => $ilmiy_loyha, 'user' => $user]);
+    }
+
     public function store(Request $request)
     {
         $request->validate([
@@ -168,6 +175,52 @@ class UserController extends Controller
 
         return redirect('/ilmiyloyiha')->with('status', 'User Updated Successfully with roles');
     }
+
+    public function ilmiy_loyha_rahbari_edit(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|string|min:8|max:20',
+            'ilmiyloyha' => 'required|array',
+            'ilmiyloyha.*' => 'exists:ilmiy_loyihas,id' // jadval nomini tekshiring!
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $data = [
+            'name' => $request->name,
+            'email' => $request->email,
+        ];
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        // Filter out empty values (in case frontend yuborsa)
+        $selected = array_filter($request->ilmiyloyha, function ($v) {
+            return $v !== null && $v !== '';
+        });
+
+        \DB::transaction(function () use ($user, $data, $selected) {
+            // Update user
+            $user->update($data);
+
+            // 1) Remove user_id from loyihalardan, agar ular now NOT in selected
+            IlmiyLoyiha::where('user_id', $user->id)
+                ->whereNotIn('id', $selected ?: [0]) // agar array bo'sh bo'lsa whereNotIn bo'lmasligi uchun
+                ->update(['user_id' => null]);
+
+            // 2) Assign selected projects to this user
+            if (!empty($selected)) {
+                IlmiyLoyiha::whereIn('id', $selected)
+                    ->update(['user_id' => $user->id]);
+            }
+        });
+
+        return redirect('/ilmiyloyiha')->with('status', 'User Updated Successfully');
+    }
+
 
     public function edit(User $user)
     {

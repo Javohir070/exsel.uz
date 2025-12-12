@@ -140,7 +140,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/searchuser', [UserController::class, 'searchuser'])->name('searchuser');
     Route::resource('users', UserController::class);
     Route::post('/ilmiy-loyhagamasul', [UserController::class, 'ilmiy_loyha_rahbari'])->name('ilmiyLoyha_rahbari.index');
+    Route::put('/ilmiy-loyhagamasul-edit/{id}', [UserController::class, 'ilmiy_loyha_rahbari_edit'])->name('ilmiyLoyha_rahbari_edit.index');
     Route::get('/masullar-rahbarlar', [UserController::class, 'ilmiy_loyha_masullar'])->name('ilmiy_loyha_edit.index');
+    Route::get('/masullar-rahbarlar/{id}', [UserController::class, 'ilmiy_loyha_masullar_edit'])->name('ilmiy_loyha_user_edit.index');
     Route::get('/kafedra-rol', [UserController::class, 'kafedra_rol'])->name('kafedra_rol.index');
     Route::get('/asbobuskuna-rol', [UserController::class, 'asbobuskuna_rol'])->name('asbobuskuna_rol.index');
     Route::post('/kafedrarol', [UserController::class, 'kafedrarol_store'])->name('kafedrarol.store');

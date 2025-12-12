@@ -23,33 +23,28 @@
     border-radius: 4px">
         <!-- @if ($errors->any())
     <ul class="alert alert-warning">
-                            @foreach ($errors->all() as $error)
+                        @foreach ($errors->all() as $error)
     <li>{{ $error }}</li>
     @endforeach
-                        </ul>
+                    </ul>
     @endif -->
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <form id="science-paper-create-form" method="POST" action="{{ route('ilmiyLoyha_rahbari.index') }}"
+            <form id="science-paper-create-form" method="POST" action="{{ route('ilmiyLoyha_rahbari_edit.index', ['id' => $user->id]) }}"
                 class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                 @csrf
+                @method('PUT')
                 <div class="grid grid-cols-12 gap-2">
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> F.I.Sh
                         </label>
-                        <input type="text" name="name" class="input w-full border mt-2" required="">
-                        @error('name')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
+                        <input type="text" name="name" class="input w-full border mt-2" value="{{ old('name', $user->name) }}" required="">
                     </div>
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Email
                         </label>
-                        <input type="email" name="email" class="input w-full border mt-2" required="">
-                        @error('email')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
+                        <input type="email" name="email" class="input w-full border mt-2" value="{{ old('email', $user->email) }}" readonly>
                     </div>
 
                     <div class="w-full col-span-6">
@@ -57,10 +52,10 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Password
                         </label>
                         <input type="text" name="password" class="input w-full border mt-2" required="">
-                        @error('password')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
                     </div>
+                    @error('password')
+                        <div class="error">{{ $message }}</div>
+                    @enderror
 
                     <input type="hidden" name="role" class="input w-full border mt-2" value="Ilmiy_loyiha_rahbari">
 
@@ -68,7 +63,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy loyihalar
                         </label>
-                        <select name="ilmiyloyha[]" class="input border w-full mt-2 select2 w-full" required>
+                        <select name="ilmiyloyha[]" class="input border w-full mt-2 select2 w-full">
                             <option value=""> Ilmiy loyihalar tanlash</option>
                             @foreach ($ilmiy_loyha as $role)
                                 <option value="{{ $role->id }}">{{ $role->mavzusi }}</option>
@@ -77,8 +72,7 @@
                     </div>
 
                 </div>
-            </form>
-            <div class="px-5 pb-5 text-center mt-4">
+            </form><div class="px-5 pb-5 text-center mt-4">
                 <a href="#" class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
                 </a>
