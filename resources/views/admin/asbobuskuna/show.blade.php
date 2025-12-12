@@ -6,8 +6,8 @@
         <div class="flex justify-between align-center mt-6">
 
             <h2 class="intro-y text-lg font-medium">{{ $asbobuskuna->name }}</h2>
-            @role('super-admin')
-                <a href="{{ route('asbobuskunalar.index') }}" class="button w-24 bg-theme-1 text-white">
+            @role(['Ekspert', 'super-admin', 'Ishchi guruh azosi'])
+                <a href="{{ route('asbobu.index', ['id' =>$asbobuskuna->tashkilot->id ]) }}" class="button w-24 bg-theme-1 text-white">
                     Orqaga
                 </a>
             @endrole

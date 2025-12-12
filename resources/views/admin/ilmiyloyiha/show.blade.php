@@ -6,8 +6,8 @@
 
             <h2 class="intro-y text-lg font-medium">{{ $ilmiyloyiha->tashkilot->name }} </h2>
 
-            @role(['Ilmiy loyihalar boyicha masul', 'Ekspert'])
-                <a href="{{ route('ilmiyloyihalar.index') }}" class="button w-24 bg-theme-1 text-white">
+            @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'super-admin', 'Ishchi guruh azosi'])
+                <a href="{{ route('ilmiy_loyihalar.index', ['id' =>  $ilmiyloyiha->tashkilot->id ]) }}" class="button w-24 bg-theme-1 text-white">
                     Orqaga
                 </a>
             @endrole

@@ -6,8 +6,15 @@
 
             <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }}</h2>
 
+            @role(['Ekspert', 'super-admin', 'Ishchi guruh azosi'])
+               <a href="{{ url('search-dok?id=' . $tashkilot->region_id . '&type=' . $tashkilot->tashkilot_turi) }}"
+                    class="button w-24 bg-theme-1 text-white">
+                        Orqaga
+                    </a>
+            @endrole
+
         </div>
-        <div class="intro-y box px-4   ">
+        <div class="intro-y box px-4">
 
             <div class="nav-tabs flex flex-col sm:flex-row justify-center lg:justify-start">
                 <a data-toggle="tab" data-target="#ilmiy-izlanuvchilar" href="javascript:;"
