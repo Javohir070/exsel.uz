@@ -42,8 +42,8 @@
                     </tr>
 
                     <tr>
-                        <td class="border">{{ $akadem->receiver_organization_name }}</td>
-                        <td class="border">{{ $akadem->receiver_organization_region }}</td>
+                        <td class="border">{{ $akadem->sender_organization_name }}</td>
+                        <td class="border">{{ $akadem->sender_organization_region }}</td>
                     </tr>
 
                     <tr class="bg-gray-200">
@@ -52,8 +52,8 @@
                     </tr>
 
                     <tr>
-                        <td class="border">{{ $akadem->sender_organization_name }}</td>
-                        <td class="border">{{ $akadem->sender_organization_region }}</td>
+                        <td class="border">{{ $akadem->receiver_organization_name }}</td>
+                        <td class="border">{{ $akadem->receiver_organization_region }}</td>
                     </tr>
 
                 </tbody>
