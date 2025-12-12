@@ -1742,7 +1742,7 @@
                                                 <div class="flex items-center text-gray-700 mr-2">
                                                     <input type="radio" class="input border mr-2"
                                                         id="horizontal-radio-chris-evans" name="xarid_qilingan_xarid"
-                                                        value="ha">
+                                                        value="ha" required>
                                                     <label class="cursor-pointer select-none"
                                                         for="horizontal-radio-chris-evans">Ha</label>
                                                 </div>
