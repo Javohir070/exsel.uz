@@ -192,7 +192,7 @@
         @endrole
 
         @role('super-admin')
-            <div class="w-full mt-8 sm:mt-0 sm:ml-auto md:ml-6 ">
+            <div class="w-full mt-10 sm:mt-0 sm:ml-auto md:ml-10 ">
                 <form id="science-paper-create-form" method="POST"
                     action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" class="validate-form"
                     enctype="multipart/form-data" novalidate="novalidate">
@@ -214,13 +214,24 @@
                             </select>
                         </div>
 
+                        <div class="w-full col-span-6 ">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot nomi
+                            </label>
+                            <input type="text" name="name" value="{{ $tashkilot->name }}" class="input w-full border mt-2"
+                                required="">
+                            @error('name')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                    </div>
                         <div class="px-5 pb-5 text-center mt-8">
                             <button type="submit" form="science-paper-create-form"
                                 class="update-confirm button w-24 bg-theme-1 text-white">
                                 Saqlash
                             </button>
                         </div>
-                    </div>
                 </form>
             </div>
         @endrole

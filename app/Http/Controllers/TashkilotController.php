@@ -109,6 +109,7 @@ class TashkilotController extends Controller
         if($request->holati == 'rejected' || $request->holati == 'accepted' || $request->filled('region_id') ){
             $tashkilot->update([
                 'holati' => $request->holati ?? $tashkilot->holati,
+                'name' => $request->name ?? $tashkilot->name,
                 'region_id' => $request->region_id ?? $tashkilot->region_id
             ]);
             return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli saqlandi.');
