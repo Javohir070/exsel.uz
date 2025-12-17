@@ -34,14 +34,17 @@
                         class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"></i>
                 </div>
 
-                <div class="relative text-gray-700">
-                    <select class="input border w-full mt-2" name="region_id" id="region_id">
-                        <option value="">Viloyatlari</option>
-                        @foreach ($regions as $v)
-                            <option value="{{ $v->id }}" @selected(request('region_id') === $v->id)>{{ $v->oz }}</option>
-                        @endforeach
-                    </select>
-                </div>
+
+               @if (!(auth()->user()->region_id))
+               <div class="relative text-gray-700">
+                   <select class="input border w-full mt-2" name="region_id" id="region_id">
+                       <option value="">Viloyatlari</option>
+                       @foreach ($regions as $v)
+                           <option value="{{ $v->id }}" @selected(request('region_id') === $v->id)>{{ $v->oz }}</option>
+                       @endforeach
+                   </select>
+               </div>
+               @endif
 
                 <div class="relative text-gray-700">
                     <select name="turi" value="{{ old('turi') }}" class="input border w-full mt-2">

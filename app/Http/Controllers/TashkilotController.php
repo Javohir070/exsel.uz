@@ -163,6 +163,7 @@ class TashkilotController extends Controller
 
     public function tashkilotlar(Request $request)
     {
+        $region_id = auth()->user()->region_id ?? 'all';
         $query = Tashkilot::query();
 
         $regions = Region::orderBy('order')->get();
@@ -175,9 +176,13 @@ class TashkilotController extends Controller
             });
         }
 
-        if ($request->filled('region_id') && $request->region_id !== 'all') {
-            $query->where('region_id', $request->region_id);
-        }
+        if ($region_id !== 'all') {
+                // foydalanuvchi faqat o‘z regionini ko‘radi
+                $query->where('region_id', $region_id);
+            } elseif ($request->filled('region_id') && $request->region_id !== 'all') {
+                // admin yoki umumiy foydalanuvchi tanlagan region
+                $query->where('region_id', $request->region_id);
+            }
 
         if ($request->filled('turi') && $request->turi !== 'all') {
             $query->where('tashkilot_turi', 'like', '%' . $request->turi . '%');

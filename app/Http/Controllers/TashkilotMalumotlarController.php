@@ -38,9 +38,9 @@ class TashkilotMalumotlarController extends Controller
         $xujalik_count = Xujalik::where('tashkilot_id',$tashkilotmalumotlar)->count();
         $loyiha_bilan_t = IlmiybnTaminlanga::where('tashkilot_id',$tashkilotmalumotlar)->count();
         $loy_count = IlmiyLoyiha::where('is_active',1)->where('tashkilot_id',$tashkilotmalumotlar)->count();
-        $phd_count = Doktarantura::where('tashkilot_id',$tashkilotmalumotlar)->count();
+        $phd_count = Doktarantura::where('tashkilot_id',$tashkilotmalumotlar)->where('quarter', 2)->count();
 
-        $stajirovka_count = Stajirovka::where('tashkilot_id',$tashkilotmalumotlar)->count();
+        $stajirovka_count = Stajirovka::where('tashkilot_id',$tashkilotmalumotlar)->where('quarter', 2)->count();
         $asboblar_count = Asbobuskuna::where('is_active',1)->where('tashkilot_id',$tashkilotmalumotlar)->count();
 
 
