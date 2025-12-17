@@ -84,7 +84,8 @@ class TashkilotController extends Controller
             "boshqariv" => $request->boshqariv ?? null,
             "stir_raqami" => $request->stir_raqami ?? null,
             "bank" => $request->bank ?? null,
-            'hisob_raqam' => $request->hisob_raqam ?? null
+            'hisob_raqam' => $request->hisob_raqam ?? null,
+            'tashkilot_turi' => $request->tashkilot_turi ?? null,
         ]);
 
         return redirect('/tashkilotlar')->with('status', 'Ma\'lumotlar muvaffaqiyatli qo\'shildi.');
@@ -110,7 +111,11 @@ class TashkilotController extends Controller
             $tashkilot->update([
                 'holati' => $request->holati ?? $tashkilot->holati,
                 'name' => $request->name ?? $tashkilot->name,
-                'region_id' => $request->region_id ?? $tashkilot->region_id
+                'region_id' => $request->region_id ?? $tashkilot->region_id,
+                'ilmiyloyiha_is' => $request->ilmiyloyiha_is ?? $tashkilot->ilmiyloyiha_is,
+                'asbobuskuna_is' => $request->asbobuskuna_is ?? $tashkilot->asbobuskuna_is,
+                'doktarantura_is' => $request->doktarantura_is ?? $tashkilot->doktarantura_is,
+                'stajirovka_is' => $request->stajirovka_is ?? $tashkilot->stajirovka_is,
             ]);
             return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli saqlandi.');
         }else{

@@ -34,6 +34,10 @@ class Tashkilot extends Model
         "logo",
         'hisob_raqam',
         'holati',
+        'ilmiyloyiha_is',
+        'asbobuskuna_is',
+        'doktarantura_is',
+        'stajirovka_is',
     ];
 
     public function user()

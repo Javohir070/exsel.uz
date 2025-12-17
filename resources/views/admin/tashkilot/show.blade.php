@@ -187,6 +187,8 @@
                             Tasdiqlash
                         </button>
                     </form>
+                   
+
                 </div>
             @endif
         @endrole
@@ -219,8 +221,52 @@
                                     class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot nomi
                             </label>
                             <input type="text" name="name" value="{{ $tashkilot->name }}" class="input w-full border mt-2"
-                                required="">
+                                required="" >
                             @error('name')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6 ">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy loyiha
+                            </label>
+                            <input type="checkbox" name="ilmiyloyiha_is"  value="1" class="input w-full border mt-2"
+                                {{ old('ilmiyloyiha_is', $tashkilot->ilmiyloyiha_is) ? 'checked' : '' }}>
+                            @error('ilmiyloyiha_is')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6 ">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Asbob-uskuna
+                            </label>
+                            <input type="checkbox" name="asbobuskuna_is"  value="1" class="input w-full border mt-2"
+                                 {{ old('asbobuskuna_is', $tashkilot->asbobuskuna_is) ? 'checked' : '' }}>
+                            @error('asbobuskuna_is')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6 ">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy izlanuvchi
+                            </label>
+                            <input type="checkbox" name="doktarantura_is"  value="1" class="input w-full border mt-2"
+                                {{ old('doktarantura_is', $tashkilot->doktarantura_is) ? 'checked' : '' }}>
+                            @error('doktarantura_is')
+                                <div class="error">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="w-full col-span-6 ">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Stajorning
+                            </label>
+                            <input type="checkbox" name="stajirovka_is"  value="1" class="input w-full border mt-2"
+                               {{ old('stajirovka_is', $tashkilot->stajirovka_is) ? 'checked' : '' }}>
+                            @error('stajirovka_is')
                                 <div class="error">{{ $message }}</div>
                             @enderror
                         </div>

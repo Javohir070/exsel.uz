@@ -42,7 +42,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot turini tanlang
                         </label>
-                        <select name="tashkioy_turi" value="{{ old('tashkioy_turi') }}" class="input border w-full mt-2">
+                        <select name="tashkilot_turi" value="{{ old('tashkilot_turi') }}" class="input border w-full mt-2">
 
                             <option value="">Turi</option>
 
