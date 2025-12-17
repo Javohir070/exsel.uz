@@ -112,10 +112,10 @@ class TashkilotController extends Controller
                 'holati' => $request->holati ?? $tashkilot->holati,
                 'name' => $request->name ?? $tashkilot->name,
                 'region_id' => $request->region_id ?? $tashkilot->region_id,
-                'ilmiyloyiha_is' => $request->ilmiyloyiha_is ?? $tashkilot->ilmiyloyiha_is,
-                'asbobuskuna_is' => $request->asbobuskuna_is ?? $tashkilot->asbobuskuna_is,
-                'doktarantura_is' => $request->doktarantura_is ?? $tashkilot->doktarantura_is,
-                'stajirovka_is' => $request->stajirovka_is ?? $tashkilot->stajirovka_is,
+                'ilmiyloyiha_is' => $request->ilmiyloyiha_is ?? 0,
+                'asbobuskuna_is' => $request->asbobuskuna_is ?? 0,
+                'doktarantura_is' => $request->doktarantura_is ?? 0,
+                'stajirovka_is' => $request->stajirovka_is ?? 0,
             ]);
             return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli saqlandi.');
         }else{
