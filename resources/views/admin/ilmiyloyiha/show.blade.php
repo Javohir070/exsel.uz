@@ -149,14 +149,14 @@
                             </tr> --}}
                                 <tr>
                                     <td class="border">1.6.</td>
-                                    <td class="border">Loyihaning umumiy qiymati, ming soʻm</td>
+                                    <td class="border">Loyihaning umumiy qiymati, soʻm</td>
                                     <td class="border">
                                         {{ number_format((int) preg_replace('/\D/', '', $ilmiyloyiha->sum), 0, '.', ' ') }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td class="border">1.6.1.</td>
-                                    <td class="border">Joriy yil uchun ajratilgan mablagʻ, ming soʻm</td>
+                                    <td class="border">Joriy yil uchun ajratilgan mablagʻ, soʻm</td>
                                     <td class="border">{{ $ilmiyloyiha->joriy_yil_sum }}</td>
                                 </tr>
                                 {{-- <tr>
@@ -3017,22 +3017,24 @@
                                             </tr>
                                             <tr>
                                                 {{-- <td class="border">1.6.</td> --}}
-                                                <td class="border">Loyihaning umumiy qiymati, ming soʻm</td>
+                                                <td class="border">Loyihaning umumiy qiymati, soʻm</td>
                                                 <td class="border">
                                                     <input type="text" name="sum" id="sumInput1"
-                                                        oninput="formatNumber(this)"
+                                                        oninput="formatNumber(this, 'sum')"
                                                         value="{{ $ilmiyloyiha->sum ?? '' }}"
                                                         class="input w-full border mt-2" required="">
+                                                    <span id="sum" class="mt-2 text-black-600"></span> so'm
                                                 </td>
                                             </tr>
                                             <tr>
                                                 {{-- <td class="border">1.6.1.</td> --}}
-                                                <td class="border">Joriy yil uchun ajratilgan mablagʻ, ming soʻm</td>
+                                                <td class="border">Joriy yil uchun ajratilgan mablagʻ, soʻm</td>
                                                 <td class="border">
                                                     <input type="text" name="joriy_yil_sum" id="sumInput1"
-                                                        oninput="formatNumber(this)"
+                                                        oninput="formatNumber(this, 'joriy_yil_sum')"
                                                         value="{{ $ilmiyloyiha->joriy_yil_sum ?? '' }}"
                                                         class="input w-full border mt-2" required="">
+                                                    <span id="joriy_yil_sum" class="mt-2 text-black-600"></span> so'm
                                                 </td>
                                             </tr>
                                             <tr>
