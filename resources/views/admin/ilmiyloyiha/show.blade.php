@@ -1582,7 +1582,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'mehnat_haq_r_creat')"
                                                     name="mehnat_haq_r" value="{{ $loyihaiqtisodi_1->mehnat_haq_r ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="mehnat_haq_r_creat" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="mehnat_haq_r_creat" class="mt-2 text-black-600"></span> so'm
                                                 @error('mehnat_haq_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1591,7 +1591,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'mehnat_haq_a_create')"
                                                     name="mehnat_haq_a" value="{{ $loyihaiqtisodi_1->mehnat_haq_a ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="mehnat_haq_a_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="mehnat_haq_a_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('mehnat_haq_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1605,7 +1605,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'xizmat_saf_r_create')"
                                                     name="xizmat_saf_r" value="{{ $loyihaiqtisodi_1->xizmat_saf_r ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="xizmat_saf_r_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="xizmat_saf_r_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('xizmat_saf_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1614,7 +1614,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'xizmat_saf_a_create')"
                                                     name="xizmat_saf_a" value="{{ $loyihaiqtisodi_1->xizmat_saf_a ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="xizmat_saf_a_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="xizmat_saf_a_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('xizmat_saf_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1630,7 +1630,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'xarid_xaraja_r_create')"
                                                     name="xarid_xaraja_r" value="{{ $loyihaiqtisodi_1->xarid_xaraja_r ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="xarid_xaraja_r_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="xarid_xaraja_r_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('xarid_xaraja_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1639,7 +1639,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'xarid_xaraja_a_create')"
                                                     name="xarid_xaraja_a" value="{{ $loyihaiqtisodi_1->xarid_xaraja_a ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="xarid_xaraja_a_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="xarid_xaraja_a_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('xarid_xaraja_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1655,7 +1655,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'mat_butlovchi_r_create')"
                                                     name="mat_butlovchi_r" value="{{ $loyihaiqtisodi_1->mat_butlovchi_r ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="mat_butlovchi_r_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="mat_butlovchi_r_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('mat_butlovchi_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1664,7 +1664,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'mat_butlovchi_a_create')"
                                                     name="mat_butlovchi_a" value="{{ $loyihaiqtisodi_1->mat_butlovchi_a ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="mat_butlovchi_a_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="mat_butlovchi_a_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('mat_butlovchi_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1680,7 +1680,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'jalb_etilgan_r_create')"
                                                     name="jalb_etilgan_r" value="{{ $loyihaiqtisodi_1->jalb_etilgan_r ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="jalb_etilgan_r_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="jalb_etilgan_r_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('jalb_etilgan_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1689,7 +1689,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'jalb_etilgan_a_create')"
                                                     name="jalb_etilgan_a" value="{{ $loyihaiqtisodi_1->jalb_etilgan_a ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="jalb_etilgan_a_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="jalb_etilgan_a_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('jalb_etilgan_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1703,7 +1703,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'boshqa_xarajat_r_create')"
                                                     name="boshqa_xarajat_r" value="{{ $loyihaiqtisodi_1->boshqa_xarajat_r ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="boshqa_xarajat_r_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="boshqa_xarajat_r_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('boshqa_xarajat_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1712,7 +1712,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'boshqa_xarajat_a_create')"
                                                     name="boshqa_xarajat_a" value="{{ $loyihaiqtisodi_1->boshqa_xarajat_a ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="boshqa_xarajat_a_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="boshqa_xarajat_a_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('boshqa_xarajat_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1729,7 +1729,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'tashustama_xarajat_r_create')"
                                                     name="tashustama_xarajat_r" value="{{ $loyihaiqtisodi_1->tashustama_xarajat_r ?? null }}"
                                                     class="input w-full border mt-2" required="tashustama_xarajat_r">
-                                                    <span id="tashustama_xarajat_r_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="tashustama_xarajat_r_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('tashustama_xarajat_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1738,7 +1738,7 @@
                                                 <input type="text" id="sumInput1" oninput="formatNumber(this, 'tashustama_xarajat_a_create')"
                                                     name="tashustama_xarajat_a" value="{{ $loyihaiqtisodi_1->tashustama_xarajat_a ?? null }}"
                                                     class="input w-full border mt-2" required="tashustama_xarajat_a">
-                                                    <span id="tashustama_xarajat_a_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="tashustama_xarajat_a_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('tashustama_xarajat_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1822,7 +1822,7 @@
                                                     oninput="formatNumber(this, 'uzlashtirilishi_summasi_create')"
                                                     value="{{ $loyihaiqtisodi_1->uzlashtirilishi_summasi ?? null }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="uzlashtirilishi_summasi_create" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="uzlashtirilishi_summasi_create" class="mt-2 text-black-600"></span> so'm
                                                 @error('uzlashtirilishi_summasi')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1941,7 +1941,7 @@
                                                     name="mehnat_haq_r"
                                                     value="{{ $loyihaiqtisodi->mehnat_haq_r ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="mehnat_haq_r" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="mehnat_haq_r" class="mt-2 text-black-600"></span> so'm
                                                 @error('mehnat_haq_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1951,7 +1951,7 @@
                                                     name="mehnat_haq_a"
                                                     value="{{ $loyihaiqtisodi->mehnat_haq_a ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="mehnat_haq_a" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="mehnat_haq_a" class="mt-2 text-black-600"></span> so'm
                                                 @error('mehnat_haq_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1966,7 +1966,7 @@
                                                     name="xizmat_saf_r"
                                                     value="{{ $loyihaiqtisodi->xizmat_saf_r ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="xizmat_saf_r" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="xizmat_saf_r" class="mt-2 text-black-600"></span> so'm
                                                 @error('xizmat_saf_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1976,7 +1976,7 @@
                                                     name="xizmat_saf_a"
                                                     value="{{ $loyihaiqtisodi->xizmat_saf_a ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="xizmat_saf_a" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="xizmat_saf_a" class="mt-2 text-black-600"></span> so'm
                                                 @error('xizmat_saf_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -1993,7 +1993,7 @@
                                                     name="xarid_xaraja_r"
                                                     value="{{ $loyihaiqtisodi->xarid_xaraja_r ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="xarid_xaraja_r" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="xarid_xaraja_r" class="mt-2 text-black-600"></span> so'm
                                                 @error('xarid_xaraja_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -2003,7 +2003,7 @@
                                                     name="xarid_xaraja_a"
                                                     value="{{ $loyihaiqtisodi->xarid_xaraja_a ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="xarid_xaraja_a" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="xarid_xaraja_a" class="mt-2 text-black-600"></span> so'm
                                                 @error('xarid_xaraja_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -2020,7 +2020,7 @@
                                                     name="mat_butlovchi_r"
                                                     value="{{ $loyihaiqtisodi->mat_butlovchi_r ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="mat_butlovchi_r" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="mat_butlovchi_r" class="mt-2 text-black-600"></span> so'm
                                                 @error('mat_butlovchi_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -2030,7 +2030,7 @@
                                                     name="mat_butlovchi_a"
                                                     value="{{ $loyihaiqtisodi->mat_butlovchi_a ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="mat_butlovchi_a" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="mat_butlovchi_a" class="mt-2 text-black-600"></span> so'm
                                                 @error('mat_butlovchi_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -2047,7 +2047,7 @@
                                                     name="jalb_etilgan_r"
                                                     value="{{ $loyihaiqtisodi->jalb_etilgan_r ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="jalb_etilgan_r" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="jalb_etilgan_r" class="mt-2 text-black-600"></span> so'm
                                                 @error('jalb_etilgan_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -2057,7 +2057,7 @@
                                                     name="jalb_etilgan_a"
                                                     value="{{ $loyihaiqtisodi->jalb_etilgan_a ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="jalb_etilgan_a" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="jalb_etilgan_a" class="mt-2 text-black-600"></span> so'm
                                                 @error('jalb_etilgan_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -2072,7 +2072,7 @@
                                                     name="boshqa_xarajat_r"
                                                     value="{{ $loyihaiqtisodi->boshqa_xarajat_r ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="boshqa_xarajat_r" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="boshqa_xarajat_r" class="mt-2 text-black-600"></span> so'm
                                                 @error('boshqa_xarajat_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -2082,7 +2082,7 @@
                                                     name="boshqa_xarajat_a"
                                                     value="{{ $loyihaiqtisodi->boshqa_xarajat_a ?? 0 }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="boshqa_xarajat_a" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="boshqa_xarajat_a" class="mt-2 text-black-600"></span> so'm
                                                 @error('boshqa_xarajat_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -2100,7 +2100,7 @@
                                                     name="tashustama_xarajat_r"
                                                     value="{{ $loyihaiqtisodi->tashustama_xarajat_r ?? 0 }}"
                                                     class="input w-full border mt-2" required="tashustama_xarajat_r">
-                                                    <span id="tashustama_xarajat_r" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="tashustama_xarajat_r" class="mt-2 text-black-600"></span> so'm
                                                 @error('tashustama_xarajat_r')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -2110,7 +2110,7 @@
                                                     name="tashustama_xarajat_a"
                                                     value="{{ $loyihaiqtisodi->tashustama_xarajat_a ?? 0 }}"
                                                     class="input w-full border mt-2" required="tashustama_xarajat_a">
-                                                    <span id="tashustama_xarajat_a" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="tashustama_xarajat_a" class="mt-2 text-black-600"></span> so'm
                                                 @error('tashustama_xarajat_a')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
@@ -2200,7 +2200,7 @@
                                                     oninput="formatNumber(this, 'uzlashtirilishi_summasi')"
                                                     value="{{ $loyihaiqtisodi->uzlashtirilishi_summasi ?? '' }}"
                                                     class="input w-full border mt-2" required="">
-                                                    <span id="uzlashtirilishi_summasi" class="mt-2 text-red-600"></span> ming so'm
+                                                    <span id="uzlashtirilishi_summasi" class="mt-2 text-black-600"></span> so'm
                                                 @error('uzlashtirilishi_summasi')
                                                     <div class="error">{{ $message }}</div>
                                                 @enderror
