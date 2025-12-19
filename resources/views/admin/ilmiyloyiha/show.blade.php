@@ -84,10 +84,12 @@
                             <div
                                 style="display: flex;justify-content: end; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
                                 <div style="text-align: center;">
+                                    @if (is_null($tekshirivchilar))
                                     <a href="javascript:;" data-target="#ilmiyloyiha-paper-edit-modal" data-toggle="modal"
                                         class="button w-24 ml-3 bg-theme-1 text-white">
                                         Tahrirlash
                                     </a>
+                                    @endif
                                     @role('super-admin')
                                     <a href="javascript:;" data-target="#ilmiyloyiha-tashkilot-edit-modal"
                                         data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
@@ -304,23 +306,25 @@
                                             xaqida ma’lumot
                                         </div> --}}
                                             <div style="text-align: center;">
-                                                @if (empty($intellektual->id))
-                                                    <a href="javascript:;" data-target="#intellektual-paper-create-modal"
-                                                        data-toggle="modal"
-                                                        class="button w-24 ml-3 bg-theme-1 text-white">
-                                                        Qo'shish
-                                                    </a>
-                                                @else
-                                                    {{-- <a
-                                                    href="{{ route('intellektual.edit', ['intellektual' => $intellektual->id])}}"
-                                                    class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
-                                                    Tahrirlash
-                                                </a> --}}
-                                                    <a href="javascript:;" data-target="#intellektual-paper-edit-modal"
-                                                        data-toggle="modal"
-                                                        class="button w-24 ml-3 bg-theme-1 text-white">
+                                                @if (is_null($tekshirivchilar))
+                                                    @if (empty($intellektual->id))
+                                                        <a href="javascript:;" data-target="#intellektual-paper-create-modal"
+                                                            data-toggle="modal"
+                                                            class="button w-24 ml-3 bg-theme-1 text-white">
+                                                            Qo'shish
+                                                        </a>
+                                                    @else
+                                                        {{-- <a
+                                                        href="{{ route('intellektual.edit', ['intellektual' => $intellektual->id])}}"
+                                                        class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                                         Tahrirlash
-                                                    </a>
+                                                    </a> --}}
+                                                        <a href="javascript:;" data-target="#intellektual-paper-edit-modal"
+                                                            data-toggle="modal"
+                                                            class="button w-24 ml-3 bg-theme-1 text-white">
+                                                            Tahrirlash
+                                                        </a>
+                                                    @endif
                                                 @endif
                                                 {{-- <a href="" class="button w-24 bg-theme-6 text-white">
                                                 O'chirish
@@ -603,21 +607,23 @@
                                 {{-- <div style="font-size:18px;font-weight: 400;"> {{$asbobuskuna->name}} xaqida ma’lumot
                             </div> --}}
                                 <div style="text-align: center;">
-                                    @if (empty($loyihaiqtisodi->id))
-                                        <a href="javascript:;" data-target="#science-paper-create-modal"
-                                            data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
-                                            Qo'shish
-                                        </a>
-                                    @else
-                                        {{-- <a
-                                        href="{{ route('loyihaiqtisodi.edit', ['loyihaiqtisodi' => $loyihaiqtisodi->id])}}"
-                                        class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
-                                        Tahrirlash
-                                    </a> --}}
-                                        <a href="javascript:;" data-target="#science-paper-edit-modal"
-                                            data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
+                                    @if (is_null($tekshirivchilar))
+                                        @if (empty($loyihaiqtisodi->id))
+                                            <a href="javascript:;" data-target="#science-paper-create-modal"
+                                                data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
+                                                Qo'shish
+                                            </a>
+                                        @else
+                                            {{-- <a
+                                            href="{{ route('loyihaiqtisodi.edit', ['loyihaiqtisodi' => $loyihaiqtisodi->id])}}"
+                                            class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                             Tahrirlash
-                                        </a>
+                                        </a> --}}
+                                            <a href="javascript:;" data-target="#science-paper-edit-modal"
+                                                data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
+                                                Tahrirlash
+                                            </a>
+                                        @endif
                                     @endif
                                     {{-- <a href="" class="button w-24 bg-theme-6 text-white">
                                     O'chirish
@@ -1282,6 +1288,7 @@
                     <div class="px-5">
                         <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center"
                             style="background: white; border-radius: 20px">
+                            @if (is_null($tekshirivchilar))
                             <div class="w-full sm:mt-0 sm:ml-auto md:ml-0">
                                 <form id="science-qidirish-edit-form" method="GET"
                                     action="{{ route('ilmiyloyiha.show', $ilmiyloyiha->id) }}" class="validate-form"
@@ -1316,6 +1323,7 @@
                                     </div>
                                 </form>
                             </div>
+                            @endif
 
                         </div>
                         @if ($data != null)

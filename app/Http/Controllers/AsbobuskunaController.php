@@ -267,7 +267,7 @@ class AsbobuskunaController extends Controller
     {
         $asbobuskunaexpert = Asbobuskunaexpert::where('quarter', 2)->where('asbobuskuna_id', $asbobuskuna->id)->get();
         $quarter_1 = Asbobuskunaexpert::where('quarter', 1)->where('asbobuskuna_id', $asbobuskuna->id)->first();
-        
+       
         return view('admin.asbobuskuna.show', [
             'asbobuskuna' => $asbobuskuna, 
             'asbobuskunaexpert' => $asbobuskunaexpert, 
