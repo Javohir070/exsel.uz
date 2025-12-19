@@ -446,6 +446,7 @@ class IlmiyLoyihaController extends Controller
             $query->where('turi', 'like', '%' . $turi . '%');
         }
 
+
         if ($request->filled('status') && $request->status !== 'all') {
             $query->where('status', '=', $request->status);
         }
@@ -456,6 +457,7 @@ class IlmiyLoyihaController extends Controller
                 $q->where('region_id', $region_id);
             });
         }
+
 
         $page = $request->input('page_size', 20);
 
