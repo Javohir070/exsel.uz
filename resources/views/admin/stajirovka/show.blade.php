@@ -50,6 +50,7 @@
                             <tbody>
                                 <div
                                     style="display: flex;justify-content: end; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
+                                @if ($stajirovkaexpert->count() == 0)
                                     @can('tashkilotrahbari delete edit')
                                         <div style="text-align: end;">
                                             <a href="{{ route('stajirovka.edit', ['stajirovka' => $stajirovka->id]) }}"
@@ -58,6 +59,7 @@
                                             </a>
                                         </div>
                                     @endcan
+                                @endif
                                 </div>
                                 <tr>
                                     <th class=" border" style="width: 100%; font-size:16px;text-align:center;"
@@ -319,7 +321,7 @@
                 @endif
 
                 <div class="tab-content__pane" id="add-expert">
-                    @role(['Ekspert', 'Stajirovka boyicha masul', 'Ishchi guruh azosi', 'Rahbar'])
+                    @role(['Ekspert', 'Stajirovka boyicha masul', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
                         @forelse ($stajirovkaexpert as $tekshirivchilar)
                             <div class="overflow-x-auto"
                                 style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
