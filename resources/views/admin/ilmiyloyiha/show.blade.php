@@ -46,6 +46,7 @@
                     class="py-4 sm:mr-8 flex items-center {{ $data || $create || $errorMessage ? 'active' : '' }}">
                     LOYIHA IJROCHILARI
                 </a>
+            @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'super-admin', 'Rahbar'])
                 @if ($quarter_1 != null)
                     <a data-toggle="tab" data-target="#old-expert" href="javascript:;"
                         class="py-4 sm:mr-8 flex items-center w-24 ">
@@ -55,6 +56,7 @@
                 <a data-toggle="tab" data-target="#add-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center ">
                     EKSPERT XULOSASI
                 </a>
+            @endrole
             </div>
         </div>
 

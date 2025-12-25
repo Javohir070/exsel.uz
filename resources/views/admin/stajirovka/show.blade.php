@@ -24,6 +24,7 @@
                     class="py-4 sm:mr-8 flex items-center active">
                     Stajorning ma’lumoti
                 </a>
+                @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'super-admin', 'Rahbar'])
                 @if ($quarter_1 != null)
                 <a data-toggle="tab" data-target="#old-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center">
                     EKSPERT XULOSASI (2025-1)
@@ -32,6 +33,7 @@
                 <a data-toggle="tab" data-target="#add-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center ">
                     EKSPERT XULOSASI
                 </a>
+                @endrole
             </div>
         </div>
 
