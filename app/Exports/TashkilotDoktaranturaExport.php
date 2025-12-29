@@ -38,6 +38,7 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings
                     "Yakka tartibdagi reja tasdiqlanganligi" => $doktarantura->reja_t,
                     "Yakka tartibdagi rejani bajarganligi" => $doktarantura->reja_b,
                     "Monitoring natijasi kiritilganligi" => $doktarantura->monitoring_natijasik,
+                    "Himoya holati" => $doktarantura->himoya_holati,
                 ];
             });
         }
@@ -61,6 +62,7 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings
                 "Yakka tartibdagi reja tasdiqlanganligi",
                 "Yakka tartibdagi rejani bajarganligi",
                 "Monitoring natijasi kiritilganligi",
+                'Himoya holati',
             ];
         }
 }

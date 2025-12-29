@@ -13,7 +13,7 @@ class DoktaranturaexpertExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Doktaranturaexpert::with('tashkilot')->get()->map(function($doktaranturaexpert){
+        return Doktaranturaexpert::with('tashkilot')->where('quarter', 2)->get()->map(function($doktaranturaexpert){
             return [
                 'id' => $doktaranturaexpert->id,
                 "Tashkilot nomi" => $doktaranturaexpert->tashkilot->name,
