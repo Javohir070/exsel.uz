@@ -18,8 +18,8 @@ class LoyihalarToMonitoringExport implements FromCollection, WithHeadings
             return [
                 'id' => $tekshirivchilar->ilmiyLoyihalar->id,
                 "Tashkilot nomi" => $tekshirivchilar->tashkilot->name,
-                "Turi" => $tekshirivchilar->tashkilot->tashkilot_turi,
-                "region_id" => $tekshirivchilar->tashkilot->region_id,
+                "Turi" => $tekshirivchilar->tashkilot->tashkilot_turi ?? null,
+                "region_id" => $tekshirivchilar->tashkilot->region_id ?? null,
                 'Loyiha mavzusi' => $tekshirivchilar->ilmiyLoyihalar->mavzusi,
                 'Loyiha turi' => $tekshirivchilar->ilmiyLoyihalar->turi,
                 'Loyiha shifri' => $tekshirivchilar->ilmiyLoyihalar->raqami,

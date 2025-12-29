@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\AkademExpertExport;
 use App\Http\Requests\StoreAkademExpertRequest;
 use App\Http\Requests\UpdateAkademExpertRequest;
 use App\Models\Akadem;
 use App\Models\AkademExpert;
 use App\Models\User;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AkademExpertController extends Controller
 {
@@ -109,5 +111,13 @@ class AkademExpertController extends Controller
         AkademExpert::find($id)->delete();
 
         return redirect()->back()->with('status', 'Malumot o\'chirildi');
+    }
+
+    public function exportAkademExpert()
+    {
+        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+
+        return Excel::download(new AkademExpertExport(), 'monitoring_akadem.xlsx');
     }
 }

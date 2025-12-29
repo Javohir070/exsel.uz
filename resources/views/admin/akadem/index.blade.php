@@ -17,14 +17,17 @@
                 <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
             </div>
 
-            @can('super-admin')
+            @role('super-admin')
                 <div>
                     <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                         class="button w-24 ml-3 bg-theme-1 text-white">
                         Import
                     </a>
+                    <a href="{{ route('exportAkademExpert') }}" class="button ml-3 w-24 bg-theme-1 text-white">
+                        Export xulosa
+                    </a>
                 </div>
-            @endcan
+            @endrole
 
         </div>
         <div class="grid grid-cols-12 gap-6 ">
@@ -73,8 +76,7 @@
 
                                         <a class="flex science-update-action items-center mr-3"
                                             href="{{ route('akadem.show', ['akadem' => $tashkilots->id]) }}" data-id="2978"
-                                            data-name="sdfd"
-                                            data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
+                                            data-name="sdfd" data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
                                             data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66"
                                             data-date="None" data-doi="" data-publisher="" data-description="None"
                                             data-authors-count="None" data-toggle="modal"
