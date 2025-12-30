@@ -15,7 +15,7 @@ class DoktaranturaexpertExport implements FromCollection, WithHeadings
     {
         return Doktaranturaexpert::with('tashkilot')->where('quarter', 2)->get()->map(function($doktaranturaexpert){
             return [
-                'id' => $doktaranturaexpert->id,
+                'id' => $doktaranturaexpert->tashkilot->id,
                 "Tashkilot nomi" => $doktaranturaexpert->tashkilot->name,
                 "Turi" => $doktaranturaexpert->tashkilot->tashkilot_turi,
                 "region_id" => $doktaranturaexpert->tashkilot->region_id,

@@ -56,6 +56,16 @@
                             <a href="{{ route("ilmiyloyihalar.index") }}" class="button w-24 bg-theme-1 text-white mr-4">
                                 Orqaga
                             </a>
+                            @role('super-admin')
+                             <a href="{{ route('monitoring_exportintellektual') }}"
+                                                    class="button ml-3 bg-theme-1 text-white">
+                                                    Export xulosa intellektual
+                                                </a>
+                            <a href="{{ route('monitoring_exportilmiy') }}"
+                                                    class="button ml-3 bg-theme-1 text-white">
+                                                    Export xulosa ilmiy loyiha
+                                                </a>
+                            @endrole
                         </div>
                         <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
                             <table class="table">
