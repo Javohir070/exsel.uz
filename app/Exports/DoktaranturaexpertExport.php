@@ -41,6 +41,7 @@ class DoktaranturaexpertExport implements FromCollection, WithHeadings
         });
     }
 
+    
 
     public function headings(): array
       {

@@ -13,7 +13,7 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return IlmiyLoyiha::with('tashkilot', 'laboratory')->get()->map(function ($ilmiyloyhalar){
+        return IlmiyLoyiha::with('tashkilot', 'laboratory', 'tekshirivchilars')->where('is_active', 1)->get()->map(function ($ilmiyloyhalar){
             return [
                 'id' => $ilmiyloyhalar->id,
                 'Tashkilot id' => $ilmiyloyhalar->tashkilot->id,
@@ -50,6 +50,7 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
                 'Status' => $ilmiyloyhalar->status ?? 0,
                 // 'laboratory' => $ilmiyloyhalar->laboratory->id ?? 0,
                 // 'laboratory nomi' => $ilmiyloyhalar->laboratory->name ?? 0,
+                'monitoring' => $ilmiyloyhalar->tekshirivchilars->where('quarter', 2)->count(),
 
             ];
         });
@@ -93,6 +94,7 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
             'Status',
         //     'laboratory',
         //    'laboratory nomi',
+            'monitoring',
         ];
     }
 }

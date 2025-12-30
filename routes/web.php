@@ -158,6 +158,8 @@ Route::middleware('auth')->group(function () {
     Route::put('ilmiy-izlanuvchi/{id}/edit', [DoktaranturaController::class, 'update'])->name('ilmiyIzlanuvchi_edit');
     Route::get('doktaranturalar', [DoktaranturaController::class, 'doktaranturalar'])->name('doktaranturalar');
     Route::get('/doktarantura/export', [DoktaranturaController::class, 'exportDoktaranturaexpert'])->name('exportDoktaranturaexpert');
+    Route::get('/asbobuskunaexpert/export', [AsbobuskunaexpertController::class, 'exportAsbobuskunaexpert'])->name('exportAsbobuskunaexpert');
+    Route::get('/akademik/export', [AkademController::class, 'exportAkadem'])->name('exportAkadem');
     Route::get('/akadem/export', [AkademExpertController::class, 'exportAkademExpert'])->name('exportAkademExpert');
     Route::get('/doktarantura/{id}/export', [DoktaranturaController::class, 'exportDoktarantura']);
     //end DoktaranturaController

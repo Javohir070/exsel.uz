@@ -125,6 +125,6 @@ class Tashkilot extends Model
 
     public function doktaranturaexperts()
     {
-        return $this->hasOne(Doktaranturaexpert::class);
+        return $this->hasMany(Doktaranturaexpert::class);
     }
 }

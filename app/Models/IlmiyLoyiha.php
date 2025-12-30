@@ -121,7 +121,7 @@ class IlmiyLoyiha extends Model
 
     public function tekshirivchilars()
     {
-        return $this->hasOne(Tekshirivchilar::class);
+        return $this->hasMany(Tekshirivchilar::class);
     }
 
     public function kafedralar()

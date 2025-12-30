@@ -10,12 +10,24 @@ use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Log;
+use App\Exports\AkademExpert as AkademExpertExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class AkademController extends Controller
 {
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    
+    public function exportAkadem()
+    {
+        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+
+        return Excel::download(new AkademExpertExport(), 'monitoring_asbob_uskuna.xlsx');
     }
 
     public function index(Request $request)
@@ -151,4 +163,5 @@ class AkademController extends Controller
     {
         //
     }
+
 }

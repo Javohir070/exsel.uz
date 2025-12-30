@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Asbobuskuna;
 use App\Models\Asbobuskunaexpert;
+use App\Exports\AsbobuskunaexpertMonitoringExpert;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\User;
 use App\Notifications\AsbobuskunaNotification;
 use Illuminate\Http\Request;
@@ -100,5 +102,13 @@ class AsbobuskunaexpertController extends Controller
         $asbobuskunaexpert->delete();
 
         return redirect()->back()->with('status', 'Dalolatnoma muvaffaqiyatli o‘chirildi.');
+    }
+
+    public function exportAsbobuskunaexpert()
+    {
+        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+
+        return Excel::download(new AsbobuskunaexpertMonitoringExpert(), 'monitoring_asbob_uskuna.xlsx');
     }
 }

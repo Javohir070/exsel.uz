@@ -84,7 +84,7 @@
                                 </td>
 
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->ilmiyloyhalar()->count() }}/{{ $tashkilots->tekshirivchilar()->where('quarter', 2)->count()  }}
+                                    {{ $tashkilots->ilmiyloyhalar()->where('is_active', 1)->count() }}/{{ $tashkilots->tekshirivchilar()->where('quarter', 2)->count()  }}
                                 </td>
 
                                 <td style="text-align: center;">

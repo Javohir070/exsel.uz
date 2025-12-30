@@ -26,6 +26,9 @@
                     <a href="{{ route('exportAkademExpert') }}" class="button ml-3 w-24 bg-theme-1 text-white">
                         Export xulosa
                     </a>
+                    <a href="{{ route('exportAkadem') }}" class="button ml-3 w-24 bg-theme-1 text-white">
+                        Akademik harakatchanlik
+                    </a>
                 </div>
             @endrole
 

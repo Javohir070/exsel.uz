@@ -10,7 +10,7 @@ class StajirovkalarToMonitoringExport implements FromCollection, WithHeadings
 {
     public function collection()
     {
-       return Stajirovkaexpert::with('tashkilot', 'stajirovkalar')->where('quarter', 2)->get()->map(function ($stajirovkaexpert){
+       return Stajirovkaexpert::with('tashkilot', 'stajirovkalar', 'stajirovkaexpert')->where('quarter', 2)->get()->map(function ($stajirovkaexpert){
             return [
                 'id' => $stajirovkaexpert->id,
                 "Tashkilot nomi" => $stajirovkaexpert->tashkilot->name,

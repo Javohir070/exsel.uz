@@ -18,6 +18,7 @@ class Asbobuskunaexpert extends Model
         'status',
         'comment',
         'file',
+
         'lab_uskunalarini_mosligi',
         'ilmiy_tadqiqot_ishilari',
         'ilmiy_tadqiqot_hajmi',
@@ -28,6 +29,7 @@ class Asbobuskunaexpert extends Model
         'lab_ishga_yaroqliligi',
         'tashkilot_id',
         'holati',
+
         'quarter',
         'year',
     ];
@@ -40,5 +42,10 @@ class Asbobuskunaexpert extends Model
     public function asbobuskuna()
     {
         return $this->belongsTo(Asbobuskuna::class);
+    }
+
+    public function tashkilot()
+    {
+        return $this->belongsTo(Tashkilot::class);
     }
 }

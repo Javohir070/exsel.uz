@@ -5,98 +5,42 @@ namespace App\Exports;
 use App\Models\Tashkilot;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Concerns\WithMapping;
 
-class TashkilotExport implements FromCollection, WithHeadings, WithMapping
+class TashkilotExport implements FromCollection, WithHeadings
 {
     /**
     * @return \Illuminate\Support\Collection
     */
-    public function collection()
+     public function collection()
     {
-        return Tashkilot::with('region')->get();
+        return Tashkilot::get()->map(function ($tashkilot) {
+            return [
+                $tashkilot->id,
+                $tashkilot->region_id,
+                $tashkilot->name,
+                $tashkilot->stir_raqami,
+                $tashkilot->status ?? 0,
+                $tashkilot->ilmiyloyiha_is ?? 0,
+                $tashkilot->doktarantura_is ?? 0,
+                $tashkilot->doktaranturalar->where('quarter', 2)->count(),
+                $tashkilot->doktaranturaexperts->where('quarter', 2)->count() ?? 0,
+            ];
+        });
     }
 
+
     public function headings(): array
-    {
-        return [
+      {
+          return [
             'ID',
             'Viloyat id',
             'Tashkilot nomi',
-            'Tashkilot turi',
-            // 'Tashkil etilgan yili',
-            // 'Yuridik manzili',
-            'Viloyat',
-            // 'Tuman',
-            // 'Faoliyat yuritayotgan mazili',
-            'Telefon raqami',
-            'Email',
-            'Tashkilot veb-sayti',
-            'Mulkchilik turi (davlat, xususiy)',
-            // 'Tashkilotni saqlash harajatlarini moliyalashtirish manbaasi (davlat budjeti, xususiy investitsiyalar va boshqalar)',
-            // 'Shtat birligi soni',
-            // 'Xodimlar soni',
-            // 'Boshqaruv tuzilmas',
             'STIR raqami',
-            // 'Tashkilot hisob raqami',
-            // 'Xizmat ko‘rsatuvchi bank',
-            'turi',
             'status',
-            // 'Ilmiy xodimlar soni',
-            // 'asbobuskuna_is',
-            // 'stajirovka_is',
             'ilmiyloyiha_is',
-            // 'doktarantura_is',
-            // 'Asbob-uskunalar soni',
-            // 'Ilmiy stajirovka nafar',
-            'Ilmiy loyihalar soni',
+            'doktarantura_is',
             'Ilmiy izlanuvchilar nafar',
-            'Fakultetlar',
-            'Kafedralar',
-            'Laboratoriyalar',
-            'Xodimlar soni',
-        ];
-    }
-
-    public function map($tashkilot): array
-    {
-        return [
-            $tashkilot->id,
-            $tashkilot->region_id ?? null,
-            $tashkilot->name,
-            $tashkilot->tashkilot_turi ?? null,
-            // $tashkilot->tash_yil,
-            // $tashkilot->yur_manzil,
-            $tashkilot->region->oz ?? 'Nomaʼlum',
-            // $tashkilot->tuman,
-            // $tashkilot->paoliyat_manzil,
-            $tashkilot->phone ?? null,
-            $tashkilot->email ?? null,
-            $tashkilot->web_sayti ?? null,
-            $tashkilot->turi ?? null,
-            // $tashkilot->xarajatlar,
-            // $tashkilot->shtat_bir,
-            // $tashkilot->tash_xodimlar,
-            // $tashkilot->ilmiy_xodimlar,
-            // $tashkilot->boshqariv,
-            $tashkilot->stir_raqami ?? null, 
-            // $tashkilot->hisob_raqam,
-            // $tashkilot->bank,
-            $tashkilot->tashkilot_turi ?? "otm",
-            $tashkilot->status ?? 0,
-            // $tashkilot->xodimlar->count() ?? 0,
-            // $tashkilot->asbobuskuna_is ?? 0,
-            // $tashkilot->stajirovka_is ?? 0,
-            $tashkilot->ilmiyloyiha_is ?? 0,
-            // $tashkilot->doktarantura_is ?? 0,
-            // $tashkilot->asbobuskunalar->where('is_active',1)->count() ?? 0,
-            // $tashkilot->stajirovkalar->count() ?? 0,
-            // $tashkilot->ilmiyloyhalar->count() ?? 0,
-            // $tashkilot->doktaranturalar->count() ?? 0,
-            // $tashkilot->fakultetlar->count() ?? 0,
-            // $tashkilot->kafedralar->count() ?? 0,
-            // $tashkilot->laboratorys->count() ?? 0,
-            // $tashkilot->xodimlar()->count(),
-        ];
-    }
+            'monitoring',
+          ];
+      }
 }

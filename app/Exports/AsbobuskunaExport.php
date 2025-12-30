@@ -13,7 +13,7 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Asbobuskuna::with('tashkilot')->get()->map(function ($asbobuskuna) {
+        return Asbobuskuna::with('tashkilot')->where('is_active', 1)->get()->map(function ($asbobuskuna) {
 
             return [
                 'id' => $asbobuskuna->id,
@@ -46,6 +46,7 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
                  "Ilmiy tadqiqot va oliy ta’lim muassasalari laboratoriyalarining qo‘shimcha asbob-uskunalarga ehtiyoji" => $asbobuskuna->asbob_usk_ehtiyoji,
                  "Zarur sarflash materiallari va butlovchi qismlar bo‘yicha ehtiyoji" => $asbobuskuna->zarur_ehtiyoji,
                  "is_active" => $asbobuskuna->is_active,
+                 "monitoring" => $asbobuskuna->asbobuskunaexperts->where('quarter', 2)->count(),
             ];
         });
     }
@@ -84,6 +85,7 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
             "Ilmiy tadqiqot va oliy ta’lim muassasalari laboratoriyalarining qo‘shimcha asbob-uskunalarga ehtiyoji",
             "Zarur sarflash materiallari va butlovchi qismlar bo‘yicha ehtiyoji",
             "is_active",
+            "monitoring",
         ];
     }
 }
