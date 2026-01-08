@@ -158,6 +158,7 @@
                                                 <th style="text-align:center;">Yakka tartibdagi reja tasdiqlanganligi </th>
                                                 <th style="text-align:center;">Yakka tartibdagi rejani bajarganligi </th>
                                                 <th style="text-align:center;">Monitoring natijasi kiritilganligi </th>
+                                                <th style="text-align:center;">Himoya holati </th>
                                                 <th class="whitespace-no-wrap">Harakat</th>
                                             </tr>
                                         </thead>
@@ -176,6 +177,19 @@
                                                     <td style="text-align:center;">{{ $m->reja_t }} </td>
                                                     <td style="text-align:center;">{{ $m->reja_b }} </td>
                                                     <td>{{ $m->monitoring_natijasik }} </td>
+                                                    @php
+                                                        $holatMatnlariStatus = [
+                                                            'himoya_qilgan' => "Himoya qilgan",
+                                                            'himoyaga_qabul_qilingan' => "Himoyaga qabul qilingan",
+                                                            'seminardan_otgan' => "Ilmiy seminar muhokamasidan o'tgan",
+                                                            'tashkilot_muhokamasidan_otgan' => "Ish bajargan tashkilot muhokamasidan o'tgan",
+                                                            'tayyor_emas' => "Dissertatsiya muhokamaga tayyor emas",
+                                                        ];
+                                                    @endphp
+
+                                                    <td>
+                                                        {{ $holatMatnlariStatus[$m->himoya_holati] ?? '—' }}
+                                                    </td>
                                                     <td>
                                                         <a onclick="openShowIlmiIzlanuvchiModal({{ $m->id }})"
                                                             class="button px-2 mr-1 mb-2 border text-gray-700"
@@ -1846,8 +1860,9 @@
     </script>
 
     <script>
-        // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
-        function openEditIlmiIzlanuvchiModal(id) {
+    // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
+    function openEditIlmiIzlanuvchiModal(id) {
+
             const holatMatnlari = {
                 himoya_qilgan: "Himoya qilgan",
                 himoyaga_qabul_qilingan: "Himoyaga qabul qilingan",
@@ -1855,46 +1870,53 @@
                 tashkilot_muhokamasidan_otgan: "Ish bajargan tashkilot muhokamasidan o'tgan",
                 tayyor_emas: "Dissertatsiya muhokamaga tayyor emas"
             };
-            // AJAX so'rovni yuboramiz
+
             $.ajax({
                 url: `/ilmiy-izlanuvchi/${id}`,
                 type: 'GET',
-                success: function(data) {
-                    // Ma'lumotlarni modal shaklida aks ettiramiz
-                    $('#edit_full_name').text(data.full_name);
-                    $('#edit_direction_name').text(data.direction_name);
-                    $('#edit_direction_code').text(data.direction_code);
-                    $('#edit_org_name').text(data.org_name);
-                    $('#edit_dc_type').text(data.dc_type);
-                    $('#edit_admission_year').text(data.admission_year);
-                    $('#edit_admission_quarter').text(data.admission_quarter);
-                    $('#edit_advisor').text(data.advisor);
-                    $('#edit_course').text(data.course);
-                    $('#edit_monitoring_1').text(data.monitoring_1);
-                    $('#edit_monitoring_2').text(data.monitoring_2);
-                    $('#edit_monitoring_3').text(data.monitoring_3);
-                    $('#edit_reja_t').text(data.reja_t);
-                    $('#edit_reja_b').text(data.reja_b);
-                    $('#edit_monitoring_natijasik').text(data.monitoring_natijasik);
-                    $('#edit_himoya_holati').text(holatMatnlari[data.himoya_holati]);
+                success: function (data) {
 
-                    if (data.course == 3) {
-                        $('#himoya_holati_wrapper').show();
-                    } else {
-                        $('#himoya_holati_wrapper').hide();
-                    }
+                    // Text maydonlar
+                    $('#edit_full_name').text(data.full_name ?? '—');
+                    $('#edit_direction_name').text(data.direction_name ?? '—');
+                    $('#edit_direction_code').text(data.direction_code ?? '—');
+                    $('#edit_org_name').text(data.org_name ?? '—');
+                    $('#edit_dc_type').text(data.dc_type ?? '—');
+                    $('#edit_admission_year').text(data.admission_year ?? '—');
+                    $('#edit_admission_quarter').text(data.admission_quarter ?? '—');
+                    $('#edit_advisor').text(data.advisor ?? '—');
+                    $('#edit_course').text(data.course ?? '—');
+                    $('#edit_monitoring_1').text(data.monitoring_1 ?? '—');
+                    $('#edit_monitoring_2').text(data.monitoring_2 ?? '—');
+                    $('#edit_monitoring_3').text(data.monitoring_3 ?? '—');
+                    $('#edit_reja_t').text(data.reja_t ?? '—');
+                    $('#edit_reja_b').text(data.reja_b ?? '—');
+                    $('#edit_monitoring_natijasik').text(data.monitoring_natijasik ?? '—');
 
+                    // himoya_holati (NULL-safe)
+                    const himoyaHolatiText =
+                        holatMatnlari[data.himoya_holati] ?? '—';
 
-                    $('#science-paper-edit-form').attr('action', `/ilmiy-izlanuvchi/${id}/edit`);
+                    $('#edit_himoya_holati').text(himoyaHolatiText);
 
+                    // course = 3 bo‘lsa holat ko‘rinsin
+                    $('#himoya_holati_wrapper').toggle(data.course == 3);
+
+                    // form action
+                    $('#science-paper-edit-form')
+                        .attr('action', `/ilmiy-izlanuvchi/${id}/edit`);
+
+                    // modalni ochish
                     $('#science-ilmiy-izlanuvchi-edit-modal').modal('show');
                 },
-                error: function(error) {
-                    console.error("Ma'lumotlarni yuklashda xatolik yuz berdi: ", error);
+                error: function (error) {
+                    console.error("Ma'lumotlarni yuklashda xatolik yuz berdi:", error);
+                    alert("Ma'lumotlarni yuklashda xatolik yuz berdi!");
                 }
             });
         }
     </script>
+
 
     <script>
         // Tahrirlash tugmasini bosganda modalni ochish va ma'lumotlarni to'ldirish
