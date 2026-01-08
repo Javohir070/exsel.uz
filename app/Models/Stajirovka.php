@@ -26,6 +26,7 @@ class Stajirovka extends Model
         'ishlar_natijalari_2',
         'xalqarotan_jur_nashr_2',
         'biryil_davomida_2',
+        'is_active',
         
         'yunalishi',
         'holati',

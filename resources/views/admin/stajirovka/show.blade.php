@@ -52,16 +52,17 @@
                             <tbody>
                                 <div
                                     style="display: flex;justify-content: end; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                                @if ($stajirovkaexpert->count() == 0)
-                                    @can('tashkilotrahbari delete edit')
-                                        <div style="text-align: end;">
+                                    <div style="text-align: end;">
+                                        @if ($stajirovkaexpert->count() == 0)
+                                            @can('tashkilotrahbari delete edit')
                                             <a href="{{ route('stajirovka.edit', ['stajirovka' => $stajirovka->id]) }}"
                                                 class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                                 Tahrirlash
                                             </a>
-                                        </div>
-                                    @endcan
-                                @endif
+                                            @endcan
+                                            @endif
+                                        @include('admin.components.tash_status_button')
+                                    </div>
                                 </div>
                                 <tr>
                                     <th class=" border" style="width: 100%; font-size:16px;text-align:center;"
@@ -716,5 +717,7 @@
         </div>
 
     </div>
+
+    @include('admin.components.tash_status_modal',['model'=>$stajirovka, 'action' => route('tashkilot_stajirovka', $stajirovka->id),])
 
 @endsection

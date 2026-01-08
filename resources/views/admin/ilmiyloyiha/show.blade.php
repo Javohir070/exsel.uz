@@ -92,12 +92,7 @@
                                         Tahrirlash
                                     </a>
                                     @endif
-                                    @role('super-admin')
-                                    <a href="javascript:;" data-target="#ilmiyloyiha-tashkilot-edit-modal"
-                                        data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
-                                        Tashkilotni tahrirlash
-                                    </a>
-                                    @endrole
+                                    @include('admin.components.tash_status_button')
                                 </div>
                             </div>
                             <tbody>
@@ -3542,47 +3537,7 @@
         </div>
     </div>
 
-    <div class="modal" id="ilmiyloyiha-tashkilot-edit-modal">
-        <div class="modal__content modal__content--xl">
-            <div class="p-5">
-
-                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
-                    <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                        <form id="ilmiyloyiha-tashkilot-edit-form-edit" method="POST"
-                            action="{{ route('tashkilot_ilmiyloyiha', $ilmiyloyiha->id) }}" class="validate-form"
-                            enctype="multipart/form-data" novalidate="novalidate">
-                            @csrf
-                            @method('PUT')
-                            <div> <label>Basic</label>
-                                <div class="mt-2"> 
-                                    <select class="select2 w-full" name="tashkilot_id">
-                                    @foreach ($tashkilotlar as $tashkilot)
-                                        <option value="{{ $tashkilot->id }}"  {{ $ilmiyloyiha->tashkilot_id == $tashkilot->id ? 'selected' : '' }}>{{ $tashkilot->name }}</option>
-                                    @endforeach
-                                    </select> 
-                                </div>
-                            </div>
-                            <label>Status</label>
-                            <input type="text" name="is_active"
-                                                        value="{{ $ilmiyloyiha->is_active ?? '' }}"
-                                                        class="input w-full border mt-2" required="">
-                        </form>
-                    </div>
-                </div>
-
-            </div>
-            <div class="px-5 pb-5 text-center mt-4">
-                <button type="button" data-dismiss="modal"
-                    class="button delete-cancel w-32 border text-gray-700 mr-1">
-                    Bekor qilish
-                </button>
-                <button type="submit" form="ilmiyloyiha-tashkilot-edit-form-edit"
-                    class="update-confirm button w-24 bg-theme-1 text-white">
-                    Qo'shish
-                </button>
-            </div>
-        </div>
-    </div>
+    @include('admin.components.tash_status_modal',['model'=>$ilmiyloyiha, 'action' => route('tashkilot_ilmiyloyiha', $ilmiyloyiha->id),])
 
     <script>
         document.addEventListener("DOMContentLoaded", function() {

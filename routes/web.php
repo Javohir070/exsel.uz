@@ -124,6 +124,8 @@ Route::middleware('auth')->group(function () {
     Route::get('ilmiy/{id}', [IlmiyLoyihaController::class, "ilmiy_loyihalar"])->name("ilmiy_loyihalar.index");
     Route::get('turi/{id}', [IlmiyLoyihaController::class, 'tashkilot_turi'])->name('tashkilot_turi');
     Route::put('tashkilot/{id}/ilmiy-loyiha', [IlmiyLoyihaController::class, 'tashkilot_ilmiyloyiha'])->name('tashkilot_ilmiyloyiha');
+    Route::put('tashkilot/{id}/asbob-uskuna', [AsbobuskunaController::class, 'tashkilot_asbobuskuna'])->name('tashkilot_asbobuskuna');
+    Route::put('tashkilot/{id}/stajirovka', [StajirovkaController::class, 'tashkilot_stajirovka'])->name('tashkilot_stajirovka');
     //end ilmiyloyiha
 
     //xujalik

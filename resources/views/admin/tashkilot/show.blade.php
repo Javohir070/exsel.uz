@@ -194,7 +194,7 @@
         @endrole
 
         @role('super-admin')
-            <div class="w-full mt-10 sm:mt-0 sm:ml-auto md:ml-10 ">
+            <div class="w-full mt-10 sm:mt-0 sm:ml-auto md:ml-10" style="margin-top: 10px;">
                 <form id="science-paper-create-form" method="POST"
                     action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" class="validate-form"
                     enctype="multipart/form-data" novalidate="novalidate">

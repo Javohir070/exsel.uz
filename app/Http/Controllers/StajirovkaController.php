@@ -121,7 +121,7 @@ class StajirovkaController extends Controller
         $id = $tashkilotlars->pluck('id');
 
         $stajirovkas = Stajirovka::whereIn('tashkilot_id', $id)->count();
-        if ((auth()->user()->region_id != null)) {
+        if ((auth()->user()->region_id != null)) { 
             $regions = Region::where('id', "=", auth()->user()->region_id)->get();
         } else {
             $regions = Region::orderBy('order')->get();
@@ -231,7 +231,8 @@ class StajirovkaController extends Controller
     {
         $stajirovkaexpert = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 2)->get();
         $quarter_1 = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 1)->first();
-        return view('admin.stajirovka.show', ['stajirovka' => $stajirovka, 'stajirovkaexpert' => $stajirovkaexpert, 'quarter_1' => $quarter_1]);
+        $tashkilotlar = Tashkilot::all();
+        return view('admin.stajirovka.show', ['stajirovka' => $stajirovka, 'stajirovkaexpert' => $stajirovkaexpert, 'quarter_1' => $quarter_1, 'tashkilotlar' => $tashkilotlar]);
     }
 
 
@@ -310,6 +311,17 @@ class StajirovkaController extends Controller
     {
         $fileName = 'monitoring_stajirovka_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
         return Excel::download(new StajirovkalarToMonitoringExport, $fileName);
+    }
+
+     public function tashkilot_stajirovka(Request $request, $id)
+    {
+        $stajirovka = Stajirovka::findOrFail($id);
+
+        $stajirovka->update([
+            'tashkilot_id' => $request->tashkilot_id
+        ]);
+
+        return back()->with('status', 'Fayl muvaffaqiyatli yuklandi!');
     }
 
 }

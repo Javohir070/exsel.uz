@@ -51,18 +51,19 @@
                         style="background-color: white;border-radius:8px;padding:10px 20px;">
                         <table class="table">
                             <tbody>
-                                <div class="pt-4"
+                                <div
                                     style="display: flex;justify-content: end; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                                    @if ($asbobuskunaexpert->count() == 0)
-                                        @can('tashkilotrahbari delete edit')
-                                            <div style="text-align: center;">
-                                                <a href="{{ route('asbobuskuna.edit', ['asbobuskuna' => $asbobuskuna->id]) }}"
-                                                    class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
-                                                    Tahrirlash
-                                                </a>
-                                            </div>
-                                        @endcan
-                                    @endif
+                                    <div style="text-align: center;">
+                                        @if ($asbobuskunaexpert->count() == 0)
+                                            @can('tashkilotrahbari delete edit')
+                                            <a href="{{ route('asbobuskuna.edit', ['asbobuskuna' => $asbobuskuna->id]) }}"
+                                                class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
+                                                Tahrirlash
+                                            </a>
+                                            @endcan
+                                        @endif
+                                        @include('admin.components.tash_status_button')
+                                    </div>
                                 </div>
                                 <tr>
                                     <th class=" border" style="width: 100%; font-size:16px;text-align:center;"
@@ -812,5 +813,7 @@
         </div>
 
     </div>
+
+    @include('admin.components.tash_status_modal',['model'=>$asbobuskuna, 'action' => route('tashkilot_asbobuskuna', $asbobuskuna->id),])
 
 @endsection

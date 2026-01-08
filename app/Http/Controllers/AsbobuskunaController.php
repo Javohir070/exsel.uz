@@ -267,11 +267,13 @@ class AsbobuskunaController extends Controller
     {
         $asbobuskunaexpert = Asbobuskunaexpert::where('quarter', 2)->where('asbobuskuna_id', $asbobuskuna->id)->get();
         $quarter_1 = Asbobuskunaexpert::where('quarter', 1)->where('asbobuskuna_id', $asbobuskuna->id)->first();
+        $tashkilotlar = Tashkilot::all();
        
         return view('admin.asbobuskuna.show', [
             'asbobuskuna' => $asbobuskuna, 
             'asbobuskunaexpert' => $asbobuskunaexpert, 
-            'quarter_1' => $quarter_1
+            'quarter_1' => $quarter_1,
+            'tashkilotlar' => $tashkilotlar
         ]);
     }
 
@@ -351,5 +353,17 @@ class AsbobuskunaController extends Controller
         ini_set('max_execution_time', '300');
 
         return Excel::download(new AsbobuskunaExport, 'asbobuskunalar.xlsx');
+    }
+
+    public function tashkilot_asbobuskuna(Request $request, $id)
+    {
+        $asbobuskuna = Asbobuskuna::findOrFail($id);
+
+        $asbobuskuna->update([
+            'tashkilot_id' => $request->tashkilot_id,
+            'is_active' => $request->is_active,
+        ]);
+
+        return back()->with('status', 'Fayl muvaffaqiyatli yuklandi!');
     }
 }
