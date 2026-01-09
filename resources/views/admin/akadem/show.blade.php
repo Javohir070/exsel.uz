@@ -360,14 +360,11 @@
 
                                     <option value="">Status tanlang</option>
 
-                                    <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish talab etiladi
-                                    </option>
+                                    {{-- <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish talab etiladi</option> --}}
 
                                     <option value="Ijobiy">Ijobiy</option>
 
-                                    <option value="Qoniqarli">Qoniqarli</option>
-
-                                    <option value="Qoniqarsiz">Qoniqarsiz</option>
+                                    <option value="Salbiy">Salbiy</option>
 
                                 </select><br>
 

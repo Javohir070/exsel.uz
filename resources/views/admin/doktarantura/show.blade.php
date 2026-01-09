@@ -1102,8 +1102,8 @@
 
                                                     <option value="Qoniqarli">Qoniqarli</option>
 
-                                                    <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish
-                                                        talab etiladi</option>
+                                                    {{-- <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish
+                                                        talab etiladi</option> --}}
 
                                                     <option value="Qoniqarsiz">Qoniqarsiz</option>
 
@@ -1349,8 +1349,8 @@
 
                                                         <option value="Qoniqarli">Qoniqarli</option>
 
-                                                        <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha
-                                                            o‘rganish talab etiladi</option>
+                                                        {{-- <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha
+                                                            o‘rganish talab etiladi</option> --}}
 
                                                         <option value="Qoniqarsiz">Qoniqarsiz</option>
 

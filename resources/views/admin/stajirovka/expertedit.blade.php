@@ -269,7 +269,7 @@
                             <select name="status" id="science-sub-category" class="input border w-full mt-2" required>
                                 <option value="">Status tanlang</option>
                                 <option value="Ijobiy" {{ (old('status', $stajirovkaexpert->status ?? '') == 'Ijobiy') ? 'selected' : '' }}>Ijobiy</option>
-                                <option value="Qo‘shimcha o‘rganish talab etiladi" {{ (old('status', $stajirovkaexpert->status ?? '') == 'Qo‘shimcha o‘rganish talab etiladi') ? 'selected' : '' }}>Qo‘shimcha o‘rganish talab etiladi</option>
+                                {{-- <option value="Qo‘shimcha o‘rganish talab etiladi" {{ (old('status', $stajirovkaexpert->status ?? '') == 'Qo‘shimcha o‘rganish talab etiladi') ? 'selected' : '' }}>Qo‘shimcha o‘rganish talab etiladi</option> --}}
                                 <option value="Salbiy" {{ (old('status', $stajirovkaexpert->status ?? '') == 'Salbiy') ? 'selected' : '' }}>Salbiy</option>
                             </select>
 

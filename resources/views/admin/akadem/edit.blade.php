@@ -246,19 +246,15 @@
 
                                 <option value="">Status tanlang</option>
 
-                                <option value="Qo‘shimcha o‘rganish talab etiladi"
+                                {{-- <option value="Qo‘shimcha o‘rganish talab etiladi"
                                     {{ $akademExpert->status == 'Qo‘shimcha o‘rganish talab etiladi' ? 'selected' : '' }}>
                                     Qo‘shimcha o‘rganish talab etiladi
-                                </option>
+                                </option> --}}
 
-                                <option value="Ijobiy" {{ $akademExpert->status == 'Ijobiy' ? 'selected' : '' }}>Ijobiy
-                                </option>
+                                <option value="Ijobiy" {{ $akademExpert->status == 'Ijobiy' ? 'selected' : '' }}>Ijobiy</option>
 
-                                <option value="Qoniqarli" {{ $akademExpert->status == 'Qoniqarli' ? 'selected' : '' }}>
-                                    Qoniqarli</option>
+                                <option value="Salbiy" {{ $akademExpert->status == 'Salbiy' ? 'selected' : '' }}>Salbiy</option>
 
-                                <option value="Qoniqarsiz" {{ $akademExpert->status == 'Qoniqarsiz' ? 'selected' : '' }}>
-                                    Qoniqarsiz</option>
 
                             </select><br>
 

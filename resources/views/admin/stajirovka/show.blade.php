@@ -671,9 +671,9 @@
 
                                                     <option value="">Status tanlang</option>
 
-                                                    <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish
+                                                    {{-- <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish
                                                         talab etiladi
-                                                    </option>
+                                                    </option> --}}
 
                                                     <option value="Ijobiy">Ijobiy</option>
 

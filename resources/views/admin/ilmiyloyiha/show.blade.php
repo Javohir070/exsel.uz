@@ -1236,8 +1236,8 @@
 
                                                         <option value=""></option>
 
-                                                        <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish
-                                                            talab etiladi</option>
+                                                        {{-- <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish
+                                                            talab etiladi</option> --}}
 
                                                         <option value="Qoniqarli">Qoniqarli</option>
 
@@ -4435,8 +4435,8 @@
                                                         <option value="{{ $tekshirivchilar->status ?? null }}">
                                                             {{ $tekshirivchilar->status ?? null }}</option>
 
-                                                        <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha
-                                                            o‘rganish talab etiladi</option>
+                                                        {{-- <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha
+                                                            o‘rganish talab etiladi</option> --}}
 
                                                         <option value="Qoniqarli">Qoniqarli</option>
 

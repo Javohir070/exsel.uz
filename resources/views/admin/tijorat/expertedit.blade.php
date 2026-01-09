@@ -378,7 +378,7 @@
 
                                     <option value="">Status tanlang</option>
 
-                                    <option value="Qo‘shimcha o‘rganish talab etiladi" {{ $tijoratExpert->status == "Qo‘shimcha o‘rganish talab etiladi" ? 'selected' : '' }}>Qo‘shimcha o‘rganish talab etiladi
+                                    {{-- <option value="Qo‘shimcha o‘rganish talab etiladi" {{ $tijoratExpert->status == "Qo‘shimcha o‘rganish talab etiladi" ? 'selected' : '' }}>Qo‘shimcha o‘rganish talab etiladi --}}
                                     </option>
 
                                     <option value="Ijobiy" {{ $tijoratExpert->status == "Ijobiy" ? 'selected' : '' }}>Ijobiy</option>
