@@ -21,7 +21,7 @@ class AkademController extends Controller
         $this->middleware('auth');
     }
 
-    
+
     public function exportAkadem()
     {
         ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
@@ -32,9 +32,10 @@ class AkademController extends Controller
 
     public function index(Request $request)
     {
-        $akadem = Akadem::query();
+        $akadem = Akadem::where('is_active', 1);
+
         if ($request->filled('search')) {
-            $search = $request->input('search');
+            $search = $request->search;
 
             $akadem->where(function ($query) use ($search) {
                 $query->where('full_name', 'like', "%{$search}%")
@@ -48,8 +49,9 @@ class AkademController extends Controller
             });
         }
 
-        $akadem = $akadem->paginate(20);
+        $akadem = $akadem->paginate(20)->withQueryString();
         $regions = Region::all();
+
         return view('admin.akadem.index', compact('akadem', 'regions'));
     }
 

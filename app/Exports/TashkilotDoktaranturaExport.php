@@ -20,10 +20,11 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings
 
     public function collection()
         {
-            return Doktarantura::where('quarter', 2)->get()->map(function($doktarantura) {
+            return Doktarantura::where('quarter', 2)->with('tashkilot')->get()->map(function($doktarantura) {
                 return [
                     "id" => $doktarantura->id,
                     "Tashkilot" => $doktarantura->org_name,
+                    "Tashkilot turi" => $doktarantura->tashkilot->tashkilot_turi,
                     "Fish" => $doktarantura->full_name,
                     "Dissertatsiya mavzusi" => $doktarantura->direction_name,
                     "Ixtisoslik" => $doktarantura->direction_code,
@@ -48,6 +49,7 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings
             return [
                 "ID",
                 "Tashkilot",
+                "Tashkilot turi",
                 "F.I.SH.",
                 "Dissertatsiya mavzusi",
                 "Ixtisoslik",
