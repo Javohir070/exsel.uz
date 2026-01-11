@@ -119,10 +119,10 @@
 
                                             <td style="text-align: center;">
                                                 {{ $region->tashkilots()->where('stajirovka_is', 1)->whereHas('stajirovkalar', function ($q) {
-                                                        $q->where('quarter', 2);
+                                                        $q->where('quarter', 3);
                                                     })->withCount([
                                                         'stajirovkalar as stajirovkalar_count' => function ($q) {
-                                                            $q->where('quarter', 2);
+                                                            $q->where('quarter', 3);
                                                         },
                                                     ])->get()->sum('stajirovkalar_count') }}
                                             </td>
@@ -135,7 +135,7 @@
                                                 ) {
                                                     $ijobiy += $tashkilot
                                                         ->stajirovkaexperts()
-                                                        ->where('quarter', 2)
+                                                        ->where('quarter', 3)
                                                         ->where('status', 'Ijobiy')
                                                         ->count();
                                                 }
@@ -149,7 +149,7 @@
                                                 ) {
                                                     $qoniqarli += $tashkilot
                                                         ->stajirovkaexperts()
-                                                        ->where('quarter', 2)
+                                                        ->where('quarter', 3)
                                                         ->where('status', 'Qoniqarli')
                                                         ->count();
                                                 }
@@ -165,7 +165,7 @@
                                                 ) {
                                                     $qoniqarsiz += $tashkilot
                                                         ->stajirovkaexperts()
-                                                        ->where('quarter', 2)
+                                                        ->where('quarter', 3)
                                                         ->where('status', 'Salbiy')
                                                         ->count();
                                                 }
@@ -181,7 +181,7 @@
                                                 ) {
                                                     $qushimcha += $tashkilot
                                                         ->stajirovkaexperts()
-                                                        ->where('quarter', 2)
+                                                        ->where('quarter', 3)
                                                         ->where('status', 'Qo‘shimcha o‘rganish talab etiladi')
                                                         ->count();
                                                 }
@@ -197,17 +197,17 @@
                                                 ) {
                                                     $count += $tashkilot
                                                         ->stajirovkaexperts()
-                                                        ->where('quarter', 2)
+                                                        ->where('quarter', 3)
                                                         ->count();
                                                 }
                                             @endphp
 
                                             <td style="text-align: center;">
                                                 {{ $region->tashkilots()->where('stajirovka_is', 1)->whereHas('stajirovkalar', function ($q) {
-                                                        $q->where('quarter', 2);
+                                                        $q->where('quarter', 3);
                                                     })->withCount([
                                                         'stajirovkalar as stajirovkalar_count' => function ($q) {
-                                                            $q->where('quarter', 2);
+                                                            $q->where('quarter', 3);
                                                         },
                                                     ])->get()->sum('stajirovkalar_count') - $count }}
                                             </td>

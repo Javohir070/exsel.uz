@@ -146,7 +146,7 @@
                                             <td style="text-align: center;">
                                                 {{ $region->tashkilots()->where('status', 1)->withCount([
                                                         'stajirovkalar' => function ($q) {
-                                                            $q->where('quarter', 2);
+                                                            $q->where('quarter', 3);
                                                         },
                                                     ])->get()->sum('stajirovkalar_count') }}
                                             </td>
@@ -160,7 +160,7 @@
                                             <td style="text-align: center;">
                                                 {{ $region->tashkilots()->where('status', 1)->withCount([
                                                         'doktaranturalar' => function ($q) {
-                                                            $q->where('quarter', 2);
+                                                            $q->where('quarter', 3);
                                                         },
                                                     ])->get()->sum('doktaranturalar_count') }}
                                             </td>

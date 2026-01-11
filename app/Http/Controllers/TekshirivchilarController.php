@@ -31,7 +31,7 @@ class TekshirivchilarController extends Controller
             'shart_sharoit_yaratib' => $request->shart_sharoit_yaratib,
             'yakuniy_natijalar' => $request->yakuniy_natijalar,
             'loyiha_ijrochilari' => $request->loyiha_ijrochilari,
-            'quarter' => 2,
+            'quarter' => 3,
             'year' => date('Y'),
         ]);
 

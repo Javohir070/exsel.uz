@@ -19,7 +19,7 @@ class StajirovkaController extends Controller
 
     public function index()
     {
-        $stajirovkas = Stajirovka::where('tashkilot_id', auth()->user()->tashkilot_id)->where('quarter', 2)->paginate(20);
+        $stajirovkas = Stajirovka::where('tashkilot_id', auth()->user()->tashkilot_id)->where('quarter', 3)->paginate(20);
 
         return view('admin.stajirovka.index', ['stajirovkas' => $stajirovkas]);
     }
@@ -36,16 +36,16 @@ class StajirovkaController extends Controller
             }
             $region_id = Region::where('id', auth()->user()->region_id)->first();
             $id = $region_id->tashkilots()->pluck('id');
-            $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
-            $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
+            $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
+            $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
         } else {
             $regions = Region::orderBy('order')->get();
             $tashkilots = Tashkilot::orderBy('name')->where('stajirovka_is', 1)->count();
-            $stajirovka_count = Stajirovka::where('quarter', 2)->count();
-            $stajirovka_expert = Stajirovkaexpert::where('quarter', 2)->count();
+            $stajirovka_count = Stajirovka::where('quarter', 3)->count();
+            $stajirovka_expert = Stajirovkaexpert::where('quarter', 3)->count();
         }
 
-        $stajirovkas_count = Stajirovka::where('quarter', 2)->count();
+        $stajirovkas_count = Stajirovka::where('quarter', 3)->count();
         return view('admin.stajirovka.viloyat', [
             'tashkilots' => $tashkilots,
             'stajirovka_count' => $stajirovka_count,
@@ -62,7 +62,7 @@ class StajirovkaController extends Controller
             ->where('region_id', $id)
             ->with([
                 'stajirovkalar' => function ($q) {
-                    $q->where('quarter', 2);   // faqat 2-chorakdagilarni olish
+                    $q->where('quarter', 3);   // faqat 2-chorakdagilarni olish
                 }
             ])
             ->get();
@@ -85,8 +85,8 @@ class StajirovkaController extends Controller
 
         $id = $tashkilotlarQuery->pluck('id');
         $tashkilots = $tashkilotlarQuery->count();
-        $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
-        $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
+        $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
+        $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
 
         return view('admin.stajirovka.tashkilot_turi', ['results' => $results, 'regions' => $regions, 'tashkilots' => $tashkilots, 'stajirovka_count' => $stajirovka_count, 'stajirovka_expert' => $stajirovka_expert]);
     }
@@ -133,7 +133,7 @@ class StajirovkaController extends Controller
     public function stajirov($id)
     {
 
-        $stajirovkas = Stajirovka::where('tashkilot_id', '=', $id)->where('quarter', 2)->paginate(20);
+        $stajirovkas = Stajirovka::where('tashkilot_id', '=', $id)->where('quarter', 3)->paginate(20);
 
         $tashkilot = Tashkilot::findOrFail($id);
 
@@ -229,10 +229,11 @@ class StajirovkaController extends Controller
 
     public function show(Stajirovka $stajirovka)
     {
-        $stajirovkaexpert = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 2)->get();
+        $stajirovkaexpert = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 3)->get();
         $quarter_1 = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 1)->first();
+        $quarter_2 = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 2)->first();
         $tashkilotlar = Tashkilot::all();
-        return view('admin.stajirovka.show', ['stajirovka' => $stajirovka, 'stajirovkaexpert' => $stajirovkaexpert, 'quarter_1' => $quarter_1, 'tashkilotlar' => $tashkilotlar]);
+        return view('admin.stajirovka.show', ['stajirovka' => $stajirovka, 'stajirovkaexpert' => $stajirovkaexpert, 'quarter_1' => $quarter_1, 'quarter_2' => $quarter_2, 'tashkilotlar' => $tashkilotlar]);
     }
 
 

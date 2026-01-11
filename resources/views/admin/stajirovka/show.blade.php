@@ -30,6 +30,13 @@
                     EKSPERT XULOSASI (2025-1)
                 </a>
                 @endif
+
+                @if ($quarter_2 != null)
+                <a data-toggle="tab" data-target="#old-expert2" href="javascript:;" class="py-4 sm:mr-8 flex items-center">
+                    EKSPERT XULOSASI (2025-2)
+                </a>
+                @endif
+
                 <a data-toggle="tab" data-target="#add-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center ">
                     EKSPERT XULOSASI
                 </a>
@@ -315,6 +322,148 @@
                                     </td>
                                     <td class="border border-b-2 ">
                                         {{ $quarter_1->t_masul }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                @endif
+
+                @if ($quarter_2 != null)
+                <div class="tab-content__pane" id="old-expert2">
+                    <div class="overflow-x-auto"
+                        style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th class="border border-b-2 " style="width: 40px;">№</th>
+                                    <th class="border border-b-2 " style="width: 60%;">Mezon va talablar</th>
+                                    <th class="border border-b-2 ">Xulosa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">1</td>
+                                    <td class="border border-b-2 ">
+                                        Ilmiy hisobot taqdim etilganligi (Pdf).
+                                        <div class="italic">(Agar taqdim etilgan status tanlanmasa Izoh qoldirish
+                                            shart)
+                                        </div>
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->ilmiy_hisobot ?? null }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">2</td>
+                                    <td class="border border-b-2 ">
+                                        Stajirovka davrida egallangan bilim va ko'nikmalarni amalga oshirilishi uchun
+                                        zarur
+                                        shart-sharoitlar yaratilganligi. (Asoslantiruvchi hujjatlar, rasm va videolar)
+                                        <!-- <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div> -->
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->egallangan_bilim ?? null }}
+                                    </td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">3</td>
+                                    <td class="border border-b-2 ">
+                                        Ilmiy-tadqiqot ishlari natijalari bo'yicha xorijiy ilmiy anjumanlarda ma'ruza
+                                        bilan ishtirok
+                                        etganligi. (Asoslantiruvchi hujjatlar, rasm va videolar hamda havolalar)
+                                        <!-- <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div> -->
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->ishlar_natijalari ?? null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">4</td>
+                                    <td class="border border-b-2 ">
+                                        Xalqaro tan olingan ma'lumotlar bazasidagi yetakchi ilmiy jurnallarda nashr
+                                        qilinganligi.
+                                        (Pdf)
+                                        <!-- <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div> -->
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_2->xalqarotan_jur_nashr ?? null }}
+                                    </td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">5</td>
+                                    <td class="border border-b-2 ">
+                                        Kamida bir yil davomida Agentlik tomonidan tashkil etiladigan va boshqa
+                                        tadbirlarda
+                                        stajirovka davrida to'plangan tajribalar va olgan bilim va ko'nikmalari borasida
+                                        o'z fikr va
+                                        mulohazalarini bayon etilganligi tafsiloti. (Asoslantiruvchi hujjatlar, rasm va
+                                        videolar
+                                        hamda havolalar)
+                                        <!-- <div class="italic">(Agar Ijobiy status tanlanmasa Izoh qoldirish shart)</div> -->
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->biryil_davomida ?? null }}
+                                    </td>
+                                </tr>
+
+
+                                <tr>
+                                    <td class="border border-b-2 ">6.</td>
+                                    <td class="border border-b-2 ">Ekspert xulosasi
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->status ?? null }}</td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">7.</td>
+                                    <td class="border border-b-2 ">
+                                        Izoh
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->comment ?? null }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">8.</td>
+                                    <td class="border border-b-2 ">
+                                        Fayl
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        @if ($quarter_2->file)
+                                            <a href="{{ asset('storage/' . $quarter_2->file) }}"
+                                                class="button  bg-theme-1 text-white" target="_blank">Faylni
+                                                ko'rish</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">9.</td>
+                                    <td class="border border-b-2 ">
+                                        Ishchi guruh rahbari F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_2->fish }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">10.</td>
+                                    <td class="border border-b-2 ">
+                                        Ishchi guruh azosi F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_2->user->name }}
+                                    </td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">11.</td>
+                                    <td class="border border-b-2 ">
+                                        Ekspert F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_2->ekspert_fish }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">13.</td>
+                                    <td class="border border-b-2 ">
+                                        Tashkilotning mas'ul rahbari F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_2->t_masul }}
                                     </td>
                                 </tr>
                             </tbody>

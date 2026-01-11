@@ -100,10 +100,11 @@ class IlmiyLoyihaController extends Controller
     public function show(IlmiyLoyiha $ilmiyloyiha, Request $request)
     {
         $scienceid = $request->scienceid ?? null;
-        $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->where('quarter', 2)->first();
-        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->where('quarter', 2)->first();
-        $tekshirivchilar = Tekshirivchilar::where('quarter', 2)->where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
+        $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->where('quarter', 3)->first();
+        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->where('quarter', 3)->first();
+        $tekshirivchilar = Tekshirivchilar::where('quarter', 3)->where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
         $quarter_1 = Tekshirivchilar::where('quarter', 1)->where('is_active', 1)->where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
+        $quarter_2 = Tekshirivchilar::where('quarter', 2)->where('ilmiy_loyiha_id', '=', $ilmiyloyiha->id)->first();
 
         $loyihaiqtisodi_1 = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->where('quarter', 1)->first();
         $intellektual_1 = Intellektual::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->where('quarter', 1)->first();
@@ -149,6 +150,7 @@ class IlmiyLoyihaController extends Controller
             'scienceid' => $scienceid ?? '',
             'shtat_sum' => $shtat_sum,
             'quarter_1' => $quarter_1,
+            'quarter_2' => $quarter_2,
             'tashkilotlar' => $tashkilotlar,
 
             'intellektual_1' => $intellektual_1,
@@ -312,11 +314,11 @@ class IlmiyLoyihaController extends Controller
             $region_id = Region::where('id', auth()->user()->region_id)->first();
             $id = $region_id->tashkilots()->pluck('id');
             $loy_count = IlmiyLoyiha::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
-            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
+            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
         } else {
             $regions = Region::orderBy('order')->get();
             $loy_count = IlmiyLoyiha::where('is_active', 1)->count();
-            $loy_expert = Tekshirivchilar::where('quarter', 2)->count();
+            $loy_expert = Tekshirivchilar::where('quarter', 3)->count();
             $tashkilots = Tashkilot::where('ilmiyloyiha_is', 1)->count();
         }
 
@@ -359,7 +361,7 @@ class IlmiyLoyihaController extends Controller
         $id = $tashkilotlarQuery->pluck('id');
         $tashkilots = $tashkilotlarQuery->count();
         $loy_count = IlmiyLoyiha::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
-        $loy_expert = Tekshirivchilar::where('quarter', 2)->whereIn('tashkilot_id', $id)->count();
+        $loy_expert = Tekshirivchilar::where('quarter', 3)->whereIn('tashkilot_id', $id)->count();
 
 
         return view('admin.ilmiyloyiha.tashkilot_turi', [

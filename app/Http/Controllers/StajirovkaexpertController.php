@@ -30,7 +30,7 @@ class StajirovkaexpertController extends Controller
             'biryil_davomida' => $request->biryil_davomida,
             'status' => $request->status,
             'comment' => $request->comment,
-            'quarter' => 2,
+            'quarter' => 3,
             'year' => date('Y'),
         ]);
         Notification::send($user, new StajirovkaNotification($stajirovkaexpert));

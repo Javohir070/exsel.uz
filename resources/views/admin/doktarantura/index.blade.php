@@ -79,10 +79,10 @@
                                 {{-- <td style="color:{{ $t->doktaranturaexperts()->first()->holati ?? null == "Tasdiqlandi" ? "green" : ($t->doktaranturaexperts()->first()->holati ?? null == "yuborildi" ? "blue" : "red") }}">
                                     {{ $t->doktaranturaexperts()->first()->holati ?? "Ko'rilmagan" }}
                                 </td> --}}
-                                <td style="color: {{ ($h = $t->doktaranturaexperts()->where('quarter', 2)->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
-                                    {{ $t->doktaranturaexperts()->where('quarter', 2)->first()->status ?? "Tasdiqlanmagan" }}
+                                <td style="color: {{ ($h = $t->doktaranturaexperts()->where('quarter', 3)->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
+                                    {{ $t->doktaranturaexperts()->where('quarter', 3)->first()->status ?? "Tasdiqlanmagan" }}
                                 </td>
-                                <td style="color: {{ ($h = $t->doktaranturaexperts()->where('quarter', 2)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
+                                <td style="color: {{ ($h = $t->doktaranturaexperts()->where('quarter', 3)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                     {{ $h == 'yuborildi'? "Tasdiqlash uchun yuborildi":($h == null ? "Ko'rilmagan" : $h) }}
                                 </td>
                                 <td class="table-report__action w-56">

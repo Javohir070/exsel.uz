@@ -84,13 +84,13 @@
                                 </td>
 
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->ilmiyloyhalar()->where('is_active', 1)->count() }}/{{ $tashkilots->tekshirivchilar()->where('quarter', 2)->count()  }}
+                                    {{ $tashkilots->ilmiyloyhalar()->where('is_active', 1)->count() }}/{{ $tashkilots->tekshirivchilar()->where('quarter', 3)->count()  }}
                                 </td>
 
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->tekshirivchilar()->where('quarter', 2)->where('status', 'Qoniqarli')->count() }}/
-                                    {{ $tashkilots->tekshirivchilar()->where('quarter', 2)->where('status', 'Qoniqarsiz')->count() }}/
-                                    {{ $tashkilots->tekshirivchilar()->where('quarter', 2)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
+                                    {{ $tashkilots->tekshirivchilar()->where('quarter', 3)->where('status', 'Qoniqarli')->count() }}/
+                                    {{ $tashkilots->tekshirivchilar()->where('quarter', 3)->where('status', 'Qoniqarsiz')->count() }}/
+                                    {{ $tashkilots->tekshirivchilar()->where('quarter', 3)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
                                 </td>
 
                                 <td class="table-report__action w-56">

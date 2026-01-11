@@ -46,13 +46,21 @@
                     class="py-4 sm:mr-8 flex items-center {{ $data || $create || $errorMessage ? 'active' : '' }}">
                     LOYIHA IJROCHILARI
                 </a>
-            @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'super-admin', 'Rahbar'])
+                @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'super-admin', 'Rahbar'])
                 @if ($quarter_1 != null)
                     <a data-toggle="tab" data-target="#old-expert" href="javascript:;"
                         class="py-4 sm:mr-8 flex items-center w-24 ">
                         EKSPERT XULOSASI (2025-1)
                     </a>
                 @endif
+
+                @if ($quarter_2 != null)
+                    <a data-toggle="tab" data-target="#old-expert2" href="javascript:;"
+                        class="py-4 sm:mr-8 flex items-center w-24 ">
+                        EKSPERT XULOSASI (2025-2)
+                    </a>
+                @endif
+
                 <a data-toggle="tab" data-target="#add-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center ">
                     EKSPERT XULOSASI
                 </a>
@@ -964,6 +972,101 @@
                                             <td class="border">
                                                 @if ($quarter_1->file)
                                                     <a href="{{ asset('storage/' . $quarter_1->file) }}"
+                                                        class="button  bg-theme-1 text-white" target="_blank">Faylni
+                                                        ko'rish</a>
+                                                @endif
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            @endif
+
+                        </div>
+
+                    </div>
+                @endif
+
+                @if ($quarter_2 != null)
+                    <div class="tab-content__pane" id="old-expert2">
+
+                        <div class="p-5">
+                            @if ($quarter_2 != null)
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <th class="border" style="width: 40px;">T/r</th>
+                                            <th colspan="2" class="border" style="text-align: center;">EKSPERT
+                                                XULOSASI</th>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">1.</td>
+                                            <td class="border">Ilmiy-tadqiqot ishlarining shartnoma va uning kalendar
+                                                rejasiga
+                                                asosan bajarilish holati</td>
+                                            <td class="border">{{ $quarter_2->kalendar }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">2.</td>
+                                            <td class="border">Ijrochi tashkilot tomonidan loyihaning amalga oshirilishi
+                                                uchun zarur
+                                                shart-sharoitlar yaratib berilganligi</td>
+                                            <td class="border">{{ $quarter_2->shart_sharoit_yaratib }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">3.</td>
+                                            <td class="border">Loyiha doirasida qo‘lga kiritilgan yakuniy natijalar va
+                                                ularni
+                                                tijoratlashtirish imkoniyatlari</td>
+                                            <td class="border">{{ $quarter_2->yakuniy_natijalar }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">4.</td>
+                                            <td class="border">Loyiha ijrochilarining o‘zgarishi holati</td>
+                                            <td class="border">{{ $quarter_2->loyiha_ijrochilari }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">5.</td>
+                                            <td class="border">Monitoring xulosasi</td>
+                                            <td class="border">{{ $quarter_2->status }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">6.</td>
+                                            <td class="border">Izoh</td>
+                                            <td class="border">{{ $quarter_2->comment }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">7.</td>
+                                            <td class="border">Ishchi guruh rahbari F.I.Sh</td>
+                                            <td class="border">{{ $quarter_2->fish }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border border-b-2 ">8.</td>
+                                            <td class="border border-b-2 ">Ishchi guruh azosi F.I.Sh</td>
+                                            <td class="border border-b-2 ">
+                                                {{ $quarter_2->user->name }}
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">9.</td>
+                                            <td class="border">Ekspert F.I.Sh</td>
+                                            <td class="border">{{ $quarter_2->ekspert_fish }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">9.</td>
+                                            <td class="border">Tashkilotning mas'ul rahbari F.I.Sh</td>
+                                            <td class="border">{{ $quarter_2->t_masul }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">10.</td>
+                                            <td class="border">Monitoring o‘tkazilgan sana</td>
+                                            <td class="border">{{ $quarter_2->updated_at }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="border">11.</td>
+                                            <td class="border">Fayl</td>
+                                            <td class="border">
+                                                @if ($quarter_2->file)
+                                                    <a href="{{ asset('storage/' . $quarter_2->file) }}"
                                                         class="button  bg-theme-1 text-white" target="_blank">Faylni
                                                         ko'rish</a>
                                                 @endif

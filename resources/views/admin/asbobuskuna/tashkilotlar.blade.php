@@ -89,12 +89,12 @@
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' : 'Boshqa') }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->asbobuskunalar()->where('is_active', 1)->count() }}/{{ $tashkilots->asbobuskunaexpert()->where('quarter', 2)->count() }}
+                                    {{ $tashkilots->asbobuskunalar()->where('is_active', 1)->count() }}/{{ $tashkilots->asbobuskunaexpert()->where('quarter', 3)->count() }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->asbobuskunaexpert()->where('quarter', 2)->where('status', 'Ijobiy')->count() }}/
-                                    {{ $tashkilots->asbobuskunaexpert()->where('quarter', 2)->where('status', 'Salbiy')->count() }}/
-                                    {{ $tashkilots->asbobuskunaexpert()->where('quarter', 2)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
+                                    {{ $tashkilots->asbobuskunaexpert()->where('quarter', 3)->where('status', 'Ijobiy')->count() }}/
+                                    {{ $tashkilots->asbobuskunaexpert()->where('quarter', 3)->where('status', 'Salbiy')->count() }}/
+                                    {{ $tashkilots->asbobuskunaexpert()->where('quarter', 3)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
                                 </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">

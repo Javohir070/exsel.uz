@@ -19,7 +19,7 @@ class DoktaranturaexpertController extends Controller
         // dd($request->all());
         $doktaranturaexpert = Doktaranturaexpert::create([
             'user_id' => auth()->id(),
-            'quarter' => 2,
+            'quarter' => 3,
             'year' => date('Y'),
             'fish' => $user->name,
             'ekspert_fish' => $request->ekspert_fish,

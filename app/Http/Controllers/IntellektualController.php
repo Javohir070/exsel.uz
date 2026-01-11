@@ -59,7 +59,7 @@ class IntellektualController extends Controller
             'dasturiy_gsamalda' => $request->dasturiy_gsamalda,
             'nashr_uquv_reja' => $request->nashr_uquv_reja,
             'nashr_uquv_amalda' => $request->nashr_uquv_amalda,
-            'quarter' => 2,
+            'quarter' => 3,
         ]);
 
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
@@ -96,7 +96,7 @@ class IntellektualController extends Controller
                 "ixtiro_olingan_izoh" => $request->ixtiro_olingan_izoh,
                 "ixtiro_ber_izoh" => $request->ixtiro_ber_izoh,
                 "dasturiy_izoh" => $request->dasturiy_izoh,
-                "quarter" => 2,
+                "quarter" => 3,
             ]);
         } else {
             $intellektual->update([
@@ -128,7 +128,7 @@ class IntellektualController extends Controller
                 'dasturiy_gsamalda' => $request->dasturiy_gsamalda,
                 'nashr_uquv_reja' => $request->nashr_uquv_reja,
                 'nashr_uquv_amalda' => $request->nashr_uquv_amalda,
-                'quarter' => 2,
+                'quarter' => 3,
             ]);
         }
 

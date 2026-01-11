@@ -31,6 +31,12 @@
                     EKSPERT XULOSASI (2025-1)
                 </a>
                 @endif
+
+                @if ($quarter_2 != null) 
+                <a data-toggle="tab" data-target="#old-expert2" href="javascript:;" class="py-4 sm:mr-8 flex items-center">
+                    EKSPERT XULOSASI (2025-2)
+                </a>
+                @endif
                 <a data-toggle="tab" data-target="#add-expert" href="javascript:;" class="py-4 sm:mr-8 flex items-center ">
                     EKSPERT XULOSASI
                 </a>
@@ -348,6 +354,151 @@
                                     </td>
                                     <td class="border border-b-2 ">
                                         {{ $quarter_1->t_masul ?? null }}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+               @endif
+
+               @if ($quarter_2 != null)  
+                <div class="tab-content__pane" id="old-expert2">
+                    <div class="overflow-x-auto"
+                        style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
+                        <table class="table">
+                            <thead>
+                                <tr class="bg-gray-200">
+                                    <th class="border border-b-2 " style="width: 40px;">№</th>
+                                    <th class="border border-b-2 " style="width: 60%;">Mezon va talablar</th>
+                                    <th class="border border-b-2 ">Xulosa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="border border-b-2 ">1.</td>
+                                    <td class="border border-b-2 ">
+                                        Laboratoriya uskunalarini o'rnatilgan ilmiy bo'linma faoliyatiga mosligi
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_2->lab_uskunalarini_mosligi ?? null }}</td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">2.</td>
+                                    <td class="border border-b-2 ">
+                                        Bajarilavotgan ilmiy-tadqiqot ishlari uchun zarurligi
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->ilmiy_tadqiqot_ishilari ?? null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">3.</td>
+                                    <td class="border border-b-2 ">
+                                        Ilmiy-tadqiqot dasturlaridagi ish hajmi bilan bog'liqligi
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->ilmiy_tadqiqot_hajmi ?? null }}
+                                    </td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">4.</td>
+                                    <td class="border border-b-2 ">
+                                        Laboratoriya uskunalari uchun zarur reagent va reaktivlar zaxirasining mavjudligi
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->lab_zaxirasi ?? null }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">5.</td>
+                                    <td class="border border-b-2 ">
+                                        Foydalanish uchun arizalarning ro'yxatga olinishi va foydalanish jadvalining
+                                        yuritilishi
+                                        holatiga baho berish
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->foy_uchun_ariz ?? null }}</td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">6.</td>
+                                    <td class="border border-b-2 ">
+                                        Ilmiy tadqiqot va oliy ta'lim muassasalari laboratoriyalarining qo'shimcha
+                                        asbob-uskunalar
+                                        bo'yicha ehtiyoji
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->asbob_usk_ehtiyoji ?? null }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">7.</td>
+                                    <td class="border border-b-2 ">
+                                        Zarur sarflash materiallari va butlovchi qismlar bo'yicha ehtiyojar mavjudligi
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->zarur_ehtiyoji ?? null }}</td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">8.</td>
+                                    <td class="border border-b-2 ">
+                                        Laboratoriya uskunalarining ishga yaroqliligi
+
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->lab_ishga_yaroqliligi ?? null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">9.</td>
+                                    <td class="border border-b-2 ">Ekspert xulosasi
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->status ?? null }}</td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">10.</td>
+                                    <td class="border border-b-2 ">
+                                        Izoh
+                                    </td>
+                                    <td class="border border-b-2 ">{{ $quarter_2->comment ?? null }}</td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">11.</td>
+                                    <td class="border border-b-2 ">
+                                        Fayl
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        @if ($quarter_2->file ?? null)
+                                            <a href="{{ asset('storage/' . $quarter_2->file) }}"
+                                                class="button  bg-theme-1 text-white" target="_blank">Faylni ko'rish</a>
+                                        @endif
+                                    </td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">12.</td>
+                                    <td class="border border-b-2 ">
+                                        Ishchi guruh rahbari F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_2->fish ?? null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">13.</td>
+                                    <td class="border border-b-2 ">
+                                        Ishchi guruh azosi F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_2->user->name ?? null }}
+                                    </td>
+                                </tr>
+                                <tr class="bg-gray-200">
+                                    <td class="border border-b-2 ">14.</td>
+                                    <td class="border border-b-2 ">
+                                        Ekspert F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_2->ekspert_fish ?? null }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="border border-b-2 ">16.</td>
+                                    <td class="border border-b-2 ">
+                                        Tashkilotning mas'ul rahbari F.I.Sh
+                                    </td>
+                                    <td class="border border-b-2 ">
+                                        {{ $quarter_2->t_masul ?? null }}
                                     </td>
                                 </tr>
                             </tbody>

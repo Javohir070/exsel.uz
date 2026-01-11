@@ -104,7 +104,7 @@
                                                 @php
                                                     $qoniqarli = 0;
                                                     foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarli += $tashkilot->asbobuskunaexpert()->where('quarter', 2)->where('status', 'Ijobiy')->count();
+                                                        $qoniqarli += $tashkilot->asbobuskunaexpert()->where('quarter', 3)->where('status', 'Ijobiy')->count();
                                                     }
                                                 @endphp
 
@@ -113,7 +113,7 @@
                                                 @php
                                                     $qoniqarsiz = 0;
                                                     foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarsiz += $tashkilot->asbobuskunaexpert()->where('quarter', 2)->where('status', 'Salbiy')->count();
+                                                        $qoniqarsiz += $tashkilot->asbobuskunaexpert()->where('quarter', 3)->where('status', 'Salbiy')->count();
                                                     }
                                                 @endphp
 
@@ -122,7 +122,7 @@
                                                  @php
                                                     $qushimcha = 0;
                                                     foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
-                                                        $qushimcha += $tashkilot->asbobuskunaexpert()->where('quarter', 2)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
+                                                        $qushimcha += $tashkilot->asbobuskunaexpert()->where('quarter', 3)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
                                                     }
                                                 @endphp
 
@@ -130,7 +130,7 @@
                                                 @php
                                                     $count = 0;
                                                     foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
-                                                        $count += $tashkilot->asbobuskunaexpert()->where('quarter', 2)->count();
+                                                        $count += $tashkilot->asbobuskunaexpert()->where('quarter', 3)->count();
                                                     }
                                                 @endphp
                                                 <td style="text-align: center;">

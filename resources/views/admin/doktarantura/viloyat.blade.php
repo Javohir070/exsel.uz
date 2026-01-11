@@ -174,10 +174,10 @@
                                             </td>
                                             <td style="text-align: center;">
                                                 {{ $region->tashkilots()->where('status', 1)->whereHas('doktaranturalar', function ($q) {
-                                                        $q->where('quarter', 2);
+                                                        $q->where('quarter', 3);
                                                     })->withCount([
                                                         'doktaranturalar' => function ($q) {
-                                                            $q->where('quarter', 2);
+                                                            $q->where('quarter', 3);
                                                         },
                                                     ])->get()->sum('doktaranturalar_count') }}
                                             </td>
@@ -189,7 +189,7 @@
                                                 ) {
                                                     $qoniqarli += $tashkilot
                                                         ->doktaranturaexperts()
-                                                        ->where('quarter', 2)
+                                                        ->where('quarter', 3)
                                                         ->where('status', 'Qoniqarli')
                                                         ->count();
                                                 }
@@ -205,7 +205,7 @@
                                                 ) {
                                                     $qoniqarsiz += $tashkilot
                                                         ->doktaranturaexperts()
-                                                        ->where('quarter', 2)
+                                                        ->where('quarter', 3)
                                                         ->where('status', 'Qoniqarsiz')
                                                         ->count();
                                                 }
@@ -221,7 +221,7 @@
                                                 ) {
                                                     $qushimcha += $tashkilot
                                                         ->doktaranturaexperts()
-                                                        ->where('quarter', 2)
+                                                        ->where('quarter', 3)
                                                         ->where('status', 'Qo‘shimcha o‘rganish talab etiladi')
                                                         ->count();
                                                 }
@@ -236,7 +236,7 @@
                                                 ) {
                                                     $count += $tashkilot
                                                         ->doktaranturaexperts()
-                                                        ->where('quarter', 2)
+                                                        ->where('quarter', 3)
                                                         ->count();
                                                 }
                                             @endphp

@@ -17,6 +17,7 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
 
             return [
                 'id' => $asbobuskuna->id,
+                'Tashkilot id' => $asbobuskuna->tashkilot->id,
                 'Tashkilot nomi' => $asbobuskuna->tashkilot->name,
                 'Tashkilot turi' => $asbobuskuna->tashkilot->tashkilot_turi,
                 "region_id" => $asbobuskuna->tashkilot->region_id,
@@ -56,6 +57,7 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
     {
         return [
             'id',
+            'Tashkilot id',
             'Tashkilot nomi',
             'Tashkilot turi',
             "region_id",

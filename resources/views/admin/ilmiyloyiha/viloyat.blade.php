@@ -123,7 +123,7 @@
                                                 @php
                                                     $qoniqarli = 0;
                                                     foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarli += $tashkilot->tekshirivchilar()->where('quarter', 2)->where('status', 'Qoniqarli')->count();
+                                                        $qoniqarli += $tashkilot->tekshirivchilar()->where('quarter', 3)->where('status', 'Qoniqarli')->count();
                                                     }
                                                 @endphp
 
@@ -132,7 +132,7 @@
                                                 @php
                                                     $qoniqarsiz = 0;
                                                     foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarsiz += $tashkilot->tekshirivchilar()->where('quarter', 2)->where('status', 'Qoniqarsiz')->count();
+                                                        $qoniqarsiz += $tashkilot->tekshirivchilar()->where('quarter', 3)->where('status', 'Qoniqarsiz')->count();
                                                     }
                                                 @endphp
 
@@ -141,7 +141,7 @@
                                                  @php
                                                     $qushimcha = 0;
                                                     foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
-                                                        $qushimcha += $tashkilot->tekshirivchilar()->where('quarter', 2)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
+                                                        $qushimcha += $tashkilot->tekshirivchilar()->where('quarter', 3)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
                                                     }
                                                 @endphp
 
@@ -149,7 +149,7 @@
                                                  @php
                                                     $count = 0;
                                                     foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
-                                                        $count += $tashkilot->tekshirivchilar()->where('quarter', 2)->count();
+                                                        $count += $tashkilot->tekshirivchilar()->where('quarter', 3)->count();
                                                     }
                                                 @endphp
 
