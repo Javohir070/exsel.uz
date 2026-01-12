@@ -144,8 +144,9 @@ class AkademController extends Controller
 
     public function show(Akadem $akadem)
     {
-        $akademexpert = AkademExpert::where('akadem_id', $akadem->id)->get();
-        return view('admin.akadem.show', compact('akadem', 'akademexpert'));
+        $akademexpert = AkademExpert::where('akadem_id', $akadem->id)->where('quarter', 2)->get();
+        $quarter_2 = AkademExpert::where('akadem_id', 1)->first();
+        return view('admin.akadem.show', compact('akadem', 'akademexpert', 'quarter_2'));
     }
 
 
