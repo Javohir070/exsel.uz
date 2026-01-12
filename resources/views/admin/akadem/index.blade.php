@@ -65,13 +65,14 @@
                                 <td>
                                     {{ $tashkilots->receiver_organization_region }}
                                 </td>
+
                                 <td
-                                    style="color: {{ ($h = $tashkilots->akademexpert()->first()->status ?? null) == 'Ijobiy' ? 'green' : ($h == 'Salbiy' ? 'blue' : 'red') }}">
-                                    {{ $tashkilots->akademexpert()->first()->status ?? 'Tasdiqlanmagan' }}
+                                style="color: {{ ($h = $tashkilots->akademexpert()->where('quarter', 2)->first()->status ?? null) == 'Ijobiy' ? 'green' : ($h == 'Salbiy' ? 'blue' : 'red') }}">
+                                {{ $tashkilots->akademexpert()->where('quarter', 2)->first()->status ?? "Tasdiqlanmagan" }}
                                 </td>
                                 <td
-                                    style="color: {{ ($h = $tashkilots->akademexpert()->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
-                                    {{ $h == 'yuborildi' ? 'Tasdiqlash uchun yuborildi' : ($h == null ? "Ko'rilmagan" : $h) }}
+                                    style="color: {{ ($h = $tashkilots->akademexpert()->where('quarter', 2)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
+                                    {{ $h == 'yuborildi' ? "Tasdiqlash uchun yuborildi" : ($h == null ? "Ko'rilmagan" : $h) }}
                                 </td>
 
                                 <td class="table-report__action w-56">

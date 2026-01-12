@@ -48,6 +48,7 @@ class AkademExpertController extends Controller
         ]);
 
         $data['user_id'] = auth()->id();
+        $data['quarter'] = 2;
         $data['fish'] = $user->name ?? auth()->user()->name;
         $data['tashkilot_id'] = auth()->user()->tashkilot_id;
 
