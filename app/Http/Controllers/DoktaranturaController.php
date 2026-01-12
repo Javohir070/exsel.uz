@@ -161,6 +161,7 @@ class DoktaranturaController extends Controller
 
         $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->get();
         $quarter_1 = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 1)->first();
+        $quarter_2 = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->first();
         $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->first();
         $doktarantura = Doktarantura::where('tashkilot_id', '=', $id)->where('quarter', 2)->get();
         $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->where('quarter', 2)->get();
@@ -201,6 +202,7 @@ class DoktaranturaController extends Controller
             'biriktirilgan_ir' => $biriktirilgan_ir ?? null,
             'ishreja_b' => $ishreja_b ?? null,
             'quarter_1' => $quarter_1 ?? null,
+            'quarter_2' => $quarter_2 ?? null,
         ]);
     }
 

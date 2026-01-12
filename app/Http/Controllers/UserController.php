@@ -253,6 +253,7 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'region_id' => $request->region_id,
+            'group_id' => $request->group_id,
         ];
 
         if (!empty($request->password)) {

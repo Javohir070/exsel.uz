@@ -120,6 +120,15 @@
                                 @endforeach
                             </select>
                         </div>
+                         @role('super-admin')
+                        <div class="w-full col-span-6">
+                            <label class="flex flex-col sm:flex-row"> <span
+                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>guruh
+                            </label>
+                            <input type="number" name="group_id" min="0" class="input w-full border mt-2" value="{{ $user->group_id }}">
+                        </div>
+                    @endrole
+
                     @endrole
                     <!-- @role('admin')
         <input type="hidden" name="tashkilot_id" value="{{ auth()->user()->tashkilot->id }}">
