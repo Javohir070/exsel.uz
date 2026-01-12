@@ -112,7 +112,8 @@
             </li>
         @endrole
 
-        @role(['Izlanuvchilar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
+        @role(['Izlanuvchilar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin', 'doktarantura monitoring'])
+
             <li>
                 <a href="{{ route('doktarantura.index') }}"
                     class="side-menu side-menu{{ request()->is('doktarantura*') ? '--active' : '' }}{{ request()->is('search-dok*') ? '--active' : '' }}">
@@ -120,7 +121,8 @@
                     <div class="side-menu__title"> Ilmiy izlanuvchilar</div>
                 </a>
             </li>
-
+            @endrole
+            @role(['Izlanuvchilar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
             <li>
                 <a href="{{ route('tijorat.index') }}"
                     class="side-menu side-menu{{ request()->is('tijorat*') ? '--active' : '' }}{{ request()->is('search-tijorat*') ? '--active' : '' }}">
