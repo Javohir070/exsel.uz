@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAsbobuskunaExpertRequest;
+use App\Http\Requests\UpdateAsbobuskunaExpertRequest;
 use App\Models\Asbobuskuna;
 use App\Models\Asbobuskunaexpert;
 use App\Exports\AsbobuskunaexpertMonitoringExpert;
@@ -14,32 +16,20 @@ use Illuminate\Support\Facades\Storage;
 
 class AsbobuskunaexpertController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreAsbobuskunaExpertRequest $request)
     {
+        $data = $request->validated();
         $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
 
         $asbobuskuna = Asbobuskuna::findOrFail($request->asbobuskuna_id);
-        $asbobuskunaexpert = Asbobuskunaexpert::create([
-            'user_id' => auth()->id(),
-            'tashkilot_id' => $asbobuskuna->tashkilot_id,
-            'fish' => $user->name,
-            'ekspert_fish' => $request->ekspert_fish,
-            't_masul' => $request->t_masul,
-            'asbobuskuna_id' => $asbobuskuna->id,
-            'status' => $request->status,
-            'comment' => $request->comment,
-            'lab_uskunalarini_mosligi' => $request->lab_uskunalarini_mosligi,
-            'ilmiy_tadqiqot_ishilari' => $request->ilmiy_tadqiqot_ishilari,
-            'ilmiy_tadqiqot_hajmi' => $request->ilmiy_tadqiqot_hajmi,
-            'lab_zaxirasi' => $request->lab_zaxirasi,
-            'foy_uchun_ariz' => $request->foy_uchun_ariz,
-            'asbob_usk_ehtiyoji' => $request->asbob_usk_ehtiyoji,
-            'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
-            'lab_ishga_yaroqliligi' => $request->lab_ishga_yaroqliligi,
-            'quarter' => 3,
-            'year' => date('Y'),
-        ]);
+        $data['user_id'] = auth()->id();
+        $data['tashkilot_id'] = $asbobuskuna->tashkilot_id;
+        $data['fish'] = $user->name;
+        $data['quarter'] = 3;
+        $data['year'] = date('Y');
+        $data['asbobuskuna_id'] = $asbobuskuna->id;
 
+        $asbobuskunaexpert = Asbobuskunaexpert::create($data);
 
         Notification::send($user, new AsbobuskunaNotification($asbobuskunaexpert));
 
@@ -56,7 +46,7 @@ class AsbobuskunaexpertController extends Controller
     }
 
 
-    public function update(Request $request, Asbobuskunaexpert $asbobuskunaexpert)
+    public function update(UpdateAsbobuskunaExpertRequest $request, Asbobuskunaexpert $asbobuskunaexpert)
     {
         if ($request->holati == 0) {
             $asbobuskunaexpert->update([
@@ -67,23 +57,12 @@ class AsbobuskunaexpertController extends Controller
             return redirect()->route('asbobuskuna.show', $asbobuskunaexpert->asbobuskuna_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         } else {
             $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
-            $asbobuskunaexpert->update([
-                'user_id' => auth()->id(),
-                'fish' => $user->name,
-                'ekspert_fish' => $request->ekspert_fish,
-                't_masul' => $request->t_masul,
-                'status' => $request->status,
-                'comment' => $request->comment,
-                'lab_uskunalarini_mosligi' => $request->lab_uskunalarini_mosligi,
-                'ilmiy_tadqiqot_ishilari' => $request->ilmiy_tadqiqot_ishilari,
-                'ilmiy_tadqiqot_hajmi' => $request->ilmiy_tadqiqot_hajmi,
-                'lab_zaxirasi' => $request->lab_zaxirasi,
-                'foy_uchun_ariz' => $request->foy_uchun_ariz,
-                'asbob_usk_ehtiyoji' => $request->asbob_usk_ehtiyoji,
-                'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
-                'lab_ishga_yaroqliligi' => $request->lab_ishga_yaroqliligi,
-                'holati' => 'yuborildi'
-            ]);
+            $data = $request->validated();
+            $data['user_id'] = auth()->id();
+            $data['fish'] = $user->name;
+            $data['holati'] = 'yuborildi';
+            
+            $asbobuskunaexpert->update($data);
 
             // $admins = User::findOrFail($asbobuskunaexpert->user_id);
             Notification::send($user, new AsbobuskunaNotification($asbobuskunaexpert));

@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use App\Exports\TashkilotExport;
 use App\Exports\TashkilotXodimlarExport;
 use App\Http\Requests\StoreTashkilotRequest;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class TashkilotController extends Controller
@@ -59,11 +60,28 @@ class TashkilotController extends Controller
         }
 
         $data = $request->only([
-            'name', 'id_raqam', 'region_id', 'name_qisqachasi', 'tash_yil',
-            'yur_manzil', 'viloyat', 'tuman', 'paoliyat_manzil', 'phone',
-            'email', 'web_sayti', 'turi', 'xarajatlar', 'shtat_bir', 
-            'tash_xodimlar', 'ilmiy_xodimlar', 'boshqariv', 'stir_raqami', 'bank', 
-            'hisob_raqam', 'tashkilot_turi',
+            'name',
+            'id_raqam',
+            'region_id',
+            'name_qisqachasi',
+            'tash_yil',
+            'yur_manzil',
+            'viloyat',
+            'tuman',
+            'paoliyat_manzil',
+            'phone',
+            'email',
+            'web_sayti',
+            'turi',
+            'xarajatlar',
+            'shtat_bir',
+            'tash_xodimlar',
+            'ilmiy_xodimlar',
+            'boshqariv',
+            'stir_raqami',
+            'bank',
+            'hisob_raqam',
+            'tashkilot_turi',
         ]);
 
         $data['logo'] = $path ?? null;
@@ -77,6 +95,7 @@ class TashkilotController extends Controller
     public function show(Tashkilot $tashkilot)
     {
         $regions = Region::all();
+
         return view('admin.tashkilot.show', ['tashkilot' => $tashkilot, 'regions' => $regions]);
     }
 
@@ -89,7 +108,8 @@ class TashkilotController extends Controller
 
     public function update(Request $request, Tashkilot $tashkilot)
     {
-        if($request->holati == 'rejected' || $request->holati == 'accepted' || $request->filled('region_id') ){
+        if ($request->holati == 'rejected' || $request->holati == 'accepted' || $request->filled('region_id')) {
+
             $tashkilot->update([
                 'holati' => $request->holati ?? $tashkilot->holati,
                 'name' => $request->name ?? $tashkilot->name,
@@ -100,19 +120,43 @@ class TashkilotController extends Controller
                 'stajirovka_is' => $request->stajirovka_is ?? 0,
             ]);
             return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli saqlandi.');
-        }else{
-            
+
+        } else {
+
             if ($request->hasFile('logo')) {
-                $name = $request->file('logo')->getClientOriginalName();
-                $path = $request->file('logo')->storeAs('post-photos', $name);
+
+                if ($tashkilot->logo && Storage::disk('public')->exists($tashkilot->logo)) {
+                    Storage::disk('public')->delete($tashkilot->logo);
+                }
+                $file = $request->file('logo');
+                $name = time() . '_' . $file->getClientOriginalName();
+
+                // 3️⃣ Yangi faylni saqlash
+                $path = $file->storeAs('post-photos', $name, 'public');
             }
 
             $data = $request->only([
-                'name', 'name_qisqachasi', 'tash_yil', 'yur_manzil', 'viloyat',
-                'tuman', 'paoliyat_manzil', 'phone', 'email', 'web_sayti',
-                'turi', 'xarajatlar', 'shtat_bir', 'tash_xodimlar',
-                'ilmiy_xodimlar', 'boshqariv', 'stir_raqami', 'bank', 'hisob_raqam'
+                'name',
+                'name_qisqachasi',
+                'tash_yil',
+                'yur_manzil',
+                'viloyat',
+                'tuman',
+                'paoliyat_manzil',
+                'phone',
+                'email',
+                'web_sayti',
+                'turi',
+                'xarajatlar',
+                'shtat_bir',
+                'tash_xodimlar',
+                'ilmiy_xodimlar',
+                'boshqariv',
+                'stir_raqami',
+                'bank',
+                'hisob_raqam'
             ]);
+
             $data['logo'] = $path ?? $tashkilot->logo;
 
             $tashkilot->update($data);
@@ -146,12 +190,12 @@ class TashkilotController extends Controller
         }
 
         if ($region_id !== 'all') {
-                // foydalanuvchi faqat o‘z regionini ko‘radi
-                $query->where('region_id', $region_id);
-            } elseif ($request->filled('region_id') && $request->region_id !== 'all') {
-                // admin yoki umumiy foydalanuvchi tanlagan region
-                $query->where('region_id', $request->region_id);
-            }
+            // foydalanuvchi faqat o‘z regionini ko‘radi
+            $query->where('region_id', $region_id);
+        } elseif ($request->filled('region_id') && $request->region_id !== 'all') {
+            // admin yoki umumiy foydalanuvchi tanlagan region
+            $query->where('region_id', $request->region_id);
+        }
 
         if ($request->filled('turi') && $request->turi !== 'all') {
             $query->where('tashkilot_turi', 'like', '%' . $request->turi . '%');
@@ -229,8 +273,8 @@ class TashkilotController extends Controller
         ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
         ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
         $fileName = 'Tashkilot_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        
         return Excel::download(new TashkilotExport, $fileName);
-
     }
 
     public function exportXodimlar($tashkilotId)

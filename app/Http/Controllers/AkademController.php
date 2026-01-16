@@ -22,14 +22,6 @@ class AkademController extends Controller
     }
 
 
-    public function exportAkadem()
-    {
-        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
-        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
-
-        return Excel::download(new AkademExpertExport(), 'monitoring_asbob_uskuna.xlsx');
-    }
-
     public function index(Request $request)
     {
         $akadem = Akadem::where('is_active', 1);
@@ -165,6 +157,15 @@ class AkademController extends Controller
     public function destroy(Akadem $akadem)
     {
         //
+    }
+
+
+    public function exportAkadem()
+    {
+        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+
+        return Excel::download(new AkademExpertExport(), 'monitoring_asbob_uskuna.xlsx');
     }
 
 }

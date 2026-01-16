@@ -6,7 +6,7 @@
     
 
     <!-- Page Title -->
-    <title>Science ID</title>
+    <title>Ilmiy-innovatsion faoliyat monitoringi tizimi</title>
 
     <link href="/admin/dist/images/logo.png" rel="shortcut icon">
 

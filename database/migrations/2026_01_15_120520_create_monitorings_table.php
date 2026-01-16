@@ -11,8 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('stajirovkas', function (Blueprint $table) {
-            $table->integer('quarter')->default(1);
+        Schema::create('monitorings', function (Blueprint $table) {
+            $table->id();
+            $table->year('year');
+            $table->enum('quarter', [1, 2, 3, 4]);
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
         });
     }
 
@@ -21,9 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('stajirovkas', function (Blueprint $table) {
-            $table->dropColumn('quarter');
-        });
+        Schema::dropIfExists('monitorings');
     }
 };
-

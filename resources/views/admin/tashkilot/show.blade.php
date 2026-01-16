@@ -24,6 +24,10 @@
 
         </div>
 
+        @if (session('status'))
+            <div class="alert alert-success">{{ session('status') }}</div>
+        @endif
+
         <div class="overflow-x-auto" style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
             <table class="table">
                 <tbody>
@@ -37,11 +41,15 @@
                                     class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                     Tahrirlash
                                 </a>
-                                <a href="" class="button w-24 bg-theme-6 text-white">
-                                    O'chirish
+                                @role('super-admin')
+                                <a href="javascript:;" data-target="#tashkilot-status-edit-modal" data-toggle="modal"
+                                    class="button w-24 ml-3 bg-theme-1 text-white">
+                                    Tashkilotni tahrirlash
                                 </a>
+                                @endrole
                             </div>
                         @endcan
+
                     </div>
 
                     <tr>
@@ -192,95 +200,110 @@
                 </div>
             @endif
         @endrole
-
-        @role('super-admin')
-            <div class="w-full mt-10 sm:mt-0 sm:ml-auto md:ml-10" style="margin-top: 10px;">
-                <form id="science-paper-create-form" method="POST"
-                    action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" class="validate-form"
-                    enctype="multipart/form-data" novalidate="novalidate">
-                    @csrf
-                    @method('PUT')
-                    <div class="grid grid-cols-12 gap-2">
-
-                        <div class="w-full col-span-6">
-                            <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Viloyat
-                            </label>
-                            <select name="region_id" id="science-sub-category" class="input border w-full mt-2" required>
-                                <option>Viloyatni tanlang</option>
-                                @foreach ($regions as $region)
-                                    <option value="{{ $region->id }}"
-                                        {{ $tashkilot->region_id == $region->id ? 'selected' : '' }}>{{ $region->oz }}
-                                    </option>
-                                @endforeach
-                            </select>
-                        </div>
-
-                        <div class="w-full col-span-6 ">
-                            <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot nomi
-                            </label>
-                            <input type="text" name="name" value="{{ $tashkilot->name }}" class="input w-full border mt-2"
-                                required="" >
-                            @error('name')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="w-full col-span-6 ">
-                            <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy loyiha
-                            </label>
-                            <input type="checkbox" name="ilmiyloyiha_is"  value="1" class="input w-full border mt-2"
-                                {{ old('ilmiyloyiha_is', $tashkilot->ilmiyloyiha_is) ? 'checked' : '' }}>
-                            @error('ilmiyloyiha_is')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="w-full col-span-6 ">
-                            <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Asbob-uskuna
-                            </label>
-                            <input type="checkbox" name="asbobuskuna_is"  value="1" class="input w-full border mt-2"
-                                 {{ old('asbobuskuna_is', $tashkilot->asbobuskuna_is) ? 'checked' : '' }}>
-                            @error('asbobuskuna_is')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="w-full col-span-6 ">
-                            <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy izlanuvchi
-                            </label>
-                            <input type="checkbox" name="doktarantura_is"  value="1" class="input w-full border mt-2"
-                                {{ old('doktarantura_is', $tashkilot->doktarantura_is) ? 'checked' : '' }}>
-                            @error('doktarantura_is')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="w-full col-span-6 ">
-                            <label class="flex flex-col sm:flex-row"> <span
-                                    class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Stajorning
-                            </label>
-                            <input type="checkbox" name="stajirovka_is"  value="1" class="input w-full border mt-2"
-                               {{ old('stajirovka_is', $tashkilot->stajirovka_is) ? 'checked' : '' }}>
-                            @error('stajirovka_is')
-                                <div class="error">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                    </div>
-                        <div class="px-5 pb-5 text-center mt-8">
-                            <button type="submit" form="science-paper-create-form"
-                                class="update-confirm button w-24 bg-theme-1 text-white">
-                                Saqlash
-                            </button>
-                        </div>
-                </form>
-            </div>
-        @endrole
-
+        
     </div>
+
+
+    @role('super-admin')
+    <div class="modal" id="tashkilot-status-edit-modal">
+        <div class="modal__content modal__content--xl">
+
+            <div class="p-5">
+                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
+                    <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                        <form id="tashkilot-edit-form-edit" method="POST"
+                            action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" class="validate-form"
+                            enctype="multipart/form-data" novalidate="novalidate">
+                            @csrf
+                            @method('PUT')
+                            <div class="grid grid-cols-12 gap-2">
+
+                                <div class="w-full col-span-12">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Viloyat
+                                    </label>
+                                    <select name="region_id" id="science-sub-category" class="input border w-full mt-2" required>
+                                        <option>Viloyatni tanlang</option>
+                                        @foreach ($regions as $region)
+                                            <option value="{{ $region->id }}"
+                                                {{ $tashkilot->region_id == $region->id ? 'selected' : '' }}>{{ $region->oz }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="w-full col-span-12">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot nomi
+                                    </label>
+                                    <input type="text" name="name" value="{{ $tashkilot->name }}" class="input w-full border mt-2"
+                                        required="" >
+                                    @error('name')
+                                        <div class="error">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="w-full col-span-6 ">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy loyiha
+                                    </label>
+                                    <input type="checkbox" name="ilmiyloyiha_is"  value="1" class="input w-full border mt-2"
+                                        {{ old('ilmiyloyiha_is', $tashkilot->ilmiyloyiha_is) ? 'checked' : '' }}>
+                                    @error('ilmiyloyiha_is')
+                                        <div class="error">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="w-full col-span-6 ">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Asbob-uskuna
+                                    </label>
+                                    <input type="checkbox" name="asbobuskuna_is"  value="1" class="input w-full border mt-2"
+                                        {{ old('asbobuskuna_is', $tashkilot->asbobuskuna_is) ? 'checked' : '' }}>
+                                    @error('asbobuskuna_is')
+                                        <div class="error">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="w-full col-span-6 ">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy izlanuvchi
+                                    </label>
+                                    <input type="checkbox" name="doktarantura_is"  value="1" class="input w-full border mt-2"
+                                        {{ old('doktarantura_is', $tashkilot->doktarantura_is) ? 'checked' : '' }}>
+                                    @error('doktarantura_is')
+                                        <div class="error">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="w-full col-span-6 ">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Stajorning
+                                    </label>
+                                    <input type="checkbox" name="stajirovka_is"  value="1" class="input w-full border mt-2"
+                                    {{ old('stajirovka_is', $tashkilot->stajirovka_is) ? 'checked' : '' }}>
+                                    @error('stajirovka_is')
+                                        <div class="error">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="px-5 pb-5 text-center mt-4">
+                <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </button>
+                <button type="submit" form="tashkilot-edit-form-edit"
+                    class="update-confirm button w-24 bg-theme-1 text-white">
+                    Qo'shish
+                </button>
+            </div>
+
+        </div>
+    </div>
+    @endrole
 @endsection

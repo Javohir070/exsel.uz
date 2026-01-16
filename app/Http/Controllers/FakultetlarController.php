@@ -15,9 +15,9 @@ class FakultetlarController extends Controller
 
     public function index()
     {
-        $laboratorys =Fakultetlar::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
+        $laboratorys = Fakultetlar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
 
-        return view("admin.fakultetlar.index", ["laboratorys"=> $laboratorys]);
+        return view("admin.fakultetlar.index", ["laboratorys" => $laboratorys]);
     }
 
     public function fakultets(Request $request)
@@ -28,13 +28,13 @@ class FakultetlarController extends Controller
             $query->where('name', 'like', '%' . $request->search . '%');
         }
 
-        if($request->filled('yil') && $request->yil !== 'all'){
+        if ($request->filled('yil') && $request->yil !== 'all') {
             $query->where('tash_yil', $request->yil);
         }
 
         $fakultets = $query->paginate(20);
 
-        return view("admin.fakultetlar.all", ["fakultets"=> $fakultets]);
+        return view("admin.fakultetlar.all", ["fakultets" => $fakultets]);
     }
 
 
@@ -52,7 +52,7 @@ class FakultetlarController extends Controller
             "tash_yil" => $request->tash_yil,
         ]);
 
-        return redirect('/fakultetlar')->with("status",'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+        return redirect('/fakultetlar')->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
 
@@ -72,7 +72,7 @@ class FakultetlarController extends Controller
     {
         $fakultetlar->update($request->toArray());
 
-        return redirect('/fakultetlar')->with("status",'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+        return redirect('/fakultetlar')->with("status", 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
 
@@ -86,7 +86,7 @@ class FakultetlarController extends Controller
 
         $fakultetlar->delete();
 
-        return redirect('/fakultetlar')->with("status",'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+        return redirect('/fakultetlar')->with("status", 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
     }
 
     public function fakultetlar_export()

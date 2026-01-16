@@ -22,7 +22,18 @@ class StoreIlmiytezislarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'type' => 'required|string',
+            'mavzu' => 'required|string',
+            'mualliflar_json' => 'required|array',
+            'chopq_sana' => 'required|date',
+            'kon_full_nomi' => 'required|string',
+            'kon_qisqa_nomi' => 'required|string',
+            'soni' => 'required|string',
+            'nashriyot' => 'required|string',
+            'annotatsiya' => 'required|string',
+            'fan_yunalishi' => 'required|string',
+            'url' => 'nullable|url',
+            'doi' => 'nullable|url',
         ];
     }
 }

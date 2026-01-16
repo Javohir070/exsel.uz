@@ -408,7 +408,7 @@
         <!-- BEGIN: JS Assets-->
         <script src="https://chatbots.ilmiy1.uz/widget.js" data-token="api_JqhHAN310YIej502Rp8PGVxjnqaPkHIU4nfEuhUA" defer>
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
+        // <script src="https://maps.googleapis.com/maps/api/js?key=["your-google-map-api"]&libraries=places"></script>
         <script src="/admin/dist/js/app.js"></script>
         <script src="/admin/dist/js/yil.js"></script>
 

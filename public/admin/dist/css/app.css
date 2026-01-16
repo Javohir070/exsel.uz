@@ -6935,6 +6935,11 @@ select.input.input--lg {
   height: 28px;
 }
 
+.report-box__icon {
+        width: 32px;
+        height: 32px;
+}
+
 .report-box .report-box__indicator {
   padding-top: 3px;
   padding-bottom: 3px;

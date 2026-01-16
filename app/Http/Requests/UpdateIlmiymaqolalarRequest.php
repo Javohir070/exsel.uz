@@ -22,7 +22,18 @@ class UpdateIlmiymaqolalarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'type' => 'required|in:Respublika miqyosidagi jurnallar,Xalqaro miqyosidagi jurnallar',
+            'mavzu' => 'required|string',
+            'mualliflar_json' => 'required|array',
+            'chopq_sana' => 'required|date',
+            'jurnal_nomi' => 'required|string',
+            'jurnal_soni' => 'required|string',
+            'jurnal_issn_raqami' => 'required|string',
+            'nashriyot' => 'required|string',
+            'annotatsiya' => 'required|string',
+            'fan_yunalishi' => 'required|string',
+            'url' => 'nullable|url',
+            'doi' => 'nullable|url',
         ];
     }
 }

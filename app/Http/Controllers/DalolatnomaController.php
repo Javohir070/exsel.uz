@@ -37,32 +37,16 @@ class DalolatnomaController extends Controller
 
     public function store(StoreDalolatnomaRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:600',
-            'raqami' => 'required|string|max:20',
-            'joyiye_obyekti' => 'required|string|max:600',
-            'joyiye_maqsadi' => 'required|string|max:600',
-            'joyiye_asos' => 'required|string|max:600',
-            'joyiye_tashkilot' => 'required|string|max:600',
-            'joyiye_tarmoq' => 'required|string|max:600',
-            'asoslovchi_hujjat' => 'required|file|max:2048', // Fayl tekshiruvi
-        ]);
+        $data = $request->validated();
 
         // Faylni yuklash va saqlash
-        $filePath = $request->file('asoslovchi_hujjat')->store('asoslovchi_hujjatlar');
+        $data['asoslovchi_hujjat'] = $request
+            ->file('asoslovchi_hujjat')
+            ->store('asoslovchi_hujjatlar');
+        $data['tashkilot_id'] = auth()->user()->tashkilot_id;
+        $data['kafedralar_id'] = auth()->user()->kafedralar_id;
 
-        Dalolatnoma::create([
-            'tashkilot_id' => auth()->user()->tashkilot_id, // Avtomatik tashkilot ID
-            'kafedralar_id' => auth()->user()->kafedralar_id,
-            'name' => $request->name,
-            'raqami' => $request->raqami,
-            'joyiye_obyekti' => $request->joyiye_obyekti,
-            'joyiye_maqsadi' => $request->joyiye_maqsadi,
-            'joyiye_asos' => $request->joyiye_asos,
-            'joyiye_tashkilot' => $request->joyiye_tashkilot,
-            'joyiye_tarmoq' => $request->joyiye_tarmoq,
-            'asoslovchi_hujjat' => $filePath, // Fayl yo‘li saqlanadi
-        ]);
+        Dalolatnoma::create($data);
 
         return redirect()->route('dalolatnoma.index')->with('status', 'Yozuv muvaffaqiyatli qo‘shildi.');
     }
@@ -82,16 +66,7 @@ class DalolatnomaController extends Controller
 
     public function update(UpdateDalolatnomaRequest $request, Dalolatnoma $dalolatnoma)
     {
-        $request->validate([
-            'name' => 'required|string|max:600',
-            'raqami' => 'required|string|max:20',
-            'joyiye_obyekti' => 'required|string|max:600',
-            'joyiye_maqsadi' => 'required|string|max:600',
-            'joyiye_asos' => 'required|string|max:600',
-            'joyiye_tashkilot' => 'required|string|max:600',
-            'joyiye_tarmoq' => 'required|string|max:600',
-            'asoslovchi_hujjat' => 'nullable|file|max:2048',
-        ]);
+        $data = $request->validated();
 
         // Faylni yuklash (agar yangi fayl yuborilgan bo‘lsa)
         if ($request->hasFile('asoslovchi_hujjat')) {
@@ -101,19 +76,12 @@ class DalolatnomaController extends Controller
             }
 
             // Yangi faylni saqlash
-            $filePath = $request->file('asoslovchi_hujjat')->store('asoslovchi_hujjatlar');
-            $dalolatnoma->asoslovchi_hujjat = $filePath;
+            $data['asoslovchi_hujjat'] = $request
+                ->file('asoslovchi_hujjat')
+                ->store('asoslovchi_hujjatlar');
         }
 
-        $dalolatnoma->update([
-            'name' => $request->name,
-            'raqami' => $request->raqami,
-            'joyiye_obyekti' => $request->joyiye_obyekti,
-            'joyiye_maqsadi' => $request->joyiye_maqsadi,
-            'joyiye_asos' => $request->joyiye_asos,
-            'joyiye_tashkilot' => $request->joyiye_tashkilot,
-            'joyiye_tarmoq' => $request->joyiye_tarmoq,
-        ]);
+        $dalolatnoma->update(attributes: $data);
 
         return redirect()->route('dalolatnoma.index')->with('status', 'Yozuv muvaffaqiyatli yangilandi.');
     }

@@ -5,12 +5,6 @@
             <div class="col-span-12 mt-8">
 
                 <div class="grid grid-cols-12 gap-6 mt-0">
-                    <style>
-                        .report-box__icon {
-                            width: 32px;
-                            height: 32px;
-                        }
-                    </style>
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -22,7 +16,8 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $tashkilots }}</div>
+                                            {{ $tashkilots }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar</div>
                                     </div>
                                 </div>
@@ -40,7 +35,8 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $loy_count }}/{{ $loy_expert }}</div>
+                                            {{ $loy_count }}/{{ $loy_expert }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar</div>
                                     </div>
                                 </div>
@@ -57,14 +53,13 @@
                                 Orqaga
                             </a>
                             @role('super-admin')
-                             <a href="{{ route('monitoring_exportintellektual') }}"
-                                                    class="button ml-3 bg-theme-1 text-white">
-                                                    Export xulosa intellektual
-                                                </a>
-                            <a href="{{ route('monitoring_exportilmiy') }}"
-                                                    class="button ml-3 bg-theme-1 text-white">
-                                                    Export xulosa ilmiy loyiha
-                                                </a>
+                            <a href="{{ route('monitoring_exportintellektual') }}"
+                                class="button ml-3 bg-theme-1 text-white">
+                                Export xulosa intellektual
+                            </a>
+                            <a href="{{ route('monitoring_exportilmiy') }}" class="button ml-3 bg-theme-1 text-white">
+                                Export xulosa ilmiy loyiha
+                            </a>
                             @endrole
                         </div>
                         <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
@@ -109,7 +104,6 @@
                                         </td>
                                         <td style="text-align: center;">{{ $results['other']['ilmiyloyhalar'] }}</td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>

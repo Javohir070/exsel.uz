@@ -7,7 +7,7 @@
             <h2 class="intro-y text-lg font-medium">{{ auth()->user()->tashkilot->name }}</h2>
 
         </div>
-        <div class="intro-y box px-4   ">
+        <div class="intro-y box px-4">
 
             <div class="nav-tabs flex flex-col sm:flex-row justify-center lg:justify-start">
                 <a data-toggle="tab" data-target="#ilmiy-izlanuvchilar" href="javascript:;"
@@ -24,6 +24,7 @@
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
+
         <div class="overflow-x-auto mt-2" style="background-color: white;border-radius:8px;">
 
             <div class="tab-content">
@@ -142,8 +143,6 @@
                                                     </td>
                                                 </tr>
                                             @endforelse
-
-
                                         </tbody>
                                     </table>
                                 </div>

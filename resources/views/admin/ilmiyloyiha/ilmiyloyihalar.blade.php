@@ -18,12 +18,7 @@
                 <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
             </div>
 
-            @role('super-admin')
-                    <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
-                        class="button w-24 ml-3 bg-theme-1 text-white">
-                        Import
-                    </a>
-            @endrole
+            @include('admin.components.file_button')
 
         </div>
 
@@ -64,18 +59,12 @@
                             <td>
                                 {{ $xodimlar->mavzusi  }}
                             </td>
-                            {{-- <td>
-                                {{ $xodimlar->turi }}
-                            </td> --}}
                             <td>
                                 {{ $xodimlar->rahbar_name }}
                             </td>
                             <td>
                                 {{ $xodimlar->raqami }}
                             </td>
-                            {{-- <td style="color:{{ $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? null == "Tasdiqlandi" ? "green" : ($xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? null == "yuborildi" ? "blue" : "red") }}">
-                                {{ $xodimlar->tekshirivchilars()->where('is_active', 1)->first()->holati ?? "Ko'rilmagan" }}
-                            </td> --}}
 
                             <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('quarter', 3)->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
                                 {{ $xodimlar->tekshirivchilars()->where('quarter', 3)->first()->status ?? "Tasdiqlanmagan" }}
@@ -88,8 +77,6 @@
 
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
-
-
                                     <a class="flex science-update-action items-center mr-3"
                                         href="{{ route('ilmiyloyiha.show', ['ilmiyloyiha' => $xodimlar->id]) }}" >
                                         <i data-feather="eye"  class="feather feather-check-square w-4 h-4 mr-1"></i>
@@ -111,7 +98,6 @@
                         </tr>
                     @endforeach
 
-
                 </tbody>
             </table>
         </div>
@@ -124,58 +110,6 @@
 
     </div>
 
-    <div class="modal" id="science-paper-create-modal">
-        <div class="modal__content modal__content--xl">
-            <div class="p-5">
+    @include('admin.components.file_modal', ['action' => route('IlmiyLoyiha_import')])
 
-                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
-                    <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-                        <form id="science-paper-create-form" method="POST" action="{{ route('IlmiyLoyiha_import') }}"
-                            class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
-                            @csrf
-                            <div class="grid grid-cols-12 gap-2">
-
-                                <div class="w-full col-span-12">
-
-                                    <label class="flex flex-col sm:flex-row"> <span
-                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excle yuklash uchun shu
-                                        shablonday bo'lishi shart yoki xato berdi.
-                                    </label><br>
-                                    <a href="#" form="science-paper-create-form"
-                                        class="input w-full mt-2 button w-24 bg-theme-1 text-white">
-                                        Shablon yuklab olish
-                                    </a>
-
-                                </div>
-                                <div class="w-full col-span-12">
-
-
-                                    <label class="flex flex-col sm:flex-row"> <span
-                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Excel yuklash
-                                    </label>
-                                    <input type="file" name="file" style="padding-left: 0" class="input w-full mt-2"
-                                        required="">
-
-                                </div>
-
-                            </div>
-                        </form>
-                    </div>
-                </div>
-
-
-            </div>
-            <div class="px-5 pb-5 text-center mt-4">
-
-
-                <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
-                    Bekor qilish
-                </button>
-                <button type="submit" form="science-paper-create-form"
-                    class="update-confirm button w-24 bg-theme-1 text-white">
-                    Qo'shish
-                </button>
-            </div>
-        </div>
-    </div>
 @endsection

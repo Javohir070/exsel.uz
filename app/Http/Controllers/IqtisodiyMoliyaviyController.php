@@ -27,25 +27,10 @@ class IqtisodiyMoliyaviyController extends Controller
 
     public function store(StoreIqtisodiyMoliyaviyRequest $request)
     {
-
-        IqtisodiyMoliyaviy::create([
-            "user_id" => auth()->id(),
-            "tashkilot_id" => auth()->user()->tashkilot_id,
-            "kadastr_raqami" => $request->kadastr_raqami,
-            "u_maydoni" => $request->u_maydoni,
-            "taj_maydonlari" => $request->taj_maydonlari,
-            "binolar_soni" => $request->binolar_soni,
-            "auditoriya_sigimi" => $request->auditoriya_sigimi,
-            "k_xaj_auditor_soni" => $request->k_xaj_auditor_soni,
-            "pondi_miqdori" => $request->pondi_miqdori,
-            "ilmiyp_bulinalar" => $request->ilmiyp_bulinalar,
-            "gaz" => $request->gaz,
-            "elektr" => $request->elektr,
-            "suv" => $request->suv,
-            "kanalizasiya" => $request->kanalizasiya,
-            "internet" => $request->internet,
-        ]);
-
+        $data = $request->validated();
+        $data['tashkilot_id'] = auth()->user()->tashkilot_id;
+        $data['user_id'] = auth()->id();
+        IqtisodiyMoliyaviy::create($data);
         return redirect('/iqtisodiy')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
@@ -66,23 +51,7 @@ class IqtisodiyMoliyaviyController extends Controller
 
     public function update(StoreIqtisodiyMoliyaviyRequest $request, IqtisodiyMoliyaviy $iqtisodiy)
     {
-        $iqtisodiy->update([
-            "user_id" => auth()->id(),
-            "tashkilot_id" => auth()->user()->tashkilot_id,
-            "kadastr_raqami" => $request->kadastr_raqami,
-            "u_maydoni" => $request->u_maydoni,
-            "taj_maydonlari" => $request->taj_maydonlari,
-            "binolar_soni" => $request->binolar_soni,
-            "auditoriya_sigimi" => $request->auditoriya_sigimi,
-            "k_xaj_auditor_soni" => $request->k_xaj_auditor_soni,
-            "pondi_miqdori" => $request->pondi_miqdori,
-            "ilmiyp_bulinalar" => $request->ilmiyp_bulinalar,
-            "gaz" => $request->gaz,
-            "elektr" => $request->elektr,
-            "suv" => $request->suv,
-            "kanalizasiya" => $request->kanalizasiya,
-            "internet" => $request->internet,
-        ]);
+        $iqtisodiy->update($request->validated());
 
         return redirect('/iqtisodiy')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }

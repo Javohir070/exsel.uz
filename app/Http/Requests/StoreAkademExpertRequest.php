@@ -22,7 +22,20 @@ class StoreAkademExpertRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'akadem_id' => 'required|exists:akadem,id',
+            'kalendar_reja_monitoring' => 'required|max:255',
+            'kalendar_reja_monitoring_izox' => 'nullable|max:600',
+            'dalolatnoma_tuzilgan' => 'required|max:255',
+            'dalolatnoma_tuzilgan_izox' => 'nullable|max:600',
+            'hisobot_muhokama_qilingan' => 'required|max:255',
+            'hisobot_muhokama_qilingan_izox' => 'nullable|max:600',
+            'hisobot_agentlikka_taqdim' => 'required|max:255',
+            'hisobot_agentlikka_taqdim_izox' => 'nullable|max:600',
+            'status' => 'required|max:255',
+            'comment' => 'required|max:255',
+            't_masul' => 'required|max:255',
+            'ekspert_fish' => 'required|max:255',
+            'holati' => 'required|max:255',
         ];
     }
 }

@@ -15,7 +15,6 @@ class LoyihaijrochilarController extends Controller
 {
     public function index(Request $request)
     {
-        dd($request->all());
         return redirect()->back()->with('status', 'Loyiha ijrochisi o‘chirildi');
     }
     // public function index(Request $request)

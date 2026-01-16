@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreTekshirivchilarRequest;
 use App\Models\IlmiyLoyiha;
 use App\Models\Tekshirivchilar;
 use App\Models\User;
@@ -13,27 +14,19 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class TekshirivchilarController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreTekshirivchilarRequest $request)
     {
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiyloyiha_id);
         $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
-        $tekshirivchilar = Tekshirivchilar::create([
-            'user_id' => auth()->id(),
-            'tashkilot_id' => $ilmiyloyiha->tashkilot_id,
-            'ilmiy_loyiha_id' => $request->ilmiyloyiha_id,
-            'fish' => $user->name,
-            'ekspert_fish' => $request->ekspert_fish,
-            't_masul' => $request->t_masul,
-            "status" => $request->status,
-            "comment" => $request->comment,
-            'is_active' => 1,
-            'kalendar' => $request->kalendar,
-            'shart_sharoit_yaratib' => $request->shart_sharoit_yaratib,
-            'yakuniy_natijalar' => $request->yakuniy_natijalar,
-            'loyiha_ijrochilari' => $request->loyiha_ijrochilari,
-            'quarter' => 3,
-            'year' => date('Y'),
-        ]);
+
+        $data = $request->validated();
+        $data['user_id'] = auth()->id();
+        $data['tashkilot_id'] = $ilmiyloyiha->tashkilot_id;
+        $data['fish'] = $user->name;
+        $data['quarter'] = 3;
+        $data['year'] = date('Y');
+        $data['is_active'] = 1;
+        $tekshirivchilar = Tekshirivchilar::create($data);
 
         Notification::send($user, new IlmiyloyihaNotification($tekshirivchilar));
 

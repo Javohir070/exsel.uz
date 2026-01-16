@@ -8,7 +8,7 @@
             <h2 class="intro-y text-lg font-medium">Tashkilot rahbarlar </h2>
 
         </div>
-        
+
         <div class="grid grid-cols-12 gap-6 mt-5">
 
             <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
@@ -68,6 +68,7 @@
                     </tbody>
                 </table>
             </div>
+            
             <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
                 {{$tashkilot_rahbarilar->links()}}
             </div>

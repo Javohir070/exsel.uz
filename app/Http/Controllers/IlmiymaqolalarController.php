@@ -39,45 +39,18 @@ class IlmiymaqolalarController extends Controller
     public function store(StoreIlmiymaqolalarRequest $request)
     {
 
-        $request->validate([
-            'type' => 'required|in:Respublika miqyosidagi jurnallar,Xalqaro miqyosidagi jurnallar',
-            'mavzu' => 'required|string',
-            'mualliflar_json' => 'required|array',
-            'chopq_sana' => 'required|date',
-            'jurnal_nomi' => 'required|string',
-            'jurnal_soni' => 'required|string',
-            'jurnal_issn_raqami' => 'required|string',
-            'nashriyot' => 'required|string',
-            'annotatsiya' => 'required|string',
-            'fan_yunalishi' => 'required|string',
-            'url' => 'nullable|url',
-            'doi' => 'nullable|url',
-        ]);
-
+        $data = $request->validated();
         // Mualliflarni JSON formatida olish
         $mualliflar = json_encode($request->mualliflar_json);
+        $data['mualliflar_json'] = $mualliflar;
+        $data['tashkilot_id'] = auth()->user()->tashkilot_id; 
+        $data['kafedralar_id'] = auth()->user()->kafedralar_id;
 
         // Jurnalni saqlash
-        Ilmiymaqolalar::create([
-            'tashkilot_id' => auth()->user()->tashkilot_id, // Foydalanuvchining tashkilot_id sini olish
-            'kafedralar_id' => auth()->user()->kafedralar_id, // Foydalanuvchining kafedralar_id sini olish
-            'type' => $request->type,
-            'mavzu' => $request->mavzu,
-            'mualliflar_json' => $mualliflar, // Mualliflarni JSON formatida saqlash
-            'chopq_sana' => $request->chopq_sana,
-            'jurnal_nomi' => $request->jurnal_nomi,
-            'jurnal_soni' => $request->jurnal_soni,
-            'jurnal_issn_raqami' => $request->jurnal_issn_raqami,
-            'nashriyot' => $request->nashriyot,
-            'annotatsiya' => $request->annotatsiya,
-            'fan_yunalishi' => $request->fan_yunalishi,
-            'url' => $request->url,
-            'doi' => $request->doi,
-        ]);
+        Ilmiymaqolalar::create($data);
 
         // Saqlangan jurnalni qaytarish yoki xabar
         return redirect()->route('ilmiymaqolalar.index')->with('status', 'Yangi jurnal muvaffaqiyatli saqlandi!');
-
     }
 
 
@@ -96,43 +69,17 @@ class IlmiymaqolalarController extends Controller
     public function update(UpdateIlmiymaqolalarRequest $request, Ilmiymaqolalar $ilmiymaqolalar)
     {
 
-        $request->validate([
-            'type' => 'required|in:Respublika miqyosidagi jurnallar,Xalqaro miqyosidagi jurnallar',
-            'mavzu' => 'required|string',
-            'mualliflar_json' => 'required|array',
-            'chopq_sana' => 'required|date',
-            'jurnal_nomi' => 'required|string',
-            'jurnal_soni' => 'required|string',
-            'jurnal_issn_raqami' => 'required|string',
-            'nashriyot' => 'required|string',
-            'annotatsiya' => 'required|string',
-            'fan_yunalishi' => 'required|string',
-            'url' => 'nullable|url',
-            'doi' => 'nullable|url',
-        ]);
+        $data = $request->validated();
 
         // Mualliflarni JSON formatida olish
         $mualliflar = json_encode($request->mualliflar_json);
+        $data['mualliflar_json'] = $mualliflar;
 
         // Jurnalni yangilash
-        $ilmiymaqolalar->update([
-            'type' => $request->type,
-            'mavzu' => $request->mavzu,
-            'mualliflar_json' => $mualliflar, // Mualliflarni JSON formatida saqlash
-            'chopq_sana' => $request->chopq_sana,
-            'jurnal_nomi' => $request->jurnal_nomi,
-            'jurnal_soni' => $request->jurnal_soni,
-            'jurnal_issn_raqami' => $request->jurnal_issn_raqami,
-            'nashriyot' => $request->nashriyot,
-            'annotatsiya' => $request->annotatsiya,
-            'fan_yunalishi' => $request->fan_yunalishi,
-            'url' => $request->url,
-            'doi' => $request->doi,
-        ]);
+        $ilmiymaqolalar->update($data);
 
         // Saqlangan jurnalni qaytarish yoki xabar
         return redirect()->route('ilmiymaqolalar.index')->with('status', 'Jurnal muvaffaqiyatli yangilandi!');
-
     }
 
 

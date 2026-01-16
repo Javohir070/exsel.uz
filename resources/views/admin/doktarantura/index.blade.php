@@ -12,12 +12,7 @@
                     <form action="{{ route('search_dok') }}" method="GET">
                         <input type="text" name="query"
                             class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13" placeholder="Search...">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                            class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0">
-                            <circle cx="11" cy="11" r="8"></circle>
-                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-                        </svg>
+                        <i data-feather="search"  class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"></i>
                     </form>
                 </div>
                 {{-- <form method="GET" action="{{ route('search_dok') }}">

@@ -4,16 +4,7 @@
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
             <div class="col-span-12 mt-8">
 
-
                 <div class="grid grid-cols-12 gap-6 mt-5">
-
-
-                    <style>
-                        .report-box__icon {
-                            width: 32px;
-                            height: 32px;
-                        }
-                    </style>
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -32,8 +23,6 @@
                             </a>
                         </div>
                     </div>
-
-
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -54,8 +43,6 @@
                         </div>
                     </div>
 
-
-
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route('asbobuskunalar.index') }}">
@@ -75,7 +62,6 @@
                         </div>
                     </div>
 
-
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route('doktarantura.index') }}">
@@ -94,7 +80,6 @@
                             </a>
                         </div>
                     </div>
-
 
                     <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
                         <div class="intro-y block sm:flex items-center py-4">
@@ -172,7 +157,6 @@
 
                     </div>
 
-
                     <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
                         <div class="intro-y block sm:flex items-center py-4" style="display: flex;justify-content: space-between;">
                             <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
@@ -236,9 +220,6 @@
                             {{ $tashkilotlar->appends(request()->all())->links() }}
                         </div>
                     </div>
-
-
-
 
                 </div>
             </div>

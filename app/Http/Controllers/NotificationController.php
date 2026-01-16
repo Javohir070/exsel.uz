@@ -52,5 +52,4 @@ class NotificationController extends Controller
         return redirect()->route('notifications.index')->with('status', 'Barcha xabarnomalar o\'qilgan deb belgilandi.');
     }
 
-
 }

@@ -7,10 +7,9 @@
 
     </div>
 
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-        style="background: white;
-                padding: 20px 20px;
-                border-radius: 4px">
+    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
+                    padding: 20px 20px;
+                    border-radius: 4px">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <form id="science-paper-create-form" method="POST" action="{{ route('tashkilot.store') }}" class="validate-form"
                 enctype="multipart/form-data" novalidate="novalidate">
@@ -29,22 +28,11 @@
 
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Id raqami
-                        </label>
-                        <input type="text" name="id_raqam" value="{{ old('id_raqam') }}" class="input w-full border mt-2"
-                            required="">
-                        @error('id_raqam')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
-                    </div>
-
-                    <div class="w-full col-span-6 ">
-                        <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot turini tanlang
                         </label>
-                        <select name="tashkilot_turi" value="{{ old('tashkilot_turi') }}" class="input border w-full mt-2">
+                        <select name="tashkilot_turi" value="{{ old('tashkilot_turi') }}" class="input border w-full mt-2" required>
 
-                            <option value="">Turi</option>
+                            <option value="">Tashkilot turini tanlang</option>
 
                             <option value="otm">OTM</option>
 
@@ -53,7 +41,7 @@
                             <option value="boshqa">Boshqa</option>
 
                         </select>
-                        @error('id_raqam')
+                        @error('tashkilot_turi')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
@@ -73,14 +61,14 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Viloyatni tanlang
                         </label>
-                        <select class="input border w-full mt-2" name="region_id" id="region_id">
+                        <select class="input border w-full mt-2" name="region_id" id="region_id" required>
                             <option value="">Viloyatlari</option>
                             @foreach ($regions as $v)
                                 <option value="{{ $v->id }}" @selected(request('region_id') === $v->id)>{{ $v->oz }}
                                 </option>
                             @endforeach
                         </select>
-                        @error('stir_raqami')
+                        @error('region_id')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>

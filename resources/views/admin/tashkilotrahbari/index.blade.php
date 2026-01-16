@@ -37,7 +37,7 @@
                         </div>
                         <tr>
                             <!-- <th class="whitespace-no-wrap border" style="width: 40px";>#</th>
-                                    <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
+                                            <th class="whitespace-no-wrap border" style="width:50%;">Ma’lumot nomlanishi</th> -->
                             <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">Ma’lumot</th>
                         </tr>
                         <tr class="bg-gray-200">

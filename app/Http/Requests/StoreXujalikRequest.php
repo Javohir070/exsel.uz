@@ -35,6 +35,15 @@ class StoreXujalikRequest extends FormRequest
             'sh_summa' => "required|max:255",
             'shkelib_sana' => "required|max:255",
             'shkelib_summa' => "required|max:255",
+
+            "chorak1" => "required|max:255",
+            "chorak2" => "required|max:255",
+            "chorak3" => "required|max:255",
+            "chorak4" => "required|max:255",
+            'shartnoma_file' => 'nullable|file|max:2048',
+            'dalolatnoma_file' => 'nullable|file|max:2048',
+            'pul_type' => 'nullable',
         ];
+
     }
 }

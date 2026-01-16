@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreDoktaranturaexpertRequest;
 use App\Models\Doktaranturaexpert;
 use App\Models\Izlanuvchilar;
 use App\Models\Tashkilot;
@@ -13,33 +14,17 @@ use Illuminate\Support\Facades\Storage;
 
 class DoktaranturaexpertController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreDoktaranturaexpertRequest $request)
     {
         $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
-        // dd($request->all());
-        $doktaranturaexpert = Doktaranturaexpert::create([
-            'user_id' => auth()->id(),
-            'quarter' => 3,
-            'year' => date('Y'),
-            'fish' => $user->name,
-            'ekspert_fish' => $request->ekspert_fish,
-            't_masul' => $request->t_masul,
-            'tashkilot_id' => $request->tashkilot_id,
-            'status' => $request->status,
-            'comment' => $request->comment,
-            "umumiy_izlanuvchilar" => $request->umumiy_izlanuvchilar,
-            "yagonae_tah_soni" => $request->yagonae_tah_soni,
-            "chetlash_soni" => $request->chetlash_soni,
-            "akademik_soni" => $request->akademik_soni,
-            "muddatidano_soni" => $request->muddatidano_soni,
-            "kiritilmagan_soni" => $request->kiritilmagan_soni,
-            "rejani_bajarmagan" => $request->rejani_bajarmagan,
-            "mon_nat_kiritilmagan" => $request->mon_nat_kiritilmagan,
-            "biriktirilgan_rahbarlar" => $request->biriktirilgan_rahbarlar,
-            "kollegial_rahbarlar" => $request->kollegial_rahbarlar,
-            "meyoridan_rahbarlar" => $request->meyoridan_rahbarlar,
-            "tash_ortiq_rahbarlar" => $request->tash_ortiq_rahbarlar,
-        ]);
+        
+        $data = $request->validated();
+        $data['user_id'] = auth()->id();
+        $data['fish'] = $user->name;
+        $data['quarter'] = 3;
+        $data['year'] = date('Y');
+
+        $doktaranturaexpert = Doktaranturaexpert::create($data);
 
         Notification::send($user, new DoktaranturaNotification($doktaranturaexpert));
 
@@ -100,29 +85,14 @@ class DoktaranturaexpertController extends Controller
             return redirect()->route('doktarantura.show', $doktaranturaexpert->tashkilot_id)->with("status", 'Ma\'lumotlar rad etildi.');
         } else {
             $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
-            $doktaranturaexpert->update([
-                'user_id' => auth()->id(),
-                'fish' => $user->name,
-                'ekspert_fish' => $request->ekspert_fish,
-                't_masul' => $request->t_masul,
-                'status' => $request->status,
-                'comment' => $request->comment,
-                "umumiy_izlanuvchilar" => $request->umumiy_izlanuvchilar,
-                "yagonae_tah_soni" => $request->yagonae_tah_soni,
-                "chetlash_soni" => $request->chetlash_soni,
-                "akademik_soni" => $request->akademik_soni,
-                "muddatidano_soni" => $request->muddatidano_soni,
-                "kiritilmagan_soni" => $request->kiritilmagan_soni,
-                "rejani_bajarmagan" => $request->rejani_bajarmagan,
-                "mon_nat_kiritilmagan" => $request->mon_nat_kiritilmagan,
-                "biriktirilgan_rahbarlar" => $request->biriktirilgan_rahbarlar,
-                "kollegial_rahbarlar" => $request->kollegial_rahbarlar,
-                "meyoridan_rahbarlar" => $request->meyoridan_rahbarlar,
-                "tash_ortiq_rahbarlar" => $request->tash_ortiq_rahbarlar,
-                'holati' => 'yuborildi',
-            ]);
 
-            // $admins = User::findOrFail($doktaranturaexpert->user_id);
+            $data = $request->validated();
+            $data['user_id'] = auth()->id();
+            $data['fish'] = $user->name;
+            $data['holati'] = 'yuborildi';
+
+            $doktaranturaexpert->update($data);
+
             Notification::send($user, new DoktaranturaNotification($doktaranturaexpert));
 
             return redirect()->route('doktarantura.show', $doktaranturaexpert->tashkilot_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');

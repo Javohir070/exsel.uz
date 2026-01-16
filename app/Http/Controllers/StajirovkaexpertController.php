@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreStajirovkaExpertRequest;
+use App\Http\Requests\UpdateStajirovkaExpertRequest;
 use App\Models\Stajirovka;
 use App\Models\Stajirovkaexpert;
 use App\Models\User;
@@ -12,27 +14,20 @@ use Illuminate\Support\Facades\Storage;
 
 class StajirovkaexpertController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreStajirovkaExpertRequest $request)
     {
         $user = User::where('group_id', '=',auth()->user()->group_id)->role('Ekspert')->first();
         $stajirovka = Stajirovka::findOrFail($request->stajirovka_id);
-        $stajirovkaexpert = Stajirovkaexpert::create([
-            'user_id' => auth()->id(),
-            'tashkilot_id' => $stajirovka->tashkilot_id,
-            'fish' => $user->name,
-            'ekspert_fish' => $request->ekspert_fish,
-            't_masul' => $request->t_masul,
-            'stajirovka_id' => $request->stajirovka_id,
-            'ilmiy_hisobot' => $request->ilmiy_hisobot,
-            'egallangan_bilim' => $request->egallangan_bilim,
-            'ishlar_natijalari' => $request->ishlar_natijalari,
-            'xalqarotan_jur_nashr' => $request->xalqarotan_jur_nashr,
-            'biryil_davomida' => $request->biryil_davomida,
-            'status' => $request->status,
-            'comment' => $request->comment,
-            'quarter' => 3,
-            'year' => date('Y'),
-        ]);
+
+        $data = $request->validated();
+        $data['user_id'] = auth()->id();
+        $data['tashkilot_id'] = $stajirovka->tashkilot_id;
+        $data['fish'] = $user->name;
+        $data['quarter'] = 3;
+        $data['year'] = date('Y');
+        
+        $stajirovkaexpert = Stajirovkaexpert::create($data);
+
         Notification::send($user, new StajirovkaNotification($stajirovkaexpert));
 
         return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
@@ -45,7 +40,7 @@ class StajirovkaexpertController extends Controller
     }
 
 
-    public function update(Request $request, Stajirovkaexpert $stajirovkaexpert)
+    public function update(UpdateStajirovkaExpertRequest $request, Stajirovkaexpert $stajirovkaexpert)
     {
         if ($request->holati == 0) {
             $user = User::where('group_id', '=',auth()->user()->group_id)->role('Ekspert')->first();
@@ -57,20 +52,14 @@ class StajirovkaexpertController extends Controller
             return redirect()->route('stajirovka.show', $stajirovkaexpert->stajirovka_id)->with("status", 'Ma\'lumotlar rad etildi.');
         } else {
             $user = User::where('group_id', '=',auth()->user()->group_id)->role('Ekspert')->first();
-            $stajirovkaexpert->update([
-                'user_id' => auth()->id(),
-                'fish' => $user->name,
-                'ekspert_fish' => $request->ekspert_fish,
-                't_masul' => $request->t_masul,
-                'ilmiy_hisobot' => $request->ilmiy_hisobot,
-                'egallangan_bilim' => $request->egallangan_bilim,
-                'ishlar_natijalari' => $request->ishlar_natijalari,
-                'xalqarotan_jur_nashr' => $request->xalqarotan_jur_nashr,
-                'biryil_davomida' => $request->biryil_davomida,
-                'status' => $request->status,
-                'comment' => $request->comment,
-                'holati' => 'yuborildi',
-            ]);
+
+            $data = $request->validated();
+            $data['user_id'] = auth()->id();
+            $data['fish'] = $user->name;
+            $data['holati'] = 'yuborildi';
+
+            $stajirovkaexpert->update($data);
+
             Notification::send($user, new StajirovkaNotification($stajirovkaexpert));
             return redirect()->route('stajirovka.show', $stajirovkaexpert->stajirovka_id)->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
         }

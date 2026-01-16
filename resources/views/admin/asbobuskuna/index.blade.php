@@ -42,7 +42,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($asbobuskunas as $k)
+                    @forelse ($asbobuskunas as $k)
 
                         <tr class="intro-x">
                             <td>{{$loop->index + 1}}</td>
@@ -86,7 +86,11 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="6" class="text-center">Ma'lumotlar mavjud emas</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

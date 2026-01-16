@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="content">
-        <div class="flex justify-between align-center mt-6 mb-6" style="align-items: center;">
+        <div class="flex justify-between align-center " style="align-items: center;">
 
             <h2 class="intro-y text-lg font-medium">{{ $tash_count ?? 'Tashkilotlar' }} ta tashkilot topildi.</h2>
 
@@ -22,6 +22,10 @@
             </div>
 
         </div>
+
+        @if (session('status'))
+            <div class="alert alert-success">{{ session('status') }}</div>
+        @endif
 
         <form id="science-paper-create-form" method="GET" action="{{ route('tashkilotlar.index') }}"
             class="validate-form">
@@ -104,29 +108,10 @@
                                             <i data-feather="eye" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                             Ko'rish
                                         </a>
-
-                                        {{-- <form action="{{ route('tashkilot.destroy', ['tashkilot' => $tashkilots->id]) }}"
-                                            method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
-                                            <button type="submit" class="flex delete-action items-center text-theme-6">
-                                                @csrf
-                                                @method('DELETE')
-                                                <i data-feather="trash-2"
-                                                    class="feather feather-check-square w-4 h-4 mr-1"></i>
-                                                O'chirish
-                                            </button>
-                                        </form> --}}
-                                        {{-- <form action="{{ route('xodimlar.deleteAll', ['tashkilot' => $tashkilots->id]) }}"
-                                            method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
-                                            <button type="submit" class="flex delete-action items-center text-theme-6">
-                                                @csrf
-                                                @method('DELETE')
-                                                <i data-feather="trash-2" class="feather feather-check-square w-4 h-4 mr-1"></i>
-                                                Xodimlar o'chirish
-                                            </button>
-                                        </form> --}}
                                     </div>
                                 </td>
                             </tr>
+
                         @empty
                             <tr>
                                 <td colspan="6" class="text-center">Ma'lumot mavjud emas</td>

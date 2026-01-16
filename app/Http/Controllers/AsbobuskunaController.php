@@ -23,7 +23,9 @@ class AsbobuskunaController extends Controller
 
     public function index()
     {
-        $asbobuskunas = Asbobuskuna::where('tashkilot_id', auth()->user()->tashkilot_id)->where('is_active', 1)->paginate(20);
+        $asbobuskunas = Asbobuskuna::where('tashkilot_id', auth()->user()->tashkilot_id)
+            ->where('is_active', 1)
+            ->paginate(20);
         $asbobuskunafile = Asbobuskunafile::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
 
         return view('admin.asbobuskuna.index', ['asbobuskunas' => $asbobuskunas, 'asbobuskunafile' => $asbobuskunafile]);
@@ -31,7 +33,9 @@ class AsbobuskunaController extends Controller
 
     public function asbobuskuna_masullar()
     {
-        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
+        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)
+            ->with('roles')->get();
+
         $masullar = $users->filter(function ($user) {
             return $user->roles->contains('name', 'Asbob_uskunalarga_masul');
         });
@@ -41,7 +45,6 @@ class AsbobuskunaController extends Controller
 
     public function asbobuskunalar()
     {
-
         if ((auth()->user()->region_id != null)) {
             $regions = Region::where('id', "=", auth()->user()->region_id)->get();
             foreach ($regions as $region) {
@@ -69,14 +72,13 @@ class AsbobuskunaController extends Controller
             'tashkilots' => $tashkilots,
             'asboblar_all' => $asboblar_all
         ]);
-
     }
 
     public function tashkilot_turi_asbobuskuna($id)
     {
-        // dd($id);
-
-        $tashkilotlarQuery = Tashkilot::where('asbobuskuna_is', 1)->where('region_id', '=', $id)->with(['asbobuskunalar'])
+        $tashkilotlarQuery = Tashkilot::where('asbobuskuna_is', 1)
+            ->where('region_id', '=', $id)
+            ->with(['asbobuskunalar'])
             ->get();
 
         // Turga qarab guruhlash
@@ -145,14 +147,25 @@ class AsbobuskunaController extends Controller
             $regions = Region::orderBy('order')->get();
         }
 
-        return view('admin.asbobuskuna.tashkilotlar', ['asbobuskunas' => $asbobuskunas, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'tash_count' => $tash_count]);
+        return view('admin.asbobuskuna.tashkilotlar', [
+            'asbobuskunas' => $asbobuskunas,
+            'tashkilotlar' => $tashkilotlar,
+            'regions' => $regions,
+            'tash_count' => $tash_count
+        ]);
     }
 
     public function asbobu($id)
     {
         $tashkilot = Tashkilot::findOrFail($id);
-        $asbobuskunas = Asbobuskuna::where('is_active', 1)->where('tashkilot_id', '=', $id)->paginate(20);
-        return view('admin.asbobuskuna.asbobuskunalar', ['asbobuskunas' => $asbobuskunas, 'tashkilot' => $tashkilot]);
+        $asbobuskunas = Asbobuskuna::where('is_active', 1)
+            ->where('tashkilot_id', '=', $id)
+            ->paginate(20);
+
+        return view('admin.asbobuskuna.asbobuskunalar', [
+            'asbobuskunas' => $asbobuskunas,
+            'tashkilot' => $tashkilot
+        ]);
     }
 
     public function asbobuskunas_all(Request $request)
@@ -215,9 +228,12 @@ class AsbobuskunaController extends Controller
 
     public function create()
     {
-        $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
-        $laboratorys = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
-        $kafedralar = Kafedralar::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        $tashkilotId = auth()->user()->tashkilot_id;
+
+        $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', $tashkilotId)->get();
+        $laboratorys = Laboratory::where('tashkilot_id', $tashkilotId)->get();
+        $kafedralar = Kafedralar::where('tashkilot_id', $tashkilotId)->get();
+
         return view('admin.asbobuskuna.create', [
             'laboratorys' => $laboratorys,
             'ilmiy_loyhalar' => $ilmiy_loyhalar,
@@ -228,36 +244,13 @@ class AsbobuskunaController extends Controller
 
     public function store(StoreAsbobuskunaRequest $request)
     {
-        Asbobuskuna::create([
-            'tashkilot_id' => auth()->user()->tashkilot_id,
-            'user_id' => auth()->user()->id,
-            "name" => $request->name,
-            "model" => $request->model,
-            "turi" => $request->turi,
-            "ishlab_davlat" => $request->ishlab_davlat,
-            "ishlabchiq_yil" => $request->ishlabchiq_yil,
-            "harid_summa" => $request->harid_summa,
-            "buxgalteriya_summa" => $request->buxgalteriya_summa,
-            "moliya_manbasi" => $request->moliya_manbasi,
-            "loy_shifri" => $request->loy_shifri,
-            "sh_raqami" => $request->sh_raqami,
-            "sh_sanasi" => $request->sh_sanasi,
-            "harid_qilingan_yil" => $request->harid_qilingan_yil,
-            "holati" => $request->holati,
-            "urnatilgan_yili" => $request->urnatilgan_yili,
-            "laboratory_id" => $request->laboratory_id == 'yoq' ? null : $request->laboratory_id,
-            "kafedralar_id" => $request->kafedralar_id == 'yoq' ? null : $request->kafedralar_id,
-            "fish" => $request->fish,
-            "jav_buy_raqami" => $request->jav_buy_raqami,
-            "jav_sanasi" => $request->jav_sanasi,
-            'ilmiy_tadqiqot_ishilari' => $request->ilmiy_tadqiqot_ishilari,
-            'ilmiy_tadqiqot_hajmi' => $request->ilmiy_tadqiqot_hajmi,
-            'lab_zaxirasi' => $request->lab_zaxirasi,
-            'foy_uchun_ariz' => $request->foy_uchun_ariz,
-            'asbob_usk_ehtiyoji' => $request->asbob_usk_ehtiyoji,
-            'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
-            'invertar_r' => $request->invertar_r,
-        ]);
+        $data = $request->validated();
+        $data['tashkilot_id'] = auth()->user()->tashkilot_id;
+        $data['user_id'] = auth()->user()->id;
+        $data['laboratory_id'] = $request->laboratory_id == 'yoq' ? null : $request->laboratory_id;
+        $data['kafedralar_id'] = $request->kafedralar_id == 'yoq' ? null : $request->kafedralar_id;
+
+        Asbobuskuna::create($data);
 
         return redirect()->route('asbobuskuna.index')->with('status', 'Asbob uskunasi qo`shildi');
     }
@@ -269,10 +262,10 @@ class AsbobuskunaController extends Controller
         $quarter_1 = Asbobuskunaexpert::where('quarter', 1)->where('asbobuskuna_id', $asbobuskuna->id)->first();
         $quarter_2 = Asbobuskunaexpert::where('quarter', 2)->where('asbobuskuna_id', $asbobuskuna->id)->first();
         $tashkilotlar = Tashkilot::all();
-       
+
         return view('admin.asbobuskuna.show', [
-            'asbobuskuna' => $asbobuskuna, 
-            'asbobuskunaexpert' => $asbobuskunaexpert, 
+            'asbobuskuna' => $asbobuskuna,
+            'asbobuskunaexpert' => $asbobuskunaexpert,
             'quarter_1' => $quarter_1,
             'quarter_2' => $quarter_2,
             'tashkilotlar' => $tashkilotlar
@@ -282,9 +275,10 @@ class AsbobuskunaController extends Controller
 
     public function edit(Asbobuskuna $asbobuskuna)
     {
-        $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
-        $laboratorys = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
-        $kafedralar = Kafedralar::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        $tashkilotId = auth()->user()->tashkilot_id;
+        $ilmiy_loyhalar = IlmiyLoyiha::where('tashkilot_id', $tashkilotId)->get();
+        $laboratorys = Laboratory::where('tashkilot_id', $tashkilotId)->get();
+        $kafedralar = Kafedralar::where('tashkilot_id', $tashkilotId)->get();
 
         return view('admin.asbobuskuna.edit', [
             'asbobuskuna' => $asbobuskuna,
@@ -297,34 +291,13 @@ class AsbobuskunaController extends Controller
 
     public function update(UpdateAsbobuskunaRequest $request, Asbobuskuna $asbobuskuna)
     {
-        $asbobuskuna->update([
-            "name" => $request->name,
-            "model" => $request->model,
-            "turi" => $request->turi,
-            "ishlab_davlat" => $request->ishlab_davlat,
-            "ishlabchiq_yil" => $request->ishlabchiq_yil,
-            "harid_summa" => $request->harid_summa,
-            "buxgalteriya_summa" => $request->buxgalteriya_summa,
-            "moliya_manbasi" => $request->moliya_manbasi,
-            "loy_shifri" => $request->loy_shifri,
-            "sh_raqami" => $request->sh_raqami,
-            "sh_sanasi" => $request->sh_sanasi,
-            "harid_qilingan_yil" => $request->harid_qilingan_yil,
-            "holati" => $request->holati,
-            "urnatilgan_yili" => $request->urnatilgan_yili,
-            "laboratory_id" => $request->laboratory_id == 'yoq' ? null : $request->laboratory_id,
-            "kafedralar_id" => $request->kafedralar_id == 'yoq' ? null : $request->kafedralar_id,
-            "fish" => $request->fish,
-            "jav_buy_raqami" => $request->jav_buy_raqami,
-            "jav_sanasi" => $request->jav_sanasi,
-            'ilmiy_tadqiqot_ishilari' => $request->ilmiy_tadqiqot_ishilari,
-            'ilmiy_tadqiqot_hajmi' => $request->ilmiy_tadqiqot_hajmi,
-            'lab_zaxirasi' => $request->lab_zaxirasi,
-            'foy_uchun_ariz' => $request->foy_uchun_ariz,
-            'asbob_usk_ehtiyoji' => $request->asbob_usk_ehtiyoji,
-            'zarur_ehtiyoji' => $request->zarur_ehtiyoji,
-            'invertar_r' => $request->invertar_r,
-        ]);
+        $data = $request->validated();
+        
+        $data['laboratory_id'] = $request->laboratory_id == 'yoq' ? null : $request->laboratory_id;
+        $data['kafedralar_id'] = $request->kafedralar_id == 'yoq' ? null : $request->kafedralar_id;
+        $data['user_id'] = auth()->user()->id;
+
+        $asbobuskuna->update($data);
 
         return redirect()->route('asbobuskuna.index')->with('status', 'Asbob uskunasi tahrirlandi');
     }

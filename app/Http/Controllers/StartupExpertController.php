@@ -33,28 +33,7 @@ class StartupExpertController extends Controller
     {
         $user = User::where('group_id', '=', auth()->user()->group_id)->role('startUP rahbar')->first();
 
-        $data = $request->only([
-            'startup_id',
-            'loyiha_yolga_qoyilgan',
-            'loyiha_yolga_qoyilgan_izox',
-            'daromadga_erishilgan',
-            'daromadga_erishilgan_izox',
-            'inventar_kirim_qilingan',
-            'inventar_kirim_qilingan_izox',
-            'inventar_joyida_mavjud',
-            'inventar_joyida_mavjud_izox',
-            'inventar_parametr_mosligi',
-            'inventar_parametr_mosligi_izox',
-            'xodimlar_soni',
-            'amalda_xodim_soni',
-            'shartnoma_mavjudligi',
-            'shartnoma_mavjudligi_izox',
-            'status',
-            'comment',
-            'holati',
-            't_masul',
-            'ekspert_fish'
-        ]);
+        $data = $request->validated();
 
         $data['user_id'] = auth()->id();
         $data['fish'] = $user->name ?? auth()->user()->name;
@@ -76,6 +55,7 @@ class StartupExpertController extends Controller
     {
         $startupExpert = StartupExpert::findOrFail($id);
         $startup = Startup::findOrFail($startupExpert->startup_id);
+        
         return view('admin.startup.expertedit', ['startupExpert' => $startupExpert, 'startup' => $startup]);
     }
 
@@ -90,27 +70,7 @@ class StartupExpertController extends Controller
                 'holati' => 'Rad etildi',
             ]);
         }else{
-            $data = $request->only([
-                'loyiha_yolga_qoyilgan',
-                'loyiha_yolga_qoyilgan_izox',
-                'daromadga_erishilgan',
-                'daromadga_erishilgan_izox',
-                'inventar_kirim_qilingan',
-                'inventar_kirim_qilingan_izox',
-                'inventar_joyida_mavjud',
-                'inventar_joyida_mavjud_izox',
-                'inventar_parametr_mosligi',
-                'inventar_parametr_mosligi_izox',
-                'xodimlar_soni',
-                'amalda_xodim_soni',
-                'shartnoma_mavjudligi',
-                'shartnoma_mavjudligi_izox',
-                'status',
-                'comment',
-                'holati',
-                't_masul',
-                'ekspert_fish'
-            ]);
+            $data = $request->validated();
     
             $startupExpert->update($data);
         }

@@ -33,40 +33,23 @@ class XujalikController extends Controller
 
     public function store(StoreXujalikRequest $request)
     {
+        $data = $request->validated();
         if ($request->hasFile('shartnoma_file')) {
             $name_shartnoma_file = time() . $request->file('shartnoma_file')->getClientOriginalName();
             $path_shartnoma_file = $request->file('shartnoma_file')->storeAs('xujalik-file', $name_shartnoma_file);
+            $data['shartnoma_file'] = $path_shartnoma_file ?? 'yo\'q';
         }
+
         if ($request->hasFile('dalolatnoma_file')) {
             $name_dalolatnoma_file = time() . $request->file('dalolatnoma_file')->getClientOriginalName();
             $path_dalolatnoma_file = $request->file('dalolatnoma_file')->storeAs('xujalik-file', $name_dalolatnoma_file);
+            $data['dalolatnoma_file'] = $path_dalolatnoma_file ?? null;
         }
+        $data['tashkilot_id'] = auth()->user()->tashkilot_id;
+        $data['kafedralar_id'] = auth()->user()->kafedralar_id;
+        $data['user_id'] = auth()->id();
 
-        Xujalik::create([
-            "user_id" => auth()->id(),
-            "tashkilot_id" => auth()->user()->tashkilot_id,
-            "kafedralar_id" => auth()->user()->kafedralar_id,
-            "ishlanma_nomi" => $request->ishlanma_nomi,
-            "intellektual_raqami" => $request->intellektual_raqami ?? "yoq",
-            "intellektual_sana" => $request->intellektual_sana ?? "yoq",
-            "ishlanma_mavzu" => $request->ishlanma_mavzu,
-            "ishlanma_turi" => $request->ishlanma_turi,
-            "lisenzion" => $request->lisenzion,
-            "sh_raqami" => $request->sh_raqami,
-            "sh_sanasi" => $request->sh_sanasi,
-            "ilmiy_nomi" => $request->ilmiy_nomi,
-            "stir" => $request->stir,
-            "sh_summa" => $request->sh_summa,
-            "shkelib_sana" => $request->shkelib_sana,
-            "shkelib_summa" => $request->shkelib_summa,
-            "chorak1" => $request->chorak1,
-            "chorak2" => $request->chorak2,
-            "chorak3" => $request->chorak3,
-            "chorak4" => $request->chorak4,
-            'shartnoma_file' => $path_shartnoma_file ?? "yo'q",
-            'dalolatnoma_file' => $path_dalolatnoma_file ?? null,
-            'pul_type' => $request->pul_type,
-        ]);
+        Xujalik::create($data);
 
 
         if (auth()->user()->hasRole('labaratoriyaga_masul')) {
@@ -95,40 +78,22 @@ class XujalikController extends Controller
 
     public function update(StoreXujalikRequest $request, Xujalik $xujalik)
     {
+        $data = $request->validated();
         if ($request->hasFile('shartnoma_file')) {
             $name_shartnoma_file = time() . $request->file('shartnoma_file')->getClientOriginalName();
             $path_shartnoma_file = $request->file('shartnoma_file')->storeAs('xujalik-file', $name_shartnoma_file);
+            $data['shartnoma_file'] = $path_shartnoma_file ?? 'yo\'q';
         }
         if ($request->hasFile('dalolatnoma_file')) {
             $name_dalolatnoma_file = time() . $request->file('dalolatnoma_file')->getClientOriginalName();
             $path_dalolatnoma_file = $request->file('dalolatnoma_file')->storeAs('xujalik-file', $name_dalolatnoma_file);
+            $data['dalolatnoma_file'] = $path_dalolatnoma_file ?? null;
         }
+        $data['tashkilot_id'] = auth()->user()->tashkilot_id;
+        $data['kafedralar_id'] = auth()->user()->kafedralar_id;
+        $data['user_id'] = auth()->id();
 
-        $xujalik->update([
-            "user_id" => auth()->id(),
-            "tashkilot_id" => auth()->user()->tashkilot_id,
-            "kafedralar_id" => auth()->user()->kafedralar_id,
-            "ishlanma_nomi" => $request->ishlanma_nomi,
-            "intellektual_raqami" => $request->intellektual_raqami ?? "yoq",
-            "intellektual_sana" => $request->intellektual_sana ?? "yoq",
-            "ishlanma_mavzu" => $request->ishlanma_mavzu,
-            "ishlanma_turi" => $request->ishlanma_turi,
-            "lisenzion" => $request->lisenzion,
-            "sh_raqami" => $request->sh_raqami,
-            "sh_sanasi" => $request->sh_sanasi,
-            "ilmiy_nomi" => $request->ilmiy_nomi,
-            "stir" => $request->stir,
-            "sh_summa" => $request->sh_summa,
-            "shkelib_sana" => $request->shkelib_sana,
-            "shkelib_summa" => $request->shkelib_summa,
-            "chorak1" => $request->chorak1,
-            "chorak2" => $request->chorak2,
-            "chorak3" => $request->chorak3,
-            "chorak4" => $request->chorak4,
-            'shartnoma_file' => $path_shartnoma_file ?? "yo'q",
-            'dalolatnoma_file' => $path_dalolatnoma_file ?? null,
-            'pul_type' => $request->pul_type,
-        ]);
+        $xujalik->update($data);
 
         if (auth()->user()->hasRole('labaratoriyaga_masul')) {
             return redirect()->route('lab_xujalik.index')->with('status', "Ma\'lumotlar muvaffaqiyatli yangilandi.");
@@ -180,5 +145,4 @@ class XujalikController extends Controller
         return Excel::download(new XujalikExport, $fileName);
     }
 
-    
 }

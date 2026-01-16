@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreIntellektualmulkRequest extends FormRequest
+class StoreTekshirivchilarRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,13 +22,15 @@ class StoreIntellektualmulkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'mavzu' => 'required|string|max:255',
-            'type' => 'required|string|max:255',
-            'nashr_sana' => 'required|date',
-            'soni' => 'required|integer',
-            'annotatsiya' => 'required|string',
-            'fan_yunalishi' => 'required|string|max:255',
-            'mualliflar_json' => 'required|array', // JSON maydon
+            'ilmiy_loyiha_id' => 'required',
+            'ekspert_fish' => 'required|string',
+            't_masul' => 'required|string',
+            "status" => 'required|string',
+            "comment" => 'required|string',
+            'kalendar' => 'required|string',
+            'shart_sharoit_yaratib' => 'required|string',
+            'yakuniy_natijalar' => 'required|string',
+            'loyiha_ijrochilari' => 'required|string',
         ];
     }
 }

@@ -22,7 +22,15 @@ class StoreMonografiyalarRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:600',
+            'nashr_yili' => 'required|integer',
+            'chop_etil_nashriyot' => 'required|string|max:600',
+            'til' => 'required|string|max:50',
+            'fan_yunalishi' => 'required|string|max:600',
+            'asoslovchi_hujjat' => 'required|file|max:2048', // Fayl tekshiruvi
+            'kbk' => 'nullable|string|max:50',
+            'isbn' => 'nullable|string|max:50',
+            'mualliflar_json' => 'required|array', // JSON uchun array tipda keladi
         ];
     }
 }

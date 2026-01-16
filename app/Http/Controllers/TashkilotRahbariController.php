@@ -15,6 +15,7 @@ class TashkilotRahbariController extends Controller
     {
         $tashRId = auth()->user()->tashkilot_id;
         $tash_rahbar = TashkilotRahbari::where('tashkilot_id', $tashRId)->get();
+        
         return view('admin.tashkilotrahbari.index', ['tash_rahbar'=>$tash_rahbar]);
     }
 
@@ -27,16 +28,11 @@ class TashkilotRahbariController extends Controller
 
     public function store(StoreTashkilotRahbariRequest $request)
     {
-        TashkilotRahbari::create([
-            "user_id" => auth()->id(),
-            "tashkilot_id" => auth()->user()->tashkilot_id,
-            "fish" => $request->fish,
-            "email" => $request->email,
-            "phone" => $request->phone,
-            "u_fish" => $request->u_fish,
-            "u_email" => $request->u_email,
-            "u_phone" => $request->u_phone,
-        ]);
+        $data = $request->validated();
+        $data['tashkilot_id'] = auth()->user()->tashkilot_id;
+        $data['user_id'] = auth()->id();
+
+        TashkilotRahbari::create($data);
 
         return redirect('/tashkilotrahbari')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
@@ -55,18 +51,11 @@ class TashkilotRahbariController extends Controller
     }
 
 
-    public function update(Request $request, TashkilotRahbari $tashkilotrahbari)
+    public function update(StoreTashkilotRahbariRequest $request, TashkilotRahbari $tashkilotrahbari)
     {
-        $tashkilotrahbari->update([
-            "user_id" => auth()->id(),
-            "tashkilot_id" => auth()->user()->tashkilot_id,
-            "fish" => $request->fish,
-            "email" => $request->email,
-            "phone" => $request->phone,
-            "u_fish" => $request->u_fish,
-            "u_email" => $request->u_email,
-            "u_phone" => $request->u_phone,
-        ]);
+        $data = $request->validated();
+        $data['user_id'] = auth()->id();
+            $tashkilotrahbari->update($data);
 
         return redirect('/tashkilotrahbari')->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
 

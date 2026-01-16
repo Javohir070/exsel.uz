@@ -28,9 +28,6 @@
                                 class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
                                 Tahrirlash
                             </a>
-                            <a href="" class="button w-24 bg-theme-6 text-white">
-                                O'chirish
-                            </a>
                         </div>
                     </div>
 
@@ -116,7 +113,6 @@
                     <tr>
                         <td class="border-b  border" colspan="2">{{ $tashkilot->hisob_raqam }} </td>
                     </tr>
-
                 </tbody>
             </table>
         </div>

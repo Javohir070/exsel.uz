@@ -38,31 +38,16 @@ class IntellektualmulkController extends Controller
     public function store(StoreIntellektualmulkRequest $request)
     {
 
-        $request->validate([
-            'mavzu' => 'required|string|max:255',
-            'type' => 'required|string|max:255',
-            'nashr_sana' => 'required|date',
-            'soni' => 'required|integer',
-            'annotatsiya' => 'required|string',
-            'fan_yunalishi' => 'required|string|max:255',
-            'mualliflar_json' => 'required|array', // JSON maydon
-        ]);
-        $mualliflar = $request->input('mualliflar_json');
+        $data = $request->validated();
+        $mualliflar = json_encode($request->input('mualliflar_json'));
+        $data['mualliflar_json'] = $mualliflar;
+        $data['tashkilot_id'] = auth()->user()->tashkilot_id;
+        $data['kafedralar_id'] = auth()->user()->kafedralar_id;
+
         // Monografiya yaratish
-        Intellektualmulk::create([
-            'tashkilot_id' => auth()->user()->tashkilot_id, // Avtomatik tashkilot ID
-            'kafedralar_id' => auth()->user()->kafedralar_id, // Avtomatik kafedra ID
-            'mavzu' => $request->mavzu,
-            'type' => $request->type,
-            'nashr_sana' => $request->nashr_sana,
-            'soni' => $request->soni,
-            'annotatsiya' => $request->annotatsiya,
-            'fan_yunalishi' => $request->fan_yunalishi,
-            'mualliflar_json' => json_encode($mualliflar), // JSON maydon
-        ]);
+        Intellektualmulk::create($data);
 
         return redirect()->route('intellektualmulk.index')->with('status', 'Intellektualmulk muvaffaqiyatli saqlandi');
-
     }
 
 
@@ -80,30 +65,15 @@ class IntellektualmulkController extends Controller
 
     public function update(UpdateIntellektualmulkRequest $request, Intellektualmulk $intellektualmulk)
     {
-        $request->validate([
-            'mavzu' => 'required|string|max:255',
-            'type' => 'required|string|max:255',
-            'nashr_sana' => 'required|date',
-            'soni' => 'required|integer',
-            'annotatsiya' => 'required|string',
-            'fan_yunalishi' => 'required|string|max:255',
-            'mualliflar_json' => 'required|array', // JSON maydon
-            'mualliflar_json.*' => 'string', // JSON maydon ichidagi har bir element string bo'lishi kerak
-        ]);
+        $data = $request->validated();
+        $data['mualliflar_json'] = json_encode($request->input('mualliflar_json'));
 
+        $mualliflar = json_encode($request->mualliflar_json);
+        $data['mualliflar_json'] = $mualliflar;
 
-        $intellektualmulk->update([
-            'mavzu' => $request->mavzu,
-            'type' => $request->type,
-            'nashr_sana' => $request->nashr_sana,
-            'soni' => $request->soni,
-            'annotatsiya' => $request->annotatsiya,
-            'fan_yunalishi' => $request->fan_yunalishi,
-            'mualliflar_json' => json_encode($request->mualliflar_json), // JSON maydon
-        ]);
+        $intellektualmulk->update($data);
 
         return redirect()->route('intellektualmulk.index')->with('status', 'Intellektualmulk muvaffaqiyatli yangilandi');
-
     }
 
 
@@ -112,6 +82,5 @@ class IntellektualmulkController extends Controller
         $intellektualmulk->delete();
 
         return redirect()->route('intellektualmulk.index')->with('status', 'Intellektualmulk muvaffaqiyatli o\'chirildi');
-
     }
 }

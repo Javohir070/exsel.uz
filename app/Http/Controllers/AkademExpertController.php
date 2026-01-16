@@ -29,23 +29,7 @@ class AkademExpertController extends Controller
     {
         $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
 
-        $data = $request->only([
-            'akadem_id',
-            'kalendar_reja_monitoring',
-            'kalendar_reja_monitoring_izox',
-            'dalolatnoma_tuzilgan',
-            'dalolatnoma_tuzilgan_izox',
-            'hisobot_muhokama_qilingan',
-            'hisobot_muhokama_qilingan_izox',
-            'hisobot_agentlikka_taqdim',
-            'hisobot_agentlikka_taqdim_izox',
-            'status',
-            'quarter',
-            'comment',
-            't_masul',
-            'ekspert_fish',
-            'holati',
-        ]);
+        $data = $request->validated();
 
         $data['user_id'] = auth()->id();
         $data['quarter'] = 2;
@@ -55,7 +39,6 @@ class AkademExpertController extends Controller
         AkademExpert::create($data);
 
         return redirect()->back()->with('status', 'Akadem Expert record created successfully.');
-
     }
 
 
@@ -69,6 +52,7 @@ class AkademExpertController extends Controller
     {
         $akademExpert = AkademExpert::findOrFail($id);
         $akadem = Akadem::findOrFail($akademExpert->akadem_id);
+        
         return view('admin.akadem.edit', compact('akademExpert', 'akadem'));
     }
 
@@ -82,28 +66,13 @@ class AkademExpertController extends Controller
                 'holati' => 'Rad etildi',
             ]);
         } else {
-            $data = $request->only([
-                'kalendar_reja_monitoring',
-                'kalendar_reja_monitoring_izox',
-                'dalolatnoma_tuzilgan',
-                'dalolatnoma_tuzilgan_izox',
-                'hisobot_muhokama_qilingan',
-                'hisobot_muhokama_qilingan_izox',
-                'hisobot_agentlikka_taqdim',
-                'hisobot_agentlikka_taqdim_izox',
-                'status',
-                'quarter',
-                'comment',
-                't_masul',
-                'ekspert_fish',
-                'holati',
-            ]);
+            $data = $request->validated();
 
             $akademExpert->update($data);
         }
 
-        return redirect()->route('akadem.show', ['akadem' => $akademExpert->akadem_id])->with('status', 'Akadem Expert record updated successfully.');
-
+        return redirect()->route('akadem.show', ['akadem' => $akademExpert->akadem_id])
+            ->with('status', 'Akadem Expert record updated successfully.');
     }
 
 

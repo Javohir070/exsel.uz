@@ -271,14 +271,6 @@
 
                     <div class="grid grid-cols-12 gap-6 mt-5">
 
-
-                        <style>
-                            .report-box__icon {
-                                width: 32px;
-                                height: 32px;
-                            }
-                        </style>
-
                         <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                             <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                                 <a href="{{ route('ilmiyloyihalar.index') }}">

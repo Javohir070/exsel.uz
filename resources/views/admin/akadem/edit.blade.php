@@ -2,13 +2,14 @@
 
 @section('content')
     <div class="content">
+        
         <div class="flex justify-between align-center mt-6 mb-6">
 
             <h2 class="intro-y text-lg font-medium">{{ $akadem->name }}</h2>
             @role('super-admin')
-                <a href="{{ route('akadem.index') }}" class="button w-24 bg-theme-1 text-white">
-                    Orqaga
-                </a>
+            <a href="{{ route('akadem.index') }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
             @endrole
         </div>
 
@@ -89,8 +90,8 @@
             style="background: white; padding: 20px 20px; border-radius: 4px">
             <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                 <form id="science-paper-create-form" method="POST"
-                    action="{{ route('akademexpert.update', ['akademexpert' => $akademExpert->id]) }}"
-                    class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                    action="{{ route('akademexpert.update', ['akademexpert' => $akademExpert->id]) }}" class="validate-form"
+                    enctype="multipart/form-data" novalidate="novalidate">
                     @csrf
                     @method('PUT')
                     <div class="grid grid-cols-12 gap-2">
@@ -107,21 +108,19 @@
 
                                 <option value=""></option>
 
-                                <option value="bajarilgan"
-                                    {{ $akademExpert->kalendar_reja_monitoring == 'bajarilgan' ? 'selected' : '' }}>
+                                <option value="bajarilgan" {{ $akademExpert->kalendar_reja_monitoring == 'bajarilgan' ? 'selected' : '' }}>
                                     Bajarilgan</option>
 
-                                <option value="bajarilmagan"
-                                    {{ $akademExpert->kalendar_reja_monitoring == 'bajarilmagan' ? 'selected' : '' }}>
+                                <option value="bajarilmagan" {{ $akademExpert->kalendar_reja_monitoring == 'bajarilmagan' ? 'selected' : '' }}>
                                     Bajarilmagan</option>
 
-                                <option value="davom_etmoqda"
-                                    {{ $akademExpert->kalendar_reja_monitoring == 'davom_etmoqda' ? 'selected' : '' }}>
+                                <option value="davom_etmoqda" {{ $akademExpert->kalendar_reja_monitoring == 'davom_etmoqda' ? 'selected' : '' }}>
                                     Loyiha davom etmoqda</option>
                             </select><br>
 
-                            <textarea name="kalendar_reja_monitoring_izox" id="" class="input w-full border mt-2" placeholder="Izoh"
-                                cols="2" rows="2" required>{{ $akademExpert->kalendar_reja_monitoring_izox }}</textarea>
+                            <textarea name="kalendar_reja_monitoring_izox" id="" class="input w-full border mt-2"
+                                placeholder="Izoh" cols="2" rows="2"
+                                required>{{ $akademExpert->kalendar_reja_monitoring_izox }}</textarea>
 
                             @error('kalendar_reja_monitoring')
                                 <div class="error">{{ $message }}</div>
@@ -140,21 +139,19 @@
 
                                 <option value=""></option>
 
-                                <option value="bajarilgan"
-                                    {{ $akademExpert->dalolatnoma_tuzilgan == 'bajarilgan' ? 'selected' : '' }}>Bajarilgan
+                                <option value="bajarilgan" {{ $akademExpert->dalolatnoma_tuzilgan == 'bajarilgan' ? 'selected' : '' }}>Bajarilgan
                                 </option>
 
-                                <option value="bajarilmagan"
-                                    {{ $akademExpert->dalolatnoma_tuzilgan == 'bajarilmagan' ? 'selected' : '' }}>
+                                <option value="bajarilmagan" {{ $akademExpert->dalolatnoma_tuzilgan == 'bajarilmagan' ? 'selected' : '' }}>
                                     Bajarilmagan</option>
 
-                                <option value="davom_etmoqda"
-                                    {{ $akademExpert->dalolatnoma_tuzilgan == 'davom_etmoqda' ? 'selected' : '' }}>Loyiha
+                                <option value="davom_etmoqda" {{ $akademExpert->dalolatnoma_tuzilgan == 'davom_etmoqda' ? 'selected' : '' }}>Loyiha
                                     davom etmoqda</option>
                             </select><br>
 
-                            <textarea name="dalolatnoma_tuzilgan_izox" id="" class="input w-full border mt-2" placeholder="Izoh"
-                                cols="2" rows="2" required>{{ $akademExpert->dalolatnoma_tuzilgan_izox }}</textarea>
+                            <textarea name="dalolatnoma_tuzilgan_izox" id="" class="input w-full border mt-2"
+                                placeholder="Izoh" cols="2" rows="2"
+                                required>{{ $akademExpert->dalolatnoma_tuzilgan_izox }}</textarea>
                             @error('dalolatnoma_tuzilgan')
                                 <div class="error">{{ $message }}</div>
                             @enderror
@@ -172,21 +169,19 @@
 
                                 <option value=""></option>
 
-                                <option value="bajarilgan"
-                                    {{ $akademExpert->hisobot_muhokama_qilingan == 'bajarilgan' ? 'selected' : '' }}>
+                                <option value="bajarilgan" {{ $akademExpert->hisobot_muhokama_qilingan == 'bajarilgan' ? 'selected' : '' }}>
                                     Bajarilgan</option>
 
-                                <option value="bajarilmagan"
-                                    {{ $akademExpert->hisobot_muhokama_qilingan == 'bajarilmagan' ? 'selected' : '' }}>
+                                <option value="bajarilmagan" {{ $akademExpert->hisobot_muhokama_qilingan == 'bajarilmagan' ? 'selected' : '' }}>
                                     Bajarilmagan</option>
 
-                                <option value="davom_etmoqda"
-                                    {{ $akademExpert->hisobot_muhokama_qilingan == 'davom_etmoqda' ? 'selected' : '' }}>
+                                <option value="davom_etmoqda" {{ $akademExpert->hisobot_muhokama_qilingan == 'davom_etmoqda' ? 'selected' : '' }}>
                                     Loyiha davom etmoqda</option>
                             </select><br>
 
-                            <textarea name="hisobot_muhokama_qilingan_izox" id="" class="input w-full border mt-2" placeholder="Izoh"
-                                cols="2" rows="2" required>{{ $akademExpert->hisobot_muhokama_qilingan_izox }}</textarea>
+                            <textarea name="hisobot_muhokama_qilingan_izox" id="" class="input w-full border mt-2"
+                                placeholder="Izoh" cols="2" rows="2"
+                                required>{{ $akademExpert->hisobot_muhokama_qilingan_izox }}</textarea>
                             @error('hisobot_muhokama_qilingan')
                                 <div class="error">{{ $message }}</div>
                             @enderror
@@ -203,21 +198,19 @@
 
                                 <option value=""></option>
 
-                                <option value="bajarilgan"
-                                    {{ $akademExpert->hisobot_agentlikka_taqdim == 'bajarilgan' ? 'selected' : '' }}>
+                                <option value="bajarilgan" {{ $akademExpert->hisobot_agentlikka_taqdim == 'bajarilgan' ? 'selected' : '' }}>
                                     Bajarilgan</option>
 
-                                <option value="bajarilmagan"
-                                    {{ $akademExpert->hisobot_agentlikka_taqdim == 'bajarilmagan' ? 'selected' : '' }}>
+                                <option value="bajarilmagan" {{ $akademExpert->hisobot_agentlikka_taqdim == 'bajarilmagan' ? 'selected' : '' }}>
                                     Bajarilmagan</option>
 
-                                <option value="davom_etmoqda"
-                                    {{ $akademExpert->hisobot_agentlikka_taqdim == 'davom_etmoqda' ? 'selected' : '' }}>
+                                <option value="davom_etmoqda" {{ $akademExpert->hisobot_agentlikka_taqdim == 'davom_etmoqda' ? 'selected' : '' }}>
                                     Loyiha davom etmoqda</option>
                             </select><br>
 
-                            <textarea name="hisobot_agentlikka_taqdim_izox" id="" class="input w-full border mt-2" placeholder="Izoh"
-                                cols="2" rows="2" required>{{ $akademExpert->hisobot_agentlikka_taqdim_izox }}</textarea>
+                            <textarea name="hisobot_agentlikka_taqdim_izox" id="" class="input w-full border mt-2"
+                                placeholder="Izoh" cols="2" rows="2"
+                                required>{{ $akademExpert->hisobot_agentlikka_taqdim_izox }}</textarea>
                             @error('hisobot_agentlikka_taqdim')
                                 <div class="error">{{ $message }}</div>
                             @enderror
@@ -246,14 +239,16 @@
 
                                 <option value="">Status tanlang</option>
 
-                                {{-- <option value="Qo‘shimcha o‘rganish talab etiladi"
-                                    {{ $akademExpert->status == 'Qo‘shimcha o‘rganish talab etiladi' ? 'selected' : '' }}>
+                                {{-- <option value="Qo‘shimcha o‘rganish talab etiladi" {{ $akademExpert->status ==
+                                    'Qo‘shimcha o‘rganish talab etiladi' ? 'selected' : '' }}>
                                     Qo‘shimcha o‘rganish talab etiladi
                                 </option> --}}
 
-                                <option value="Ijobiy" {{ $akademExpert->status == 'Ijobiy' ? 'selected' : '' }}>Ijobiy</option>
+                                <option value="Ijobiy" {{ $akademExpert->status == 'Ijobiy' ? 'selected' : '' }}>Ijobiy
+                                </option>
 
-                                <option value="Salbiy" {{ $akademExpert->status == 'Salbiy' ? 'selected' : '' }}>Salbiy</option>
+                                <option value="Salbiy" {{ $akademExpert->status == 'Salbiy' ? 'selected' : '' }}>Salbiy
+                                </option>
 
 
                             </select><br>

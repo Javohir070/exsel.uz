@@ -22,7 +22,14 @@ class UpdateIntellektualmulkRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'mavzu' => 'required|string|max:255',
+            'type' => 'required|string|max:255',
+            'nashr_sana' => 'required|date',
+            'soni' => 'required|integer',
+            'annotatsiya' => 'required|string',
+            'fan_yunalishi' => 'required|string|max:255',
+            'mualliflar_json' => 'required|array', // JSON maydon
+            'mualliflar_json.*' => 'string', // JSON maydon ichidagi har bir element string bo'lishi kerak
         ];
     }
 }

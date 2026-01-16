@@ -22,7 +22,32 @@ class UpdateAsbobuskunaRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'regex:/^[A-Za-z0-9\s\'\"\/\-\.\,]+$/'], // Faqat lotin harflari va bo'sh joy
+            'model' => ['required', 'regex:/^[A-Za-z0-9\s\'\"\/\-\.\,]+$/'], // Lotin harflari, raqamlar va bo'sh joy
+            'fish' => ['required', 'regex:/^[A-Za-z0-9\s\'\"\/\-\.\,]+$/'], // Lotin harflari, raqamlar va bo'sh joy
+            'turi' => 'required|string|max:255',
+            'ishlab_davlat' => 'required|string|max:255',
+            'ishlabchiq_yil' => 'required|integer|min:1900|max:' . date('Y'),
+            'harid_summa' => 'required',
+            'buxgalteriya_summa' => 'required',
+            'moliya_manbasi' => 'required|string|max:255',
+            'loy_shifri' => 'nullable|string|max:255', // **`nullable` to'g'ri yozildi**
+            'sh_raqami' => 'required|string|max:255',
+            'sh_sanasi' => 'required|date|before:9999-12-31',
+            'harid_qilingan_yil' => 'required|integer|min:1900|max:' . date('Y'),
+            'holati' => 'required|string|max:255',
+            'urnatilgan_yili' => 'required|integer|min:1900|max:' . date('Y'),
+            'laboratory_id' => 'required',
+            'jav_buy_raqami' => 'required|string|max:255',
+            'invertar_r' => 'required|string|max:255',
+            'jav_sanasi' => 'required|date|before:9999-12-31',
+            'ilmiy_tadqiqot_ishilari'=> 'required|string|max:5000',
+            'ilmiy_tadqiqot_hajmi'=> 'required|string|max:5000',
+            'lab_zaxirasi'=> 'required|string|max:5000',
+            'foy_uchun_ariz'=> 'required|string|max:5000',
+            'asbob_usk_ehtiyoji'=> 'required|string|max:5000',
+            'zarur_ehtiyoji'=> 'required|string|max:5000',
+            "kafedralar_id" => 'nullable',
         ];
     }
 }

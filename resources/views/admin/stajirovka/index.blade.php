@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6">
 
-            <h2 class="intro-y text-lg font-medium">Stajirovka</h2>
+            <h2 class="intro-y text-lg font-medium">Stajirovka </h2>
 
         </div>
 
@@ -25,7 +25,7 @@
                 </thead>
                 <tbody>
 
-                    @foreach ($stajirovkas as $xodimlar)
+                    @forelse ($stajirovkas as $xodimlar)
 
                         <tr class="intro-x">
                             <td>{{ ($stajirovkas->currentPage() - 1) * $stajirovkas->perPage() + $loop->iteration }}.</td>
@@ -53,7 +53,12 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td colspan="4" class="text-center">Ma'lumotlar mavjud emas</td>
+                        </tr>
+
+                    @endforelse
                 </tbody>
             </table>
         </div>

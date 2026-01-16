@@ -24,16 +24,15 @@ class StoreTashkilotRequest extends FormRequest
         return [
             'name' => ['required', 'regex:/^[A-Za-z\s\-\'\.]+$/'],
             'stir_raqami' => 'required|unique:tashkilots,stir_raqami',
-            'id_raqam' => 'required',
+            'tashkilot_turi' => 'required|in:otm,itm,boshqa',
+            'region_id' => 'required|exists:regions,id',
         ];
     }
 
     public function messages()
     {
         return [
-
             'name.regex' => 'BU :attribute faqat lotin hariflar bolishi shart.',
-            'id_raqam' => 'BU :attribute soz bazada bor.',
         ];
     }
 }

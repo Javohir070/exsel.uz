@@ -39,18 +39,10 @@
                             <td>
                                 {{ $k->asos }}
                             </td>
-                            {{-- <td style="text-align: center;">
-                                {{ $k->ishlabchiq_yil }}
-                            </td> --}}
                             <td
                                 style="text-align: center;color: {{ ($h = $k->asbobuskunaexperts()->where('quarter', 3)->first()->status ?? null) == 'Ijobiy' ? 'green' : ($h == 'Salbiy' ? 'blue' : 'red') }}">
                                 {{ $k->asbobuskunaexperts()->where('quarter', 3)->first()->status ?? 'Tasdiqlanmagan' }}
                             </td>
-                            {{-- <td style="color:{{ $k->asbobuskunaexperts()->first()->holati ?? null == " Tasdiqlandi"
-                                ? "green" : ($k->asbobuskunaexperts()->first()->holati ?? null == "yuborildi" ? "blue" : "red")
-                                }}">
-                                {{ $k->asbobuskunaexperts()->first()->holati ?? "Ko'rilmagan" }}
-                            </td> --}}
                             <td
                                 style="text-align: center;color: {{ ($h = $k->asbobuskunaexperts()->where('quarter', 3)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                 {{ $h == 'yuborildi' ? 'Tasdiqlash uchun yuborildi' : ($h == null ? "Ko'rilmagan" : $h) }}
@@ -70,15 +62,15 @@
                                         Ko'rish
                                     </a>
                                     @role('super-admin')
-                                        <form action="{{ route('asbobuskuna.destroy', ['asbobuskuna' => $k->id]) }}"
-                                            method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
-                                            <button type="submit" class="flex delete-action items-center text-theme-6">
-                                                @csrf
-                                                @method('DELETE')
-                                                <i data-feather="trash-2" class="feather feather-check-square w-4 h-4 mr-1"></i>
-                                                O'chirish
-                                            </button>
-                                        </form>
+                                    <form action="{{ route('asbobuskuna.destroy', ['asbobuskuna' => $k->id]) }}" method="post"
+                                        onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                        <button type="submit" class="flex delete-action items-center text-theme-6">
+                                            @csrf
+                                            @method('DELETE')
+                                            <i data-feather="trash-2" class="feather feather-check-square w-4 h-4 mr-1"></i>
+                                            O'chirish
+                                        </button>
+                                    </form>
                                     @endrole
 
                                 </div>

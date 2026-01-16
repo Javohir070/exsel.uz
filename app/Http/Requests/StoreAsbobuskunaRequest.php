@@ -47,6 +47,7 @@ class StoreAsbobuskunaRequest extends FormRequest
             'foy_uchun_ariz'=> 'required|string|max:5000',
             'asbob_usk_ehtiyoji'=> 'required|string|max:5000',
             'zarur_ehtiyoji'=> 'required|string|max:5000',
+            "kafedralar_id" => 'nullable',
         ];
     }
 
