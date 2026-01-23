@@ -3,14 +3,22 @@
 namespace App\Exports;
 
 use App\Models\Stajirovkaexpert;
+use App\Models\Monitoring;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class StajirovkalarToMonitoringExport implements FromCollection, WithHeadings
 {
+    public $monitoring;
+
+    public function __construct()
+    {
+        $this->monitoring = Monitoring::getActive();
+    }
+
     public function collection()
     {
-       return Stajirovkaexpert::with('tashkilot', 'stajirovkalar', 'stajirovkaexpert')->where('quarter', 3)->get()->map(function ($stajirovkaexpert){
+       return Stajirovkaexpert::with('tashkilot', 'stajirovkalar', 'stajirovkaexpert')->where('quarter', $this->monitoring->id)->get()->map(function ($stajirovkaexpert){
             return [
                 'id' => $stajirovkaexpert->id,
                 "Tashkilot nomi" => $stajirovkaexpert->tashkilot->name,

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\StajirovkalarToMonitoringExport;
 use App\Imports\StajirovkaImport;
+use App\Models\Monitoring;
 use App\Models\Region;
 use App\Models\Stajirovka;
 use App\Http\Requests\StoreStajirovkaRequest;
@@ -16,128 +17,161 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class StajirovkaController extends Controller
 {
+    public $monitoring;
+
+    public function __construct()
+    {
+        $this->monitoring = Monitoring::getActive();
+    }
 
     public function index()
     {
-        $stajirovkas = Stajirovka::where('tashkilot_id', auth()->user()->tashkilot_id)->where('quarter', 3)->paginate(20);
+        $stajirovkas = Stajirovka::where('tashkilot_id', auth()->user()->tashkilot_id)->paginate(20);
 
         return view('admin.stajirovka.index', ['stajirovkas' => $stajirovkas]);
     }
 
     public function stajirovkalar()
     {
-        $querysearch = null;
-        if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
-            foreach ($regions as $region) {
-                $tashkilots = $region->tashkilots()
-                    ->where('stajirovka_is', 1)
-                    ->count();
-            }
-            $region_id = Region::where('id', auth()->user()->region_id)->first();
-            $id = $region_id->tashkilots()->pluck('id');
-            $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
-            $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
+        $user = auth()->user();
+        $hasRegion = $user->region_id !== null;
+        $quarterId = $this->monitoring->id;
+
+        if ($hasRegion) {
+            $regions = Region::where('id', $user->region_id)->get();
+            $region = $regions->first();
+
+            $tashkilotIds = $region->tashkilots()
+                ->where('stajirovka_is', 1)
+                ->pluck('id');
+
+            $tashkilots = $tashkilotIds->count();
+            $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $tashkilotIds)
+                ->where('is_active', 1)
+                ->count();
+            $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $tashkilotIds)
+                ->where('quarter', $quarterId)
+                ->count();
         } else {
             $regions = Region::orderBy('order')->get();
-            $tashkilots = Tashkilot::orderBy('name')->where('stajirovka_is', 1)->count();
-            $stajirovka_count = Stajirovka::where('quarter', 3)->count();
-            $stajirovka_expert = Stajirovkaexpert::where('quarter', 3)->count();
+            $tashkilots = Tashkilot::where('stajirovka_is', 1)->count();
+            $stajirovka_count = Stajirovka::where('is_active', 1)->count();
+            $stajirovka_expert = Stajirovkaexpert::where('quarter', $quarterId)->count();
         }
 
-        $stajirovkas_count = Stajirovka::where('quarter', 3)->count();
         return view('admin.stajirovka.viloyat', [
             'tashkilots' => $tashkilots,
             'stajirovka_count' => $stajirovka_count,
             'stajirovka_expert' => $stajirovka_expert,
             'regions' => $regions,
-            'querysearch' => $querysearch,
-            'stajirovkas_count' => $stajirovkas_count
+            'stajirovkas_count' => $stajirovka_count,
+            'monitoring' => $this->monitoring
         ]);
     }
 
     public function tashkilot_turi_stajiroka($id)
     {
+        $region = Region::findOrFail($id);
+
         $tashkilotlarQuery = Tashkilot::where('stajirovka_is', 1)
             ->where('region_id', $id)
             ->with([
                 'stajirovkalar' => function ($q) {
-                    $q->where('quarter', 3);   // faqat 2-chorakdagilarni olish
+                    $q->where('is_active', 1);
                 }
             ])
             ->get();
 
-        // Turga qarab guruhlash
+        $tashkilots = $tashkilotlarQuery->count();
+        $tashkilotIds = $tashkilotlarQuery->pluck('id');
+
+        $results = [];
+
         $groups = [
             'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
             'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
             'other' => $tashkilotlarQuery->where('tashkilot_turi', 'boshqa'),
         ];
 
-        $results = [];
-
         foreach ($groups as $key => $group) {
             $results[$key] = [
-                'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->count(),
+                'stajirovkalar' => $group->flatMap->stajirovkalar->count(),
             ];
         }
-        $regions = Region::findOrFail($id);
 
-        $id = $tashkilotlarQuery->pluck('id');
-        $tashkilots = $tashkilotlarQuery->count();
-        $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
-        $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
+        $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $tashkilotIds)
+            ->where('is_active', 1)
+            ->count();
+        $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $tashkilotIds)
+            ->where('quarter', $this->monitoring->id)
+            ->count();
 
-        return view('admin.stajirovka.tashkilot_turi', ['results' => $results, 'regions' => $regions, 'tashkilots' => $tashkilots, 'stajirovka_count' => $stajirovka_count, 'stajirovka_expert' => $stajirovka_expert]);
+        return view('admin.stajirovka.tashkilot_turi', [
+            'results' => $results,
+            'regions' => $region,
+            'tashkilots' => $tashkilots,
+            'stajirovka_count' => $stajirovka_count,
+            'stajirovka_expert' => $stajirovka_expert,
+            'monitoring' => $this->monitoring
+        ]);
     }
+
 
     public function search_stajirovka(Request $request)
     {
 
-        $querysearch = $request->input('query');
-        $id = $request->input('id');
+        $query = $request->input('query');
+        $regionId = $request->input('id');
         $type = $request->input('type');
-        if (ctype_digit($id)) {
-            $tashkilotlar = Tashkilot::orderBy('name')->where('stajirovka_is', 1)
-                ->where('region_id', '=', $id)
-                ->where('tashkilot_turi', '=', $type)
-                ->paginate(50);
-            $tashkilotlars = Tashkilot::orderBy('name')->where('stajirovka_is', 1)
-                ->where('region_id', '=', $id)
-                ->where('tashkilot_turi', '=', $type)
-                ->get();
-            $tash_count = $tashkilotlar->total();
-        } else {
-            $tashkilotlar = Tashkilot::orderBy('name')
-                ->where('stajirovka_is', 1)
-                ->where('name', 'like', '%' . $querysearch . '%')
-                ->paginate(50);
-            $tashkilotlars = Tashkilot::where('status', 1)
-                ->where('name', 'like', '%' . $querysearch . '%')
-                ->get();
-            $tash_count = $tashkilotlar->total();
-        }
 
-        $id = $tashkilotlars->pluck('id');
+        $isRegionSearch = is_numeric($regionId);
 
-        $stajirovkas = Stajirovka::whereIn('tashkilot_id', $id)->count();
-        if ((auth()->user()->region_id != null)) { 
-            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
-        } else {
-            $regions = Region::orderBy('order')->get();
-        }
+        $buildTashkilotQuery = function () use ($isRegionSearch, $regionId, $type, $query) {
+            $queryBuilder = Tashkilot::where('stajirovka_is', 1);
 
-        return view('admin.stajirovka.stajirovkalar', ['stajirovkas' => $stajirovkas, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'tash_count' => $tash_count, 'querysearch' => $querysearch]);
+            if ($isRegionSearch) {
+                $queryBuilder->where('region_id', $regionId)
+                    ->where('tashkilot_turi', $type)
+                    ->where('name', 'like', '%' . $query . '%');
+            }
+
+            return $queryBuilder;
+        };
+
+        $tashkilotlar = $buildTashkilotQuery()
+            ->orderBy('name')
+            ->paginate(50);
+
+        $tashkilotIds = $buildTashkilotQuery(true)
+            ->pluck('id');
+
+        $stajirovkas = Stajirovka::where('is_active', 1)
+            ->whereIn('tashkilot_id', $tashkilotIds)
+            ->count();
+
+        return view('admin.stajirovka.stajirovkalar', [
+            'stajirovkas' => $stajirovkas,
+            'tashkilotlar' => $tashkilotlar,
+            'tash_count' => $tashkilotlar->total(),
+            'monitoring' => $this->monitoring,
+            'query' => $query,
+            'regionId' => $regionId,
+            'type' => $type,
+        ]);
     }
 
     public function stajirov($id)
     {
 
-        $stajirovkas = Stajirovka::where('tashkilot_id', '=', $id)->where('quarter', 3)->paginate(20);
+        $stajirovkas = Stajirovka::where('tashkilot_id', '=', $id)->where('quarter', $this->monitoring->id)->paginate(20);
 
         $tashkilot = Tashkilot::findOrFail($id);
 
-        return view('admin.stajirovka.stajirovka', ['stajirovkas' => $stajirovkas, 'tashkilot' => $tashkilot]);
+        return view('admin.stajirovka.stajirovka', [
+            'stajirovkas' => $stajirovkas,
+            'tashkilot' => $tashkilot,
+            'monitoring' => $this->monitoring
+        ]);
     }
 
 
@@ -229,7 +263,7 @@ class StajirovkaController extends Controller
 
     public function show(Stajirovka $stajirovka)
     {
-        $stajirovkaexpert = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 3)->get();
+        $stajirovkaexpert = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', $this->monitoring->id)->get();
         $quarter_1 = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 1)->first();
         $quarter_2 = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 2)->first();
         $tashkilotlar = Tashkilot::all();
@@ -311,10 +345,11 @@ class StajirovkaController extends Controller
     public function monitoring_exportstajirovka()
     {
         $fileName = 'monitoring_stajirovka_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+        
         return Excel::download(new StajirovkalarToMonitoringExport, $fileName);
     }
 
-     public function tashkilot_stajirovka(Request $request, $id)
+    public function tashkilot_stajirovka(Request $request, $id)
     {
         $stajirovka = Stajirovka::findOrFail($id);
 

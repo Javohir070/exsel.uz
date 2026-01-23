@@ -3,44 +3,40 @@
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
             <div class="col-span-12 mt-8">
-
                 <div class="grid grid-cols-12 gap-6 mt-0">
-                    
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('asbobuskunalar.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="home" class="report-box__icon text-theme-3"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $tashkilots }}</div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar</div>
-                                    </div>
+                            <div class="flex items-center pl-5"
+                                style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
+                                    <i data-feather="home" class="report-box__icon text-theme-3"></i>
                                 </div>
-                            </a>
+                                <div class="w-2/4 flex-none">
+                                    <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                        {{ $tashkilots }}
+                                    </div>
+                                    <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('asbobuskunalar.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="printer" class="report-box__icon text-theme-3"
-                                            style="color: #E0B973;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $asboblar_count }}/{{ $asboblar_expert }}</div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Asbob-uskunalar</div>
-                                    </div>
+                            <div class="flex items-center pl-5"
+                                style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
+                                    <i data-feather="printer" class="report-box__icon text-theme-3"
+                                        style="color: #E0B973;"></i>
                                 </div>
-                            </a>
+                                <div class="w-2/4 flex-none">
+                                    <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                        {{ $asboblar_count }}/{{ $asboblar_expert }}
+                                    </div>
+                                    <div class="text-gray-600 mt-1" style="font-size: 16px;">Asbob-uskunalar</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -49,7 +45,7 @@
                             <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
                                 {{ $regions->oz }}
                             </h2>
-                            <a href="{{ route("asbobuskunalar.index") }}" class="button w-24 bg-theme-1 text-white mr-4">
+                            <a href="{{ route("asbobuskunalar.index") }}" class="button bg-theme-1 text-white mr-4">
                                 Orqaga
                             </a>
                         </div>
@@ -95,7 +91,6 @@
                                         </td>
                                         <td style="text-align: center;">{{ $results['other']['asbobuskunalar'] }}</td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>

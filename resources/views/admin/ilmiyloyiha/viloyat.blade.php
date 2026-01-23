@@ -8,37 +8,33 @@
 
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                                    <a href="{{ route('ilmiyloyihalar.index') }}">
-                                        <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                            <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
-                                                <i data-feather="home" class="report-box__icon text-theme-3" ></i>
-                                            </div>
-                                            <div class="w-2/4 flex-none">
-                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $tashkilots }}</div>
-                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar</div>
-                                            </div>
+                                    <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                        <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
+                                            <i data-feather="home" class="report-box__icon text-theme-3" ></i>
                                         </div>
-                                    </a>
+                                        <div class="w-2/4 flex-none">
+                                            <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $tashkilots }}</div>
+                                            <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                                    <a href="{{ route('ilmiyloyihalar.index') }}">
-                                        <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                            <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
-                                                <i data-feather="list" class="report-box__icon text-theme-3" ></i>
-                                            </div>
-                                            <div class="w-2/4 flex-none">
-                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $loy_count }}/{{ $loy_expert }}</div>
-                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar monitoring</div>
-                                            </div>
+                                    <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                        <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
+                                            <i data-feather="list" class="report-box__icon text-theme-3" ></i>
                                         </div>
-                                    </a>
+                                        <div class="w-2/4 flex-none">
+                                            <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $loy_count }}/{{ $loy_expert }}</div>
+                                            <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar monitoring</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
-                         @role('super-admin')
+                        @role('super-admin')
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                                     <a href="{{ route('ilmiy_loyihalar_all.index') }}">
@@ -63,8 +59,8 @@
                                                 <i data-feather="list" class="report-box__icon text-theme-3" ></i>
                                             </div>
                                             <div class="w-2/4 flex-none">
-                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $jarayonda_count }}</div>
-                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Jarayonda ilmiy loyihalar </div>
+                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $loy_count }}</div>
+                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Monitoringdagi ilmiy loyihalar </div>
                                             </div>
                                         </div>
                                     </a>
@@ -119,7 +115,7 @@
                                                 @php
                                                     $qoniqarli = 0;
                                                     foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarli += $tashkilot->tekshirivchilar()->where('quarter', 3)->where('status', 'Qoniqarli')->count();
+                                                        $qoniqarli += $tashkilot->tekshirivchilar()->where('quarter', $monitoring_id)->where('status', 'Qoniqarli')->count();
                                                     }
                                                 @endphp
 
@@ -128,7 +124,7 @@
                                                 @php
                                                     $qoniqarsiz = 0;
                                                     foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarsiz += $tashkilot->tekshirivchilar()->where('quarter', 3)->where('status', 'Qoniqarsiz')->count();
+                                                        $qoniqarsiz += $tashkilot->tekshirivchilar()->where('quarter', $monitoring_id)->where('status', 'Qoniqarsiz')->count();
                                                     }
                                                 @endphp
 
@@ -137,7 +133,7 @@
                                                  @php
                                                     $qushimcha = 0;
                                                     foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
-                                                        $qushimcha += $tashkilot->tekshirivchilar()->where('quarter', 3)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
+                                                        $qushimcha += $tashkilot->tekshirivchilar()->where('quarter', $monitoring_id)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
                                                     }
                                                 @endphp
 
@@ -145,7 +141,7 @@
                                                  @php
                                                     $count = 0;
                                                     foreach ($region->tashkilots()->where('ilmiyloyiha_is', 1)->get() as $tashkilot) {
-                                                        $count += $tashkilot->tekshirivchilar()->where('quarter', 3)->count();
+                                                        $count += $tashkilot->tekshirivchilar()->where('quarter', $monitoring_id)->count();
                                                     }
                                                 @endphp
 

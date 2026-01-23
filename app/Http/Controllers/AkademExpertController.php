@@ -7,21 +7,17 @@ use App\Http\Requests\StoreAkademExpertRequest;
 use App\Http\Requests\UpdateAkademExpertRequest;
 use App\Models\Akadem;
 use App\Models\AkademExpert;
+use App\Models\Monitoring;
 use App\Models\User;
 use Maatwebsite\Excel\Facades\Excel;
 
 class AkademExpertController extends Controller
 {
+    public $monitoring;
 
-    public function index()
+    public function __construct()
     {
-        //
-    }
-
-
-    public function create()
-    {
-
+        $this->monitoring = Monitoring::getActive();
     }
 
 
@@ -32,19 +28,14 @@ class AkademExpertController extends Controller
         $data = $request->validated();
 
         $data['user_id'] = auth()->id();
-        $data['quarter'] = 2;
+        $data['quarter'] = $this->monitoring->id;
+        $data['year'] = $this->monitoring->year;
         $data['fish'] = $user->name ?? auth()->user()->name;
         $data['tashkilot_id'] = auth()->user()->tashkilot_id;
 
         AkademExpert::create($data);
 
         return redirect()->back()->with('status', 'Akadem Expert record created successfully.');
-    }
-
-
-    public function show(AkademExpert $akademExpert)
-    {
-        //
     }
 
 
@@ -83,10 +74,11 @@ class AkademExpertController extends Controller
         return redirect()->back()->with('status', 'Malumot o\'chirildi');
     }
 
+
     public function exportAkademExpert()
     {
-        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
-        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+        ini_set('memory_limit', '1024M');
+        ini_set('max_execution_time', '300');
 
         return Excel::download(new AkademExpertExport(), 'monitoring_akadem.xlsx');
     }

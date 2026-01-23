@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('monitorings', function (Blueprint $table) {
             $table->id();
             $table->year('year');
-            $table->enum('quarter', [1, 2, 3, 4]);
+            $table->unsignedTinyInteger('quarter');
             $table->boolean('is_active')->default(true);
             $table->timestamps();
         });

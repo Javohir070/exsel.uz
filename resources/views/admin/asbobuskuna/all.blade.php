@@ -6,15 +6,14 @@
 
             <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name ?? 'Asbob-uskunalar' }}</h2>
 
-            <div class="flex justify-between align-center ">
-                <div>
-                    <a href="{{ route('export.asbobuskunalar') }}" class="button box flex items-center text-gray-700">
-                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
-                    </a>
-                    <a href="{{ route('exportAsbobuskunaexpert') }}" class="button box flex items-center text-gray-700">
-                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Monitoring to Excel
-                    </a>
-                </div>
+            <div class="flex justify-between align-center gap-2">
+                <a href="{{ route('export.asbobuskunalar') }}" class="button box flex items-center text-gray-700">
+                    <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
+                </a>
+
+                <a href="{{ route('exportAsbobuskunaexpert') }}" class="button box flex items-center text-gray-700">
+                    <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Monitoring to Excel
+                </a>
             </div>
 
         </div>
@@ -190,8 +189,8 @@
 
                         <option value="Tashkilotning byudjetdan tashqari mablag‘lari hisobidan"
                             @selected(
-        request('moliya_manbasi') ===
-        'Tashkilotning byudjetdan tashqari mablag‘lari hisobidan')>Tashkilotning byudjetdan
+                                request('moliya_manbasi') ===
+                                'Tashkilotning byudjetdan tashqari mablag‘lari hisobidan')>Tashkilotning byudjetdan
                             tashqari mablag‘lari hisobidan</option>
 
                         <option value="Moliya institutlari" @selected(request('moliya_manbasi') === 'Moliya institutlari')>
@@ -254,7 +253,6 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @forelse ($asbobuskunas as $k)
                         <tr class="intro-x">
                             <td>{{ ($asbobuskunas->currentPage() - 1) * $asbobuskunas->perPage() + $loop->iteration }}.</td>
@@ -279,6 +277,7 @@
                                         <i data-feather="eye" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                         Ko'rish
                                     </a>
+                                    @role('super-admin')
                                     <form action="{{ route('asbobuskuna.destroy', ['asbobuskuna' => $k->id]) }}"
                                         method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                         <button type="submit" class="flex delete-action items-center text-theme-6">
@@ -289,7 +288,7 @@
                                             O'chirish
                                         </button>
                                     </form>
-
+                                    @endrole
                                 </div>
                             </td>
                         </tr>
@@ -298,24 +297,12 @@
                             <td colspan="6" class="text-center">Ma'lumotlar mavjud emas</td>
                         </tr>
                     @endforelse
-
                 </tbody>
             </table>
         </div>
 
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
             {{ $asbobuskunas->appends(request()->query())->links() }}
-
-            <form id="science-paper-create-form" method="GET" action="{{ route('asbobuskunas_all.index') }}"
-                class="validate-form">
-                <select class="w-20 input box mt-3 sm:mt-0" name="page_size" onchange="this.form.submit()">
-                    <option @selected(request('page_size') === '20')>20</option>
-                    <option @selected(request('page_size') === '25')>25</option>
-                    <option @selected(request('page_size') === '35')>35</option>
-                    <option @selected(request('page_size') === '50')>50</option>
-                </select>
-            </form>
-
         </div>
 
     </div>

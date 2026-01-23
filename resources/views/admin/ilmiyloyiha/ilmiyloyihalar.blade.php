@@ -32,28 +32,16 @@
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">Loyiha mavzusi</th>
-                        {{-- <th class="whitespace-no-wrap">Loyiha turi</th> --}}
                         <th class="whitespace-no-wrap">Loyiha rahbari F.I.Sh</th>
                         <th class="whitespace-no-wrap">Raqami</th>
                         <th class="whitespace-no-wrap">Status</th>
                         <th class="whitespace-no-wrap">Holati</th>
-                        {{-- <th class="whitespace-no-wrap" style="width: 150px;">
-                            <form method="GET" action="{{ route('searchloyiha') }}">
-                                <select class="form-select" aria-label="Default select example" name="query"
-                                    onchange="this.form.submit()">
-                                    <option value="">Status</option>
-                                    <option value="Jarayonda">Jarayonda</option>
-                                    <option value="Yakunlangan">Yakunlangan</option>
-                                </select>
-                            </form>
-                        </th> --}}
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
                 </thead>
                 <tbody>
 
                     @foreach ($ilmiyloyihalar as $xodimlar)
-
                         <tr class="intro-x">
                             <td>{{ ($ilmiyloyihalar->currentPage() - 1) * $ilmiyloyihalar->perPage() + $loop->iteration }}</td>
                             <td>
@@ -65,21 +53,20 @@
                             <td>
                                 {{ $xodimlar->raqami }}
                             </td>
-
-                            <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('quarter', 3)->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
-                                {{ $xodimlar->tekshirivchilars()->where('quarter', 3)->first()->status ?? "Tasdiqlanmagan" }}
+                            <td
+                                style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('quarter', $monitoring->id)->first()->status ?? null) == 'Qoniqarli' ? 'green' : ($h == 'Qoniqarsiz' ? 'blue' : 'red') }}">
+                                {{ $xodimlar->tekshirivchilars()->where('quarter', $monitoring->id)->first()->status ?? "Tasdiqlanmagan" }}
                             </td>
-
-                            <td style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('quarter', 3)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
-                                {{ $h == 'yuborildi'? "Tasdiqlash uchun yuborildi":($h == null ? "Ko'rilmagan" : $h) }}
+                            <td
+                                style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('quarter', $monitoring->id)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
+                                {{ $h == 'yuborildi' ? "Tasdiqlash uchun yuborildi" : ($h == null ? "Ko'rilmagan" : $h) }}
                             </td>
-
 
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
                                     <a class="flex science-update-action items-center mr-3"
-                                        href="{{ route('ilmiyloyiha.show', ['ilmiyloyiha' => $xodimlar->id]) }}" >
-                                        <i data-feather="eye"  class="feather feather-check-square w-4 h-4 mr-1"></i>
+                                        href="{{ route('ilmiyloyiha.show', ['ilmiyloyiha' => $xodimlar->id]) }}">
+                                        <i data-feather="eye" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                         Ko'rish
                                     </a>
                                     @role('super-admin')
@@ -88,13 +75,14 @@
                                         <button type="submit" class="flex delete-action items-center text-theme-6">
                                             @csrf
                                             @method("DELETE")
-                                            <i data-feather="trash-2"  class="feather feather-check-square w-4 h-4 mr-1"></i>
+                                            <i data-feather="trash-2" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                             O'chirish
                                         </button>
                                     </form>
                                     @endrole
                                 </div>
                             </td>
+
                         </tr>
                     @endforeach
 
@@ -105,8 +93,6 @@
         <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
             {{$ilmiyloyihalar->links()}}
         </div>
-
-    </div>
 
     </div>
 

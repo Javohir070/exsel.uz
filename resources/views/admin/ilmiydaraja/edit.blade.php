@@ -10,9 +10,7 @@
 
 
 </div>
-<div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
-    padding: 20px 20px;
-    border-radius: 4px">
+<div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2 monitoring-form">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
         <form id="science-paper-create-form" method="POST" action="{{ route("ilmiydaraja.update",['ilmiydaraja'=>$ilmiydaraja->id]) }}" class="validate-form"
             enctype="multipart/form-data" novalidate="novalidate">
@@ -216,22 +214,7 @@
 <div class="flex justify-between align-center mt-6 mb-6">
 
     <h2 class="intro-y text-lg font-medium">Ilmiy Loyiha Tahrirlash</h2>
-    <style>
-        .input-wrapper {
-            position: relative;
-            display: inline-block;
-        }
-        /* #search {
-            position: absolute;
-            top: 50%;
-            left: 0;
-            width: 50%;
-            box-sizing: border-box;
-        } */
-        /* #science-sub-category {
-            margin-top: 30px;
-        } */
-    </style>
+   
     @role('Ilmiy_loyiha_rahbari')
         <a href="{{ route("scientific_project.index") }}" class="button w-24 bg-theme-1 text-white">
             Orqaga
@@ -240,9 +223,7 @@
 
 
 </div>
-<div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2" style="background: white;
-    padding: 20px 20px;
-    border-radius: 4px">
+<div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2 monitoring-form">
     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
         <form id="science-paper-create-form" method="POST" action="{{ route("ilmiyloyiha.update",['ilmiyloyiha'=>$ilmiyloyiha->id]) }}" class="validate-form"
             enctype="multipart/form-data" novalidate="novalidate">

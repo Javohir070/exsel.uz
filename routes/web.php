@@ -23,6 +23,7 @@ use App\Http\Controllers\KafedralarController;
 use App\Http\Controllers\LaboratoryController;
 use App\Http\Controllers\LoyihaijrochilarController;
 use App\Http\Controllers\LoyihaiqtisodiController;
+use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\MonografiyalarController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\StajirovkaController;
@@ -47,6 +48,7 @@ use App\Http\Controllers\TashkilotIlmiydarajaController;
 use App\Http\Controllers\TashkilotMalumotlarController;
 use App\Http\Controllers\TashkilotXodimlarController;
 use App\Http\Controllers\TashkilotXujalikController;
+use App\Http\Controllers\TestTelegramController;
 
 /*
 |--------------------------------------------------------------------------
@@ -274,6 +276,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('ilmiyrahbarlar/birth-date', [LoyihaijrochilarController::class, 'updateBYBirth_date'])->name('ilmiyrahbarlar.updateBYBirth_date');
 
+    // Akadem malumotlarini API dan olish
+    Route::get('akadem-sync', [AkademController::class, 'syncAkadem'])->name('akadem_sync');
+
     Route::resources([
         'tashkilot' => TashkilotController::class,
         'xodimlar' => XodimlarController::class,
@@ -315,7 +320,10 @@ Route::middleware('auth')->group(function () {
         'startupexpert' => StartupExpertController::class,
         'akadem' => AkademController::class,
         'akademexpert' => AkademExpertController::class,
+        'monitorings' => MonitoringController::class,
     ]);
+
+
 
     Route::get('/tashkilot/{id}/export', [TashkilotController::class, 'exportXodimlar']);
     Route::get('/ilmiyrahbarlar/{id}/export', [IlmiyrahbarlarController::class, 'exportIlmiyrahbarlar']);
@@ -339,6 +347,13 @@ Route::group(['middleware' => ['role:super-admin|admin|Ekspert']], function () {
     Route::resource('roles', RoleController::class);
     Route::get('users/{userId}/delete', [UserController::class, 'destroy']);
 
+});
+
+// Telegram test route (faqat development uchun)
+Route::prefix('test-telegram')->group(function () {
+    Route::get('/test', [TestTelegramController::class, 'test'])->name('test.telegram');
+    Route::get('/exception', [TestTelegramController::class, 'testException'])->name('test.telegram.exception');
+    Route::get('/levels', [TestTelegramController::class, 'testLevels'])->name('test.telegram.levels');
 });
 
 require __DIR__ . '/auth.php';

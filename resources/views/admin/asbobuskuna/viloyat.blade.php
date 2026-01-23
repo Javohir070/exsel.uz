@@ -3,38 +3,33 @@
         <div class="grid grid-cols-12 gap-6">
             <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
                 <div class="col-span-12 mt-8">
-
                     <div class="grid grid-cols-12 gap-6 mt-5">
 
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                                    <a href="{{ route('asbobuskunalar.index') }}">
-                                        <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                            <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
-                                                <i data-feather="home" class="report-box__icon text-theme-3" ></i>
-                                            </div>
-                                            <div class="w-2/4 flex-none">
-                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $tashkilots }}</div>
-                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar</div>
-                                            </div>
+                                    <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                        <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
+                                            <i data-feather="home" class="report-box__icon text-theme-3" ></i>
                                         </div>
-                                    </a>
+                                        <div class="w-2/4 flex-none">
+                                            <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $tashkilots }}</div>
+                                            <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                                    <a href="{{ route('asbobuskunalar.index') }}">
-                                        <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                            <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
-                                                <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E0B973;" ></i>
-                                            </div>
-                                            <div class="w-2/4 flex-none">
-                                                <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $asboblar_count }}/{{ $asboblar_expert }}</div>
-                                                <div class="text-gray-600 mt-1" style="font-size: 16px;">Asbob-uskunalar monitoring</div>
-                                            </div>
+                                    <div class="flex items-center pl-5" style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                        <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
+                                            <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E0B973;" ></i>
                                         </div>
-                                    </a>
+                                        <div class="w-2/4 flex-none">
+                                            <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">{{ $asboblar_count }}/{{ $asboblar_expert }}</div>
+                                            <div class="text-gray-600 mt-1" style="font-size: 16px;">Asbob-uskunalar monitoring</div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -98,7 +93,7 @@
                                                 @php
                                                     $qoniqarli = 0;
                                                     foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarli += $tashkilot->asbobuskunaexpert()->where('quarter', 3)->where('status', 'Ijobiy')->count();
+                                                        $qoniqarli += $tashkilot->asbobuskunaexpert()->where('quarter', $monitoring->id)->where('status', 'Ijobiy')->count();
                                                     }
                                                 @endphp
 
@@ -107,7 +102,7 @@
                                                 @php
                                                     $qoniqarsiz = 0;
                                                     foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
-                                                        $qoniqarsiz += $tashkilot->asbobuskunaexpert()->where('quarter', 3)->where('status', 'Salbiy')->count();
+                                                        $qoniqarsiz += $tashkilot->asbobuskunaexpert()->where('quarter', $monitoring->id)->where('status', 'Salbiy')->count();
                                                     }
                                                 @endphp
 
@@ -116,7 +111,7 @@
                                                  @php
                                                     $qushimcha = 0;
                                                     foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
-                                                        $qushimcha += $tashkilot->asbobuskunaexpert()->where('quarter', 3)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
+                                                        $qushimcha += $tashkilot->asbobuskunaexpert()->where('quarter', $monitoring->id)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count();
                                                     }
                                                 @endphp
 
@@ -124,7 +119,7 @@
                                                 @php
                                                     $count = 0;
                                                     foreach ($region->tashkilots()->where('asbobuskuna_is', 1)->get() as $tashkilot) {
-                                                        $count += $tashkilot->asbobuskunaexpert()->where('quarter', 3)->count();
+                                                        $count += $tashkilot->asbobuskunaexpert()->where('quarter', $monitoring->id)->count();
                                                     }
                                                 @endphp
                                                 <td style="text-align: center;">
@@ -132,7 +127,6 @@
                                                         $q->where('is_active', 1);
                                                     }])->get()->sum('asbobuskunalar_count')-$count }}
                                                 </td>
-
                                             </tr>
                                             @endforeach
                                         </tbody>

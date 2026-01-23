@@ -6,45 +6,38 @@
 
                 <div class="grid grid-cols-12 gap-6 mt-0">
                     
-
-
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('doktarantura.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="home" class="report-box__icon text-theme-3"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $doktarantura }}/{{ $doktarantura_expert }}</div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar</div>
-                                    </div>
+                            <div class="flex items-center pl-5"
+                                style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                <div class="flex" style="background: #E4F0FB; padding: 15px; border-radius: 100%;">
+                                    <i data-feather="home" class="report-box__icon text-theme-3"></i>
                                 </div>
-                            </a>
+                                <div class="w-2/4 flex-none">
+                                    <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                        {{ $tashkilots }}/{{ $doktarantura_expert }}</div>
+                                    <div class="text-gray-600 mt-1" style="font-size: 16px;">Tashkilotlar</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('doktarantura.index') }}">
-                                <div class="flex items-center pl-5"
-                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
-                                    <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
-                                        <i data-feather="users" class="report-box__icon text-theme-3"
-                                            style="color: #E64242;"></i>
-                                    </div>
-                                    <div class="w-2/4 flex-none">
-                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $doktarantura_count }}/{{ $doktarantura_count_all }}</div>
-                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy izlanuvchilar</div>
-                                    </div>
+                            <div class="flex items-center pl-5"
+                                style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                    <i data-feather="users" class="report-box__icon text-theme-3"
+                                        style="color: #E64242;"></i>
                                 </div>
-                            </a>
+                                <div class="w-2/4 flex-none">
+                                    <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                        {{ $doktarantura_count }}/{{ $doktarantura_count_all }}</div>
+                                    <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy izlanuvchilar</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
 
                     <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
                         <div class="intro-y block sm:flex items-center py-4" style="justify-content: space-between;">
@@ -95,13 +88,13 @@
                                         </td>
                                         <td style="text-align: center;">{{ $results['other']['doktaranturalar'] }}</td>
                                     </tr>
-
                                 </tbody>
                             </table>
                         </div>
                     </div>
 
                 </div>
+                
             </div>
         </div>
     </div>

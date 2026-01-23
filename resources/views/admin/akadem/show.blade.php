@@ -6,6 +6,7 @@
         <div class="flex justify-between align-center mt-6 mb-6">
 
             <h2 class="intro-y text-lg font-medium">{{ $akadem->full_name }}</h2>
+            
             @role('super-admin')
             <a href="{{ route('akadem.index') }}" class="button w-24 bg-theme-1 text-white">
                 Orqaga
@@ -383,8 +384,7 @@
                         </div>
                     @empty
                         @role(['Ishchi guruh azosi', 'super-admin'])
-                        <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-                            style="background: white; padding: 20px 20px; border-radius: 4px">
+                        <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2 monitoring-form">
                             <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                                 <form id="science-paper-create-form" method="POST" action="{{ route('akademexpert.store') }}"
                                     class="validate-form" enctype="multipart/form-data" novalidate="novalidate">

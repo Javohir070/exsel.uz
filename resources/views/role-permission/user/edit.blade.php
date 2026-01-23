@@ -18,10 +18,7 @@
 
 
 
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-        style="background: white;
-    padding: 20px 20px;
-    border-radius: 4px">
+    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2 monitoring-form">
         @if ($errors->any())
             <ul class="alert alert-warning">
                 @foreach ($errors->all() as $error)

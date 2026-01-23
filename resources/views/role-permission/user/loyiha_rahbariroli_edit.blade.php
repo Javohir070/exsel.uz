@@ -17,17 +17,7 @@
     </div>
 
 
-    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2"
-        style="background: white;
-    padding: 20px 20px;
-    border-radius: 4px">
-        <!-- @if ($errors->any())
-    <ul class="alert alert-warning">
-                        @foreach ($errors->all() as $error)
-    <li>{{ $error }}</li>
-    @endforeach
-                    </ul>
-    @endif -->
+    <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2 monitoring-form">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <form id="science-paper-create-form" method="POST" action="{{ route('ilmiyLoyha_rahbari_edit.index', ['id' => $user->id]) }}"
                 class="validate-form" enctype="multipart/form-data" novalidate="novalidate">

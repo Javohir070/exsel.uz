@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Monitoring;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -10,6 +11,13 @@ use App\Models\Doktarantura;
 
 class ImportDoktaranturaData extends Command
 {
+    public $monitoring;
+
+    public function __construct()
+    {
+        parent::__construct();
+        $this->monitoring = Monitoring::getActive();
+    }
     protected $signature = 'import:doktarantura';
     protected $description = 'Tashkilotlar bo\'yicha API dan doktorantura ma\'lumotlarini import qilish';
 
@@ -45,7 +53,7 @@ class ImportDoktaranturaData extends Command
                         Doktarantura::updateOrCreate(
                             [
                                 'dok_id' => $item['id'],
-                                'quarter' => 2
+                                'quarter' => $this->monitoring->id
                             ],
                             [
                                 "dok_id" => $item['id'],
@@ -63,7 +71,7 @@ class ImportDoktaranturaData extends Command
                                 'monitoring_1' => $item['monitoring_1'],
                                 'monitoring_2' => $item['monitoring_2'],
                                 'monitoring_3' => $item['monitoring_3'],
-                                'quarter' => 2,
+                                'quarter' => $this->monitoring->id,
                             ]
                         );
                     }

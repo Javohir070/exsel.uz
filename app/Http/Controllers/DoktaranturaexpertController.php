@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreDoktaranturaexpertRequest;
 use App\Models\Doktaranturaexpert;
-use App\Models\Izlanuvchilar;
+use App\Models\Monitoring;
 use App\Models\Tashkilot;
 use App\Models\User;
 use App\Notifications\DoktaranturaNotification;
@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Storage;
 
 class DoktaranturaexpertController extends Controller
 {
+    public $monitoring;
+
+    public function __construct()
+    {
+        $this->monitoring = Monitoring::getActive();
+    }
+
     public function store(StoreDoktaranturaexpertRequest $request)
     {
         $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
@@ -21,8 +28,8 @@ class DoktaranturaexpertController extends Controller
         $data = $request->validated();
         $data['user_id'] = auth()->id();
         $data['fish'] = $user->name;
-        $data['quarter'] = 3;
-        $data['year'] = date('Y');
+        $data['quarter'] = $this->monitoring->id;
+        $data['year'] = $this->monitoring->year;
 
         $doktaranturaexpert = Doktaranturaexpert::create($data);
 
@@ -36,30 +43,12 @@ class DoktaranturaexpertController extends Controller
     {
         $id = $doktaranturaexpert->tashkilot_id;
         $tashkilot = Tashkilot::findOrFail($id);
-        $lab_izlanuvchilar = Izlanuvchilar::where('tashkilot_id', $id)->count();
-        $phd = [
-            "Tayanch doktorantura, PhD",
-            "Mustaqil tadqiqotchi, PhD",
-            "Maqsadli tayanch doktorantura, PhD"
-        ];
-        $dsc = [
-            "Doktorantura, DSc",
-            "Mustaqil tadqiqotchi, DSc",
-            "Maqsadli doktorantura, DSc"
-        ];
-        $phd_soni = Izlanuvchilar::where('tashkilot_id', $id)
-            ->whereIn('talim_turi', $phd)->count();
-        $dsc_soni = Izlanuvchilar::where('tashkilot_id', $id)
-            ->whereIn('talim_turi', $dsc)->count();
-        $stajyor_soni = Izlanuvchilar::where('tashkilot_id', $id)
-            ->where('talim_turi', "Stajyor-tadqiqotchi")->count();
-
-        $dscmus_soni = Izlanuvchilar::where('tashkilot_id', $id)
-            ->where('talim_turi', 'Mustaqil tadqiqotchi, DSc')->count();
-
-        $phdmus_soni = Izlanuvchilar::where('tashkilot_id', $id)
-            ->where('talim_turi', 'Mustaqil tadqiqotchi, PhD')->count();
-
+        $lab_izlanuvchilar = 0;
+        $phd_soni = 0;
+        $dsc_soni = 0;  
+        $stajyor_soni = 0;
+        $dscmus_soni = 0;
+        $phdmus_soni = 0;
 
         return view("admin.doktarantura.edit", [
             'phd_soni' => $phd_soni,

@@ -5,9 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\Loyihaiqtisodi;
 use App\Http\Requests\StoreLoyihaiqtisodiRequest;
 use App\Http\Requests\UpdateLoyihaiqtisodiRequest;
+use App\Models\Monitoring;
 
 class LoyihaiqtisodiController extends Controller
 {
+    public $monitoring;
+
+    public function __construct()
+    {
+        $this->monitoring = Monitoring::getActive();
+    }
 
     public function index()
     {
@@ -52,7 +59,7 @@ class LoyihaiqtisodiController extends Controller
             'xarid_s'=> $request->xarid_s,
             'yetkb_yuridik_nomi'=> $request->yetkb_yuridik_nomi,
             'uzlashtirilishi_summasi' => $request->uzlashtirilishi_summasi,
-            'quarter' => 3,
+            'quarter' => $this->monitoring->id,
         ]);
 
         return redirect()->back()->with('status','Ma\'lumotlar muvaffaqiyatli qo"shildi.');
@@ -88,7 +95,7 @@ class LoyihaiqtisodiController extends Controller
             "tashustama_xarajat_i" =>$request->tashustama_xarajat_i,
             "xarid_qilingan_i" =>$request->xarid_qilingan_i,
             'uzlashtirilishi_sum_i' => $request->uzlashtirilishi_sum_i,
-            "quarter" => 3,
+            "quarter" => $this->monitoring->id,
             ]);
         } else {
             $loyihaiqtisodi->update([
@@ -117,7 +124,7 @@ class LoyihaiqtisodiController extends Controller
                 'xarid_s'=> $request->xarid_qilingan_xarid == "yo'q" ? null : $request->xarid_s,
                 'yetkb_yuridik_nomi'=> $request->xarid_qilingan_xarid == "yo'q" ? null : $request->yetkb_yuridik_nomi,
                 'uzlashtirilishi_summasi' => $request->uzlashtirilishi_summasi,
-                "quarter" => 3,
+                "quarter" => $this->monitoring->id,
             ]);
         }
 

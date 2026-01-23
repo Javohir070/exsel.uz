@@ -14,6 +14,7 @@
             @endrole
 
         </div>
+
         <div class="intro-y box px-4">
 
             <div class="nav-tabs flex flex-col sm:flex-row justify-center lg:justify-start">
@@ -52,6 +53,7 @@
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
+
         <div class="overflow-x-auto mt-2" style="background-color: white;border-radius:8px;">
 
             <div class="tab-content">
@@ -1095,8 +1097,7 @@
                         </div>
                     @empty
                         @role([['Ishchi guruh azosi']])
-                            <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-1"
-                                style="background: white; padding: 20px 20px; border-radius: 4px">
+                            <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-1 monitoring-form">
                                 <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
                                     <form id="science-paper-create-form" method="POST"
                                         action="{{ route('doktaranturaexpert.store') }}" class="validate-form"
@@ -1322,6 +1323,7 @@
             </div>
         </div>
     </div>
+
     <style>
         .ilmiy_izlanuvchi {
             width: 40%;
@@ -1575,6 +1577,7 @@
             </div>
         </div>
     </div>
+
     <div class="modal" id="science-ilmiy-izlanuvchi-show-modal">
         <div class="modal__content modal__content--xl" style="margin-top:revert-layer;">
             <div class="flex items-center px-5 py-5 sm:py-3 border-b border-gray-200">

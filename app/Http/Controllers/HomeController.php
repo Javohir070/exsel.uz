@@ -29,11 +29,15 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use RecursiveArrayIterator;
+use App\Models\Monitoring;
 class HomeController extends Controller
 {
+    public $monitoring;
+
     public function __construct()
     {
         $this->middleware("auth");
+        $this->monitoring = Monitoring::getActive();
     }
 
 
@@ -199,7 +203,7 @@ class HomeController extends Controller
         $stajiovka_data_yil = $statistika_s->pluck('stajiovka_soni');
 
 
-         if ((auth()->user()->region_id != null)) {
+        if ((auth()->user()->region_id != null)) {
             $regions = Region::where('id', "=", auth()->user()->region_id)->get();
             foreach ($regions as $region) {
                 $doktarantura = $region->tashkilots()
@@ -316,7 +320,7 @@ class HomeController extends Controller
         ]);
     }
 
-    public function monitoring(Request $request)
+    public function monitoring()
     {
         if ((auth()->user()->region_id != null)) {
             $regions = Region::where('id', "=", auth()->user()->region_id)->get();
@@ -327,23 +331,23 @@ class HomeController extends Controller
             }
             $region_id = Region::where('id', auth()->user()->region_id)->first();
             $id = $region_id->tashkilots()->pluck('id');
-            $doktarantura = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
-            $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
-            $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
+            $doktarantura = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', $this->monitoring->id)->count();
+            $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $id)->where('quarter', $this->monitoring->id)->count();
+            $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $id)->where('quarter', $this->monitoring->id)->count();
             $asboblar_count = Asbobuskuna::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
-            $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
-            $doktarantura_expert = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', 2)->where('status', 1)->count();
+            $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id)->where('quarter', $this->monitoring->id)->count();
+            $doktarantura_expert = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', $this->monitoring->id)->where('status', 1)->count();
             $loy_count = IlmiyLoyiha::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
-            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('is_active', 1)->where('quarter', 3)->count();
+            $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $id)->where('is_active', 1)->where('quarter', $this->monitoring->id)->count();
         } else {
-            $doktarantura = Doktarantura::where('quarter', 2)->count();
-            $stajirovka_count = Stajirovka::where('quarter', 3)->count();
-            $stajirovka_expert = Stajirovkaexpert::where('quarter', 3)->count();
+            $doktarantura = Doktarantura::where('quarter', $this->monitoring->id)->count();
+            $stajirovka_count = Stajirovka::where('quarter', $this->monitoring->id)->count();
+            $stajirovka_expert = Stajirovkaexpert::where('quarter', $this->monitoring->id)->count();
             $asboblar_count = Asbobuskuna::where('is_active', 1)->count();
-            $asboblar_expert = Asbobuskunaexpert::where('quarter', 3)->count();
-            $doktarantura_expert = Doktarantura::where('quarter', 2)->where('status', 1)->count();
+            $asboblar_expert = Asbobuskunaexpert::where('quarter', $this->monitoring->id)->count();
+            $doktarantura_expert = Doktarantura::where('quarter', $this->monitoring->id)->where('status', 1)->count();
             $loy_count = IlmiyLoyiha::where('is_active', 1)->count();
-            $loy_expert = Tekshirivchilar::where('quarter', 3)->where('is_active', 1)->count();
+            $loy_expert = Tekshirivchilar::where('quarter', $this->monitoring->id)->where('is_active', 1)->count();
         }
 
         if ((auth()->user()->region_id != null)) {
@@ -351,52 +355,6 @@ class HomeController extends Controller
         } else {
             $regions = Region::orderBy('order')->get();
         }
-        $query = Tashkilot::where('status', 1)
-            ->withCount([
-                'ilmiyloyhalar as ilmiyloyha_count' => fn($q) => $q->where('is_active', 1),
-                'asbobuskunalar as asbob_count' => fn($q) => $q->where('is_active', 1),
-                'stajirovkalar as stajirovka_count' => fn($q) => $q->where('quarter', 3),
-                'doktaranturalar as dok_count_q2' => fn($q) => $q->where('quarter', 3),
-                'doktaranturalar as dok_count_status' => fn($q) => $q->where('status', 1),
-                'asbobuskunaexpert as asbobuskunaexpert_count' => fn($q) => $q->where('quarter', 3),
-                'tekshirivchilar as tekshirivchilar_count' => fn($q) => $q->where('quarter', 3),
-                'stajirovkaexperts as stajirovkaexperts_count' => fn($q) => $q->where('quarter', 3),
-            ]);
-
-        // ⭐ VILOYAT BO‘YICHA FILTR
-        if ($request->viloyat && $request->viloyat !== "all") {
-            $query->where('region_id', $request->viloyat);
-        }
-
-        $tashkilotlar = $query->paginate(20);
-
-
-        // $tashkilotlarQuery = Tashkilot::with([
-        //     'ilmiyloyhalar' => fn($q) => $q->where('is_active', 1),
-        //     'asbobuskunalar' => fn($q) => $q->where('is_active', 1),
-        //     'stajirovkalar',
-        //     'doktaranturalar'
-        // ])->get();
-
-        // Guruhlash
-        // $groups = [
-        //     'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
-        //     'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
-        //     'other' => $tashkilotlarQuery->where('tashkilot_turi', 'boshqa'),
-        // ];
-
-        // $results = [];
-
-        // foreach ($groups as $key => $group) {
-        //     $results[$key] = [
-        //         'ilmiyloyhalar' => $group->sum(fn($t) => $t->ilmiyloyhalar->count()),
-        //         'stajirovkalar' => $group->sum(fn($t) => $t->stajirovkalar->count()),
-        //         'asbobuskunalar' => $group->sum(fn($t) => $t->asbobuskunalar->count()),
-        //         'doktarantura' => $group->sum(fn($t) => $t->doktaranturalar->count()),
-        //     ];
-        // }
-
-
 
         return view("admin.monitoring", [
             'loy_count' => $loy_count,
@@ -408,13 +366,8 @@ class HomeController extends Controller
             'loy_expert' => $loy_expert,
             'doktarantura_expert' => $doktarantura_expert,
             'regions' => $regions,
-            'tashkilotlar' => $tashkilotlar,
-            // 'tashkilotlarQuery' => $tashkilotlarQuery,
-            // 'results' => $results,
+            'monitoring_id' => $this->monitoring->id,
         ]);
-
-
-
     }
 
 }

@@ -9,6 +9,7 @@ use App\Models\Asbobuskunaexpert;
 use App\Models\Doktaranturaexpert;
 use App\Models\IlmiyLoyiha;
 use App\Models\Loyihaiqtisodi;
+use App\Models\Monitoring;
 use App\Models\Stajirovka;
 use App\Models\Stajirovkaexpert;
 use App\Models\Startup;
@@ -25,6 +26,14 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Storage;
 class PDFController extends Controller
 {
+    public $monitoring;
+
+    public function __construct()
+    {
+        $this->monitoring = Monitoring::getActive();
+    }
+
+
     public function generatePDF($ilmiyId)
     {
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($ilmiyId);
@@ -32,9 +41,9 @@ class PDFController extends Controller
         $fileRelativePath = 'pdfs/' . $fileName;
         $filePath = storage_path('app/public/' . $fileRelativePath);
 
-        $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyId)->where('quarter', 3)->first();
-        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyId)->where('quarter', 3)->first();
-        $tekshirivchilar = Tekshirivchilar::where('quarter', 3)->where('ilmiy_loyiha_id', $ilmiyId)->first();
+        $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyId)->where('quarter', $this->monitoring->id)->first();
+        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyId)->where('quarter', $this->monitoring->id)->first();
+        $tekshirivchilar = Tekshirivchilar::where('quarter', $this->monitoring->id)->where('ilmiy_loyiha_id', $ilmiyId)->first();
         $pdfUrl = asset('storage/' . $fileRelativePath);
 
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
@@ -49,7 +58,7 @@ class PDFController extends Controller
             'qrCode' => $qrCode,
         ];
 
-        $tekshirivchilar = Tekshirivchilar::where('quarter', 3)->where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
+        $tekshirivchilar = Tekshirivchilar::where('quarter', $this->monitoring->id)->where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
 
         $pdf = PDF::loadView('admin.pdf.usersPdf', $data);
 
@@ -83,7 +92,7 @@ class PDFController extends Controller
 
         // Generate the QR Code as a base64 image
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
-        $tekshirivchilar = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', 3)->first();
+        $tekshirivchilar = Stajirovkaexpert::where('stajirovka_id', $stajirovka->id)->where('quarter', $this->monitoring->id)->first();
         // Prepare data for the PDF
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
@@ -127,7 +136,7 @@ class PDFController extends Controller
 
         // Generate the QR Code as a base64 image
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
-        $tekshirivchilar = AkademExpert::where('akadem_id', $akadem->id)->first();
+        $tekshirivchilar = AkademExpert::where('akadem_id', $akadem->id)->where('quarter', $this->monitoring->id)->first();
         // Prepare data for the PDF
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
@@ -171,7 +180,7 @@ class PDFController extends Controller
 
         // Generate the QR Code as a base64 image
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
-        $tekshirivchilar = StartupExpert::where('startup_id', $startup->id)->first();
+        $tekshirivchilar = StartupExpert::where('startup_id', $startup->id)->where('quarter', $this->monitoring->id)->first();
         // Prepare data for the PDF
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
@@ -215,7 +224,7 @@ class PDFController extends Controller
 
         // Generate the QR Code as a base64 image
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
-        $tekshirivchilar = TijoratExpert::where('tijorat_id', $tijorat->id)->first();
+        $tekshirivchilar = TijoratExpert::where('tijorat_id', $tijorat->id)->where('quarter', $this->monitoring->id)->first();
         // Prepare data for the PDF
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
@@ -259,7 +268,7 @@ class PDFController extends Controller
 
         // Generate the QR Code as a base64 image
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
-        $tekshirivchilar = Asbobuskunaexpert::where('asbobuskuna_id', $asbobuskuna->id)->where('quarter', 3)->first();
+        $tekshirivchilar = Asbobuskunaexpert::where('asbobuskuna_id', $asbobuskuna->id)->where('quarter', $this->monitoring->id)->first();
         // Prepare data for the PDF
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
@@ -304,7 +313,7 @@ class PDFController extends Controller
 
         // Generate the QR Code as a base64 image
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
-        $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $tashkilot->id)->where('quarter', 3)->first();
+        $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $tashkilot->id)->where('quarter', $this->monitoring->id)->first();
         // Prepare data for the PDF
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',

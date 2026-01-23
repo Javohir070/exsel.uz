@@ -75,7 +75,7 @@
         @role(['Ekspert', 'Ishchi guruh azosi', 'Rahbar', 'super-admin'])
             <li>
                 <a href="{{ route('monitoring.index') }}"
-                    class="side-menu side-menu{{ request()->is('monitoring*') ? '--active' : '' }}">
+                    class="side-menu side-menu{{ request()->is('monitoring') ? '--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                     <div class="side-menu__title">Monitoring</div>
                 </a>
@@ -636,13 +636,13 @@
         @role('super-admin')
             <li>
                 <a href="javascript:;"
-                    class="side-menu side-menu{{ request()->is('users*') ? '--active' : '' }}{{ request()->is('permissions*') ? '--active' : '' }}{{ request()->is('roles*') ? '--active' : '' }}{{ request()->is('tashqoshish*') ? '--active' : '' }}">
+                    class="side-menu side-menu{{ request()->is('users*') ? '--active' : '' }}{{ request()->is('monitorings*') ? '--active' : '' }}{{ request()->is('permissions*') ? '--active' : '' }}{{ request()->is('roles*') ? '--active' : '' }}{{ request()->is('tashqoshish*') ? '--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="settings"></i> </div>
                     <div class="side-menu__title"> Sozlamalar <i data-feather="chevron-down"
                             class="side-menu__sub-icon"></i> </div>
                 </a>
                 <ul
-                    class="{{ request()->is('users*') ? 'side-menu__sub-open' : '' }}{{ request()->is('permissions*') ? 'side-menu__sub-open' : '' }}{{ request()->is('roles*') ? 'side-menu__sub-open' : '' }}{{ request()->is('tashqoshish*') ? 'side-menu__sub-open' : '' }}">
+                    class="{{ request()->is('users*') ? 'side-menu__sub-open' : '' }}{{ request()->is(patterns: 'monitorings*') ? 'side-menu__sub-open' : '' }}{{ request()->is('permissions*') ? 'side-menu__sub-open' : '' }}{{ request()->is('roles*') ? 'side-menu__sub-open' : '' }}{{ request()->is('tashqoshish*') ? 'side-menu__sub-open' : '' }}">
 
                     <li>
                         <a href="{{ route('tashqoshish.create') }}"
@@ -676,6 +676,15 @@
                             <div class="side-menu__title"> Permissions </div>
                         </a>
                     </li>
+
+                    <li>
+                        <a href="{{ route('monitorings.index') }}"
+                            class="side-menu side-menu{{ request()->is('monitorings*') ? '--active' : '' }}">
+                            <div class="side-menu__icon"> <i data-feather="activity"></i> </div>
+                            <div class="side-menu__title"> Monitoring </div>
+                        </a>
+                    </li>
+
                 </ul>
             </li>
         @endrole

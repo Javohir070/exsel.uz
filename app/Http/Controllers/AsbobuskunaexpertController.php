@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateAsbobuskunaExpertRequest;
 use App\Models\Asbobuskuna;
 use App\Models\Asbobuskunaexpert;
 use App\Exports\AsbobuskunaexpertMonitoringExpert;
+use App\Models\Monitoring;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Models\User;
 use App\Notifications\AsbobuskunaNotification;
@@ -16,6 +17,13 @@ use Illuminate\Support\Facades\Storage;
 
 class AsbobuskunaexpertController extends Controller
 {
+    public $monitoring;
+    
+    public function __construct()
+    {
+        $this->monitoring = Monitoring::getActive();
+    }
+
     public function store(StoreAsbobuskunaExpertRequest $request)
     {
         $data = $request->validated();
@@ -25,8 +33,8 @@ class AsbobuskunaexpertController extends Controller
         $data['user_id'] = auth()->id();
         $data['tashkilot_id'] = $asbobuskuna->tashkilot_id;
         $data['fish'] = $user->name;
-        $data['quarter'] = 3;
-        $data['year'] = date('Y');
+        $data['quarter'] = $this->monitoring->id;
+        $data['year'] = $this->monitoring->year;
         $data['asbobuskuna_id'] = $asbobuskuna->id;
 
         $asbobuskunaexpert = Asbobuskunaexpert::create($data);

@@ -5,11 +5,7 @@
         <div class="flex justify-between align-center mt-6 mb-6">
 
             <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }}</h2>
-            {{-- <div>
-                <a href="{{ route(" asbobuskuna.create") }}" class="button w-24 bg-theme-1 text-white mr-2">
-                    Qo'shish
-                </a>
-            </div> --}}
+            
         </div>
 
         @if (session('status'))
@@ -40,22 +36,16 @@
                                 {{ $k->asos }}
                             </td>
                             <td
-                                style="text-align: center;color: {{ ($h = $k->asbobuskunaexperts()->where('quarter', 3)->first()->status ?? null) == 'Ijobiy' ? 'green' : ($h == 'Salbiy' ? 'blue' : 'red') }}">
-                                {{ $k->asbobuskunaexperts()->where('quarter', 3)->first()->status ?? 'Tasdiqlanmagan' }}
+                                style="text-align: center;color: {{ ($h = $k->asbobuskunaexperts()->where('quarter', $monitoring->id)->first()->status ?? null) == 'Ijobiy' ? 'green' : ($h == 'Salbiy' ? 'blue' : 'red') }}">
+                                {{ $k->asbobuskunaexperts()->where('quarter', $monitoring->id)->first()->status ?? 'Tasdiqlanmagan' }}
                             </td>
                             <td
-                                style="text-align: center;color: {{ ($h = $k->asbobuskunaexperts()->where('quarter', 3)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
+                                style="text-align: center;color: {{ ($h = $k->asbobuskunaexperts()->where('quarter', $monitoring->id)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                 {{ $h == 'yuborildi' ? 'Tasdiqlash uchun yuborildi' : ($h == null ? "Ko'rilmagan" : $h) }}
                             </td>
 
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
-                                    {{-- <a class="flex science-update-action items-center mr-3"
-                                        href="{{ route('asbobuskuna.edit',['asbobuskuna'=>$k->id]) }}">
-                                        <i data-feather="eye" class="feather feather-check-square w-4 h-4 mr-1"></i>
-                                        Tahrirlash
-                                    </a> --}}
-
                                     <a class="flex science-update-action items-center mr-3"
                                         href="{{ route('asbobuskuna.show', ['asbobuskuna' => $k->id]) }}">
                                         <i data-feather="eye" class="feather feather-check-square w-4 h-4 mr-1"></i>
@@ -72,7 +62,6 @@
                                         </button>
                                     </form>
                                     @endrole
-
                                 </div>
                             </td>
                         </tr>
@@ -81,7 +70,6 @@
                             <td colspan="6" class="text-center">Ma'lumotlar mavjud emas</td>
                         </tr>
                     @endforelse
-
                 </tbody>
             </table>
         </div>

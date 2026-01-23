@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTekshirivchilarRequest;
 use App\Models\IlmiyLoyiha;
+use App\Models\Monitoring;
 use App\Models\Tekshirivchilar;
 use App\Models\User;
 use App\Notifications\IlmiyloyihaNotification;
@@ -14,6 +15,14 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class TekshirivchilarController extends Controller
 {
+    public $monitoring;
+
+    public function __construct()
+    {
+        $this->monitoring = Monitoring::getActive();
+    }
+
+
     public function store(StoreTekshirivchilarRequest $request)
     {
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiyloyiha_id);
@@ -23,8 +32,8 @@ class TekshirivchilarController extends Controller
         $data['user_id'] = auth()->id();
         $data['tashkilot_id'] = $ilmiyloyiha->tashkilot_id;
         $data['fish'] = $user->name;
-        $data['quarter'] = 3;
-        $data['year'] = date('Y');
+        $data['quarter'] = $this->monitoring->id;
+        $data['year'] = $this->monitoring->year;
         $data['is_active'] = 1;
         $tekshirivchilar = Tekshirivchilar::create($data);
 

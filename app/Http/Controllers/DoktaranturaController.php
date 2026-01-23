@@ -6,7 +6,7 @@ use App\Exports\DoktaranturaexpertExport;
 use App\Exports\TashkilotDoktaranturaExport;
 use App\Models\Doktaranturaexpert;
 use App\Models\Ilmiyrahbarlar;
-use App\Models\Izlanuvchilar;
+use App\Models\Monitoring;
 use App\Models\Tashkilot;
 use App\Models\Region;
 use Illuminate\Http\Request;
@@ -16,6 +16,12 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class DoktaranturaController extends Controller
 {
+    public $monitoring;
+
+    public function __construct()
+    {
+        $this->monitoring = Monitoring::getActive();
+    }
 
     function importDoktaranturaData($stir)
     {
@@ -39,8 +45,8 @@ class DoktaranturaController extends Controller
                     Doktarantura::updateOrCreate(
                         [
                             'dok_id' => $item['id'],
-                            'quarter' => 2
-                        ], // unique key
+                            'quarter' => $this->monitoring->id
+                        ],
                         [
                             "dok_id" => $item['id'],
                             "user_id" => auth()->id(),
@@ -57,7 +63,7 @@ class DoktaranturaController extends Controller
                             'monitoring_1' => $item['monitoring_1'],
                             'monitoring_2' => $item['monitoring_2'],
                             'monitoring_3' => $item['monitoring_3'],
-                            'quarter' => 2,
+                            'quarter' => $this->monitoring->id,
                         ]
                     );
                 }
@@ -91,10 +97,10 @@ class DoktaranturaController extends Controller
                     Ilmiyrahbarlar::updateOrCreate(
                         [
                             'full_name' => $item['full_name'],
-                            'quarter' => 2
-                        ], // unique key
+                            'quarter' => $this->monitoring->id
+                        ],
                         [
-                            'quarter' => 2,
+                            'quarter' => $this->monitoring->id,
                             "user_id" => auth()->id(),
                             "tashkilot_id" => $tashkilot->id,
                             'org' => $item['org'],
@@ -159,18 +165,18 @@ class DoktaranturaController extends Controller
         }
 
 
-        $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->get();
+        $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', $this->monitoring->id)->get();
         $quarter_1 = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 1)->first();
         $quarter_2 = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->first();
-        $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->first();
-        $doktarantura = Doktarantura::where('tashkilot_id', '=', $id)->where('quarter', 2)->get();
-        $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->where('quarter', 2)->get();
+        $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', $this->monitoring->id)->first();
+        $doktarantura = Doktarantura::where('tashkilot_id', '=', $id)->where('quarter', $this->monitoring->id)->get();
+        $ilmiyrahbarlars = Ilmiyrahbarlar::where('tashkilot_id', '=', $id)->where('quarter', $this->monitoring->id)->get();
         $biriktirilgan_ir = Doktarantura::where('tashkilot_id', '=', $id)->whereNotNull('advisor')->count();
         $querysearch = $request->input('query');
         $course = $request->input('course');
         $dc_type = $request->input('dc_type');
         $status = $request->input('status');
-        $doktaranturas = Doktarantura::where('tashkilot_id', $id)->where('quarter', 2)
+        $doktaranturas = Doktarantura::where('tashkilot_id', $id)->where('quarter', $this->monitoring->id)
             ->when($querysearch, function ($query) use ($querysearch) {
                 $query->where('full_name', 'like', '%' . $querysearch . '%');
             })
@@ -246,7 +252,7 @@ class DoktaranturaController extends Controller
         }
 
 
-        $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 3)->get();
+        $doktaranturaexpert = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', $this->monitoring->id)->get();
         $quarter_1 = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 1)->first();
         $quarter_2 = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->first();
         $tekshirivchilar = Doktaranturaexpert::where('tashkilot_id', $id)->where('quarter', 2)->first();
@@ -279,54 +285,56 @@ class DoktaranturaController extends Controller
     }
     public function index()
     {
-        $tashkilotlar = Tashkilot::orderBy('name')->where('doktarantura_is', 1)->paginate(30);
-        if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
-            foreach ($regions as $region) {
-                $doktarantura = $region->tashkilots()
-                    ->where('doktarantura_is', 1)
-                    ->count();
-            }
-            $region_id = Region::where('id', auth()->user()->region_id)->first();
-            $id = $region_id->tashkilots()->pluck('id');
-            $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
-            $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $id)->where('status', 1)->where('quarter', 2)->count();
-            $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
+        $user = auth()->user();
+        $hasRegion = $user->region_id !== null;
+        if ($hasRegion) {
+            $regions = Region::where('id', $user->region_id)->get();
+            $region = $regions->first();
+
+            $id = $region->tashkilots()
+                ->where('doktarantura_is', 1)
+                ->pluck('id');
+
+            $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)
+                ->where('quarter', $this->monitoring->id)->count();
+            $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $id)
+                ->where('status', 1)->where('quarter', $this->monitoring->id)->count();
+            $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)
+                ->where('quarter', $this->monitoring->id)->count();
         } else {
             $regions = Region::orderBy('order')->get();
-            $doktarantura = Tashkilot::where('doktarantura_is', 1)->count();
-            $doktarantura_count = Doktarantura::where('quarter', 2)->count();
-            $doktarantura_count_all = Doktarantura::where('status', 1)->where('quarter', 2)->count();
-            $doktarantura_expert = Doktaranturaexpert::where('quarter', 3)->count();
+            $doktarantura_count = Doktarantura::where('quarter', $this->monitoring->id)->count();
+            $doktarantura_count_all = Doktarantura::where('status', 1)->where('quarter', $this->monitoring->id)->count();
+            $doktarantura_expert = Doktaranturaexpert::where('quarter', $this->monitoring->id)->count();
         }
 
-        $m_phd = Doktarantura::where('dc_type', "=", 'Mustaqil izlanuvchi, PhD')->where('quarter', 2)->count();
-        $t_phd = Doktarantura::where('dc_type', "=", 'Tayanch doktorantura, PhD')->where('quarter', 2)->count();
-        $m_dsc = Doktarantura::where('dc_type', "=", 'Mustaqil izlanuvchi, DSc')->where('quarter', 2)->count();
-        $dsc = Doktarantura::where('dc_type', "=", 'Doktorantura, DSc')->where('quarter', 2)->count();
+        $tashkilots = Tashkilot::where('doktarantura_is', 1)->count();
+        $m_phd = Doktarantura::where('dc_type', "=", 'Mustaqil izlanuvchi, PhD')->where('quarter', $this->monitoring->id)->count();
+        $t_phd = Doktarantura::where('dc_type', "=", 'Tayanch doktorantura, PhD')->where('quarter', $this->monitoring->id)->count();
+        $m_dsc = Doktarantura::where('dc_type', "=", 'Mustaqil izlanuvchi, DSc')->where('quarter', $this->monitoring->id)->count();
+        $dsc = Doktarantura::where('dc_type', "=", 'Doktorantura, DSc')->where('quarter', $this->monitoring->id)->count();
 
         return view('admin.doktarantura.viloyat', [
             'doktarantura_count_all' => $doktarantura_count_all,
             'doktarantura_expert' => $doktarantura_expert,
             'regions' => $regions,
-            'doktarantura' => $doktarantura,
+            'tashkilots' => $tashkilots,
             'doktarantura_count' => $doktarantura_count,
             'm_phd' => $m_phd,
             't_phd' => $t_phd,
             'm_dsc' => $m_dsc,
             'dsc' => $dsc,
+            'monitoring' => $this->monitoring
         ]);
     }
 
     public function tashkilot_turi_doktarantura($id)
     {
-        // dd($id);
-
         $tashkilotlarQuery = Tashkilot::where('doktarantura_is', 1)
             ->where('region_id', $id)
             ->with([
                 'doktaranturalar' => function ($q) {
-                    $q->where('quarter', 2);   // <-- faqat quarter = 3 doktoranturalar
+                    $q->where('quarter', $this->monitoring->id); 
                 }
             ])
             ->get();
@@ -346,17 +354,17 @@ class DoktaranturaController extends Controller
             ];
         }
         $regions = Region::findOrFail($id);
-        // dd($results);
-        $doktarantura = $tashkilotlarQuery->count();
-        $id = $tashkilotlarQuery->pluck('id');
-        $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
-        $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', 2)->where('status', 1)->count();
-        $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $id)->where('quarter', 2)->count();
+        
+        $tashkilots = $tashkilotlarQuery->count();
+        $tashkilotIds = $tashkilotlarQuery->pluck('id');
+        $doktarantura_expert = Doktaranturaexpert::whereIn('tashkilot_id', $tashkilotIds)->where('quarter', $this->monitoring->id)->count();
+        $doktarantura_count_all = Doktarantura::whereIn('tashkilot_id', $tashkilotIds)->where('quarter', 2)->where('status', 1)->count();
+        $doktarantura_count = Doktarantura::whereIn('tashkilot_id', $tashkilotIds)->where('quarter', 2)->count();
 
         return view('admin.doktarantura.tashkilot_turi', [
             'results' => $results,
             'regions' => $regions,
-            'doktarantura' => $doktarantura,
+            'tashkilots' => $tashkilots,
             'doktarantura_expert' => $doktarantura_expert,
             'doktarantura_count' => $doktarantura_count,
             'doktarantura_count_all' => $doktarantura_count_all,
@@ -366,40 +374,34 @@ class DoktaranturaController extends Controller
     public function search_dok(Request $request)
     {
 
-        $querysearch = $request->input('query');
-        $id = $request->input('id');
+        $query = $request->input('query');
+        $regionId = $request->input('id');
         $type = $request->input('type');
-        if (ctype_digit($id)) {
-            $tashkilotlar = Tashkilot::orderBy('name')->where('doktarantura_is', 1)
-                ->where('region_id', '=', $id)
-                ->where('tashkilot_turi', '=', $type)
-                ->paginate(50);
-            $tashkilotlars = Tashkilot::orderBy('name')->where('doktarantura_is', 1)
-                ->where('region_id', '=', $id)
-                ->where('tashkilot_turi', '=', $type)
-                ->get();
-            $tash_count = $tashkilotlar->total();
-        } else {
-            $tashkilotlar = Tashkilot::orderBy('name')
-                ->where('doktarantura_is', 1)
-                ->where('name', 'like', '%' . $querysearch . '%')
-                ->paginate(50);
-            $tashkilotlars = Tashkilot::where('status', 1)
-                ->where('name', 'like', '%' . $querysearch . '%')
-                ->get();
-            $tash_count = $tashkilotlar->total();
-        }
 
-        $id = $tashkilotlars->pluck('id');
+        $isRegionSearch = is_numeric($regionId);
 
-        $doktarantura = Tashkilot::whereIn('id', $id)->count();
-        if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
-        } else {
-            $regions = Region::orderBy('order')->get();
-        }
+        $buildTashkilotQuery = function () use ($isRegionSearch, $regionId, $type, $query) {
+            $queryBuilder = Tashkilot::where('doktarantura_is', 1);
 
-        return view('admin.doktarantura.index', ['doktarantura' => $doktarantura, 'tashkilotlar' => $tashkilotlar, 'regions' => $regions, 'tash_count' => $tash_count]);
+            if ($isRegionSearch) {
+                $queryBuilder->where('region_id', $regionId)
+                    ->where('tashkilot_turi', $type)
+                    ->where('name', 'like', '%' . $query . '%');
+            }
+
+            return $queryBuilder;
+        };
+
+        $tashkilotlar = $buildTashkilotQuery()->orderBy('name')->paginate(50);
+
+        return view('admin.doktarantura.index', [
+            'tashkilotlar' => $tashkilotlar,
+            'tash_count' => $tashkilotlar->total(),
+            'monitoring' => $this->monitoring,
+            'regionId' => $regionId,
+            'type' => $type,
+            'query' => $query,
+        ]);
 
     }
 
@@ -417,8 +419,6 @@ class DoktaranturaController extends Controller
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli tahrirlandi.');
     }
 
-
-
     public function exportDoktarantura($tashkilotId)
     {
         ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
@@ -427,7 +427,6 @@ class DoktaranturaController extends Controller
         return Excel::download(new TashkilotDoktaranturaExport($tashkilotId), 'doktaranturalar.xlsx');
     }
 
-
     public function exportDoktaranturaexpert()
     {
         ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
@@ -435,7 +434,6 @@ class DoktaranturaController extends Controller
 
         return Excel::download(new DoktaranturaexpertExport(), 'monitoring_doktarantura.xlsx');
     }
-
 
     public function doktaranturalar(Request $request)
     {
@@ -463,6 +461,4 @@ class DoktaranturaController extends Controller
             'ilmiyrahbarlars' => $ilmiyrahbarlars
         ]);
     }
-
-
 }

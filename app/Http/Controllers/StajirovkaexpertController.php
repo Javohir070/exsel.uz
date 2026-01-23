@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreStajirovkaExpertRequest;
 use App\Http\Requests\UpdateStajirovkaExpertRequest;
+use App\Models\Monitoring;
 use App\Models\Stajirovka;
 use App\Models\Stajirovkaexpert;
 use App\Models\User;
@@ -14,6 +15,14 @@ use Illuminate\Support\Facades\Storage;
 
 class StajirovkaexpertController extends Controller
 {
+    public $monitoring;
+
+    public function __construct()
+    {
+        $this->monitoring = Monitoring::getActive();
+    }
+
+
     public function store(StoreStajirovkaExpertRequest $request)
     {
         $user = User::where('group_id', '=',auth()->user()->group_id)->role('Ekspert')->first();
@@ -23,8 +32,8 @@ class StajirovkaexpertController extends Controller
         $data['user_id'] = auth()->id();
         $data['tashkilot_id'] = $stajirovka->tashkilot_id;
         $data['fish'] = $user->name;
-        $data['quarter'] = 3;
-        $data['year'] = date('Y');
+        $data['quarter'] = $this->monitoring->id;
+        $data['year'] = $this->monitoring->year;
         
         $stajirovkaexpert = Stajirovkaexpert::create($data);
 
@@ -32,6 +41,7 @@ class StajirovkaexpertController extends Controller
 
         return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
+    
 
     public function edit(Stajirovkaexpert $stajirovkaexpert)
     {

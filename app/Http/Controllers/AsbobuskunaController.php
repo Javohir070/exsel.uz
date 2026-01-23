@@ -8,10 +8,10 @@ use App\Models\Asbobuskuna;
 use App\Http\Requests\StoreAsbobuskunaRequest;
 use App\Http\Requests\UpdateAsbobuskunaRequest;
 use App\Models\Asbobuskunaexpert;
-use App\Models\Asbobuskunafile;
 use App\Models\IlmiyLoyiha;
 use App\Models\Kafedralar;
 use App\Models\Laboratory;
+use App\Models\Monitoring;
 use App\Models\Region;
 use App\Models\Tashkilot;
 use App\Models\User;
@@ -20,15 +20,19 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AsbobuskunaController extends Controller
 {
+    public $monitoring;
+
+    public function __construct()
+    {
+        $this->monitoring = Monitoring::getActive();
+    }
 
     public function index()
     {
         $asbobuskunas = Asbobuskuna::where('tashkilot_id', auth()->user()->tashkilot_id)
-            ->where('is_active', 1)
             ->paginate(20);
-        $asbobuskunafile = Asbobuskunafile::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
 
-        return view('admin.asbobuskuna.index', ['asbobuskunas' => $asbobuskunas, 'asbobuskunafile' => $asbobuskunafile]);
+        return view('admin.asbobuskuna.index', ['asbobuskunas' => $asbobuskunas]);
     }
 
     public function asbobuskuna_masullar()
@@ -45,22 +49,29 @@ class AsbobuskunaController extends Controller
 
     public function asbobuskunalar()
     {
-        if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
-            foreach ($regions as $region) {
-                $tashkilots = $region->tashkilots()
-                    ->where('asbobuskuna_is', 1)
-                    ->count();
-            }
-            $region_id = Region::where('id', auth()->user()->region_id)->first();
-            $id = $region_id->tashkilots()->pluck('id');
-            $asboblar_count = Asbobuskuna::whereIn('tashkilot_id', $id)->where('is_active', 1)->count();
-            $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id)->where('quarter', 3)->count();
+        $user = auth()->user();
+        $hasRegion = $user->region_id !== null;
+
+        if ($hasRegion) {
+            $regions = Region::where('id', $user->region_id)->get();
+            $region = $regions->first();
+            
+            $tashkilotIds = $region->tashkilots()
+                ->where('asbobuskuna_is', 1)
+                ->pluck('id');
+            
+            $tashkilots = $tashkilotIds->count();
+            $asboblar_count = Asbobuskuna::whereIn('tashkilot_id', $tashkilotIds)
+                ->where('is_active', 1)
+                ->count();
+            $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $tashkilotIds)
+                ->where('quarter', $this->monitoring->id)
+                ->count();
         } else {
             $regions = Region::orderBy('order')->get();
             $tashkilots = Tashkilot::where('asbobuskuna_is', 1)->count();
             $asboblar_count = Asbobuskuna::where('is_active', 1)->count();
-            $asboblar_expert = Asbobuskunaexpert::where('quarter', 3)->count();
+            $asboblar_expert = Asbobuskunaexpert::where('quarter', $this->monitoring->id)->count();
         }
 
         $asboblar_all = Asbobuskuna::count();
@@ -70,19 +81,29 @@ class AsbobuskunaController extends Controller
             'regions' => $regions,
             'asboblar_expert' => $asboblar_expert,
             'tashkilots' => $tashkilots,
-            'asboblar_all' => $asboblar_all
+            'asboblar_all' => $asboblar_all,
+            'monitoring' => $this->monitoring
         ]);
     }
 
     public function tashkilot_turi_asbobuskuna($id)
     {
+        $region = Region::findOrFail($id);
+        
         $tashkilotlarQuery = Tashkilot::where('asbobuskuna_is', 1)
-            ->where('region_id', '=', $id)
-            ->with(['asbobuskunalar'])
+            ->where('region_id', $id)
+            ->with([
+                'asbobuskunalar' => function ($q) {
+                    $q->where('is_active', 1); 
+                }
+            ])
             ->get();
+        $tashkilotIds = $tashkilotlarQuery->pluck('id');
+        
+        $tashkilots = $tashkilotlarQuery->count();
 
-        // Turga qarab guruhlash
-        $groups = [
+         // Guruhlash
+         $groups = [
             'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
             'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
             'other' => $tashkilotlarQuery->where('tashkilot_turi', 'boshqa'),
@@ -92,66 +113,67 @@ class AsbobuskunaController extends Controller
 
         foreach ($groups as $key => $group) {
             $results[$key] = [
-                'asbobuskunalar' => $group->pluck('asbobuskunalar')->flatten()->where('is_active', 1)->count(),
+                'asbobuskunalar' => $group->flatMap->asbobuskunalar->count(),
             ];
         }
-        $regions = Region::findOrFail($id);
 
-        $id_tash = $tashkilotlarQuery->pluck('id');
-        $tashkilots = $tashkilotlarQuery->count();
-        $asboblar_count = Asbobuskuna::where('is_active', 1)->whereIn('tashkilot_id', $id_tash)->count();
-        $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $id_tash)->where('quarter', 3)->count();
-
+        $asboblar_count = Asbobuskuna::where('is_active', 1)
+            ->whereIn('tashkilot_id', $tashkilotIds)
+            ->count();
+        
+        $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $tashkilotIds)
+            ->where('quarter', $this->monitoring->id)
+            ->count();
 
         return view('admin.asbobuskuna.tashkilot_turi', [
             'results' => $results,
-            'regions' => $regions,
+            'regions' => $region,
             'tashkilots' => $tashkilots,
             'asboblar_count' => $asboblar_count,
             'asboblar_expert' => $asboblar_expert
         ]);
     }
 
+
     public function search_asbobuskunalar(Request $request)
     {
-        $querysearch = $request->input('query');
-        $id = $request->input('id');
+        $query = $request->input('query');
+        $regionId = $request->input('id');
         $type = $request->input('type');
-        if (ctype_digit($id)) {
-            $tashkilotlar = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)
-                ->where('region_id', '=', $id)
-                ->where('tashkilot_turi', '=', $type)
-                ->paginate(50);
-            $tashkilotlars = Tashkilot::orderBy('name')->where('asbobuskuna_is', 1)
-                ->where('region_id', '=', $id)
-                ->where('tashkilot_turi', '=', $type)
-                ->get();
-            $tash_count = $tashkilotlar->total();
-        } else {
-            $tashkilotlar = Tashkilot::orderBy('name')
-                ->where('asbobuskuna_is', 1)
-                ->where('name', 'like', '%' . $querysearch . '%')
-                ->paginate(50);
-            $tashkilotlars = Tashkilot::where('status', 1)
-                ->where('name', 'like', '%' . $querysearch . '%')
-                ->get();
-            $tash_count = $tashkilotlar->total();
-        }
 
-        $id = $tashkilotlars->pluck('id');
+        $isRegionSearch = is_numeric($regionId);
 
-        $asbobuskunas = Asbobuskuna::where('is_active', 1)->whereIn('tashkilot_id', $id)->count();
-        if ((auth()->user()->region_id != null)) {
-            $regions = Region::where('id', "=", auth()->user()->region_id)->get();
-        } else {
-            $regions = Region::orderBy('order')->get();
-        }
+        $buildTashkilotQuery = function () use ($isRegionSearch, $regionId, $type, $query) {
+            $queryBuilder = Tashkilot::where('asbobuskuna_is', 1);
+
+            if ($isRegionSearch) {
+                $queryBuilder->where('region_id', $regionId)
+                    ->where('tashkilot_turi', $type)
+                    ->where('name', 'like', '%' . $query . '%');
+            }
+
+            return $queryBuilder;
+        };
+
+        $tashkilotlar = $buildTashkilotQuery()
+            ->orderBy('name')
+            ->paginate(50);
+
+        $tashkilotIds = $buildTashkilotQuery(true)
+            ->pluck('id');
+
+        $asbobuskunas = Asbobuskuna::where('is_active', 1)
+            ->whereIn('tashkilot_id', $tashkilotIds)
+            ->count();
 
         return view('admin.asbobuskuna.tashkilotlar', [
             'asbobuskunas' => $asbobuskunas,
             'tashkilotlar' => $tashkilotlar,
-            'regions' => $regions,
-            'tash_count' => $tash_count
+            'tash_count' => $tashkilotlar->total(),
+            'monitoring' => $this->monitoring,
+            'query' => $query,
+            'regionId' => $regionId,
+            'type' => $type,
         ]);
     }
 
@@ -164,7 +186,8 @@ class AsbobuskunaController extends Controller
 
         return view('admin.asbobuskuna.asbobuskunalar', [
             'asbobuskunas' => $asbobuskunas,
-            'tashkilot' => $tashkilot
+            'tashkilot' => $tashkilot,
+            'monitoring' => $this->monitoring
         ]);
     }
 
@@ -258,7 +281,7 @@ class AsbobuskunaController extends Controller
 
     public function show(Asbobuskuna $asbobuskuna)
     {
-        $asbobuskunaexpert = Asbobuskunaexpert::where('quarter', 3)->where('asbobuskuna_id', $asbobuskuna->id)->get();
+        $asbobuskunaexpert = Asbobuskunaexpert::where('quarter', $this->monitoring->id)->where('asbobuskuna_id', $asbobuskuna->id)->get();
         $quarter_1 = Asbobuskunaexpert::where('quarter', 1)->where('asbobuskuna_id', $asbobuskuna->id)->first();
         $quarter_2 = Asbobuskunaexpert::where('quarter', 2)->where('asbobuskuna_id', $asbobuskuna->id)->first();
         $tashkilotlar = Tashkilot::all();

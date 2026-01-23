@@ -7,6 +7,7 @@
             <h2 class="intro-y text-lg font-medium">{{ auth()->user()->tashkilot->name }}</h2>
 
         </div>
+        
         <div class="intro-y box px-4">
 
             <div class="nav-tabs flex flex-col sm:flex-row justify-center lg:justify-start">

@@ -6,19 +6,22 @@ use App\Http\Requests\StoreAkademRequest;
 use App\Http\Requests\UpdateAkademRequest;
 use App\Models\Akadem;
 use App\Models\AkademExpert;
+use App\Models\Monitoring;
 use App\Models\Region;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
-use Log;
 use App\Exports\AkademExpert as AkademExpertExport;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Http;
 
 
 class AkademController extends Controller
 {
+    public $monitoring;
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->monitoring = Monitoring::getActive();
     }
 
 
@@ -47,80 +50,80 @@ class AkademController extends Controller
         return view('admin.akadem.index', compact('akadem', 'regions'));
     }
 
-    // public function index()
-    // {
-    //     $client_id = "f9a454c5-8145-498b-b152-fdf140b4d128";
-    //     $client_secret = "YKHshBTK-EEntfv3p70QbhpEZhBBqIzqaXKoyIHdoknErqjt8HeHGDIfaJy0l4yZ16VLKSPxMgtCfDFsZuJmkA";
+    public function syncAkadem()
+    {
+        $client_id = "f9a454c5-8145-498b-b152-fdf140b4d128";
+        $client_secret = "YKHshBTK-EEntfv3p70QbhpEZhBBqIzqaXKoyIHdoknErqjt8HeHGDIfaJy0l4yZ16VLKSPxMgtCfDFsZuJmkA";
 
-    //     // 1) Auth
-    //     $response = Http::post('https://api-akadem.ilmiy1.uz/auth/clients/login', [
-    //         'client_id' => $client_id,
-    //         'client_secret' => $client_secret,
-    //     ]);
+        // 1) Auth
+        $response = Http::post('https://api-akadem.ilmiy1.uz/auth/clients/login', [
+            'client_id' => $client_id,
+            'client_secret' => $client_secret,
+        ]);
 
-    //     if (!$response->ok()) {
-    //         return response()->json(['error' => 'Failed to authenticate']);
-    //     }
+        if (!$response->ok()) {
+            return response()->json(['error' => 'Failed to authenticate']);
+        }
 
-    //     $login = $response->json();
+        $login = $response->json();
 
 
-    //     // 2) Barcha sahifalarni olish
-    //     $url = "https://api-akadem.ilmiy1.uz/stats/winners";
-    //     $total_saved = 0;
+        // 2) Barcha sahifalarni olish
+        $url = "https://api-akadem.ilmiy1.uz/stats/winners";
+        $total_saved = 0;
 
-    //     while ($url) {
+        while ($url) {
 
-    //         $response_stats = Http::withHeaders([
-    //             'Authorization' => "ClientAuth {$login['token']}"
-    //         ])->get($url);
+            $response_stats = Http::withHeaders([
+                'Authorization' => "ClientAuth {$login['token']}"
+            ])->get($url);
 
-    //         $stats = $response_stats->json();
+            $stats = $response_stats->json();
 
-    //         if (!isset($stats['results']))
-    //             break;
+            if (!isset($stats['results']))
+                break;
 
-    //         foreach ($stats['results'] as $item) {
+            foreach ($stats['results'] as $item) {
 
-    //             Akadem::updateOrCreate(
-    //                 [
-    //                     "user_id" => auth()->id(),
-    //                     "tashkilot_id" => 1,
-    //                     "region_id" => 1,
+                Akadem::updateOrCreate(
+                    [
+                        "user_id" => auth()->id(),
+                        "tashkilot_id" => 1,
+                        "region_id" => 1,
 
-    //                     "science_id" => $item['scientist']['science_id'],
-    //                     "full_name" => $item['scientist']['full_name'],
-    //                     "photo" => $item['scientist']['photo'] ?? null,
+                        "science_id" => $item['scientist']['science_id'],
+                        "full_name" => $item['scientist']['full_name'],
+                        "photo" => $item['scientist']['photo'] ?? null,
 
-    //                     "project_name" => $item['project_name'],
-    //                     "total_amount" => $item['total_amount'],
+                        "project_name" => $item['project_name'],
+                        "total_amount" => $item['total_amount'],
 
-    //                     // Receiver
-    //                     "receiver_organization_name" => $item['receiver_organization']['name'],
-    //                     "receiver_organization_inn" => $item['receiver_organization']['tin'],
-    //                     "receiver_organization_district" => $item['receiver_organization']['district'],
-    //                     "receiver_organization_region" => $item['receiver_organization']['region'],
+                        // Receiver
+                        "receiver_organization_name" => $item['receiver_organization']['name'],
+                        "receiver_organization_inn" => $item['receiver_organization']['tin'],
+                        "receiver_organization_district" => $item['receiver_organization']['district'],
+                        "receiver_organization_region" => $item['receiver_organization']['region'],
 
-    //                     // Sender
-    //                     "sender_organization_name" => $item['sender_organization']['name'],
-    //                     "sender_organization_inn" => $item['sender_organization']['tin'],
-    //                     "sender_organization_district" => $item['sender_organization']['district'],
-    //                     "sender_organization_region" => $item['sender_organization']['region'],
-    //                 ]
-    //             );
+                        // Sender
+                        "sender_organization_name" => $item['sender_organization']['name'],
+                        "sender_organization_inn" => $item['sender_organization']['tin'],
+                        "sender_organization_district" => $item['sender_organization']['district'],
+                        "sender_organization_region" => $item['sender_organization']['region'],
+                    ]
+                );
 
-    //             $total_saved++;
-    //         }
+                $total_saved++;
+            }
 
-    //         // ❗ Keyingi sahifa bor bo‘lsa — URL ni almashtiramiz
-    //         $url = $stats['next'] ?? null;
-    //     }
+            // ❗ Keyingi sahifa bor bo‘lsa — URL ni almashtiramiz
+            $url = $stats['next'] ?? null;
+        }
 
-    //     return response()->json([
-    //         'saved' => $total_saved,
-    //         'message' => "Barcha sahifalar yuklandi"
-    //     ]);
-    // }
+        return response()->json([
+            'saved' => $total_saved,
+            'message' => "Barcha sahifalar yuklandi"
+        ]);
+    }
 
     public function create()
     {
@@ -136,8 +139,11 @@ class AkademController extends Controller
 
     public function show(Akadem $akadem)
     {
-        $akademexpert = AkademExpert::where('akadem_id', $akadem->id)->where('quarter', 2)->get();
-        $quarter_2 = AkademExpert::where('akadem_id', $akadem->id)->where('quarter', 1)->first();
+        $akademexpert = AkademExpert::where('akadem_id', $akadem->id)
+            ->where('quarter', $this->monitoring->id)->get();
+        $quarter_2 = AkademExpert::where('akadem_id', $akadem->id)
+            ->where('quarter', 1)->first();
+
         return view('admin.akadem.show', compact('akadem', 'akademexpert', 'quarter_2'));
     }
 
@@ -162,8 +168,8 @@ class AkademController extends Controller
 
     public function exportAkadem()
     {
-        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
-        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+        ini_set('memory_limit', '1024M');
+        ini_set('max_execution_time', '300');
 
         return Excel::download(new AkademExpertExport(), 'monitoring_asbob_uskuna.xlsx');
     }

@@ -5,46 +5,39 @@
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium"> Tashkilotlar soni: {{ $tash_count ?? 404 }} ta Stajorlar soni {{ $stajirovkas ?? 0 }} ta</h2>
+            <h2 class="intro-y text-lg font-medium"> Tashkilotlar soni: {{ $tash_count ?? 404 }} ta Stajorlar soni
+                {{ $stajirovkas ?? 0 }} ta</h2>
+
+            <div>
+                @include('admin.components.file_button')
+            </div>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
                     <form action="{{ route('search_stajirovka') }}" method="GET">
+                        <input type="hidden" name="id" value="{{ $regionId }}">
                         <input type="text" name="query"
-                            class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13" placeholder="Search...">
-                        <i data-feather="search"  class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"></i>
+                            class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13" placeholder="Search..."
+                            value="{{ $query }}">
+                        <i data-feather="search"
+                            class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"></i>
                     </form>
                 </div>
-                {{-- <form method="GET" action="{{ route('search_stajirovka') }}">
-                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query"
-                        onchange="this.form.submit()">
-                        <option value="">Barchasi OTM & ITM</option>
-                        <option value="otm" {{ $querysearch == "otm" ? "selected" : ""}}>OTM</option>
-                        <option value="itm" {{ $querysearch == "itm" ? "selected" : ""}}>ITM</option>
-                        <option value="boshqa" {{ $querysearch == "boshqa" ? "selected" : ""}}>Boshqa</option>
-                    </select>
-                </form>
 
                 <form method="GET" action="{{ route('search_stajirovka') }}">
-                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query"
+                    <input type="hidden" name="id" value="{{ $regionId }}">
+                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="type"
                         onchange="this.form.submit()">
-                        <option value="">Viloyatlari</option>
-                        @foreach ($regions as $v)
-                            <option value="{{ $v->id }}" {{ $querysearch == $v->id ? "selected" : ""}}>{{ $v->oz }}</option>
-                        @endforeach
+                        <option value="" {{ $type == '' ? 'selected' : '' }}>Barchasi OTM & ITM</option>
+                        <option value="otm" {{ $type == 'otm' ? 'selected' : '' }}>OTM</option>
+                        <option value="itm" {{ $type == 'itm' ? 'selected' : '' }}>ITM</option>
+                        <option value="boshqa" {{ $type == 'boshqa' ? 'selected' : '' }}>Boshqa</option>
                     </select>
-                </form> --}}
+                </form>
             </div>
-
-            {{-- <div>
-                @include('admin.components.file_button')
-            </div>  --}}
-
-
 
         </div>
         <div class="grid grid-cols-12 gap-6 ">
-
 
             <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
                 <table class="table table-report mt-2">
@@ -60,8 +53,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($tashkilotlar as $tashkilots)
-
+                        @forelse ($tashkilotlar as $tashkilots)
                             <tr class="intro-x">
                                 <td>{{ ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}.</td>
                                 <td>
@@ -72,31 +64,33 @@
                                     {{ $tashkilots->stir_raqami  }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
+                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' : 'Boshqa') }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->stajirovkalar()->where('quarter', 3)->count() }}/{{ $tashkilots->stajirovkaexperts()->where('quarter', 3)->count() }}
+                                    {{ $tashkilots->stajirovkalar()->where('quarter', $monitoring->id)->count() }}/{{ $tashkilots->stajirovkaexperts()->where('quarter', $monitoring->id)->count() }}
                                 </td>
 
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->stajirovkaexperts()->where('quarter', 3)->whereIn('status',[ 'Ijobiy', 'Qoniqarli'])->count() }}/
-                                    {{ $tashkilots->stajirovkaexperts()->where('quarter', 3)->where('status', 'Salbiy')->count() }}/
-                                    {{ $tashkilots->stajirovkaexperts()->where('quarter', 3)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
+                                    {{ $tashkilots->stajirovkaexperts()->where('quarter', $monitoring->id)->whereIn('status', ['Ijobiy', 'Qoniqarli'])->count() }}/
+                                    {{ $tashkilots->stajirovkaexperts()->where('quarter', $monitoring->id)->where('status', 'Salbiy')->count() }}/
+                                    {{ $tashkilots->stajirovkaexperts()->where('quarter', $monitoring->id)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
                                 </td>
 
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
-
                                         <a class="flex science-update-action items-center mr-3"
-                                            href="{{ route('stajirov.index', ['id' => $tashkilots->id]) }}" >
-                                            <i data-feather="eye"  class="feather feather-check-square w-4 h-4 mr-1"></i>
+                                            href="{{ route('stajirov.index', ['id' => $tashkilots->id]) }}">
+                                            <i data-feather="eye" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                             Ko'rish
                                         </a>
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach
-
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center">Tashkilotlar topilmadi</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

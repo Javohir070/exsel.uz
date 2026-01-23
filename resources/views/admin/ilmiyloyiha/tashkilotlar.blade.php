@@ -5,43 +5,19 @@
     <div class="content">
         <div class="flex justify-between align-center mt-6" style="align-items: center;">
 
-            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 164  }} ta Ilmiy
-                loyihalar soni: {{ $ilmiyloyiha ?? 449  }} ta</h2>
+            <h2 class="intro-y text-lg font-medium">Tashkilotlar soni: {{ $tash_count ?? 0  }} ta Ilmiy
+                loyihalar soni: {{ $ilmiyloyiha ?? 0  }} ta</h2>
 
             <div class="flex justify-between align-center gap-6">
                 <div class="relative text-gray-700">
                     <form action="{{ route('search_ilmiy_loyhalar') }}" method="GET">
                         <input type="text" name="query"
                             class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13" placeholder="Search...">
-                            <i data-feather="search"  class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"></i>
+                        <i data-feather="search"
+                            class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"></i>
                     </form>
                 </div>
-                {{-- <form method="GET" action="{{ route('search_ilmiy_loyhalar') }}">
-                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query"
-                        onchange="this.form.submit()">
-                        <option value="">Barchasi OTM & ITM</option>
-                        <option value="otm">OTM</option>
-                        <option value="itm">ITM</option>
-                    </select>
-                </form>
-
-                <form method="GET" action="{{ route('search_ilmiy_loyhalar') }}">
-                    <select class="input input--lg box w-full lg:w-auto mt-3 lg:mt-0 ml-auto" name="query"
-                        onchange="this.form.submit()">
-                        <option value="">Viloyatlari</option>
-                        @foreach ($regions as $v)
-                            <option value="{{ $v->id }}">{{ $v->oz }}</option>
-                        @endforeach
-                    </select>
-                </form> --}}
             </div>
-
-            <!-- <div>
-                    <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
-                        class="button w-24 ml-3 bg-theme-1 text-white">
-                        Import
-                    </a>
-                </div> -->
 
         </div>
         <div class="grid grid-cols-12 gap-6 ">
@@ -65,7 +41,8 @@
                             <tr class="intro-x">
                                 <td>{{ ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}.</td>
                                 <td>
-                                    <a href="{{ route('ilmiy_loyihalar.index', ['id' => $tashkilots->id]) }}" class="font-medium">
+                                    <a href="{{ route('ilmiy_loyihalar.index', ['id' => $tashkilots->id]) }}"
+                                        class="font-medium">
                                         {{ $tashkilots->name }}
                                     </a>
                                 </td>
@@ -75,24 +52,24 @@
                                 </td>
 
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' :'Boshqa') }}
+                                    {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' : 'Boshqa') }}
                                 </td>
 
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->ilmiyloyhalar()->where('is_active', 1)->count() }}/{{ $tashkilots->tekshirivchilar()->where('quarter', 3)->count()  }}
+                                    {{ $tashkilots->ilmiyloyhalar()->where('is_active', 1)->count() }}/{{ $tashkilots->tekshirivchilar()->where('quarter', $monitoring_id)->count()  }}
                                 </td>
 
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->tekshirivchilar()->where('quarter', 3)->where('status', 'Qoniqarli')->count() }}/
-                                    {{ $tashkilots->tekshirivchilar()->where('quarter', 3)->where('status', 'Qoniqarsiz')->count() }}/
-                                    {{ $tashkilots->tekshirivchilar()->where('quarter', 3)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
+                                    {{ $tashkilots->tekshirivchilar()->where('quarter', $monitoring_id)->where('status', 'Qoniqarli')->count() }}/
+                                    {{ $tashkilots->tekshirivchilar()->where('quarter', $monitoring_id)->where('status', 'Qoniqarsiz')->count() }}/
+                                    {{ $tashkilots->tekshirivchilar()->where('quarter', $monitoring_id)->where('status', 'Qo‘shimcha o‘rganish talab etiladi')->count() }}
                                 </td>
 
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
                                         <a class="flex science-update-action items-center mr-3"
                                             href="{{ route('ilmiy_loyihalar.index', ['id' => $tashkilots->id]) }}">
-                                            <i data-feather="eye"  class="feather feather-check-square w-4 h-4 mr-1"></i>
+                                            <i data-feather="eye" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                             Ko'rish
                                         </a>
                                     </div>
@@ -110,6 +87,4 @@
 
     </div>
 
-    @include('admin.components.file_modal', ['action' => route('asbobuskuna_import')])
-    
 @endsection

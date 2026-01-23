@@ -1,5 +1,6 @@
 @extends('layouts.admin')
 @section('content')
+
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
             <div class="col-span-12 mt-8">
@@ -16,7 +17,8 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $loy_count }}/{{ $loy_expert }}</div>
+                                            {{ $loy_count }}/{{ $loy_expert }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar</div>
                                     </div>
                                 </div>
@@ -35,7 +37,8 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $stajirovka_count }}/{{ $stajirovka_expert }}</div>
+                                            {{ $stajirovka_count }}/{{ $stajirovka_expert }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy stajirovka</div>
                                     </div>
                                 </div>
@@ -54,7 +57,8 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $asboblar_count }}/{{ $asboblar_expert }}</div>
+                                            {{ $asboblar_count }}/{{ $asboblar_expert }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Asbob-uskunalar</div>
                                     </div>
                                 </div>
@@ -73,7 +77,8 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $doktarantura }}/{{ $doktarantura_expert }}</div>
+                                            {{ $doktarantura }}/{{ $doktarantura_expert }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy izlanuvchilar</div>
                                     </div>
                                 </div>
@@ -111,7 +116,8 @@
                                                 </a>
                                             </td>
                                             <td style="text-align: center;font-weight: 600;">
-                                                {{ $region->tashkilots()->where('status', 1)->count() }} </td>
+                                                {{ $region->tashkilots()->where('status', 1)->count() }}
+                                            </td>
                                             <td style="text-align: center;">
                                                 {{ $region->tashkilots()->where('status', 1)->where('tashkilot_turi', 'otm')->count() }}
                                             </td>
@@ -130,8 +136,8 @@
                                             </td>
                                             <td style="text-align: center;">
                                                 {{ $region->tashkilots()->where('status', 1)->withCount([
-                                                        'stajirovkalar' => function ($q) {
-                                                            $q->where('quarter', 3);
+                                                        'stajirovkalar' => function ($q) use ($monitoring_id) {
+                                                            $q->where('quarter', $monitoring_id);
                                                         },
                                                     ])->get()->sum('stajirovkalar_count') }}
                                             </td>
@@ -144,8 +150,8 @@
                                             </td>
                                             <td style="text-align: center;">
                                                 {{ $region->tashkilots()->where('status', 1)->withCount([
-                                                        'doktaranturalar' => function ($q) {
-                                                            $q->where('quarter', 3);
+                                                        'doktaranturalar' => function ($q) use ($monitoring_id) {
+                                                            $q->where('quarter', $monitoring_id);
                                                         },
                                                     ])->get()->sum('doktaranturalar_count') }}
                                             </td>
@@ -157,84 +163,9 @@
 
                     </div>
 
-                    <div class="col-span-12 mt-2 " style="background: white; border-radius: 10px;">
-                        <div class="intro-y block sm:flex items-center py-4" style="display: flex;justify-content: space-between;">
-                            <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
-                                Tashkilotlar kesimida
-                            </h2>
-                            <div class="relative text-gray-700" >
-                                <select name="viloyat" value="{{ old('viloyat') }}"
-                                    class="science-sub-categoryviloyat input border w-full mt-2 ">
-                                    <option value="">Viloyatni tanlang</option>
-                                    <option value="all">Barchasi</option>
-                                    @foreach ($regions as $region)
-                                        <option value="{{ $region->id }}"
-                                            {{ request('viloyat') == $region->id ? 'selected' : '' }}>
-                                            {{ $region->oz }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
-                            <table class="table">
-                                <thead style="background: #F4F8FC;">
-                                    <tr>
-                                        <th class="whitespace-no-wrap">Hudud nomi</th>
-                                        <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy loyihalar</th>
-                                        <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy stajirovka</th>
-                                        <th class="whitespace-no-wrap" style="text-align: center;">Asbob-uskunalar</th>
-                                        <th class="whitespace-no-wrap" style="text-align: center;">Ilmiy izlanuvchilar
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($tashkilotlar as $region)
-                                        <tr style="border-bottom: 1px solid #E6E6E6;">
-                                            <td style="color:#1881D3; font-weight: 400;">
-                                                {{ $region->name }}
-                                            </td>
-
-                                            <td style="text-align:center;">
-                                                {{ $region->ilmiyloyha_count }}/{{ $region->tekshirivchilar_count }}
-                                            </td>
-
-                                            <td style="text-align:center;">
-                                                {{ $region->stajirovka_count }}/{{ $region->stajirovkaexperts_count }}
-                                            </td>
-
-                                            <td style="text-align:center;">
-                                                {{ $region->asbob_count }}/{{ $region->asbobuskunaexpert_count }}
-                                            </td>
-
-                                            <td style="text-align:center;">
-                                                {{ $region->dok_count_q2 }}/{{ $region->dok_count_status }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-                        </div>
-                        <div style="padding: 20px;">
-                            {{ $tashkilotlar->appends(request()->all())->links() }}
-                        </div>
-                    </div>
-
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        document.querySelector('.science-sub-categoryviloyat').addEventListener('change', function() {
-            let viloyat = this.value;
-
-            // Sahifani GET so‘rov bilan qayta yuklash
-            let url = new URL(window.location.href);
-            url.searchParams.set('viloyat', viloyat);
-
-            window.location.href = url.toString();
-        });
-    </script>
+    
 @endsection
