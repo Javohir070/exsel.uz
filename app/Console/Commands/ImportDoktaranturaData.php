@@ -11,13 +11,7 @@ use App\Models\Doktarantura;
 
 class ImportDoktaranturaData extends Command
 {
-    public $monitoring;
 
-    public function __construct()
-    {
-        parent::__construct();
-        $this->monitoring = Monitoring::getActive();
-    }
     protected $signature = 'import:doktarantura';
     protected $description = 'Tashkilotlar bo\'yicha API dan doktorantura ma\'lumotlarini import qilish';
 
@@ -53,7 +47,7 @@ class ImportDoktaranturaData extends Command
                         Doktarantura::updateOrCreate(
                             [
                                 'dok_id' => $item['id'],
-                                'quarter' => $this->monitoring->id
+                                'quarter' => 4
                             ],
                             [
                                 "dok_id" => $item['id'],
