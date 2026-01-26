@@ -8,6 +8,8 @@ use App\Http\Requests\StoreDalolatnomaRequest;
 use App\Http\Requests\UpdateDalolatnomaRequest;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+
+
 class DalolatnomaController extends Controller
 {
 

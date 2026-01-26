@@ -7,25 +7,13 @@
 
             <h2 class="intro-y text-lg font-medium"> {{ $tashkilot->name ?? "Ilmiy loyihalar" }}</h2>
 
-            <div class="intro-x relative mr-3 sm:mr-6">
-                <div class="search hidden sm:block">
-                    <form action="{{ route('searchloyiha') }}" method="GET">
-                        <input type="text" name="query" class="search__input input placeholder-theme-13"
-                            placeholder="Search...">
-                        <i data-feather="search" class="search__icon"></i>
-                    </form>
-                </div>
-                <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
-            </div>
-
             @include('admin.components.file_button')
-
         </div>
 
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
-
+        
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
             <table class="table table-report -mt-2">
                 <thead>
@@ -40,8 +28,7 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    @foreach ($ilmiyloyihalar as $xodimlar)
+                    @forelse ($ilmiyloyihalar as $xodimlar)
                         <tr class="intro-x">
                             <td>{{ ($ilmiyloyihalar->currentPage() - 1) * $ilmiyloyihalar->perPage() + $loop->iteration }}</td>
                             <td>
@@ -61,7 +48,6 @@
                                 style="color: {{ ($h = $xodimlar->tekshirivchilars()->where('quarter', $monitoring->id)->first()->holati ?? null) == 'Tasdiqlandi' ? 'green' : ($h == 'yuborildi' ? 'blue' : 'red') }}">
                                 {{ $h == 'yuborildi' ? "Tasdiqlash uchun yuborildi" : ($h == null ? "Ko'rilmagan" : $h) }}
                             </td>
-
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
                                     <a class="flex science-update-action items-center mr-3"
@@ -82,10 +68,12 @@
                                     @endrole
                                 </div>
                             </td>
-
                         </tr>
-                    @endforeach
-
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center">Loyihalar topilmadi</td>
+                        </tr>
+                    @endforelse
                 </tbody>
             </table>
         </div>

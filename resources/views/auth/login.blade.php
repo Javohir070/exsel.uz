@@ -28,6 +28,7 @@
             }
         </style>
         <!-- END: Login Info -->
+            
         <!-- BEGIN: Login Form -->
         <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
             <div
@@ -35,6 +36,11 @@
                 <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">
                     Tizimga kirish
                 </h2>
+
+                @if (session('error'))
+                    <div style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 15px; border-radius: 5px; margin-top: 15px; font-size: 16px;">{{ session('error') }}</div>
+                @endif
+                
                 <div class="intro-x mt-2 text-gray-500 xl:hidden text-center">Hisobingizga kirish uchun yana bir necha
                     marta bosing. Barcha elektron tijorat hisoblaringizni bitta joydan boshqaring</div>
                 <form method="POST" action="{{ route('login') }}" enctype="multipart/form-data">
@@ -42,15 +48,15 @@
                     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                     <div class="intro-x mt-8">
                         <input type="email" name="email"
-                            class="intro-x login__input input input--lg border border-gray-300 block"
+                            class="intro-x login__input input w-full input--lg border border-gray-300 block"
                             placeholder="Email">
                         <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         <!-- <span id="toggle-password" class="toggle-password">👁️</span> -->
                         <x-input-error :messages="$errors->get('password')" class="mt-2" />
-
+                
                         <div class="relative mt-2">
                             <input type="password" id="password"
-                                class="nput pr-12 w-full border col-span-4 intro-x login__input input input--lg border border-gray-300 block mt-4"
+                                class="nput pr-12 w-full border  col-span-4 intro-x login__input input input--lg border border-gray-300 block mt-4"
                                 name="password" required autocomplete="current-password" placeholder="Password">
                             <!-- <input type="text" class="input pr-12 w-full border col-span-4" placeholder="Price"> -->
                             <div class="absolute top-0 right-0 rounded-r w-10 h-full flex items-center justify-center bg-gray-100 border text-gray-600"

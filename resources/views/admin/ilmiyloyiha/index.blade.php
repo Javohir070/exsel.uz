@@ -9,9 +9,6 @@
                 <a href="{{ route('ilmiy_loyha_edit.index') }}" class="button w-24 bg-theme-1 text-white mr-2">
                     Masul biriktirish
                 </a>
-                <!-- <a href="{{ route('ilmiyloyiha.create') }}" class="button w-24 bg-theme-1 text-white mr-2">
-                                Qo'shish
-                            </a> -->
                 <a href="{{ route('masul.index') }}" class="button w-24 bg-theme-1 text-white">
                     Masullar
                 </a>
@@ -39,45 +36,40 @@
                         <tr class="intro-x">
                             <td>{{ $loop->index + 1 }}</td>
                             <td>
-                                <a href="" class="font-medium ">{{ $xodimlar->mavzusi }} </a>
+                                <a href="{{ route('ilmiyloyiha.show', ['ilmiyloyiha' => $xodimlar->id]) }}"
+                                    class="font-medium ">{{ $xodimlar->mavzusi }} </a>
                             </td>
                             <td>
-                                <a href="" class="font-medium ">{{ $xodimlar->rahbar_name }}</a>
+                                {{ $xodimlar->rahbar_name }}
                             </td>
                             <td>
-                                <a href="" class="font-medium ">{{ $xodimlar->turi }}</a>
+                                {{ $xodimlar->turi }}
                             </td>
                             <td>
-                                <a href="" class="font-medium ">
-                                    @if ($xodimlar->user_id == 1)
-                                        <a href="{{ route('ilmiy_loyha_edit.index') }}" class="button  bg-theme-1 text-white mr-4"
-                                            style="display: ruby;">
-                                            Masul biriktirish
-                                        </a>
-                                    @else
-                                        {{ $xodimlar->user->name ?? null }}
-                                    @endif
-                                </a>
+                                @if ($xodimlar->user_id == 1)
+                                    <a href="{{ route('ilmiy_loyha_edit.index') }}" class="button  bg-theme-1 text-white mr-4"
+                                        style="display: ruby;">
+                                        Masul biriktirish
+                                    </a>
+                                @else
+                                    {{ $xodimlar->user->name ?? null }}
+                                @endif
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
-
                                     <a class="flex science-update-action items-center mr-3"
                                         href="{{ route('ilmiyloyiha.show', ['ilmiyloyiha' => $xodimlar->id]) }}">
                                         <i data-feather="eye" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                         Ko'rish
                                     </a>
-
                                 </div>
                             </td>
                         </tr>
-
                     @empty
                         <tr>
                             <td colspan="6" class="text-center">Ma'lumot mavjud emas.</td>
                         </tr>
                     @endforelse
-
                 </tbody>
             </table>
         </div>

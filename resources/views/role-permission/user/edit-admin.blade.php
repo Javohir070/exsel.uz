@@ -4,9 +4,16 @@
 
         <h2 class="intro-y text-lg font-medium">Foydalanuvchi tahrirlash </h2>
 
+        @role('super-admin')
         <a href="{{ url('users') }}" class="button w-24 bg-theme-1 text-white">
             Orqaga
         </a>
+        @endrole
+        @role('admin')
+        <a href="{{ url('/') }}" class="button w-24 bg-theme-1 text-white">
+            Orqaga
+        </a>
+        @endrole
     </div>
 
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2 monitoring-form">
@@ -15,17 +22,15 @@
                 class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                 @csrf
                 @method('PUT')
-
                 <div class="grid grid-cols-12 gap-2">
+                    @role(['super-admin', 'admin'])
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>F.I.Sh
                         </label>
-                        <input type="text" name="name" value="{{ $user->name }}" class="input w-full border mt-2" required="">
-                        @error('name')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <input type="text" name="name" value="{{ $user->name }}" class="input w-full border mt-2">
                     </div>
+                    @endrole
 
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
@@ -33,10 +38,7 @@
                             kiriting)
                         </label>
                         <input type="email" name="email" value="{{ $user->email }}" class="input w-full border mt-2"
-                            required="" readonly>
-                        @error('email')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                            required="">
                     </div>
 
                     <div class="w-full col-span-6">
@@ -48,27 +50,29 @@
                         @enderror
                     </div>
 
-                    <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row mb-2"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotni tanlang
-                        </label>
-                        <select name="tashkilot_id" id="science-search-category" class="select2 w-full mt-2"
-                            value="{{ old('tashkilot_id') }}" required="">
-                            <option value="">Tashkilotni tanlang</option>
-                            @foreach ($tashkilots as $tashkilot)
-                                <option value="{{ $tashkilot->id }}" {{ $tashkilot->id == $user->tashkilot_id ? 'selected' : '' }}>
-                                    {{ $tashkilot->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('tashkilot_id')
-                            <div class="error">{{ $message }}</div>
-                        @enderror
-                    </div>
-
+                    @role('admin')
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> <span
-                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Roli (foydalanuvchining tizimdagi
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Rol (foydalanuvchining tizimdagi
+                            roli)
+                        </label>
+                        <select name="roles[]" class="input border w-full mt-2" required="">
+                            <option value=""> Rolni tanlang</option>
+                            @foreach ($roles as $role)
+                                @if ($role !== 'super-admin' && $role !== 'admin' && $role !== 'Itm-tashkilotlar')
+                                    <option value="{{ $role }}" {{ in_array($role, $userRoles) ? 'selected' : '' }}>
+                                        {{ $role }}
+                                    </option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                    @endrole
+
+                    @role('super-admin')
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Rol (foydalanuvchining tizimdagi
                             roli)
                         </label>
                         <select name="roles[]" class="input border w-full mt-2" required="">
@@ -79,11 +83,7 @@
                                 </option>
                             @endforeach
                         </select>
-                        @error('roles')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
-
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"> Viloyat
                         </label>
@@ -95,35 +95,28 @@
                                 </option>
                             @endforeach
                         </select>
-                        @error('region_id')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
                     </div>
-
                     <div class="w-full col-span-6">
-                        <label class="flex flex-col sm:flex-row">Guruhni</label>
-                        <select name="group_id" class="input border w-full mt-2">
-                            <option value=""> Guruhni tanlash</option>
-                            @for ($i = 1; $i <= 20; $i++)
-                                <option value="{{ $i }}" {{ $i == $user->group_id ? 'selected' : '' }}>{{ $i }}-guruh</option>
-                            @endfor
-                        </select>
-                        @error('group_id')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
+                        <label class="flex flex-col sm:flex-row"> <span
+                                class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>guruh
+                        </label>
+                        <input type="number" name="group_id" min="0" class="input w-full border mt-2"
+                            value="{{ $user->group_id }}">
                     </div>
+                    @endrole
                 </div>
             </form>
 
             <div class="px-5 pb-5 text-center mt-4">
-                <a href="{{ url('users') }}" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                <a href="#" class="button delete-cancel w-32 border text-gray-700 mr-1">
                     Bekor qilish
                 </a>
                 <button type="submit" form="science-paper-create-form"
                     class="update-confirm button w-24 bg-theme-1 text-white">
-                    Tahrirlash
+                    Qo'shish
                 </button>
             </div>
+
         </div>
     </div>
 @endsection

@@ -46,10 +46,8 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @can('update user')
-                                                <a href="{{ route('ilmiy_loyha_user_edit.index', ['id' => $user->id]) }}"
-                                                    class="btn btn-success">Edit</a>
-                                            @endcan
+                                            <a href="{{ route('ilmiy_loyha_user_edit.index', ['id' => $user->id]) }}"
+                                                class="btn btn-success">Edit</a>
                                         </td>
                                     </tr>
                                 @endforeach

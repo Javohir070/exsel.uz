@@ -1,32 +1,30 @@
 @extends("layouts.admin")
 @section("content")
-<div class="flex justify-between align-center mt-6 mb-6">
+    <div class="flex justify-between align-center mt-6 mb-6">
 
-        <h2 class="intro-y text-lg font-medium">Users </h2>
-
+        <h2 class="intro-y text-lg font-medium">Foydalanuvchilar </h2>
 
         <div class="intro-x relative mr-3 sm:mr-6">
             <div class="search hidden sm:block">
-            <form action="{{ route('searchuser') }}" method="GET">
-                <input type="text" name="query" class="search__input input placeholder-theme-13" placeholder="Search...">
-                <i data-feather="search" class="search__icon"></i>
-            </form>
+                <form action="{{ route('users.index') }}" method="GET">
+                    <input type="text" name="query" class="input input--lg w-full lg:w-64 box pr-10 placeholder-theme-13"
+                        placeholder="Search..." value="{{ request('query') }}">
+                    <i data-feather="search"
+                        class="feather feather-search w-4 h-4 absolute my-auto inset-y-0 mr-3 right-0"></i>
+                </form>
             </div>
-            <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
         </div>
-        <div>
-            <div>
-            @can('create user')
-        <a href="{{ url('users/create') }}"  class="button w-24 bg-theme-1 text-white">
-            Add User
-        </a>
-        @endcan
-            </div>
 
+        <div>
+            <div class="flex justify-end">
+                @can('create user')
+                    <a href="{{ url('users/create') }}" class="button w-24 bg-theme-1 text-white">
+                        Qo'shish
+                    </a>
+                @endcan
+            </div>
         </div>
     </div>
-
-
 
     <div class="container mt-2">
         <div class="row">
@@ -46,47 +44,54 @@
                                     <th>Tashkilot nomi</th>
                                     <th>Masul shaxs F.I.Sh</th>
                                     <th>Email</th>
-                                    <th>Roles</th>
-                                    <th>Action</th>
+                                    <th>Rollar</th>
+                                    <th>Amallar</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($users as $user)
-                                <tr>
-                                    <td>{{ $user->id }}</td>
-                                    <td>{{ $user->tashkilot->name }}</td>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td>
-                                        @if (!empty($user->getRoleNames()))
-                                            @foreach ($user->getRoleNames() as $rolename)
-                                                <label class="badge bg-primary mx-1">{{ $rolename }}</label>
-                                            @endforeach
-                                        @endif
-                                    </td>
-                                    <td>
-                                        @can('update user')
-                                        <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn btn-success">Edit</a>
-                                        @endcan
+                                    <tr>
+                                        <td>{{ $user->id }}</td>
+                                        <td>{{ $user->tashkilot->name }}</td>
+                                        <td>{{ $user->name }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>
+                                            @if (!empty($user->getRoleNames()))
+                                                @foreach ($user->getRoleNames() as $rolename)
+                                                    <label class="badge bg-primary mx-1">{{ $rolename }}</label>
+                                                @endforeach
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <div style="display: flex; gap: 10px;">
+                                                @can('update user')
+                                                    <a href="{{ url('users/' . $user->id . '/edit') }}"
+                                                        class="button inline-block border border-theme-1 text-theme-1">
+                                                        <i data-feather="edit" class="feather feather-check-square w-4 h-4"></i>
+                                                    </a>
+                                                @endcan
 
-                                        @can('delete user')
-                                        <a href="{{ url('users/'.$user->id.'/delete') }}" class="btn btn-danger mx-2">Delete</a>
-                                        @endcan
-                                    </td>
-                                </tr>
+                                                @can('delete user')
+                                                    <form action="{{ url('users/' . $user->id . '/delete') }}"
+                                                        onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                                        <button type="submit"
+                                                            class="button inline-block border border-theme-6 text-theme-6">
+                                                            @csrf
+                                                            <i data-feather="trash-2"
+                                                                class="feather feather-check-square w-4 h-4"></i>
+                                                        </button>
+                                                    </form>
+                                                @endcan
+                                            </div>
+                                        </td>
+                                    </tr>
                                 @endforeach
                             </tbody>
                         </table>
 
                     </div>
                     <div class="intro-y flex flex-wrap sm:flex-row sm:flex-no-wrap items-center mt-3">
-                        {{$users->links()}}
-                        <select class="w-20 input box mt-3 sm:mt-0">
-                            <option>10</option>
-                            <option>25</option>
-                            <option>35</option>
-                            <option>50</option>
-                        </select>
+                        {{ $users->appends(request()->query())->links() }}
                     </div>
                 </div>
             </div>

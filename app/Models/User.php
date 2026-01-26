@@ -78,4 +78,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(IlmiyLoyiha::class);
     }
+
+    public function region()
+    {
+        return $this->belongsTo(Region::class);
+    }
 }

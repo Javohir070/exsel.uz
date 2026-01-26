@@ -137,7 +137,7 @@ Route::middleware('auth')->group(function () {
     //UserController
     Route::post('password/change', [UserController::class, 'changePassword'])->name('password.change');
     Route::get('/profileview', [UserController::class, 'profileview'])->name('profileview.index');
-    Route::get('/searchuser', [UserController::class, 'searchuser'])->name('searchuser');
+    Route::get('/monitoring-working-group', [UserController::class, 'monitoring_working_group'])->name('monitoring_working_group.index');
     Route::resource('users', UserController::class);
     Route::post('/ilmiy-loyhagamasul', [UserController::class, 'ilmiy_loyha_rahbari'])->name('ilmiyLoyha_rahbari.index');
     Route::put('/ilmiy-loyhagamasul-edit/{id}', [UserController::class, 'ilmiy_loyha_rahbari_edit'])->name('ilmiyLoyha_rahbari_edit.index');

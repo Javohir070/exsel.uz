@@ -285,15 +285,13 @@
                     </li>
                 @endrole
                 <div class="nav__devider my-6"></div>
-                    <li>
-                    <form method="POST" action="{{ route('logout') }}">
+                <li>
+                    <form method="POST" action="{{ route('logout') }}" class="inline">
                         @csrf
-                        <x-dropdown-link style="color: white;padding: 8px;margin-left: 16px;" class="menu flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md" :href="route('logout')"
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
+                        <button type="submit" style="color: white;padding: 8px;margin-left: 16px;" class="menu flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md w-full text-left">
                             <div class="menu__icon"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> </div>
                             Chiqish
-                        </x-dropdown-link>
+                        </button>
                     </form>
                 </li>
             </ul>
@@ -385,15 +383,13 @@
                                     <!-- <a href="" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md"> <i data-feather="help-circle" class="w-4 h-4 mr-2"></i>Sizgani yordam beris </a> -->
                                 </div>
                                 <div class="p-2 border-t border-theme-40">
-                                    <form method="POST" action="{{ route('logout') }}">
+                                    <form method="POST" action="{{ route('logout') }}" class="inline">
                                         @csrf
-                                        <x-dropdown-link style="color: white;padding: 8px;" class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 rounded-md" :href="route('logout')"
-                                                onclick="event.preventDefault();
-                                                            this.closest('form').submit();">
-                                           <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Chiqish
-                                        </x-dropdown-link>
+                                        <button type="submit" style="color: white;padding: 8px;" class="menu flex items-center block transition duration-300 ease-in-out hover:bg-theme-1 rounded-md w-full text-left">
+                                            <div class="menu__icon"> <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> </div>
+                                            Chiqish
+                                        </button>
                                     </form>
-
                                 </div>
                             </div>
                         </div>

@@ -3,18 +3,7 @@
     <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">Mas'ullar </h2>
-
-
-        {{-- <div class="intro-x relative mr-3 sm:mr-6">
-            <div class="search hidden sm:block">
-                <form action="{{ route('searchuser') }}" method="GET">
-                    <input type="text" name="query" class="search__input input placeholder-theme-13"
-                        placeholder="Search...">
-                    <i data-feather="search" class="search__icon"></i>
-                </form>
-            </div>
-            <a class="notification sm:hidden" href=""> <i data-feather="search" class="notification__icon"></i> </a>
-        </div> --}}
+        
         <div>
             <div>
                 @can('create user')
