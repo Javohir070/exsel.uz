@@ -8,16 +8,16 @@
 
             <div class="flex justify-between align-center mt-6 mb-6" style="align-items: center;gap:10px;">
                 @role('super-admin')
-                    <div>
-                        <a href="{{ route('tashqoshish.create') }}" class="button w-24 bg-theme-1 text-white">
-                            Qo'shish
-                        </a>
-                    </div>
-                    <div>
-                        <a href="{{ route('exportashkilot') }}" class="button box flex items-center text-gray-700">
-                            <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
-                        </a>
-                    </div>
+                <div>
+                    <a href="{{ route('tashqoshish.create') }}" class="button w-24 bg-theme-1 text-white">
+                        Qo'shish
+                    </a>
+                </div>
+                <div>
+                    <a href="{{ route('exportashkilot') }}" class="button box flex items-center text-gray-700">
+                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
+                    </a>
+                </div>
                 @endrole
             </div>
 
@@ -27,8 +27,7 @@
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
 
-        <form id="science-paper-create-form" method="GET" action="{{ route('tashkilotlar.index') }}"
-            class="validate-form">
+        <form id="science-paper-create-form" method="GET" action="{{ route('tashkilotlar.index') }}" class="validate-form">
             <div class="flex justify-between align-center gap-6 flex-wrap">
 
                 <div class="relative text-gray-700">
@@ -39,16 +38,16 @@
                 </div>
 
 
-               @if (!(auth()->user()->region_id))
-               <div class="relative text-gray-700">
-                   <select class="input border w-full mt-2" name="region_id" id="region_id">
-                       <option value="">Viloyatlari</option>
-                       @foreach ($regions as $v)
-                           <option value="{{ $v->id }}" @selected(request('region_id') === $v->id)>{{ $v->oz }}</option>
-                       @endforeach
-                   </select>
-               </div>
-               @endif
+                @if (!(auth()->user()->region_id))
+                    <div class="relative text-gray-700">
+                        <select class="input border w-full mt-2" name="region_id" id="region_id">
+                            <option value="">Viloyatlari</option>
+                            @foreach ($regions as $v)
+                                <option value="{{ $v->id }}" @selected(request('region_id') == $v->id)>{{ $v->oz }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endif
 
                 <div class="relative text-gray-700">
                     <select name="turi" value="{{ old('turi') }}" class="input border w-full mt-2">
@@ -83,13 +82,14 @@
                             <th class="whitespace-no-wrap">Tashkilot Nomi</th>
                             <th class="whitespace-no-wrap">Turi</th>
                             <th class="whitespace-no-wrap">Stir raqami</th>
+                            <th class="whitespace-no-wrap">Viloyat</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($tashkilotlar as $tashkilots)
                             <tr class="intro-x">
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ ($tashkilotlar->currentPage() - 1) * $tashkilotlar->perPage() + $loop->iteration }}.</td>
                                 <td>
                                     <a href="{{ route('tashkilotmalumotlar.show', $tashkilots->id) }}"
                                         class="font-medium">{{ $tashkilots->name }}</a>
@@ -100,9 +100,11 @@
                                 <td>
                                     {{ $tashkilots->stir_raqami }}
                                 </td>
+                                <td>
+                                    {{ $tashkilots->region->oz }}
+                                </td>
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
-
                                         <a class="flex science-update-action items-center mr-3"
                                             href="{{ route('tashkilot.show', ['tashkilot' => $tashkilots->id]) }}">
                                             <i data-feather="eye" class="feather feather-check-square w-4 h-4 mr-1"></i>
@@ -111,13 +113,11 @@
                                     </div>
                                 </td>
                             </tr>
-
                         @empty
                             <tr>
                                 <td colspan="6" class="text-center">Ma'lumot mavjud emas</td>
                             </tr>
                         @endforelse
-
                     </tbody>
                 </table>
             </div>

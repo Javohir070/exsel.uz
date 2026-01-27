@@ -81,20 +81,13 @@
                                     </div>
                                     <tr style="border-bottom: 1px solid #E6E6E6;">
                                         <td colspan="5" style="text-align: center;">
-
-                                            @role(['super-admin', 'doktarantura monitoring'])
                                             <a href="{{ url('doktarantura/' . $id . '/export') }}"
-                                                class="button ml-3 w-24 bg-theme-1 text-white">
-                                                Export
+                                                class="button ml-3 bg-theme-1 text-white">
+                                                Export to excel
                                             </a>
-                                                <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}"
-                                                    class="button  bg-theme-1 text-white mr-4"
-                                                    style="font-size: 16px;">Ma'lumotni yangilash</a>
-                                                <a href="{{ route('exportDoktaranturaexpert') }}"
-                                                    class="button ml-3 bg-theme-1 text-white">
-                                                    Monitoring xulosasi
-                                                </a>
-                                            @endrole
+                                            <a href="{{ route('php_import', ['stir' => $tashkilot->stir_raqami]) }}"
+                                                class="button  bg-theme-1 text-white mr-4"
+                                                style="font-size: 16px;">Ma'lumotni yangilash</a>
                                         </td>
                                     </tr>
                                 </div>

@@ -34,6 +34,7 @@ class Tashkilot extends Model
         "logo",
         'hisob_raqam',
         'holati',
+        'status',
         'ilmiyloyiha_is',
         'asbobuskuna_is',
         'doktarantura_is',

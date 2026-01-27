@@ -36,6 +36,7 @@
                                     <th>Guruh</th>
                                     <th>Viloyat</th>
                                     <th>Rollar</th>
+                                    <th>Active</th>
                                     <th>Amallar</th>
                                 </tr>
                             </thead>
@@ -46,7 +47,7 @@
                                 @foreach ($users as $groupId => $groupUsers)
                                     @if ($groupId)
                                         <tr class="bg-gray-100">
-                                            <td colspan="8" class="font-bold text-lg py-3">
+                                            <td colspan="9" class="font-bold text-lg py-3">
                                                 <h2 class="text-center">{{ $groupId }}-guruh ({{ $groupUsers->count() }} ta foydalanuvchi)</h2>
                                             </td>
                                         </tr>
@@ -65,6 +66,23 @@
                                                         <label class="badge bg-primary mx-1">{{ $rolename }}</label>
                                                     @endforeach
                                                 @endif
+                                            </td>
+                                            <td>
+                                                @can('update user')
+                                                    <form action="{{ route('users.toggle-active', $user) }}" method="POST" class="inline">
+                                                        @csrf
+                                                        @method('PATCH')
+                                                        <label class="flex items-center cursor-pointer">
+                                                            <input type="checkbox" class="input input--switch border"
+                                                                {{ $user->is_active ? 'checked' : '' }}
+                                                                onchange="this.form.submit()">
+                                                        </label>
+                                                    </form>
+                                                @else
+                                                    <span class="badge {{ $user->is_active ? 'bg-theme-9' : 'bg-theme-6' }}">
+                                                        {{ $user->is_active ? 'Faol' : 'Faol emas' }}
+                                                    </span>
+                                                @endcan
                                             </td>
                                             <td>
                                                 <div style="display: flex; gap: 10px;">

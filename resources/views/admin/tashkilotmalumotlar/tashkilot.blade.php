@@ -3,7 +3,7 @@
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
 
-            <div class="col-span-12 mt-8">
+            <div class="col-span-12 mt-2">
                 <div class="intro-y flex items-center h-10">
                     <h2 class="text-lg font-medium truncate mr-5">
                         @foreach ($tashkilot as $tash)
@@ -12,8 +12,6 @@
                     </h2>
                 </div>
                 <div class="grid grid-cols-12 gap-6 mt-5">
-
-                    
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
@@ -25,7 +23,8 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $loy_count }}</div>
+                                            {{ $ilmiyloyiha_count }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy loyihalar</div>
                                     </div>
                                 </div>
@@ -35,7 +34,7 @@
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route('tashkilot.xujalik.index',['tashkilot'=>$id]) }}">
+                            <a href="{{ route('tashkilot.xujalik.index', ['tashkilot' => $id]) }}">
                                 <div class="flex items-center pl-5"
                                     style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
                                     <div class="flex" style="background: #FFF9EF; padding: 15px; border-radius: 100%;">
@@ -44,7 +43,8 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $xujalik_count }}</div>
+                                            {{ $xujalik_count }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Xo'jalik shartnomalari
                                         </div>
                                     </div>
@@ -64,7 +64,8 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $stajirovka_count }}</div>
+                                            {{ $stajirovka_count }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy Stajirovka</div>
                                     </div>
                                 </div>
@@ -83,7 +84,8 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $asboblar_count }}</div>
+                                            {{ $asbobuskuna_count }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Asbob-uskunalar</div>
                                     </div>
                                 </div>
@@ -92,7 +94,7 @@
                     </div>
 
 
-                    {{-- <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route('asbobu.index', ['id' => $id]) }}">
                                 <div class="flex items-center pl-5"
@@ -103,42 +105,33 @@
                                     </div>
                                     <div class="w-2/4 flex-none">
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $stajirovka_count }}</div>
+                                            {{ $laboratory_count }}</div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Laboratoriyalar</div>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    </div> --}}
+                    </div>
 
-                    {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <a href="{{ route('asbobu.index', ['id' => $id]) }}">
-                            <div class="report-box zoom-in">
-                                <div class="box p-5">
-                                    <div class="flex">
-                                        <i data-feather="file-text" class="report-box__icon text-theme-3"></i>
+                    <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
+                        <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
+                            <a href="{{ route('kafedralar.index', ['id' => $id]) }}">
+                                <div class="flex items-center pl-5"
+                                    style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
+                                    <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
+                                        <i data-feather="file-text" class="report-box__icon text-theme-3"
+                                            style="color: #42e681;"></i>
                                     </div>
-                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $asboblar_count }}</div>
-                                    <div class="text-base text-gray-600 mt-1">Labaratoriyalar</div>
+                                    <div class="w-2/4 flex-none">
+                                        <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
+                                            {{ $kafedralar_count }}</div>
+                                        <div class="text-gray-600 mt-1" style="font-size: 16px;">Kafedralar</div>
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
-                    </div> --}}
+                            </a>
+                        </div>
+                    </div>
 
-                    {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                        <a href="{{ route('tashkilot.ilmiydaraja.index',['tashkilot'=>$id]) }}">
-                            <div class="report-box zoom-in">
-                                <div class="box p-5">
-                                    <div class="flex">
-                                        <i data-feather="file-text" class="report-box__icon text-theme-3"></i>
-                                    </div>
-                                    <div class="text-3xl font-bold leading-8 mt-6">{{ $loyiha_bilan_t }}</div>
-                                    <div class="text-base text-gray-600 mt-1"> Loyiha bilan taminlanganmi </div>
-                                </div>
-                            </div>
-                        </a>
-                    </div> --}}
-                    @role('super-admin')
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                             <a href="{{ route("tashkilot.userlar.index", ['tashkilot' => $id]) }}">
@@ -151,18 +144,18 @@
                                     <div class="w-2/4 flex-none">
 
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $admins }}</div>
+                                            {{ $admins }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Adminlar</div>
                                     </div>
                                 </div>
                             </a>
                         </div>
                     </div>
-                    @endrole
 
                     <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                         <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
-                            <a href="{{ route("tashkilot.xodimlar.index",['tashkilot'=>$id]) }}">
+                            <a href="{{ route("tashkilot.xodimlar.index", ['tashkilot' => $id]) }}">
                                 <div class="flex items-center pl-5"
                                     style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
                                     <div class="flex" style="background: #c8ecec; padding: 15px; border-radius: 100%;">
@@ -172,7 +165,8 @@
                                     <div class="w-2/4 flex-none">
 
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $xodim_count }}</div>
+                                            {{ $xodimlar_count }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Xodimlar</div>
                                     </div>
                                 </div>
@@ -192,7 +186,8 @@
                                     <div class="w-2/4 flex-none">
 
                                         <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
-                                            {{ $phd_count }}</div>
+                                            {{ $doktarantura_count }}
+                                        </div>
                                         <div class="text-gray-600 mt-1" style="font-size: 16px;">Ilmiy izlanuvchilar</div>
                                     </div>
                                 </div>

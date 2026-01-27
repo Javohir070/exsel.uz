@@ -114,6 +114,7 @@ class TashkilotController extends Controller
                 'holati' => $request->holati ?? $tashkilot->holati,
                 'name' => $request->name ?? $tashkilot->name,
                 'region_id' => $request->region_id ?? $tashkilot->region_id,
+                'status' => $request->status ?? 0,
                 'ilmiyloyiha_is' => $request->ilmiyloyiha_is ?? 0,
                 'asbobuskuna_is' => $request->asbobuskuna_is ?? 0,
                 'doktarantura_is' => $request->doktarantura_is ?? 0,

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\DoktaranturaexpertExport;
+use App\Exports\DoktaranturaExport;
 use App\Exports\TashkilotDoktaranturaExport;
 use App\Models\Doktaranturaexpert;
 use App\Models\Ilmiyrahbarlar;
@@ -419,20 +420,31 @@ class DoktaranturaController extends Controller
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli tahrirlandi.');
     }
 
+    public function exportDoktaranturaAll()
+    {
+        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
+        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+        $fileName = 'Doktarantura_all_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+
+        return Excel::download(new DoktaranturaExport(), $fileName);
+    }
+
     public function exportDoktarantura($tashkilotId)
     {
         ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
         ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+        $fileName = 'Doktarantura_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
 
-        return Excel::download(new TashkilotDoktaranturaExport($tashkilotId), 'doktaranturalar.xlsx');
+        return Excel::download(new TashkilotDoktaranturaExport($tashkilotId), $fileName);
     }
 
     public function exportDoktaranturaexpert()
     {
         ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
         ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+        $fileName = 'monitoring_doktarantura_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
 
-        return Excel::download(new DoktaranturaexpertExport(), 'monitoring_doktarantura.xlsx');
+        return Excel::download(new DoktaranturaexpertExport(), $fileName);
     }
 
     public function doktaranturalar(Request $request)

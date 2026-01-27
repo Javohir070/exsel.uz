@@ -44,6 +44,18 @@
                             <h2 class="text-lg font-medium truncate ml-4" style="font-size: 24px;font-weight:500;">
                                 {{ $regions->oz }}
                             </h2>
+                            
+                            @role(['super-admin', 'doktarantura monitoring'])
+                                <a href="{{ route('exportDoktaranturaexpert') }}"
+                                    class="button ml-3 bg-theme-1 text-white">
+                                    Monitoring xulosasi
+                                </a>
+                                <a href="{{ route('exportDoktaranturaAll') }}"
+                                    class="button ml-3 bg-theme-1 text-white">
+                                    Barcha ilmiy izlanuvchilar
+                                </a>
+                            @endrole
+                            
                             <a href="{{ route("doktarantura.index") }}" class="button w-24 bg-theme-1 text-white mr-4">
                                 Orqaga
                             </a>

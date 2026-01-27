@@ -31,6 +31,5 @@ class TekshirivchilarExport implements FromCollection
             ];
         });
 
-
     }
 }

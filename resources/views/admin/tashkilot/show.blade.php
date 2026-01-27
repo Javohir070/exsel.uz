@@ -7,19 +7,19 @@
             <h2 class="intro-y text-lg font-medium">{{ $tashkilot->name }} xaqida ma’lumot</h2>
 
             @role('super-admin')
-                <a href="{{ route('tashkilotlar.index') }}" class="button w-24 bg-theme-1 text-white">
-                    Orqaga
-                </a>
+            <a href="{{ route('tashkilotlar.index') }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
             @endrole
             @role('admin')
-                <a href="{{ route('tashkilot.index') }}" class="button w-24 bg-theme-1 text-white">
-                    Orqaga
-                </a>
+            <a href="{{ route('tashkilot.index') }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
             @endrole
             @role('Itm-tashkilotlar')
-                <a href="{{ route('itm.tashkilot') }}" class="button w-24 bg-theme-1 text-white">
-                    Orqaga
-                </a>
+            <a href="{{ route('itm.tashkilot') }}" class="button w-24 bg-theme-1 text-white">
+                Orqaga
+            </a>
             @endrole
 
         </div>
@@ -155,16 +155,16 @@
                     </tr>
 
                     @role('super-admin')
-                        <tr>
-                            <th class="border-b  border">20</th>
-                            <th class="border-b  border">Status</th>
-                            <td class="border-b  border">
-                                <button
-                                    class="button flex items-center text-white {{ $tashkilot->holati == 'accepted' ? 'bg-theme-1' : ($tashkilot->holati == 'rejected' ? 'bg-theme-6' : 'bg-theme-9') }}">
-                                    {{ $tashkilot->holati == 'accepted' ? 'Qabul qilingan' : ($tashkilot->holati == 'rejected' ? 'Rad etilgan' : 'Kutilmoqda') }}
-                                </button>
-                            </td>
-                        </tr>
+                    <tr>
+                        <th class="border-b  border">20</th>
+                        <th class="border-b  border">Status</th>
+                        <td class="border-b  border">
+                            <button
+                                class="button flex items-center text-white {{ $tashkilot->holati == 'accepted' ? 'bg-theme-1' : ($tashkilot->holati == 'rejected' ? 'bg-theme-6' : 'bg-theme-9') }}">
+                                {{ $tashkilot->holati == 'accepted' ? 'Qabul qilingan' : ($tashkilot->holati == 'rejected' ? 'Rad etilgan' : 'Kutilmoqda') }}
+                            </button>
+                        </td>
+                    </tr>
                     @endrole
 
                 </tbody>
@@ -172,35 +172,35 @@
         </div>
 
         @role('super-admin')
-            @if ($tashkilot->holati == 'pending' || $tashkilot->holati == 'rejected')
-                <div style="display: flex; justify-content: center;align-items: center; gap:20px; margin-top:30px;">
-                    <form action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" method="post"
-                        onsubmit="return confirm(' Rostan rad etasizmi hohlaysizmi?');">
-                        <input type="hidden" name="holati" value="rejected">
-                        <button type="submit" class="button flex items-center bg-theme-6 text-white">
-                            @csrf
-                            @method('PUT')
-                            <i data-feather="x" class="btn feather feather-check-square w-4 h-4 mr-1"></i>
-                            Rad etish
-                        </button>
-                    </form>
+        @if ($tashkilot->holati == 'pending' || $tashkilot->holati == 'rejected')
+            <div style="display: flex; justify-content: center;align-items: center; gap:20px; margin-top:30px;">
+                <form action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" method="post"
+                    onsubmit="return confirm(' Rostan rad etasizmi hohlaysizmi?');">
+                    <input type="hidden" name="holati" value="rejected">
+                    <button type="submit" class="button flex items-center bg-theme-6 text-white">
+                        @csrf
+                        @method('PUT')
+                        <i data-feather="x" class="btn feather feather-check-square w-4 h-4 mr-1"></i>
+                        Rad etish
+                    </button>
+                </form>
 
-                    <form action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" method="post"
-                        onsubmit="return confirm(' Rostan tasdiqlashni hohlaysizmi?');">
-                        <input type="hidden" name="holati" value="accepted">
-                        <button type="submit" class="button flex items-center bg-theme-1 text-white">
-                            @csrf
-                            @method('PUT')
-                            <i data-feather="check" class="feather feather-check-square w-4 h-4 mr-1"></i>
-                            Tasdiqlash
-                        </button>
-                    </form>
-                   
+                <form action="{{ route('tashkilot.update', ['tashkilot' => $tashkilot->id]) }}" method="post"
+                    onsubmit="return confirm(' Rostan tasdiqlashni hohlaysizmi?');">
+                    <input type="hidden" name="holati" value="accepted">
+                    <button type="submit" class="button flex items-center bg-theme-1 text-white">
+                        @csrf
+                        @method('PUT')
+                        <i data-feather="check" class="feather feather-check-square w-4 h-4 mr-1"></i>
+                        Tasdiqlash
+                    </button>
+                </form>
 
-                </div>
-            @endif
+
+            </div>
+        @endif
         @endrole
-        
+
     </div>
 
 
@@ -222,11 +222,11 @@
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Viloyat
                                     </label>
-                                    <select name="region_id" id="science-sub-category" class="input border w-full mt-2" required>
+                                    <select name="region_id" id="science-sub-category" class="input border w-full mt-2"
+                                        required>
                                         <option>Viloyatni tanlang</option>
                                         @foreach ($regions as $region)
-                                            <option value="{{ $region->id }}"
-                                                {{ $tashkilot->region_id == $region->id ? 'selected' : '' }}>{{ $region->oz }}
+                                            <option value="{{ $region->id }}" {{ $tashkilot->region_id == $region->id ? 'selected' : '' }}>{{ $region->oz }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -236,9 +236,20 @@
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilot nomi
                                     </label>
-                                    <input type="text" name="name" value="{{ $tashkilot->name }}" class="input w-full border mt-2"
-                                        required="" >
+                                    <input type="text" name="name" value="{{ $tashkilot->name }}"
+                                        class="input w-full border mt-2" required="">
                                     @error('name')
+                                        <div class="error">{{ $message }}</div>
+                                    @enderror
+                                </div>
+
+                                <div class="w-full col-span-6 ">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Status
+                                    </label>
+                                    <input type="checkbox" name="status" value="1" class="input w-full border mt-2"
+                                        {{ old('status', $tashkilot->status) ? 'checked' : '' }}>
+                                    @error('status')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -247,7 +258,7 @@
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy loyiha
                                     </label>
-                                    <input type="checkbox" name="ilmiyloyiha_is"  value="1" class="input w-full border mt-2"
+                                    <input type="checkbox" name="ilmiyloyiha_is" value="1" class="input w-full border mt-2"
                                         {{ old('ilmiyloyiha_is', $tashkilot->ilmiyloyiha_is) ? 'checked' : '' }}>
                                     @error('ilmiyloyiha_is')
                                         <div class="error">{{ $message }}</div>
@@ -258,7 +269,7 @@
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Asbob-uskuna
                                     </label>
-                                    <input type="checkbox" name="asbobuskuna_is"  value="1" class="input w-full border mt-2"
+                                    <input type="checkbox" name="asbobuskuna_is" value="1" class="input w-full border mt-2"
                                         {{ old('asbobuskuna_is', $tashkilot->asbobuskuna_is) ? 'checked' : '' }}>
                                     @error('asbobuskuna_is')
                                         <div class="error">{{ $message }}</div>
@@ -269,7 +280,7 @@
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy izlanuvchi
                                     </label>
-                                    <input type="checkbox" name="doktarantura_is"  value="1" class="input w-full border mt-2"
+                                    <input type="checkbox" name="doktarantura_is" value="1" class="input w-full border mt-2"
                                         {{ old('doktarantura_is', $tashkilot->doktarantura_is) ? 'checked' : '' }}>
                                     @error('doktarantura_is')
                                         <div class="error">{{ $message }}</div>
@@ -278,10 +289,10 @@
 
                                 <div class="w-full col-span-6 ">
                                     <label class="flex flex-col sm:flex-row"> <span
-                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Stajorning
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Stajirlovka
                                     </label>
-                                    <input type="checkbox" name="stajirovka_is"  value="1" class="input w-full border mt-2"
-                                    {{ old('stajirovka_is', $tashkilot->stajirovka_is) ? 'checked' : '' }}>
+                                    <input type="checkbox" name="stajirovka_is" value="1" class="input w-full border mt-2"
+                                        {{ old('stajirovka_is', $tashkilot->stajirovka_is) ? 'checked' : '' }}>
                                     @error('stajirovka_is')
                                         <div class="error">{{ $message }}</div>
                                     @enderror

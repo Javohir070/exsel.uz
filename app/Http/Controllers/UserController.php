@@ -22,7 +22,7 @@ class UserController extends Controller
     {
         $this->middleware('permission:view user', ['only' => ['index']]);
         $this->middleware('permission:create user', ['only' => ['create', 'store']]);
-        $this->middleware('permission:update user', ['only' => ['update', 'edit']]);
+        $this->middleware('permission:update user', ['only' => ['update', 'edit', 'toggleActive']]);
         $this->middleware('permission:delete user', ['only' => ['destroy']]);
     }
 
@@ -254,6 +254,17 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->back()->with('status', 'User Delete Successfully');
+    }
+
+    public function toggleActive(User $user)
+    {
+        if ($user->id === Auth::id()) {
+            return redirect()->back()->with('status', 'O‘zingizni faolsizlashtira olmaysiz.');
+        }
+
+        $user->update(['is_active' => ! $user->is_active]);
+
+        return redirect()->back()->with('status', $user->is_active ? 'Foydalanuvchi faollashtirildi.' : 'Foydalanuvchi faolsizlashtirildi.');
     }
 
     public function profileview()

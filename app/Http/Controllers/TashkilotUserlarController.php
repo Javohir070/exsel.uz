@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Tashkilot;
-use Illuminate\Http\Request;
 
 class TashkilotUserlarController extends Controller
 {
@@ -11,6 +10,6 @@ class TashkilotUserlarController extends Controller
     {
         $users = $tashkilot->user()->paginate(15);
 
-        return view('admin.tashkilotmalumotlar.tashkilotuserlar',['users'=>$users]);
+        return view('role-permission.user.index',['users'=>$users]);
     }
 }

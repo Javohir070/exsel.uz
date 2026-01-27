@@ -15,20 +15,12 @@ use PhpOffice\PhpSpreadsheet\Style\Border;
 use PhpOffice\PhpSpreadsheet\Style\Fill;
 
 
-class TashkilotDoktaranturaExport implements FromCollection, WithHeadings, WithStyles, WithEvents
+class DoktaranturaExport implements FromCollection, WithHeadings, WithStyles, WithEvents
 {
-
-    protected $tashkilotId;
-
-    public function __construct($tashkilotId)
-    {
-        $this->tashkilotId = $tashkilotId;
-    }
-
 
     public function collection()
     {
-        return Doktarantura::where('quarter', 2)->where('tashkilot_id', $this->tashkilotId)
+        return Doktarantura::where('quarter', 2)
             ->with('tashkilot')->get()->map(function ($doktarantura) {
                 return [
                     $doktarantura->id,
@@ -49,6 +41,7 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings, WithS
                     $doktarantura->reja_b,
                     $doktarantura->monitoring_natijasik,
                     $doktarantura->himoya_holati,
+                    $doktarantura->quarter,
                 ];
             });
     }
@@ -74,6 +67,7 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings, WithS
             "Yakka tartibdagi rejani bajarganligi",
             "Monitoring natijasi kiritilganligi",
             'Himoya holati',
+            'Chorak',
         ];
     }
 
@@ -117,9 +111,10 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings, WithS
                 $sheet->getColumnDimension('P')->setWidth(10);
                 $sheet->getColumnDimension('Q')->setWidth(10);
                 $sheet->getColumnDimension('R')->setWidth(30);
+                $sheet->getColumnDimension('S')->setWidth(10);
 
                 // 🔹 Header dizayni
-                $sheet->getStyle('A1:R1')->applyFromArray([
+                $sheet->getStyle('A1:S1')->applyFromArray([
                     'fill' => [
                         'fillType' => Fill::FILL_SOLID,
                         'color' => ['rgb' => 'E7F3FF'],
@@ -127,7 +122,7 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings, WithS
                 ]);
 
                 // 🔹 Border
-                $sheet->getStyle("A1:R{$highestRow}")
+                $sheet->getStyle("A1:S{$highestRow}")
                     ->applyFromArray([
                         'borders' => [
                             'allBorders' => [
@@ -137,7 +132,7 @@ class TashkilotDoktaranturaExport implements FromCollection, WithHeadings, WithS
                     ]);
 
                 // 🔹 Markaz (hammasi)
-                $sheet->getStyle("A2:R{$highestRow}")
+                $sheet->getStyle("A2:S{$highestRow}")
                     ->getAlignment()
                     ->setHorizontal(Alignment::HORIZONTAL_LEFT);
 

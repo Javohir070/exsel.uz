@@ -6,8 +6,15 @@ use App\Models\Stajirovkaexpert;
 use App\Models\Monitoring;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
+use Maatwebsite\Excel\Concerns\WithStyles;
+use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Events\AfterSheet;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
+use PhpOffice\PhpSpreadsheet\Style\Alignment;
+use PhpOffice\PhpSpreadsheet\Style\Border;
+use PhpOffice\PhpSpreadsheet\Style\Fill;
 
-class StajirovkalarToMonitoringExport implements FromCollection, WithHeadings
+class StajirovkalarToMonitoringExport implements FromCollection, WithHeadings, WithStyles, WithEvents
 {
     public $monitoring;
 
@@ -18,7 +25,7 @@ class StajirovkalarToMonitoringExport implements FromCollection, WithHeadings
 
     public function collection()
     {
-       return Stajirovkaexpert::with('tashkilot', 'stajirovkalar', 'stajirovkaexpert')->where('quarter', $this->monitoring->id)->get()->map(function ($stajirovkaexpert){
+        return Stajirovkaexpert::with('tashkilot', 'stajirovkalar')->where('quarter', 2)->get()->map(function ($stajirovkaexpert) {
             return [
                 'id' => $stajirovkaexpert->id,
                 "Tashkilot nomi" => $stajirovkaexpert->tashkilot->name,
@@ -32,15 +39,15 @@ class StajirovkalarToMonitoringExport implements FromCollection, WithHeadings
                 'Ilmiy hisobot taqdim etilganligi' => $stajirovkaexpert->ilmiy_hisobot,
                 "Stajirovka davrida egallangan bilim va ko'nikmalarni amalga oshirilishi uchun zarur shart-sharoitlar yaratilganligi. (Asoslantiruvchi hujjatlar, rasm va videolar)" => $stajirovkaexpert->egallangan_bilim,
                 "Ilmiy-tadqiqot ishlari natijalari bo'yicha xorijiy ilmiy anjumanlarda ma'ruza bilan ishtirok etganligi. (Asoslantiruvchi hujjatlar, rasm va videolar hamda havolalar)" => $stajirovkaexpert->ishlar_natijalari,
-                "Xalqaro tan olingan ma'lumotlar bazasidagi yetakchi ilmiy jurnallarda nashr qilinganligi"=> $stajirovkaexpert->xalqarotan_jur_nashr,
+                "Xalqaro tan olingan ma'lumotlar bazasidagi yetakchi ilmiy jurnallarda nashr qilinganligi" => $stajirovkaexpert->xalqarotan_jur_nashr,
                 "Kamida bir yil davomida Agentlik tomonidan tashkil etiladigan va boshqa tadbirlarda stajirovka davrida to'plangan tajribalar va olgan bilim va ko'nikmalari borasida o'z fikr va mulohazalarini bayon etilganligi tafsiloti. (Asoslantiruvchi hujjatlar, rasm va videolar hamda havolalar)" => $stajirovkaexpert->biryil_davomida,
                 'Monitoring xulosasi (qoniqarli/qoniqarsiz)' => $stajirovkaexpert->status,
                 'Izoh' => $stajirovkaexpert->comment,
-                "Ishchi guruh rahbari F.I.Sh"=> $stajirovkaexpert->fish,
-                "Ishchi guruh azosi F.I.Sh"=> $stajirovkaexpert->user->name,
-                "Ekspert F.I.Sh"=> $stajirovkaexpert->ekspert_fish,
-                "Tashkilotning mas'ul rahbari F.I.Sh"=> $stajirovkaexpert->t_masul,
-
+                "Ishchi guruh rahbari F.I.Sh" => $stajirovkaexpert->fish,
+                "Ishchi guruh azosi F.I.Sh" => $stajirovkaexpert->user->name,
+                "Ekspert F.I.Sh" => $stajirovkaexpert->ekspert_fish,
+                "Tashkilotning mas'ul rahbari F.I.Sh" => $stajirovkaexpert->t_masul,
+                "Chorak" => $stajirovkaexpert->quarter,
             ];
         });
     }
@@ -68,6 +75,55 @@ class StajirovkalarToMonitoringExport implements FromCollection, WithHeadings
             "Ishchi guruh azosi F.I.Sh",
             "Ekspert F.I.Sh",
             "Tashkilotning mas'ul rahbari F.I.Sh",
+            "Chorak",
+        ];
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        return [
+            1 => [
+                'font' => ['bold' => true],
+                'alignment' => [
+                    'horizontal' => Alignment::HORIZONTAL_CENTER,
+                    'vertical' => Alignment::VERTICAL_CENTER,
+                ],
+            ],
+        ];
+    }
+
+    public function registerEvents(): array
+    {
+        return [
+            AfterSheet::class => function (AfterSheet $event) {
+                $sheet = $event->sheet->getDelegate();
+                $highestRow = $sheet->getHighestRow();
+
+                // 🔹 Header dizayni
+                $sheet->getStyle('A1:U1')->applyFromArray([
+                    'fill' => [
+                        'fillType' => Fill::FILL_SOLID,
+                        'color' => ['rgb' => 'E7F3FF'],
+                    ],
+                ]);
+
+                // 🔹 Border
+                $sheet->getStyle("A1:U{$highestRow}")
+                    ->applyFromArray([
+                        'borders' => [
+                            'allBorders' => [
+                                'borderStyle' => Border::BORDER_THIN,
+                            ],
+                        ],
+                    ]);
+
+                // 🔹 Markaz (hammasi)
+                $sheet->getStyle("A2:U{$highestRow}")
+                    ->getAlignment()
+                    ->setHorizontal(Alignment::HORIZONTAL_LEFT);
+
+                $sheet->freezePane('A2');
+            },
         ];
     }
 }

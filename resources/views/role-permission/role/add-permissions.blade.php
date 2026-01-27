@@ -2,10 +2,10 @@
 @section("content")
     <div class="flex justify-between align-center mt-6 mb-6">
         <h2 class="intro-y text-lg font-medium">Role : {{ $role->name }}
-            <a href="{{ url('roles') }}" class="button w-24 bg-theme-1 text-white">
-                Orqaga
-            </a>
         </h2>
+        <a href="{{ url('roles') }}" class="button w-24 bg-theme-1 text-white">
+            Orqaga
+        </a>
     </div>
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2 monitoring-form">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">

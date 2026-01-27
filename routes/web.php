@@ -139,6 +139,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profileview', [UserController::class, 'profileview'])->name('profileview.index');
     Route::get('/monitoring-working-group', [UserController::class, 'monitoring_working_group'])->name('monitoring_working_group.index');
     Route::resource('users', UserController::class);
+    Route::patch('users/{user}/toggle-active', [UserController::class, 'toggleActive'])->name('users.toggle-active');
     Route::post('/ilmiy-loyhagamasul', [UserController::class, 'ilmiy_loyha_rahbari'])->name('ilmiyLoyha_rahbari.index');
     Route::put('/ilmiy-loyhagamasul-edit/{id}', [UserController::class, 'ilmiy_loyha_rahbari_edit'])->name('ilmiyLoyha_rahbari_edit.index');
     Route::get('/masullar-rahbarlar', [UserController::class, 'ilmiy_loyha_masullar'])->name('ilmiy_loyha_edit.index');
@@ -162,6 +163,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/akademik/export', [AkademController::class, 'exportAkadem'])->name('exportAkadem');
     Route::get('/akadem/export', [AkademExpertController::class, 'exportAkademExpert'])->name('exportAkademExpert');
     Route::get('/doktarantura/{id}/export', [DoktaranturaController::class, 'exportDoktarantura']);
+    Route::get('/doktarantura/export-all', [DoktaranturaController::class, 'exportDoktaranturaAll'])->name('exportDoktaranturaAll');
     //end DoktaranturaController
 
     //itm
