@@ -8,23 +8,25 @@
             <h2 class="intro-y text-lg font-medium">Kafedralar</h2>
 
             <div>
-                <a href="{{ route("kafedralar.create") }}" class="button w-24 ml-3 bg-theme-1 text-white">
+                <a href="javascript:;" data-target="#laboratory-paper-create-modal" data-toggle="modal"
+                    class="button w-24 ml-3 bg-theme-1 text-white">
                     Qo'shish
                 </a>
 
-                <a href="{{ route('kafedra_rol.index') }}" class="button ml-3 w-24 bg-theme-1 text-white">
-                    Kafedra mudirini biriktirish
+                <a href="javascript:;" data-target="#laboratory-paper-masul-create-modal" data-toggle="modal"
+                    class="button w-24 ml-3 bg-theme-1 text-white">
+                    Masul biriktirsh
                 </a>
-                <a href="{{ route('responsible.index') }}" class="button ml-3 w-24 bg-theme-1 text-white">
-                    Kafedra mudirlari
+
+                <a href="javascript:;" data-target="#laboratory-masul-list-modal" data-toggle="modal"
+                    class="button w-24 ml-3 bg-theme-1 text-white">
+                    Masullar ro'yxati
                 </a>
             </div>
 
         </div>
 
-        @if (session('status'))
-            <div class="alert alert-success">{{ session('status') }}</div>
-        @endif
+        @include('admin.components.error_alert')
 
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
             <table class="table table-report -mt-2">
@@ -60,8 +62,8 @@
                                         Tahrirlash
                                     </a>
 
-                                    <form action="{{ route('kafedralar.destroy', ['kafedralar' => $xodimlar->id]) }}" method="post"
-                                        onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                    <form action="{{ route('kafedralar.destroy', ['kafedralar' => $xodimlar->id]) }}"
+                                        method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                         <button type="submit" class="flex delete-action items-center text-theme-6">
                                             @csrf
                                             @method("DELETE")
@@ -76,6 +78,213 @@
                     @endforeach
                 </tbody>
             </table>
+        </div>
+    </div>
+
+    <div class="modal" id="laboratory-paper-masul-create-modal">
+        <div class="modal__content modal__content--xl">
+            <div class="p-5">
+                <div style="display: flex; justify-content: space-between;margin-bottom: 10px; align-items: center;">
+                    <div>
+                        <h2 class="text-lg font-medium">Kafedra masul biriktirish</h2>
+                    </div>
+                    <div>
+                        <a data-dismiss="modal" href="javascript:;" style="display: flex; justify-content: end;"> <i
+                                data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
+                    </div>
+                </div>
+
+                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
+                    <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                        <form id="laboratory-paper-create-form" method="POST" action="{{ route('tashkilot.users.store') }}"
+                            class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                            @csrf
+                            <div class="grid grid-cols-12 gap-2">
+                                <div class="w-full col-span-6">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> F.I.Sh
+                                    </label>
+                                    <input type="text" name="name" class="input w-full border mt-2"
+                                        value="{{ old('name') }}" required="">
+                                </div>
+
+                                <div class="w-full col-span-6">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Kafedrananing nomi
+                                    </label>
+                                    <select name="kafedralar_id" class="input border w-full mt-2"
+                                        value="{{ old('kafedralar_id') }}" required="">
+                                        <option value="">Kafedranani tanlang</option>
+                                        @foreach ($laboratorys as $role)
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                                <div class="w-full col-span-6">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Login (foydalanuvchi
+                                        email adresini
+                                        kiriting)
+                                    </label>
+                                    <input type="email" name="email" class="input w-full border mt-2"
+                                        value="{{ old('email') }}" required="">
+                                </div>
+
+                                <div class="w-full col-span-6">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Parolni kiriting
+                                    </label>
+                                    <input type="password" name="password" class="input w-full border mt-2"
+                                        value="{{ old('password') }}" required="">
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="px-5 pb-5 text-center mt-4">
+                <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </button>
+                <button type="submit" form="laboratory-paper-create-form"
+                    class="update-confirm button w-24 bg-theme-1 text-white">
+                    Qo'shish
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="laboratory-masul-list-modal">
+        <div class="modal__content modal__content--xl">
+            <div class="overflow-x-auto p-5">
+                <div style="display: flex; justify-content: space-between;margin-bottom: 10px; align-items: center;">
+                    <div>
+                        <h2 class="text-lg font-medium">Kafedra masullar ro'yxati</h2>
+                    </div>
+                    <div>
+                        <a data-dismiss="modal" href="javascript:;" style="display: flex; justify-content: end;"> <i
+                                data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
+                    </div>
+                </div>
+                <table class="table">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="border">Id</th>
+                            <th class="border">Kafedra nomi</th>
+                            <th class="border">F.I.Sh</th>
+                            <th class="border">Email</th>
+                            <th class="border">Roles</th>
+                            <th class="border">Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach ($masullar as $user)
+                            <tr>
+                                <td class="border ">{{ $loop->index + 1 }}</td>
+                                <td class="border">{{ $user->kafedralar->name ?? "yo'q" }}</td>
+                                <td class="border">{{ $user->name }}</td>
+                                <td class="border">{{ $user->email }}</td>
+                                <td class="border">
+                                    @if (!empty($user->getRoleNames()))
+                                        @foreach ($user->getRoleNames() as $rolename)
+                                            <label class="badge bg-primary mx-1">{{ $rolename }}</label>
+                                        @endforeach
+                                    @endif
+                                </td>
+                                <td class="border">
+                                    @can('update user')
+                                        <a href="{{ url('users/' . $user->id . '/edit') }}"
+                                            class="button inline-block border border-theme-1 text-theme-1">
+                                            <i data-feather="edit" class="feather feather-check-square w-4 h-4"></i>
+                                        </a>
+                                    @endcan
+
+                                    @can('delete user')
+                                        <form action="{{ url('users/' . $user->id . '/delete') }}"
+                                            onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                            <button type="submit" class="button inline-block border border-theme-6 text-theme-6">
+                                                @csrf
+                                                <i data-feather="trash-2" class="feather feather-check-square w-4 h-4"></i>
+                                            </button>
+                                        </form>
+                                    @endcan
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="laboratory-paper-create-modal">
+        <div class="modal__content modal__content--xl">
+            <div class="p-5">
+                <div style="display: flex; justify-content: space-between;margin-bottom: 10px; align-items: center;">
+                    <div>
+                        <h2 class="text-lg font-medium">Kafedra qo'shish</h2>
+                    </div>
+                    <div>
+                        <a data-dismiss="modal" href="javascript:;" style="display: flex; justify-content: end;"> <i
+                                data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
+                    </div>
+                </div>
+
+                <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
+                    <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
+                        <form id="science-paper-create-form" method="POST" action="{{ route("kafedralar.store") }}"
+                            class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+                            @csrf
+                            <div class="grid grid-cols-12 gap-2">
+                                <div class="w-full col-span-12">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Kafedra nomi
+                                    </label>
+                                    <input type="text" name="name" value="{{ old('name') }}"
+                                        class="input w-full border mt-2" required="">
+                                </div>
+
+                                <div class="w-full col-span-12">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkil etilgan yil
+                                    </label>
+                                    <select name="tash_yil" value="{{ old('tash_yil') }}"
+                                        class="science-sub-categoryyil input border w-full mt-2 " required="">
+                                        <option value=""></option>
+                                    </select>
+                                </div>
+
+                                <div class="w-full col-span-12">
+                                    <label class="flex flex-col sm:flex-row"> <span
+                                            class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Fakultetni tanlang
+                                    </label>
+                                    <select name="fakultetlar_id" class="input border w-full mt-2" required="">
+                                        <option value=""> </option>
+                                        @foreach ($fakultetlar as $role)
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="px-5 pb-5 text-center mt-4">
+                <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+                    Bekor qilish
+                </button>
+                <button type="submit" form="science-paper-create-form"
+                    class="update-confirm button w-24 bg-theme-1 text-white">
+                    Qo'shish
+                </button>
+            </div>
         </div>
     </div>
 

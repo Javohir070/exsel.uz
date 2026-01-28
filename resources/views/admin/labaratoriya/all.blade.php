@@ -5,7 +5,7 @@
     <div class="content">
         <div class="flex justify-between align-center mt-6 mb-6">
 
-            <h2 class="intro-y text-lg font-medium">Labaratoriyalar </h2>
+            <h2 class="intro-y text-lg font-medium">Laboratoriyalar </h2>
 
             <div>
                 <div class="flex justify-between align-center ">

@@ -183,7 +183,7 @@
                                         <i data-feather="bar-chart" class="report-box__icon text-theme-9"></i>
                                     </div>
                                     <div class="text-3xl font-bold leading-8 mt-6">{{ $labaratoriyalar_admin }}</div>
-                                    <div class="text-base text-gray-600 mt-1">Labaratoriyalari </div>
+                                    <div class="text-base text-gray-600 mt-1">Laboratoriyalari </div>
                                 </div>
                             </div>
                         </a>
@@ -196,7 +196,7 @@
                                         <i data-feather="bar-chart" class="report-box__icon text-theme-9"></i>
                                     </div>
                                     <div class="text-3xl font-bold leading-8 mt-6">{{ $masullar }}</div>
-                                    <div class="text-base text-gray-600 mt-1">Labaratoriyaga biriktirigan ma'sul</div>
+                                    <div class="text-base text-gray-600 mt-1">Laboratoriyaga biriktirigan ma'sul</div>
                                 </div>
                             </div>
                         </a>

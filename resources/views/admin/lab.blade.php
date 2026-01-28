@@ -53,26 +53,26 @@
                 </div>
 
                 <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                    <a href="{{ route("izlanuvchilar.index") }}">
+                    <a href="">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
                                 <div class="flex">
                                     <i data-feather="bar-chart" class="report-box__icon text-theme-9"></i>
                                 </div>
-                                <div class="text-3xl font-bold leading-8 mt-6">{{ $lab_izlanuvchilar }}</div>
+                                <div class="text-3xl font-bold leading-8 mt-6">{{ $lab_izlanuvchilar ?? 0 }}</div>
                                 <div class="text-base text-gray-600 mt-1">Ilmiy izlanuvchilar</div>
                             </div>
                         </div>
                     </a>
                 </div>
                 <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                    <a href="{{ route('ilmiy', ['labId' => $laboratory, 'type' => 'dsc']) }}">
+                    <a href="">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
                                 <div class="flex">
                                     <i data-feather="users" class="report-box__icon text-theme-9"></i>
                                 </div>
-                                <div class="text-3xl font-bold leading-8 mt-6">{{ $dsc_soni }}</div>
+                                <div class="text-3xl font-bold leading-8 mt-6">{{ $dsc_soni ?? 0 }}</div>
                                 <div class="text-base text-gray-600 mt-1">DSc</div>
                             </div>
                         </div>
@@ -80,13 +80,13 @@
                 </div>
 
                 <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                    <a href="{{ route('ilmiy', ['labId' => $laboratory, 'type' => 'phd']) }}">
+                    <a href="">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
                                 <div class="flex">
                                     <i data-feather="users" class="report-box__icon text-theme-6"></i>
                                 </div>
-                                <div class="text-3xl font-bold leading-8 mt-6">{{ $phd_soni }}</div>
+                                <div class="text-3xl font-bold leading-8 mt-6">{{ $phd_soni ?? 0 }}</div>
                                 <div class="text-base text-gray-600 mt-1">PhD</div>
                             </div>
                         </div>
@@ -94,13 +94,13 @@
                 </div>
 
                 <div class="col-span-12 sm:col-span-6 xl:col-span-4 intro-y">
-                    <a href="{{ route('ilmiy', ['labId' => $laboratory, 'type' => 'staj']) }}">
+                    <a href="">
                         <div class="report-box zoom-in">
                             <div class="box p-5">
                                 <div class="flex">
                                     <i data-feather="users" class="report-box__icon text-theme-9"></i>
                                 </div>
-                                <div class="text-3xl font-bold leading-8 mt-6">{{ $stajyor_soni }}</div>
+                                <div class="text-3xl font-bold leading-8 mt-6">{{ $stajyor_soni ?? 0 }}</div>
                                 <div class="text-base text-gray-600 mt-1">Stajyor-tadqiqotchi</div>
                             </div>
                         </div>

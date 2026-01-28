@@ -22,6 +22,8 @@ class UpdateKafedralarRequest extends FormRequest
     public function rules(): array
     {
         return [
+            'name' => 'required|string|max:600',
+            'fakultetlar_id' => 'required|exists:fakultetlars,id',
             'tash_yil'=> "required|size:4"
         ];
     }

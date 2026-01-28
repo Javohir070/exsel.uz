@@ -18,23 +18,16 @@ class LaboratoryController extends Controller
 
     public function index()
     {
-        $laboratorys =Laboratory::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
+        $laboratorys = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
 
-        return view("admin.labaratoriya.index", ["laboratorys"=> $laboratorys]);
-    }
-
-    public function masullar()
-    {
         $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
 
-        $masullar = $users->filter(function($user) {
+        $masullar = $users->filter(function ($user) {
             return $user->roles->contains('name', 'labaratoriyaga_masul');
         });
 
-
-        return view("admin.labaratoriya.masullar", ['masullar'=> $masullar]);
+        return view("admin.labaratoriya.index", ["laboratorys" => $laboratorys, "masullar" => $masullar]);
     }
-
 
     public function laboratoriyalari(Request $request)
     {
@@ -51,55 +44,55 @@ class LaboratoryController extends Controller
 
         $laboratoriyalari = $query->paginate(20);
 
-        return view('admin.labaratoriya.all', ['laboratoriyalari'=> $laboratoriyalari]);
+        return view('admin.labaratoriya.all', ['laboratoriyalari' => $laboratoriyalari]);
     }
 
     public function laboratoriya()
     {
         $laboratory = auth()->user()->laboratory_id;
-        $laboratorys =Laboratory::where("id",auth()->user()->laboratory_id)->get();
+        $laboratorys = Laboratory::where("id", auth()->user()->laboratory_id)->get();
         $lab_xodimlar = Xodimlar::where('laboratory_id', auth()->user()->laboratory_id)->count();
         $lab_xujalik = Xujalik::where('laboratory_id', auth()->user()->laboratory_id)->count();
         $lab_ilmiyLoyiha = IlmiyLoyiha::where('laboratory_id', auth()->user()->laboratory_id)->count();
 
         return view("admin.labaratoriya.labaratoriya", [
-                "laboratorys"=> $laboratorys,
-                'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
-                'lab_xujalik' => $lab_xujalik,
-                'lab_xodimlar' => $lab_xodimlar,
-                "laboratory" => $laboratory,
-            ]);
+            "laboratorys" => $laboratorys,
+            'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
+            'lab_xujalik' => $lab_xujalik,
+            'lab_xodimlar' => $lab_xodimlar,
+            "laboratory" => $laboratory,
+        ]);
     }
 
 
     public function lab_biriktirilgan_xodimlar()
     {
-        $lab_xodimlar = Xodimlar::where("laboratory_id",auth()->user()->laboratory_id)->paginate(20);
-        $tashkilot_xodimlar = Xodimlar::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
+        $lab_xodimlar = Xodimlar::where("laboratory_id", auth()->user()->laboratory_id)->paginate(20);
+        $tashkilot_xodimlar = Xodimlar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
 
-        return view("admin.labaratoriya.labxodimlar", ["lab_xodimlar"=> $lab_xodimlar, 'tashkilot_xodimlar'=>$tashkilot_xodimlar]);
+        return view("admin.labaratoriya.labxodimlar", ["lab_xodimlar" => $lab_xodimlar, 'tashkilot_xodimlar' => $tashkilot_xodimlar]);
     }
 
     public function lab_biriktirilgan_ilmiyloyha()
     {
-        $ilmiyloyiha = IlmiyLoyiha::where("laboratory_id",auth()->user()->laboratory_id)->paginate(20);
-        $tashkilot_ilmiyloyiha = IlmiyLoyiha::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
+        $ilmiyloyiha = IlmiyLoyiha::where("laboratory_id", auth()->user()->laboratory_id)->paginate(20);
+        $tashkilot_ilmiyloyiha = IlmiyLoyiha::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
 
-        return view("admin.labaratoriya.labilmiyloyhi", ["ilmiyloyiha"=> $ilmiyloyiha, "tashkilot_ilmiyloyiha"=>$tashkilot_ilmiyloyiha]);
+        return view("admin.labaratoriya.labilmiyloyhi", ["ilmiyloyiha" => $ilmiyloyiha, "tashkilot_ilmiyloyiha" => $tashkilot_ilmiyloyiha]);
     }
 
     public function lab_biriktirilgan_xujalik()
     {
-        $xujalik = Xujalik::where("laboratory_id",auth()->user()->laboratory_id)->paginate(20);
-        $tashkilot_xujalik = Xujalik::where("tashkilot_id",auth()->user()->tashkilot_id)->get();
+        $xujalik = Xujalik::where("laboratory_id", auth()->user()->laboratory_id)->paginate(20);
+        $tashkilot_xujalik = Xujalik::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
 
-        return view("admin.labaratoriya.labxujalik", ["xujalik"=> $xujalik, "tashkilot_xujalik"=> $tashkilot_xujalik]);
+        return view("admin.labaratoriya.labxujalik", ["xujalik" => $xujalik, "tashkilot_xujalik" => $tashkilot_xujalik]);
     }
 
 
     public function giveXodimToLab(Request $request)
     {
-            // Formdan kelgan xodimlar ID larini olish
+        // Formdan kelgan xodimlar ID larini olish
         $xodimlarId = $request->input('xodimlarId', []);
 
         // Foydalanuvchining laboratory_id sini oling
@@ -119,7 +112,7 @@ class LaboratoryController extends Controller
 
     public function giveXujalikToLab(Request $request)
     {
-            // Formdan kelgan xodimlar ID larini olish
+        // Formdan kelgan xodimlar ID larini olish
         $xujaliklarId = $request->input('xujaliklarId', []);
 
         // Foydalanuvchining laboratory_id sini oling
@@ -134,15 +127,12 @@ class LaboratoryController extends Controller
 
         // Muvaffaqiyatli yangilanganini bildirish uchun qaytish
         return redirect()->back()->with('status', 'Xujaliklar muvaffaqiyatli yangilandi!');
-
     }
-
-
 
 
     public function giveIlmiyLoyhaToLab(Request $request)
     {
-            // Formdan kelgan xodimlar ID larini olish
+        // Formdan kelgan xodimlar ID larini olish
         $ilmiyloyhalarId = $request->input('ilmiyloyhalarId', []);
 
         // Foydalanuvchining laboratory_id sini oling
@@ -161,24 +151,13 @@ class LaboratoryController extends Controller
     }
 
 
-
-    public function create()
-    {
-        return view("admin.labaratoriya.create");
-    }
-
-
     public function store(StoreLaboratoryRequest $request)
     {
+        $data = $request->validated();
+        $data['tashkilot_id'] = auth()->user()->tashkilot_id;
+        Laboratory::create($data);
 
-        Laboratory::create([
-            "tashkilot_id" => auth()->user()->tashkilot_id,
-            "name" => $request->name,
-            "tash_yil" => $request->tash_yil,
-            "tavsif" => $request->tavsif,
-        ]);
-
-        return redirect('/laboratory')->with("status",'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
+        return redirect('/laboratory')->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
 
@@ -190,17 +169,17 @@ class LaboratoryController extends Controller
 
 
         return view('admin.labaratoriya.show', [
-                    "laboratory" => $laboratory,
-                    'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
-                    'lab_xujalik' => $lab_xujalik,
-                    'lab_xodimlar' => $lab_xodimlar,
-                ]);
+            "laboratory" => $laboratory,
+            'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
+            'lab_xujalik' => $lab_xujalik,
+            'lab_xodimlar' => $lab_xodimlar,
+        ]);
     }
 
 
     public function edit(Laboratory $laboratory)
     {
-        return view("admin.labaratoriya.edit", ["laboratory"=> $laboratory]);
+        return view("admin.labaratoriya.edit", ["laboratory" => $laboratory]);
     }
 
 
@@ -208,8 +187,7 @@ class LaboratoryController extends Controller
     {
         $laboratory->update($request->toArray());
 
-        return redirect('/laboratory')->with("status",'Ma\'lumotlar muvaffaqiyatli yangilandi.');
-
+        return redirect('/laboratory')->with("status", 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
 
@@ -222,14 +200,15 @@ class LaboratoryController extends Controller
 
         $laboratory->delete();
 
-        return redirect()->back()->with("status",'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+        return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
     }
 
     public function export_lab()
     {
-        ini_set('memory_limit', '1024M'); // Yoki kerakli miqdorda xotira limiti qo'ying
-        ini_set('max_execution_time', '300'); // Kerak bo'lsa, vaqt limitini ham oshiring
+        ini_set('memory_limit', '1024M');
+        ini_set('max_execution_time', '300');
         $fileName = 'Laboratory_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+
         return Excel::download(new LaboratoryExport, $fileName);
     }
 

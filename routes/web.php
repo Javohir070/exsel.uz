@@ -138,8 +138,17 @@ Route::middleware('auth')->group(function () {
     Route::post('password/change', [UserController::class, 'changePassword'])->name('password.change');
     Route::get('/profileview', [UserController::class, 'profileview'])->name('profileview.index');
     Route::get('/monitoring-working-group', [UserController::class, 'monitoring_working_group'])->name('monitoring_working_group.index');
+
+    Route::get('/tashkilot/users', [UserController::class, 'tashkilot_users'])->name('tashkilot.users.index');
+    Route::get('/tashkilot/users/create', [UserController::class, 'tashkilot_users_create'])->name('tashkilot.users.create');
+    Route::post('/tashkilot/users', [UserController::class, 'tashkilot_users_store'])->name('tashkilot.users.store');
+    Route::get('/tashkilot/users/{id}/edit', [UserController::class, 'tashkilot_users_edit'])->name('tashkilot.users.edit');
+    Route::put('/tashkilot/users/{id}', [UserController::class, 'tashkilot_users_update'])->name('tashkilot.users.update');
+    Route::delete('/tashkilot/users/{id}', [UserController::class, 'tashkilot_users_destroy'])->name('tashkilot.users.destroy');
     Route::resource('users', UserController::class);
     Route::patch('users/{user}/toggle-active', [UserController::class, 'toggleActive'])->name('users.toggle-active');
+
+
     Route::post('/ilmiy-loyhagamasul', [UserController::class, 'ilmiy_loyha_rahbari'])->name('ilmiyLoyha_rahbari.index');
     Route::put('/ilmiy-loyhagamasul-edit/{id}', [UserController::class, 'ilmiy_loyha_rahbari_edit'])->name('ilmiyLoyha_rahbari_edit.index');
     Route::get('/masullar-rahbarlar', [UserController::class, 'ilmiy_loyha_masullar'])->name('ilmiy_loyha_edit.index');

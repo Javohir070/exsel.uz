@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreAdminUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\IlmiyLoyiha;
@@ -39,6 +40,13 @@ class UserController extends Controller
         $users = $query->paginate(15);
 
         return view('role-permission.user.index', ['users' => $users]);
+    }
+
+    public function tashkilot_users()
+    {
+        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->paginate(15);
+
+        return view('role-permission.tashkilot_users.index', ['users' => $users]);
     }
 
     public function create()
@@ -114,6 +122,22 @@ class UserController extends Controller
         $user->syncRoles($request->roles);
 
         return redirect('/users')->with('status', 'User Created Successfully with roles');
+    }
+
+    public function tashkilot_users_store(StoreAdminUserRequest $request)
+    {
+        if($request->has('laboratory_id')) {
+            $request->merge(['roles' => ['labaratoriyaga_masul']]);
+        }
+        $data = $request->validated();
+        $data['password'] = Hash::make($request->password);
+        $data['tashkilot_id'] = auth()->user()->tashkilot_id;
+
+        $user = User::create($data);
+
+        $user->syncRoles($request->roles);
+
+        return redirect('/tashkilot/users')->with('status', 'User Created Successfully with roles');
     }
 
     public function kafedrarol_store(Request $request)
