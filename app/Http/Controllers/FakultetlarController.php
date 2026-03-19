@@ -38,27 +38,13 @@ class FakultetlarController extends Controller
     }
 
 
-    public function create()
-    {
-        return view("admin.fakultetlar.create");
-    }
-
-
     public function store(StoreFakultetlarRequest $request)
     {
-        Fakultetlar::create([
-            "tashkilot_id" => auth()->user()->tashkilot_id,
-            "name" => $request->name,
-            "tash_yil" => $request->tash_yil,
-        ]);
+        $data = $request->validated();
+        $data['tashkilot_id'] = auth()->user()->tashkilot_id;
+        Fakultetlar::create($data);
 
-        return redirect('/fakultetlar')->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
-    }
-
-
-    public function show(Fakultetlar $fakultetlar)
-    {
-        //
+        return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli qo"shildi.');
     }
 
 
@@ -70,7 +56,8 @@ class FakultetlarController extends Controller
 
     public function update(UpdateFakultetlarRequest $request, Fakultetlar $fakultetlar)
     {
-        $fakultetlar->update($request->toArray());
+        $data = $request->validated();
+        $fakultetlar->update($data);
 
         return redirect('/fakultetlar')->with("status", 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
@@ -86,12 +73,13 @@ class FakultetlarController extends Controller
 
         $fakultetlar->delete();
 
-        return redirect('/fakultetlar')->with("status", 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
+        return redirect()->back()->with("status", 'Ma\'lumotlar muvaffaqiyatli o"chirildi.');
     }
 
     public function fakultetlar_export()
     {
         $fileName = 'Fakultetlar_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+
         return Excel::download(new FakultetlarExport, $fileName);
     }
 }

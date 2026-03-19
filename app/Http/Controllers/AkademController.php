@@ -8,6 +8,7 @@ use App\Models\Akadem;
 use App\Models\AkademExpert;
 use App\Models\Monitoring;
 use App\Models\Region;
+use App\Models\Tashkilot;
 use Illuminate\Http\Request;
 use App\Exports\AkademExpert as AkademExpertExport;
 use Maatwebsite\Excel\Facades\Excel;
@@ -147,6 +148,141 @@ class AkademController extends Controller
         return view('admin.akadem.show', compact('akadem', 'akademexpert', 'quarter_2'));
     }
 
+    public function akademlar()
+    {
+        $user = auth()->user();
+        $hasRegion = $user->region_id !== null;
+        $quarterId = $this->monitoring->id;
+
+        if ($hasRegion) {
+            $regions = Region::where('id', $user->region_id)->get();
+            $region = $regions->first();
+
+            $tashkilotIds = $region->tashkilots()
+                ->where('akadem_is', 1)
+                ->pluck('id');
+
+            $tashkilots = $tashkilotIds->count();
+            $akadem_count = Akadem::whereIn('tashkilot_id', $tashkilotIds)
+                ->where('is_active', 1)
+                ->count();
+            $akadem_expert = AkademExpert::whereIn('tashkilot_id', $tashkilotIds)
+                ->where('quarter', $quarterId)
+                ->count();
+        } else {
+            $regions = Region::orderBy('order')->get();
+            $tashkilots = Tashkilot::where('akadem_is', 1)->count();
+            $akadem_count = Akadem::where('is_active', 1)->count();
+            $akadem_expert = AkademExpert::where('quarter', $quarterId)->count();
+        }
+
+        return view('admin.akadem.viloyat', [
+            'tashkilots' => $tashkilots,
+            'akadem_count' => $akadem_count,
+            'akadem_expert' => $akadem_expert,
+            'regions' => $regions,
+            'akadems_count' => $akadem_count,
+            'monitoring' => $this->monitoring
+        ]);
+    }
+
+    public function tashkilot_turi_akadem($id)
+    {
+        $region = Region::findOrFail($id);
+
+        $tashkilotlarQuery = Tashkilot::where('akadem_is', 1)
+            ->where('region_id', $id)
+            ->with([
+                'akademlar' => function ($q) {
+                    $q->where('is_active', 1);
+                }
+            ])
+            ->get();
+
+        $tashkilots = $tashkilotlarQuery->count();
+        $tashkilotIds = $tashkilotlarQuery->pluck('id');
+
+        $results = [];
+
+        $groups = [
+            'otm' => $tashkilotlarQuery->where('tashkilot_turi', 'otm'),
+            'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
+            'other' => $tashkilotlarQuery->where('tashkilot_turi', 'boshqa'),
+        ];
+
+        foreach ($groups as $key => $group) {
+            $results[$key] = [
+                'akademlar' => $group->flatMap->akademlar->count(),
+            ];
+        }
+
+        $akadem_count = Akadem::whereIn('tashkilot_id', $tashkilotIds)
+            ->where('is_active', 1)
+            ->count();
+        $akadem_expert = AkademExpert::whereIn('tashkilot_id', $tashkilotIds)
+            ->where('quarter', 1)
+            ->count();
+
+        return view('admin.akadem.tashkilot_turi', [
+            'results' => $results,
+            'regions' => $region,
+            'tashkilots' => $tashkilots,
+            'akadem_count' => $akadem_count,
+            'akadem_expert' => $akadem_expert,
+            'monitoring' => $this->monitoring
+        ]);
+    }
+
+    public function search_akadem(Request $request)
+    {
+
+        $query = $request->input('query');
+        $regionId = $request->input('id');
+        $type = $request->input('type');
+
+        $isRegionSearch = is_numeric($regionId);
+
+        $buildTashkilotQuery = function () use ($isRegionSearch, $regionId, $type, $query) {
+            $queryBuilder = Tashkilot::where('stajirovka_is', 1);
+
+            if ($isRegionSearch) {
+                $queryBuilder->where('region_id', $regionId)
+                    ->where('tashkilot_turi', $type)
+                    ->where('name', 'like', '%' . $query . '%');
+            }
+
+            return $queryBuilder;
+        };
+
+        $tashkilotlar = $buildTashkilotQuery()
+            ->orderBy('name')
+            ->paginate(50);
+
+        $tashkilotIds = $buildTashkilotQuery(true)
+            ->pluck('id');
+
+        return view('admin.akadem.akademlar', [
+            'tashkilotlar' => $tashkilotlar,
+            'tash_count' => $tashkilotlar->total(),
+            'monitoring' => $this->monitoring,
+            'query' => $query,
+            'regionId' => $regionId,
+            'type' => $type,
+        ]);
+    }
+
+    public function akadem($id)
+    {
+        $akadem = Akadem::where('tashkilot_id', '=', $id)->where('is_active', 1)->paginate(20);
+
+        $tashkilot = Tashkilot::findOrFail($id);
+
+        return view('admin.akadem.index', [
+            'akadem' => $akadem,
+            'tashkilot' => $tashkilot,
+        ]);
+    }
+
 
     public function edit(Akadem $akadem)
     {
@@ -164,6 +300,8 @@ class AkademController extends Controller
     {
         //
     }
+
+
 
 
     public function exportAkadem()

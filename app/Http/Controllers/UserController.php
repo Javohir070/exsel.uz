@@ -58,50 +58,6 @@ class UserController extends Controller
         return view('role-permission.user.create', compact('roles', 'tashkilots', 'regions'));
     }
 
-    public function kafedra_rol()
-    {
-        $roles = Role::where('is_active', 1)->pluck('name', 'name')->all();
-        $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
-        $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
-        $tashkilot_id = auth()->user()->tashkilot_id;
-        $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
-        $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
-
-        return view('role-permission.user.kafedra', [
-            'roles' => $roles,
-            'tashkilots' => $tashkilots,
-            'xodimlar' => $xodimlar,
-            'lab' => $lab,
-            'kafedralar' => $kafedralar,
-            'tashkilot_id' => auth()->user()->tashkilot_id
-        ]);
-    }
-
-    public function asbobuskuna_rol()
-    {
-        $roles = Role::where('is_active', 1)->pluck('name', 'name')->all();
-        $lab = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
-        $kafedralar = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
-        $tashkilot_id = auth()->user()->tashkilot_id;
-        $xodimlar = Xodimlar::where('tashkilot_id', $tashkilot_id)->where('lavozimi', 'Kafedra mudiri')->get();
-        $tashkilots = Tashkilot::orderBy('name', 'asc')->get();
-
-        return view('role-permission.user.asbobuskuna', [
-            'roles' => $roles,
-            'tashkilots' => $tashkilots,
-            'xodimlar' => $xodimlar,
-            'lab' => $lab,
-            'kafedralar' => $kafedralar,
-            'tashkilot_id' => auth()->user()->tashkilot_id
-        ]);
-    }
-
-    public function ilmiy_loyha_masullar()
-    {
-        $ilmiy_loyha = IlmiyLoyiha::where('tashkilot_id', auth()->user()->tashkilot_id)->where('is_active', 1)->get();
-
-        return view('role-permission.user.loyiha_rahbariroli', ['ilmiy_loyha' => $ilmiy_loyha]);
-    }
 
     public function ilmiy_loyha_masullar_edit($id)
     {
@@ -126,47 +82,20 @@ class UserController extends Controller
 
     public function tashkilot_users_store(StoreAdminUserRequest $request)
     {
-        if($request->has('laboratory_id')) {
-            $request->merge(['roles' => ['labaratoriyaga_masul']]);
-        }
         $data = $request->validated();
         $data['password'] = Hash::make($request->password);
         $data['tashkilot_id'] = auth()->user()->tashkilot_id;
 
-        $user = User::create($data);
+        $roles = $request->getResolvedRoles();
 
-        $user->syncRoles($request->roles);
+        \DB::transaction(function () use ($data, $roles) {
+            $user = User::create($data);
+            $user->syncRoles($roles);
+        });
 
-        return redirect('/tashkilot/users')->with('status', 'User Created Successfully with roles');
+        return redirect()->back()->with('status', 'User Created Successfully with roles');
     }
 
-    public function kafedrarol_store(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255|unique:users,email',
-            'password' => 'required|string|min:8|max:20|confirmed',
-            'roles' => 'required',
-        ]);
-
-
-        $user = User::create([
-            'name' => $request->name,
-            'laboratory_id' => $request->laboratory_id,
-            'kafedralar_id' => $request->kafedralar_id,
-            'email' => $request->email,
-            'tashkilot_id' => $request->tashkilot_id ?? auth()->user()->tashkilot_id,
-            'password' => Hash::make($request->password),
-        ]);
-
-        $user->syncRoles($request->roles);
-
-        if (!empty($user->kafedralar_id)) {
-            return redirect('/kafedralar')->with('status', 'User Updated Successfully with roles');
-        } else {
-            return redirect('/asbobuskuna')->with('status', 'User Updated Successfully with roles');
-        }
-    }
 
     public function ilmiy_loyha_rahbari(Request $request)
     {

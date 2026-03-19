@@ -137,7 +137,7 @@
         </li>
 
         <li>
-            <a href="{{ route('akadem.index') }}"
+            <a href="{{ route('akademlar.index') }}"
                 class="side-menu side-menu{{ request()->is('akadem*') ? '--active' : '' }}{{ request()->is('search-akadem*') ? '--active' : '' }}">
                 <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
                 <div class="side-menu__title"> Akademik harakatchanlik</div>

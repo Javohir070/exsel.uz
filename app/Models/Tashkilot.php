@@ -128,4 +128,14 @@ class Tashkilot extends Model
     {
         return $this->hasMany(Doktaranturaexpert::class);
     }
+
+    public function akademlar()
+    {
+        return $this->hasMany(Akadem::class);
+    }
+
+    public function akademexperts()
+    {
+        return $this->hasMany(AkademExpert::class);
+    }
 }

@@ -32,4 +32,9 @@ class Akadem extends Model
     {
         return $this->hasMany(AkademExpert::class);
     }
+
+    public function tashkilot()
+    {
+        return $this->belongsTo(Tashkilot::class);
+    }
 }

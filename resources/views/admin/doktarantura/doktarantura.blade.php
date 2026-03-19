@@ -27,7 +27,6 @@
         @endif
 
         <div class="overflow-x-auto mt-2" style="background-color: white;border-radius:8px;">
-
             <div class="tab-content">
                 <div class="tab-content__pane active" id="ilmiy-izlanuvchilar">
                     <div class="p-5">

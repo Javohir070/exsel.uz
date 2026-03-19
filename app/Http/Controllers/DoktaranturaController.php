@@ -119,6 +119,38 @@ class DoktaranturaController extends Controller
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli import qilindi!');
     }
 
+    public function darajaStatistics()
+    {
+        $regions = Region::orderBy('order')->get();
+
+        $stats = $regions->map(function (Region $region) {
+            $baseQuery = $region->tashkilots()->where('doktarantura_is', 1);
+
+            $doktaranturalarSum = $region->tashkilots()
+                ->where('status', 1)
+                ->withCount(['doktaranturalar as doktaranturalar_count' => function ($query) {
+                    $query->where('quarter', $this->monitoring->id);
+                }])
+                ->get()
+                ->sum('doktaranturalar_count');
+
+            return [
+                'region_id' => $region->id,
+                'region_name' => $region->oz,
+                'doktarantura_tashkilotlar_jami' => (clone $baseQuery)->count(),
+                'otm' => (clone $baseQuery)->where('tashkilot_turi', 'otm')->count(),
+                'itm' => (clone $baseQuery)->where('tashkilot_turi', 'itm')->count(),
+                'boshqa' => (clone $baseQuery)->where('tashkilot_turi', 'boshqa')->count(),
+                'doktaranturalar_soni' => (int) $doktaranturalarSum,
+            ];
+        });
+
+        return response()->json([
+            'success' => true,
+            'stats' => $stats->values()->all(),
+        ]);
+    }
+
     public function ilmiyIzlanuvchi_show($id)
     {
         $doktarantura = Doktarantura::findOrFail($id);

@@ -114,10 +114,9 @@ Route::middleware('auth')->group(function () {
     //ilmiyloyiha
     Route::post('/ilmiyloyiha-import', [IlmiyLoyihaController::class, 'IlmiyLoyiha_import'])->name('IlmiyLoyiha_import');
     Route::get('/ilmiyloyihalar', [IlmiyLoyihaController::class, 'ilmiyloyihalar'])->name('ilmiyloyihalar.index');
-    Route::get('/searchloyiha', [IlmiyLoyihaController::class, 'searchloyiha'])->name('searchloyiha');
+    // Route::get('/searchloyiha', [IlmiyLoyihaController::class, 'searchloyiha'])->name('searchloyiha');
     Route::get('scientific-project', [IlmiyLoyihaController::class, 'scientific_project'])->name('scientific_project.index');
     Route::get('/search-ilmiy', [IlmiyLoyihaController::class, 'search_ilmiy_loyhalar'])->name('search_ilmiy_loyhalar');
-    Route::get('masul', [IlmiyLoyihaController::class, "masul"])->name("masul.index");
     Route::get('ilmiy-loyihalar', [IlmiyLoyihaController::class, "ilmiy_loyihalar_all"])->name("ilmiy_loyihalar_all.index");
     Route::get('ilmiy/{id}', [IlmiyLoyihaController::class, "ilmiy_loyihalar"])->name("ilmiy_loyihalar.index");
     Route::get('turi/{id}', [IlmiyLoyihaController::class, 'tashkilot_turi'])->name('tashkilot_turi');
@@ -140,22 +139,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/monitoring-working-group', [UserController::class, 'monitoring_working_group'])->name('monitoring_working_group.index');
 
     Route::get('/tashkilot/users', [UserController::class, 'tashkilot_users'])->name('tashkilot.users.index');
-    Route::get('/tashkilot/users/create', [UserController::class, 'tashkilot_users_create'])->name('tashkilot.users.create');
     Route::post('/tashkilot/users', [UserController::class, 'tashkilot_users_store'])->name('tashkilot.users.store');
     Route::get('/tashkilot/users/{id}/edit', [UserController::class, 'tashkilot_users_edit'])->name('tashkilot.users.edit');
     Route::put('/tashkilot/users/{id}', [UserController::class, 'tashkilot_users_update'])->name('tashkilot.users.update');
-    Route::delete('/tashkilot/users/{id}', [UserController::class, 'tashkilot_users_destroy'])->name('tashkilot.users.destroy');
     Route::resource('users', UserController::class);
     Route::patch('users/{user}/toggle-active', [UserController::class, 'toggleActive'])->name('users.toggle-active');
 
-
-    Route::post('/ilmiy-loyhagamasul', [UserController::class, 'ilmiy_loyha_rahbari'])->name('ilmiyLoyha_rahbari.index');
     Route::put('/ilmiy-loyhagamasul-edit/{id}', [UserController::class, 'ilmiy_loyha_rahbari_edit'])->name('ilmiyLoyha_rahbari_edit.index');
-    Route::get('/masullar-rahbarlar', [UserController::class, 'ilmiy_loyha_masullar'])->name('ilmiy_loyha_edit.index');
     Route::get('/masullar-rahbarlar/{id}', [UserController::class, 'ilmiy_loyha_masullar_edit'])->name('ilmiy_loyha_user_edit.index');
-    Route::get('/kafedra-rol', [UserController::class, 'kafedra_rol'])->name('kafedra_rol.index');
-    Route::get('/asbobuskuna-rol', [UserController::class, 'asbobuskuna_rol'])->name('asbobuskuna_rol.index');
-    Route::post('/kafedrarol', [UserController::class, 'kafedrarol_store'])->name('kafedrarol.store');
     //end UserController
 
     //DoktaranturaController
@@ -210,9 +201,15 @@ Route::middleware('auth')->group(function () {
     Route::get('stajiroka-turi/{id}', [StajirovkaController::class, 'tashkilot_turi_stajiroka'])->name('tashkilot_turi_stajiroka');
     // end stajirovka
 
+    // start akadem
+    Route::get('akadem/{id}', [AkademController::class, "akadem"])->name("akadems.index");
+    Route::get('/search-akadem', [AkademController::class, 'search_akadem'])->name('search_akadem');
+    Route::get('akademlar', [AkademController::class, "akademlar"])->name("akademlar.index");
+    Route::get('akadem-turi/{id}', [AkademController::class, 'tashkilot_turi_akadem'])->name('tashkilot_turi_akadem');
+    // end akadem
+
     // start asbob uskunalar
     Route::get('/search-asbob', [AsbobuskunaController::class, 'search_asbobuskunalar'])->name('search_asbobuskunalar');
-    Route::get('asbobuskuna-masullar', [AsbobuskunaController::class, "asbobuskuna_masullar"])->name("asbobuskuna_masullar.index");
     Route::get('asbobuskunalar', [AsbobuskunaController::class, "asbobuskunalar"])->name("asbobuskunalar.index");
     Route::get('asbobuskunas', [AsbobuskunaController::class, "asbobuskunas_all"])->name("asbobuskunas_all.index");
     Route::get('asbobuskunas/{id}', [AsbobuskunaController::class, "asbobu"])->name("asbobu.index");
@@ -230,7 +227,6 @@ Route::middleware('auth')->group(function () {
     Route::put('lab/{labId}/give-ilmiyloyhas', [LaboratoryController::class, 'giveIlmiyLoyhaToLab']);
     Route::get('laboratoriya', [LaboratoryController::class, 'laboratoriya'])->name('laboratoriya.index');
     Route::get('laboratoriyalari', [LaboratoryController::class, 'laboratoriyalari'])->name('laboratoriyalari.index');
-    Route::get('masullar', [LaboratoryController::class, "masullar"])->name("masullar.index");
     Route::get('/export-lab', [LaboratoryController::class, 'export_lab'])->name('export_lab');
     // labaratoriya uchun
 
@@ -245,7 +241,6 @@ Route::middleware('auth')->group(function () {
     Route::put('kaf/{kafId}/give-xodims', [KafedralarController::class, 'giveXodimToKaf']);
     Route::put('kaf/{kafId}/give-xujaliks', [KafedralarController::class, 'giveXujalikToKaf']);
     Route::put('kaf/{kafId}/give-ilmiyloyhas', [KafedralarController::class, 'giveIlmiyLoyhaToKaf']);
-    Route::get('responsible', [KafedralarController::class, "responsible_masullar"])->name("responsible.index");
     Route::get('kafedra', [KafedralarController::class, "kafedra"])->name("kafedra.index");
     Route::get('kafedras', [KafedralarController::class, "kafedras"])->name("kafedras.index");
     Route::get('/export-kafedralar', [KafedralarController::class, 'kafedralar_export'])->name('export.kafedralar');
@@ -289,6 +284,8 @@ Route::middleware('auth')->group(function () {
 
     // Akadem malumotlarini API dan olish
     Route::get('akadem-sync', [AkademController::class, 'syncAkadem'])->name('akadem_sync');
+
+    Route::get('daraja-statistics', [DoktaranturaController::class, 'darajaStatistics'])->name('daraja_statistics');
 
     Route::resources([
         'tashkilot' => TashkilotController::class,

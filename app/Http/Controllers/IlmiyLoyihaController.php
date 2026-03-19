@@ -38,7 +38,13 @@ class IlmiyLoyihaController extends Controller
         $ilmiyloyiha = IlmiyLoyiha::where('tashkilot_id', $tashRId)
             ->latest()->paginate(20);
 
-        return view('admin.ilmiyloyiha.index', ['ilmiyloyiha' => $ilmiyloyiha]);
+        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
+
+        $masullar = $users->filter(function ($user) {
+            return $user->roles->contains('name', 'Ilmiy_loyiha_rahbari');
+        });
+
+        return view('admin.ilmiyloyiha.index', ['ilmiyloyiha' => $ilmiyloyiha, 'masullar' => $masullar]);
     }
 
 
@@ -286,19 +292,6 @@ class IlmiyLoyihaController extends Controller
 
     }
 
-    public function masul()
-    {
-
-        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
-
-        $masullar = $users->filter(function ($user) {
-            return $user->roles->contains('name', 'Ilmiy_loyiha_rahbari');
-        });
-
-
-        return view("admin.ilmiyloyiha.masul", ['masullar' => $masullar]);
-    }
-
 
     public function destroy(IlmiyLoyiha $ilmiyloyiha)
     {
@@ -505,19 +498,19 @@ class IlmiyLoyihaController extends Controller
         return Excel::download(new LoyihalarToMonitoringExport, $fileName);
     }
 
-    public function searchloyiha(Request $request)
-    {
-        $querysearch = $request->input('query');
+    // public function searchloyiha(Request $request)
+    // {
+    //     $querysearch = $request->input('query');
 
-        $ilmiyloyiha = IlmiyLoyiha::where('mavzusi', 'like', '%' . $querysearch . '%')
-            ->orWhere('turi', 'like', '%' . $querysearch . '%')
-            ->orWhere('rahbar_name', 'like', '%' . $querysearch . '%')
-            ->orWhere('raqami', 'like', '%' . $querysearch . '%')
-            ->orWhere('status', 'like', '%' . $querysearch . '%')
-            ->paginate(10);
+    //     $ilmiyloyiha = IlmiyLoyiha::where('mavzusi', 'like', '%' . $querysearch . '%')
+    //         ->orWhere('turi', 'like', '%' . $querysearch . '%')
+    //         ->orWhere('rahbar_name', 'like', '%' . $querysearch . '%')
+    //         ->orWhere('raqami', 'like', '%' . $querysearch . '%')
+    //         ->orWhere('status', 'like', '%' . $querysearch . '%')
+    //         ->paginate(10);
 
-        return view('admin.ilmiyloyiha.search_results', compact('ilmiyloyiha'));
-    }
+    //     return view('admin.ilmiyloyiha.search_results', compact('ilmiyloyiha'));
+    // }
 
 
     public function IlmiyLoyiha_import(Request $request)
