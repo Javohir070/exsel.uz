@@ -25,7 +25,7 @@ class TekshirivchilarController extends Controller
 
     public function store(StoreTekshirivchilarRequest $request)
     {
-        $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiyloyiha_id);
+        $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiy_loyiha_id);
         $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
 
         $data = $request->validated();

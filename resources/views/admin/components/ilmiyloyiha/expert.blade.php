@@ -130,7 +130,7 @@
                             class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                             @csrf
                             <div class="grid grid-cols-12 gap-2">
-                                <input type="hidden" name="ilmiyloyiha_id" value="{{ $ilmiyloyiha->id }}">
+                                <input type="hidden" name="ilmiy_loyiha_id" value="{{ $ilmiyloyiha->id }}">
 
                                 <div class="w-full col-span-6">
                                     <label class="flex flex-col sm:flex-row"> <span
@@ -150,7 +150,7 @@
 
                                     </select><br>
 
-                                    @error('muddat')
+                                    @error('kalendar')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -172,7 +172,7 @@
 
                                     </select><br>
 
-                                    @error('muddat')
+                                    @error('shart_sharoit_yaratib')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -195,7 +195,7 @@
 
                                     </select><br>
 
-                                    @error('muddat')
+                                    @error('yakuniy_natijalar')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -216,7 +216,7 @@
 
                                     </select><br>
 
-                                    @error('muddat')
+                                    @error('loyiha_ijrochilari')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -233,6 +233,9 @@
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Tashkilotning
                                         mas'ul rahbarining F.I.Sh </label>
                                     <input type="text" name="t_masul" class="input w-full border mt-2" required>
+                                    @error('t_masul')
+                                        <div class="error">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="w-full col-span-6">
@@ -253,7 +256,7 @@
 
                                     </select><br>
 
-                                    @error('muddat')
+                                    @error('status')
                                         <div class="error">{{ $message }}</div>
                                     @enderror
                                 </div>
@@ -263,6 +266,9 @@
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>
                                         Izoh</label>
                                     <textarea name="comment" id="" class="input w-full border mt-2" cols="5" required rows="5"></textarea>
+                                    @error('comment')
+                                        <div class="error">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
