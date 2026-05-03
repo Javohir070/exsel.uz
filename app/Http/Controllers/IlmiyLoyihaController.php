@@ -113,6 +113,7 @@ class IlmiyLoyihaController extends Controller
     {
         $scienceid = $request->input('scienceid');
         $quarterId = $this->monitoring->id;
+        $monitorings = Monitoring::pluck('id');
         
         $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyloyiha->id)
             ->where('quarter', $quarterId)
@@ -126,11 +127,13 @@ class IlmiyLoyihaController extends Controller
             ->first();
 
         $loyihaiqtisodi_1 = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyloyiha->id)
-        ->where('quarter', 1)
-        ->first();
+            ->whereIn('quarter', $monitorings)
+            ->latest()
+            ->first();
         $intellektual_1 = Intellektual::where('ilmiy_loyiha_id', $ilmiyloyiha->id)
-        ->where('quarter', 1)
-        ->first();
+            ->whereIn('quarter', $monitorings)
+            ->latest()
+            ->first();
 
         $quarters = Tekshirivchilar::where('is_active', 1)
             ->where('ilmiy_loyiha_id', $ilmiyloyiha->id)

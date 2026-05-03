@@ -6,12 +6,11 @@
                 <tbody>
                     <tr>
                         <th class="border" style="width: 40px;">T/r</th>
-                        <th colspan="2" class="border" style="text-align: center;">EKSPERT
-                            XULOSASI</th>
+                        <th colspan="2" class="border" style="text-align: center;">EKSPERT XULOSASI</th>
                     </tr>
                     <tr>
                         <td class="border">1.</td>
-                        <td class="border">Ilmiy-tadqiqot ishlarining shartnoma va uning kalendar
+                        <td class="border" style="width: 50%;">Ilmiy-tadqiqot ishlarining shartnoma va uning kalendar
                             rejasiga
                             asosan bajarilish holati</td>
                         <td class="border">{{ $quarter->kalendar }}</td>
