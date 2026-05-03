@@ -8,6 +8,7 @@ use App\Models\Asbobuskuna;
 use App\Models\Asbobuskunaexpert;
 use App\Models\Doktaranturaexpert;
 use App\Models\IlmiyLoyiha;
+use App\Models\Loyihaijrochilar;
 use App\Models\Loyihaiqtisodi;
 use App\Models\Monitoring;
 use App\Models\Stajirovka;
@@ -36,29 +37,34 @@ class PDFController extends Controller
 
     public function generatePDF($ilmiyId)
     {
+        if (! $this->monitoring) {
+            return back()->withErrors(['monitoring' => 'Faol monitoring topilmadi. PDF yaratilmadi.']);
+        }
+
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($ilmiyId);
         $fileName = 'Ilmiy-loyiha' . time() . '.pdf';
         $fileRelativePath = 'pdfs/' . $fileName;
         $filePath = storage_path('app/public/' . $fileRelativePath);
 
-        $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyId)->where('quarter', $this->monitoring->id)->first();
-        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyId)->where('quarter', $this->monitoring->id)->first();
-        $tekshirivchilar = Tekshirivchilar::where('quarter', $this->monitoring->id)->where('ilmiy_loyiha_id', $ilmiyId)->first();
+        $quarterId = $this->monitoring->id;
+
+        $intellektual = Intellektual::where('ilmiy_loyiha_id', $ilmiyId)->where('quarter', $quarterId)->first();
+        $loyihaiqtisodi = Loyihaiqtisodi::where('ilmiy_loyiha_id', $ilmiyId)->where('quarter', $quarterId)->first();
+        $tekshirivchilar = Tekshirivchilar::where('quarter', $quarterId)->where('ilmiy_loyiha_id', $ilmiyId)->first();
+        $loyihaijrochilar = Loyihaijrochilar::where('ilmiy_loyiha_id', $ilmiyId)->orderBy('id')->get();
+
         $pdfUrl = asset('storage/' . $fileRelativePath);
 
         $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
 
         $data = [
-            'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',
-            'date' => date('m/d/Y'),
             'ilmiyloyiha' => $ilmiyloyiha,
             'intellektual' => $intellektual,
             'loyihaiqtisodi' => $loyihaiqtisodi,
             'tekshirivchilar' => $tekshirivchilar,
+            'loyihaijrochilar' => $loyihaijrochilar,
             'qrCode' => $qrCode,
         ];
-
-        $tekshirivchilar = Tekshirivchilar::where('quarter', $this->monitoring->id)->where('ilmiy_loyiha_id', $ilmiyloyiha->id)->first();
 
         $pdf = PDF::loadView('admin.pdf.usersPdf', $data);
 
@@ -213,6 +219,10 @@ class PDFController extends Controller
 
     public function generatePDFtijorat($Id)
     {
+        if (! $this->monitoring) {
+            return back()->withErrors(['monitoring' => 'Faol monitoring topilmadi. PDF yaratilmadi.']);
+        }
+
         $tijorat = Tijorat::findOrFail($Id);
         // Define a file name and path for the PDF
         $fileName = 'Tijorat-' . time() . '.pdf';
@@ -222,9 +232,14 @@ class PDFController extends Controller
         // Generate a URL for the PDF
         $pdfUrl = asset('storage/' . $fileRelativePath);
 
-        // Generate the QR Code as a base64 image
-        $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
         $tekshirivchilar = TijoratExpert::where('tijorat_id', $tijorat->id)->where('quarter', $this->monitoring->id)->first();
+
+        if (! $tekshirivchilar) {
+            return back()->withErrors(['pdf' => 'Ushbu chorak uchun tijorat ekspert xulosasi topilmadi. PDF yaratilmadi.']);
+        }
+
+        // Generate the QR Code as a base64 image (SVG — blade da data:image/svg+xml)
+        $qrCode = base64_encode(QrCode::format('svg')->size(150)->generate($pdfUrl));
         // Prepare data for the PDF
         $data = [
             'title' => 'Welcome to Funda of Web IT - fundaofwebit.com',

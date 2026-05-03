@@ -1,304 +1,574 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uz">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MA‘LUMOTNOMA</title>
+    <title>MAʼLUMOTNOMA (namunaviy shakl)</title>
     <style>
         body {
             font-family: 'DejaVu Sans', sans-serif !important;
-            margin: 20px;
+            margin: 12px;
+            font-size: 8.5px;
+            color: #000;
         }
-        .title {
+
+        .doc-title {
             text-align: center;
-            font-weight: bold !important;
-            font-size: 14px;
-            margin-bottom: 1rem;
-
+            font-weight: bold;
+            font-size: 11px;
+            margin-bottom: 8px;
+            line-height: 1.35;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .page {
-            margin-bottom: 40px;
-            page-break-after: always;
-        }
-
-        .header {
+        .sub-title {
             text-align: center;
-            margin-bottom: 20px;
+            font-size: 9px;
+            margin-bottom: 10px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            margin-bottom: 8px;
         }
 
         th,
         td {
             border: 1px solid #000;
-            padding: 8px;
-            text-align: left;
+            padding: 4px 5px;
+            vertical-align: top;
         }
 
         th {
             font-weight: bold;
+            text-align: center;
+            background: #f0f0f0;
         }
 
-        .section-header {
+        .section {
             font-weight: bold;
             text-align: center;
-            background-color: #f9f9f9;
+            background: #e8e8e8;
         }
 
-        .subsection-header {
-            font-weight: bold;
+        .tr-num {
+            width: 38px;
             text-align: center;
-            background-color: #f9f9f9;
         }
 
-        .summa {
-            font-weight: bold;
-            text-align: right;
-            background-color: #f9f9f9;
+        .muted {
+            color: #444;
+            font-size: 8px;
         }
 
-        td:first-child {
-            width: 60px;
-        }
-
-        td:nth-child(2) {
-            width: 40%;
-        }
-
-        thead td:nth-child(2) {
-            width: 15%;
-        }
-
-
-        @media print {
-            .page {
-                page-break-after: always;
-            }
-        }
         .footer {
-            /* margin-top: 1rem; */
-            display: flex !important;
-            /* justify-content: space-between !important;
-            align-items: flex-start !important; */
-            /* font-size: 14px; */
-            gap: 20px !important;
+            margin-top: 14px;
+            font-size: 9px;
         }
 
         .footer p {
-            margin-bottom: 0.25rem;
+            margin: 0 0 4px 0;
         }
 
-        .qr-code {
-            display: inline-flex;
-            justify-content: center !important;
-            align-items: center;
+        .check {
+            text-align: center;
+            font-weight: bold;
         }
-
-        .italic {
-            font-style: italic;
-            color: #666;
-            font-size: 12px;
-        }
-        
-        .footer-info {
-            display: inline-flex;
-        }
-
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <!-- First Page -->
-            <div class="header">
-                <p style="font-weight: 500;font-size: 18px;">{{ $ilmiyloyiha->tashkilot->name }} da amalga
-                    oshirilayotgan "{{ $ilmiyloyiha->mavzusi }}" mavzusidagi loyihaning bajarilishi
-                    holati bo‘yicha <br>MA'LUMOTNOMA</p>
-            </div>
+    @php
+        $il = $ilmiyloyiha;
+        $i = $intellektual ?? null;
+        $q = $loyihaiqtisodi ?? null;
+        $t = $tekshirivchilar ?? null;
+        $ij = $loyihaijrochilar ?? collect();
+        $num = static function ($v) {
+            if ($v === null || $v === '') {
+                return 0.0;
+            }
+            $s = str_replace([' ', ','], ['', '.'], (string) $v);
+            $s = preg_replace('/[^\d.-]/', '', $s) ?? '0';
 
-            <table>
-                <thead>
-                    <tr>
-                        <!-- <th>T/r</th> -->
-                        <th style="width: 300px;">MA'LUMOT NOMI</th>
-                        <th>BAJARILISHI BO‘YICHA NATIJA KO‘RSATKICHLARI</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td  class="section-header" colspan="2">LOYIHANING ASOSIY KO‘RSATKICHLARI</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>1.1.</td> -->
-                        <td>Loyiha mavzusi</td>
-                        <td>Uz: {{ $ilmiyloyiha->mavzusi }}, <br> Ru:{{ $ilmiyloyiha->mavzusi_ru }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>1.2.</td> -->
-                        <td>Loyiha turi</td>
-                        <td>{{ $ilmiyloyiha->turi }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>1.3.</td> -->
-                        <td>Loyiha shifri</td>
-                        <td>{{ $ilmiyloyiha->raqami }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>1.5.</td> -->
-                        <td>Bajarilish muddati</td>
-                        <td>{{ $ilmiyloyiha->bosh_sana }} - {{ $ilmiyloyiha->tug_sana }} yillar</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>1.6.</td> -->
-                        <td>Ijrochi tashkilot</td>
-                        <td>{{ $ilmiyloyiha->tashkilot->name }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>1.7.</td> -->
-                        <td>Loyihaning umumiy qiymati, mln.soʻm</td>
-                        <td>{{ $ilmiyloyiha->sum }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>2.1.</td> -->
-                        <td><b> Loyihaning amaldagi rahbarining familiyasi, ismi, sharifi</b></td>
-                        <td>{{ $ilmiyloyiha->rahbar_name }}</td>
-                    </tr>
+            return (float) $s;
+        };
+        $farq = static function ($amalda, $reja) use ($num) {
+            return $num($amalda) - $num($reja);
+        };
+        $st = strtolower((string) ($t?->status ?? ''));
+        $markIjobiy = in_array($t?->status, ['Ijobiy', 'Qoniqarli'], true)
+            || str_contains($st, 'ijobiy')
+            || str_contains($st, 'qoniqarli');
+        $markSalbiy = in_array($t?->status, ['Salbiy', 'Qoniqarsiz'], true)
+            || str_contains($st, 'salbiy')
+            || str_contains($st, 'qoniqarsiz');
+        $markQayta = str_contains($st, "o'rganish") || str_contains($st, 'o‘rganish') || str_contains($st, 'qayta');
+    @endphp
 
-                </tbody>
-            </table>
+    <p class="doc-title">NAMUNAVIY SHAKL<br>MAʼLUMOTNOMA</p>
+    <p class="sub-title">{{ $il->tashkilot->name ?? '—' }} — «{{ $il->mavzusi ?? '—' }}» loyihasi bo‘yicha
+        monitoring maʼlumotnomasi</p>
 
-        <!-- Second Page -->
-            <table>
-                <thead>
-                    <tr>
-                        <!-- <th>T/r</th> -->
-                        <th style="width: 200px;">MONITORING KO‘RSATKICHLARI</th>
-                        <th style="width: 80px;">Reja</th>
-                        <th>Amalda</th>
-                        <th>Farqi</th>
-                        <th>Izoh</th>
-                    </tr>
-                    <tr>
-                </thead>
-                <tbody>
+    <table>
+        <thead>
+            <tr>
+                <th class="tr-num">T/r</th>
+                <th>Maʼlumot nomi</th>
+                <th>Bajarilishi natijalarining ko‘rsatkichlari</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="section" colspan="3">I. Loyihaning asosiy ko‘rsatkichlari</td>
+            </tr>
+            <tr>
+                <td class="tr-num">1.1.</td>
+                <td>Loyiha mavzusi</td>
+                <td>Oʻzb: {{ $il->mavzusi ?? '—' }}@if (!empty($il->mavzusi_ru))<br>Ru: {{ $il->mavzusi_ru }}@endif</td>
+            </tr>
+            <tr>
+                <td class="tr-num">1.2.</td>
+                <td>Loyiha turi</td>
+                <td>{{ $il->turi ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">1.3.</td>
+                <td>Loyiha shifri</td>
+                <td>{{ $il->raqami ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">1.4.</td>
+                <td>Shartnoma raqami va sanasi</td>
+                <td>
+                    Asosiy: {{ $il->sh_raqami ?? '—' }} @if ($il->sanasi)
+                        / {{ \Illuminate\Support\Carbon::parse($il->sanasi)->format('d.m.Y') }}
+                    @endif
+                    @if (!empty($il->rsh_raqami) || !empty($il->rsh_sanasi))
+                        <br>Qayta: {{ $il->rsh_raqami ?? '—' }}
+                        @if ($il->rsh_sanasi)
+                            / {{ \Illuminate\Support\Carbon::parse($il->rsh_sanasi)->format('d.m.Y') }}
+                        @endif
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <td class="tr-num">1.5.</td>
+                <td>Bajarilish muddati</td>
+                <td>
+                    {{ optional($il->bosh_sana)->format('d.m.Y') ?? '—' }}
+                    —
+                    {{ optional($il->tug_sana)->format('d.m.Y') ?? '—' }}
+                    @if (!empty($il->muddat))
+                        ({{ $il->muddat }})
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <td class="tr-num">1.6.</td>
+                <td>Loyihaning umumiy qiymati, soʻm</td>
+                <td>{{ $il->sum ?? $il->umumiy_mablag ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">1.7.</td>
+                <td>Joriy yil uchun ajratilgan mablagʻ, soʻm</td>
+                <td>{{ $il->joriy_yil_sum ?? $il->joyyilajratilgan_mablag ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">1.8.</td>
+                <td>Jami summaga nisbatan, foiz</td>
+                <td>{{ $il->jami_summa_nisbat ?? $il->jami_summaga_nisbatan ?? '—' }}</td>
+            </tr>
 
-                    <tr>
-                        <!-- <td>3.1.2.</td> -->
-                        <td><b> Bakalavrlat bosqichida yakunlangan bittiruv malakaviy ishlari soni</b></td>
-                        <td>
-                            {{ $intellektual->b_bitiruv_mreja ?? 0 }}
-                        </td>
-                        <td>
-                            {{ $intellektual->b_bitiruv_mamalda ?? 0 }}
-                        </td>
-                        <td>
-                            {{ ($intellektual->b_bitiruv_mamalda ?? 0) - ($intellektual->b_bitiruv_mreja ?? 0) }}
-                        </td>
-                        <td>{{ $intellektual->b_bitiruv_izoh ?? null }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>3.1.3.</td> -->
-                        <td><b> Tayyorlangan magistrlik dissertatsiyaning soni</b></td>
-                        <td>
-                            {{ $intellektual->m_bitiruv_dreja ?? 0 }}
-                        </td>
-                        <td>
-                            {{ $intellektual->m_bitiruv_damalda ?? 0 }}
-                        </td>
-                        <td>
-                            {{ ($intellektual->m_bitiruv_damalda  ?? 0) - ($intellektual->m_bitiruv_dreja ?? 0) }}
-                        </td>
-                        <td>{{ $intellektual->m_bitiruv_izoh ?? null }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>3.1.4.</td> -->
-                        <td><b> Tayyorlangan doktorlik dissertatsiyalarning soni (PhD, DSc)</b></td>
-                        <td>
-                            {{ $intellektual->p_bitiruv_dreja ?? 0 }}
-                        </td>
-                        <td>
-                            {{ $intellektual->p_bitiruv_damalda ?? 0 }}
-                        </td>
-                        <td>
-                            {{ ($intellektual->p_bitiruv_damalda  ?? 0) - ($intellektual->p_bitiruv_dreja ?? 0) }}
-                        </td>
-                        <td>{{ $intellektual->p_bitiruv_izoh ?? null }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>3.1.5.</td> -->
-                        <td><b> Intellektual faoliyat natijalari soni </b>(ixtiro uchun olingan patentlari, ixtiro uchun patentga berilgan buyurtmalar, dasturiy mahsulotga olingan guvohnomalar)</td>
-                        <td>{{ ($intellektual->ixtiro_olingan_psreja ?? 0) + ($intellektual->ixtiro_ber_psreja ?? 0) + ($intellektual->dasturiy_gsreja ?? 0)}}</td>
-                        <td>{{ ($intellektual->dasturiy_gsamalda ?? 0) + ($intellektual->ixtiro_ber_psamalda ?? 0) + ($intellektual->ixtiro_olingan_psamalda ?? 0)}}</td>
-                        <td>{{   (($intellektual->dasturiy_gsamalda ?? 0) + ($intellektual->ixtiro_ber_psamalda ?? 0) + ($intellektual->ixtiro_olingan_psamalda ?? 0)) -(($intellektual->ixtiro_olingan_psreja ?? 0) + ($intellektual->ixtiro_ber_psreja ?? 0) + ($intellektual->dasturiy_gsreja ?? 0))}}</td>
-                        <td>
-                            {{ $intellektual->ixtiro_olingan_izoh ?? null}}, {{ $intellektual->ixtiro_ber_izoh ?? null }},  {{ $intellektual->dasturiy_izoh ?? null }}
-                        </td>
-                    </tr>
+            <tr>
+                <td class="section" colspan="3">II. Loyihaning rahbari va ijrochilari</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.1.</td>
+                <td>Loyihaning amaldagi rahbarining F.I.Sh.</td>
+                <td>{{ $il->rahbar_name ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.1.1.</td>
+                <td>Ilmiy darajasi</td>
+                <td>{{ $il->rahbariilmiy_darajasi ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.1.2.</td>
+                <td>Ilmiy unvoni</td>
+                <td>{{ $il->rahbariilmiy_unvoni ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.1.3.</td>
+                <td>Lavozimi</td>
+                <td>{{ $il->r_lavozimi ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.2.</td>
+                <td>Loyiha rahbari o‘zgargan</td>
+                <td>
+                    @php $rahbarOz = $il->loyiha_rahbari_uzgargan ?? null; @endphp
+                    @if ($rahbarOz === 1 || $rahbarOz === true || $rahbarOz === '1' || $rahbarOz === 'Ha')
+                        Ha
+                    @elseif ($rahbarOz === 0 || $rahbarOz === false || $rahbarOz === '0' || $rahbarOz === "Yo'q")
+                        Yo'q
+                    @else
+                        {{ $rahbarOz ?? '—' }}
+                    @endif
+                </td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.2.1.</td>
+                <td>Loyihaning avvalgi rahbarining F.I.Sh</td>
+                <td>{{ $il->avvr_fish ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.2.2.</td>
+                <td>Ilmiy darajasi</td>
+                <td>{{ $il->avvr_ilmiy_daraja ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.2.3.</td>
+                <td>Ilmiy unvoni</td>
+                <td>{{ $il->avvr_ilmiy_unvon ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.2.4.</td>
+                <td>Lavozimi</td>
+                <td>{{ $il->avvr_lavozimi ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.3</td>
+                <td>Loyihaning ijrochilari (yig‘ma)</td>
+                <td>Shtat birligi: {{ $il->shtat_birligi ?? '—' }}; ijrochilar soni: {{ $il->ijrochilar_soni ?? '—' }}
+                    nafar</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.3.1</td>
+                <td>Shtat birligi (jadval bo‘yicha)</td>
+                <td>{{ $ij->sum('shtat_birligi') ?: ($il->shtat_birligi ?? '—') }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2.3.2</td>
+                <td>Ijrochilar soni, nafar</td>
+                <td>{{ $ij->count() ?: ($il->ijrochilar_soni ?? '—') }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-                    <tr>
-                        <!-- <td>3.1.5.</td> -->
-                        <td><b> Mablag‘ning o‘zlashtirilishi, mln.so‘mi</b></td>
-                        <td colspan="4">{{ $loyihaiqtisodi->uzlashtirilishi_summasi ?? "" }}</td>
-                    </tr>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3">III. Ilmiy-tadqiqot ishlarining shartnoma va kalendar rejasiga asosan bajarilish holati
+                </th>
+                <th class="check">Ijobiy</th>
+                <th class="check">Salbiy</th>
+                <th class="check">Qayta o‘rganish</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="3">{{ $t?->kalendar ?? '—' }}</td>
+                <td class="check">{{ $markIjobiy ? '✓' : '' }}</td>
+                <td class="check">{{ $markSalbiy ? '✓' : '' }}</td>
+                <td class="check">{{ $markQayta ? '✓' : '' }}</td>
+            </tr>
+            <tr>
+                <td colspan="6"><strong>Izoh:</strong> {{ $t?->comment ?? '—' }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-                    <tr>
-                        <!-- <td>1.</td> -->
-                        <td>Ilmiy-tadqiqot ishlarining shartnoma va uning kalendar rejasiga asosan bajarilish holati</td>
-                        <td colspan="4">{{$tekshirivchilar->kalendar ?? "" }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>2.</td> -->
-                        <td>Ijrochi tashkilot tomonidan loyihaning amalga oshirilishi uchun zarur shart-sharoitlar yaratib berilganligi</td>
-                        <td colspan="4">{{$tekshirivchilar->shart_sharoit_yaratib ?? "" }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>3.</td> -->
-                        <td>Loyiha doirasida qo‘lga kiritilgan yakuniy natijalar va ularni tijoratlashtirish imkoniyatlari</td>
-                        <td colspan="4">{{$tekshirivchilar->yakuniy_natijalar ?? "" }}</td>
-                    </tr>
-                    <tr>
-                        <!-- <td>4.</td> -->
-                        <td>Loyiha ijrochilarining o‘zgarishi holati</td>
-                        <td colspan="4">{{$tekshirivchilar->loyiha_ijrochilari ?? "" }}</td>
-                    </tr>
-                    <tr>
-                        <td class="text-center title" colspan="4" >Monitoring xulosasi </td>
-                        <td style="text-align: center;">{{  $tekshirivchilar->status ?? null }}</td>
-                    </tr>
-                    <tr class="bg-gray-200">
-                        <td  colspan="5">
-                            <span class="text-center title">Izoh:</span> {{  $tekshirivchilar->comment ?? null }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="3">IV. Ijrochi tashkilot tomonidan loyihaning amalga oshirilishi uchun zarur shart-sharoitlar
+                    yaratib berilganligi</th>
+                <th class="check">Yaratilgan</th>
+                <th class="check">Yaratilmagan</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="3">{{ $t?->shart_sharoit_yaratib ?? '—' }}</td>
+                <td class="check">
+                    @php $sh = strtolower((string) ($t?->shart_sharoit_yaratib ?? '')); @endphp
+                    {{ str_contains($sh, 'yaratilgan') && ! str_contains($sh, 'yaratilmagan') ? '✓' : '' }}
+                </td>
+                <td class="check">{{ str_contains($sh, 'yaratilmagan') ? '✓' : '' }}</td>
+            </tr>
+            <tr>
+                <td colspan="5"><strong>Izoh:</strong> {{ $t?->shart_sharoit_yaratib ?? '—' }}</td>
+            </tr>
+        </tbody>
+    </table>
 
-        <div class="footer">
-            <div class="footer-info" style="padding-top:50px;">
-                <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{  $tekshirivchilar->fish ?? null }} </p>
-                <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{  $tekshirivchilar->user->name ?? null }} </p>
-                <p><span class="title">Ekspert F.I.Sh:</span> {{  $tekshirivchilar->ekspert_fish ?? null }} </p>
-                <p><span class="title">Tashkilotning mas'ul rahbari  F.I.Sh:</span> {{  $tekshirivchilar->t_masul ?? null }} </p>
-                <p><span class="title">Sana:</span> {{  $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
-            </div>
-            <div class="qr-code">
-                <img src="data:image/png;base64,{{ $qrCode }}" style="display: inline-block;"
-                alt="Qr code" style="width: 100px; height: 100px;">
-            </div>
+    <table>
+        <thead>
+            <tr>
+                <th class="section" colspan="5">V. Ajratilgan moliyaviy mablagʻning maqsadli sarflanayotganligi</th>
+            </tr>
+            <tr>
+                <th class="tr-num">T/r</th>
+                <th>Koʻrsatkichlar</th>
+                <th>Rejada</th>
+                <th>Amalda</th>
+                <th>Farqi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ($q)
+                <tr>
+                    <td class="tr-num">5.1.</td>
+                    <td>Mehnatga haq toʻlash (5.1.-shakl)</td>
+                    <td>{{ $q->mehnat_haq_r }}</td>
+                    <td>{{ $q->mehnat_haq_a }}</td>
+                    <td>{{ $farq($q->mehnat_haq_a, $q->mehnat_haq_r) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="muted"><strong>Izoh:</strong> {{ $q->mehnat_haq_i ?? '—' }}</td>
+                </tr>
+                <tr>
+                    <td class="tr-num">5.2.</td>
+                    <td>Xizmat safarlari xarajatlari (5.2.-shakl)</td>
+                    <td>{{ $q->xizmat_saf_r }}</td>
+                    <td>{{ $q->xizmat_saf_a }}</td>
+                    <td>{{ $farq($q->xizmat_saf_a, $q->xizmat_saf_r) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="muted"><strong>Izoh:</strong> {{ $q->xizmat_saf_i ?? '—' }}</td>
+                </tr>
+                <tr>
+                    <td class="tr-num">5.3.</td>
+                    <td>Asbob-uskunalar va boshqa tovar-moddiy boyliklar xaridi (5.4.-shakl)</td>
+                    <td>{{ $q->xarid_xaraja_r }}</td>
+                    <td>{{ $q->xarid_xaraja_a }}</td>
+                    <td>{{ $farq($q->xarid_xaraja_a, $q->xarid_xaraja_r) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="muted"><strong>Izoh:</strong> {{ $q->xarid_xaraja_i ?? '—' }}</td>
+                </tr>
+                <tr>
+                    <td class="tr-num">5.4.</td>
+                    <td>Materiallar va butlovchi qismlar (5.5.-shakl)</td>
+                    <td>{{ $q->mat_butlovchi_r }}</td>
+                    <td>{{ $q->mat_butlovchi_a }}</td>
+                    <td>{{ $farq($q->mat_butlovchi_a, $q->mat_butlovchi_r) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="muted"><strong>Izoh:</strong> {{ $q->mat_butlovchi_i ?? '—' }}</td>
+                </tr>
+                <tr>
+                    <td class="tr-num">5.5.</td>
+                    <td>Boshqa tashkilotlar tadqiqot ishlari uchun toʻlov (5.6.-shakl)</td>
+                    <td>{{ $q->jalb_etilgan_r }}</td>
+                    <td>{{ $q->jalb_etilgan_a }}</td>
+                    <td>{{ $farq($q->jalb_etilgan_a, $q->jalb_etilgan_r) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="muted"><strong>Izoh:</strong> {{ $q->jalb_etilgan_i ?? '—' }}</td>
+                </tr>
+                <tr>
+                    <td class="tr-num">5.6.</td>
+                    <td>Boshqa xarajatlar (5.7.-shakl)</td>
+                    <td>{{ $q->boshqa_xarajat_r }}</td>
+                    <td>{{ $q->boshqa_xarajat_a }}</td>
+                    <td>{{ $farq($q->boshqa_xarajat_a, $q->boshqa_xarajat_r) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="muted"><strong>Izoh:</strong> {{ $q->boshqa_xarajat_i ?? '—' }}</td>
+                </tr>
+                <tr>
+                    <td class="tr-num">5.7.</td>
+                    <td>Tashkilotning ustama xarajatlari</td>
+                    <td>{{ $q->tashustama_xarajat_r }}</td>
+                    <td>{{ $q->tashustama_xarajat_a }}</td>
+                    <td>{{ $farq($q->tashustama_xarajat_a, $q->tashustama_xarajat_r) }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="muted"><strong>Izoh:</strong> {{ $q->tashustama_xarajat_i ?? '—' }}</td>
+                </tr>
+                <tr>
+                    <td class="tr-num">5.8.</td>
+                    <td>Mablagʻning oʻzlashtirilishi, soʻm</td>
+                    <td colspan="2">{{ $q->uzlashtirilishi_summasi ?? '—' }}</td>
+                    <td>—</td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="muted"><strong>Izoh:</strong> {{ $q->uzlashtirilishi_sum_i ?? '—' }}</td>
+                </tr>
+                <tr>
+                    <td colspan="5"><strong>Asbob-uskunalar xaridi (matn):</strong> {{ $q->xarid_qilingan_xarid ?? '—' }}
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="5" class="muted">{{ $q->xarid_qilingan_i ?? '' }}</td>
+                </tr>
+            @else
+                <tr>
+                    <td colspan="5" style="text-align:center;">Ushbu chorak uchun loyiha iqtisodiy maʼlumotlari
+                        kiritilmagan.</td>
+                </tr>
+            @endif
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="section" colspan="5">VI. Loyiha doirasida xarid qilingan asosiy asbob-uskuna va inventarlar</th>
+            </tr>
+            <tr>
+                <th class="tr-num">№</th>
+                <th>Asbob-uskuna va inventarlar nomi</th>
+                <th>Soni</th>
+                <th>Narxi mln.soʻm</th>
+                <th>Izoh</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="tr-num">1</td>
+                <td>{{ $q?->yetkb_yuridik_nomi ?? '—' }}</td>
+                <td>{{ $q?->xarid_s ?? '—' }}</td>
+                <td>{{ $q?->xarid_r ?? '—' }}</td>
+                <td>{{ $q?->xarid_sh ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td class="tr-num">2</td>
+                <td colspan="4" class="muted">{{ $q?->xarid_qilingan_xarid ?? '—' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="section" colspan="6">VII. Ilmiy loyihalar natijalari (jurnal va boshqa koʻrsatkichlar)</th>
+            </tr>
+            <tr>
+                <th class="tr-num">T/r</th>
+                <th>Koʻrsatkichlar</th>
+                <th>Rejada</th>
+                <th>Amalda</th>
+                <th>Farqi</th>
+                <th>Izoh</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if ($i)
+                @php
+                    $rows7 = [
+                        ['7.1.', 'Mahalliy ilmiy jurnallardagi maqolalar soni', 'mal_jur_reja', 'mal_jur_amalda', 'mal_jur_izoh'],
+                        ['7.2.', 'Xorijiy jurnallardagi maqolalar (WoS/Scopusdan tashqari)', 'xor_jur_reja', 'xor_jur_amalda', 'xor_jur_izoh'],
+                        ['7.3.', 'Web of Science va Scopus bazasidagi maqolalar soni', 'web_jur_reja', 'web_jur_amalda', 'web_jur_izoh'],
+                        ['7.4.', 'Tezislar soni', 'tezislar_reja', 'tezislar_amalda', 'tezislar_izoh'],
+                        ['7.5.', 'Ilmiy monografiyalar soni', 'ilmiy_mon_reja', 'ilmiy_mon_amalda', 'ilmiy_mon_izoh'],
+                        ['7.6.', 'Nashr qilingan oʻquv qoʻllanmalari soni', 'nashr_uquv_reja', 'nashr_uquv_amalda', 'nashr_uquv_izoh'],
+                        ['7.7.', 'Nashr qilingan darsliklar soni', 'darslik_reja', 'darslik_amalda', 'darslik_izoh'],
+                        ['7.8.', 'Bakalavriat bitiruv malakaviy ishlari soni', 'b_bitiruv_mreja', 'b_bitiruv_mamalda', 'b_bitiruv_izoh'],
+                        ['7.9.', 'Magistrlik dissertatsiyalari soni', 'm_bitiruv_dreja', 'm_bitiruv_damalda', 'm_bitiruv_izoh'],
+                        ['7.10.', 'Doktorlik dissertatsiyalari soni (PhD, DSc)', 'p_bitiruv_dreja', 'p_bitiruv_damalda', 'p_bitiruv_izoh'],
+                        ['7.11.', 'Intellektual mulk obyektlari uchun arizalar soni', 'i_mulk_areja', 'i_mulk_aamalda', 'i_mulk_izoh'],
+                        ['7.12.', 'Ixtiro uchun olingan patentlar soni', 'ixtiro_olingan_psreja', 'ixtiro_olingan_psamalda', 'ixtiro_olingan_izoh'],
+                        ['7.13.', 'Dasturiy mahsulotga olingan guvohnomalar soni', 'dasturiy_gsreja', 'dasturiy_gsamalda', 'dasturiy_izoh'],
+                    ];
+                @endphp
+                @foreach ($rows7 as $row)
+                    @php [$tr, $title, $kr, $ka, $ki] = $row; @endphp
+                    <tr>
+                        <td class="tr-num">{{ $tr }}</td>
+                        <td>{{ $title }}</td>
+                        <td>{{ $i->{$kr} ?? '—' }}</td>
+                        <td>{{ $i->{$ka} ?? '—' }}</td>
+                        <td>{{ $farq($i->{$ka} ?? 0, $i->{$kr} ?? 0) }}</td>
+                        <td>{{ $i->{$ki} ?? '—' }}</td>
+                    </tr>
+                @endforeach
+            @else
+                <tr>
+                    <td colspan="6" style="text-align:center;">Ushbu chorak uchun intellektual faoliyat koʻrsatkichlari
+                        kiritilmagan.</td>
+                </tr>
+            @endif
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="section" colspan="2">VIII. Loyiha doirasida qoʻlga kiritilgan yakuniy natijalar va tijoratlashtirish
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td colspan="2"><strong>Izoh:</strong> {{ $t?->yakuniy_natijalar ?? '—' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="section" colspan="5">IX. Loyihaning ijrochilari toʻgʻrisida maʼlumot</th>
+            </tr>
+            <tr>
+                <th class="tr-num">№</th>
+                <th>F.I.Sh</th>
+                <th>Science ID</th>
+                <th>Shtat birligi</th>
+                <th>Izoh</th>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ($ij as $n => $row)
+                <tr>
+                    <td class="tr-num">{{ $n + 1 }}</td>
+                    <td>{{ $row->fio ?? '—' }}</td>
+                    <td>{{ $row->science_id ?? '—' }}</td>
+                    <td>{{ $row->shtat_birligi ?? '—' }}</td>
+                    <td>—</td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="5" style="text-align:center;">Ijrochilar roʻyxati kiritilmagan.</td>
+                </tr>
+            @endforelse
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="section" colspan="2">X. Ekspertning yakuniy xulosasi va imzolar</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Monitoring xulosasi (status)</strong></td>
+                <td>{{ $t?->status ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td><strong>Izoh</strong></td>
+                <td>{{ $t?->comment ?? '—' }}</td>
+            </tr>
+            <tr>
+                <td><strong>Loyiha ijrochilari oʻzgarishi (ekspert)</strong></td>
+                <td>{{ $t?->loyiha_ijrochilari ?? '—' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <p><strong>Ishchi guruh rahbari F.I.Sh:</strong> {{ $t?->fish ?? '—' }}</p>
+        <p><strong>Ishchi guruh azosi F.I.Sh:</strong> {{ $t?->user?->name ?? '—' }}</p>
+        <p><strong>Ekspert F.I.Sh:</strong> {{ $t?->ekspert_fish ?? '—' }}</p>
+        <p><strong>Tashkilotning masʼul rahbari F.I.Sh:</strong> {{ $t?->t_masul ?? '—' }}</p>
+        <p><strong>Monitoring oʻtkazilgan sana:</strong> {{ $t?->created_at?->format('d.m.Y') ?? '—' }}</p>
+        <div style="margin-top:8px;">
+            <img src="data:image/svg+xml;base64,{{ $qrCode ?? '' }}" alt="QR" style="width: 90px; height: 90px;">
         </div>
-        
-    </div>
     </div>
 </body>
 

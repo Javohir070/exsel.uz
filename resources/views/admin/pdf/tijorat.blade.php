@@ -208,6 +208,11 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @unless ($tekshirivchilar ?? null)
+                    <tr>
+                        <td colspan="3" style="text-align: center;">Ushbu monitoring uchun ekspert xulosasi mavjud emas.</td>
+                    </tr>
+                    @else
                     <tr>
                         <td class="title">1.</td>
                         <td>
@@ -253,7 +258,7 @@
                             Loyiha doirasida amalga oshirilgan sotuv xajmi? Million so‘mda .
                         </td>
                         <td style="text-align: center;">
-                            {{ number_format($tekshirivchilar->sotuv_hajmi , 0, ',', ' ') }}
+                            {{ number_format((float) ($tekshirivchilar->sotuv_hajmi ?? 0), 0, ',', ' ') }}
                         </td>
                     </tr>
 
@@ -263,7 +268,7 @@
                             Loyiha doirasida amalga oshirilgan eksport xajmi? Ming dollarda.
                         </td>
                         <td style="text-align: center;">
-                            {{ number_format($tekshirivchilar->eksport_hajmi , 0, ',', ' ') }}
+                            {{ number_format((float) ($tekshirivchilar->eksport_hajmi ?? 0), 0, ',', ' ') }}
                         </td>
                     </tr>
 
@@ -273,7 +278,7 @@
                             Budjetga to‘langan soliqlar? Million so‘mda.
                         </td>
                         <td style="text-align: center;">
-                            {{ number_format($tekshirivchilar->soliq_tolov , 0, ',', ' ') }}
+                            {{ number_format((float) ($tekshirivchilar->soliq_tolov ?? 0), 0, ',', ' ') }}
                         </td>
                     </tr>
 
@@ -337,6 +342,7 @@
                         </td>
                         {{-- <td>{{  $tekshirivchilar->comment ?? null }}</td> --}}
                     </tr>
+                    @endunless
                 </tbody>
             </table>
 
@@ -345,20 +351,22 @@
                 <tbody>
                     <tr>
                         <td colspan="3">
+                            @if ($tekshirivchilar ?? null)
                             <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span>
                                 {{ $tekshirivchilar->fish ?? null }} </p>
                             <p><span class="title">Ishchi guruh azosi F.I.Sh:</span>
-                                {{ $tekshirivchilar->user->name ?? null }} </p>
+                                {{ $tekshirivchilar->user?->name }} </p>
                             <p><span class="title">Ekspert F.I.Sh:</span> {{ $tekshirivchilar->ekspert_fish ?? null }}
                             </p>
                             <p><span class="title">Tashkilotning mas'ul rahbari F.I.Sh:</span>
                                 {{ $tekshirivchilar->t_masul ?? null }} </p>
                             <p><span class="title">Sana:</span>
-                                {{ $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
+                                {{ $tekshirivchilar->created_at?->format('d.m.Y') }}</p>
+                            @endif
                         </td>
                         <td>
                             <div style="display: flex;justify-content: end;align-items: end;">
-                                <img src="data:image/png;base64,{{ $qrCode }}" alt="Qr code"
+                                <img src="data:image/svg+xml;base64,{{ $qrCode ?? '' }}" alt="Qr code"
                                     style="width: 100px; height: 100px;">
                             </div>
                         </td>
@@ -371,20 +379,5 @@
     </div>
 
 </body>
-
-
-<!-- <div class="footer">
-                        <div class="footer-info" style="padding-top:50px;">
-                            <p><span class="title">Ishchi guruh rahbari F.I.Sh:</span> {{ $tekshirivchilar->fish ?? null }} </p>
-                            <p><span class="title">Ishchi guruh azosi F.I.Sh:</span> {{ $tekshirivchilar->user->name ?? null }} </p>
-                            <p><span class="title">Ekspert F.I.Sh:</span> {{ $tekshirivchilar->ekspert_fish ?? null }} </p>
-                            <p><span class="title">Tashkilotning mas'ul rahbari  F.I.Sh:</span> {{ $tekshirivchilar->t_masul ?? null }} </p>
-                            <p><span class="title">Sana:</span> {{ $tekshirivchilar->created_at->format('d.m.Y') ?? null }}</p>
-                        </div>
-                        <div class="qr-code">
-                            <img src="data:image/png;base64,{{ $qrCode }}"
-                            alt="Qr code" style="width: 100px; height: 100px;">
-                        </div>
-                    </div> -->
 
 </html>

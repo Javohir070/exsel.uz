@@ -13,6 +13,7 @@ class TijoratExpert extends Model
         'user_id',
         'tashkilot_id',
         'tijorat_id',
+        'quarter',
 
         'grant_sarf_maqsadli',
          'grant_sarf_maqsadli_izox',

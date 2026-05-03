@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreTijoratExpertRequest;
 use App\Http\Requests\UpdateTijoratExpertRequest;
+use App\Models\Monitoring;
 use App\Models\Tijorat;
 use App\Models\TijoratExpert;
 use App\Models\User;
@@ -11,7 +12,6 @@ use Illuminate\Support\Facades\Storage;
 
 class TijoratExpertController extends Controller
 {
-
     public function index()
     {
         //
@@ -26,15 +26,28 @@ class TijoratExpertController extends Controller
 
     public function store(StoreTijoratExpertRequest $request)
     {
+        $monitoring = Monitoring::getActive();
+
+        if (! $monitoring) {
+            return redirect()->back()->withErrors(['monitoring' => 'Faol monitoring topilmadi.']);
+        }
+
         $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
 
         $data = $request->validated();
+
+        if (TijoratExpert::where('tijorat_id', $data['tijorat_id'])->where('quarter', $monitoring->id)->exists()) {
+            return redirect()->back()
+                ->withErrors(['tijorat_id' => 'Ushbu loyiha uchun ushbu monitoring davrida yozuv allaqachon mavjud.'])
+                ->withInput();
+        }
 
         $data['media_zip'] = $request->file('media_zip')->store('tijorat_media');
 
         $data['user_id'] = auth()->id();
         $data['fish'] = $user->name ?? auth()->user()->name;
         $data['tashkilot_id'] = auth()->user()->tashkilot_id;
+        $data['quarter'] = $monitoring->id;
 
         TijoratExpert::create($data);
 
@@ -67,6 +80,7 @@ class TijoratExpertController extends Controller
             ]);
         } else {
             $data = $request->validated();
+            unset($data['quarter']);
 
             if ($request->hasFile('media_zip')) {
 
@@ -91,9 +105,9 @@ class TijoratExpertController extends Controller
 
     public function destroy($id)
     {
-        $tijoratExpert = TijoratExpert::find($id);
+        $tijoratExpert = TijoratExpert::findOrFail($id);
         $tijoratExpert->delete();
 
-        return redirect()->back()->with('statua', 'Muvaffaqiyatli o\'chirildi');
+        return redirect()->back()->with('status', 'Muvaffaqiyatli o\'chirildi');
     }
 }
