@@ -1,8 +1,7 @@
-
 <div class="tab-content__pane" id="old-expert">
 
-    <div class="p-5">
-        @forelse ($quarters as $quarter)
+    @forelse ($quarters as $quarter)
+        <div class="p-5">
             <table class="table table-bordered">
                 <tbody>
                     <tr>
@@ -86,11 +85,11 @@
                     </tr>
                 </tbody>
             </table>
-        @empty
-            <div class="alert alert-danger">
-                <p>Xulosalar topilmadi</p>
-            </div>
-        @endforelse
-    </div>
+        </div>
+    @empty
+        <div class="alert alert-danger">
+            <p>Xulosalar topilmadi</p>
+        </div>
+    @endforelse
 
 </div>
