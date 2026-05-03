@@ -106,7 +106,7 @@
         $markQayta = str_contains($st, "o'rganish") || str_contains($st, 'o‘rganish') || str_contains($st, 'qayta');
     @endphp
 
-    <p class="doc-title">NAMUNAVIY SHAKL<br>MAʼLUMOTNOMA</p>
+    <p class="doc-title">MAʼLUMOTNOMA</p>
     <p class="sub-title">{{ $il->tashkilot->name ?? '—' }} — «{{ $il->mavzusi ?? '—' }}» loyihasi bo‘yicha
         monitoring maʼlumotnomasi</p>
 
