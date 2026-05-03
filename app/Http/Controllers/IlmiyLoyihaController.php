@@ -433,6 +433,10 @@ class IlmiyLoyihaController extends Controller
             'tashkilot_id' => $request->tashkilot_id,
             'is_active' => $request->is_active,
         ]);
+        $tashkilot = Tashkilot::findOrFail($request->tashkilot_id);
+        $tashkilot->update([
+            'ilmiyloyiha_is' => 1,
+        ]);
 
         return back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
