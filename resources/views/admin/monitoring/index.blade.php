@@ -24,7 +24,7 @@
 
                 <thead>
                     <tr>
-                        <th class="whitespace-no-wrap">№</th>
+                        <th class="whitespace-no-wrap">ID</th>
                         <th class="whitespace-no-wrap">Yil</th>
                         <th class="whitespace-no-wrap">Chorak</th>
                         <th class="whitespace-no-wrap">Holati</th>
@@ -38,7 +38,7 @@
                     @forelse ($monitorings as $monitoring)
 
                         <tr class="intro-x">
-                            <td>{{ $loop->index + 1 + ($monitorings->currentPage() - 1) * $monitorings->perPage() }}</td>
+                            <td>{{ $monitoring->id }}</td>
                             <td>
                                 {{ $monitoring->year }}
                             </td>

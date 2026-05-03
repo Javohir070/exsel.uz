@@ -11,10 +11,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class IntellektualController extends Controller
 {
-    public $monitoring;
+    public ?Monitoring $monitoring = null;
 
     public function __construct()
     {
+        $this->middleware('auth');
         $this->monitoring = Monitoring::getActive();
     }
 
@@ -34,6 +35,10 @@ class IntellektualController extends Controller
 
     public function store(StoreIntellektualRequest $request)
     {
+        if ($this->monitoring === null) {
+            return redirect()->back()->withErrors(['monitoring' => 'Faol monitoring mavjud emas.']);
+        }
+        
         Intellektual::create([
             'tashkilot_id' => auth()->user()->tashkilot_id,
             'user_id' => auth()->id(),

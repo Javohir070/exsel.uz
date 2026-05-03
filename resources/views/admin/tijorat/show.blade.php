@@ -1,15 +1,9 @@
 @extends('layouts.admin')
 
 @section('content')
-    <style>
-        .hidden {
-            display: none;
-        }
-    </style>
-
-    <div class="content">
+    
+    <div class="content tijorat-show-page">
         <div class="flex justify-between align-center mt-6 mb-6">
-
             <h2 class="intro-y text-lg font-medium">{{ $tijorat->name }}</h2>
             @role('super-admin')
                 <a href="{{ route('tijorat.index') }}" class="button w-24 bg-theme-1 text-white">
@@ -26,8 +20,7 @@
             <table class="table">
                 <tbody>
                     <tr>
-                        <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">Ma’lumot
-                        </th>
+                        <th class=" border" style="width: 100%; font-size:16px;text-align:center;" colspan="2">Ma’lumot</th>
                     </tr>
                     <tr class="bg-gray-200">
                         <th class=" border" style="width:50%;">Loyiha nomi</th>
@@ -91,46 +84,51 @@
             </table>
         </div>
 
+        <style>
+            .tijorat-show-page .tijorat-show-izoh-hidden {
+                display: none;
+            }
+        </style>
+
         @role(['Ekspert', 'tijorat boyicha masul', 'Ishchi guruh azosi', 'Rahbar'])
         @forelse ($tijoratexpert as $tekshirivchilar)
             <div class="overflow-x-auto"
                 style="background-color: white;margin-top:30px;border-radius:8px;padding:30px 20px;">
-                <table class="table">
-                    <div
-                        style="display: flex;justify-content: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
-                        <div style="text-align: end;display: flex;">
-                            @role(['Ekspert'])
-                            @if ($tekshirivchilar->holati == 'yuborildi')
-                                <a href="{{ url('generate-pdftijorat/' . $tijorat->id) }}"
-                                    class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
-                                    Eksport
-                                </a>
-                                <form action="{{ route('tijoratexpert.update', $tekshirivchilar->id) }}" method="POST"
-                                    onsubmit="return confirm('Haqiqatan ham rad etasizmi?');">
-                                    @csrf
-                                    @method('PUT')
-                                    <input type="hidden" name="holati" value="1">
-                                    <button type="submit" class="button w-24 bg-theme-6 text-white">Rad etish</button>
-                                </form>
-                            @endif
-                            @endrole
-                            @role(['Ishchi guruh azosi'])
-                            @if ($tekshirivchilar->holati == 'Rad etildi')
-                                <a href="{{ route('tijoratexpert.edit', ['tijoratexpert' => $tekshirivchilar->id]) }}"
-                                    class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
-                                    Tahrirlash
-                                </a>
-                                <form action="{{ route('tijoratexpert.destroy', $tekshirivchilar->id) }}" method="POST"
-                                    onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
-                                    @csrf
-                                    @method('DELETE')
-                                    <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
-                                </form>
-                            @endif
-                            @endrole
-                        </div>
-
+                <div
+                    style="display: flex;justify-content: center; border-bottom: 1px solid #e2e8f0; padding-bottom: 20px;">
+                    <div style="text-align: end;display: flex;">
+                        @role(['Ekspert'])
+                        @if ($tekshirivchilar->holati == 'yuborildi')
+                            <a href="{{ url('generate-pdftijorat/' . $tijorat->id) }}"
+                                class="button delete-cancel  border text-gray-700 mr-1" style="margin-right:20px;">
+                                Eksport
+                            </a>
+                            <form action="{{ route('tijoratexpert.update', $tekshirivchilar->id) }}" method="POST"
+                                onsubmit="return confirm('Haqiqatan ham rad etasizmi?');">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="holati" value="1">
+                                <button type="submit" class="button w-24 bg-theme-6 text-white">Rad etish</button>
+                            </form>
+                        @endif
+                        @endrole
+                        @role(['Ishchi guruh azosi'])
+                        @if ($tekshirivchilar->holati == 'Rad etildi')
+                            <a href="{{ route('tijoratexpert.edit', ['tijoratexpert' => $tekshirivchilar->id]) }}"
+                                class="button w-24 bg-theme-1 text-white" style="margin-right:20px;">
+                                Tahrirlash
+                            </a>
+                            <form action="{{ route('tijoratexpert.destroy', $tekshirivchilar->id) }}" method="POST"
+                                onsubmit="return confirm('Haqiqatan ham o‘chirmoqchimisiz?');">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="button w-24 bg-theme-6 text-white">O'chirish</button>
+                            </form>
+                        @endif
+                        @endrole
                     </div>
+                </div>
+                <table class="table">
                     <thead>
                         <tr>
                             <th class="border border-b-2 " style="width: 40px;">№</th>
@@ -179,7 +177,7 @@
                             <td class="border border-b-2 ">Loyiha doirasida amalga oshirilgan sotuv xajmi? Million so‘mda
                             </td>
                             <td class="border border-b-2 ">
-                                {{ number_format($tekshirivchilar->sotuv_hajmi, 0, ',', ' ') }}
+                                {{ number_format($tekshirivchilar->sotuv_hajmi ?? 0, 0, ',', ' ') }}
                             </td>
                         </tr>
 
@@ -188,7 +186,7 @@
                             <td class="border border-b-2 ">Loyiha doirasida amalga oshirilgan eksport xajmi? Ming dollarda
                             </td>
                             <td class="border border-b-2 ">
-                                {{ number_format($tekshirivchilar->eksport_hajmi, 0, ',', ' ') }}
+                                {{ number_format($tekshirivchilar->eksport_hajmi ?? 0, 0, ',', ' ') }}
                             </td>
                         </tr>
 
@@ -196,7 +194,7 @@
                             <td class="border border-b-2 ">7</td>
                             <td class="border border-b-2 ">Budjetga to‘langan soliqlar? Million so‘mda </td>
                             <td class="border border-b-2 ">
-                                {{ number_format($tekshirivchilar->soliq_tolov, 0, ',', ' ') }}
+                                {{ number_format($tekshirivchilar->soliq_tolov ?? 0, 0, ',', ' ') }}
                             </td>
                         </tr>
 
@@ -292,7 +290,7 @@
                                 Ishchi guruh azosi F.I.Sh
                             </td>
                             <td class="border border-b-2 ">
-                                {{ $tekshirivchilar->user->name }}
+                                {{ $tekshirivchilar->user?->name }}
                             </td>
                         </tr>
                         <tr class="bg-gray-200">
@@ -325,6 +323,7 @@
                         @csrf
                         <div class="grid grid-cols-12 gap-2">
                             <input type="hidden" name="tijorat_id" value="{{ $tijorat->id }}">
+                            <input type="hidden" name="holati" value="yuborildi">
 
                             <div class="field-group w-full col-span-6">
                                 <label class="flex flex-col sm:flex-row"> <span
@@ -342,7 +341,7 @@
 
                                 </select><br>
 
-                                <textarea name="grant_sarf_maqsadli_izox" id="" class="input w-full border mt-2 hidden comment-area"
+                                <textarea name="grant_sarf_maqsadli_izox" id="" class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area"
                                     cols="2" rows="2" required></textarea>
 
                                 @error('grant_sarf_maqsadli')
@@ -366,7 +365,7 @@
 
                                 </select><br>
 
-                                <textarea name="asbob_balans_olingan_izox" id="" class="input w-full border mt-2 hidden comment-area"
+                                <textarea name="asbob_balans_olingan_izox" id="" class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area"
                                     cols="2" rows="2" required></textarea>
 
                                 @error('asbob_balans_olingan')
@@ -403,7 +402,7 @@
 
                                 </select><br>
 
-                                <textarea name="xodimlar_haqiqiy_izox" id="" class="input w-full border mt-2 hidden comment-area"
+                                <textarea name="xodimlar_haqiqiy_izox" id="" class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area"
                                     cols="2" rows="2" required></textarea>
 
                                 @error('xodimlar_haqiqiy')
@@ -429,7 +428,7 @@
                                 <label class="flex flex-col sm:flex-row"> <span
                                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha doirasida amalga
                                     oshirilgan sotuv xajmi? Million so‘mda</label>
-                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="sotuv_hajmi"
+                                <input type="text" id="tijoratSotuvHajmi" oninput="formatNumber(this)" name="sotuv_hajmi"
                                     value="{{ old('sotuv_hajmi') }}" class="input w-full border mt-2 show-comment-select"
                                     required="">
                                 @error('sotuv_hajmi')
@@ -441,7 +440,7 @@
                                 <label class="flex flex-col sm:flex-row"> <span
                                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyiha doirasida amalga
                                     oshirilgan eksport xajmi? Ming dollarda</label>
-                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="eksport_hajmi"
+                                <input type="text" id="tijoratEksportHajmi" oninput="formatNumber(this)" name="eksport_hajmi"
                                     value="{{ old('eksport_hajmi') }}"
                                     class="input w-full border mt-2 show-comment-select" required="">
                                 @error('eksport_hajmi')
@@ -453,7 +452,7 @@
                                 <label class="flex flex-col sm:flex-row"> <span
                                         class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Budjetga to‘langan
                                     soliqlar? Million so‘mda</label>
-                                <input type="text" id="sumInput1" oninput="formatNumber(this)" name="soliq_tolov"
+                                <input type="text" id="tijoratSoliqTolov" oninput="formatNumber(this)" name="soliq_tolov"
                                     value="{{ old('soliq_tolov') }}" class="input w-full border mt-2 show-comment-select"
                                     required="">
                                 @error('soliq_tolov')
@@ -488,7 +487,7 @@
                                     <option value="0">Yo'q</option>
 
                                 </select><br>
-                                <textarea name="sertifikat_olingan_izox" id="" class="input w-full border mt-2 hidden comment-area"
+                                <textarea name="sertifikat_olingan_izox" id="" class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area"
                                     cols="2" rows="2" required></textarea>
 
                                 @error('sertifikat_olingan')
@@ -511,7 +510,7 @@
                                     <option value="0">Yo'q</option>
 
                                 </select><br>
-                                <textarea name="loyiha_muammo_izox" id="" class="input w-full border mt-2 hidden comment-area"
+                                <textarea name="loyiha_muammo_izox" id="" class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area"
                                     cols="2" rows="2" required></textarea>
 
                                 @error('loyiha_muammo')
@@ -535,7 +534,7 @@
                                     <option value="0">Yo'q</option>
                                 </select>
 
-                                <textarea name="loyiha_taklif_izox" class="input w-full border mt-2 hidden comment-area" cols="2"
+                                <textarea name="loyiha_taklif_izox" class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area" cols="2"
                                     rows="2"></textarea>
 
                                 @error('loyiha_taklif')
@@ -614,7 +613,7 @@
 
                                 </select><br>
 
-                                @error('muddat')
+                                @error('status')
                                     <div class="error">{{ $message }}</div>
                                 @enderror
                             </div>
@@ -657,8 +656,12 @@
             // 3 xonadan bo‘sh joy bilan formatlash (masalan: 100 000)
             input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
-            // So‘z ko‘rinishiga o‘girish
-            document.getElementById(outputId).textContent = numberToWords(Number(value));
+            if (outputId) {
+                const el = document.getElementById(outputId);
+                if (el) {
+                    el.textContent = numberToWords(Number(value));
+                }
+            }
         }
 
         function numberToWords(num) {
@@ -701,10 +704,10 @@
                 let textarea = this.closest('.field-group').querySelector('.comment-area');
 
                 if (this.value === "0") {
-                    textarea.classList.remove('hidden');
+                    textarea.classList.remove('tijorat-show-izoh-hidden');
                     textarea.setAttribute('required', true);
                 } else {
-                    textarea.classList.add('hidden');
+                    textarea.classList.add('tijorat-show-izoh-hidden');
                     textarea.removeAttribute('required');
                     textarea.value = "";
                 }

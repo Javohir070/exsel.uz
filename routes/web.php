@@ -49,6 +49,7 @@ use App\Http\Controllers\TashkilotMalumotlarController;
 use App\Http\Controllers\TashkilotXodimlarController;
 use App\Http\Controllers\TashkilotXujalikController;
 use App\Http\Controllers\TestTelegramController;
+use App\Http\Controllers\PDFController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,13 +70,13 @@ Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('hom
 Route::middleware('auth')->group(function () {
 
     //start generate pdf
-    Route::get('generate-pdf/{ilmiyId}', [App\Http\Controllers\PDFController::class, 'generatePDF']);
-    Route::get('generate-pdfsajiyor/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFsajiyor']);
-    Route::get('generate-pdfakadem/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFakadem']);
-    Route::get('generate-pdfstartup/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFstartup']);
-    Route::get('generate-pdftijorat/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFtijorat']);
-    Route::get('generate-pdfasbobuskuna/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFAsbobuskuna']);
-    Route::get('generate-pdfdoktarantura/{Id}', [App\Http\Controllers\PDFController::class, 'generatePDFDoktarantura']);
+    Route::get('generate-pdf/{ilmiyId}', [PDFController::class, 'generatePDF']);
+    Route::get('generate-pdfsajiyor/{Id}', [PDFController::class, 'generatePDFsajiyor']);
+    Route::get('generate-pdfakadem/{Id}', [PDFController::class, 'generatePDFakadem']);
+    Route::get('generate-pdfstartup/{Id}', [PDFController::class, 'generatePDFstartup']);
+    Route::get('generate-pdftijorat/{Id}', [PDFController::class, 'generatePDFtijorat']);
+    Route::get('generate-pdfasbobuskuna/{Id}', [PDFController::class, 'generatePDFAsbobuskuna']);
+    Route::get('generate-pdfdoktarantura/{Id}', [PDFController::class, 'generatePDFDoktarantura']);
     // end generate pdf
 
     //start Search

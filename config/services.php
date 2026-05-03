@@ -36,4 +36,16 @@ return [
         'chat_id' => env('TELEGRAM_CHAT_ID'),
     ],
 
+    /*
+    | Ilmiy ID API (Science ID foydalanuvchilari)
+    | ILMIY_ID_API_USERNAME, ILMIY_ID_API_PASSWORD — majburiy
+    | ILMIY_ID_API_VERIFY_SSL=false — mavjud muhit bilan mos (sertifikat tekshiruvi)
+    */
+    'ilmiy_id' => [
+        'url' => env('ILMIY_ID_API_URL', 'https://api-id.ilmiy.uz'),
+        'username' => env('ILMIY_ID_API_USERNAME'),
+        'password' => env('ILMIY_ID_API_PASSWORD'),
+        'verify_ssl' => env('ILMIY_ID_API_VERIFY_SSL', false),
+    ],
+
 ];
