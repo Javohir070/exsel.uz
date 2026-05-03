@@ -323,7 +323,7 @@
                                 @csrf
                                 <div class="grid grid-cols-12 gap-2">
                                     <input type="hidden" name="tijorat_id" value="{{ $tijorat->id }}">
-                                    <input type="hidden" name="holati" value="yuborildi">
+                                    <input type="hidden" name="holati" value="{{ old('holati', 'yuborildi') }}">
 
                                     <div class="field-group w-full col-span-6">
                                         <label class="flex flex-col sm:flex-row"> <span
@@ -334,15 +334,13 @@
                                             required="">
 
                                             <option value=""></option>
-
-                                            <option value="1">Ha</option>
-
-                                            <option value="0">Yo'q</option>
+                                            <option value="1" @selected(old('grant_sarf_maqsadli') == '1')>Ha</option>
+                                            <option value="0" @selected(old('grant_sarf_maqsadli') == '0')>Yo'q</option>
 
                                         </select><br>
 
                                         <textarea name="grant_sarf_maqsadli_izox" id=""
-                                            class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area" cols="2" rows="2" required></textarea>
+                                            class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area" cols="2" rows="2" required>{{ old('grant_sarf_maqsadli_izox') }}</textarea>
 
                                         @error('grant_sarf_maqsadli')
                                             <div class="error">{{ $message }}</div>
@@ -358,15 +356,13 @@
                                             required="">
 
                                             <option value=""></option>
-
-                                            <option value="1">Ha</option>
-
-                                            <option value="0">Yo'q</option>
+                                            <option value="1" @selected(old('asbob_balans_olingan') == '1')>Ha</option>
+                                            <option value="0" @selected(old('asbob_balans_olingan') == '0')>Yo'q</option>
 
                                         </select><br>
 
                                         <textarea name="asbob_balans_olingan_izox" id=""
-                                            class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area" cols="2" rows="2" required></textarea>
+                                            class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area" cols="2" rows="2" required>{{ old('asbob_balans_olingan_izox') }}</textarea>
 
                                         @error('asbob_balans_olingan')
                                             <div class="error">{{ $message }}</div>
@@ -379,7 +375,7 @@
                                             xodimlar soni?
                                         </label>
                                         <input type="number" name="xodimlar_lozim" class="input border w-full mt-2"
-                                            min="0" id="">
+                                            min="0" id="" value="{{ old('xodimlar_lozim') }}">
 
                                         @error('xodimlar_lozim')
                                             <div class="error">{{ $message }}</div>
@@ -395,15 +391,13 @@
                                             required="">
 
                                             <option value=""></option>
-
-                                            <option value="1">Ha</option>
-
-                                            <option value="0">Yo'q</option>
+                                            <option value="1" @selected(old('xodimlar_haqiqiy') == '1')>Ha</option>
+                                            <option value="0" @selected(old('xodimlar_haqiqiy') == '0')>Yo'q</option>
 
                                         </select><br>
 
                                         <textarea name="xodimlar_haqiqiy_izox" id=""
-                                            class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area" cols="2" rows="2" required></textarea>
+                                            class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area" cols="2" rows="2" required>{{ old('xodimlar_haqiqiy_izox') }}</textarea>
 
                                         @error('xodimlar_haqiqiy')
                                             <div class="error">{{ $message }}</div>
@@ -414,13 +408,14 @@
                                         <label class="flex flex-col sm:flex-row"> <span
                                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600"></span> Loyiha doirasida ishlab
                                             chiqilgan mahsulot miqdori? O‘lchov birligiga ko‘ra (dona, kg, metr ...)</label>
-                                        <input type="number" class="input w-full border mt-2" name="mahsulot_miqdori" required>
+                                        <input type="number" class="input w-full border mt-2" name="mahsulot_miqdori"
+                                            value="{{ old('mahsulot_miqdori') }}" required>
                                         <select name="mahsulot_olchov" class="input border w-full mt-2 show-comment-select"
                                             required="">
                                             <option value=""></option>
-                                            <option value="dona">Dona</option>
-                                            <option value="kg">KG</option>
-                                            <option value="metr">Metr</option>
+                                            <option value="dona" @selected(old('mahsulot_olchov') == 'dona')>Dona</option>
+                                            <option value="kg" @selected(old('mahsulot_olchov') == 'kg')>KG</option>
+                                            <option value="metr" @selected(old('mahsulot_olchov') == 'metr')>Metr</option>
                                         </select>
                                     </div>
 
@@ -465,7 +460,7 @@
                                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Loyihani amalga oshirish
                                             bo‘yicha hisobot topshirib kelinganligi?</label>
                                         <textarea name="hisobot_topshirildi_izox" id="" class="input w-full border mt-2" cols="5"
-                                            rows="5" required></textarea>
+                                            rows="5" required>{{ old('hisobot_topshirildi_izox') }}</textarea>
                                     </div>
 
                                     <div class="field-group w-full col-span-6">
@@ -477,14 +472,12 @@
                                             required="">
 
                                             <option value=""></option>
-
-                                            <option value="1">Ha</option>
-
-                                            <option value="0">Yo'q</option>
+                                            <option value="1" @selected(old('sertifikat_olingan') == '1')>Ha</option>
+                                            <option value="0" @selected(old('sertifikat_olingan') == '0')>Yo'q</option>
 
                                         </select><br>
                                         <textarea name="sertifikat_olingan_izox" id=""
-                                            class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area" cols="2" rows="2" required></textarea>
+                                            class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area" cols="2" rows="2" required>{{ old('sertifikat_olingan_izox') }}</textarea>
 
                                         @error('sertifikat_olingan')
                                             <div class="error">{{ $message }}</div>
@@ -500,14 +493,12 @@
                                             required="">
 
                                             <option value=""></option>
-
-                                            <option value="1">Ha</option>
-
-                                            <option value="0">Yo'q</option>
+                                            <option value="1" @selected(old('loyiha_muammo') == '1')>Ha</option>
+                                            <option value="0" @selected(old('loyiha_muammo') == '0')>Yo'q</option>
 
                                         </select><br>
                                         <textarea name="loyiha_muammo_izox" id=""
-                                            class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area" cols="2" rows="2" required></textarea>
+                                            class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area" cols="2" rows="2" required>{{ old('loyiha_muammo_izox') }}</textarea>
 
                                         @error('loyiha_muammo')
                                             <div class="error">{{ $message }}</div>
@@ -523,12 +514,12 @@
                                         <select name="loyiha_taklif" class="input border w-full mt-2 show-comment-select"
                                             required>
                                             <option value=""></option>
-                                            <option value="1">Ha</option>
-                                            <option value="0">Yo'q</option>
+                                            <option value="1" @selected(old('loyiha_taklif') == '1')>Ha</option>
+                                            <option value="0" @selected(old('loyiha_taklif') == '0')>Yo'q</option>
                                         </select>
 
                                         <textarea name="loyiha_taklif_izox" class="input w-full border mt-2 tijorat-show-izoh-hidden comment-area"
-                                            cols="2" rows="2"></textarea>
+                                            cols="2" rows="2">{{ old('loyiha_taklif_izox') }}</textarea>
 
                                         @error('loyiha_taklif')
                                             <div class="error">{{ $message }}</div>
@@ -544,12 +535,9 @@
                                             required="">
 
                                             <option value=""></option>
-
-                                            <option value="To‘liq bajarilgan">To‘liq bajarilgan </option>
-
-                                            <option value="Qisman bajarilgan">Qisman bajarilgan</option>
-
-                                            <option value="Bajarilmagan">Bajarilmagan</option>
+                                            <option value="To‘liq bajarilgan" @selected(old('kalendar_bajarilgan') == 'To‘liq bajarilgan')>To‘liq bajarilgan </option>
+                                            <option value="Qisman bajarilgan" @selected(old('kalendar_bajarilgan') == 'Qisman bajarilgan')>Qisman bajarilgan</option>
+                                            <option value="Bajarilmagan" @selected(old('kalendar_bajarilgan') == 'Bajarilmagan')>Bajarilmagan</option>
                                         </select><br>
 
                                         @error('kalendar_bajarilgan')
@@ -573,14 +561,22 @@
                                     <div class="w-full col-span-6 ">
                                         <label class="flex flex-col sm:flex-row"> <span
                                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ekspert F.I.Sh</label>
-                                        <input type="text" name="ekspert_fish" class="input w-full border mt-2" required>
+                                        <input type="text" name="ekspert_fish" class="input w-full border mt-2"
+                                            value="{{ old('ekspert_fish') }}" required>
+                                        @error('ekspert_fish')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="w-full col-span-6 ">
                                         <label class="flex flex-col sm:flex-row"> <span
                                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Tashkilotning mas'ul
                                             rahbari F.I.Sh</label>
-                                        <input type="text" name="t_masul" class="input w-full border mt-2" required>
+                                        <input type="text" name="t_masul" class="input w-full border mt-2"
+                                            value="{{ old('t_masul') }}" required>
+                                        @error('t_masul')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                     <div class="w-full col-span-6">
@@ -595,9 +591,8 @@
                                             <option value="Qo‘shimcha o‘rganish talab etiladi">Qo‘shimcha o‘rganish
                                                 talab etiladi</option> --}}
     
-                                            <option value="Ijobiy">Ijobiy</option>
-    
-                                            <option value="Salbiy">Salbiy</option>
+                                            <option value="Ijobiy" @selected(old('status') == 'Ijobiy')>Ijobiy</option>
+                                            <option value="Salbiy" @selected(old('status') == 'Salbiy')>Salbiy</option>
 
 
                                         </select><br>
@@ -610,7 +605,10 @@
                                     <div class="w-full col-span-6 ">
                                         <label class="flex flex-col sm:flex-row"> <span
                                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Izoh</label>
-                                        <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5" required></textarea>
+                                        <textarea name="comment" id="" class="input w-full border mt-2" cols="5" rows="5" required>{{ old('comment') }}</textarea>
+                                        @error('comment')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
                                 </div>
 
