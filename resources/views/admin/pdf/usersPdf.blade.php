@@ -414,10 +414,10 @@
             </tr>
             <tr>
                 <th class="tr-num">№</th>
-                <th>Asbob-uskuna va inventarlar nomi</th>
+                <th>Yetkazib beruvchi yuridik shaxsning nomi</th>
                 <th>Xarid shartnomasining raqami</th>
                 <th>Xarid shartnomasining sana</th>
-                <th>Izoh</th>
+                <th>Sotuvchi kompaniyaning nomi</th>
             </tr>
         </thead>
         <tbody>
