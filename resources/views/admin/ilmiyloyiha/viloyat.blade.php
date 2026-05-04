@@ -34,7 +34,7 @@
                                 </div>
                             </div>
 
-                        @role('super-admin')
+                        @role(['super-admin', 'Ilmiy loyihalar boyicha masul'])
                             <div class="col-span-12 sm:col-span-6 xxl:col-span-3 intro-y">
                                 <div class="mini-report-chart box p-2 zoom-in" style="border-radius: 20px;">
                                     <a href="{{ route('ilmiy_loyihalar_all.index') }}">
