@@ -97,7 +97,12 @@
                                         Tahrirlash
                                     </a>
                                 @endif
-                                @include('admin.components.tash_status_button')
+                                @role(['super-admin', 'Ilmiy loyihalar boyicha masul'])
+                                    <a href="javascript:;" data-target="#tashkilot-status-edit-modal" data-toggle="modal"
+                                        class="button w-24 ml-3 bg-theme-1 text-white">
+                                        Loyihaning statusini tahrirlash
+                                    </a>
+                                @endrole
                             </div>
                         </div>
                         <table class="table table-bordered">
