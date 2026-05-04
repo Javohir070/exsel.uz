@@ -106,9 +106,10 @@
         $markQayta = str_contains($st, "o'rganish") || str_contains($st, 'o‘rganish') || str_contains($st, 'qayta');
     @endphp
 
-    <p class="doc-title">MAʼLUMOTNOMA</p>
+    <p class="doc-title" style="text-transform: uppercase;">Oʻzbekiston Respublikasi Oliy taʼlim, fan va innovatsiyalar vazirligi huzuridagi Innovatsion rivojlanish agentligi</p>
     <p class="sub-title">{{ $il->tashkilot->name ?? '—' }} — «{{ $il->mavzusi ?? '—' }}» loyihasi bo‘yicha
-        monitoring maʼlumotnomasi</p>
+        monitoring</p>
+    <p class="doc-title">MAʼLUMOTNOMA</p>
 
     <table>
         <thead>
@@ -239,19 +240,19 @@
             </tr>
             <tr>
                 <td class="tr-num">2.3</td>
-                <td>Loyihaning ijrochilari (yig‘ma)</td>
-                <td>Shtat birligi: {{ $il->shtat_birligi ?? '—' }}; ijrochilar soni: {{ $il->ijrochilar_soni ?? '—' }}
+                <td>Loyihaning ijrochilari</td>
+                <td>Shtat birligi: {{ $ij->sum('shtat_birligi') ?? '—' }}; ijrochilar soni: {{ $ij->count() ?? '—' }}
                     nafar</td>
             </tr>
             <tr>
                 <td class="tr-num">2.3.1</td>
                 <td>Shtat birligi (jadval bo‘yicha)</td>
-                <td>{{ $ij->sum('shtat_birligi') ?: ($il->shtat_birligi ?? '—') }}</td>
+                <td>{{ $ij->sum('shtat_birligi') ?? '—' }}</td>
             </tr>
             <tr>
                 <td class="tr-num">2.3.2</td>
                 <td>Ijrochilar soni, nafar</td>
-                <td>{{ $ij->count() ?: ($il->ijrochilar_soni ?? '—') }}</td>
+                <td>{{ $ij->count() ?? '—' }}</td>
             </tr>
         </tbody>
     </table>
@@ -397,13 +398,6 @@
                 <tr>
                     <td colspan="5" class="muted"><strong>Izoh:</strong> {{ $q->uzlashtirilishi_sum_i ?? '—' }}</td>
                 </tr>
-                <tr>
-                    <td colspan="5"><strong>Asbob-uskunalar xaridi (matn):</strong> {{ $q->xarid_qilingan_xarid ?? '—' }}
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="5" class="muted">{{ $q->xarid_qilingan_i ?? '' }}</td>
-                </tr>
             @else
                 <tr>
                     <td colspan="5" style="text-align:center;">Ushbu chorak uchun loyiha iqtisodiy maʼlumotlari
@@ -421,8 +415,8 @@
             <tr>
                 <th class="tr-num">№</th>
                 <th>Asbob-uskuna va inventarlar nomi</th>
-                <th>Soni</th>
-                <th>Narxi mln.soʻm</th>
+                <th>Xarid shartnomasining raqami</th>
+                <th>Xarid shartnomasining sana</th>
                 <th>Izoh</th>
             </tr>
         </thead>
@@ -552,10 +546,6 @@
             <tr>
                 <td><strong>Izoh</strong></td>
                 <td>{{ $t?->comment ?? '—' }}</td>
-            </tr>
-            <tr>
-                <td><strong>Loyiha ijrochilari oʻzgarishi (ekspert)</strong></td>
-                <td>{{ $t?->loyiha_ijrochilari ?? '—' }}</td>
             </tr>
         </tbody>
     </table>
