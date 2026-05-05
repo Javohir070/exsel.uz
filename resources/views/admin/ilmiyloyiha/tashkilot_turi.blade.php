@@ -76,7 +76,7 @@
                                                 href="{{ route('search_ilmiy_loyhalar', ['id' => $regions->id, 'type' => 'otm']) }}">OTM</a>
                                         </td>
                                         <td style="text-align: center;">
-                                            {{ $regions->tashkilots()->where('ilmiyloyiha_is', 1)->where('tashkilot_turi', 'otm')->count() }}
+                                            {{ $typeCounts['otm'] }}
                                         </td>
                                         <td style="text-align: center;">{{ $results['otm']['ilmiyloyhalar'] }}</td>
                                     </tr>
@@ -87,7 +87,7 @@
                                                 Ilmiy tashkilotlar</a>
                                         </td>
                                         <td style="text-align: center;">
-                                            {{ $regions->tashkilots()->where('ilmiyloyiha_is', 1)->where('tashkilot_turi', 'itm')->count() }}
+                                            {{ $typeCounts['itm'] }}
                                         </td>
                                         <td style="text-align: center;">{{ $results['itm']['ilmiyloyhalar'] }}</td>
                                     </tr>
@@ -98,7 +98,7 @@
                                                 tashkilotlar</a>
                                         </td>
                                         <td style="text-align: center;">
-                                            {{ $regions->tashkilots()->where('ilmiyloyiha_is', 1)->where('tashkilot_turi', 'boshqa')->count() }}
+                                            {{ $typeCounts['other'] }}
                                         </td>
                                         <td style="text-align: center;">{{ $results['other']['ilmiyloyhalar'] }}</td>
                                     </tr>

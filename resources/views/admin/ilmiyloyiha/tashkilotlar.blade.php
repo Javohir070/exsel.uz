@@ -63,7 +63,7 @@
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' : 'Boshqa') }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->ilmiyloyhalar()->where('is_active', 1)->count() }}/{{ $tashkilots->tekshirivchilar()->where('quarter', $monitoring_id)->count()  }}
+                                    {{ $tashkilots->ilmiyloyhalar()->whereHas('monitorings', function ($monitoringQuery) use ($monitoring_id) { $monitoringQuery->where('monitorings.id', $monitoring_id); })->count() }}/{{ $tashkilots->tekshirivchilar()->where('quarter', $monitoring_id)->count()  }}
                                 </td>
                                 <td style="text-align: center;">
                                     {{ $tashkilots->tekshirivchilar()->where('quarter', $monitoring_id)->where('status', 'Qoniqarli')->count() }}/

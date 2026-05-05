@@ -92,9 +92,19 @@ class IlmiyLoyiha extends Model
     ];
 
     protected $casts = [
-    'bosh_sana' => 'date',
-    'tug_sana' => 'date',
-];
+        'bosh_sana' => 'date',
+        'tug_sana' => 'date',
+    ];
+
+    public function monitorings()
+    {
+        return $this->belongsToMany(
+            Monitoring::class,
+            'loyiha_monitoring',
+            'ilmiy_loyiha_id',
+            'monitoring_id'
+        )->withTimestamps();
+    }
 
     public function tashkilot()
     {

@@ -25,4 +25,10 @@ class Monitoring extends Model
     {
         return self::where('is_active', 1)->latest()->first();
     }
+
+    public function ilmiyloyihas()
+    {
+        return $this->belongsToMany(IlmiyLoyiha::class, 'loyiha_monitoring', 'monitoring_id', 'ilmiy_loyiha_id')
+            ->withTimestamps();
+    }
 }

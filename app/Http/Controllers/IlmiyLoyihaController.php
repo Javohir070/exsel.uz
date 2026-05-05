@@ -240,11 +240,14 @@ class IlmiyLoyihaController extends Controller
 
             $tashkilotIds = $region->tashkilots()
                 ->where('ilmiyloyiha_is', 1)
+                ->whereHas('ilmiyloyhalar', function ($ilmiyLoyihaQuery) {
+                    $this->applyCurrentMonitoring($ilmiyLoyihaQuery);
+                })
                 ->pluck('id');
 
             $tashkilots = $tashkilotIds->count();
-            $loy_count = IlmiyLoyiha::whereIn('tashkilot_id', $tashkilotIds)
-                ->where('is_active', 1)
+            $loy_count = $this->applyCurrentMonitoring(IlmiyLoyiha::query())
+                ->whereIn('tashkilot_id', $tashkilotIds)
                 ->count();
             $loy_expert = Tekshirivchilar::whereIn('tashkilot_id', $tashkilotIds)
                 ->where('quarter', $this->monitoring->id)
@@ -252,9 +255,13 @@ class IlmiyLoyihaController extends Controller
                 ->count();
         } else {
             $regions = Region::orderBy('order')->get();
-            $loy_count = IlmiyLoyiha::where('is_active', 1)->count();
+            $loy_count = $this->applyCurrentMonitoring(IlmiyLoyiha::query())->count();
             $loy_expert = Tekshirivchilar::where('quarter', $this->monitoring->id)->count();
-            $tashkilots = Tashkilot::where('ilmiyloyiha_is', 1)->count();
+            $tashkilots = Tashkilot::where('ilmiyloyiha_is', 1)
+                ->whereHas('ilmiyloyhalar', function ($ilmiyLoyihaQuery) {
+                    $this->applyCurrentMonitoring($ilmiyLoyihaQuery);
+                })
+                ->count();
         }
 
         $loyha_count = IlmiyLoyiha::count();
@@ -273,7 +280,12 @@ class IlmiyLoyihaController extends Controller
     {
         $tashkilotlarQuery = Tashkilot::where('ilmiyloyiha_is', 1)
             ->where('region_id', $id)
-            ->with(['ilmiyloyhalar'])
+            ->whereHas('ilmiyloyhalar', function ($ilmiyLoyihaQuery) {
+                $this->applyCurrentMonitoring($ilmiyLoyihaQuery);
+            })
+            ->with([
+                'ilmiyloyhalar' => fn ($query) => $this->applyCurrentMonitoring($query),
+            ])
             ->get();
 
         $groups = [
@@ -281,18 +293,23 @@ class IlmiyLoyihaController extends Controller
             'itm' => $tashkilotlarQuery->where('tashkilot_turi', 'itm'),
             'other' => $tashkilotlarQuery->where('tashkilot_turi', 'boshqa'),
         ];
+        $typeCounts = [
+            'otm' => $groups['otm']->count(),
+            'itm' => $groups['itm']->count(),
+            'other' => $groups['other']->count(),
+        ];
 
         $results = [];
         foreach ($groups as $key => $group) {
             $results[$key] = [
-                'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->where('is_active', 1)->count(),
+                'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->count(),
             ];
         }
 
         $regions = Region::findOrFail($id);
         $tashkilotIds = $tashkilotlarQuery->pluck('id');
         $tashkilots = $tashkilotlarQuery->count();
-        $loy_count = IlmiyLoyiha::where('is_active', 1)
+        $loy_count = $this->applyCurrentMonitoring(IlmiyLoyiha::query())
             ->whereIn('tashkilot_id', $tashkilotIds)
             ->count();
         $loy_expert = Tekshirivchilar::where('quarter', $this->monitoring->id)
@@ -305,6 +322,7 @@ class IlmiyLoyihaController extends Controller
             'tashkilots' => $tashkilots,
             'loy_count' => $loy_count,
             'loy_expert' => $loy_expert,
+            'typeCounts' => $typeCounts,
         ]);
     }
 
@@ -315,7 +333,10 @@ class IlmiyLoyihaController extends Controller
         $type = $request->input('type');
         $isRegionSearch = is_numeric($regionId);
 
-        $queryBuilder = Tashkilot::where('ilmiyloyiha_is', 1);
+        $queryBuilder = Tashkilot::where('ilmiyloyiha_is', 1)
+            ->whereHas('ilmiyloyhalar', function ($ilmiyLoyihaQuery) {
+                $this->applyCurrentMonitoring($ilmiyLoyihaQuery);
+            });
 
         if ($isRegionSearch) {
             $queryBuilder
@@ -324,10 +345,10 @@ class IlmiyLoyihaController extends Controller
                 ->where('name', 'like', '%' . $query . '%');
         }
 
+        $tashkilotIds = (clone $queryBuilder)->pluck('id');
         $tashkilotlar = $queryBuilder->orderBy('name')->paginate(50);
-
-        $ilmiyloyiha = IlmiyLoyiha::where('is_active', 1)
-            ->whereIn('tashkilot_id', $tashkilotlar->pluck('id'))
+        $ilmiyloyiha = $this->applyCurrentMonitoring(IlmiyLoyiha::query())
+            ->whereIn('tashkilot_id', $tashkilotIds)
             ->count();
 
         return view('admin.ilmiyloyiha.tashkilotlar', [
@@ -345,7 +366,7 @@ class IlmiyLoyihaController extends Controller
     {
         $tashkilot = Tashkilot::findOrFail($id);
 
-        $ilmiyloyihalar = IlmiyLoyiha::where('is_active', 1)
+        $ilmiyloyihalar = $this->applyCurrentMonitoring(IlmiyLoyiha::query())
             ->where('tashkilot_id', $id)
             ->paginate(20);
 
@@ -428,17 +449,38 @@ class IlmiyLoyihaController extends Controller
     public function tashkilot_ilmiyloyiha(Request $request, $id)
     {
         $ilmi = IlmiyLoyiha::findOrFail($id);
+        $isActive = (int) $request->input('is_active', 0);
+        $ilmiyLoyihaIs = (int) $request->input('ilmiyloyiha_is', $isActive);
 
         $ilmi->update([
             'tashkilot_id' => $request->tashkilot_id,
-            'is_active' => $request->is_active,
+            'is_active' => $isActive,
         ]);
         $tashkilot = Tashkilot::findOrFail($request->tashkilot_id);
         $tashkilot->update([
-            'ilmiyloyiha_is' => 1,
+            'ilmiyloyiha_is' => $ilmiyLoyihaIs,
         ]);
 
+        if ($this->monitoring) {
+            if ($ilmiyLoyihaIs === 1) {
+                $ilmi->monitorings()->syncWithoutDetaching([$this->monitoring->id]);
+            } else {
+                $ilmi->monitorings()->detach($this->monitoring->id);
+            }
+        }
+
         return back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+    }
+
+    private function applyCurrentMonitoring($query)
+    {
+        if (! $this->monitoring) {
+            return $query;
+        }
+
+        return $query->whereHas('monitorings', function ($monitoringQuery) {
+            $monitoringQuery->whereKey($this->monitoring->id);
+        });
     }
 
     /**
