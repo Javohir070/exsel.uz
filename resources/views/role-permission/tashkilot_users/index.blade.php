@@ -1,14 +1,14 @@
-@extends("layouts.admin")
-@section("content")
+@extends('layouts.admin')
+@section('content')
     <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">Tashkilot foydalanuvchilar </h2>
 
         <div class="flex justify-end">
             @can('create user')
-                <a href="{{ url('tashkilot/users/create') }}" class="button w-24 bg-theme-1 text-white">
+                {{-- <a href="{{ route('tashkilot.users.create') }}" class="button w-24 bg-theme-1 text-white">
                     Qo'shish
-                </a>
+                </a> --}}
             @endcan
         </div>
     </div>

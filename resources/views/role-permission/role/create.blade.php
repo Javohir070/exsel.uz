@@ -26,6 +26,18 @@
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
+                    <div class="w-full col-span-12">
+                        <label class="flex flex-col sm:flex-row"><span class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Holat</label>
+                        <input type="hidden" name="is_active" value="0">
+                        <div class="flex items-center mt-3">
+                            <input type="checkbox" name="is_active" id="role_is_active" value="1" class="input border mr-2"
+                                @checked(old('is_active', true))>
+                            <label for="role_is_active" class="cursor-pointer">Faol</label>
+                        </div>
+                        @error('is_active')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
                 </div>
             </form>
             <div class="px-5 pb-5 text-center mt-4">

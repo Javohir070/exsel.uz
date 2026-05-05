@@ -14,8 +14,9 @@ use App\Models\Xodimlar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -30,16 +31,33 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $search = $request->query('query');
+        $roleId = $request->query('role_id');
+        $tashkilotId = $request->query('tashkilot_id');
+
         $query = User::query();
 
-        if ($search) {
-            $query->where('name', 'like', '%' . $search . '%')
-                ->orWhere('email', 'like', '%' . $search . '%');
+        if (!empty($roleId)) {
+            $query->whereHas('roles', function ($q) use ($roleId) {
+                $q->where('id', $roleId);
+            });
         }
 
-        $users = $query->paginate(15);
+        if (!empty($tashkilotId)) {
+            $query->where('tashkilot_id', $tashkilotId);
+        }
 
-        return view('role-permission.user.index', ['users' => $users]);
+        if ($search) {
+            $query->where(function ($q) use ($search) {
+                $q->where('name', 'like', '%' . $search . '%')
+                    ->orWhere('email', 'like', '%' . $search . '%');
+            });
+        }
+
+        $users = $query->with(['tashkilot', 'roles'])->paginate(15);
+        $roles = Role::orderBy('name')->get(['id', 'name']);
+        $tashkilots = Tashkilot::orderBy('name')->get(['id', 'name']);
+
+        return view('role-permission.user.index', compact('users', 'roles', 'tashkilots'));
     }
 
     public function tashkilot_users()
@@ -80,6 +98,15 @@ class UserController extends Controller
         return redirect('/users')->with('status', 'User Created Successfully with roles');
     }
 
+    public function create_tashkilot_users()
+    {
+        $roles = Role::pluck('name', 'name')->all();
+        $tashkilots = Tashkilot::all();
+        $regions = Region::all();
+
+        return view('role-permission.tashkilot_users.create-admin', compact('roles', 'tashkilots', 'regions'));
+    }
+
     public function tashkilot_users_store(StoreAdminUserRequest $request)
     {
         $data = $request->validated();
@@ -88,7 +115,7 @@ class UserController extends Controller
 
         $roles = $request->getResolvedRoles();
 
-        \DB::transaction(function () use ($data, $roles) {
+        DB::transaction(function () use ($data, $roles) {
             $user = User::create($data);
             $user->syncRoles($roles);
         });
@@ -148,7 +175,7 @@ class UserController extends Controller
             return $v !== null && $v !== '';
         });
 
-        \DB::transaction(function () use ($user, $data, $selected) {
+        DB::transaction(function () use ($user, $data, $selected) {
             // Update user
             $user->update($data);
 

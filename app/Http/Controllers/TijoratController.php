@@ -32,15 +32,29 @@ class TijoratController extends Controller
     }
 
     
-    public function create()
+    public function create(Request $request)
     {
-        //
+        if (! $request->user()->hasRole('super-admin')) {
+            abort(403);
+        }
+        $regions = Region::all();
+
+        return view('admin.tijorat.create', compact('regions'));
     }
 
     
     public function store(StoreTijoratRequest $request)
     {
-        //
+        $data = $request->validated();
+        $region = Region::find($data['region_id']);
+        $data['region'] = $region->oz ?? $region->name ?? '';
+
+        $data['user_id'] = $request->user()->id;
+        $data['tashkilot_id'] = $request->user()->tashkilot_id ?: 1;
+
+        Tijorat::create($data);
+
+        return redirect()->route('tijorat.index', $request->query())->with('status', 'Tijorat loyihasi qo‘shildi.');
     }
 
     
@@ -51,21 +65,34 @@ class TijoratController extends Controller
     }
 
     
-    public function edit(Tijorat $tijorat)
+    public function edit(Request $request, Tijorat $tijorat)
     {
-        //
+        if (! $request->user()->hasRole('super-admin')) {
+            abort(403);
+        }
+        $regions = Region::all();
+
+        return view('admin.tijorat.edit', compact('tijorat', 'regions'));
     }
 
     
     public function update(UpdateTijoratRequest $request, Tijorat $tijorat)
     {
-        //
+        $data = $request->validated();
+        $region = Region::find($data['region_id']);
+        $data['region'] = $region->oz ?? $region->name ?? '';
+
+        $tijorat->update($data);
+
+        return redirect()->route('tijorat.index', $request->query())->with('status', 'Tijorat loyihasi yangilandi.');
     }
 
    
     public function destroy(Tijorat $tijorat)
     {
-        //
+        $tijorat->delete();
+
+        return redirect()->route('tijorat.index')->with('status', 'Tijorat loyihasi o‘chirildi.');
     }
 
 

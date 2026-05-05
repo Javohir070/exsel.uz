@@ -38,7 +38,7 @@
                     </tr>
                     <tr>
                         <td class="border">{{ $tijorat->ijrochi_tashkilot }}</td>
-                        <td class="border">{{ number_format($tijorat->summa, 0, ',', ' ') }}</td>
+                        <td class="border">{{ \App\Models\Tijorat::formatMoneyDisplay($tijorat->summa) ?: '—' }}</td>
                     </tr>
 
                     <tr class="bg-gray-200">
@@ -47,7 +47,7 @@
                     </tr>
 
                     <tr>
-                        <td class="border">{{ number_format($tijorat->tash_summasi, 0, ',', ' ') }}</td>
+                        <td class="border">{{ \App\Models\Tijorat::formatMoneyDisplay($tijorat->tash_summasi) ?: '—' }}</td>
                         <td class="border">{{ $tijorat->region->oz ?? '' }}</td>
                     </tr>
 

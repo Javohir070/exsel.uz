@@ -141,6 +141,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/tashkilot/users', [UserController::class, 'tashkilot_users'])->name('tashkilot.users.index');
     Route::post('/tashkilot/users', [UserController::class, 'tashkilot_users_store'])->name('tashkilot.users.store');
+    Route::get('/tashkilot/users/create', [UserController::class, 'create_tashkilot_users'])->name('tashkilot.users.create');
     Route::get('/tashkilot/users/{id}/edit', [UserController::class, 'tashkilot_users_edit'])->name('tashkilot.users.edit');
     Route::put('/tashkilot/users/{id}', [UserController::class, 'tashkilot_users_update'])->name('tashkilot.users.update');
     Route::resource('users', UserController::class);

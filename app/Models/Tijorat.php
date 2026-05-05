@@ -45,4 +45,20 @@ class Tijorat extends Model
     {
         return $this->hasMany(TijoratExpert::class);
     }
+
+    /**
+     * Summa qiymatini minglik bo‘shliq bilan chiqarish (masalan: 1170000.00 → 1 170 000).
+     */
+    public static function formatMoneyDisplay(mixed $value): string
+    {
+        if ($value === null || $value === '') {
+            return '';
+        }
+        $s = str_replace(["\xc2\xa0", ' '], '', (string) $value);
+        if ($s === '' || ! is_numeric($s)) {
+            return '';
+        }
+
+        return number_format((float) $s, 0, ',', ' ');
+    }
 }

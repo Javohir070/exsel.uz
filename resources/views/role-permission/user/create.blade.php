@@ -1,5 +1,5 @@
-@extends("layouts.admin")
-@section("content")
+@extends('layouts.admin')
+@section('content')
     <div class="flex justify-between align-center mt-6 mb-6">
 
         <h2 class="intro-y text-lg font-medium">Foydalanuvchi qo'shish</h2>
@@ -19,7 +19,8 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>F.I.Sh
                         </label>
-                        <input type="text" name="name" class="input w-full border mt-2" value="{{ old('name') }}" required="">
+                        <input type="text" name="name" class="input w-full border mt-2" value="{{ old('name') }}"
+                            required="">
                         @error('name')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -30,7 +31,8 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Login (foydalanuvchi email adresini
                             kiriting)
                         </label>
-                        <input type="email" name="email" class="input w-full border mt-2" value="{{ old('email') }}" required="">
+                        <input type="email" name="email" class="input w-full border mt-2" value="{{ old('email') }}"
+                            required="">
                         @error('email')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -40,7 +42,8 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Parolni kiriting
                         </label>
-                        <input type="password" name="password" class="input w-full border mt-2" value="{{ old('password') }}" required="">
+                        <input type="password" name="password" class="input w-full border mt-2"
+                            value="{{ old('password') }}" required="">
                         @error('password')
                             <div class="error">{{ $message }}</div>
                         @enderror
@@ -83,7 +86,7 @@
                         </label>
                         <select name="group_id" class="input border w-full mt-2">
                             <option value=""> Guruhni tanlash</option>
-                            @for ($i = 1; $i <= 20; $i++)
+                            @for ($i = 1; $i <= 25; $i++)
                                 <option value="{{ $i }}">{{ $i }}-guruh</option>
                             @endfor
                         </select>

@@ -11,8 +11,8 @@
 
     <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2 monitoring-form">
         <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
-            <form id="science-paper-create-form" method="POST" action="{{ url('users/' . $user->id) }}"
-                class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
+            <form id="science-paper-create-form" method="POST" action="{{ url('users/' . $user->id) }}" class="validate-form"
+                enctype="multipart/form-data" novalidate="novalidate">
                 @csrf
                 @method('PUT')
 
@@ -21,7 +21,8 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>F.I.Sh
                         </label>
-                        <input type="text" name="name" value="{{ $user->name }}" class="input w-full border mt-2" required="">
+                        <input type="text" name="name" value="{{ $user->name }}" class="input w-full border mt-2"
+                            required="">
                         @error('name')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -56,7 +57,8 @@
                             value="{{ old('tashkilot_id') }}" required="">
                             <option value="">Tashkilotni tanlang</option>
                             @foreach ($tashkilots as $tashkilot)
-                                <option value="{{ $tashkilot->id }}" {{ $tashkilot->id == $user->tashkilot_id ? 'selected' : '' }}>
+                                <option value="{{ $tashkilot->id }}"
+                                    {{ $tashkilot->id == $user->tashkilot_id ? 'selected' : '' }}>
                                     {{ $tashkilot->name }}
                                 </option>
                             @endforeach
@@ -90,7 +92,8 @@
                         <select name="region_id" class="input border w-full mt-2">
                             <option value=""> Viloyat tanlash</option>
                             @foreach ($regions as $region)
-                                <option value="{{ $region->id }}" {{ $region->id == $user->region_id ? 'selected' : '' }}>
+                                <option value="{{ $region->id }}"
+                                    {{ $region->id == $user->region_id ? 'selected' : '' }}>
                                     {{ $region->oz }}
                                 </option>
                             @endforeach
@@ -105,7 +108,8 @@
                         <select name="group_id" class="input border w-full mt-2">
                             <option value=""> Guruhni tanlash</option>
                             @for ($i = 1; $i <= 20; $i++)
-                                <option value="{{ $i }}" {{ $i == $user->group_id ? 'selected' : '' }}>{{ $i }}-guruh</option>
+                                <option value="{{ $i }}" {{ $i == $user->group_id ? 'selected' : '' }}>
+                                    {{ $i }}-guruh</option>
                             @endfor
                         </select>
                         @error('group_id')

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use App\Models\Role;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Support\Facades\DB;
 
@@ -34,12 +34,14 @@ class RoleController extends Controller
             'name' => [
                 'required',
                 'string',
-                'unique:roles,name'
-            ]
+                'unique:roles,name',
+            ],
+            'is_active' => 'required|boolean',
         ]);
 
         Role::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'is_active' => $request->boolean('is_active'),
         ]);
 
         return redirect('roles')->with('status','Role Created Successfully');
@@ -58,12 +60,14 @@ class RoleController extends Controller
             'name' => [
                 'required',
                 'string',
-                'unique:roles,name,'.$role->id
-            ]
+                'unique:roles,name,'.$role->id,
+            ],
+            'is_active' => 'required|boolean',
         ]);
 
         $role->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'is_active' => $request->boolean('is_active'),
         ]);
 
         return redirect('roles')->with('status','Role Updated Successfully');

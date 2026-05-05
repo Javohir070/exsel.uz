@@ -8,19 +8,29 @@
             <div class="relative text-gray-700">
                 <select name="viloyat" value="{{ old('viloyat') }}"
                     class="science-sub-categoryviloyat input border w-full mt-2 ">
-                    <option value="">Viloyatni tanlang</option>
-                    <option value="all">Barchasi</option>
+                    <option value="" @selected(request('viloyat') === null || request('viloyat') === '')>Viloyatni tanlang</option>
+                    <option value="all" @selected(request('viloyat') === 'all')>Barchasi</option>
                     @foreach ($regions as $region)
-                        <option value="{{ $region->id }}">{{ $region->oz }}</option>
+                        <option value="{{ $region->id }}" @selected((string) request('viloyat') === (string) $region->id)>{{ $region->oz }}</option>
                     @endforeach
                 </select>
             </div>
 
-            <div>
+            <div class="flex items-center flex-wrap gap-2 justify-end">
+                @role('super-admin')
+                    <a href="{{ route('tijorat.create', request()->query()) }}" class="button w-24 bg-theme-1 text-white">
+                        Qo'shish
+                    </a>
+                @endrole
                 @include('admin.components.file_button')
             </div>
 
         </div>
+
+        @if (session('status'))
+            <div class="alert alert-success show mb-3">{{ session('status') }}</div>
+        @endif
+
         <div class="grid grid-cols-12 gap-6 ">
             <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
                 <table class="table table-report mt-2">
@@ -30,7 +40,7 @@
                             <th class="whitespace-no-wrap" style="width: 500px;">Loyiha nomi</th>
                             <th class="whitespace-no-wrap" style="text-align: center;">Loyiha rahbari</th>
                             <th class="whitespace-no-wrap" style="text-align: center;">Ijrochi tashkilot</th>
-                            <th class="whitespace-no-wrap" style="text-align: center;width:150px !important;">Viloyat</th>
+                            <th class="whitespace-no-wrap" style="text-align: center;width:150px !important;">Loyiha amalga xudud</th>
                             <th class="whitespace-no-wrap" style="">Status</th>
                             <th class="whitespace-no-wrap" style="text-align: center;">Holati</th>
                             <th class="whitespace-no-wrap text-center">Harakat</th>
@@ -64,26 +74,26 @@
 
                                 <td class="table-report__action w-56">
                                     <div class="flex justify-center items-center">
-
                                         <a class="flex science-update-action items-center mr-3"
-                                            href="{{ route('tijorat.show', ['tijorat' => $tashkilots->id]) }}"
-                                            data-id="2978" data-name="sdfd"
-                                            data-file="/files/papers/4735cda0-a7a3-4a45-bd93-0bc013b857dc.png"
-                                            data-filename="Screenshot from 2023-04-17 16-23-56.png" data-type="66"
-                                            data-date="None" data-doi="" data-publisher="" data-description="None"
-                                            data-authors-count="None" data-toggle="modal"
-                                            data-target="#science-paper-update-modal">
+                                            href="{{ route('tijorat.show', ['tijorat' => $tashkilots->id]) }}">
                                             <i data-feather="eye" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                             Ko'rish
                                         </a>
+                                        @role('super-admin')
+                                            <a class="flex science-update-action items-center mr-3"
+                                                href="{{ route('tijorat.edit', array_merge(['tijorat' => $tashkilots], request()->query())) }}">
+                                                <i data-feather="edit" class="feather feather-check-square w-4 h-4 mr-1"></i>
+                                                Tahrirlash
+                                            </a>
+                                        @endrole
                                     </div>
                                 </td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan='8' style="text-align: center;">Ma'lumot yo'q</td>
+                                <td colspan="8" style="text-align: center;">Ma'lumot yo'q</td>
                             </tr>
-                        @endforelse 
+                        @endforelse
 
                     </tbody>
                 </table>
@@ -101,7 +111,6 @@
         document.querySelector('.science-sub-categoryviloyat').addEventListener('change', function() {
             let viloyat = this.value;
 
-            // Sahifani GET so‘rov bilan qayta yuklash
             let url = new URL(window.location.href);
             url.searchParams.set('viloyat', viloyat);
 
