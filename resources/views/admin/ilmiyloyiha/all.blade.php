@@ -16,6 +16,13 @@
                 <div class="mt-2">
                         @include('admin.components.file_button')
                 </div>
+                @role(['super-admin', 'Ilmiy loyihalar boyicha masul'])
+                <div class="mt-2">
+                    <a href="{{ route('ilmiyloyiha.create') }}" class="button w-24 bg-theme-1 text-white ml-2">
+                        Loyiha qo'shish
+                    </a>
+                </div>
+                @endrole
             </div>
 
         </div>
@@ -99,7 +106,6 @@
                         <th class="whitespace-no-wrap">Loyiha mavzusi</th>
                         <th class="whitespace-no-wrap">Loyiha rahbari F.I.Sh</th>
                         <th class="whitespace-no-wrap">Raqami</th>
-                        <th class="whitespace-no-wrap">Status</th>
                         <th class="whitespace-no-wrap">Loyiha turi</th>
                         <th class="whitespace-no-wrap text-center">Harakat</th>
                     </tr>
@@ -121,9 +127,6 @@
                             </td>
                             <td>
                                 {{ $xodimlar->raqami }}
-                            </td>
-                            <td>
-                                {{ $xodimlar->status }}
                             </td>
                             <td>
                                 {{ $xodimlar->turi }}

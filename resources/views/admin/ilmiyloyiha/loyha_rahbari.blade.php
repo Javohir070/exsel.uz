@@ -31,13 +31,13 @@
                         <tr class="intro-x">
                             <td>{{$loop->index + 1}}</td>
                             <td>
-                                <a href="" class="font-medium ">{{ $xodimlar->mavzusi  }} </a>
+                                <a href="#" class="font-medium ">{{ $xodimlar->mavzusi  }} </a>
                             </td>
                             <td>
-                                <a href="" class="font-medium ">{{ $xodimlar->rahbar_name }}</a>
+                                <a href="#" class="font-medium ">{{ $xodimlar->rahbar_name }}</a>
                             </td>
                             <td>
-                                <a href="" class="font-medium ">{{ $xodimlar->turi }}</a>
+                                <a href="#" class="font-medium ">{{ $xodimlar->turi }}</a>
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">

@@ -115,7 +115,6 @@ Route::middleware('auth')->group(function () {
     //ilmiyloyiha
     Route::post('/ilmiyloyiha-import', [IlmiyLoyihaController::class, 'IlmiyLoyiha_import'])->name('IlmiyLoyiha_import');
     Route::get('/ilmiyloyihalar', [IlmiyLoyihaController::class, 'ilmiyloyihalar'])->name('ilmiyloyihalar.index');
-    // Route::get('/searchloyiha', [IlmiyLoyihaController::class, 'searchloyiha'])->name('searchloyiha');
     Route::get('scientific-project', [IlmiyLoyihaController::class, 'scientific_project'])->name('scientific_project.index');
     Route::get('/search-ilmiy', [IlmiyLoyihaController::class, 'search_ilmiy_loyhalar'])->name('search_ilmiy_loyhalar');
     Route::get('ilmiy-loyihalar', [IlmiyLoyihaController::class, "ilmiy_loyihalar_all"])->name("ilmiy_loyihalar_all.index");

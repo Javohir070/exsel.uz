@@ -16,7 +16,6 @@ use App\Models\Monitoring;
 use App\Models\Region;
 use App\Models\Tashkilot;
 use App\Models\Tekshirivchilar;
-use App\Models\Umumiyyil;
 use App\Models\User;
 use App\Support\IlmiyIdApiClient;
 use Illuminate\Http\Request;
@@ -88,7 +87,7 @@ class IlmiyLoyihaController extends Controller
             'raqami' => $request->raqami,
             'sanasi' => $request->sanasi ?? 'yoq',
             'sum' => $request->sum,
-            'umumiy_mablag' => $request->sum ?? 'yoq',
+            'umumiy_mablag' => $request->umumiy_mablag ?? 'yoq',
             'olingan_natija' => $request->olingan_natija ?? 'yoq',
             'joriy_holati' => $request->joriy_holati ?? 'yoq',
             'tijoratlashtirish' => $request->tijoratlashtirish ?? 'yoq',
@@ -412,7 +411,7 @@ class IlmiyLoyihaController extends Controller
         }
 
         $page = $request->input('page_size', 20);
-        $ilmiyloyihalar = $query->paginate($page);
+        $ilmiyloyihalar = $query->latest()->paginate($page);
         $regions = Region::orderBy('order')->get();
 
         return view('admin.ilmiyloyiha.all', [
