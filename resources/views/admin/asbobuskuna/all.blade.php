@@ -122,7 +122,8 @@
                         <div class="flex items-center pl-5"
                             style="justify-content:left; align-items: center;  height: 100%; gap:20px;">
                             <div class="flex" style="background: #FFF0F0; padding: 15px; border-radius: 100%;">
-                                <i data-feather="printer" class="report-box__icon text-theme-3" style="color: #E64242;"></i>
+                                <i data-feather="printer" class="report-box__icon text-theme-3"
+                                    style="color: #E64242;"></i>
                             </div>
                             <div class="w-2/4 flex-none">
                                 <div class="text-lg font-medium truncate" style="font-size: 28px;font-weight:600;">
@@ -188,9 +189,7 @@
                         </option>
 
                         <option value="Tashkilotning byudjetdan tashqari mablag‘lari hisobidan"
-                            @selected(
-                                request('moliya_manbasi') ===
-                                'Tashkilotning byudjetdan tashqari mablag‘lari hisobidan')>Tashkilotning byudjetdan
+                            @selected(request('moliya_manbasi') === 'Tashkilotning byudjetdan tashqari mablag‘lari hisobidan')>Tashkilotning byudjetdan
                             tashqari mablag‘lari hisobidan</option>
 
                         <option value="Moliya institutlari" @selected(request('moliya_manbasi') === 'Moliya institutlari')>
@@ -255,7 +254,8 @@
                 <tbody>
                     @forelse ($asbobuskunas as $k)
                         <tr class="intro-x">
-                            <td>{{ ($asbobuskunas->currentPage() - 1) * $asbobuskunas->perPage() + $loop->iteration }}.</td>
+                            <td>{{ ($asbobuskunas->currentPage() - 1) * $asbobuskunas->perPage() + $loop->iteration }}.
+                            </td>
                             <td>
                                 <a href="{{ route('asbobuskuna.show', ['asbobuskuna' => $k->id]) }}"
                                     class="font-medium ">{{ $k->name }} </a>
@@ -278,16 +278,16 @@
                                         Ko'rish
                                     </a>
                                     @role('super-admin')
-                                    <form action="{{ route('asbobuskuna.destroy', ['asbobuskuna' => $k->id]) }}"
-                                        method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
-                                        <button type="submit" class="flex delete-action items-center text-theme-6">
-                                            @csrf
-                                            @method('DELETE')
-                                            <i data-feather="trash-2"
-                                                class="feather feather-check-square w-4 h-4 mr-1"></i>
-                                            O'chirish
-                                        </button>
-                                    </form>
+                                        <form action="{{ route('asbobuskuna.destroy', ['asbobuskuna' => $k->id]) }}"
+                                            method="post" onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
+                                            <button type="submit" class="flex delete-action items-center text-theme-6">
+                                                @csrf
+                                                @method('DELETE')
+                                                <i data-feather="trash-2"
+                                                    class="feather feather-check-square w-4 h-4 mr-1"></i>
+                                                O'chirish
+                                            </button>
+                                        </form>
                                     @endrole
                                 </div>
                             </td>

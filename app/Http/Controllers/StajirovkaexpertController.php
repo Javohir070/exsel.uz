@@ -9,7 +9,6 @@ use App\Models\Stajirovka;
 use App\Models\Stajirovkaexpert;
 use App\Models\User;
 use App\Notifications\StajirovkaNotification;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Storage;
 

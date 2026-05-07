@@ -68,4 +68,14 @@ class Asbobuskuna extends Model
     {
         return $this->hasMany(Asbobuskunaexpert::class);
     }
+
+    public function monitorings()
+    {
+        return $this->belongsToMany(
+            Monitoring::class,
+            'asbobuskuna_monitoring',
+            'asbobuskuna_id',
+            'monitoring_id'
+        )->withTimestamps();
+    }
 }

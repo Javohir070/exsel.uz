@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('content')
+        @php
+            $monitoringId = $monitoring->id ?? null;
+        @endphp
         <div class="grid grid-cols-12 gap-6">
             <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
                 <div class="col-span-12 mt-8">
@@ -79,14 +82,16 @@
                                                         {{ $region->oz }}
                                                     </a>
                                                 </td>
-                                                <td style="text-align: center;font-weight: 600;">{{ $region->tashkilots()->where('asbobuskuna_is', 1)->count() }} </td>
-                                                <td style="text-align: center;">{{ $region->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'otm')->count() }} </td>
-                                                <td style="text-align: center;">{{ $region->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'itm')->count() }} </td>
-                                                <td style="text-align: center;">{{ $region->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'boshqa')->count() }} </td>
+                                                <td style="text-align: center;font-weight: 600;">{{ $region->tashkilots()->where('asbobuskuna_is', 1)->whereHas('asbobuskunalar', function ($q) use ($monitoringId) { $q->whereHas('monitorings', function ($monitoringQuery) use ($monitoringId) { $monitoringQuery->where('monitorings.id', $monitoringId); }); })->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'otm')->whereHas('asbobuskunalar', function ($q) use ($monitoringId) { $q->whereHas('monitorings', function ($monitoringQuery) use ($monitoringId) { $monitoringQuery->where('monitorings.id', $monitoringId); }); })->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'itm')->whereHas('asbobuskunalar', function ($q) use ($monitoringId) { $q->whereHas('monitorings', function ($monitoringQuery) use ($monitoringId) { $monitoringQuery->where('monitorings.id', $monitoringId); }); })->count() }} </td>
+                                                <td style="text-align: center;">{{ $region->tashkilots()->where('asbobuskuna_is', 1)->where('tashkilot_turi', 'boshqa')->whereHas('asbobuskunalar', function ($q) use ($monitoringId) { $q->whereHas('monitorings', function ($monitoringQuery) use ($monitoringId) { $monitoringQuery->where('monitorings.id', $monitoringId); }); })->count() }} </td>
 
                                                 <td style="text-align: center;">
-                                                    {{ $region->tashkilots()->where('asbobuskuna_is', 1)->withCount(['asbobuskunalar'=> function ($q) {
-                                                        $q->where('is_active', 1);
+                                                    {{ $region->tashkilots()->where('asbobuskuna_is', 1)->withCount(['asbobuskunalar'=> function ($q) use ($monitoringId) {
+                                                        $q->where('is_active', 1)->whereHas('monitorings', function ($monitoringQuery) use ($monitoringId) {
+                                                            $monitoringQuery->where('monitorings.id', $monitoringId);
+                                                        });
                                                     }])->get()->sum('asbobuskunalar_count') }}
                                                 </td>
 
@@ -123,8 +128,10 @@
                                                     }
                                                 @endphp
                                                 <td style="text-align: center;">
-                                                    {{ $region->tashkilots()->where('asbobuskuna_is', 1)->withCount(['asbobuskunalar'=> function ($q) {
-                                                        $q->where('is_active', 1);
+                                                    {{ $region->tashkilots()->where('asbobuskuna_is', 1)->withCount(['asbobuskunalar'=> function ($q) use ($monitoringId) {
+                                                        $q->where('is_active', 1)->whereHas('monitorings', function ($monitoringQuery) use ($monitoringId) {
+                                                            $monitoringQuery->where('monitorings.id', $monitoringId);
+                                                        });
                                                     }])->get()->sum('asbobuskunalar_count')-$count }}
                                                 </td>
                                             </tr>

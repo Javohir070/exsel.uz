@@ -48,4 +48,14 @@ class Stajirovka extends Model
     {
         return $this->hasMany(Stajirovkaexpert::class);
     }
+
+    public function monitorings()
+    {
+        return $this->belongsToMany(
+            Monitoring::class,
+            'stajirovka_monitoring',
+            'stajirovka_id',
+            'monitoring_id'
+        )->withTimestamps();
+    }
 }

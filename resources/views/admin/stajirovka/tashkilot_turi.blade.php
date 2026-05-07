@@ -1,5 +1,8 @@
 @extends('layouts.admin')
 @section('content')
+    @php
+        $monitoringId = $monitoring->id ?? null;
+    @endphp
     <div class="grid grid-cols-12 gap-6">
         <div class="col-span-12 xxl:col-span-12 grid grid-cols-12 gap-6">
             <div class="col-span-12 mt-8">
@@ -71,7 +74,7 @@
                                                 href="{{ route('search_stajirovka', ['id' => $regions->id, 'type' => 'otm']) }}">OTM</a>
                                         </td>
                                         <td style="text-align: center;">
-                                            {{ $regions->tashkilots()->where('stajirovka_is', 1)->where('tashkilot_turi', 'otm')->count() }}
+                                            {{ $regions->tashkilots()->where('stajirovka_is', 1)->where('tashkilot_turi', 'otm')->whereHas('stajirovkalar', function ($q) use ($monitoringId) { $q->whereHas('monitorings', function ($monitoringQuery) use ($monitoringId) { $monitoringQuery->where('monitorings.id', $monitoringId); }); })->count() }}
                                         </td>
                                         <td style="text-align: center;">{{ $results['otm']['stajirovkalar'] }}</td>
                                     </tr>
@@ -82,7 +85,7 @@
                                                 Ilmiy tashkilotlar</a>
                                         </td>
                                         <td style="text-align: center;">
-                                            {{ $regions->tashkilots()->where('stajirovka_is', 1)->where('tashkilot_turi', 'itm')->count() }}
+                                            {{ $regions->tashkilots()->where('stajirovka_is', 1)->where('tashkilot_turi', 'itm')->whereHas('stajirovkalar', function ($q) use ($monitoringId) { $q->whereHas('monitorings', function ($monitoringQuery) use ($monitoringId) { $monitoringQuery->where('monitorings.id', $monitoringId); }); })->count() }}
                                         </td>
                                         <td style="text-align: center;">{{ $results['itm']['stajirovkalar'] }}</td>
                                     </tr>
@@ -93,7 +96,7 @@
                                                 tashkilotlar</a>
                                         </td>
                                         <td style="text-align: center;">
-                                            {{ $regions->tashkilots()->where('stajirovka_is', 1)->where('tashkilot_turi', 'boshqa')->count() }}
+                                            {{ $regions->tashkilots()->where('stajirovka_is', 1)->where('tashkilot_turi', 'boshqa')->whereHas('stajirovkalar', function ($q) use ($monitoringId) { $q->whereHas('monitorings', function ($monitoringQuery) use ($monitoringId) { $monitoringQuery->where('monitorings.id', $monitoringId); }); })->count() }}
                                         </td>
                                         <td style="text-align: center;">{{ $results['other']['stajirovkalar'] }}</td>
                                     </tr>

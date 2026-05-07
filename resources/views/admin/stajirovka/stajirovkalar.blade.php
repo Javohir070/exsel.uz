@@ -67,7 +67,7 @@
                                     {{ $tashkilots->tashkilot_turi == 'itm' ? 'ITM' : ($tashkilots->tashkilot_turi == 'otm' ? 'OTM' : 'Boshqa') }}
                                 </td>
                                 <td style="text-align: center;">
-                                    {{ $tashkilots->stajirovkalar()->where('quarter', $monitoring->id)->count() }}/{{ $tashkilots->stajirovkaexperts()->where('quarter', $monitoring->id)->count() }}
+                                    {{ $tashkilots->stajirovkalar()->where('is_active', 1)->whereHas('monitorings', function ($monitoringQuery) use ($monitoring) { $monitoringQuery->where('monitorings.id', $monitoring->id); })->count() }}/{{ $tashkilots->stajirovkaexperts()->where('quarter', $monitoring->id)->count() }}
                                 </td>
 
                                 <td style="text-align: center;">

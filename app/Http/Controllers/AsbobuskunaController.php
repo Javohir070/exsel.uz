@@ -20,10 +20,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class AsbobuskunaController extends Controller
 {
-    public $monitoring;
+    public ?Monitoring $monitoring = null;
 
     public function __construct()
     {
+        $this->middleware('auth');
         $this->monitoring = Monitoring::getActive();
     }
 
@@ -53,10 +54,14 @@ class AsbobuskunaController extends Controller
             
             $tashkilotIds = $region->tashkilots()
                 ->where('asbobuskuna_is', 1)
+                ->whereHas('asbobuskunalar', function ($asbobuskunaQuery) {
+                    $this->applyCurrentMonitoring($asbobuskunaQuery);
+                })
                 ->pluck('id');
             
             $tashkilots = $tashkilotIds->count();
-            $asboblar_count = Asbobuskuna::whereIn('tashkilot_id', $tashkilotIds)
+            $asboblar_count = $this->applyCurrentMonitoring(Asbobuskuna::query())
+                ->whereIn('tashkilot_id', $tashkilotIds)
                 ->where('is_active', 1)
                 ->count();
             $asboblar_expert = Asbobuskunaexpert::whereIn('tashkilot_id', $tashkilotIds)
@@ -64,8 +69,14 @@ class AsbobuskunaController extends Controller
                 ->count();
         } else {
             $regions = Region::orderBy('order')->get();
-            $tashkilots = Tashkilot::where('asbobuskuna_is', 1)->count();
-            $asboblar_count = Asbobuskuna::where('is_active', 1)->count();
+            $tashkilots = Tashkilot::where('asbobuskuna_is', 1)
+                ->whereHas('asbobuskunalar', function ($asbobuskunaQuery) {
+                    $this->applyCurrentMonitoring($asbobuskunaQuery);
+                })
+                ->count();
+            $asboblar_count = $this->applyCurrentMonitoring(Asbobuskuna::query())
+                ->where('is_active', 1)
+                ->count();
             $asboblar_expert = Asbobuskunaexpert::where('quarter', $this->monitoring->id)->count();
         }
 
@@ -87,9 +98,12 @@ class AsbobuskunaController extends Controller
         
         $tashkilotlarQuery = Tashkilot::where('asbobuskuna_is', 1)
             ->where('region_id', $id)
+            ->whereHas('asbobuskunalar', function ($asbobuskunaQuery) {
+                $this->applyCurrentMonitoring($asbobuskunaQuery);
+            })
             ->with([
                 'asbobuskunalar' => function ($q) {
-                    $q->where('is_active', 1); 
+                    $this->applyCurrentMonitoring($q)->where('is_active', 1);
                 }
             ])
             ->get();
@@ -112,7 +126,8 @@ class AsbobuskunaController extends Controller
             ];
         }
 
-        $asboblar_count = Asbobuskuna::where('is_active', 1)
+        $asboblar_count = $this->applyCurrentMonitoring(Asbobuskuna::query())
+            ->where('is_active', 1)
             ->whereIn('tashkilot_id', $tashkilotIds)
             ->count();
         
@@ -125,7 +140,8 @@ class AsbobuskunaController extends Controller
             'regions' => $region,
             'tashkilots' => $tashkilots,
             'asboblar_count' => $asboblar_count,
-            'asboblar_expert' => $asboblar_expert
+            'asboblar_expert' => $asboblar_expert,
+            'monitoring' => $this->monitoring,
         ]);
     }
 
@@ -139,7 +155,10 @@ class AsbobuskunaController extends Controller
         $isRegionSearch = is_numeric($regionId);
 
         $buildTashkilotQuery = function () use ($isRegionSearch, $regionId, $type, $query) {
-            $queryBuilder = Tashkilot::where('asbobuskuna_is', 1);
+            $queryBuilder = Tashkilot::where('asbobuskuna_is', 1)
+                ->whereHas('asbobuskunalar', function ($asbobuskunaQuery) {
+                    $this->applyCurrentMonitoring($asbobuskunaQuery);
+                });
 
             if ($isRegionSearch) {
                 $queryBuilder->where('region_id', $regionId)
@@ -154,10 +173,11 @@ class AsbobuskunaController extends Controller
             ->orderBy('name')
             ->paginate(50);
 
-        $tashkilotIds = $buildTashkilotQuery(true)
+        $tashkilotIds = $buildTashkilotQuery()
             ->pluck('id');
 
-        $asbobuskunas = Asbobuskuna::where('is_active', 1)
+        $asbobuskunas = $this->applyCurrentMonitoring(Asbobuskuna::query())
+            ->where('is_active', 1)
             ->whereIn('tashkilot_id', $tashkilotIds)
             ->count();
 
@@ -175,7 +195,8 @@ class AsbobuskunaController extends Controller
     public function asbobu($id)
     {
         $tashkilot = Tashkilot::findOrFail($id);
-        $asbobuskunas = Asbobuskuna::where('is_active', 1)
+        $asbobuskunas = $this->applyCurrentMonitoring(Asbobuskuna::query())
+            ->where('is_active', 1)
             ->where('tashkilot_id', '=', $id)
             ->paginate(20);
 
@@ -351,12 +372,38 @@ class AsbobuskunaController extends Controller
     public function tashkilot_asbobuskuna(Request $request, $id)
     {
         $asbobuskuna = Asbobuskuna::findOrFail($id);
+        $isActive = (int) $request->input('is_active', 0);
+        $asbobuskunaIs = (int) $request->input('asbobuskuna_is', $isActive);
 
         $asbobuskuna->update([
             'tashkilot_id' => $request->tashkilot_id,
-            'is_active' => $request->is_active,
+            'is_active' => $isActive,
         ]);
 
-        return back()->with('status', 'Fayl muvaffaqiyatli yuklandi!');
+        $tashkilot = Tashkilot::findOrFail($request->tashkilot_id);
+        $tashkilot->update([
+            'asbobuskuna_is' => $asbobuskunaIs,
+        ]);
+
+        if ($this->monitoring) {
+            if ($asbobuskunaIs === 1) {
+                $asbobuskuna->monitorings()->syncWithoutDetaching([$this->monitoring->id]);
+            } else {
+                $asbobuskuna->monitorings()->detach($this->monitoring->id);
+            }
+        }
+
+        return back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
+    }
+
+    private function applyCurrentMonitoring($query)
+    {
+        if (! $this->monitoring) {
+            return $query;
+        }
+
+        return $query->whereHas('monitorings', function ($monitoringQuery) {
+            $monitoringQuery->whereKey($this->monitoring->id);
+        });
     }
 }

@@ -17,10 +17,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class StajirovkaController extends Controller
 {
-    public $monitoring;
+    public ?Monitoring $monitoring = null;
 
     public function __construct()
     {
+        $this->middleware('auth');
         $this->monitoring = Monitoring::getActive();
     }
 
@@ -43,10 +44,14 @@ class StajirovkaController extends Controller
 
             $tashkilotIds = $region->tashkilots()
                 ->where('stajirovka_is', 1)
+                ->whereHas('stajirovkalar', function ($stajirovkaQuery) {
+                    $this->applyCurrentMonitoring($stajirovkaQuery);
+                })
                 ->pluck('id');
 
             $tashkilots = $tashkilotIds->count();
-            $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $tashkilotIds)
+            $stajirovka_count = $this->applyCurrentMonitoring(Stajirovka::query())
+                ->whereIn('tashkilot_id', $tashkilotIds)
                 ->where('is_active', 1)
                 ->count();
             $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $tashkilotIds)
@@ -54,8 +59,14 @@ class StajirovkaController extends Controller
                 ->count();
         } else {
             $regions = Region::orderBy('order')->get();
-            $tashkilots = Tashkilot::where('stajirovka_is', 1)->count();
-            $stajirovka_count = Stajirovka::where('is_active', 1)->count();
+            $tashkilots = Tashkilot::where('stajirovka_is', 1)
+                ->whereHas('stajirovkalar', function ($stajirovkaQuery) {
+                    $this->applyCurrentMonitoring($stajirovkaQuery);
+                })
+                ->count();
+            $stajirovka_count = $this->applyCurrentMonitoring(Stajirovka::query())
+                ->where('is_active', 1)
+                ->count();
             $stajirovka_expert = Stajirovkaexpert::where('quarter', $quarterId)->count();
         }
 
@@ -75,9 +86,12 @@ class StajirovkaController extends Controller
 
         $tashkilotlarQuery = Tashkilot::where('stajirovka_is', 1)
             ->where('region_id', $id)
+            ->whereHas('stajirovkalar', function ($stajirovkaQuery) {
+                $this->applyCurrentMonitoring($stajirovkaQuery);
+            })
             ->with([
                 'stajirovkalar' => function ($q) {
-                    $q->where('is_active', 1);
+                    $this->applyCurrentMonitoring($q)->where('is_active', 1);
                 }
             ])
             ->get();
@@ -99,7 +113,8 @@ class StajirovkaController extends Controller
             ];
         }
 
-        $stajirovka_count = Stajirovka::whereIn('tashkilot_id', $tashkilotIds)
+        $stajirovka_count = $this->applyCurrentMonitoring(Stajirovka::query())
+            ->whereIn('tashkilot_id', $tashkilotIds)
             ->where('is_active', 1)
             ->count();
         $stajirovka_expert = Stajirovkaexpert::whereIn('tashkilot_id', $tashkilotIds)
@@ -127,7 +142,10 @@ class StajirovkaController extends Controller
         $isRegionSearch = is_numeric($regionId);
 
         $buildTashkilotQuery = function () use ($isRegionSearch, $regionId, $type, $query) {
-            $queryBuilder = Tashkilot::where('stajirovka_is', 1);
+            $queryBuilder = Tashkilot::where('stajirovka_is', 1)
+                ->whereHas('stajirovkalar', function ($stajirovkaQuery) {
+                    $this->applyCurrentMonitoring($stajirovkaQuery);
+                });
 
             if ($isRegionSearch) {
                 $queryBuilder->where('region_id', $regionId)
@@ -142,10 +160,11 @@ class StajirovkaController extends Controller
             ->orderBy('name')
             ->paginate(50);
 
-        $tashkilotIds = $buildTashkilotQuery(true)
+        $tashkilotIds = $buildTashkilotQuery()
             ->pluck('id');
 
-        $stajirovkas = Stajirovka::where('is_active', 1)
+        $stajirovkas = $this->applyCurrentMonitoring(Stajirovka::query())
+            ->where('is_active', 1)
             ->whereIn('tashkilot_id', $tashkilotIds)
             ->count();
 
@@ -163,7 +182,10 @@ class StajirovkaController extends Controller
     public function stajirov($id)
     {
 
-        $stajirovkas = Stajirovka::where('tashkilot_id', '=', $id)->where('quarter', $this->monitoring->id)->paginate(20);
+        $stajirovkas = $this->applyCurrentMonitoring(Stajirovka::query())
+            ->where('tashkilot_id', '=', $id)
+            ->where('is_active', 1)
+            ->paginate(20);
 
         $tashkilot = Tashkilot::findOrFail($id);
 
@@ -216,6 +238,12 @@ class StajirovkaController extends Controller
 
     public function store(StoreStajirovkaRequest $request)
     {
+        $path_ilmiy_hisobot = null;
+        $path_egallangan_bilim = null;
+        $path_ishlar_natijalari = null;
+        $path_xalqarotan_jur_nashr = null;
+        $path_biryil_davomida = null;
+
         if ($request->hasFile('ilmiy_hisobot_2')) {
             $name_ilmiy_hisobot = time() . $request->file('ilmiy_hisobot_2')->getClientOriginalName();
             $path_ilmiy_hisobot = $request->file('ilmiy_hisobot_2')->storeAs('Stajirovka-file', $name_ilmiy_hisobot);
@@ -352,12 +380,38 @@ class StajirovkaController extends Controller
     public function tashkilot_stajirovka(Request $request, $id)
     {
         $stajirovka = Stajirovka::findOrFail($id);
+        $isActive = (int) $request->input('is_active', 0);
+        $stajirovkaIs = (int) $request->input('stajirovka_is', $isActive);
 
         $stajirovka->update([
-            'tashkilot_id' => $request->tashkilot_id
+            'tashkilot_id' => $request->tashkilot_id,
+            'is_active' => $isActive,
         ]);
 
-        return back()->with('status', 'Fayl muvaffaqiyatli yuklandi!');
+        $tashkilot = Tashkilot::findOrFail($request->tashkilot_id);
+        $tashkilot->update([
+            'stajirovka_is' => $stajirovkaIs,
+        ]);
+
+        if ($this->monitoring) {
+            if ($stajirovkaIs === 1) {
+                $stajirovka->monitorings()->syncWithoutDetaching([$this->monitoring->id]);
+            } else {
+                $stajirovka->monitorings()->detach($this->monitoring->id);
+            }
+        }
+
+        return back()->with('status', 'Ma\'lumotlar muvaffaqiyatli yangilandi.');
     }
 
+    private function applyCurrentMonitoring($query)
+    {
+        if (! $this->monitoring) {
+            return $query;
+        }
+
+        return $query->whereHas('monitorings', function ($monitoringQuery) {
+            $monitoringQuery->whereKey($this->monitoring->id);
+        });
+    }
 }
