@@ -148,7 +148,6 @@ class IlmiyLoyihaController extends Controller
         $ilmiyloyiha->load('asbobuskunalar');
         $tashkilotAsbobuskunalar = Asbobuskuna::query()
             ->where('tashkilot_id', $ilmiyloyiha->tashkilot_id)
-            ->where('is_active', 1)
             ->orderBy('name')
             ->get();
 
