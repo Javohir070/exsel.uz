@@ -16,8 +16,12 @@ class AsbobuskunaImport implements ToModel
     public function model(array $row)
     {
         $tashkilot = Tashkilot::where('stir_raqami', '=', $row[4])->first();
+        if (! $tashkilot) {
+            return null;
+        }
+
         return new Asbobuskuna([
-            'tashkilot_id' => $row[4],
+            'tashkilot_id' => $tashkilot->id,
             'user_id' => auth()->user()->id,
             'name' => $row[0],
             'soni' => $row[1],

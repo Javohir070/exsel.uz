@@ -7,6 +7,7 @@ use App\Exports\LoyihalarToMonitoringExport;
 use App\Http\Requests\StoreIlmiyLoyihaRequest;
 use App\Http\Requests\UpdateIlmiyLoyihaRequest;
 use App\Imports\IlmiyLoyihaImport;
+use App\Models\Asbobuskuna;
 use App\Models\IlmiyLoyiha;
 use App\Models\Intellektual;
 use App\Models\Laboratory;
@@ -144,6 +145,13 @@ class IlmiyLoyihaController extends Controller
         $loyihaijrochilar = Loyihaijrochilar::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->get();
         $shtat_sum = (int) $loyihaijrochilar->sum('shtat_birligi');
 
+        $ilmiyloyiha->load('asbobuskunalar');
+        $tashkilotAsbobuskunalar = Asbobuskuna::query()
+            ->where('tashkilot_id', $ilmiyloyiha->tashkilot_id)
+            ->where('is_active', 1)
+            ->orderBy('name')
+            ->get();
+
         return view('admin.ilmiyloyiha.show', [
             'ilmiyloyiha' => $ilmiyloyiha,
             'intellektual' => $intellektual,
@@ -159,7 +167,38 @@ class IlmiyLoyihaController extends Controller
             'tashkilotlar' => Tashkilot::all(),
             'intellektual_1' => $intellektual_1,
             'loyihaiqtisodi_1' => $loyihaiqtisodi_1,
+            'tashkilotAsbobuskunalar' => $tashkilotAsbobuskunalar,
         ]);
+    }
+
+    public function syncAsbobuskunalar(Request $request, IlmiyLoyiha $ilmiyloyiha)
+    {
+        $validated = $request->validate([
+            'asbobuskuna_ids' => 'nullable|array',
+            'asbobuskuna_ids.*' => 'integer|exists:asbobuskunas,id',
+        ]);
+
+        $ids = $validated['asbobuskuna_ids'] ?? [];
+        $allowedIds = Asbobuskuna::query()
+            ->where('tashkilot_id', $ilmiyloyiha->tashkilot_id)
+            ->where('is_active', 1)
+            ->whereIn('id', $ids)
+            ->pluck('id')
+            ->all();
+
+        $ilmiyloyiha->asbobuskunalar()->sync($allowedIds);
+
+        if ($request->wantsJson() || $request->ajax()) {
+            return response()->json([
+                'ok' => true,
+                'message' => 'Loyihaga biriktirilgan asbob-uskunalar yangilandi.',
+                'ids' => $allowedIds,
+            ]);
+        }
+
+        return redirect()
+            ->back()
+            ->with('status', 'Loyihaga biriktirilgan asbob-uskunalar yangilandi.');
     }
 
     public function edit(IlmiyLoyiha $ilmiyloyiha)

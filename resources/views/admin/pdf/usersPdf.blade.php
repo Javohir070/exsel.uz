@@ -410,28 +410,45 @@
     <table>
         <thead>
             <tr>
-                <th class="section" colspan="5">VI. Loyiha doirasida xarid qilingan asosiy asbob-uskuna va inventarlar</th>
+                <th class="section" colspan="4">VI. Loyiha doirasida xarid qilingan asosiy asbob-uskuna va inventarlar</th>
             </tr>
             <tr>
                 <th class="tr-num">№</th>
-                <th>Yetkazib beruvchi yuridik shaxsning nomi</th>
-                <th>Xarid shartnomasining raqami</th>
-                <th>Xarid shartnomasining sana</th>
-                <th>Sotuvchi kompaniyaning nomi</th>
+                <th>Asbob-uskuna va inventarlar nomi</th>
+                <th>Soni</th>
+                <th>Narxi mln.soʻm</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td class="tr-num">1</td>
-                <td>{{ $q?->yetkb_yuridik_nomi ?? '—' }}</td>
-                <td>{{ $q?->xarid_s ?? '—' }}</td>
-                <td>{{ $q?->xarid_r ?? '—' }}</td>
-                <td>{{ $q?->xarid_sh ?? '—' }}</td>
-            </tr>
-            <tr>
-                <td class="tr-num">2</td>
-                <td colspan="4" class="muted">{{ $q?->xarid_qilingan_xarid ?? '—' }}</td>
-            </tr>
+            @php
+                $asboblarPdf = $loyihaAsbobuskunalar ?? ($ilmiyloyiha->asbobuskunalar ?? collect());
+                $xaridMatn = $q ? trim((string) ($q->xarid_qilingan_xarid ?? '')) : '';
+                $xaridRadio = in_array($xaridMatn, ['ha', "yo'q"], true);
+            @endphp
+            @forelse ($asboblarPdf as $idx => $asb)
+                <tr>
+                    <td class="tr-num">{{ $idx + 1 }}</td>
+                    <td>{{ $asb->name ?? '—' }}</td>
+                    <td>{{ $asb->soni ?? '—' }}</td>
+                    <td>
+                        @if ($asb->harid_summa !== null && $asb->harid_summa !== '')
+                            {{ is_numeric($asb->harid_summa) ? number_format((float) $asb->harid_summa, 0, '.', ' ') : $asb->harid_summa }}
+                        @else
+                            —
+                        @endif
+                    </td>
+                </tr>
+            @empty
+                <tr>
+                    <td colspan="4" style="text-align:center;">Loyihaga biriktirilgan asbob-uskuna va inventarlar mavjud emas.</td>
+                </tr>
+            @endforelse
+            @if ($xaridMatn !== '' && ! $xaridRadio)
+                <tr>
+                    <td class="tr-num">{{ $asboblarPdf->count() + 1 }}</td>
+                    <td colspan="3" class="muted">{{ $xaridMatn }}</td>
+                </tr>
+            @endif
         </tbody>
     </table>
 

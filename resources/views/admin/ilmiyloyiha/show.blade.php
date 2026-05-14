@@ -50,6 +50,10 @@
                     class="py-4 sm:mr-8 flex items-center {{ $scienceFlowActive ? 'active' : '' }}">
                     LOYIHA IJROCHILARI
                 </a>
+                <a data-toggle="tab" data-target="#loyiha-asbobuskunalar" href="javascript:;"
+                    class="py-4 sm:mr-8 flex items-center">
+                    ASBOB-USKUNALARI
+                </a>
 
                 @role(['Ilmiy loyihalar boyicha masul', 'Ekspert', 'Ishchi guruh azosi', 'super-admin', 'Rahbar'])
                 @if ($quarters->count() > 0)
@@ -897,6 +901,319 @@
                 @include('admin.components.ilmiyloyiha.expert')
 
                 @include('admin.components.ilmiyloyiha.ijrochilar')
+
+                <div class="tab-content__pane" id="loyiha-asbobuskunalar">
+                    <div class="intro-y box p-5">
+                        <h3 class="text-base font-medium mb-2">Loyihaga biriktirilgan asbob-uskunalar</h3>
+                        <p class="text-gray-600 text-sm mb-4">
+                            Asbob-uskunani roʻyxatdan tanlang va «Roʻyxatga qoʻshish» tugmasini bosing — biriktirish
+                            darhol saqlanadi. «Olib tashlash» tugmasini bossangiz, tanlangan qator bekor qilinadi va bu
+                            ham darhol saqlanadi.
+                        </p>
+                        @if ($tashkilotAsbobuskunalar->isEmpty())
+                            <p class="text-gray-500 text-sm">Tashkilotda faol asbob-uskuna roʻyxati mavjud emas.</p>
+                        @elseif (is_null($tekshirivchilar))
+                            @php
+                                $asbobCatalogJson = $tashkilotAsbobuskunalar
+                                    ->map(function ($a) {
+                                        $label = $a->name;
+                                        if ($a->model) {
+                                            $label .= ' — ' . $a->model;
+                                        }
+                                        if ($a->invertar_r) {
+                                            $label .= ' (inv. ' . $a->invertar_r . ')';
+                                        }
+
+                                        return [
+                                            'id' => $a->id,
+                                            'label' => $label,
+                                            'name' => $a->name ?? '',
+                                            'model' => $a->model ?? '',
+                                            'invertar_r' => $a->invertar_r ?? '',
+                                            'harid_summa' => $a->harid_summa !== null && $a->harid_summa !== ''
+                                                ? number_format((float) $a->harid_summa, 0, '.', ' ')
+                                                : '',
+                                        ];
+                                    })
+                                    ->values();
+                                $asbobInitialIds = $ilmiyloyiha->asbobuskunalar->pluck('id')->values()->all();
+                            @endphp
+                            <div id="loyiha-asbob-wrap" class="space-y-4"
+                                data-sync-url="{{ route('ilmiyloyiha.asbobuskunalar.sync', $ilmiyloyiha) }}"
+                                data-csrf="{{ csrf_token() }}">
+                                <div id="loyiha-asbob-flash" class="text-sm text-theme-9 hidden" role="status"></div>
+                                <div id="loyiha-asbob-error" class="text-sm text-theme-6 hidden" role="alert"></div>
+                                <div class="flex flex-col sm:flex-row gap-3 sm:items-end">
+                                    <div class="flex-1 w-full">
+                                        <label class="text-xs text-gray-600">Asbob-uskunani tanlang</label>
+                                        <select id="loyiha-asbob-select" class="input border w-full mt-1">
+                                            <option value="">— Tanlang —</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" id="loyiha-asbob-add"
+                                        class="button border border-gray-300 text-gray-700 whitespace-nowrap">
+                                        Roʻyxatga qoʻshish
+                                    </button>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-medium text-gray-700 mb-2">Biriktirilganlar roʻyxati</p>
+                                    <div class="overflow-x-auto border border-gray-200 rounded bg-gray-50">
+                                        <table class="table table-bordered mb-0">
+                                            <thead>
+                                                <tr>
+                                                    <th class="border" style="width:3rem;">T/r</th>
+                                                    <th class="border">Nomi</th>
+                                                    <th class="border">Model</th>
+                                                    <th class="border">Invertar raqami</th>
+                                                    <th class="border">Harid qilingan summasi</th>
+                                                    <th class="border text-center" style="width:5rem;">Amal</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="loyiha-asbob-selected-tbody"></tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <script type="application/json" id="loyiha-asbob-data">@json(['catalog' => $asbobCatalogJson, 'initial' => $asbobInitialIds])</script>
+                            <script>
+                                (function() {
+                                    var cfgEl = document.getElementById('loyiha-asbob-data');
+                                    if (!cfgEl) return;
+                                    var cfg = JSON.parse(cfgEl.textContent);
+                                    var catalog = cfg.catalog || [];
+                                    var selected = new Set((cfg.initial || []).map(Number));
+                                    var selectEl = document.getElementById('loyiha-asbob-select');
+                                    var addBtn = document.getElementById('loyiha-asbob-add');
+                                    var listEl = document.getElementById('loyiha-asbob-selected-tbody');
+                                    var wrapEl = document.getElementById('loyiha-asbob-wrap');
+                                    var flashEl = document.getElementById('loyiha-asbob-flash');
+                                    var errorEl = document.getElementById('loyiha-asbob-error');
+                                    if (!selectEl || !addBtn || !listEl) return;
+                                    var syncUrl = wrapEl ? wrapEl.getAttribute('data-sync-url') : '';
+                                    var csrf = wrapEl ? wrapEl.getAttribute('data-csrf') : '';
+                                    var saving = false;
+
+                                    function setSaving(on) {
+                                        saving = on;
+                                        if (addBtn) {
+                                            addBtn.disabled = on;
+                                            addBtn.classList.toggle('opacity-50', on);
+                                            addBtn.classList.toggle('pointer-events-none', on);
+                                        }
+                                        if (listEl) {
+                                            listEl.classList.toggle('opacity-50', on);
+                                            listEl.classList.toggle('pointer-events-none', on);
+                                        }
+                                    }
+
+                                    function persistSelection() {
+                                        if (!syncUrl || !csrf || saving) return;
+                                        setSaving(true);
+                                        if (flashEl) flashEl.classList.add('hidden');
+                                        if (errorEl) errorEl.classList.add('hidden');
+                                        var fd = new FormData();
+                                        fd.append('_token', csrf);
+                                        fd.append('_method', 'PUT');
+                                        Array.from(selected).forEach(function(id) {
+                                            fd.append('asbobuskuna_ids[]', id);
+                                        });
+                                        fetch(syncUrl, {
+                                                method: 'POST',
+                                                body: fd,
+                                                headers: {
+                                                    'Accept': 'application/json',
+                                                    'X-Requested-With': 'XMLHttpRequest',
+                                                },
+                                                credentials: 'same-origin',
+                                            })
+                                            .then(function(res) {
+                                                return res.json().catch(function() {
+                                                    return {};
+                                                }).then(function(data) {
+                                                    return {
+                                                        res: res,
+                                                        data: data
+                                                    };
+                                                });
+                                            })
+                                            .then(function(payload) {
+                                                if (payload.res.status === 419) {
+                                                    window.location.reload();
+                                                    return;
+                                                }
+                                                if (!payload.res.ok) {
+                                                    var msg = 'Saqlashda xatolik';
+                                                    if (payload.data && payload.data.message) {
+                                                        msg = payload.data.message;
+                                                    }
+                                                    if (payload.data && payload.data.errors) {
+                                                        var errs = [];
+                                                        Object.keys(payload.data.errors).forEach(function(k) {
+                                                            var arr = payload.data.errors[k];
+                                                            if (Array.isArray(arr)) {
+                                                                arr.forEach(function(s) {
+                                                                    errs.push(s);
+                                                                });
+                                                            }
+                                                        });
+                                                        msg = errs.join(' ');
+                                                    }
+                                                    if (errorEl) {
+                                                        errorEl.textContent = msg;
+                                                        errorEl.classList.remove('hidden');
+                                                    }
+                                                    return;
+                                                }
+                                                if (flashEl) {
+                                                    flashEl.textContent = (payload.data && payload.data.message) ?
+                                                        payload.data.message : 'Saqlandi';
+                                                    flashEl.classList.remove('hidden');
+                                                    setTimeout(function() {
+                                                        flashEl.classList.add('hidden');
+                                                    }, 2500);
+                                                }
+                                            })
+                                            .catch(function() {
+                                                if (errorEl) {
+                                                    errorEl.textContent = 'Tarmoq xatosi';
+                                                    errorEl.classList.remove('hidden');
+                                                }
+                                            })
+                                            .finally(function() {
+                                                setSaving(false);
+                                            });
+                                    }
+
+                                    function metaForId(id) {
+                                        var nid = Number(id);
+                                        for (var i = 0; i < catalog.length; i++) {
+                                            if (Number(catalog[i].id) === nid) return catalog[i];
+                                        }
+                                        return {
+                                            id: id,
+                                            label: '#' + id,
+                                            name: '#' + id,
+                                            model: '',
+                                            invertar_r: '',
+                                            harid_summa: ''
+                                        };
+                                    }
+
+                                    function rebuildSelect() {
+                                        selectEl.innerHTML = '<option value="">— Tanlang —</option>';
+                                        for (var i = 0; i < catalog.length; i++) {
+                                            var c = catalog[i];
+                                            if (selected.has(Number(c.id))) continue;
+                                            var opt = document.createElement('option');
+                                            opt.value = c.id;
+                                            opt.textContent = c.label;
+                                            selectEl.appendChild(opt);
+                                        }
+                                    }
+
+                                    function renderSelected() {
+                                        listEl.innerHTML = '';
+                                        var ids = Array.from(selected);
+                                        if (ids.length === 0) {
+                                            var tr0 = document.createElement('tr');
+                                            var td0 = document.createElement('td');
+                                            td0.colSpan = 6;
+                                            td0.className = 'border text-gray-400 text-sm text-center py-4';
+                                            td0.textContent = 'Hali biriktirilmagan';
+                                            tr0.appendChild(td0);
+                                            listEl.appendChild(tr0);
+                                            return;
+                                        }
+                                        ids.forEach(function(id, idx) {
+                                            var m = metaForId(id);
+                                            var tr = document.createElement('tr');
+                                            var tdN = document.createElement('td');
+                                            tdN.className = 'border text-center';
+                                            tdN.textContent = String(idx + 1);
+                                            var tdName = document.createElement('td');
+                                            tdName.className = 'border';
+                                            tdName.textContent = m.name || '';
+                                            var tdModel = document.createElement('td');
+                                            tdModel.className = 'border';
+                                            tdModel.textContent = m.model || '';
+                                            var tdInv = document.createElement('td');
+                                            tdInv.className = 'border';
+                                            tdInv.textContent = m.invertar_r || '';
+                                            var tdHarid = document.createElement('td');
+                                            tdHarid.className = 'border';
+                                            tdHarid.textContent = m.harid_summa || '';
+                                            var tdAct = document.createElement('td');
+                                            tdAct.className = 'border text-center';
+                                            var btn = document.createElement('button');
+                                            btn.type = 'button';
+                                            btn.className = 'text-theme-6 text-xs underline';
+                                            btn.setAttribute('data-rid', id);
+                                            btn.textContent = 'Olib tashlash';
+                                            tdAct.appendChild(btn);
+                                            tr.appendChild(tdN);
+                                            tr.appendChild(tdName);
+                                            tr.appendChild(tdModel);
+                                            tr.appendChild(tdInv);
+                                            tr.appendChild(tdHarid);
+                                            tr.appendChild(tdAct);
+                                            listEl.appendChild(tr);
+                                        });
+                                    }
+
+                                    listEl.addEventListener('click', function(e) {
+                                        var t = e.target.closest('[data-rid]');
+                                        if (!t || saving) return;
+                                        selected.delete(Number(t.getAttribute('data-rid')));
+                                        renderSelected();
+                                        rebuildSelect();
+                                        persistSelection();
+                                    });
+
+                                    addBtn.addEventListener('click', function() {
+                                        if (saving) return;
+                                        var v = selectEl.value;
+                                        if (!v) return;
+                                        var id = Number(v);
+                                        if (selected.has(id)) return;
+                                        selected.add(id);
+                                        selectEl.value = '';
+                                        renderSelected();
+                                        rebuildSelect();
+                                        persistSelection();
+                                    });
+
+                                    renderSelected();
+                                    rebuildSelect();
+                                })();
+                            </script>
+                        @else
+                            @if ($ilmiyloyiha->asbobuskunalar->isEmpty())
+                                <p class="text-gray-500 text-sm">Biriktirilgan asbob-uskuna yoʻq.</p>
+                            @else
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th class="border">T/r</th>
+                                            <th class="border">Nomi</th>
+                                            <th class="border">Model</th>
+                                            <th class="border">Harid qilingan summasi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($ilmiyloyiha->asbobuskunalar as $i => $asb)
+                                            <tr>
+                                                <td class="border">{{ $i + 1 }}</td>
+                                                <td class="border">{{ $asb->name }}</td>
+                                                <td class="border">{{ $asb->model }}</td>
+                                                <td class="border">{{ $asb->harid_summa }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            @endif
+                        @endif
+                    </div>
+                </div>
 
             </div>
 

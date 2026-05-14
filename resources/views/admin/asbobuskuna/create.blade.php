@@ -29,6 +29,15 @@
                         @enderror
                     </div>
 
+                    <div class="w-full col-span-6">
+                        <label class="flex flex-col sm:flex-row">Soni</label>
+                        <input type="number" name="soni" value="{{ old('soni') }}" min="0" step="1"
+                            class="input w-full border mt-2" placeholder="Masalan: 1">
+                        @error('soni')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
+                    </div>
+
                     <!-- Model -->
                     <div class="w-full col-span-6">
                         <label class="flex flex-col sm:flex-row"><span

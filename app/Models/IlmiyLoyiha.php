@@ -144,6 +144,16 @@ class IlmiyLoyiha extends Model
         return $this->hasMany(Intellektual::class);
     }
 
+    public function asbobuskunalar()
+    {
+        return $this->belongsToMany(
+            Asbobuskuna::class,
+            'ilmiy_loyiha_asbobuskuna',
+            'ilmiy_loyiha_id',
+            'asbobuskuna_id'
+        )->withTimestamps();
+    }
+
     // App\Models\IlmiyLoyiha.php
 
     // public function umumiyyil()

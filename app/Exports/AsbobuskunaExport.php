@@ -13,7 +13,10 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-        return Asbobuskuna::with('tashkilot')->where('is_active', 1)->get()->map(function ($asbobuskuna) {
+        return Asbobuskuna::with(['tashkilot', 'laboratory', 'kafedralar', 'asbobuskunaexperts'])
+            ->where('is_active', 1)
+            ->get()
+            ->map(function ($asbobuskuna) {
 
             return [
                 'id' => $asbobuskuna->id,
@@ -35,11 +38,11 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
                 "Harid qilingan yili" => $asbobuskuna->harid_qilingan_yil,
                 "Holati" => $asbobuskuna->holati,
                 "O‘rnatilgan yili" => $asbobuskuna->urnatilgan_yili,
-                "Foydalanishga mas'ul tarkibiy bo‘linma (laboratoriya va kafedra) nomi" => $asbobuskuna->laboratory->name ?? $asbobuskuna->kafedralar->name ?? '--',
+                "Foydalanishga mas'ul tarkibiy bo‘linma (laboratoriya va kafedra) nomi" => $asbobuskuna->laboratory?->name ?? $asbobuskuna->kafedralar?->name ?? '--',
                 // "Foydalanishga mas'ul tarkibiy bo‘linma (kafedra) nomi" => $asbobuskuna->kafedralar->name ?? '--',
                  "F.I.Sh" => $asbobuskuna->fish,
                  "Javobgar etib belgilanganligi to‘g‘risida buyruq raqami" => $asbobuskuna->jav_buy_raqami,
-                 "Javobgar etib belgilanganligi to‘g‘risida buyruq sanasi" => $asbobuskuna->jav_buy_sanasi,
+                 "Javobgar etib belgilanganligi to‘g‘risida buyruq sanasi" => $asbobuskuna->jav_sanasi,
                  "Bajarilayotgan ilmiy-tadqiqot ishlari" => $asbobuskuna->ilmiy_tadqiqot_ishilari,
                  "Ilmiy-tadqiqot dasturlaridagi ish hajmi" => $asbobuskuna->ilmiy_tadqiqot_hajmi,
                  "Laboratoriya uskunalari uchun zarur reagent va reaktivlar zaxirasi" => $asbobuskuna->lab_zaxirasi,

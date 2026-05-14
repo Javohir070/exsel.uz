@@ -36,6 +36,7 @@
                     <tr>
                         <th class="whitespace-no-wrap">№</th>
                         <th class="whitespace-no-wrap">Nomi</th>
+                        <th class="whitespace-no-wrap">Soni</th>
                         <th class="whitespace-no-wrap">Turi</th>
                         <th class="whitespace-no-wrap">Ishlab chiqligan yili</th>
                         <th class="whitespace-no-wrap">Holati</th>
@@ -52,6 +53,7 @@
                                 <a href="{{ route('asbobuskuna.edit', ['asbobuskuna' => $k->id]) }}"
                                     class="font-medium ">{{ $k->name  }} </a>
                             </td>
+                            <td>{{ $k->soni ?? '—' }}</td>
                             <td>
                                 {{ $k->turi }}
                             </td>
@@ -90,7 +92,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6" class="text-center">Ma'lumotlar mavjud emas</td>
+                            <td colspan="7" class="text-center">Ma'lumotlar mavjud emas</td>
                         </tr>
                     @endforelse
                 </tbody>
@@ -122,7 +124,7 @@
                         <form id="asbobuskuna-paper-create-form" method="POST" action="{{ route('tashkilot.users.store') }}"
                             class="validate-form" enctype="multipart/form-data" novalidate="novalidate">
                             @csrf
-                            <input type="hidden" name="asbobuskuna_id" value="{{ $asbobuskunas->first()->id }}">
+                                <input type="hidden" name="asbobuskuna_id" value="{{ $asbobuskunas->first()->id ?? '' }}">
                             <div class="grid grid-cols-12 gap-2">
                                 <div class="w-full col-span-6">
                                     <label class="flex flex-col sm:flex-row"> <span

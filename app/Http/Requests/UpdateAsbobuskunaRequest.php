@@ -23,6 +23,7 @@ class UpdateAsbobuskunaRequest extends FormRequest
     {
         return [
             'name' => ['required', 'regex:/^[A-Za-z0-9\s\'\"\/\-\.\,]+$/'], // Faqat lotin harflari va bo'sh joy
+            'soni' => ['nullable', 'integer', 'min:0', 'max:999999'],
             'model' => ['required', 'regex:/^[A-Za-z0-9\s\'\"\/\-\.\,]+$/'], // Lotin harflari, raqamlar va bo'sh joy
             'fish' => ['required', 'regex:/^[A-Za-z0-9\s\'\"\/\-\.\,]+$/'], // Lotin harflari, raqamlar va bo'sh joy
             'turi' => 'required|string|max:255',

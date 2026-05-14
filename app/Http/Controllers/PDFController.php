@@ -41,7 +41,7 @@ class PDFController extends Controller
             return back()->withErrors(['monitoring' => 'Faol monitoring topilmadi. PDF yaratilmadi.']);
         }
 
-        $ilmiyloyiha = IlmiyLoyiha::findOrFail($ilmiyId);
+        $ilmiyloyiha = IlmiyLoyiha::with('asbobuskunalar')->findOrFail($ilmiyId);
         $fileName = 'Ilmiy-loyiha' . time() . '.pdf';
         $fileRelativePath = 'pdfs/' . $fileName;
         $filePath = storage_path('app/public/' . $fileRelativePath);
@@ -59,6 +59,7 @@ class PDFController extends Controller
 
         $data = [
             'ilmiyloyiha' => $ilmiyloyiha,
+            'loyihaAsbobuskunalar' => $ilmiyloyiha->asbobuskunalar,
             'intellektual' => $intellektual,
             'loyihaiqtisodi' => $loyihaiqtisodi,
             'tekshirivchilar' => $tekshirivchilar,

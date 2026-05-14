@@ -9,6 +9,15 @@ class Asbobuskuna extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'sh_sanasi' => 'date',
+        'jav_sanasi' => 'date',
+        'ishlabchiq_yil' => 'integer',
+        'harid_qilingan_yil' => 'integer',
+        'urnatilgan_yili' => 'integer',
+        'is_active' => 'boolean',
+    ];
+
     protected $fillable = [
         'tashkilot_id',
         'user_id',
@@ -76,6 +85,16 @@ class Asbobuskuna extends Model
             'asbobuskuna_monitoring',
             'asbobuskuna_id',
             'monitoring_id'
+        )->withTimestamps();
+    }
+
+    public function ilmiyLoyihalar()
+    {
+        return $this->belongsToMany(
+            IlmiyLoyiha::class,
+            'ilmiy_loyiha_asbobuskuna',
+            'asbobuskuna_id',
+            'ilmiy_loyiha_id'
         )->withTimestamps();
     }
 }
