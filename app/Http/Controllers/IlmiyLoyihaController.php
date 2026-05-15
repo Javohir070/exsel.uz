@@ -180,7 +180,6 @@ class IlmiyLoyihaController extends Controller
         $ids = $validated['asbobuskuna_ids'] ?? [];
         $allowedIds = Asbobuskuna::query()
             ->where('tashkilot_id', $ilmiyloyiha->tashkilot_id)
-            ->where('is_active', 1)
             ->whereIn('id', $ids)
             ->pluck('id')
             ->all();
