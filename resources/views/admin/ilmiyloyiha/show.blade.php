@@ -931,7 +931,7 @@
                                             'model' => $a->model ?? '',
                                             'invertar_r' => $a->invertar_r ?? '',
                                             'harid_summa' => $a->harid_summa !== null && $a->harid_summa !== ''
-                                                ? number_format((float) $a->harid_summa, 0, '.', ' ')
+                                                ? number_format((int) preg_replace('/\D/', '', (string) $a->harid_summa), 0, '.', ' ')
                                                 : '',
                                         ];
                                     })
@@ -1206,7 +1206,7 @@
                                                 <td class="border">{{ $i + 1 }}</td>
                                                 <td class="border">{{ $asb->name }}</td>
                                                 <td class="border">{{ $asb->model }}</td>
-                                                <td class="border">{{ $asb->harid_summa }}</td>
+                                                <td class="border">{{ number_format((int) preg_replace('/\D/', '', (string) ($asb->harid_summa ?? '')), 0, '.', ' ') }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
