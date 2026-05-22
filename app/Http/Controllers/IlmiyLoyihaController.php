@@ -92,7 +92,6 @@ class IlmiyLoyihaController extends Controller
             'olingan_natija' => $request->olingan_natija ?? 'yoq',
             'joriy_holati' => $request->joriy_holati ?? 'yoq',
             'tijoratlashtirish' => $request->tijoratlashtirish ?? 'yoq',
-            'moliyalashtirilganmi' => $request->moliyalashtirilganmi,
         ]);
 
         $user = auth()->user();

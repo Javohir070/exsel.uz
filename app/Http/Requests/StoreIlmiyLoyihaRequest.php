@@ -30,7 +30,7 @@ class StoreIlmiyLoyihaRequest extends FormRequest
             'bosh_sana' => 'required|date',
             'tug_sana' => 'required|date|after_or_equal:bosh_sana',
             'rahbar_name' => 'required|string|max:1024',
-            'raqami' => 'nullable|string|unique:ilmiy_loyihas,raqami|max:255',
+            'raqami' => 'required|string|unique:ilmiy_loyihas,raqami|max:255',
             'pan_yunalish' => 'nullable|string|max:1024',
             'sanasi' => 'nullable|date',
             'sum' => 'nullable|string|max:255',
