@@ -4,6 +4,8 @@ use App\Http\Controllers\Api\LoyihaijrochilarApiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\DoktaranturaController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -20,4 +22,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 
+Route::get('daraja-statistics', [DoktaranturaController::class, 'darajaStatistics'])->name('api.daraja_statistics');
 Route::get('/project-performers/{jshshir}', [LoyihaijrochilarApiController::class, 'getLoyihaijrochilarProject'])->middleware('auth.basic');
