@@ -21,6 +21,12 @@ class UpdateTijoratExpertRequest extends FormRequest
      */
     public function rules(): array
     {
+        if ($this->input('holati') == 1) {
+            return [
+                'holati' => 'required',
+            ];
+        }
+
         return [
                 'media_zip' => 'nullable|file|mimes:zip|max:10480',
                 'grant_sarf_maqsadli' => 'required|string',
