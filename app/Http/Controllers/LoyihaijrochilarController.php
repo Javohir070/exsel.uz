@@ -16,6 +16,11 @@ class LoyihaijrochilarController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'shtat_birligi' => 'required',
+            'boshqa_shtat_birligi' => 'required_if:shtat_birligi,boshqa|nullable|regex:/^\d+(\.\d{1,2})?$/',
+        ]);
+
         $ilmiyloyiha = IlmiyLoyiha::findOrFail($request->ilmiy_loyiha_id);
         $scienceid = $request->scienceid ?? null;
         $data = null;

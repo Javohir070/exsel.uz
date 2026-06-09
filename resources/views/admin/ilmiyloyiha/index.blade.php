@@ -50,10 +50,6 @@
                             </td>
                             <td>
                                 @if ($xodimlar->user_id == 1)
-                                    <a href="{{ route('ilmiy_loyha_edit.index') }}" class="button  bg-theme-1 text-white mr-4"
-                                        style="display: ruby;">
-                                        Masul biriktirish
-                                    </a>
                                 @else
                                     {{ $xodimlar->user->name ?? null }}
                                 @endif

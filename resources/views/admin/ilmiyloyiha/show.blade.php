@@ -1291,14 +1291,26 @@
     </script>
 
     <script>
-        // "Boshqa" tanlansa inputni ko‘rsatish
-        document.getElementById('shtat_birligi').addEventListener('change', function () {
+        document.addEventListener('DOMContentLoaded', function () {
+            const shtatBirligi = document.getElementById('shtat_birligi');
+            if (!shtatBirligi) return;
+
             const boshqaInputDiv = document.getElementById('boshqa_input_div');
-            if (this.value === 'boshqa') {
-                boshqaInputDiv.style.display = 'block';
-            } else {
-                boshqaInputDiv.style.display = 'none';
+            const boshqaInput = document.getElementById('boshqa_shtat_birligi');
+
+            function toggleBoshqaInput() {
+                if (shtatBirligi.value === 'boshqa') {
+                    boshqaInputDiv.style.display = 'block';
+                    boshqaInput.setAttribute('required', 'required');
+                } else {
+                    boshqaInputDiv.style.display = 'none';
+                    boshqaInput.removeAttribute('required');
+                    boshqaInput.value = '';
+                }
             }
+
+            shtatBirligi.addEventListener('change', toggleBoshqaInput);
+            toggleBoshqaInput();
         });
 
         // Faqat raqam va nuqta (desimal) qabul qilish

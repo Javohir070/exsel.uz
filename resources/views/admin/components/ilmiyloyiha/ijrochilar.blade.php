@@ -113,9 +113,13 @@
 
                                     </select>
                                     <div id="boshqa_input_div" style="display: none;" class="mt-2">
-                                        <input type="text" name="boshqa_shtat_birligi" class="input border w-full"
-                                            placeholder="Shtat birligini kiriting" inputmode="decimal"
-                                            pattern="^\d+(\.\d{1,2})?$" oninput="validateInput(this)">
+                                        <input type="text" name="boshqa_shtat_birligi" id="boshqa_shtat_birligi"
+                                            class="input border w-full" placeholder="Shtat birligini kiriting"
+                                            inputmode="decimal" pattern="^\d+(\.\d{1,2})?$"
+                                            oninput="validateInput(this)">
+                                        @error('boshqa_shtat_birligi')
+                                            <div class="error">{{ $message }}</div>
+                                        @enderror
                                     </div>
 
                                 </td>
