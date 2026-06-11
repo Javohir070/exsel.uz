@@ -40,13 +40,18 @@ class IlmiyLoyihaController extends Controller
             ->latest()
             ->paginate(20);
 
+        $ilmiyLoyihaList = IlmiyLoyiha::where('tashkilot_id', $tashRId)
+            ->orderBy('mavzusi')
+            ->get(['id', 'mavzusi']);
+
         $masullar = User::where('tashkilot_id', $tashRId)
-            ->with('roles')
+            ->with(['roles', 'ilmiyloyhalar'])
             ->get()
             ->filter(fn (User $user) => $user->roles->contains('name', 'Ilmiy_loyiha_rahbari'));
 
         return view('admin.ilmiyloyiha.index', [
             'ilmiyloyiha' => $ilmiyloyiha,
+            'ilmiyLoyihaList' => $ilmiyLoyihaList,
             'masullar' => $masullar,
         ]);
     }

@@ -110,11 +110,12 @@
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Ilmiy loyiha nomi
                                     </label>
-                                    <select name="ilmiyloyiha_id" class="input border w-full mt-2"
-                                        value="{{ old('ilmiyloyiha_id') }}" required="">
+                                    <select name="ilmiyloyiha_id" class="input border w-full mt-2" required="">
                                         <option value="">Ilmiy loyiha tanlang</option>
-                                        @foreach ($ilmiyloyiha as $role)
-                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @foreach ($ilmiyLoyihaList as $loyiha)
+                                            <option value="{{ $loyiha->id }}" @selected(old('ilmiyloyiha_id') == $loyiha->id)>
+                                                {{ $loyiha->mavzusi }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -183,7 +184,7 @@
                         @foreach ($masullar as $user)
                             <tr>
                                 <td class="border ">{{ $loop->index + 1 }}</td>
-                                <td class="border">{{ $user->ilmiyloyiha->name ?? "yo'q" }}</td>
+                                <td class="border">{{ $user->ilmiyloyhalar->pluck('mavzusi')->filter()->join(', ') ?: "yo'q" }}</td>
                                 <td class="border">{{ $user->name }}</td>
                                 <td class="border">{{ $user->email }}</td>
                                 <td class="border">
