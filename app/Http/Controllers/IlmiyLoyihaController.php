@@ -142,7 +142,7 @@ class IlmiyLoyihaController extends Controller
         ['data' => $data, 'errorMessage' => $errorMessage] = $this->resolveScienceIdUserData($scienceid);
 
         $loyihaijrochilar = Loyihaijrochilar::where('ilmiy_loyiha_id', $ilmiyloyiha->id)->get();
-        $shtat_sum = (int) $loyihaijrochilar->sum('shtat_birligi');
+        $shtat_sum = $loyihaijrochilar->sum('shtat_birligi');
 
         $ilmiyloyiha->load('asbobuskunalar');
         $tashkilotAsbobuskunalar = Asbobuskuna::query()
