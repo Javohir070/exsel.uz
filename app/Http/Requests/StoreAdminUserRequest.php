@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\IlmiyLoyiha;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 
@@ -29,6 +30,7 @@ class StoreAdminUserRequest extends FormRequest
             'laboratory_id' => 'nullable|exists:laboratories,id',
             'kafedralar_id' => 'nullable|exists:kafedralars,id',
             'asbobuskuna_id' => 'nullable|exists:asbobuskunas,id',
+            'ilmiyloyiha_id' => 'nullable|exists:ilmiy_loyihas,id',
         ];
     }
 
@@ -41,20 +43,34 @@ class StoreAdminUserRequest extends FormRequest
             $hasLaboratory = $this->filled('laboratory_id');
             $hasKafedra = $this->filled('kafedralar_id');
             $hasAsbob = $this->filled('asbobuskuna_id');
+            $hasIlmiyLoyiha = $this->filled('ilmiyloyiha_id');
 
-            if (!$hasLaboratory && !$hasKafedra && !$hasAsbob) {
+            if (!$hasLaboratory && !$hasKafedra && !$hasAsbob && !$hasIlmiyLoyiha) {
                 $validator->errors()->add(
-                    'laboratory_id',
-                    'Laboratoriya, kafedra yoki asbob-uskunaga masul shaxs tanlanishi kerak.'
+                    'ilmiyloyiha_id',
+                    'Laboratoriya, kafedra, asbob-uskuna yoki ilmiy loyiha tanlanishi kerak.'
                 );
             }
 
-            // Bir nechta tur bir vaqtda yuborilmasin
-            if ((int) $hasLaboratory + (int) $hasKafedra + (int) $hasAsbob > 1) {
+            $selectedTypes = (int) $hasLaboratory + (int) $hasKafedra + (int) $hasAsbob + (int) $hasIlmiyLoyiha;
+            if ($selectedTypes > 1) {
                 $validator->errors()->add(
-                    'laboratory_id',
-                    'Faqat bitta tur (laboratoriya, kafedra yoki asbob-uskuna) tanlanishi kerak.'
+                    'ilmiyloyiha_id',
+                    'Faqat bitta tur (laboratoriya, kafedra, asbob-uskuna yoki ilmiy loyiha) tanlanishi kerak.'
                 );
+            }
+
+            if ($hasIlmiyLoyiha) {
+                $belongsToTashkilot = IlmiyLoyiha::where('id', $this->ilmiyloyiha_id)
+                    ->where('tashkilot_id', auth()->user()->tashkilot_id)
+                    ->exists();
+
+                if (!$belongsToTashkilot) {
+                    $validator->errors()->add(
+                        'ilmiyloyiha_id',
+                        'Tanlangan ilmiy loyiha sizning tashkilotingizga tegishli emas.'
+                    );
+                }
             }
         });
     }
@@ -73,6 +89,10 @@ class StoreAdminUserRequest extends FormRequest
         if ($this->filled('asbobuskuna_id')) {
             return ['Asbob_uskunalarga_masul'];
         }
+        if ($this->filled('ilmiyloyiha_id')) {
+            return ['Ilmiy_loyiha_rahbari'];
+        }
+
         return [];
     }
 }

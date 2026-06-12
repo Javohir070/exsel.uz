@@ -22,6 +22,16 @@
             <div class="alert alert-success">{{ session('status') }}</div>
         @endif
 
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul class="list-disc pl-5">
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
             <table class="table table-report -mt-2">
                 <thead>
@@ -102,15 +112,18 @@
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> F.I.Sh
                                     </label>
-                                    <input type="text" name="name" class="input w-full border mt-2"
+                                    <input type="text" name="name" class="input w-full border mt-2 @error('name') border-theme-6 @enderror"
                                         value="{{ old('name') }}" required="">
+                                    @error('name')
+                                        <div class="text-theme-6 text-xs mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="w-full col-span-6">
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Ilmiy loyiha nomi
                                     </label>
-                                    <select name="ilmiyloyiha_id" class="input border w-full mt-2" required="">
+                                    <select name="ilmiyloyiha_id" class="input border w-full mt-2 @error('ilmiyloyiha_id') border-theme-6 @enderror" required="">
                                         <option value="">Ilmiy loyiha tanlang</option>
                                         @foreach ($ilmiyLoyihaList as $loyiha)
                                             <option value="{{ $loyiha->id }}" @selected(old('ilmiyloyiha_id') == $loyiha->id)>
@@ -118,6 +131,9 @@
                                             </option>
                                         @endforeach
                                     </select>
+                                    @error('ilmiyloyiha_id')
+                                        <div class="text-theme-6 text-xs mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="w-full col-span-6">
@@ -126,16 +142,22 @@
                                         email adresini
                                         kiriting)
                                     </label>
-                                    <input type="email" name="email" class="input w-full border mt-2"
+                                    <input type="email" name="email" class="input w-full border mt-2 @error('email') border-theme-6 @enderror"
                                         value="{{ old('email') }}" required="">
+                                    @error('email')
+                                        <div class="text-theme-6 text-xs mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="w-full col-span-6">
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Parolni kiriting
                                     </label>
-                                    <input type="password" name="password" class="input w-full border mt-2"
-                                        value="{{ old('password') }}" required="">
+                                    <input type="password" name="password" class="input w-full border mt-2 @error('password') border-theme-6 @enderror"
+                                        required="">
+                                    @error('password')
+                                        <div class="text-theme-6 text-xs mt-1">{{ $message }}</div>
+                                    @enderror
                                 </div>
                             </div>
 
@@ -219,4 +241,12 @@
             </div>
         </div>
     </div>
+
+    @if ($errors->any())
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                $('#ilmiyloyiha-paper-masul-create-modal').modal('show');
+            });
+        </script>
+    @endif
 @endsection

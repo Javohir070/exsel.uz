@@ -110,17 +110,27 @@ class UserController extends Controller
     public function tashkilot_users_store(StoreAdminUserRequest $request)
     {
         $data = $request->validated();
+        $ilmiyloyihaId = $data['ilmiyloyiha_id'] ?? null;
+        unset($data['ilmiyloyiha_id'], $data['asbobuskuna_id']);
+
         $data['password'] = Hash::make($request->password);
         $data['tashkilot_id'] = auth()->user()->tashkilot_id;
 
         $roles = $request->getResolvedRoles();
+        $tashkilotId = auth()->user()->tashkilot_id;
 
-        DB::transaction(function () use ($data, $roles) {
+        DB::transaction(function () use ($data, $roles, $ilmiyloyihaId, $tashkilotId) {
             $user = User::create($data);
             $user->syncRoles($roles);
+
+            if ($ilmiyloyihaId) {
+                IlmiyLoyiha::where('id', $ilmiyloyihaId)
+                    ->where('tashkilot_id', $tashkilotId)
+                    ->update(['user_id' => $user->id]);
+            }
         });
 
-        return redirect()->back()->with('status', 'User Created Successfully with roles');
+        return redirect()->back()->with('status', 'Masul muvaffaqiyatli yaratildi va biriktirildi.');
     }
 
 
