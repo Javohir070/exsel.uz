@@ -102,6 +102,8 @@ Route::middleware('auth')->group(function () {
     Route::get('region/{id}', [TashkilotController::class, 'tashkilot_region'])->name('tashkilot_region');
     Route::get('/tashqoshish', [TashkilotController::class, 'tashkilot_create'])->name('tashqoshish.create');
     Route::get('/adminlar', [TashkilotMalumotlarController::class, 'adminlar'])->name('tashkilotmalumotlar.adminlar');
+    Route::get('tashkilotmalumotlar/{tashkilotmalumotlar}/bolim/{section}', [TashkilotMalumotlarController::class, 'bolim'])
+        ->name('tashkilotmalumotlar.bolim');
     //end tashkilot
 
     //tashkilotrahbari
@@ -148,6 +150,13 @@ Route::middleware('auth')->group(function () {
     Route::resource('users', UserController::class);
     Route::patch('users/{user}/toggle-active', [UserController::class, 'toggleActive'])->name('users.toggle-active');
 
+    Route::post('/ilmiy-loyhagamasul', [UserController::class, 'ilmiy_loyha_masul_store'])->name('ilmiy_loyha_masul.store');
+    Route::post('/asbobuskuna-masul', [UserController::class, 'asbobuskuna_masul_store'])->name('asbobuskuna_masul.store');
+    Route::put('/asbobuskuna-masul-edit/{id}', [UserController::class, 'asbobuskuna_masul_edit'])->name('asbobuskuna_masul.edit');
+    Route::post('/kafedra-masul', [UserController::class, 'kafedra_masul_store'])->name('kafedra_masul.store');
+    Route::put('/kafedra-masul-edit/{id}', [UserController::class, 'kafedra_masul_edit'])->name('kafedra_masul.edit');
+    Route::post('/laboratory-masul', [UserController::class, 'laboratory_masul_store'])->name('laboratory_masul.store');
+    Route::put('/laboratory-masul-edit/{id}', [UserController::class, 'laboratory_masul_edit'])->name('laboratory_masul.edit');
     Route::put('/ilmiy-loyhagamasul-edit/{id}', [UserController::class, 'ilmiy_loyha_rahbari_edit'])->name('ilmiyLoyha_rahbari_edit.index');
     Route::get('/masullar-rahbarlar/{id}', [UserController::class, 'ilmiy_loyha_masullar_edit'])->name('ilmiy_loyha_user_edit.index');
     //end UserController

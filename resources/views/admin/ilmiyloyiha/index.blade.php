@@ -2,20 +2,29 @@
 
 @section('content')
     <div class="content">
-        <div class="flex justify-between align-center mt-6 mb-6">
-
-            <h2 class="intro-y text-lg font-medium">Ilmiy loyihalar</h2>
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mt-6 mb-6">
             <div>
-                <a href="javascript:;" data-target="#ilmiyloyiha-paper-masul-create-modal" data-toggle="modal"
-                    class="button w-24 ml-3 bg-theme-1 text-white">
-                    Masul biriktirsh
-                </a>
-
+                <h2 class="intro-y text-lg font-medium">Ilmiy loyihalar</h2>
+                <p class="text-gray-600 text-sm mt-1">Loyihalar va masullarni boshqarish</p>
+            </div>
+            @role('admin')
+            <div class="inline-flex flex-wrap gap-0 rounded-md overflow-hidden border border-gray-300 shadow-sm">
                 <a href="javascript:;" data-target="#ilmiyloyiha-masul-list-modal" data-toggle="modal"
-                    class="button w-24 ml-3 bg-theme-1 text-white">
-                    Masullar ro'yxati
+                    class="button border-0 rounded-none text-gray-700 flex items-center gap-2 px-4">
+                    <i data-feather="users" class="w-4 h-4"></i>
+                    Masullar
+                    <span class="px-2 py-0.5 text-xs font-medium rounded-full bg-gray-200 text-gray-700">
+                        {{ $masullar->count() }}
+                    </span>
+                </a>
+                <a href="javascript:;" data-target="#ilmiyloyiha-paper-masul-create-modal" data-toggle="modal"
+                    class="button border-0 border-l border-gray-300 rounded-none bg-theme-1 text-white flex items-center gap-2 px-4"
+                    title="Loyihaga masul biriktirish">
+                    <i data-feather="user-plus" class="w-4 h-4"></i>
+                    <span class="hidden sm:inline">Loyihaga biriktirish</span>
                 </a>
             </div>
+            @endrole
         </div>
 
         @if (session('status'))
@@ -91,16 +100,21 @@
 
     <div class="modal" id="ilmiyloyiha-paper-masul-create-modal">
         <div class="modal__content modal__content--xl">
-            <div class="p-5">
-                <div style="display: flex; justify-content: space-between;margin-bottom: 10px; align-items: center;">
-                    <div>
-                        <h2 class="text-lg font-medium">Ilmiy loyiha masul biriktirish</h2>
+            <div class="flex items-center justify-between px-5 pt-5 pb-4 border-b border-gray-200">
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-theme-1 text-white flex-shrink-0">
+                        <i data-feather="user-plus" class="w-5 h-5"></i>
                     </div>
                     <div>
-                        <a data-dismiss="modal" href="javascript:;" style="display: flex; justify-content: end;"> <i
-                                data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
+                        <h2 class="text-lg font-medium">Loyihaga masul biriktirish</h2>
+                        <p class="text-sm text-gray-600 mt-0.5">Bir masul bir nechta loyihaga biriktirilishi mumkin</p>
                     </div>
                 </div>
+                <a data-dismiss="modal" href="javascript:;" class="text-gray-400 hover:text-gray-600 transition-colors"
+                    aria-label="Yopish">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </a>
+            </div>
 
                 <div class="intro-y col-span-12 flex flex-wrap sm:flex-no-wrap items-center mt-2">
                     <div class="w-full mt-3 sm:mt-0 sm:ml-auto md:ml-0">
@@ -112,18 +126,15 @@
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> F.I.Sh
                                     </label>
-                                    <input type="text" name="name" class="input w-full border mt-2 @error('name') border-theme-6 @enderror"
+                                    <input type="text" name="name" class="input w-full border mt-2"
                                         value="{{ old('name') }}" required="">
-                                    @error('name')
-                                        <div class="text-theme-6 text-xs mt-1">{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                                 <div class="w-full col-span-6">
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>  Ilmiy loyiha nomi
                                     </label>
-                                    <select name="ilmiyloyiha_id" class="input border w-full mt-2 @error('ilmiyloyiha_id') border-theme-6 @enderror" required="">
+                                    <select name="ilmiyloyiha_id" class="input border w-full mt-2" required="">
                                         <option value="">Ilmiy loyiha tanlang</option>
                                         @foreach ($ilmiyLoyihaList as $loyiha)
                                             <option value="{{ $loyiha->id }}" @selected(old('ilmiyloyiha_id') == $loyiha->id)>
@@ -131,9 +142,6 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    @error('ilmiyloyiha_id')
-                                        <div class="text-theme-6 text-xs mt-1">{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                                 <div class="w-full col-span-6">
@@ -142,37 +150,190 @@
                                         email adresini
                                         kiriting)
                                     </label>
-                                    <input type="email" name="email" class="input w-full border mt-2 @error('email') border-theme-6 @enderror"
+                                    <input type="email" name="email" class="input w-full border mt-2"
                                         value="{{ old('email') }}" required="">
-                                    @error('email')
-                                        <div class="text-theme-6 text-xs mt-1">{{ $message }}</div>
-                                    @enderror
                                 </div>
 
                                 <div class="w-full col-span-6">
                                     <label class="flex flex-col sm:flex-row"> <span
                                             class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span>Parolni kiriting
                                     </label>
-                                    <input type="password" name="password" class="input w-full border mt-2 @error('password') border-theme-6 @enderror"
-                                        required="">
-                                    @error('password')
-                                        <div class="text-theme-6 text-xs mt-1">{{ $message }}</div>
-                                    @enderror
+                                    <input type="password" name="password" class="input w-full border mt-2"
+                                        value="{{ old('password') }}" required="">
                                 </div>
                             </div>
 
-                        </form>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Biriktiriladigan loyihalar</p>
+                    <div class="mb-5">
+                        <div id="ilmiyloyiha-create-loyiha-list"
+                            class="border rounded-md max-h-52 overflow-y-auto divide-y divide-gray-100 @error('ilmiyloyha') border-red-500 @enderror @error('ilmiyloyha.*') border-red-500 @enderror">
+                            @php $oldLoyihalar = old('ilmiyloyha', []); @endphp
+                            @forelse ($ilmiyLoyihaList as $loyiha)
+                                <label
+                                    class="flex items-start gap-3 px-3 py-2.5 hover:bg-gray-50 cursor-pointer transition-colors">
+                                    <input type="checkbox" name="ilmiyloyha[]" value="{{ $loyiha->id }}"
+                                        class="input border mt-1 flex-shrink-0 ilmiyloyiha-create-checkbox"
+                                        @checked(in_array((string) $loyiha->id, array_map('strval', $oldLoyihalar), true))>
+                                    <span class="text-sm leading-snug text-gray-800">{{ $loyiha->mavzusi }}</span>
+                                </label>
+                            @empty
+                                <p class="px-3 py-4 text-sm text-gray-500 text-center">Loyihalar mavjud emas</p>
+                            @endforelse
+                        </div>
+                        @error('ilmiyloyha')
+                            <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                        @error('ilmiyloyha.*')
+                            <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                        @enderror
+                        <p id="ilmiyloyiha-create-loyiha-error" class="text-xs text-red-600 mt-1 hidden">
+                            Kamida bitta loyihani tanlang
+                        </p>
                     </div>
-                </div>
 
+                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Kirish ma'lumotlari</p>
+                    <div class="grid grid-cols-12 gap-4">
+                        <div class="col-span-12 sm:col-span-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Parol <span class="text-gray-400 font-normal">(yangi masul uchun)</span>
+                            </label>
+                            <div class="relative">
+                                <input type="password" name="password" id="ilmiyloyiha-create-password"
+                                    class="input w-full border pr-10 @error('password') border-red-500 @enderror"
+                                    placeholder="Faqat yangi foydalanuvchi uchun">
+                                <button type="button"
+                                    class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-400 hover:text-gray-600 password-toggle"
+                                    data-target="ilmiyloyiha-create-password" tabindex="-1" aria-label="Parolni ko'rsatish">
+                                    <i data-feather="eye" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            @error('password')
+                                <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                            @else
+                                <p class="text-xs text-gray-500 mt-1">Email bazada bo'lsa, parol kiritish shart emas</p>
+                            @enderror
+                        </div>
+                    </div>
+                </form>
             </div>
-            <div class="px-5 pb-5 text-center mt-4">
-                <button type="button" data-dismiss="modal" class="button delete-cancel w-32 border text-gray-700 mr-1">
+
+            <div class="px-5 py-4 bg-gray-50 border-t border-gray-200 flex flex-col-reverse sm:flex-row sm:justify-end gap-2">
+                <button type="button" data-dismiss="modal" class="button border text-gray-700 w-full sm:w-auto">
                     Bekor qilish
                 </button>
                 <button type="submit" form="ilmiyloyiha-paper-create-form"
-                    class="update-confirm button w-24 bg-theme-1 text-white">
+                    class="button bg-theme-1 text-white w-full sm:w-auto flex items-center justify-center gap-2">
+                    <i data-feather="check" class="w-4 h-4"></i>
                     Qo'shish
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="ilmiyloyiha-paper-masul-edit-modal">
+        <div class="modal__content modal__content--xl">
+            <div class="flex items-center justify-between px-5 pt-5 pb-4 border-b border-gray-200">
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-theme-1 text-white flex-shrink-0">
+                        <i data-feather="edit-2" class="w-5 h-5"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-lg font-medium">Masulni tahrirlash</h2>
+                        <p class="text-sm text-gray-600 mt-0.5">Ma'lumotlarni yangilang</p>
+                    </div>
+                </div>
+                <a data-dismiss="modal" href="javascript:;" class="text-gray-400 hover:text-gray-600 transition-colors"
+                    aria-label="Yopish">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </a>
+            </div>
+
+            <div class="p-5">
+                <div id="ilmiyloyiha-edit-preview"
+                    class="flex items-center gap-3 mb-5 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                    <div id="ilmiyloyiha-edit-initials"
+                        class="w-11 h-11 rounded-full bg-theme-1 text-white flex items-center justify-center font-semibold text-sm flex-shrink-0">
+                    </div>
+                    <div class="min-w-0">
+                        <p id="ilmiyloyiha-edit-preview-name" class="font-medium truncate"></p>
+                        <p id="ilmiyloyiha-edit-preview-email" class="text-sm text-gray-600 truncate"></p>
+                    </div>
+                </div>
+
+                <form id="ilmiyloyiha-paper-edit-form" method="POST" action="" class="validate-form"
+                    enctype="multipart/form-data" novalidate="novalidate">
+                    @csrf
+                    @method('PUT')
+
+                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Shaxsiy ma'lumotlar</p>
+                    <div class="grid grid-cols-12 gap-4 mb-5">
+                        <div class="col-span-12 sm:col-span-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                F.I.Sh <span class="text-red-600">*</span>
+                            </label>
+                            <input type="text" name="name" id="ilmiyloyiha-edit-name" class="input w-full border"
+                                required>
+                        </div>
+
+                        <div class="col-span-12 sm:col-span-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Email (login)
+                            </label>
+                            <input type="email" name="email" id="ilmiyloyiha-edit-email"
+                                class="input w-full border bg-gray-50 text-gray-600 cursor-not-allowed" readonly required>
+                            <p class="text-xs text-gray-500 mt-1">Email o'zgartirilmaydi</p>
+                        </div>
+                    </div>
+
+                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Biriktirilgan loyihalar</p>
+                    <div class="mb-5">
+                        <div id="ilmiyloyiha-edit-loyiha-list"
+                            class="border rounded-md max-h-52 overflow-y-auto divide-y divide-gray-100">
+                            @forelse ($ilmiyLoyihaList as $loyiha)
+                                <label
+                                    class="flex items-start gap-3 px-3 py-2.5 hover:bg-gray-50 cursor-pointer transition-colors">
+                                    <input type="checkbox" name="ilmiyloyha[]" value="{{ $loyiha->id }}"
+                                        class="input border mt-1 flex-shrink-0 ilmiyloyiha-edit-checkbox">
+                                    <span class="text-sm leading-snug text-gray-800">{{ $loyiha->mavzusi }}</span>
+                                </label>
+                            @empty
+                                <p class="px-3 py-4 text-sm text-gray-500 text-center">Loyihalar mavjud emas</p>
+                            @endforelse
+                        </div>
+                        <p id="ilmiyloyiha-edit-loyiha-error" class="text-xs text-red-600 mt-1 hidden">
+                            Kamida bitta loyihani tanlang
+                        </p>
+                    </div>
+
+                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Yangi parol</p>
+                    <div class="grid grid-cols-12 gap-4">
+                        <div class="col-span-12 sm:col-span-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-1">
+                                Parol <span class="text-gray-400 font-normal">(ixtiyoriy)</span>
+                            </label>
+                            <div class="relative">
+                                <input type="password" name="password" id="ilmiyloyiha-edit-password"
+                                    class="input w-full border pr-10" placeholder="O'zgartirmasangiz bo'sh qoldiring">
+                                <button type="button"
+                                    class="absolute inset-y-0 right-0 flex items-center px-3 text-gray-400 hover:text-gray-600 password-toggle"
+                                    data-target="ilmiyloyiha-edit-password" tabindex="-1" aria-label="Parolni ko'rsatish">
+                                    <i data-feather="eye" class="w-4 h-4"></i>
+                                </button>
+                            </div>
+                            <p class="text-xs text-gray-500 mt-1">Kamida 8 ta belgi</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="px-5 py-4 bg-gray-50 border-t border-gray-200 flex flex-col-reverse sm:flex-row sm:justify-end gap-2">
+                <button type="button" data-dismiss="modal" class="button border text-gray-700 w-full sm:w-auto">
+                    Bekor qilish
+                </button>
+                <button type="submit" form="ilmiyloyiha-paper-edit-form"
+                    class="button bg-theme-1 text-white w-full sm:w-auto flex items-center justify-center gap-2">
+                    <i data-feather="save" class="w-4 h-4"></i>
+                    Saqlash
                 </button>
             </div>
         </div>
@@ -180,73 +341,142 @@
 
     <div class="modal" id="ilmiyloyiha-masul-list-modal">
         <div class="modal__content modal__content--xl">
-            <div class="overflow-x-auto p-5">
-                <div style="display: flex; justify-content: space-between;margin-bottom: 10px; align-items: center;">
-                    <div>
-                        <h2 class="text-lg font-medium">Ilmiy loyiha masullar ro'yxati</h2>
+            <div class="flex items-center justify-between px-5 pt-5 pb-4 border-b border-gray-200">
+                <div class="flex items-center gap-3">
+                    <div class="flex items-center justify-center w-10 h-10 rounded-full bg-theme-1 text-white flex-shrink-0">
+                        <i data-feather="users" class="w-5 h-5"></i>
                     </div>
                     <div>
-                        <a data-dismiss="modal" href="javascript:;" style="display: flex; justify-content: end;"> <i
-                                data-feather="x" class="w-8 h-8 text-gray-500"></i> </a>
+                        <h2 class="text-lg font-medium">Masullar</h2>
+                        <p class="text-sm text-gray-600 mt-0.5">
+                            <span id="masul-count-visible">{{ $masullar->count() }}</span> / {{ $masullar->count() }} ta
+                        </p>
                     </div>
                 </div>
-                <table class="table">
-                    <thead>
-                        <tr class="bg-gray-200">
-                            <th class="border">Id</th>
-                            <th class="border">Ilmiy loyiha nomi</th>
-                            <th class="border">F.I.Sh</th>
-                            <th class="border">Email</th>
-                            <th class="border">Roles</th>
-                            <th class="border">Action</th>
-                        </tr>
-                    </thead>
+                <div class="flex items-center gap-2">
+                    <button type="button" class="button bg-theme-1 text-white text-sm hidden sm:flex items-center gap-1 masul-quick-add">
+                        <i data-feather="user-plus" class="w-4 h-4"></i>
+                        Yangi masul
+                    </button>
+                    <a data-dismiss="modal" href="javascript:;" class="text-gray-400 hover:text-gray-600 transition-colors p-1"
+                        aria-label="Yopish">
+                        <i data-feather="x" class="w-6 h-6"></i>
+                    </a>
+                </div>
+            </div>
 
-                    <tbody>
-                        @foreach ($masullar as $user)
-                            <tr>
-                                <td class="border ">{{ $loop->index + 1 }}</td>
-                                <td class="border">{{ $user->ilmiyloyhalar->pluck('mavzusi')->filter()->join(', ') ?: "yo'q" }}</td>
-                                <td class="border">{{ $user->name }}</td>
-                                <td class="border">{{ $user->email }}</td>
-                                <td class="border">
-                                    @if (!empty($user->getRoleNames()))
-                                        @foreach ($user->getRoleNames() as $rolename)
-                                            <label class="badge bg-primary mx-1">{{ $rolename }}</label>
-                                        @endforeach
-                                    @endif
-                                </td>
-                                <td class="border">
-                                    @can('update user')
-                                        <a href="{{ url('users/' . $user->id . '/edit') }}"
-                                            class="button inline-block border border-theme-1 text-theme-1">
-                                            <i data-feather="edit" class="feather feather-check-square w-4 h-4"></i>
-                                        </a>
-                                    @endcan
+            <div class="px-5 py-3 border-b border-gray-100 bg-gray-50">
+                <div class="search relative">
+                    <input type="text" id="masul-search-input" class="search__input input placeholder-theme-13 w-full"
+                        placeholder="Ism yoki email bo'yicha qidirish..." autocomplete="off">
+                    <i data-feather="search" class="search__icon"></i>
+                </div>
+            </div>
 
-                                    @can('delete user')
-                                        <form action="{{ url('users/' . $user->id . '/delete') }}"
-                                            onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
-                                            <button type="submit" class="button inline-block border border-theme-6 text-theme-6">
-                                                @csrf
-                                                <i data-feather="trash-2" class="feather feather-check-square w-4 h-4"></i>
+            <div class="p-5 max-h-[60vh] overflow-y-auto" id="masul-list-container">
+                @forelse ($masullar as $user)
+                    @php
+                        $loyihalar = $user->ilmiyloyhalar->pluck('mavzusi')->filter();
+                        $initials = collect(explode(' ', $user->name))
+                            ->filter()
+                            ->take(2)
+                            ->map(fn ($w) => mb_strtoupper(mb_substr($w, 0, 1)))
+                            ->join('');
+                        $searchText = strtolower($user->name . ' ' . $user->email);
+                    @endphp
+                    <div class="masul-card box p-4 mb-3 last:mb-0 border border-gray-100 hover:border-theme-1 transition-colors"
+                        data-search="{{ $searchText }}">
+                        <div class="flex items-start gap-4">
+                            <div
+                                class="w-12 h-12 rounded-full bg-theme-1 text-white flex items-center justify-center text-sm font-semibold flex-shrink-0">
+                                {{ $initials ?: '?' }}
+                            </div>
+
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-start justify-between gap-3">
+                                    <div class="min-w-0">
+                                        <h3 class="font-medium text-gray-900 truncate">{{ $user->name }}</h3>
+                                        <p class="text-sm text-gray-500 truncate flex items-center gap-1 mt-0.5">
+                                            <i data-feather="mail" class="w-3.5 h-3.5 flex-shrink-0"></i>
+                                            {{ $user->email }}
+                                        </p>
+                                    </div>
+                                    <div class="flex items-center gap-1 flex-shrink-0">
+                                            <button type="button"
+                                                class="button px-2 py-1.5 border border-theme-1 text-theme-1 masul-edit-btn"
+                                                title="Tahrirlash"
+                                                data-user-id="{{ $user->id }}"
+                                                data-user-name="{{ $user->name }}"
+                                                data-user-email="{{ $user->email }}"
+                                                data-ilmiyloyha-ids="{{ $user->ilmiyloyhalar->pluck('id')->join(',') }}">
+                                                <i data-feather="edit-2" class="w-4 h-4"></i>
                                             </button>
-                                        </form>
-                                    @endcan
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                        @can('delete user')
+                                            <form action="{{ url('users/' . $user->id . '/delete') }}" class="inline"
+                                                onsubmit="return confirm('Rostdan o\'chirishni xohlaysizmi?');">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="button px-2 py-1.5 border border-theme-6 text-theme-6"
+                                                    title="O'chirish">
+                                                    <i data-feather="trash-2" class="w-4 h-4"></i>
+                                                </button>
+                                            </form>
+                                        @endcan
+                                    </div>
+                                </div>
+
+                                <div class="mt-3">
+                                    @if ($loyihalar->isNotEmpty())
+                                        <p class="text-xs text-gray-500 mb-1.5 flex items-center gap-1">
+                                            <i data-feather="folder" class="w-3 h-3"></i>
+                                            Biriktirilgan loyihalar ({{ $loyihalar->count() }})
+                                        </p>
+                                        <div class="flex flex-wrap gap-1.5">
+                                            @foreach ($loyihalar as $loyihaNomi)
+                                                <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700 leading-snug"
+                                                    title="{{ $loyihaNomi }}">
+                                                    {{ Str::limit($loyihaNomi, 45) }}
+                                                </span>
+                                            @endforeach
+                                        </div>
+                                    @else
+                                        <span class="inline-flex items-center gap-1 text-xs text-gray-400 bg-gray-50 px-2 py-1 rounded">
+                                            <i data-feather="alert-circle" class="w-3 h-3"></i>
+                                            Loyiha biriktirilmagan
+                                        </span>
+                                    @endif
+                                </div>
+
+                                @if ($user->getRoleNames()->isNotEmpty())
+                                    <div class="mt-2 pt-2 border-t border-gray-100">
+                                        @foreach ($user->getRoleNames() as $rolename)
+                                            <span class="text-xs text-theme-1 font-medium">{{ $rolename }}</span>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <div id="masul-empty-state" class="flex flex-col items-center justify-center py-12 text-gray-500">
+                        <div class="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
+                            <i data-feather="user-x" class="w-8 h-8 text-gray-300"></i>
+                        </div>
+                        <p class="font-medium text-gray-700">Hozircha masul yo'q</p>
+                        <p class="text-sm mt-1 text-center max-w-xs">Ilmiy loyihaga masul biriktirish uchun quyidagi tugmani bosing</p>
+                        <button type="button" class="button bg-theme-1 text-white mt-4 flex items-center gap-2 masul-quick-add">
+                            <i data-feather="user-plus" class="w-4 h-4"></i>
+                            Loyihaga biriktirish
+                        </button>
+                    </div>
+                @endforelse
+
+                <div id="masul-no-results" class="hidden flex-col items-center justify-center py-12 text-gray-500">
+                    <i data-feather="search" class="w-10 h-10 text-gray-300 mb-3"></i>
+                    <p class="font-medium">Natija topilmadi</p>
+                    <p class="text-sm mt-1">Boshqa kalit so'z bilan qidiring</p>
+                </div>
             </div>
         </div>
     </div>
-
-    @if ($errors->any())
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                $('#ilmiyloyiha-paper-masul-create-modal').modal('show');
-            });
-        </script>
-    @endif
 @endsection

@@ -19,18 +19,23 @@ class KafedralarController extends Controller
 
     public function index()
     {
-        $laboratorys = Kafedralar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        $tashkilotId = auth()->user()->tashkilot_id;
 
-        
-        $fakultetlar = Fakultetlar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
-        
-        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
+        $laboratorys = Kafedralar::where('tashkilot_id', $tashkilotId)->get();
+        $kafedraList = Kafedralar::where('tashkilot_id', $tashkilotId)->orderBy('name')->get(['id', 'name']);
+        $fakultetlar = Fakultetlar::where('tashkilot_id', $tashkilotId)->get();
 
-        $masullar = $users->filter(function ($user) {
-            return $user->roles->contains('name', 'kafedra_mudiri');
-        });
+        $masullar = User::where('tashkilot_id', $tashkilotId)
+            ->with(['roles', 'masulKafedralar'])
+            ->get()
+            ->filter(fn (User $user) => $user->roles->contains('name', 'kafedra_mudiri'));
 
-        return view("admin.kafedralar.index", ["laboratorys" => $laboratorys, "masullar" => $masullar, "fakultetlar" => $fakultetlar]);
+        return view('admin.kafedralar.index', [
+            'laboratorys' => $laboratorys,
+            'kafedraList' => $kafedraList,
+            'masullar' => $masullar,
+            'fakultetlar' => $fakultetlar,
+        ]);
     }
 
 

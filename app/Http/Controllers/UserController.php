@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreAdminUserRequest;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Asbobuskuna;
 use App\Models\IlmiyLoyiha;
 use App\Models\Kafedralar;
 use App\Models\Laboratory;
@@ -133,6 +134,466 @@ class UserController extends Controller
         return redirect()->back()->with('status', 'Masul muvaffaqiyatli yaratildi va biriktirildi.');
     }
 
+    public function ilmiy_loyha_masul_store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|string|min:8|max:20',
+            'ilmiyloyha' => 'required|array|min:1',
+            'ilmiyloyha.*' => 'exists:ilmiy_loyihas,id',
+            'form_source' => 'required|in:ilmiyloyiha_masul_create',
+        ], [
+            'name.required' => 'F.I.Sh kiritish majburiy.',
+            'email.required' => 'Email kiritish majburiy.',
+            'email.email' => 'To\'g\'ri email formatini kiriting.',
+            'password.min' => 'Parol kamida 8 ta belgidan iborat bo\'lishi kerak.',
+            'password.max' => 'Parol 20 ta belgidan oshmasligi kerak.',
+            'ilmiyloyha.required' => 'Kamida bitta ilmiy loyihani tanlang.',
+            'ilmiyloyha.min' => 'Kamida bitta ilmiy loyihani tanlang.',
+            'ilmiyloyha.*.exists' => 'Tanlangan ilmiy loyiha topilmadi.',
+        ]);
+
+        $loyihaIds = array_values(array_filter($request->ilmiyloyha));
+        $loyihalar = IlmiyLoyiha::whereIn('id', $loyihaIds)
+            ->where('tashkilot_id', auth()->user()->tashkilot_id)
+            ->get();
+
+        if ($loyihalar->count() !== count($loyihaIds)) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['ilmiyloyha' => 'Tanlangan loyihalardan ba\'zilari sizning tashkilotingizga tegishli emas.']);
+        }
+
+        $existingUser = User::where('email', $request->email)->first();
+
+        if ($existingUser) {
+            if ((int) $existingUser->tashkilot_id !== (int) auth()->user()->tashkilot_id) {
+                return redirect()->back()
+                    ->withInput()
+                    ->withErrors(['email' => 'Bu email boshqa tashkilot foydalanuvchisiga tegishli.']);
+            }
+        } elseif (! $request->filled('password')) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['password' => 'Yangi foydalanuvchi uchun parol kiritish majburiy.']);
+        }
+
+        $statusMessage = 'Masul muvaffaqiyatli biriktirildi.';
+
+        DB::transaction(function () use ($request, $loyihalar, $existingUser, &$statusMessage) {
+            if ($existingUser) {
+                $existingUser->update(['name' => $request->name]);
+
+                if ($request->filled('password')) {
+                    $existingUser->update(['password' => Hash::make($request->password)]);
+                }
+
+                if (! $existingUser->hasRole('Ilmiy_loyiha_rahbari')) {
+                    $existingUser->assignRole('Ilmiy_loyiha_rahbari');
+                }
+
+                $user = $existingUser;
+                $statusMessage = 'Mavjud masul tanlangan loyihalarga biriktirildi.';
+            } else {
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'tashkilot_id' => auth()->user()->tashkilot_id,
+                    'password' => Hash::make($request->password),
+                ]);
+
+                $user->syncRoles(['Ilmiy_loyiha_rahbari']);
+            }
+
+            IlmiyLoyiha::whereIn('id', $loyihalar->pluck('id'))
+                ->update(['user_id' => $user->id]);
+        });
+
+        return redirect()->back()->with('status', $statusMessage);
+    }
+
+    public function asbobuskuna_masul_store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|string|min:8|max:20',
+            'asbobuskuna' => 'required|array|min:1',
+            'asbobuskuna.*' => 'exists:asbobuskunas,id',
+            'form_source' => 'required|in:asbobuskuna_masul_create',
+        ], [
+            'name.required' => 'F.I.Sh kiritish majburiy.',
+            'email.required' => 'Email kiritish majburiy.',
+            'email.email' => 'To\'g\'ri email formatini kiriting.',
+            'password.min' => 'Parol kamida 8 ta belgidan iborat bo\'lishi kerak.',
+            'password.max' => 'Parol 20 ta belgidan oshmasligi kerak.',
+            'asbobuskuna.required' => 'Kamida bitta asbob-uskunani tanlang.',
+            'asbobuskuna.min' => 'Kamida bitta asbob-uskunani tanlang.',
+            'asbobuskuna.*.exists' => 'Tanlangan asbob-uskuna topilmadi.',
+        ]);
+
+        $asbobIds = array_values(array_filter($request->asbobuskuna));
+        $asbobuskunalar = Asbobuskuna::whereIn('id', $asbobIds)
+            ->where('tashkilot_id', auth()->user()->tashkilot_id)
+            ->get();
+
+        if ($asbobuskunalar->count() !== count($asbobIds)) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['asbobuskuna' => 'Tanlangan asbob-uskunalardan ba\'zilari sizning tashkilotingizga tegishli emas.']);
+        }
+
+        $existingUser = User::where('email', $request->email)->first();
+
+        if ($existingUser) {
+            if ((int) $existingUser->tashkilot_id !== (int) auth()->user()->tashkilot_id) {
+                return redirect()->back()
+                    ->withInput()
+                    ->withErrors(['email' => 'Bu email boshqa tashkilot foydalanuvchisiga tegishli.']);
+            }
+        } elseif (! $request->filled('password')) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['password' => 'Yangi foydalanuvchi uchun parol kiritish majburiy.']);
+        }
+
+        $statusMessage = 'Masul muvaffaqiyatli biriktirildi.';
+
+        DB::transaction(function () use ($request, $asbobuskunalar, $existingUser, &$statusMessage) {
+            if ($existingUser) {
+                $existingUser->update(['name' => $request->name]);
+
+                if ($request->filled('password')) {
+                    $existingUser->update(['password' => Hash::make($request->password)]);
+                }
+
+                if (! $existingUser->hasRole('Asbob_uskunalarga_masul')) {
+                    $existingUser->assignRole('Asbob_uskunalarga_masul');
+                }
+
+                $user = $existingUser;
+                $statusMessage = 'Mavjud masul tanlangan asbob-uskunalarga biriktirildi.';
+            } else {
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'tashkilot_id' => auth()->user()->tashkilot_id,
+                    'password' => Hash::make($request->password),
+                ]);
+
+                $user->syncRoles(['Asbob_uskunalarga_masul']);
+            }
+
+            Asbobuskuna::whereIn('id', $asbobuskunalar->pluck('id'))
+                ->update(['user_id' => $user->id]);
+        });
+
+        return redirect()->back()->with('status', $statusMessage);
+    }
+
+    public function asbobuskuna_masul_edit(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|string|min:8|max:20',
+            'asbobuskuna' => 'required|array|min:1',
+            'asbobuskuna.*' => 'exists:asbobuskunas,id',
+        ], [
+            'name.required' => 'F.I.Sh kiritish majburiy.',
+            'asbobuskuna.required' => 'Kamida bitta asbob-uskunani tanlang.',
+            'asbobuskuna.min' => 'Kamida bitta asbob-uskunani tanlang.',
+            'password.min' => 'Parol kamida 8 ta belgidan iborat bo\'lishi kerak.',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $data = ['name' => $request->name];
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $selected = array_values(array_filter($request->asbobuskuna));
+        $allowed = Asbobuskuna::whereIn('id', $selected)
+            ->where('tashkilot_id', auth()->user()->tashkilot_id)
+            ->pluck('id')
+            ->all();
+
+        if (count($allowed) !== count($selected)) {
+            return redirect()->back()->withErrors(['asbobuskuna' => 'Tanlangan asbob-uskunalardan ba\'zilari sizning tashkilotingizga tegishli emas.']);
+        }
+
+        DB::transaction(function () use ($user, $data, $allowed) {
+            $user->update($data);
+
+            Asbobuskuna::where('user_id', $user->id)
+                ->whereNotIn('id', $allowed ?: [0])
+                ->update(['user_id' => null]);
+
+            if (! empty($allowed)) {
+                Asbobuskuna::whereIn('id', $allowed)->update(['user_id' => $user->id]);
+            }
+        });
+
+        return redirect()->back()->with('status', 'Masul ma\'lumotlari yangilandi.');
+    }
+
+    public function kafedra_masul_store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|string|min:8|max:20',
+            'kafedralar' => 'required|array|min:1',
+            'kafedralar.*' => 'exists:kafedralars,id',
+            'form_source' => 'required|in:kafedra_masul_create',
+        ], [
+            'name.required' => 'F.I.Sh kiritish majburiy.',
+            'email.required' => 'Email kiritish majburiy.',
+            'email.email' => 'To\'g\'ri email formatini kiriting.',
+            'password.min' => 'Parol kamida 8 ta belgidan iborat bo\'lishi kerak.',
+            'password.max' => 'Parol 20 ta belgidan oshmasligi kerak.',
+            'kafedralar.required' => 'Kamida bitta kafedrani tanlang.',
+            'kafedralar.min' => 'Kamida bitta kafedrani tanlang.',
+            'kafedralar.*.exists' => 'Tanlangan kafedra topilmadi.',
+        ]);
+
+        $kafedraIds = array_values(array_filter($request->kafedralar));
+        $kafedralar = Kafedralar::whereIn('id', $kafedraIds)
+            ->where('tashkilot_id', auth()->user()->tashkilot_id)
+            ->get();
+
+        if ($kafedralar->count() !== count($kafedraIds)) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['kafedralar' => 'Tanlangan kafedralardan ba\'zilari sizning tashkilotingizga tegishli emas.']);
+        }
+
+        $existingUser = User::where('email', $request->email)->first();
+
+        if ($existingUser) {
+            if ((int) $existingUser->tashkilot_id !== (int) auth()->user()->tashkilot_id) {
+                return redirect()->back()
+                    ->withInput()
+                    ->withErrors(['email' => 'Bu email boshqa tashkilot foydalanuvchisiga tegishli.']);
+            }
+        } elseif (! $request->filled('password')) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['password' => 'Yangi foydalanuvchi uchun parol kiritish majburiy.']);
+        }
+
+        $statusMessage = 'Masul muvaffaqiyatli biriktirildi.';
+
+        DB::transaction(function () use ($request, $kafedralar, $existingUser, &$statusMessage) {
+            if ($existingUser) {
+                $existingUser->update(['name' => $request->name]);
+
+                if ($request->filled('password')) {
+                    $existingUser->update(['password' => Hash::make($request->password)]);
+                }
+
+                if (! $existingUser->hasRole('kafedra_mudiri')) {
+                    $existingUser->assignRole('kafedra_mudiri');
+                }
+
+                $user = $existingUser;
+                $statusMessage = 'Mavjud masul tanlangan kafedralarga biriktirildi.';
+            } else {
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'tashkilot_id' => auth()->user()->tashkilot_id,
+                    'password' => Hash::make($request->password),
+                ]);
+
+                $user->syncRoles(['kafedra_mudiri']);
+            }
+
+            Kafedralar::whereIn('id', $kafedralar->pluck('id'))
+                ->update(['user_id' => $user->id]);
+        });
+
+        return redirect()->back()->with('status', $statusMessage);
+    }
+
+    public function kafedra_masul_edit(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|string|min:8|max:20',
+            'kafedralar' => 'required|array|min:1',
+            'kafedralar.*' => 'exists:kafedralars,id',
+        ], [
+            'name.required' => 'F.I.Sh kiritish majburiy.',
+            'kafedralar.required' => 'Kamida bitta kafedrani tanlang.',
+            'kafedralar.min' => 'Kamida bitta kafedrani tanlang.',
+            'password.min' => 'Parol kamida 8 ta belgidan iborat bo\'lishi kerak.',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $data = ['name' => $request->name];
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $selected = array_values(array_filter($request->kafedralar));
+        $allowed = Kafedralar::whereIn('id', $selected)
+            ->where('tashkilot_id', auth()->user()->tashkilot_id)
+            ->pluck('id')
+            ->all();
+
+        if (count($allowed) !== count($selected)) {
+            return redirect()->back()->withErrors(['kafedralar' => 'Tanlangan kafedralardan ba\'zilari sizning tashkilotingizga tegishli emas.']);
+        }
+
+        DB::transaction(function () use ($user, $data, $allowed) {
+            $user->update($data);
+
+            Kafedralar::where('user_id', $user->id)
+                ->whereNotIn('id', $allowed ?: [0])
+                ->update(['user_id' => null]);
+
+            if (! empty($allowed)) {
+                Kafedralar::whereIn('id', $allowed)->update(['user_id' => $user->id]);
+            }
+        });
+
+        return redirect()->back()->with('status', 'Masul ma\'lumotlari yangilandi.');
+    }
+
+    public function laboratory_masul_store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|string|min:8|max:20',
+            'laboratory' => 'required|array|min:1',
+            'laboratory.*' => 'exists:laboratories,id',
+            'form_source' => 'required|in:laboratory_masul_create',
+        ], [
+            'name.required' => 'F.I.Sh kiritish majburiy.',
+            'email.required' => 'Email kiritish majburiy.',
+            'email.email' => 'To\'g\'ri email formatini kiriting.',
+            'password.min' => 'Parol kamida 8 ta belgidan iborat bo\'lishi kerak.',
+            'password.max' => 'Parol 20 ta belgidan oshmasligi kerak.',
+            'laboratory.required' => 'Kamida bitta laboratoriyani tanlang.',
+            'laboratory.min' => 'Kamida bitta laboratoriyani tanlang.',
+            'laboratory.*.exists' => 'Tanlangan laboratoriya topilmadi.',
+        ]);
+
+        $laboratoryIds = array_values(array_filter($request->laboratory));
+        $laboratories = Laboratory::whereIn('id', $laboratoryIds)
+            ->where('tashkilot_id', auth()->user()->tashkilot_id)
+            ->get();
+
+        if ($laboratories->count() !== count($laboratoryIds)) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['laboratory' => 'Tanlangan laboratoriyalardan ba\'zilari sizning tashkilotingizga tegishli emas.']);
+        }
+
+        $existingUser = User::where('email', $request->email)->first();
+
+        if ($existingUser) {
+            if ((int) $existingUser->tashkilot_id !== (int) auth()->user()->tashkilot_id) {
+                return redirect()->back()
+                    ->withInput()
+                    ->withErrors(['email' => 'Bu email boshqa tashkilot foydalanuvchisiga tegishli.']);
+            }
+        } elseif (! $request->filled('password')) {
+            return redirect()->back()
+                ->withInput()
+                ->withErrors(['password' => 'Yangi foydalanuvchi uchun parol kiritish majburiy.']);
+        }
+
+        $statusMessage = 'Masul muvaffaqiyatli biriktirildi.';
+
+        DB::transaction(function () use ($request, $laboratories, $existingUser, &$statusMessage) {
+            if ($existingUser) {
+                $existingUser->update(['name' => $request->name]);
+
+                if ($request->filled('password')) {
+                    $existingUser->update(['password' => Hash::make($request->password)]);
+                }
+
+                if (! $existingUser->hasRole('labaratoriyaga_masul')) {
+                    $existingUser->assignRole('labaratoriyaga_masul');
+                }
+
+                $user = $existingUser;
+                $statusMessage = 'Mavjud masul tanlangan laboratoriyalarga biriktirildi.';
+            } else {
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'tashkilot_id' => auth()->user()->tashkilot_id,
+                    'password' => Hash::make($request->password),
+                ]);
+
+                $user->syncRoles(['labaratoriyaga_masul']);
+            }
+
+            Laboratory::whereIn('id', $laboratories->pluck('id'))
+                ->update(['user_id' => $user->id]);
+        });
+
+        return redirect()->back()->with('status', $statusMessage);
+    }
+
+    public function laboratory_masul_edit(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'password' => 'nullable|string|min:8|max:20',
+            'laboratory' => 'required|array|min:1',
+            'laboratory.*' => 'exists:laboratories,id',
+        ], [
+            'name.required' => 'F.I.Sh kiritish majburiy.',
+            'laboratory.required' => 'Kamida bitta laboratoriyani tanlang.',
+            'laboratory.min' => 'Kamida bitta laboratoriyani tanlang.',
+            'password.min' => 'Parol kamida 8 ta belgidan iborat bo\'lishi kerak.',
+        ]);
+
+        $user = User::findOrFail($id);
+
+        $data = ['name' => $request->name];
+
+        if ($request->filled('password')) {
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $selected = array_values(array_filter($request->laboratory));
+        $allowed = Laboratory::whereIn('id', $selected)
+            ->where('tashkilot_id', auth()->user()->tashkilot_id)
+            ->pluck('id')
+            ->all();
+
+        if (count($allowed) !== count($selected)) {
+            return redirect()->back()->withErrors(['laboratory' => 'Tanlangan laboratoriyalardan ba\'zilari sizning tashkilotingizga tegishli emas.']);
+        }
+
+        DB::transaction(function () use ($user, $data, $allowed) {
+            $user->update($data);
+
+            Laboratory::where('user_id', $user->id)
+                ->whereNotIn('id', $allowed ?: [0])
+                ->update(['user_id' => null]);
+
+            if (! empty($allowed)) {
+                Laboratory::whereIn('id', $allowed)->update(['user_id' => $user->id]);
+            }
+        });
+
+        return redirect()->back()->with('status', 'Masul ma\'lumotlari yangilandi.');
+    }
+
 
     public function ilmiy_loyha_rahbari(Request $request)
     {
@@ -201,7 +662,7 @@ class UserController extends Controller
             }
         });
 
-        return redirect('/ilmiyloyiha')->with('status', 'User Updated Successfully');
+        return redirect()->back()->with('status', 'User Updated Successfully');
     }
 
     public function edit(User $user)

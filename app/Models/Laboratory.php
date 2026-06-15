@@ -9,11 +9,16 @@ class Laboratory extends Model
 {
     use HasFactory;
 
-    protected $fillable = ["tashkilot_id", "name", "tash_yil", "tavsif"];
+    protected $fillable = ["tashkilot_id", "user_id", "name", "tash_yil", "tavsif"];
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function legacyUser()
+    {
+        return $this->hasOne(User::class, 'laboratory_id');
     }
 
     public function tashkilot()

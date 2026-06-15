@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kafedralar extends Model
 {
     use HasFactory;
-    protected $fillable = ["tashkilot_id", "fakultetlar_id","name", "tash_yil"];
+    protected $fillable = ["tashkilot_id", "user_id", "fakultetlar_id", "name", "tash_yil"];
 
     public function tashkilot()
     {
@@ -32,6 +32,11 @@ class Kafedralar extends Model
 
     public function user()
     {
-        return $this->hasOne(User::class);
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function legacyUser()
+    {
+        return $this->hasOne(User::class, 'kafedralar_id');
     }
 }

@@ -18,15 +18,19 @@ class LaboratoryController extends Controller
 
     public function index()
     {
-        $laboratorys = Laboratory::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        $laboratorys = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        $laboratoryList = $laboratorys;
 
-        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)->with('roles')->get();
+        $masullar = User::where('tashkilot_id', auth()->user()->tashkilot_id)
+            ->role('labaratoriyaga_masul')
+            ->with('masulLaboratories')
+            ->get();
 
-        $masullar = $users->filter(function ($user) {
-            return $user->roles->contains('name', 'labaratoriyaga_masul');
-        });
-
-        return view("admin.labaratoriya.index", ["laboratorys" => $laboratorys, "masullar" => $masullar]);
+        return view('admin.labaratoriya.index', [
+            'laboratorys' => $laboratorys,
+            'laboratoryList' => $laboratoryList,
+            'masullar' => $masullar,
+        ]);
     }
 
     public function laboratoriyalari(Request $request)
