@@ -405,7 +405,6 @@
                                 </p>
                             </div>
                             <div class="flex items-center gap-1 flex-shrink-0">
-                                @can('update user')
                                 <button type="button"
                                     class="button px-2 py-1.5 border border-theme-1 text-theme-1 masul-edit-btn"
                                     title="Tahrirlash"
@@ -415,7 +414,6 @@
                                     data-ilmiyloyha-ids="{{ $user->ilmiyloyhalar->pluck('id')->join(',') }}">
                                     <i data-feather="edit-2" class="w-4 h-4"></i>
                                 </button>
-                                @endcan
                                 @can('delete user')
                                 <form action="{{ url('users/' . $user->id . '/delete') }}" class="inline"
                                     onsubmit="return confirm('Rostdan o\'chirishni xohlaysizmi?');">
