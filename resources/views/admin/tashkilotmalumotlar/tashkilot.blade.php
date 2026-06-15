@@ -83,7 +83,7 @@
                 </div>
 
                 <div class="intro-y mt-6 mb-2">
-                    <h3 class="text-base font-medium">Tashkilotga tegishli ma'lumotlar</h3>
+                    <h3 class="text-base font-medium">Tashkilotga tegishli ma'lumotlar </h3>
                 </div>
 
                 <div class="grid grid-cols-12 gap-6 mt-3">

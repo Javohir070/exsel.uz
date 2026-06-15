@@ -157,7 +157,7 @@ class TashkilotMalumotlarController extends Controller
         return [
             'ilmiyloyiha' => [
                 'title' => 'Ilmiy loyihalar',
-                'redirect' => 'ilmiy_loyihalar.index',
+                'redirect' => 'ilmiy_loyihalar_tashkilot.index',
                 'redirect_params' => fn (int $id) => ['id' => $id],
             ],
             'xujalik' => [

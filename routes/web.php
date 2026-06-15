@@ -121,6 +121,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/search-ilmiy', [IlmiyLoyihaController::class, 'search_ilmiy_loyhalar'])->name('search_ilmiy_loyhalar');
     Route::get('ilmiy-loyihalar', [IlmiyLoyihaController::class, "ilmiy_loyihalar_all"])->name("ilmiy_loyihalar_all.index");
     Route::get('ilmiy/{id}', [IlmiyLoyihaController::class, "ilmiy_loyihalar"])->name("ilmiy_loyihalar.index");
+    Route::get('ilmiy-tashkilot/{id}', [IlmiyLoyihaController::class, "ilmiy_loyihalar_tashkilot"])->name("ilmiy_loyihalar_tashkilot.index");
     Route::get('turi/{id}', [IlmiyLoyihaController::class, 'tashkilot_turi'])->name('tashkilot_turi');
     Route::put('ilmiyloyiha/{ilmiyloyiha}/asbobuskunalar', [IlmiyLoyihaController::class, 'syncAsbobuskunalar'])
         ->name('ilmiyloyiha.asbobuskunalar.sync');
