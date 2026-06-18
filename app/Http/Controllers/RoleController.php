@@ -19,7 +19,8 @@ class RoleController extends Controller
 
     public function index()
     {
-        $roles = Role::get();
+        $roles = Role::orderBy('name')->get();
+
         return view('role-permission.role.index', ['roles' => $roles]);
     }
 
