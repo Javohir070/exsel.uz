@@ -31,7 +31,7 @@
                                     <th>Masul shaxs F.I.Sh</th>
                                     <th>Email</th>
                                     <th>Rollar</th>
-                                    <th>Holati</th>
+                                    {{-- <th>Holati</th> --}}
                                     <th>Amallar</th>
                                 </tr>
                             </thead>
@@ -48,7 +48,7 @@
                                                 @endforeach
                                             @endif
                                         </td>
-                                        <td>
+                                        {{-- <td>
                                             @can('update user')
                                                 <form action="{{ route('users.toggle-active', $user) }}" method="POST" class="inline">
                                                     @csrf
@@ -64,17 +64,17 @@
                                                     {{ $user->is_active ? 'Faol' : 'Faol emas' }}
                                                 </span>
                                             @endcan
-                                        </td>
+                                        </td> --}}
                                         <td>
                                             <div style="display: flex; gap: 10px;">
-                                                @can('update user')
+                                                @can('update user admin')
                                                     <a href="{{ url('users/' . $user->id . '/edit') }}"
                                                         class="button inline-block border border-theme-1 text-theme-1">
                                                         <i data-feather="edit" class="feather feather-check-square w-4 h-4"></i>
                                                     </a>
                                                 @endcan
 
-                                                @can('delete user')
+                                                @can('delete user admin')
                                                     <form action="{{ url('users/' . $user->id . '/delete') }}"
                                                         onsubmit="return confirm(' Rostan Ochirishni hohlaysizmi?');">
                                                         <button type="submit"
