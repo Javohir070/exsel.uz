@@ -21,8 +21,8 @@ class KafedralarController extends Controller
     {
         $tashkilotId = auth()->user()->tashkilot_id;
 
-        $laboratorys = Kafedralar::where('tashkilot_id', $tashkilotId)->get();
-        $kafedraList = Kafedralar::where('tashkilot_id', $tashkilotId)->orderBy('name')->get(['id', 'name']);
+        $laboratorys = Kafedralar::where('tashkilot_id', $tashkilotId)->with(['user', 'legacyUser'])->get();
+        $kafedraList = Kafedralar::where('tashkilot_id', $tashkilotId)->with('user')->orderBy('name')->get();
         $fakultetlar = Fakultetlar::where('tashkilot_id', $tashkilotId)->get();
 
         $masullar = User::where('tashkilot_id', $tashkilotId)

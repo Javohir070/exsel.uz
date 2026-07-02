@@ -23,7 +23,7 @@
                         </a>
                         <a href="javascript:;" data-target="#asbobuskuna-paper-masul-create-modal" data-toggle="modal"
                             class="button border-0 border-l border-gray-300 rounded-none bg-theme-1 text-white flex items-center gap-2 px-4"
-                            title="Asbob-uskunaga masul biriktirish">
+                            title="Masul qo'shish">
                             <i data-feather="user-plus" class="w-4 h-4"></i>
                             <span class="hidden sm:inline">Biriktirish</span>
                         </a>
@@ -121,8 +121,8 @@
                         <i data-feather="user-plus" class="w-5 h-5"></i>
                     </div>
                     <div>
-                        <h2 class="text-lg font-medium">Asbob-uskunaga masul biriktirish</h2>
-                        <p class="text-sm text-gray-600 mt-0.5">Bir masul bir nechta asbob-uskunaga biriktirilishi mumkin</p>
+                        <h2 class="text-lg font-medium">Masul qo'shish</h2>
+                        <p class="text-sm text-gray-600 mt-0.5">Asbob-uskunalar bo'yicha masul foydalanuvchini yarating</p>
                     </div>
                 </div>
                 <a data-dismiss="modal" href="javascript:;" class="text-gray-400 hover:text-gray-600 transition-colors" aria-label="Yopish">
@@ -155,7 +155,7 @@
                     <div class="mb-4 p-3 rounded-md border border-blue-100 bg-blue-50 text-sm text-blue-900">
                         <p class="flex items-start gap-2">
                             <i data-feather="info" class="w-4 h-4 flex-shrink-0 mt-0.5"></i>
-                            <span>Email bazada bo'lsa, yangi foydalanuvchi yaratilmaydi — mavjud masul tanlangan asbob-uskunalarga biriktiriladi.</span>
+                            <span>Email bazada bo'lsa, mavjud foydalanuvchiga masul roli biriktiriladi.</span>
                         </p>
                     </div>
 
@@ -176,29 +176,9 @@
                                     <i data-feather="alert-circle" class="w-3.5 h-3.5"></i>{{ $message }}
                                 </p>
                             @else
-                                <p class="text-xs text-gray-500 mt-1">Mavjud email — shu masulga asbob-uskunalar qo'shiladi</p>
+                                <p class="text-xs text-gray-500 mt-1">Mavjud email — shu foydalanuvchiga masul roli beriladi</p>
                             @enderror
                         </div>
-                    </div>
-
-                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Biriktiriladigan asbob-uskunalar</p>
-                    <div class="mb-5">
-                        <div id="asbobuskuna-create-list"
-                            class="border rounded-md max-h-52 overflow-y-auto divide-y divide-gray-100 @error('asbobuskuna') border-red-500 @enderror">
-                            @php $oldAsbobuskuna = old('asbobuskuna', []); @endphp
-                            @forelse ($asbobuskunaList as $asbob)
-                                <label class="flex items-start gap-3 px-3 py-2.5 hover:bg-gray-50 cursor-pointer transition-colors">
-                                    <input type="checkbox" name="asbobuskuna[]" value="{{ $asbob->id }}"
-                                        class="input border mt-1 flex-shrink-0 asbobuskuna-create-checkbox"
-                                        @checked(in_array((string) $asbob->id, array_map('strval', $oldAsbobuskuna), true))>
-                                    <span class="text-sm leading-snug text-gray-800">{{ $asbob->name }}</span>
-                                </label>
-                            @empty
-                                <p class="px-3 py-4 text-sm text-gray-500 text-center">Asbob-uskunalar mavjud emas</p>
-                            @endforelse
-                        </div>
-                        @error('asbobuskuna')<p class="text-xs text-red-600 mt-1">{{ $message }}</p>@enderror
-                        <p id="asbobuskuna-create-error" class="text-xs text-red-600 mt-1 hidden">Kamida bitta asbob-uskunani tanlang</p>
                     </div>
 
                     <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Kirish ma'lumotlari</p>
@@ -277,22 +257,6 @@
                         </div>
                     </div>
 
-                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Biriktirilgan asbob-uskunalar</p>
-                    <div class="mb-5">
-                        <div id="asbobuskuna-edit-list" class="border rounded-md max-h-52 overflow-y-auto divide-y divide-gray-100">
-                            @forelse ($asbobuskunaList as $asbob)
-                                <label class="flex items-start gap-3 px-3 py-2.5 hover:bg-gray-50 cursor-pointer transition-colors">
-                                    <input type="checkbox" name="asbobuskuna[]" value="{{ $asbob->id }}"
-                                        class="input border mt-1 flex-shrink-0 asbobuskuna-edit-checkbox">
-                                    <span class="text-sm leading-snug text-gray-800">{{ $asbob->name }}</span>
-                                </label>
-                            @empty
-                                <p class="px-3 py-4 text-sm text-gray-500 text-center">Asbob-uskunalar mavjud emas</p>
-                            @endforelse
-                        </div>
-                        <p id="asbobuskuna-edit-error" class="text-xs text-red-600 mt-1 hidden">Kamida bitta asbob-uskunani tanlang</p>
-                    </div>
-
                     <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Yangi parol</p>
                     <div class="grid grid-cols-12 gap-4">
                         <div class="col-span-12 sm:col-span-6">
@@ -355,7 +319,6 @@
             <div class="p-5 max-h-[60vh] overflow-y-auto">
                 @forelse ($masullar as $user)
                     @php
-                        $asboblar = $user->asbobuskunalar->pluck('name')->filter();
                         $initials = collect(explode(' ', $user->name))->filter()->take(2)
                             ->map(fn ($w) => mb_strtoupper(mb_substr($w, 0, 1)))->join('');
                         $searchText = strtolower($user->name . ' ' . $user->email);
@@ -378,8 +341,7 @@
                                         @can('update user')
                                             <button type="button" class="button px-2 py-1.5 border border-theme-1 text-theme-1 asbob-masul-edit-btn"
                                                 title="Tahrirlash" data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}"
-                                                data-user-email="{{ $user->email }}"
-                                                data-asbobuskuna-ids="{{ $user->asbobuskunalar->pluck('id')->join(',') }}">
+                                                data-user-email="{{ $user->email }}">
                                                 <i data-feather="edit-2" class="w-4 h-4"></i>
                                             </button>
                                         @endcan
@@ -393,25 +355,6 @@
                                             </form>
                                         @endcan
                                     </div>
-                                </div>
-                                <div class="mt-3">
-                                    @if ($asboblar->isNotEmpty())
-                                        <p class="text-xs text-gray-500 mb-1.5 flex items-center gap-1">
-                                            <i data-feather="tool" class="w-3 h-3"></i>
-                                            Biriktirilgan asbob-uskunalar ({{ $asboblar->count() }})
-                                        </p>
-                                        <div class="flex flex-wrap gap-1.5">
-                                            @foreach ($asboblar as $asbobNomi)
-                                                <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700" title="{{ $asbobNomi }}">
-                                                    {{ Str::limit($asbobNomi, 45) }}
-                                                </span>
-                                            @endforeach
-                                        </div>
-                                    @else
-                                        <span class="inline-flex items-center gap-1 text-xs text-gray-400 bg-gray-50 px-2 py-1 rounded">
-                                            <i data-feather="alert-circle" class="w-3 h-3"></i> Asbob-uskuna biriktirilmagan
-                                        </span>
-                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -484,29 +427,11 @@
                     document.getElementById('asbobuskuna-edit-preview-email').textContent = this.dataset.userEmail;
                     document.getElementById('asbobuskuna-edit-initials').textContent = getInitials(this.dataset.userName) || '?';
 
-                    const ids = (this.dataset.asbobuskunaIds || '').split(',').filter(Boolean);
-                    document.querySelectorAll('.asbobuskuna-edit-checkbox').forEach(function(cb) {
-                        cb.checked = ids.includes(cb.value);
-                    });
-
                     $('#asbobuskuna-masul-list-modal').modal('hide');
                     $(editModal).modal('show');
                     replaceFeather();
                 });
             });
-
-            function validateCheckboxes(form, selector, errorEl, listId) {
-                form.addEventListener('submit', function(e) {
-                    if (!form.querySelectorAll(selector + ':checked').length) {
-                        e.preventDefault();
-                        if (errorEl) errorEl.classList.remove('hidden');
-                        document.getElementById(listId).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-                    }
-                });
-            }
-
-            if (editForm) validateCheckboxes(editForm, '.asbobuskuna-edit-checkbox', document.getElementById('asbobuskuna-edit-error'), 'asbobuskuna-edit-list');
-            if (createForm) validateCheckboxes(createForm, '.asbobuskuna-create-checkbox', document.getElementById('asbobuskuna-create-error'), 'asbobuskuna-create-list');
 
             const searchInput = document.getElementById('asbob-masul-search-input');
             const cards = document.querySelectorAll('.asbob-masul-card');

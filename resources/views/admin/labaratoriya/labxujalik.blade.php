@@ -13,16 +13,24 @@
                     Qo'shish
                 </a>
 
+                @if (empty($isTashkilotScope))
                 <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                     class="button w-24 ml-3 bg-theme-1 text-white">
                     Xo'jalik shartnimalari biriktirish
                 </a>
+                @endif
             </div>
 
         </div>
 
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
+        @endif
+
+        @if (!empty($isTashkilotScope))
+            <div class="alert alert-warning">
+                Sizga laboratoriya biriktirilmagan. Tashkilot bo'yicha barcha xo'jalik shartnomalari ko'rsatilmoqda.
+            </div>
         @endif
 
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
@@ -79,6 +87,7 @@
 
     </div>
 
+    @if (empty($isTashkilotScope))
     <div class="modal" id="science-paper-create-modal">
         <div class="modal__content modal__content--xl">
             <div class="p-5">
@@ -154,4 +163,5 @@
 
         </div>
     </div>
+    @endif
 @endsection

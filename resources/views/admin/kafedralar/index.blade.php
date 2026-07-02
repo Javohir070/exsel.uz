@@ -98,7 +98,7 @@
                     </div>
                     <div>
                         <h2 class="text-lg font-medium">Kafedraga masul biriktirish</h2>
-                        <p class="text-sm text-gray-600 mt-0.5">Bir masul bir nechta kafedraga biriktirilishi mumkin</p>
+                        <p class="text-sm text-gray-600 mt-0.5">Bitta masul faqat bitta kafedraga biriktiriladi</p>
                     </div>
                 </div>
                 <a data-dismiss="modal" href="javascript:;" class="text-gray-400 hover:text-gray-600 transition-colors" aria-label="Yopish">
@@ -120,7 +120,7 @@
                     <div class="mb-4 p-3 rounded-md border border-blue-100 bg-blue-50 text-sm text-blue-900">
                         <p class="flex items-start gap-2">
                             <i data-feather="info" class="w-4 h-4 flex-shrink-0 mt-0.5"></i>
-                            <span>Email bazada bo'lsa, mavjud masul tanlangan kafedralarga biriktiriladi.</span>
+                            <span>Email bazada bo'lsa, mavjud masul tanlangan kafedraga biriktiriladi.</span>
                         </p>
                     </div>
                     <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Shaxsiy ma'lumotlar</p>
@@ -136,22 +136,27 @@
                             @error('email')<p class="text-xs text-red-600 mt-1">{{ $message }}</p>@enderror
                         </div>
                     </div>
-                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Biriktiriladigan kafedralar</p>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Biriktiriladigan kafedra</p>
                     <div class="mb-5">
-                        <div id="kafedra-create-list" class="border rounded-md max-h-52 overflow-y-auto divide-y divide-gray-100 @error('kafedralar') border-red-500 @enderror">
-                            @php $oldKafedralar = old('kafedralar', []); @endphp
+                        <div id="kafedra-create-list" class="border rounded-md max-h-52 overflow-y-auto divide-y divide-gray-100 @error('kafedra') border-red-500 @enderror">
+                            @php $oldKafedra = old('kafedra'); @endphp
                             @forelse ($kafedraList as $kafedra)
                                 <label class="flex items-start gap-3 px-3 py-2.5 hover:bg-gray-50 cursor-pointer">
-                                    <input type="checkbox" name="kafedralar[]" value="{{ $kafedra->id }}" class="input border mt-1 kafedra-create-checkbox"
-                                        @checked(in_array((string) $kafedra->id, array_map('strval', $oldKafedralar), true))>
-                                    <span class="text-sm text-gray-800">{{ $kafedra->name }}</span>
+                                    <input type="radio" name="kafedra" value="{{ $kafedra->id }}" class="input border mt-1 kafedra-create-radio"
+                                        @checked((string) $oldKafedra === (string) $kafedra->id)>
+                                    <span class="text-sm text-gray-800">
+                                        {{ $kafedra->name }}
+                                        @if ($kafedra->user)
+                                            <span class="text-xs text-gray-500">— masul: {{ $kafedra->user->name }}</span>
+                                        @endif
+                                    </span>
                                 </label>
                             @empty
                                 <p class="px-3 py-4 text-sm text-gray-500 text-center">Kafedralar mavjud emas</p>
                             @endforelse
                         </div>
-                        @error('kafedralar')<p class="text-xs text-red-600 mt-1">{{ $message }}</p>@enderror
-                        <p id="kafedra-create-error" class="text-xs text-red-600 mt-1 hidden">Kamida bitta kafedrani tanlang</p>
+                        @error('kafedra')<p class="text-xs text-red-600 mt-1">{{ $message }}</p>@enderror
+                        <p id="kafedra-create-error" class="text-xs text-red-600 mt-1 hidden">Kafedrani tanlang</p>
                     </div>
                     <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Kirish ma'lumotlari</p>
                     <div class="grid grid-cols-12 gap-4">
@@ -207,18 +212,18 @@
                             <input type="email" id="kafedra-edit-email-display" class="input w-full border bg-gray-50" readonly>
                         </div>
                     </div>
-                    <p class="text-xs font-semibold uppercase text-gray-500 mb-3">Biriktirilgan kafedralar</p>
+                    <p class="text-xs font-semibold uppercase text-gray-500 mb-3">Biriktirilgan kafedra</p>
                     <div id="kafedra-edit-list" class="border rounded-md max-h-52 overflow-y-auto divide-y mb-5">
                         @forelse ($kafedraList as $kafedra)
                             <label class="flex items-start gap-3 px-3 py-2.5 hover:bg-gray-50 cursor-pointer">
-                                <input type="checkbox" name="kafedralar[]" value="{{ $kafedra->id }}" class="input border mt-1 kafedra-edit-checkbox">
+                                <input type="radio" name="kafedra" value="{{ $kafedra->id }}" class="input border mt-1 kafedra-edit-radio">
                                 <span class="text-sm">{{ $kafedra->name }}</span>
                             </label>
                         @empty
                             <p class="px-3 py-4 text-sm text-gray-500 text-center">Kafedralar mavjud emas</p>
                         @endforelse
                     </div>
-                    <p id="kafedra-edit-error" class="text-xs text-red-600 mb-4 hidden">Kamida bitta kafedrani tanlang</p>
+                    <p id="kafedra-edit-error" class="text-xs text-red-600 mb-4 hidden">Kafedrani tanlang</p>
                     <div class="col-span-12 sm:col-span-6">
                         <label class="block text-sm font-medium mb-1">Parol <span class="text-gray-400">(ixtiyoriy)</span></label>
                         <input type="password" name="password" id="kafedra-edit-password" class="input w-full border" placeholder="O'zgartirmasangiz bo'sh qoldiring">
@@ -260,7 +265,7 @@
             <div class="p-5 max-h-[60vh] overflow-y-auto">
                 @forelse ($masullar as $user)
                     @php
-                        $kafedralarNomlari = $user->masulKafedralar->pluck('name')->filter();
+                        $kafedra = $user->masulKafedralar->first();
                         $initials = collect(explode(' ', $user->name))->filter()->take(2)->map(fn ($w) => mb_strtoupper(mb_substr($w, 0, 1)))->join('');
                     @endphp
                     <div class="kafedra-masul-card box p-4 mb-3 border border-gray-100 hover:border-theme-1" data-search="{{ strtolower($user->name . ' ' . $user->email) }}">
@@ -276,7 +281,7 @@
                                         @can('update user')
                                             <button type="button" class="button px-2 py-1.5 border border-theme-1 text-theme-1 kafedra-masul-edit-btn"
                                                 data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}" data-user-email="{{ $user->email }}"
-                                                data-kafedralar-ids="{{ $user->masulKafedralar->pluck('id')->join(',') }}">
+                                                data-kafedra-id="{{ $kafedra?->id }}">
                                                 <i data-feather="edit-2" class="w-4 h-4"></i>
                                             </button>
                                         @endcan
@@ -289,11 +294,11 @@
                                     </div>
                                 </div>
                                 <div class="mt-3 flex flex-wrap gap-1.5">
-                                    @forelse ($kafedralarNomlari as $nomi)
-                                        <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">{{ Str::limit($nomi, 45) }}</span>
-                                    @empty
+                                    @if ($kafedra)
+                                        <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">{{ Str::limit($kafedra->name, 45) }}</span>
+                                    @else
                                         <span class="text-xs text-gray-400">Kafedra biriktirilmagan</span>
-                                    @endforelse
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -339,27 +344,35 @@
                     document.getElementById('kafedra-edit-preview-name').textContent = this.dataset.userName;
                     document.getElementById('kafedra-edit-preview-email').textContent = this.dataset.userEmail;
                     document.getElementById('kafedra-edit-initials').textContent = (this.dataset.userName || '?').split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();
-                    const ids = (this.dataset.kafedralarIds || '').split(',').filter(Boolean);
-                    document.querySelectorAll('.kafedra-edit-checkbox').forEach(cb => { cb.checked = ids.includes(cb.value); });
+                    const kafedraId = this.dataset.kafedraId || '';
+                    document.querySelectorAll('.kafedra-edit-radio').forEach(radio => {
+                        radio.checked = kafedraId !== '' && radio.value === kafedraId;
+                    });
                     $('#laboratory-masul-list-modal').modal('hide');
                     $(editModal).modal('show');
                     replaceFeather();
                 });
             });
 
-            function bindCheckboxValidation(form, sel, errId, listId) {
+            function bindRadioValidation(form, sel, errId, listId) {
                 if (!form) return;
                 form.addEventListener('submit', function(e) {
-                    if (!form.querySelectorAll(sel + ':checked').length) {
+                    if (!form.querySelector(sel + ':checked')) {
                         e.preventDefault();
                         const el = document.getElementById(errId);
                         if (el) el.classList.remove('hidden');
                         document.getElementById(listId).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }
                 });
+                form.querySelectorAll(sel).forEach(function(input) {
+                    input.addEventListener('change', function() {
+                        const el = document.getElementById(errId);
+                        if (el) el.classList.add('hidden');
+                    });
+                });
             }
-            bindCheckboxValidation(createForm, '.kafedra-create-checkbox', 'kafedra-create-error', 'kafedra-create-list');
-            bindCheckboxValidation(editForm, '.kafedra-edit-checkbox', 'kafedra-edit-error', 'kafedra-edit-list');
+            bindRadioValidation(createForm, '.kafedra-create-radio', 'kafedra-create-error', 'kafedra-create-list');
+            bindRadioValidation(editForm, '.kafedra-edit-radio', 'kafedra-edit-error', 'kafedra-edit-list');
 
             const search = document.getElementById('kafedra-masul-search');
             const cards = document.querySelectorAll('.kafedra-masul-card');

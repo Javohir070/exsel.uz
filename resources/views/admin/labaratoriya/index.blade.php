@@ -30,10 +30,6 @@
             </div>
         </div>
 
-        @if (session('status'))
-            <div class="alert alert-success">{{ session('status') }}</div>
-        @endif
-
         @include('admin.components.error_alert')
 
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
@@ -105,7 +101,7 @@
                     </div>
                     <div>
                         <h2 class="text-lg font-medium">Laboratoriyaga masul biriktirish</h2>
-                        <p class="text-sm text-gray-600 mt-0.5">Bir masul bir nechta laboratoriyaga biriktirilishi mumkin</p>
+                        <p class="text-sm text-gray-600 mt-0.5">Bitta masul faqat bitta laboratoriyaga biriktiriladi</p>
                     </div>
                 </div>
                 <a data-dismiss="modal" href="javascript:;" class="text-gray-400 hover:text-gray-600 transition-colors" aria-label="Yopish">
@@ -127,7 +123,7 @@
                     <div class="mb-4 p-3 rounded-md border border-blue-100 bg-blue-50 text-sm text-blue-900">
                         <p class="flex items-start gap-2">
                             <i data-feather="info" class="w-4 h-4 flex-shrink-0 mt-0.5"></i>
-                            <span>Email bazada bo'lsa, mavjud masul tanlangan laboratoriyalarga biriktiriladi.</span>
+                            <span>Email bazada bo'lsa, mavjud masul tanlangan laboratoriyaga biriktiriladi.</span>
                         </p>
                     </div>
                     <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Shaxsiy ma'lumotlar</p>
@@ -143,22 +139,27 @@
                             @error('email')<p class="text-xs text-red-600 mt-1">{{ $message }}</p>@enderror
                         </div>
                     </div>
-                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Biriktiriladigan laboratoriyalar</p>
+                    <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Biriktiriladigan laboratoriya</p>
                     <div class="mb-5">
                         <div id="laboratory-create-list" class="border rounded-md max-h-52 overflow-y-auto divide-y divide-gray-100 @error('laboratory') border-red-500 @enderror">
-                            @php $oldLaboratories = old('laboratory', []); @endphp
+                            @php $oldLaboratory = old('laboratory'); @endphp
                             @forelse ($laboratoryList as $lab)
                                 <label class="flex items-start gap-3 px-3 py-2.5 hover:bg-gray-50 cursor-pointer">
-                                    <input type="checkbox" name="laboratory[]" value="{{ $lab->id }}" class="input border mt-1 laboratory-create-checkbox"
-                                        @checked(in_array((string) $lab->id, array_map('strval', $oldLaboratories), true))>
-                                    <span class="text-sm text-gray-800">{{ $lab->name }}</span>
+                                    <input type="radio" name="laboratory" value="{{ $lab->id }}" class="input border mt-1 laboratory-create-radio"
+                                        @checked((string) $oldLaboratory === (string) $lab->id)>
+                                    <span class="text-sm text-gray-800">
+                                        {{ $lab->name }}
+                                        @if ($lab->user)
+                                            <span class="text-xs text-gray-500">— masul: {{ $lab->user->name }}</span>
+                                        @endif
+                                    </span>
                                 </label>
                             @empty
                                 <p class="px-3 py-4 text-sm text-gray-500 text-center">Laboratoriyalar mavjud emas</p>
                             @endforelse
                         </div>
                         @error('laboratory')<p class="text-xs text-red-600 mt-1">{{ $message }}</p>@enderror
-                        <p id="laboratory-create-error" class="text-xs text-red-600 mt-1 hidden">Kamida bitta laboratoriyani tanlang</p>
+                        <p id="laboratory-create-error" class="text-xs text-red-600 mt-1 hidden">Laboratoriyani tanlang</p>
                     </div>
                     <p class="text-xs font-semibold uppercase tracking-wide text-gray-500 mb-3">Kirish ma'lumotlari</p>
                     <div class="grid grid-cols-12 gap-4">
@@ -214,18 +215,18 @@
                             <input type="email" id="laboratory-edit-email-display" class="input w-full border bg-gray-50" readonly>
                         </div>
                     </div>
-                    <p class="text-xs font-semibold uppercase text-gray-500 mb-3">Biriktirilgan laboratoriyalar</p>
+                    <p class="text-xs font-semibold uppercase text-gray-500 mb-3">Biriktirilgan laboratoriya</p>
                     <div id="laboratory-edit-list" class="border rounded-md max-h-52 overflow-y-auto divide-y mb-5">
                         @forelse ($laboratoryList as $lab)
                             <label class="flex items-start gap-3 px-3 py-2.5 hover:bg-gray-50 cursor-pointer">
-                                <input type="checkbox" name="laboratory[]" value="{{ $lab->id }}" class="input border mt-1 laboratory-edit-checkbox">
+                                <input type="radio" name="laboratory" value="{{ $lab->id }}" class="input border mt-1 laboratory-edit-radio">
                                 <span class="text-sm">{{ $lab->name }}</span>
                             </label>
                         @empty
                             <p class="px-3 py-4 text-sm text-gray-500 text-center">Laboratoriyalar mavjud emas</p>
                         @endforelse
                     </div>
-                    <p id="laboratory-edit-error" class="text-xs text-red-600 mb-4 hidden">Kamida bitta laboratoriyani tanlang</p>
+                    <p id="laboratory-edit-error" class="text-xs text-red-600 mb-4 hidden">Laboratoriyani tanlang</p>
                     <div class="col-span-12 sm:col-span-6">
                         <label class="block text-sm font-medium mb-1">Parol <span class="text-gray-400">(ixtiyoriy)</span></label>
                         <input type="password" name="password" id="laboratory-edit-password" class="input w-full border" placeholder="O'zgartirmasangiz bo'sh qoldiring">
@@ -267,7 +268,7 @@
             <div class="p-5 max-h-[60vh] overflow-y-auto">
                 @forelse ($masullar as $user)
                     @php
-                        $laboratoriyalarNomlari = $user->masulLaboratories->pluck('name')->filter();
+                        $laboratoriya = $user->masulLaboratories->first();
                         $initials = collect(explode(' ', $user->name))->filter()->take(2)->map(fn ($w) => mb_strtoupper(mb_substr($w, 0, 1)))->join('');
                     @endphp
                     <div class="laboratory-masul-card box p-4 mb-3 border border-gray-100 hover:border-theme-1" data-search="{{ strtolower($user->name . ' ' . $user->email) }}">
@@ -283,7 +284,7 @@
                                         @can('update user')
                                             <button type="button" class="button px-2 py-1.5 border border-theme-1 text-theme-1 laboratory-masul-edit-btn"
                                                 data-user-id="{{ $user->id }}" data-user-name="{{ $user->name }}" data-user-email="{{ $user->email }}"
-                                                data-laboratory-ids="{{ $user->masulLaboratories->pluck('id')->join(',') }}">
+                                                data-laboratory-id="{{ $laboratoriya?->id }}">
                                                 <i data-feather="edit-2" class="w-4 h-4"></i>
                                             </button>
                                         @endcan
@@ -296,11 +297,11 @@
                                     </div>
                                 </div>
                                 <div class="mt-3 flex flex-wrap gap-1.5">
-                                    @forelse ($laboratoriyalarNomlari as $nomi)
-                                        <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">{{ Str::limit($nomi, 45) }}</span>
-                                    @empty
+                                    @if ($laboratoriya)
+                                        <span class="text-xs px-2 py-1 rounded-full bg-gray-100 text-gray-700">{{ Str::limit($laboratoriya->name, 45) }}</span>
+                                    @else
                                         <span class="text-xs text-gray-400">Laboratoriya biriktirilmagan</span>
-                                    @endforelse
+                                    @endif
                                 </div>
                             </div>
                         </div>
@@ -346,27 +347,35 @@
                     document.getElementById('laboratory-edit-preview-name').textContent = this.dataset.userName;
                     document.getElementById('laboratory-edit-preview-email').textContent = this.dataset.userEmail;
                     document.getElementById('laboratory-edit-initials').textContent = (this.dataset.userName || '?').split(/\s+/).slice(0,2).map(w=>w[0]).join('').toUpperCase();
-                    const ids = (this.dataset.laboratoryIds || '').split(',').filter(Boolean);
-                    document.querySelectorAll('.laboratory-edit-checkbox').forEach(cb => { cb.checked = ids.includes(cb.value); });
+                    const laboratoryId = this.dataset.laboratoryId || '';
+                    document.querySelectorAll('.laboratory-edit-radio').forEach(radio => {
+                        radio.checked = laboratoryId !== '' && radio.value === laboratoryId;
+                    });
                     $('#laboratory-masul-list-modal').modal('hide');
                     $(editModal).modal('show');
                     replaceFeather();
                 });
             });
 
-            function bindCheckboxValidation(form, sel, errId, listId) {
+            function bindRadioValidation(form, sel, errId, listId) {
                 if (!form) return;
                 form.addEventListener('submit', function(e) {
-                    if (!form.querySelectorAll(sel + ':checked').length) {
+                    if (!form.querySelector(sel + ':checked')) {
                         e.preventDefault();
                         const el = document.getElementById(errId);
                         if (el) el.classList.remove('hidden');
                         document.getElementById(listId).scrollIntoView({ behavior: 'smooth', block: 'nearest' });
                     }
                 });
+                form.querySelectorAll(sel).forEach(function(input) {
+                    input.addEventListener('change', function() {
+                        const el = document.getElementById(errId);
+                        if (el) el.classList.add('hidden');
+                    });
+                });
             }
-            bindCheckboxValidation(createForm, '.laboratory-create-checkbox', 'laboratory-create-error', 'laboratory-create-list');
-            bindCheckboxValidation(editForm, '.laboratory-edit-checkbox', 'laboratory-edit-error', 'laboratory-edit-list');
+            bindRadioValidation(createForm, '.laboratory-create-radio', 'laboratory-create-error', 'laboratory-create-list');
+            bindRadioValidation(editForm, '.laboratory-edit-radio', 'laboratory-edit-error', 'laboratory-edit-list');
 
             const search = document.getElementById('laboratory-masul-search');
             const cards = document.querySelectorAll('.laboratory-masul-card');

@@ -15,10 +15,30 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class LaboratoryController extends Controller
 {
+    private function authUser(): User
+    {
+        return auth()->user();
+    }
+
+    private function isLaboratoryScoped(): bool
+    {
+        return (bool) $this->authUser()->laboratory_id;
+    }
+
+    private function scopeByLaboratoryOrTashkilot($query, string $laboratoryColumn = 'laboratory_id')
+    {
+        $user = $this->authUser();
+
+        if ($user->laboratory_id) {
+            return $query->where($laboratoryColumn, $user->laboratory_id);
+        }
+
+        return $query->where('tashkilot_id', $user->tashkilot_id);
+    }
 
     public function index()
     {
-        $laboratorys = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
+        $laboratorys = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->with('user')->get();
         $laboratoryList = $laboratorys;
 
         $masullar = User::where('tashkilot_id', auth()->user()->tashkilot_id)
@@ -53,44 +73,63 @@ class LaboratoryController extends Controller
 
     public function laboratoriya()
     {
-        $laboratory = auth()->user()->laboratory_id;
-        $laboratorys = Laboratory::where("id", auth()->user()->laboratory_id)->get();
-        $lab_xodimlar = Xodimlar::where('laboratory_id', auth()->user()->laboratory_id)->count();
-        $lab_xujalik = Xujalik::where('laboratory_id', auth()->user()->laboratory_id)->count();
-        $lab_ilmiyLoyiha = IlmiyLoyiha::where('laboratory_id', auth()->user()->laboratory_id)->count();
+        $user = $this->authUser();
 
-        return view("admin.labaratoriya.labaratoriya", [
-            "laboratorys" => $laboratorys,
+        if ($user->laboratory_id) {
+            $laboratorys = Laboratory::where('id', $user->laboratory_id)->get();
+        } else {
+            $laboratorys = Laboratory::where('tashkilot_id', $user->tashkilot_id)->get();
+        }
+
+        $lab_xodimlar = $this->scopeByLaboratoryOrTashkilot(Xodimlar::query())->count();
+        $lab_xujalik = $this->scopeByLaboratoryOrTashkilot(Xujalik::query())->count();
+        $lab_ilmiyLoyiha = $this->scopeByLaboratoryOrTashkilot(IlmiyLoyiha::query())->count();
+
+        return view('admin.labaratoriya.labaratoriya', [
+            'laboratorys' => $laboratorys,
             'lab_ilmiyLoyiha' => $lab_ilmiyLoyiha,
             'lab_xujalik' => $lab_xujalik,
             'lab_xodimlar' => $lab_xodimlar,
-            "laboratory" => $laboratory,
+            'laboratory' => $user->laboratory_id,
+            'isTashkilotScope' => ! $this->isLaboratoryScoped(),
         ]);
     }
 
 
     public function lab_biriktirilgan_xodimlar()
     {
-        $lab_xodimlar = Xodimlar::where("laboratory_id", auth()->user()->laboratory_id)->paginate(20);
-        $tashkilot_xodimlar = Xodimlar::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        $lab_xodimlar = $this->scopeByLaboratoryOrTashkilot(Xodimlar::query())->paginate(20);
+        $tashkilot_xodimlar = Xodimlar::where('tashkilot_id', $this->authUser()->tashkilot_id)->get();
 
-        return view("admin.labaratoriya.labxodimlar", ["lab_xodimlar" => $lab_xodimlar, 'tashkilot_xodimlar' => $tashkilot_xodimlar]);
+        return view('admin.labaratoriya.labxodimlar', [
+            'lab_xodimlar' => $lab_xodimlar,
+            'tashkilot_xodimlar' => $tashkilot_xodimlar,
+            'isTashkilotScope' => ! $this->isLaboratoryScoped(),
+        ]);
     }
 
     public function lab_biriktirilgan_ilmiyloyha()
     {
-        $ilmiyloyiha = IlmiyLoyiha::where("laboratory_id", auth()->user()->laboratory_id)->paginate(20);
-        $tashkilot_ilmiyloyiha = IlmiyLoyiha::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        $ilmiyloyiha = $this->scopeByLaboratoryOrTashkilot(IlmiyLoyiha::query())->paginate(20);
+        $tashkilot_ilmiyloyiha = IlmiyLoyiha::where('tashkilot_id', $this->authUser()->tashkilot_id)->get();
 
-        return view("admin.labaratoriya.labilmiyloyhi", ["ilmiyloyiha" => $ilmiyloyiha, "tashkilot_ilmiyloyiha" => $tashkilot_ilmiyloyiha]);
+        return view('admin.labaratoriya.labilmiyloyhi', [
+            'ilmiyloyiha' => $ilmiyloyiha,
+            'tashkilot_ilmiyloyiha' => $tashkilot_ilmiyloyiha,
+            'isTashkilotScope' => ! $this->isLaboratoryScoped(),
+        ]);
     }
 
     public function lab_biriktirilgan_xujalik()
     {
-        $xujalik = Xujalik::where("laboratory_id", auth()->user()->laboratory_id)->paginate(20);
-        $tashkilot_xujalik = Xujalik::where("tashkilot_id", auth()->user()->tashkilot_id)->get();
+        $xujalik = $this->scopeByLaboratoryOrTashkilot(Xujalik::query())->paginate(20);
+        $tashkilot_xujalik = Xujalik::where('tashkilot_id', $this->authUser()->tashkilot_id)->get();
 
-        return view("admin.labaratoriya.labxujalik", ["xujalik" => $xujalik, "tashkilot_xujalik" => $tashkilot_xujalik]);
+        return view('admin.labaratoriya.labxujalik', [
+            'xujalik' => $xujalik,
+            'tashkilot_xujalik' => $tashkilot_xujalik,
+            'isTashkilotScope' => ! $this->isLaboratoryScoped(),
+        ]);
     }
 
 
@@ -99,8 +138,11 @@ class LaboratoryController extends Controller
         // Formdan kelgan xodimlar ID larini olish
         $xodimlarId = $request->input('xodimlarId', []);
 
-        // Foydalanuvchining laboratory_id sini oling
-        $laboratoryId = auth()->user()->laboratory_id;
+        $laboratoryId = $this->authUser()->laboratory_id;
+
+        if (! $laboratoryId) {
+            return redirect()->back()->with('status', 'Laboratoriya biriktirilmagan. Biriktirish uchun avval laboratoriyani tanlang.');
+        }
 
         // Tanlangan IDlarga tegishli xodimlarni yangilash
         if (!empty($xodimlarId)) {
@@ -119,8 +161,11 @@ class LaboratoryController extends Controller
         // Formdan kelgan xodimlar ID larini olish
         $xujaliklarId = $request->input('xujaliklarId', []);
 
-        // Foydalanuvchining laboratory_id sini oling
-        $laboratoryId = auth()->user()->laboratory_id;
+        $laboratoryId = $this->authUser()->laboratory_id;
+
+        if (! $laboratoryId) {
+            return redirect()->back()->with('status', 'Laboratoriya biriktirilmagan. Biriktirish uchun avval laboratoriyani tanlang.');
+        }
 
         // Tanlangan IDlarga tegishli xujaliklarni yangilash
         if (!empty($xujaliklarId)) {
@@ -139,8 +184,11 @@ class LaboratoryController extends Controller
         // Formdan kelgan xodimlar ID larini olish
         $ilmiyloyhalarId = $request->input('ilmiyloyhalarId', []);
 
-        // Foydalanuvchining laboratory_id sini oling
-        $laboratoryId = auth()->user()->laboratory_id;
+        $laboratoryId = $this->authUser()->laboratory_id;
+
+        if (! $laboratoryId) {
+            return redirect()->back()->with('status', 'Laboratoriya biriktirilmagan. Biriktirish uchun avval laboratoriyani tanlang.');
+        }
 
         // Tanlangan IDlarga tegishli ilmiyloyhalarni yangilash
         if (!empty($ilmiyloyhalarId)) {

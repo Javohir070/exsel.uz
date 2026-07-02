@@ -78,9 +78,16 @@ class HomeController extends Controller
             return $user->roles->contains('name', 'Xodimlar_uchun_masul');
         });
 
-        $lab_xodimlar = Xodimlar::where('laboratory_id', auth()->user()->laboratory_id)->count();
-        $lab_xujalik = Xujalik::where('laboratory_id', auth()->user()->laboratory_id)->count();
-        $lab_ilmiyLoyiha = IlmiyLoyiha::where('laboratory_id', auth()->user()->laboratory_id)->count();
+        $user = Auth::user();
+        if ($user->laboratory_id) {
+            $lab_xodimlar = Xodimlar::where('laboratory_id', $user->laboratory_id)->count();
+            $lab_xujalik = Xujalik::where('laboratory_id', $user->laboratory_id)->count();
+            $lab_ilmiyLoyiha = IlmiyLoyiha::where('laboratory_id', $user->laboratory_id)->count();
+        } else {
+            $lab_xodimlar = Xodimlar::where('tashkilot_id', $user->tashkilot_id)->count();
+            $lab_xujalik = Xujalik::where('tashkilot_id', $user->tashkilot_id)->count();
+            $lab_ilmiyLoyiha = IlmiyLoyiha::where('tashkilot_id', $user->tashkilot_id)->count();
+        }
         // ITM uchun
         $tashkilots = Tashkilot::where('tashkilot_turi', 'itm')->with(['xodimlar', 'ilmiyloyhalar', 'xujaliklar', 'ilmiydarajalar'])->get();
         $itm_tash_itm = $tashkilots->count();
