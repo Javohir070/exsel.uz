@@ -30,17 +30,22 @@ class AsbobuskunaController extends Controller
 
     public function index()
     {
-        $asbobuskunas = Asbobuskuna::where('tashkilot_id', auth()->user()->tashkilot_id)
+        $tashkilotId = auth()->user()->tashkilot_id;
+
+        $asbobuskunas = Asbobuskuna::where('tashkilot_id', $tashkilotId)
+            ->with('user')
             ->paginate(20);
 
-        $users = User::where('tashkilot_id', auth()->user()->tashkilot_id)
-        ->with('roles')->get();
+        $masullar = User::where('tashkilot_id', $tashkilotId)
+            ->with('roles')
+            ->get()
+            ->filter(fn (User $user) => $user->roles->contains('name', 'Asbob_uskunalarga_masul'))
+            ->values();
 
-        $masullar = $users->filter(function ($user) {
-            return $user->roles->contains('name', 'Asbob_uskunalarga_masul');
-        });
-
-        return view('admin.asbobuskuna.index', ['asbobuskunas' => $asbobuskunas, 'masullar' => $masullar]);
+        return view('admin.asbobuskuna.index', [
+            'asbobuskunas' => $asbobuskunas,
+            'masullar' => $masullar,
+        ]);
     }
 
     public function asbobuskunalar()

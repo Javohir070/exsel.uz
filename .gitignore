@@ -18,3 +18,7 @@ yarn-error.log
 /.idea
 /.vscode
 /.cursor
+/.codex
+/.impeccable
+/.claude
+/.agents

@@ -8,18 +8,26 @@
             <h2 class="intro-y text-lg font-medium">Ilmiy loyihalar</h2>
 
             <div>
-                <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white">
+                {{-- <a href="{{ route("ilmiyloyiha.create") }}" class="button w-24 bg-theme-1 text-white">
                     Qo'shish
-                </a>
+                </a> --}}
+                @if (empty($isTashkilotScope))
                 <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                     class="button w-24 ml-3 bg-theme-1 text-white">
                     Ilmiy loyihalar biriktirish
                 </a>
+                @endif
             </div>
         </div>
 
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
+        @endif
+
+        @if (!empty($isTashkilotScope))
+            <div class="alert alert-warning">
+                Sizga laboratoriya biriktirilmagan. Tashkilot bo'yicha barcha ilmiy loyihalar ko'rsatilmoqda.
+            </div>
         @endif
 
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
@@ -54,11 +62,11 @@
                             </td>
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
-                                    <a class="flex science-update-action items-center mr-3"
+                                    {{-- <a class="flex science-update-action items-center mr-3"
                                         href="{{ route('ilmiyloyiha.edit', ['ilmiyloyiha' => $xodimlar->id]) }}">
                                         <i data-feather="edit" class="feather feather-check-square w-4 h-4 mr-1"></i>
                                         Tahrirlash
-                                    </a>
+                                    </a> --}}
 
                                     <a class="flex science-update-action items-center mr-3"
                                         href="{{ route('ilmiyloyiha.show', ['ilmiyloyiha' => $xodimlar->id]) }}">
@@ -96,6 +104,7 @@
             z-index: 1;
         }
     </style>
+    @if (empty($isTashkilotScope))
     <div class="modal" id="science-paper-create-modal">
         <div class="modal__content modal__content--xl">
             <div class="p-5">
@@ -168,7 +177,8 @@
                     Tasdiqlash
                 </button>
             </div>
-            
+
         </div>
     </div>
+    @endif
 @endsection

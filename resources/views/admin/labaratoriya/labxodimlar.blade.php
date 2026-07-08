@@ -26,15 +26,12 @@
                         Qo'shish
                     </a>
 
-                    {{-- <a href="{{ url('tashkilot/'.auth()->user()->tashkilot_id.'/export') }}"
-                        class="button ml-3 w-24 bg-theme-1 text-white">
-                        Barcha xodimlarni Excel yuklab olish
-                    </a> --}}
-
+                    @if (empty($isTashkilotScope))
                     <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                         class="button w-24 ml-3 bg-theme-1 text-white">
                         Xodimlar biriktirish
                     </a>
+                    @endif
                 </div>
             </div>
 
@@ -43,6 +40,12 @@
 
         @if (session('status'))
             <div class="alert alert-success">{{ session('status') }}</div>
+        @endif
+
+        @if (!empty($isTashkilotScope))
+            <div class="alert alert-warning">
+                Sizga laboratoriya biriktirilmagan. Tashkilot bo'yicha barcha xodimlar ko'rsatilmoqda.
+            </div>
         @endif
 
         <div class="intro-y col-span-12 overflow-auto lg:overflow-visible">
@@ -120,6 +123,7 @@
         }
     </style>
 
+    @if (empty($isTashkilotScope))
     <div class="modal" id="science-paper-create-modal">
         <div class="modal__content modal__content--xl">
             <div class="p-5">
@@ -186,5 +190,6 @@
             
         </div>
     </div>
+    @endif
 
 @endsection

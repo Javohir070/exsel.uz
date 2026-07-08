@@ -25,7 +25,7 @@
     <div class="side-nav__devider my-3"></div>
     <a href="/" class=" items-center ">
         <span class="hidden xl:block text-white text-lg ml-3" style="font-size: 14px; text-align: center;">
-            {{ auth()->user()->laboratory->name }}</span>
+            {{ auth()->user()->laboratory->name ?? 'Laboratoriya biriktirilmagan' }}</span>
     </a>
     <div class="side-nav__devider my-3"></div>
     @endrole
@@ -339,7 +339,7 @@
                 <div class="side-menu__title"> Ilmiy loyihalar </div>
             </a>
         </li>
-        
+
         <li>
             <a href="{{ route('stajirovka.index') }}"
                 class="side-menu side-menu{{ request()->is('stajirovka*') ? '--active' : '' }}">
@@ -365,9 +365,16 @@
                 <div class="side-menu__title"> Ilmiy loyihalar </div>
             </a>
         </li>
+        <li>
+            <a href="{{ route('asbobuskuna.index') }}"
+                class="side-menu side-menu{{ request()->is('asbobuskuna*') ? '--active' : '' }}">
+                <div class="side-menu__icon"> <i data-feather="inbox"></i> </div>
+                <div class="side-menu__title"> Asbob-uskunalar</div>
+            </a>
+        </li>
         @endrole
 
-       
+
 
 
         <!-- end admin -->
@@ -525,7 +532,7 @@
                 <div class="side-menu__title"> Kafedralar </div>
             </a>
         </li>
-        
+
         <li>
             <a href="{{ route('laboratoriyalari.index') }}"
                 class="side-menu side-menu{{ request()->is('laboratoriyalari*') ? '--active' : '' }}{{ request()->is('laboratory*') ? '--active' : '' }}">

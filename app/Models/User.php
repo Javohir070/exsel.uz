@@ -81,6 +81,21 @@ class User extends Authenticatable
         return $this->hasMany(IlmiyLoyiha::class);
     }
 
+    public function asbobuskunalar()
+    {
+        return $this->hasMany(Asbobuskuna::class);
+    }
+
+    public function masulKafedralar()
+    {
+        return $this->hasMany(Kafedralar::class, 'user_id');
+    }
+
+    public function masulLaboratories()
+    {
+        return $this->hasMany(Laboratory::class, 'user_id');
+    }
+
     public function region()
     {
         return $this->belongsTo(Region::class);

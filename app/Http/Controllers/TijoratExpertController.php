@@ -32,7 +32,7 @@ class TijoratExpertController extends Controller
             return redirect()->back()->withErrors(['monitoring' => 'Faol monitoring topilmadi.']);
         }
 
-        $user = User::where('group_id', '=', auth()->user()->group_id)->role('Ekspert')->first();
+        $user = User::where('group_id', '=', auth()->user()->group_id)->where('is_active', 1)->role('Ekspert')->first();
 
         $data = $request->validated();
 

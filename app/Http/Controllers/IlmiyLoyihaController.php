@@ -417,6 +417,20 @@ class IlmiyLoyihaController extends Controller
         ]);
     }
 
+    public function ilmiy_loyihalar_tashkilot($id)
+    {
+        $tashkilot = Tashkilot::findOrFail($id);
+
+        $ilmiyloyihalar = IlmiyLoyiha::where('tashkilot_id', $id)
+            ->paginate(20);
+
+        return view('admin.ilmiyloyiha.ilmiyloyihalar', [
+            'ilmiyloyihalar' => $ilmiyloyihalar,
+            'tashkilot' => $tashkilot,
+            'monitoring' => $this->monitoring,
+        ]);
+    }
+
     public function ilmiy_loyihalar_all(Request $request)
     {
         $query = IlmiyLoyiha::query();
