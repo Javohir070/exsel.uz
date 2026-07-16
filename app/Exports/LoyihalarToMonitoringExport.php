@@ -14,7 +14,7 @@ class LoyihalarToMonitoringExport implements FromCollection, WithHeadings
     */
     public function collection()
     {
-       return Tekshirivchilar::with('tashkilot', 'ilmiyLoyihalar')->where('quarter', 2)->get()->map(function ($tekshirivchilar){
+       return Tekshirivchilar::with('tashkilot', 'ilmiyLoyihalar')->where('quarter', 4)->get()->map(function ($tekshirivchilar){
             return [
                 'id' => $tekshirivchilar->ilmiyLoyihalar->id,
                 "Tashkilot nomi" => $tekshirivchilar->tashkilot->name,

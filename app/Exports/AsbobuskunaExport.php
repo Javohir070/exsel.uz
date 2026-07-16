@@ -14,7 +14,7 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
     public function collection()
     {
         return Asbobuskuna::with(['tashkilot', 'laboratory', 'kafedralar', 'asbobuskunaexperts'])
-            ->where('is_active', 1)
+            // ->where('is_active', 1)
             ->get()
             ->map(function ($asbobuskuna) {
 

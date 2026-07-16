@@ -10,7 +10,7 @@ class AsbobuskunaexpertMonitoringExpert implements FromCollection, WithHeadings
 {
     public function collection()
     {
-        return Asbobuskunaexpert::with('tashkilot')->where('quarter', 2)->get()->map(function($asbobuskunaexpert){
+        return Asbobuskunaexpert::with('tashkilot')->whereIn('quarter', [1, 2])->get()->map(function($asbobuskunaexpert){
             return [
                 'id' => $asbobuskunaexpert->tashkilot->id,
                 "Tashkilot nomi" => $asbobuskunaexpert->tashkilot->name,
@@ -24,7 +24,7 @@ class AsbobuskunaexpertMonitoringExpert implements FromCollection, WithHeadings
                 "Zarur sarflash materiallari va butlovchi qismlar bo'yicha ehtiyojar mavjudligi "=>$asbobuskunaexpert->zarur_ehtiyoji ,
                 "Laboratoriya uskunalarining ishga yaroqliligi "=>$asbobuskunaexpert->lab_ishga_yaroqliligi ,
                 
-                "Ekspert xulosasi"=>$asbobuskunaexpert->status ,
+                "Ekspert xulosasi"=>$asbobuskunaexpert->status,
                 "Izoh"=>$asbobuskunaexpert->comment,
                 "Ishchi guruh rahbari F.I.Sh"=>$asbobuskunaexpert->fish,
                 "Ishchi guruh azosi F.I.Sh" => $asbobuskunaexpert->user->name,
