@@ -321,7 +321,7 @@
             @if ($q)
                 <tr>
                     <td class="tr-num">5.1.</td>
-                    <td>Mehnatga haq toʻlash (5.1.-shakl)</td>
+                    <td>Mehnatga haq toʻlash va ijtimoiy soliq (5.1.-shakl)</td>
                     <td>{{ $q->mehnat_haq_r }}</td>
                     <td>{{ $q->mehnat_haq_a }}</td>
                     <td>{{ $farq($q->mehnat_haq_a, $q->mehnat_haq_r) }}</td>

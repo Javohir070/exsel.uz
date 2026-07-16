@@ -710,7 +710,7 @@
                                 <tr>
                                     <td class="border">4.1.</td>
                                     <td class="border" style="font-size:14px;">
-                                        Mehnatga haq toʻlash (5.1.-shakl)
+                                        Mehnatga haq toʻlash va ijtimoiy soliq (5.1.-shakl)
                                     </td>
                                     {{-- <td class="border"> --}}
                                         {{-- {{ $loyihaiqtisodi?->mehnat_haq_r ?? null }} --}}
@@ -2505,7 +2505,7 @@
                                         <tr>
                                             {{-- <td class="border">4.1.</td> --}}
                                             <td class="border" style="font-size:14px;">
-                                                Mehnatga haq toʻlash (5.1.-shakl)
+                                                Mehnatga haq toʻlash va ijtimoiy soliq (5.1.-shakl)
                                             </td>
                                             {{-- <td class="border"> --}}
                                                 {{-- {{ $loyihaiqtisodi?->mehnat_haq_r ?? null }} --}}

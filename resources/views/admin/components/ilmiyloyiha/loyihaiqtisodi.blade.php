@@ -84,7 +84,7 @@
                                     </tr>
                                     <tr>
                                         <td class="border" style="font-size:16px;">
-                                            Mehnatga haq toʻlash (5.1.-shakl)
+                                            Mehnatga haq toʻlash va ijtimoiy soliq (5.1.-shakl)
                                         </td>
                                         <td class="border">
                                             <input type="text" id="sumInput1"
@@ -474,7 +474,7 @@
                                     </tr>
                                     <tr>
                                         <td class="border" style="font-size:16px;">
-                                            Mehnatga haq toʻlash (5.1.-shakl)
+                                            Mehnatga haq toʻlash va ijtimoiy soliq (5.1.-shakl)
                                         </td>
                                         <td class="border">
                                             <input type="text" id="sumInput1"

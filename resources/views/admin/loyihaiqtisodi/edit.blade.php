@@ -76,7 +76,7 @@
                             </tr>
                             <tr>
                                 <td class="border" style="text-size:16px;font-weight:700;">
-                                    Mehnatga haq toʻlash (5.1.-shakl)
+                                    Mehnatga haq toʻlash va ijtimoiy soliq (5.1.-shakl)
                                 </td>
                                 <td class="border">
                                     <input type="number" name="mehnat_haq_r" value="{{ $loyihaiqtisodi->mehnat_haq_r }}"
