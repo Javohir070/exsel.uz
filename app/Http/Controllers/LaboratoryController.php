@@ -271,7 +271,7 @@ class LaboratoryController extends Controller
         $fileName = 'laboratoriya_asbobuskunalari_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
 
         return Excel::download(
-            new LaboratoryAsbobuskunaExport($user->tashkilot_id, $user->laboratory_id),
+            new LaboratoryAsbobuskunaExport($user->laboratory_id),
             $fileName
         );
     }

@@ -10,7 +10,6 @@ use Maatwebsite\Excel\Concerns\WithMapping;
 class LaboratoryAsbobuskunaExport implements FromCollection, WithHeadings, WithMapping
 {
     public function __construct(
-        private readonly int $tashkilotId,
         private readonly ?int $laboratoryId = null,
     ) {
     }
