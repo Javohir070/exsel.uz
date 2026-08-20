@@ -19,7 +19,6 @@ class LaboratoryAsbobuskunaExport implements FromCollection, WithHeadings, WithM
     {
         return Asbobuskuna::query()
             ->with(['laboratory', 'tashkilot'])
-            ->where('tashkilot_id', $this->tashkilotId)
             ->when($this->laboratoryId, fn ($query) => $query->where('laboratory_id', $this->laboratoryId))
             ->orderBy('laboratory_id')
             ->orderBy('name')
