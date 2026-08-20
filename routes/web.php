@@ -241,6 +241,8 @@ Route::middleware('auth')->group(function () {
     Route::get('laboratoriya', [LaboratoryController::class, 'laboratoriya'])->name('laboratoriya.index');
     Route::get('laboratoriyalari', [LaboratoryController::class, 'laboratoriyalari'])->name('laboratoriyalari.index');
     Route::get('/export-lab', [LaboratoryController::class, 'export_lab'])->name('export_lab');
+    Route::get('/laboratoriya/asbobuskunalar/export', [LaboratoryController::class, 'exportAsbobuskunalar'])
+        ->name('laboratoriya.asbobuskunalar.export');
     // labaratoriya uchun
 
     // start home

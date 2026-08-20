@@ -40,4 +40,9 @@ class Laboratory extends Model
        return $this->hasMany(IlmiyLoyiha::class);    
     }
 
+    public function asbobuskunalar()
+    {
+        return $this->hasMany(Asbobuskuna::class);
+    }
+
 }

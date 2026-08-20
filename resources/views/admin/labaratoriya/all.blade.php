@@ -14,6 +14,10 @@
                             <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
                         </a>
                     </div>
+                     <a href="{{ route('laboratoriya.asbobuskunalar.export') }}" class="button box flex items-center text-gray-700">
+                        <i data-feather="download" class="w-4 h-4 mr-2"></i>
+                        Asbob-uskunalarni Excelga yuklash
+                    </a>
                 </div>
 
             </div>

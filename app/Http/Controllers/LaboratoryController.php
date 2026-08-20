@@ -11,6 +11,7 @@ use App\Models\Xodimlar;
 use App\Models\Xujalik;
 use Illuminate\Http\Request;
 use App\Exports\LaboratoryExport;
+use App\Exports\LaboratoryAsbobuskunaExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class LaboratoryController extends Controller
@@ -262,6 +263,17 @@ class LaboratoryController extends Controller
         $fileName = 'Laboratory_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
 
         return Excel::download(new LaboratoryExport, $fileName);
+    }
+
+    public function exportAsbobuskunalar()
+    {
+        $user = $this->authUser();
+        $fileName = 'laboratoriya_asbobuskunalari_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
+
+        return Excel::download(
+            new LaboratoryAsbobuskunaExport($user->tashkilot_id, $user->laboratory_id),
+            $fileName
+        );
     }
 
 

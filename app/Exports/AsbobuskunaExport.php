@@ -14,7 +14,12 @@ class AsbobuskunaExport implements FromCollection, WithHeadings
     public function collection()
     {
         return Asbobuskuna::with(['tashkilot', 'laboratory', 'kafedralar', 'asbobuskunaexperts'])
-            // ->where('is_active', 1)
+            // Expert tomonidan tasdiqlangan uskuna kamida bitta bo'lishi kerak.
+            // So'rov Asbobuskuna modelidan boshlangani uchun asbobuskuna_id
+            // Asbobuskunaexpert jadvalida bir necha marta uchrasa ham Excelda dublikat bo'lmaydi.
+            ->whereHas('asbobuskunaexperts', function ($query) {
+                $query->where('holati', 'Tasdiqlandi');
+            })
             ->get()
             ->map(function ($asbobuskuna) {
 
