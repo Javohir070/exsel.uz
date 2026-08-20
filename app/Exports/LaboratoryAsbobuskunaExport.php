@@ -3,25 +3,30 @@
 namespace App\Exports;
 
 use App\Models\Asbobuskuna;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Illuminate\Database\Eloquent\Builder;
+use Maatwebsite\Excel\Concerns\FromQuery;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 use Maatwebsite\Excel\Concerns\WithMapping;
 
-class LaboratoryAsbobuskunaExport implements FromCollection, WithHeadings, WithMapping
+class LaboratoryAsbobuskunaExport implements FromQuery, WithHeadings, WithMapping
 {
     public function __construct(
         private readonly ?int $laboratoryId = null,
     ) {
     }
 
-    public function collection()
+    public function query(): Builder
     {
         return Asbobuskuna::query()
-            ->with(['laboratory', 'tashkilot'])
+            ->select([
+                'id', 'tashkilot_id', 'laboratory_id', 'name', 'model', 'turi',
+                'ishlab_davlat', 'ishlabchiq_yil', 'harid_summa', 'buxgalteriya_summa',
+                'moliya_manbasi', 'harid_qilingan_yil', 'holati', 'soni', 'fish', 'invertar_r',
+            ])
+            ->with(['laboratory:id,name', 'tashkilot:id,name'])
             ->when($this->laboratoryId, fn ($query) => $query->where('laboratory_id', $this->laboratoryId))
             ->orderBy('laboratory_id')
-            ->orderBy('name')
-            ->get();
+            ->orderBy('name');
     }
 
     public function headings(): array
