@@ -485,6 +485,8 @@ class IlmiyLoyihaController extends Controller
 
     public function exportIlmiyLoyihaAsbobuskunalar()
     {
+        set_time_limit(300);
+
         $fileName = 'Ilmiy_loyiha_asbobuskuna_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
 
         return Excel::download(new IlmiyLoyihaAsbobuskunaExport, $fileName);
