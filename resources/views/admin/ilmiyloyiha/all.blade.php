@@ -8,9 +8,12 @@
             <h2 class="intro-y text-lg font-medium"> {{ $tashkilot->name ?? "Ilmiy loyihalar" }}</h2>
 
             <div class="flex justify-between align-center ">
-                <div>
+                <div class="flex flex-wrap gap-2">
                     <a href="{{ route('exportilmiy') }}" class="button box flex items-center text-gray-700">
-                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel
+                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Loyihalar Excel
+                    </a>
+                    <a href="{{ route('export.ilmiy_loyiha_asbobuskuna') }}" class="button box flex items-center text-gray-700">
+                        <i data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Loyiha asbob-uskuna Excel
                     </a>
                 </div>
                 <div class="mt-2">

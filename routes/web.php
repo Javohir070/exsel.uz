@@ -359,6 +359,7 @@ Route::group(['middleware' => ['role:super-admin|admin|Ekspert']], function () {
     Route::resource('permissions', PermissionController::class);
     Route::get('permissions/{permissionId}/delete', [PermissionController::class, 'destroy']);
     Route::get('/export-ilmiylar', [IlmiyLoyihaController::class, 'exportilmiy'])->name('exportilmiy');
+    Route::get('/export-ilmiy-loyiha-asbobuskuna', [IlmiyLoyihaController::class, 'exportIlmiyLoyihaAsbobuskunalar'])->name('export.ilmiy_loyiha_asbobuskuna');
     Route::get('/monitoring/export-ilmiylar', [IlmiyLoyihaController::class, 'monitoring_exportilmiy'])->name('monitoring_exportilmiy');
     Route::get('/monitoring/export-stajirovkalar', [StajirovkaController::class, 'monitoring_exportstajirovka'])->name('monitoring_exportstajirovka');
     Route::get('/monitoring/export-intellektual', [IntellektualController::class, 'monitoring_exportintellektual'])->name('monitoring_exportintellektual');
