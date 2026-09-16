@@ -31,6 +31,9 @@ class LoyihalarToMonitoringExport implements FromCollection, WithHeadings
                 'Loyihaning umumiy qiymati' => $tekshirivchilar->ilmiyLoyihalar->sum,
                 'Monitoring xulosasi (qoniqarli/qoniqarsiz)' => $tekshirivchilar->status,
                 "Ekspert F.I.Sh"=>$tekshirivchilar->ekspert_fish ?? null,
+                "Ishchi guruh rahbari F.I.Sh" => $tekshirivchilar->fish ?? null,
+                "Ishchi guruh azosi F.I.Sh" => $tekshirivchilar->user?->name ?? null,
+                "Tashkilotning mas'ul rahbari F.I.Sh"=> $tekshirivchilar->t_masul ?? null,
                 'Izoh' => $tekshirivchilar->comment,
 
             ];
@@ -55,6 +58,9 @@ class LoyihalarToMonitoringExport implements FromCollection, WithHeadings
             'Loyihaning umumiy qiymati',
             'Monitoring xulosasi (qoniqarli/qoniqarsiz)',
             "Ekspert F.I.Sh",
+            "Ishchi guruh rahbari F.I.Sh",
+            "Ishchi guruh azosi F.I.Sh" ,
+            "Tashkilotning mas'ul rahbari F.I.Sh",
             'Izoh',
         ];
     }
