@@ -217,7 +217,16 @@ class TashkilotController extends Controller
     public function tashkilot_region($id)
     {
 
-        $tashkilotlarQuery = Tashkilot::where('status', 1)->where('region_id', '=', $id)->with(['ilmiyloyhalar', 'asbobuskunalar', 'stajirovkalar'])
+        $regions = Region::findOrFail($id);
+
+        // Bog'liq yozuvlarni xotiraga yuklamasdan, SQL orqali sanash
+        $tashkilotlarQuery = Tashkilot::where('status', 1)->where('region_id', '=', $id)
+            ->withCount([
+                'ilmiyloyhalar' => fn($q) => $q->where('is_active', 1),
+                'stajirovkalar' => fn($q) => $q->where('quarter', 2),
+                'asbobuskunalar' => fn($q) => $q->where('is_active', 1),
+                'doktaranturalar' => fn($q) => $q->where('quarter', 2),
+            ])
             ->get();
 
         // Turga qarab guruhlash
@@ -231,14 +240,12 @@ class TashkilotController extends Controller
 
         foreach ($groups as $key => $group) {
             $results[$key] = [
-                'ilmiyloyhalar' => $group->pluck('ilmiyloyhalar')->flatten()->where('is_active', 1)->count(),
-                'stajirovkalar' => $group->pluck('stajirovkalar')->flatten()->where('quarter', 2)->count(),
-                'asbobuskunalar' => $group->pluck('asbobuskunalar')->flatten()->where('is_active', 1)->count(),
-                'doktarantura' => $group->pluck('doktaranturalar')->flatten()->where('quarter', 2)->count(),
+                'ilmiyloyhalar' => $group->sum('ilmiyloyhalar_count'),
+                'stajirovkalar' => $group->sum('stajirovkalar_count'),
+                'asbobuskunalar' => $group->sum('asbobuskunalar_count'),
+                'doktarantura' => $group->sum('doktaranturalar_count'),
             ];
-
         }
-        $regions = Region::findOrFail($id);
 
         $id_tash = $tashkilotlarQuery->pluck('id');
         $tashkilotlar = $tashkilotlarQuery->count();
