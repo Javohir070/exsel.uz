@@ -315,7 +315,7 @@
                                             xaqida ma’lumot
                                         </div> --}}
                                         <div style="text-align: center;">
-                                            @if (is_null($tekshirivchilar))
+                                            @if (is_null($tekshirivchilar) && !\App\Http\Middleware\ReadOnlyRole::userIsReadOnly(auth()->user()))
                                                 @if (empty($intellektual?->id))
                                                     <a href="javascript:;" data-target="#intellektual-paper-create-modal"
                                                         data-toggle="modal" class="button w-24 ml-3 bg-theme-1 text-white">
@@ -615,7 +615,7 @@
                                 {{-- <div style="font-size:18px;font-weight: 400;"> {{$asbobuskuna->name}} xaqida ma’lumot
                                 </div> --}}
                                 <div style="text-align: center;">
-                                    @if (is_null($tekshirivchilar))
+                                    @if (is_null($tekshirivchilar) && !\App\Http\Middleware\ReadOnlyRole::userIsReadOnly(auth()->user()))
                                         @if (empty($loyihaiqtisodi?->id))
                                             <a href="javascript:;" data-target="#science-paper-create-modal" data-toggle="modal"
                                                 class="button w-24 ml-3 bg-theme-1 text-white">

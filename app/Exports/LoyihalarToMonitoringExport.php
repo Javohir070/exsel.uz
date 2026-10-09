@@ -35,6 +35,7 @@ class LoyihalarToMonitoringExport implements FromCollection, WithHeadings
                 "Ishchi guruh azosi F.I.Sh" => $tekshirivchilar->user?->name ?? null,
                 "Tashkilotning mas'ul rahbari F.I.Sh"=> $tekshirivchilar->t_masul ?? null,
                 'Izoh' => $tekshirivchilar->comment,
+                "Tasdiqlangan sana" => \Carbon\Carbon::parse($tekshirivchilar->created_at)->format('Y-m-d'),
 
             ];
         });
@@ -62,6 +63,7 @@ class LoyihalarToMonitoringExport implements FromCollection, WithHeadings
             "Ishchi guruh azosi F.I.Sh" ,
             "Tashkilotning mas'ul rahbari F.I.Sh",
             'Izoh',
+            "Tasdiqlangan sana",
         ];
     }
 }
