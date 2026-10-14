@@ -25,7 +25,7 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ishlanma (mahsulot, tovar, xizmat va
                             ishlar) nomi
                         </label>
-                        <input type="text" name="ishlanma_nomi" value="{{ $xujalik->ishlanma_nomi }}"
+                        <input type="text" name="ishlanma_nomi" value="{{ old('ishlanma_nomi', $xujalik->ishlanma_nomi) }}"
                             class="input w-full border mt-2" required="">
                         @error('ishlanma_nomi')
                             <div class="error">{{ $message }}</div>
@@ -36,7 +36,7 @@
                         <label class="flex flex-col sm:flex-row"> Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa
                             raqami )
                         </label>
-                        <input type="text" name="intellektual_raqami" value="{{ $xujalik->intellektual_raqami }}"
+                        <input type="text" name="intellektual_raqami" value="{{ old('intellektual_raqami', $xujalik->intellektual_raqami) }}"
                             class="input w-full border mt-2">
                         @error('intellektual_raqami')
                             <div class="error">{{ $message }}</div>
@@ -47,7 +47,7 @@
                         <label class="flex flex-col sm:flex-row"> Intellektual mulk huquqining mavjudligi ( mavjud bo‘lsa
                             sanasi )
                         </label>
-                        <input type="text" name="intellektual_sana" value="{{ $xujalik->intellektual_sana }}"
+                        <input type="text" name="intellektual_sana" value="{{ old('intellektual_sana', $xujalik->intellektual_sana) }}"
                             class=" input w-full border mt-2">
                         @error('intellektual_sana')
                             <div class="error">{{ $message }}</div>
@@ -59,7 +59,7 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ishlanma yaratilgan tadqiqot mavzusi
                             va turi
                         </label>
-                        <input type="text" name="ishlanma_mavzu" value="{{ $xujalik->ishlanma_mavzu }}"
+                        <input type="text" name="ishlanma_mavzu" value="{{ old('ishlanma_mavzu', $xujalik->ishlanma_mavzu) }}"
                             class="input w-full border mt-2" required="">
                         @error('ishlanma_mavzu')
                             <div class="error">{{ $message }}</div>
@@ -71,41 +71,36 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ishlanma yaratilgan tadqiqot turi
                         </label>
                         <select name="ishlanma_turi" id="science-sub-category" class="input border w-full mt-2" required="">
-
                             <option value=""></option>
-
-                            <option value="Amaliy" {{ $xujalik->ishlanma_turi == "Amaliy" ? "selected" : ""}}>Amaliy</option>
-
-                            <option value="Innovatsion" {{ $xujalik->ishlanma_turi == "Innovatsion" ? "selected" : ""}}>
-                                Innovatsion</option>
-                            <option value="Fundamental" {{ $xujalik->ishlanma_turi == "Fundamental" ? "selected" : ""}}>
-                                Fundamental</option>
-                            <option value="Xizmat ko'rsatishni" {{ $xujalik->ishlanma_turi == "Xizmat ko'rsatishni" ? "selected" : ""}}>Xizmat ko'rsatishni</option>
-
-
+                            <option value="Amaliy" {{ old('ishlanma_turi', $xujalik->ishlanma_turi) == "Amaliy" ? 'selected' : '' }}>Amaliy</option>
+                            <option value="Innovatsion" {{ old('ishlanma_turi', $xujalik->ishlanma_turi) == "Innovatsion" ? 'selected' : '' }}>Innovatsion</option>
+                            <option value="Fundamental" {{ old('ishlanma_turi', $xujalik->ishlanma_turi) == "Fundamental" ? 'selected' : '' }}>Fundamental</option>
+                            <option value="Xizmat ko'rsatishni" {{ old('ishlanma_turi', $xujalik->ishlanma_turi) == "Xizmat ko'rsatishni" ? 'selected' : '' }}>Xizmat ko'rsatishni</option>
                         </select>
+                        @error('ishlanma_turi')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma turi
                         </label>
-                        <select name="lisenzion" id="science-sub-category" class="input border w-full mt-2" required="">
-
+                        <select name="lisenzion" class="input border w-full mt-2" required="">
                             <option value=""></option>
-
-                            <option value="Xo‘jalik shartnomasi" {{ $xujalik->lisenzion == "Xo‘jalik shartnomasi" ? "selected" : ""}}>Xo‘jalik shartnomasi</option>
-
-                            <option value="Litsenziya shartnomasi " {{ $xujalik->lisenzion == "Litsenziya shartnomasi" ? "selected" : ""}}>Litsenziya shartnomasi</option>
-
+                            <option value="Xo‘jalik shartnomasi" {{ old('lisenzion', $xujalik->lisenzion) == "Xo‘jalik shartnomasi" ? 'selected' : '' }}>Xo‘jalik shartnomasi</option>
+                            <option value="Litsenziya shartnomasi" {{ old('lisenzion', $xujalik->lisenzion) == "Litsenziya shartnomasi" ? 'selected' : '' }}>Litsenziya shartnomasi</option>
                         </select>
+                        @error('lisenzion')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma raqami
                         </label>
-                        <input type="text" name="sh_raqami" value="{{ $xujalik->sh_raqami }}"
+                        <input type="text" name="sh_raqami" value="{{ old('sh_raqami', $xujalik->sh_raqami) }}"
                             class="input w-full border mt-2" required="">
                         @error('sh_raqami')
                             <div class="error">{{ $message }}</div>
@@ -116,7 +111,7 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma sanasi
                         </label>
-                        <input type="text" name="sh_sanasi" value="{{ $xujalik->sh_sanasi }}"
+                        <input type="text" name="sh_sanasi" value="{{ old('sh_sanasi', $xujalik->sh_sanasi) }}"
                             class=" input w-full border mt-2" required="">
                         @error('sh_sanasi')
                             <div class="error">{{ $message }}</div>
@@ -128,7 +123,7 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy yoki innovatsion ishlanmani
                             sotib olish (foydalanish) bo‘yicha shartnoma tuzgan tashkilot yoki korxona nomi
                         </label>
-                        <input type="text" name="ilmiy_nomi" value="{{ $xujalik->ilmiy_nomi }}"
+                        <input type="text" name="ilmiy_nomi" value="{{ old('ilmiy_nomi', $xujalik->ilmiy_nomi) }}"
                             class="input w-full border mt-2" required="">
                         @error('ilmiy_nomi')
                             <div class="error">{{ $message }}</div>
@@ -140,7 +135,7 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Ilmiy yoki innovatsion ishlanmani
                             sotib olish (foydalanish) bo‘yicha shartnoma tuzgan tashkilot yoki korxona STIR
                         </label>
-                        <input type="text" name="stir" value="{{ $xujalik->stir }}" class="input w-full border mt-2"
+                        <input type="text" name="stir" value="{{ old('stir', $xujalik->stir) }}" class="input w-full border mt-2"
                             required="">
                         @error('stir')
                             <div class="error">{{ $message }}</div>
@@ -152,16 +147,14 @@
                         <label class="flex flex-col sm:flex-row"> <span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Pul birligini tanlang
                         </label>
-                        <select name="pul_type" id="pul_type" value="{{ old('pul_type') }}" id="science-sub-category"
-                            class="input border w-full mt-2" required="">
-
+                        <select name="pul_type" id="pul_type" class="input border w-full mt-2" required="">
                             <option value=""></option>
-
-                            <option value="so'm">So'm</option>
-
-                            <option value="dollar">Dollor</option>
-
+                            <option value="so'm" {{ old('pul_type', $xujalik->pul_type) == "so'm" ? 'selected' : '' }}>So'm</option>
+                            <option value="dollar" {{ old('pul_type', $xujalik->pul_type) == "dollar" ? 'selected' : '' }}>Dollor</option>
                         </select>
+                        @error('pul_type')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6 ">
@@ -169,7 +162,7 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma summasi (<span
                                 id="summa_unit">so'm</span>)
                         </label>
-                        <input type="text" name="sh_summa" value="{{ $xujalik->sh_summa }}" class="input w-full border mt-2"
+                        <input type="text" name="sh_summa" value="{{ old('sh_summa', $xujalik->sh_summa) }}" class="input w-full border mt-2"
                             required="">
                         @error('sh_summa')
                             <div class="error">{{ $message }}</div>
@@ -181,7 +174,7 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma bo‘yicha kelib tushgan
                             mablag‘ sanasi
                         </label>
-                        <input type="text" name="shkelib_sana" value="{{ $xujalik->shkelib_sana }}"
+                        <input type="text" name="shkelib_sana" value="{{ old('shkelib_sana', $xujalik->shkelib_sana) }}"
                             class=" input w-full border mt-2" required="">
                         @error('shkelib_sana')
                             <div class="error">{{ $message }}</div>
@@ -193,7 +186,7 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma bo‘yicha kelib tushgan
                             mablag‘ summasi
                         </label>
-                        <input type="text" name="shkelib_summa" value="{{ $xujalik->shkelib_summa }}"
+                        <input type="text" name="shkelib_summa" value="{{ old('shkelib_summa', $xujalik->shkelib_summa) }}"
                             class="input w-full border mt-2" required="">
                         @error('shkelib_summa')
                             <div class="error">{{ $message }}</div>
@@ -219,14 +212,20 @@
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> 1-chorak
                         </label>
-                        <input type="number" name="chorak1" value="{{ $xujalik->chorak1 }}" class="input w-full border mt-2"
+                        <input type="number" name="chorak1" value="{{ old('chorak1', $xujalik->
+                        @error(\'chorak1\')
+                            <div class="error">{{ $message }}</div>
+                        @enderrorchorak1) }}" class="input w-full border mt-2"
                             required="">
 
                     </div>
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> 2-chorak
                         </label>
-                        <input type="number" name="chorak2" value="{{ $xujalik->chorak2 }}" class="input w-full border mt-2"
+                        <input type="number" name="chorak2" value="{{ old('chorak2', $xujalik->
+                        @error(\'chorak2\')
+                            <div class="error">{{ $message }}</div>
+                        @enderrorchorak2) }}" class="input w-full border mt-2"
                             required="">
 
                     </div>
@@ -234,7 +233,10 @@
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> 3-chorak
                         </label>
-                        <input type="number" name="chorak3" value="{{ $xujalik->chorak3 }}" class="input w-full border mt-2"
+                        <input type="number" name="chorak3" value="{{ old('chorak3', $xujalik->
+                        @error(\'chorak3\')
+                            <div class="error">{{ $message }}</div>
+                        @enderrorchorak3) }}" class="input w-full border mt-2"
                             required="">
 
                     </div>
@@ -242,7 +244,10 @@
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> 4-chorak
                         </label>
-                        <input type="number" name="chorak4" value="{{ $xujalik->chorak4 }}" class="input w-full border mt-2"
+                        <input type="number" name="chorak4" value="{{ old('chorak4', $xujalik->
+                        @error(\'chorak4\')
+                            <div class="error">{{ $message }}</div>
+                        @enderrorchorak4) }}" class="input w-full border mt-2"
                             required="">
 
                     </div>
@@ -251,15 +256,19 @@
                         <label class="flex flex-col sm:flex-row"><span
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma file yuklash
                         </label>
-                        <input type="file" name="shartnoma_file" value="{{ old('shartnoma_file') }}"
-                            class="input w-full border mt-2" required="">
+                        <input type="file" name="shartnoma_file" class="input w-full border mt-2">
+                        @error(\'shartnoma_file\')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> Bajarilgan ishlar dalolatnomasin yuklash
                         </label>
-                        <input type="file" name="dalolatnoma_file" value="{{ old('dalolatnoma_file') }}"
-                            class="input w-full border mt-2">
+                        <input type="file" name="dalolatnoma_file" class="input w-full border mt-2">
+                        @error(\'dalolatnoma_file\')
+                            <div class="error">{{ $message }}</div>
+                        @enderror
                     </div>
 
                 </div>
