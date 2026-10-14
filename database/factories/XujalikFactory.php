@@ -24,7 +24,7 @@ class XujalikFactory extends Factory
             'intellektual_sana' => $this->faker->date(),
             'ishlanma_mavzu' => $this->faker->sentence(),
             'ishlanma_turi' => $this->faker->randomElement(['ilmiy', 'amaliy', 'innovatsion']),
-            'lisenzion' => $this->faker->boolean(),
+            'lisenzion' => $this->faker->randomElement(['Xo‘jalik shartnomasi', 'Litsenziya shartnomasi']),
             'sh_raqami' => $this->faker->regexify('[A-Z0-9]{8}'),
             'sh_sanasi' => $this->faker->date(),
             'ilmiy_nomi' => $this->faker->jobTitle(),
@@ -32,6 +32,8 @@ class XujalikFactory extends Factory
             'sh_summa' => $this->faker->numberBetween(1000, 100000),
             'shkelib_sana' => $this->faker->date(),
             'shkelib_summa' => $this->faker->numberBetween(1000, 100000),
+            'shartnoma_file' => 'xujalik-file/' . $this->faker->uuid() . '.pdf',
+            'pul_type' => "so'm",
         ];
     }
 }

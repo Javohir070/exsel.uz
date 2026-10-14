@@ -117,7 +117,9 @@ class KafedralarController extends Controller
 
         // Tanlangan IDlarga tegishli xujaliklarni yangilash
         if (!empty($xujaliklarId)) {
-            Xujalik::whereIn('id', $xujaliklarId)->update([
+            Xujalik::whereIn('id', $xujaliklarId)
+                ->where('tashkilot_id', auth()->user()->tashkilot_id)
+                ->update([
                 'kafedralar_id' => $kafedralarId,
             ]);
         }

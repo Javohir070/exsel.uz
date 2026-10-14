@@ -70,6 +70,8 @@ class XujalikController extends Controller
 
     public function edit(Xujalik $xujalik)
     {
+        $this->authorizeOwner($xujalik);
+
         $laboratorylar = Laboratory::where('tashkilot_id', auth()->user()->tashkilot_id)->get();
 
         return view('admin.xujalik.edit', ['xujalik' => $xujalik, 'laboratorylar' => $laboratorylar]);
@@ -78,6 +80,8 @@ class XujalikController extends Controller
 
     public function update(StoreXujalikRequest $request, Xujalik $xujalik)
     {
+        $this->authorizeOwner($xujalik);
+
         $data = $request->validated();
         if ($request->hasFile('shartnoma_file')) {
             $name_shartnoma_file = time() . $request->file('shartnoma_file')->getClientOriginalName();
@@ -89,9 +93,6 @@ class XujalikController extends Controller
             $path_dalolatnoma_file = $request->file('dalolatnoma_file')->storeAs('xujalik-file', $name_dalolatnoma_file);
             $data['dalolatnoma_file'] = $path_dalolatnoma_file ?? null;
         }
-        $data['tashkilot_id'] = auth()->user()->tashkilot_id;
-        $data['kafedralar_id'] = auth()->user()->kafedralar_id;
-        $data['user_id'] = auth()->id();
 
         $xujalik->update($data);
 
@@ -107,6 +108,8 @@ class XujalikController extends Controller
 
     public function destroy(Xujalik $xujalik)
     {
+        $this->authorizeOwner($xujalik);
+
         $xujalik->delete();
 
         return redirect()->back()->with('status', 'Ma\'lumotlar muvaffaqiyatli o\'chirildi.');
@@ -119,12 +122,14 @@ class XujalikController extends Controller
 
         if ($request->filled('search')) {
             $search = $request->search;
-            $query->where('ishlanma_nomi', 'like', '%' . $search . '%')
-                ->orWhere('ishlanma_mavzu', 'like', '%' . $search . '%')
-                ->orWhere('ilmiy_nomi', 'like', '%' . $search . '%')
-                ->orWhere('stir', 'like', '%' . $search . '%')
-                ->orWhere('sh_raqami', 'like', '%' . $search . '%')
-                ->orWhere('status', 'like', '%' . $search . '%');
+            $query->where(function ($q) use ($search) {
+                $q->where('ishlanma_nomi', 'like', '%' . $search . '%')
+                    ->orWhere('ishlanma_mavzu', 'like', '%' . $search . '%')
+                    ->orWhere('ilmiy_nomi', 'like', '%' . $search . '%')
+                    ->orWhere('stir', 'like', '%' . $search . '%')
+                    ->orWhere('sh_raqami', 'like', '%' . $search . '%')
+                    ->orWhere('status', 'like', '%' . $search . '%');
+            });
         }
 
         if ($request->filled('ishlanma_turi') && $request->ishlanma_turi != 'all') {
@@ -145,4 +150,13 @@ class XujalikController extends Controller
         return Excel::download(new XujalikExport, $fileName);
     }
 
+    // Faqat o'z tashkilotining yozuvini o'zgartirish mumkin (super-admin bundan mustasno)
+    private function authorizeOwner(Xujalik $xujalik): void
+    {
+        $user = auth()->user();
+
+        if (! $user->hasRole('super-admin') && (int) $xujalik->tashkilot_id !== (int) $user->tashkilot_id) {
+            abort(403);
+        }
+    }
 }

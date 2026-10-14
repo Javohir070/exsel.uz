@@ -38,6 +38,11 @@ class Xujalik extends Model
         'status'
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function tashkilot()
     {
         return $this->belongsTo(Tashkilot::class);

@@ -40,9 +40,10 @@ class StoreXujalikRequest extends FormRequest
             "chorak2" => "required|max:255",
             "chorak3" => "required|max:255",
             "chorak4" => "required|max:255",
-            'shartnoma_file' => 'nullable|file|max:2048',
+            // Yangi yozuvda shartnoma fayli majburiy, tahrirlashda eski fayl saqlanib qoladi
+            'shartnoma_file' => ($this->isMethod('post') ? 'required' : 'nullable') . '|file|max:2048',
             'dalolatnoma_file' => 'nullable|file|max:2048',
-            'pul_type' => 'nullable',
+            'pul_type' => 'required|max:255',
         ];
 
     }

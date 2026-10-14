@@ -170,7 +170,9 @@ class LaboratoryController extends Controller
 
         // Tanlangan IDlarga tegishli xujaliklarni yangilash
         if (!empty($xujaliklarId)) {
-            Xujalik::whereIn('id', $xujaliklarId)->update([
+            Xujalik::whereIn('id', $xujaliklarId)
+                ->where('tashkilot_id', $this->authUser()->tashkilot_id)
+                ->update([
                 'laboratory_id' => $laboratoryId,
             ]);
         }
