@@ -257,7 +257,7 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma file yuklash
                         </label>
                         <input type="file" name="shartnoma_file" class="input w-full border mt-2">
-                        @error(\'shartnoma_file\')
+                        @error('shartnoma_file')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
@@ -266,7 +266,7 @@
                         <label class="flex flex-col sm:flex-row"> Bajarilgan ishlar dalolatnomasin yuklash
                         </label>
                         <input type="file" name="dalolatnoma_file" class="input w-full border mt-2">
-                        @error(\'dalolatnoma_file\')
+                        @error('dalolatnoma_file')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>

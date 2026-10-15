@@ -209,7 +209,7 @@
                         </label>
                         <input type="number" name="chorak1" value="{{ old('chorak1') }}" class="input w-full border mt-2"
                             required="">
-                        @error(\'chorak1\')
+                        @error('chorak1')
                             <div class="error">{{ $message }}</div>
                         @enderror
 
@@ -219,7 +219,7 @@
                         </label>
                         <input type="number" name="chorak2" value="{{ old('chorak2') }}" class="input w-full border mt-2"
                             required="">
-                        @error(\'chorak2\')
+                        @error('chorak2')
                             <div class="error">{{ $message }}</div>
                         @enderror
 
@@ -230,7 +230,7 @@
                         </label>
                         <input type="number" name="chorak3" value="{{ old('chorak3') }}" class="input w-full border mt-2"
                             required="">
-                        @error(\'chorak3\')
+                        @error('chorak3')
                             <div class="error">{{ $message }}</div>
                         @enderror
 
@@ -241,7 +241,7 @@
                         </label>
                         <input type="number" name="chorak4" value="{{ old('chorak4') }}" class="input w-full border mt-2"
                             required="">
-                        @error(\'chorak4\')
+                        @error('chorak4')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
@@ -251,7 +251,7 @@
                                 class="mt-1 mr-1 sm:mt-0 text-xs text-red-600">*</span> Shartnoma fayl yuklash
                         </label>
                         <input type="file" name="shartnoma_file" class="input w-full border mt-2" required="">
-                        @error(\'shartnoma_file\')
+                        @error('shartnoma_file')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
@@ -260,7 +260,7 @@
                         <label class="flex flex-col sm:flex-row"> Bajarilgan ishlar dalolatnomasin fayl yuklash
                         </label>
                         <input type="file" name="dalolatnoma_file" class="input w-full border mt-2">
-                        @error(\'dalolatnoma_file\')
+                        @error('dalolatnoma_file')
                             <div class="error">{{ $message }}</div>
                         @enderror
                     </div>
