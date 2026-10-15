@@ -212,43 +212,43 @@
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> 1-chorak
                         </label>
-                        <input type="number" name="chorak1" value="{{ old('chorak1', $xujalik->
-                        @error(\'chorak1\')
+                        <input type="number" name="chorak1" value="{{ old('chorak1', $xujalik->chorak1) }}"
+                            class="input w-full border mt-2" required="">
+                        @error('chorak1')
                             <div class="error">{{ $message }}</div>
-                        @enderrorchorak1) }}" class="input w-full border mt-2"
-                            required="">
+                        @enderror
 
                     </div>
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> 2-chorak
                         </label>
-                        <input type="number" name="chorak2" value="{{ old('chorak2', $xujalik->
-                        @error(\'chorak2\')
+                        <input type="number" name="chorak2" value="{{ old('chorak2', $xujalik->chorak2) }}"
+                            class="input w-full border mt-2" required="">
+                        @error('chorak2')
                             <div class="error">{{ $message }}</div>
-                        @enderrorchorak2) }}" class="input w-full border mt-2"
-                            required="">
+                        @enderror
 
                     </div>
 
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> 3-chorak
                         </label>
-                        <input type="number" name="chorak3" value="{{ old('chorak3', $xujalik->
-                        @error(\'chorak3\')
+                        <input type="number" name="chorak3" value="{{ old('chorak3', $xujalik->chorak3) }}"
+                            class="input w-full border mt-2" required="">
+                        @error('chorak3')
                             <div class="error">{{ $message }}</div>
-                        @enderrorchorak3) }}" class="input w-full border mt-2"
-                            required="">
+                        @enderror
 
                     </div>
 
                     <div class="w-full col-span-6 ">
                         <label class="flex flex-col sm:flex-row"> 4-chorak
                         </label>
-                        <input type="number" name="chorak4" value="{{ old('chorak4', $xujalik->
-                        @error(\'chorak4\')
+                        <input type="number" name="chorak4" value="{{ old('chorak4', $xujalik->chorak4) }}"
+                            class="input w-full border mt-2" required="">
+                        @error('chorak4')
                             <div class="error">{{ $message }}</div>
-                        @enderrorchorak4) }}" class="input w-full border mt-2"
-                            required="">
+                        @enderror
 
                     </div>
 
