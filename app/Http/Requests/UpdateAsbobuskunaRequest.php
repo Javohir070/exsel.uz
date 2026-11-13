@@ -40,7 +40,7 @@ class UpdateAsbobuskunaRequest extends FormRequest
             'urnatilgan_yili' => 'required|integer|min:1900|max:' . date('Y'),
             'laboratory_id' => 'required',
             'jav_buy_raqami' => 'required|string|max:255',
-            'invertar_r' => 'required|string|max:255',
+            'invertar_r' => 'required|string|max:5000', // ustun TEXT: bir nechta inventar raqami vergul bilan kiritiladi
             'jav_sanasi' => 'required|date|before:9999-12-31',
             'ilmiy_tadqiqot_ishilari'=> 'required|string|max:5000',
             'ilmiy_tadqiqot_hajmi'=> 'required|string|max:5000',
@@ -49,6 +49,18 @@ class UpdateAsbobuskunaRequest extends FormRequest
             'asbob_usk_ehtiyoji'=> 'required|string|max:5000',
             'zarur_ehtiyoji'=> 'required|string|max:5000',
             "kafedralar_id" => 'nullable',
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'invertar_r.max' => 'Inventar raqamlari :max belgidan oshmasligi kerak.',
         ];
     }
 }

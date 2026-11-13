@@ -40,7 +40,7 @@ class StoreAsbobuskunaRequest extends FormRequest
             'urnatilgan_yili' => 'required|integer|min:1900|max:' . date('Y'),
             'laboratory_id' => 'required',
             'jav_buy_raqami' => 'required|string|max:255',
-            'invertar_r' => 'required|string|max:255',
+            'invertar_r' => 'required|string|max:5000', // ustun TEXT: bir nechta inventar raqami vergul bilan kiritiladi
             'jav_sanasi' => 'required|date|before:9999-12-31',
             'ilmiy_tadqiqot_ishilari'=> 'required|string|max:5000',
             'ilmiy_tadqiqot_hajmi'=> 'required|string|max:5000',
@@ -67,6 +67,7 @@ class StoreAsbobuskunaRequest extends FormRequest
             'model.regex' => 'Model nomi faqat lotin harflari va raqamlardan iborat bo‘lishi kerak.',
             'fish.required' => 'Model maydoni to‘ldirilishi shart.',
             'fish.regex' => 'Model nomi faqat lotin harflari va raqamlardan iborat bo‘lishi kerak.',
+            'invertar_r.max' => 'Inventar raqamlari :max belgidan oshmasligi kerak.',
         ];
     }
 }

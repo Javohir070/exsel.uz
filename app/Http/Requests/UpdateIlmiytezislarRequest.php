@@ -21,19 +21,33 @@ class UpdateIlmiytezislarRequest extends FormRequest
      */
     public function rules(): array
     {
+        // max qiymatlari bazadagi ustun o'lchamlariga mos (varchar(255) / TEXT),
+        // aks holda uzun matn "Data too long" bilan 500 xato beradi.
         return [
-            'type' => 'required|string',
-            'mavzu' => 'required|string',
+            'type' => 'required|string|max:255',
+            'mavzu' => 'required|string|max:5000',
             'mualliflar_json' => 'required|array',
             'chopq_sana' => 'required|date',
-            'kon_full_nomi' => 'required|string',
-            'kon_qisqa_nomi' => 'required|string',
-            'soni' => 'required|string',
-            'nashriyot' => 'required|string',
-            'annotatsiya' => 'required|string',
-            'fan_yunalishi' => 'required|string',
-            'url' => 'nullable|url',
-            'doi' => 'nullable|url',
+            'kon_full_nomi' => 'required|string|max:1000',
+            'kon_qisqa_nomi' => 'required|string|max:255',
+            'soni' => 'required|string|max:255',
+            'nashriyot' => 'required|string|max:255',
+            'annotatsiya' => 'required|string|max:20000',
+            'fan_yunalishi' => 'required|string|max:255',
+            'url' => 'nullable|url|max:255',
+            'doi' => 'nullable|url|max:255',
+        ];
+    }
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'max' => 'Bu maydon :max belgidan oshmasligi kerak.',
         ];
     }
 }
