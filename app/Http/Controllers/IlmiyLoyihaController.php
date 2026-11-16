@@ -486,6 +486,9 @@ class IlmiyLoyihaController extends Controller
     public function exportIlmiyLoyihaAsbobuskunalar()
     {
         set_time_limit(300);
+        // PhpSpreadsheet butun varaqni xotirada saqlaydi: ~3 ming qator ~140 MB oladi,
+        // serverdagi standart 128 MB yetmaydi (boshqa katta eksportlardagi kabi limit oshiriladi)
+        ini_set('memory_limit', '1024M');
 
         $fileName = 'Ilmiy_loyiha_asbobuskuna_' . now()->format('Y_m_d_H_i_s') . '.xlsx';
 
