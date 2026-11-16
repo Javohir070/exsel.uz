@@ -3,17 +3,61 @@
 namespace App\Exports;
 
 use App\Models\IlmiyLoyiha;
+use App\Models\Monitoring;
+use App\Models\Tekshirivchilar;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
 class IlmiyLoyihasExport implements FromCollection, WithHeadings
 {
+    public const HOLAT_QILINGAN = 'Monitoring qilingan';
+    public const HOLAT_JARAYONDA = 'Jarayonda';
+    public const HOLAT_RAD_ETILGAN = 'Rad etilgan';
+    public const HOLAT_QILINMAGAN = 'Monitoring qilinmagan';
+
+    /**
+     * Status shu monitoring davri bo'yicha hisoblanadi: faol davr, u bo'lmasa eng oxirgi davr.
+     */
+    protected ?Monitoring $monitoring;
+
+    public function __construct()
+    {
+        $this->monitoring = Monitoring::getActive() ?? Monitoring::latest('id')->first();
+    }
+
+    /**
+     * Loyihaning shu davrdagi tekshiruv yozuviga (tekshirivchilars) qarab monitoring holati.
+     */
+    public static function monitoringHolati(?Tekshirivchilar $tekshiruv): string
+    {
+        if (! $tekshiruv) {
+            return self::HOLAT_QILINMAGAN;
+        }
+
+        return match (mb_strtolower(trim((string) $tekshiruv->holati))) {
+            'tasdiqlandi' => self::HOLAT_QILINGAN,
+            'rad etildi' => self::HOLAT_RAD_ETILGAN,
+            // 'yuborildi' yoki holati hali belgilanmagan: ishchi guruh yuborgan, ekspert tasdiqlamagan
+            default => self::HOLAT_JARAYONDA,
+        };
+    }
+
     /**
     * @return \Illuminate\Support\Collection
     */
     public function collection()
     {
-        return IlmiyLoyiha::with('tashkilot', 'laboratory', 'tekshirivchilars')->where('is_active', 1)->get()->map(function ($ilmiyloyhalar){
+        $monitoringId = $this->monitoring?->id;
+
+        return IlmiyLoyiha::with([
+            'tashkilot',
+            'laboratory',
+            // faqat shu davrdagi tekshiruvlar (tekshirivchilars.quarter = monitoring id);
+            // monitoring davri umuman bo'lmasa, hech qaysi tekshiruv olinmaydi
+            'tekshirivchilars' => function ($query) use ($monitoringId) {
+                $monitoringId ? $query->where('quarter', $monitoringId) : $query->whereRaw('1 = 0');
+            },
+        ])->where('is_active', 1)->get()->map(function ($ilmiyloyhalar){
             return [
                 'id' => $ilmiyloyhalar->id,
                 'Tashkilot id' => $ilmiyloyhalar->tashkilot->id,
@@ -50,7 +94,8 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
                 'Status' => $ilmiyloyhalar->status ?? 0,
                 // 'laboratory' => $ilmiyloyhalar->laboratory->id ?? 0,
                 // 'laboratory nomi' => $ilmiyloyhalar->laboratory->name ?? 0,
-                'monitoring' => $ilmiyloyhalar->tekshirivchilars->where('quarter', 2)->count(),
+                // bir davrda bir nechta yozuv bo'lsa, eng oxirgisi hisobga olinadi
+                'Monitoring holati' => self::monitoringHolati($ilmiyloyhalar->tekshirivchilars->sortByDesc('id')->first()),
 
             ];
         });
@@ -94,7 +139,9 @@ class IlmiyLoyihasExport implements FromCollection, WithHeadings
             'Status',
         //     'laboratory',
         //    'laboratory nomi',
-            'monitoring',
+            $this->monitoring
+                ? 'Monitoring holati (' . $this->monitoring->year . '-yil, ' . $this->monitoring->quarter?->value . '-chorak)'
+                : 'Monitoring holati',
         ];
     }
 }
